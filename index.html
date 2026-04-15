@@ -11,7 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* === Amber Geek Design Tokens === */
+    /* ============================================
+       AMBER GEEK DESIGN SYSTEM v2.0
+       祈研所 Qi-Lab — 个人品牌网站
+    ============================================ */
+
+    /* === 1. Design Tokens === */
     :root {
       --qi-bg-base: #F7F3EE;
       --qi-surface-main: #2A2A2A;
@@ -29,9 +34,11 @@
       --qi-gap-bento: 24px;
       --qi-shadow-hover: 0 16px 32px rgba(42,42,42,0.15), 0 4px 8px rgba(229,169,60,0.1);
       --qi-shadow-inset: inset 2px 2px 5px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(255,255,255,0.05);
+      --qi-glow-emerald: 0 0 20px rgba(46,125,92,0.4), 0 0 40px rgba(46,125,92,0.2);
+      --qi-glow-amber: 0 0 20px rgba(229,169,60,0.4), 0 0 40px rgba(229,169,60,0.2);
     }
 
-    /* === Reset & Base === */
+    /* === 2. Reset & Base === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -40,29 +47,155 @@
       color: var(--qi-text-primary);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     a { color: var(--qi-brand-emerald); text-decoration: none; transition: color 0.2s; }
     a:hover { color: var(--qi-brand-amber); }
 
-    /* === Layout === */
-    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--qi-gap-bento);
+    /* === 3. Noise Texture Overlay === */
+    .noise-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
 
-    /* === Hero Section === */
+    /* === 4. Custom Cursor === */
+    .cursor-ring, .cursor-dot {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      border-radius: 50%;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 2px solid var(--qi-brand-emerald);
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+    }
+    .cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--qi-brand-amber);
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring.hovering {
+      transform: translate(-50%, -50%) scale(1.4);
+      border-color: var(--qi-brand-amber);
+      background: rgba(229,169,60,0.1);
+    }
+    @media (hover: none) {
+      .cursor-ring, .cursor-dot { display: none !important; }
+    }
+
+    /* === 5. Navigation === */
+    .nav-fixed {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247,243,238,0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(42,42,42,0.05);
+      transition: all 0.3s ease;
+    }
+    .nav-fixed.scrolled {
+      padding: 0.75rem 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .nav-logo {
+      font-family: var(--qi-font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--qi-surface-main);
+    }
+    .nav-logo span { color: var(--qi-brand-emerald); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      position: relative;
+      color: var(--qi-text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-amber));
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--qi-text-primary);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
+    }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .nav-toggle span {
+      width: 24px; height: 2px;
+      background: var(--qi-surface-main);
+      transition: all 0.3s ease;
+    }
+
+    /* === 6. Particles Canvas === */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* === 7. Layout === */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* === 8. Hero Section === */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 80px 24px;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+    .hero-ambient {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 30%, rgba(46,125,92,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 70%, rgba(229,169,60,0.08) 0%, transparent 50%);
+      animation: ambientPulse 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
     }
     .hero-inner {
       max-width: 720px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     .hero-badge {
       display: inline-block;
@@ -90,7 +223,6 @@
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--qi-text-muted);
       margin-bottom: 40px;
-      font-style: normal;
     }
     .hero-desc {
       font-size: 1.05rem;
@@ -114,24 +246,32 @@
       border-radius: var(--qi-radius-button);
       border: none;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.25s;
-      box-shadow: 0 4px 12px rgba(42,42,42,0.2);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s ease, height 0.5s ease;
     }
     .hero-cta:hover {
       transform: translateY(-2px);
       box-shadow: var(--qi-shadow-hover);
       color: var(--qi-text-inverse);
     }
-    .hero-cta:active {
-      transform: translateY(1px);
-      box-shadow: var(--qi-shadow-inset);
+    .hero-cta:hover::before {
+      width: 300px; height: 300px;
     }
 
-    /* === Section Headers === */
-    .section { padding: 80px 0; }
-    .section-header {
-      margin-bottom: 48px;
-    }
+    /* === 9. Section Headers === */
+    .section { padding: 80px 0; position: relative; z-index: 1; }
+    .section-header { margin-bottom: 48px; }
     .section-label {
       font-family: var(--qi-font-mono);
       font-size: 13px;
@@ -146,24 +286,56 @@
       color: var(--qi-surface-main);
     }
 
-    /* === Cards === */
+    /* === 10. Cards with Glow Border === */
     .card {
       background: var(--qi-surface-main);
       border-radius: var(--qi-radius-card);
       padding: 32px;
       color: var(--qi-text-inverse);
-      transition: transform 0.2s, box-shadow 0.3s;
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: conic-gradient(from var(--angle, 0deg), var(--qi-brand-emerald), var(--qi-brand-amber), var(--qi-brand-emerald));
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--qi-surface-main);
+      border-radius: calc(var(--qi-radius-card) - 2px);
+      z-index: -1;
     }
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px) scale(1.02);
       box-shadow: var(--qi-shadow-hover);
+    }
+    .card:hover::before {
+      opacity: 1;
+      animation: rotateBorder 3s linear infinite;
+    }
+    @keyframes rotateBorder {
+      to { --angle: 360deg; }
+    }
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
     }
     .card-light {
       background: var(--qi-surface-sub);
       color: var(--qi-text-primary);
+      box-shadow: var(--qi-shadow-inset);
     }
+    .card-light::after { background: var(--qi-surface-sub); }
     .card h3 {
       font-family: var(--qi-font-serif);
       font-size: 1.15rem;
@@ -193,7 +365,7 @@
       margin-top: 16px;
     }
 
-    /* === About Section === */
+    /* === 11. About Section === */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -220,6 +392,10 @@
       padding: 24px;
       text-align: center;
       box-shadow: var(--qi-shadow-inset);
+      transition: transform 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
     }
     .stat-value {
       font-family: var(--qi-font-mono);
@@ -234,7 +410,7 @@
       margin-top: 4px;
     }
 
-    /* === Content Categories === */
+    /* === 12. Content Categories === */
     .cat-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -246,12 +422,35 @@
       padding: 28px 24px;
       color: var(--qi-text-inverse);
       text-align: center;
-      transition: transform 0.2s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
       cursor: default;
     }
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: conic-gradient(from var(--angle, 0deg), var(--qi-brand-emerald), var(--qi-brand-amber), var(--qi-brand-emerald));
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--qi-surface-main);
+      border-radius: calc(var(--qi-radius-card) - 2px);
+      z-index: -1;
+    }
     .cat-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px) scale(1.02);
       box-shadow: var(--qi-shadow-hover);
+    }
+    .cat-card:hover::before {
+      opacity: 1;
+      animation: rotateBorder 3s linear infinite;
     }
     .cat-emoji { font-size: 2rem; margin-bottom: 16px; display: block; }
     .cat-name {
@@ -273,7 +472,7 @@
       display: block;
     }
 
-    /* === Platform Matrix === */
+    /* === 13. Platform Matrix === */
     .platform-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -287,16 +486,16 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      transition: transform 0.2s, box-shadow 0.3s;
       box-shadow: var(--qi-shadow-inset);
+      transition: all 0.3s ease;
     }
     .platform-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-6px);
       box-shadow: var(--qi-shadow-hover);
       background: var(--qi-surface-main);
       color: var(--qi-text-inverse);
     }
-    .platform-card:hover .plat-desc { opacity: 0.7; }
+    .platform-card:hover .plat-desc { opacity: 0.7; color: var(--qi-text-inverse); }
     .platform-card:hover .plat-status { background: rgba(229,169,60,0.15); color: var(--qi-brand-amber); }
     .plat-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
     .plat-name {
@@ -310,7 +509,7 @@
       color: var(--qi-text-muted);
       line-height: 1.5;
       margin-bottom: 16px;
-      transition: opacity 0.2s;
+      transition: all 0.2s;
     }
     .plat-status {
       font-family: var(--qi-font-mono);
@@ -323,12 +522,40 @@
       transition: all 0.2s;
     }
 
-    /* === Footer === */
+    /* === 14. Quote Section === */
+    .section-quote {
+      padding: 60px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .section-quote blockquote {
+      font-family: var(--qi-font-serif);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 500;
+      color: var(--qi-surface-main);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0 40px;
+    }
+    .section-quote blockquote::before,
+    .section-quote blockquote::after {
+      font-size: 3rem;
+      color: var(--qi-brand-emerald);
+      opacity: 0.3;
+      position: absolute;
+    }
+    .section-quote blockquote::before { content: '"'; left: 0; top: -10px; }
+    .section-quote blockquote::after { content: '"'; right: 0; bottom: -30px; }
+
+    /* === 15. Footer === */
     footer {
       text-align: center;
       padding: 48px 24px;
       border-top: 1px solid rgba(42,42,42,0.08);
       margin-top: 40px;
+      position: relative;
+      z-index: 1;
     }
     footer p {
       font-size: 0.85rem;
@@ -351,7 +578,7 @@
     }
     footer .footer-links a:hover { color: var(--qi-brand-emerald); }
 
-    /* === Divider === */
+    /* === 16. Divider === */
     .divider {
       text-align: center;
       margin: 0 auto;
@@ -384,7 +611,48 @@
       vertical-align: middle;
     }
 
-    /* === Animations === */
+    /* === 17. Scroll Reveal Animations === */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    [data-reveal="fade-left"] {
+      transform: translateX(-30px);
+    }
+    [data-reveal="fade-left"].is-visible {
+      transform: translateX(0);
+    }
+    [data-reveal="scale"] {
+      transform: scale(0.95);
+    }
+    [data-reveal="scale"].is-visible {
+      transform: scale(1);
+    }
+
+    /* Staggered children */
+    .stagger-container > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger-container.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+    .stagger-container.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+    .stagger-container.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+    .stagger-container.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+    .stagger-container.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+    .stagger-container.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+    .stagger-container.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === 18. Page Load Animation === */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
@@ -395,33 +663,95 @@
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
 
-    /* === Responsive === */
+    /* === 19. Responsive === */
+    @media (max-width: 1024px) {
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px; left: 0; right: 0;
+        flex-direction: column;
+        background: rgba(247,243,238,0.95);
+        backdrop-filter: blur(16px);
+        padding: 1.5rem;
+        gap: 1rem;
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(42,42,42,0.1);
+      }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-toggle { display: flex; }
       .about-grid { grid-template-columns: 1fr; }
       .cat-grid { grid-template-columns: repeat(2, 1fr); }
       .platform-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero { padding: 60px 24px; }
+      .hero { padding: 100px 24px 60px; }
       .section { padding: 60px 0; }
     }
     @media (max-width: 480px) {
       .cat-grid { grid-template-columns: 1fr; }
       .platform-grid { grid-template-columns: 1fr; }
     }
+
+    /* === 20. Reduced Motion === */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .hero-ambient { animation: none; }
+      [data-reveal] { opacity: 1; transform: none; }
+      .stagger-container > * { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Noise Texture Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-ring"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-fixed">
+    <a href="#hero" class="nav-logo">祈研所 <span>Qi-Lab</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">关于</a></li>
+      <li><a href="#content">内容</a></li>
+      <li><a href="#platforms">平台</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
   <!-- ===== HERO ===== -->
-  <section class="hero">
+  <section class="hero" id="hero">
+    <div class="hero-ambient"></div>
     <div class="hero-inner">
-      <div class="hero-badge animate">SYS.INIT // QI-LAB v1.0</div>
+      <div class="hero-badge animate">SYS.INIT // QI-LAB v2.0</div>
       <h1 class="animate delay-1">祈研所 <span>Qi-Lab</span></h1>
       <p class="hero-sub animate delay-2">知识管理 × 项目管理 × IT/AI 技巧 × 八卦前沿</p>
       <p class="hero-desc animate delay-3">
         用来存放我数字灵魂的公开档案，顺便证明自己在 AI 时代真实存在过。<br>
         通过个人体验，实践思考，整理笔记。坚持人类本体价值，长期主义。
       </p>
-      <a href="#about" class="hero-cta animate delay-4">
+      <a href="#about" class="hero-cta animate delay-4" data-cursor="pointer">
         ↓ 了解更多
       </a>
     </div>
@@ -430,12 +760,12 @@
   <!-- ===== ABOUT ===== -->
   <section class="section" id="about">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <div class="section-label">// ABOUT</div>
         <h2 class="section-title">关于祈研所</h2>
       </div>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text" data-reveal>
           <p>
             祈研所是我的<strong>数字档案室</strong>——一个整理知识管理、项目管理、IT/AI 技巧和八卦前沿的地方。
           </p>
@@ -446,7 +776,7 @@
             每一次分享，都是对<strong>真实存在</strong>的证明。
           </p>
         </div>
-        <div class="about-stats">
+        <div class="about-stats stagger-container" data-reveal>
           <div class="stat-card">
             <span class="stat-value">4</span>
             <span class="stat-label">内容分类</span>
@@ -470,14 +800,21 @@
 
   <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
 
+  <!-- ===== QUOTE ===== -->
+  <section class="section-quote" data-reveal>
+    <blockquote>坚持人类本体价值，长期主义。持续记录，思考，输出，减轻焦虑。</blockquote>
+  </section>
+
+  <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
+
   <!-- ===== CONTENT CATEGORIES ===== -->
   <section class="section" id="content">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <div class="section-label">// CONTENT</div>
         <h2 class="section-title">内容分类</h2>
       </div>
-      <div class="cat-grid">
+      <div class="cat-grid stagger-container" data-reveal>
         <div class="cat-card">
           <span class="cat-emoji">🔬</span>
           <div class="cat-name">深度研析</div>
@@ -511,11 +848,11 @@
   <!-- ===== PLATFORM MATRIX ===== -->
   <section class="section" id="platforms">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <div class="section-label">// PLATFORMS</div>
         <h2 class="section-title">平台矩阵</h2>
       </div>
-      <div class="platform-grid">
+      <div class="platform-grid stagger-container" data-reveal>
         <a href="https://mp.weixin.qq.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="platform-card">
             <span class="plat-icon">📝</span>
@@ -567,7 +904,7 @@
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer>
+  <footer id="contact">
     <p class="footer-brand">祈研所 Qi-Lab</p>
     <p>坚持人类本体价值，长期主义。持续记录，思考，输出，减轻焦虑。</p>
     <div class="footer-links">
@@ -577,9 +914,255 @@
       <a href="https://www.douyin.com" target="_blank" rel="noopener">抖音</a>
     </div>
     <p style="margin-top:24px;font-family:var(--qi-font-mono);font-size:11px;opacity:0.5;">
-      SYS.BRAND // Amber Geek v1.0 // Built with ❤️ and ☕
+      SYS.BRAND // Amber Geek v2.0 // Built with ❤️ and ☕
     </p>
   </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ============================================
+    // 1. Minimal Particles System
+    // ============================================
+    class MinimalParticles {
+      constructor(canvasId, options = {}) {
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: null, y: null, radius: 100 };
+        this.options = {
+          count: 50,
+          colors: ['#2E7D5C', '#E5A93C', '#F7F3EE'],
+          maxSize: 3,
+          speed: 0.3,
+          linkDistance: 120,
+          linkOpacity: 0.12,
+          ...options
+        };
+        this.resize();
+        this.init();
+        this.animate();
+        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('mousemove', (e) => {
+          this.mouse.x = e.clientX;
+          this.mouse.y = e.clientY;
+        });
+      }
+
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+
+      init() {
+        for (let i = 0; i < this.options.count; i++) {
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * this.options.speed,
+            vy: (Math.random() - 0.5) * this.options.speed,
+            size: Math.random() * this.options.maxSize + 1,
+            color: this.options.colors[Math.floor(Math.random() * this.options.colors.length)]
+          });
+        }
+      }
+
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw links
+        for (let i = 0; i < this.particles.length; i++) {
+          for (let j = i + 1; j < this.particles.length; j++) {
+            const dx = this.particles[i].x - this.particles[j].x;
+            const dy = this.particles[i].y - this.particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < this.options.linkDistance) {
+              this.ctx.beginPath();
+              this.ctx.strokeStyle = `rgba(46, 125, 92, ${this.options.linkOpacity * (1 - dist / this.options.linkDistance)})`;
+              this.ctx.lineWidth = 0.5;
+              this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+              this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+              this.ctx.stroke();
+            }
+          }
+        }
+
+        // Update and draw particles
+        this.particles.forEach(p => {
+          // Mouse interaction
+          if (this.mouse.x && this.mouse.y) {
+            const dx = p.x - this.mouse.x;
+            const dy = p.y - this.mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < this.mouse.radius) {
+              const force = (this.mouse.radius - dist) / this.mouse.radius;
+              p.vx += dx * force * 0.01;
+              p.vy += dy * force * 0.01;
+            }
+          }
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          // Boundary bounce
+          if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
+
+          // Speed limit
+          const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+          if (speed > this.options.speed * 2) {
+            p.vx *= 0.95;
+            p.vy *= 0.95;
+          }
+
+          this.ctx.beginPath();
+          this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          this.ctx.fillStyle = p.color;
+          this.ctx.fill();
+        });
+
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+
+    // ============================================
+    // 2. Scroll Reveal
+    // ============================================
+    class ScrollReveal {
+      constructor() {
+        this.init();
+      }
+
+      init() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+          observer.observe(el);
+        });
+      }
+    }
+
+    // ============================================
+    // 3. Navigation
+    // ============================================
+    class Navigation {
+      constructor() {
+        this.nav = document.querySelector('.nav-fixed');
+        this.links = document.querySelectorAll('.nav-links a');
+        this.toggle = document.querySelector('.nav-toggle');
+        this.navLinks = document.querySelector('.nav-links');
+        this.sections = document.querySelectorAll('section[id]');
+        this.init();
+      }
+
+      init() {
+        // Scroll effect
+        window.addEventListener('scroll', () => {
+          this.nav.classList.toggle('scrolled', window.scrollY > 50);
+          this.updateActiveLink();
+        });
+
+        // Smooth scroll
+        this.links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) {
+              e.preventDefault();
+              const target = document.querySelector(href);
+              target?.scrollIntoView({ behavior: 'smooth' });
+              // Close mobile menu
+              this.navLinks.classList.remove('open');
+            }
+          });
+        });
+
+        // Mobile toggle
+        this.toggle?.addEventListener('click', () => {
+          this.navLinks.classList.toggle('open');
+        });
+      }
+
+      updateActiveLink() {
+        const scrollPos = window.scrollY + 100;
+
+        this.sections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          const id = section.getAttribute('id');
+
+          if (scrollPos >= top && scrollPos < top + height) {
+            this.links.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      }
+    }
+
+    // ============================================
+    // 4. Custom Cursor
+    // ============================================
+    class CustomCursor {
+      constructor() {
+        // Check for touch device
+        if (window.matchMedia('(hover: none)').matches) return;
+
+        this.ring = document.querySelector('.cursor-ring');
+        this.dot = document.querySelector('.cursor-dot');
+        if (!this.ring || !this.dot) return;
+
+        this.init();
+      }
+
+      init() {
+        document.addEventListener('mousemove', (e) => {
+          requestAnimationFrame(() => {
+            this.ring.style.left = `${e.clientX}px`;
+            this.ring.style.top = `${e.clientY}px`;
+            this.dot.style.left = `${e.clientX}px`;
+            this.dot.style.top = `${e.clientY}px`;
+          });
+        });
+
+        // Hover effect on interactive elements
+        const interactive = document.querySelectorAll('a, button, .cat-card, .platform-card, .stat-card, [data-cursor="pointer"]');
+        interactive.forEach(el => {
+          el.addEventListener('mouseenter', () => this.ring.classList.add('hovering'));
+          el.addEventListener('mouseleave', () => this.ring.classList.remove('hovering'));
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+          this.ring.style.opacity = '0';
+          this.dot.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+          this.ring.style.opacity = '';
+          this.dot.style.opacity = '';
+        });
+      }
+    }
+
+    // ============================================
+    // Initialize
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      new MinimalParticles('particles-canvas');
+      new ScrollReveal();
+      new Navigation();
+      new CustomCursor();
+    });
+  </script>
 
 </body>
 </html>
