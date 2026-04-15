@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ============================================
-       AMBER GEEK DESIGN SYSTEM v3.0
+       AMBER GEEK DESIGN SYSTEM v3.1
        祈研所 Qi-Lab — 高密度版本
     ============================================ */
 
@@ -40,7 +40,7 @@
 
     /* === 2. Reset & Base === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
     body {
       font-family: var(--qi-font-sans);
       background: var(--qi-bg-base);
@@ -1018,7 +1018,30 @@
     .delay-4 { animation-delay: 0.4s; }
     .delay-5 { animation-delay: 0.5s; }
 
-    /* === 24. Responsive === */
+    /* === 24. Large Screen (Desktop+) === */
+    @media (min-width: 1440px) {
+      .container { max-width: 1200px; }
+      .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+      .hero-desc { max-width: 640px; }
+      .platform-grid { grid-template-columns: repeat(3, 1fr); }
+      .toolbox-grid { grid-template-columns: repeat(6, 1fr); }
+    }
+    @media (min-width: 1920px) {
+      .container { max-width: 1300px; }
+      .hero h1 { font-size: clamp(2.5rem, 4.5vw, 4.5rem); }
+      .hero-desc { max-width: 700px; }
+      .platform-grid { grid-template-columns: repeat(6, 1fr); }
+      .bento-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 2560px) {
+      .container { max-width: 1400px; }
+      .hero h1 { font-size: clamp(3rem, 4vw, 5rem); }
+      .hero-desc { max-width: 760px; font-size: 1.1rem; }
+      .about-grid { gap: 24px; }
+      .about-text { font-size: 1.05rem; }
+    }
+
+    /* === 25. Responsive (Tablet/Mobile) === */
     @media (max-width: 1024px) {
       .cat-grid { grid-template-columns: repeat(2, 1fr); }
       .platform-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1131,7 +1154,7 @@
       <div class="orb orb-amber"></div>
     </div>
     <div class="hero-inner">
-      <div class="hero-badge animate">SYS.INIT // QI-LAB v3.0</div>
+      <div class="hero-badge animate">SYS.INIT // QI-LAB v3.1</div>
       <h1 class="animate delay-1">祈研所 <span>Qi-Lab</span></h1>
       <p class="hero-sub animate delay-2">知识管理 &times; 项目管理 &times; IT/AI 技巧 &times; 八卦前沿</p>
       <div class="hero-keywords animate delay-3">
@@ -1586,14 +1609,14 @@
       <a href="https://www.douyin.com" target="_blank" rel="noopener">抖音</a>
     </div>
     <p style="margin-top:20px;font-family:var(--qi-font-mono);font-size:10px;opacity:0.5;">
-      SYS.BRAND // Amber Geek v3.0 // Built with &#10084;&#65039; and &#9749;
+      SYS.BRAND // Amber Geek v3.1 // Built with &#10084;&#65039; and &#9749;
     </p>
   </footer>
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
     // ============================================
-    // 1. Minimal Particles System
+    // 1. Minimal Particles System (v3.1: scroll-aware)
     // ============================================
     class MinimalParticles {
       constructor(canvasId, options = {}) {
@@ -1602,6 +1625,7 @@
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
         this.mouse = { x: null, y: null, radius: 100 };
+        this.isRunning = true;
         const isMobile = window.innerWidth < 768;
         this.options = {
           count: isMobile ? 30 : 50,
@@ -1620,7 +1644,15 @@
           this.mouse.x = e.clientX;
           this.mouse.y = e.clientY;
         });
+        // Pause when page hidden
+        document.addEventListener('visibilitychange', () => {
+          this.isRunning = !document.hidden;
+          if (this.isRunning) this.animate();
+        });
       }
+
+      pause() { this.isRunning = false; }
+      resume() { if (!this.isRunning) { this.isRunning = true; this.animate(); } }
 
       resize() {
         this.canvas.width = window.innerWidth;
@@ -1641,6 +1673,7 @@
       }
 
       animate() {
+        if (!this.isRunning) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         for (let i = 0; i < this.particles.length; i++) {
@@ -1721,7 +1754,29 @@
     }
 
     // ============================================
-    // 3. Navigation
+    // 3. Smooth Scroll Utility
+    // ============================================
+    function smoothScrollTo(targetEl) {
+      const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - 60;
+      const startY = window.pageYOffset;
+      const distance = targetY - startY;
+      const duration = Math.min(600, Math.abs(distance) * 0.5);
+      let startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        window.scrollTo(0, startY + distance * ease);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    // ============================================
+    // 4. Navigation
     // ============================================
     class Navigation {
       constructor() {
@@ -1730,22 +1785,31 @@
         this.toggle = document.querySelector('.nav-toggle');
         this.navLinks = document.querySelector('.nav-links');
         this.sections = document.querySelectorAll('section[id]');
-        this.init();
       }
 
-      init() {
-        window.addEventListener('scroll', () => {
-          this.nav.classList.toggle('scrolled', window.scrollY > 50);
-          this.updateActiveLink();
+      update() {
+        this.nav.classList.toggle('scrolled', window.scrollY > 50);
+        const scrollPos = window.scrollY + 100;
+        this.sections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          const id = section.getAttribute('id');
+          if (scrollPos >= top && scrollPos < top + height) {
+            this.links.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+          }
         });
+      }
 
+      bindEvents() {
         this.links.forEach(link => {
           link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             if (href.startsWith('#')) {
               e.preventDefault();
               const target = document.querySelector(href);
-              target?.scrollIntoView({ behavior: 'smooth' });
+              if (target) smoothScrollTo(target);
               this.navLinks.classList.remove('active');
             }
           });
@@ -1755,55 +1819,32 @@
           this.navLinks.classList.toggle('active');
         });
       }
-
-      updateActiveLink() {
-        const scrollPos = window.scrollY + 100;
-
-        this.sections.forEach(section => {
-          const top = section.offsetTop;
-          const height = section.offsetHeight;
-          const id = section.getAttribute('id');
-
-          if (scrollPos >= top && scrollPos < top + height) {
-            this.links.forEach(link => {
-              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-            });
-          }
-        });
-      }
     }
 
     // ============================================
-    // 4. Scroll Progress
+    // 5. Scroll Progress
     // ============================================
     class ScrollProgress {
       constructor() {
         this.progressBar = document.querySelector('.scroll-progress');
-        if (!this.progressBar) return;
-        this.init();
       }
 
-      init() {
-        window.addEventListener('scroll', () => {
-          const scrollTop = window.pageYOffset;
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrollPercent = scrollTop / docHeight;
-          this.progressBar.style.transform = `scaleX(${scrollPercent})`;
-        });
+      update() {
+        if (!this.progressBar) return;
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+        this.progressBar.style.transform = `scaleX(${scrollPercent})`;
       }
     }
 
     // ============================================
-    // 5. Counter Animation (Dashboard Bars)
+    // 6. Counter Animation (Dashboard Bars)
     // ============================================
     class CounterAnimation {
       constructor() {
         this.bars = document.querySelectorAll('.dash-bar-fill');
         if (!this.bars.length) return;
-        this.init();
-      }
-
-      init() {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1814,46 +1855,74 @@
             }
           });
         }, { threshold: 0.3 });
-
         this.bars.forEach(bar => observer.observe(bar));
       }
     }
 
     // ============================================
-    // 6. Back to Top
+    // 7. Back to Top
     // ============================================
     class BackToTop {
       constructor() {
         this.btn = document.getElementById('backToTop');
-        if (!this.btn) return;
-        this.init();
       }
 
-      init() {
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 600) {
-            this.btn.classList.add('visible');
-          } else {
-            this.btn.classList.remove('visible');
-          }
-        });
+      update() {
+        if (!this.btn) return;
+        this.btn.classList.toggle('visible', window.scrollY > 600);
+      }
 
+      bindEvents() {
+        if (!this.btn) return;
         this.btn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          const startY = window.pageYOffset;
+          const duration = Math.min(800, startY * 0.3);
+          let startTime = null;
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            window.scrollTo(0, startY * (1 - ease));
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
         });
       }
     }
 
     // ============================================
-    // Initialize
+    // Initialize (v3.1: unified scroll handler)
     // ============================================
     document.addEventListener('DOMContentLoaded', () => {
-      new MinimalParticles('particles-canvas');
+      const particles = new MinimalParticles('particles-canvas');
       new ScrollReveal();
-      new Navigation();
-      new ScrollProgress();
+      const nav = new Navigation();
+      const progress = new ScrollProgress();
       new CounterAnimation();
-      new BackToTop();
+      const backToTop = new BackToTop();
+
+      nav.bindEvents();
+      backToTop.bindEvents();
+
+      // Unified scroll handler with rAF throttling
+      let ticking = false;
+      let scrollTimeout;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            nav.update();
+            progress.update();
+            backToTop.update();
+            ticking = false;
+          });
+          ticking = true;
+        }
+        // Pause particles during scroll, resume after
+        particles.pause();
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => particles.resume(), 150);
+      }, { passive: true });
     });
   </script>
 
