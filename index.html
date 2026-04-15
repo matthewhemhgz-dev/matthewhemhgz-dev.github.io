@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>祈研所 Qi-Lab — 知识管理 × 项目管理 × IT/AI 技巧 × 八卦前沿</title>
-  <meta name="description" content="祈研所 Qi-Lab — 用来存放我数字灵魂的公开档案，顺便证明自己在这个 AI 时代真实存在过。整理知识管理，项目管理，IT/AI 技巧，八卦前沿。坚持人类本体价值，长期主义。">
+  <meta name="description" content="祈研所 Qi-Lab — 用来存放我数字灵魂的公开档案，顺便证明自己在 AI 时代真实存在过。整理知识管理，项目管理，IT/AI 技巧，八卦前沿。坚持人类本体价值，长期主义。">
   <meta name="author" content="Qi-Lab">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ============================================
-       AMBER GEEK DESIGN SYSTEM v2.0
-       祈研所 Qi-Lab — 个人品牌网站
+       AMBER GEEK DESIGN SYSTEM v3.0
+       祈研所 Qi-Lab — 高密度版本
     ============================================ */
 
     /* === 1. Design Tokens === */
@@ -177,7 +177,7 @@
       50% { opacity: 1; transform: scale(1.05); }
     }
 
-    /* Floating Orbs - v2.1 Enhancement */
+    /* Floating Orbs */
     .hero-orbs {
       position: absolute;
       inset: 0;
@@ -242,16 +242,49 @@
       font-family: var(--qi-font-serif);
       font-size: clamp(0.9rem, 2vw, 1.1rem);
       color: var(--qi-text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* Brand Keywords */
+    .hero-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
       margin-bottom: 24px;
     }
+    .hero-keyword {
+      font-family: var(--qi-font-mono);
+      font-size: 11px;
+      color: var(--qi-text-muted);
+      background: rgba(42,42,42,0.04);
+      border: 1px solid rgba(42,42,42,0.08);
+      border-radius: 16px;
+      padding: 3px 10px;
+      transition: all var(--qi-transition);
+    }
+    .hero-keyword:hover {
+      color: var(--qi-brand-emerald);
+      border-color: rgba(46,125,92,0.3);
+      background: rgba(46,125,92,0.06);
+    }
+
     .hero-desc {
       font-size: 0.95rem;
       color: var(--qi-text-muted);
       line-height: 1.7;
       margin-bottom: 32px;
-      max-width: 520px;
+      max-width: 560px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    /* Dual CTA */
+    .hero-cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .hero-cta {
       display: inline-flex;
@@ -288,9 +321,36 @@
     .hero-cta:hover::before {
       width: 300px; height: 300px;
     }
+    .hero-cta-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--qi-text-primary);
+      font-family: var(--qi-font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: var(--qi-radius-sm);
+      border: 1px solid rgba(42,42,42,0.2);
+      cursor: pointer;
+      transition: all var(--qi-transition);
+    }
+    .hero-cta-outline:hover {
+      border-color: var(--qi-brand-emerald);
+      color: var(--qi-brand-emerald);
+      background: rgba(46,125,92,0.04);
+      transform: translateY(-2px);
+    }
 
     /* === 9. Section Headers === */
     .section { padding: 50px 0; position: relative; z-index: 1; }
+    .section-dark {
+      background: var(--qi-surface-main);
+      padding: 60px 0;
+      position: relative;
+      z-index: 1;
+    }
     .section-header { margin-bottom: 28px; }
     .section-label {
       font-family: var(--qi-font-mono);
@@ -299,11 +359,17 @@
       letter-spacing: 0.5px;
       margin-bottom: 8px;
     }
+    .section-dark .section-label {
+      color: var(--qi-brand-amber);
+    }
     .section-title {
       font-family: var(--qi-font-serif);
       font-size: clamp(1.25rem, 3vw, 1.75rem);
       font-weight: 600;
       color: var(--qi-surface-main);
+    }
+    .section-dark .section-title {
+      color: var(--qi-text-inverse);
     }
 
     /* === 10. Cards === */
@@ -370,36 +436,92 @@
       color: var(--qi-brand-amber);
       font-weight: 600;
     }
-    .about-stats {
+    .about-text p { margin-top: 1.2em; }
+    .about-text p:first-child { margin-top: 0; }
+
+    /* Dashboard Grid */
+    .about-dashboard {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--qi-gap-sm);
     }
-    .stat-card {
-      background: var(--qi-surface-sub);
+    .dash-card {
+      background: var(--qi-surface-main);
       border-radius: var(--qi-radius);
-      padding: 18px;
-      text-align: center;
-      box-shadow: var(--qi-shadow);
+      padding: 16px;
+      color: var(--qi-text-inverse);
       transition: transform var(--qi-transition);
     }
-    .stat-card:hover {
+    .dash-card:hover {
       transform: translateY(-3px);
     }
-    .stat-value {
-      font-family: var(--qi-font-mono);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--qi-brand-emerald);
-      display: block;
-    }
-    .stat-label {
+    .dash-label {
       font-size: 0.75rem;
+      color: rgba(247,243,238,0.6);
+      margin-bottom: 4px;
+    }
+    .dash-value {
+      font-family: var(--qi-font-mono);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--qi-text-inverse);
+      margin-bottom: 8px;
+    }
+    .dash-bar-track {
+      height: 4px;
+      background: rgba(247,243,238,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .dash-bar-fill {
+      height: 4px;
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0;
+    }
+    .dash-bar-fill.emerald { background: var(--qi-brand-emerald); }
+    .dash-bar-fill.amber { background: var(--qi-brand-amber); }
+    .dash-bar-fill.gray { background: rgba(247,243,238,0.3); }
+
+    /* About Quote */
+    .about-quote {
+      margin-top: 24px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--qi-brand-emerald);
+      background: rgba(46,125,92,0.04);
+      border-radius: 0 var(--qi-radius-sm) var(--qi-radius-sm) 0;
+      font-family: var(--qi-font-serif);
+      font-size: 0.9rem;
       color: var(--qi-text-muted);
-      margin-top: 2px;
+      font-style: italic;
     }
 
-    /* === 12. Content Categories === */
+    /* === 12. Skills Tag Cloud === */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tag-item {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      transition: all var(--qi-transition);
+      cursor: default;
+    }
+    .tag-item:hover {
+      border-color: var(--qi-brand-amber);
+      color: var(--qi-brand-amber);
+      background: rgba(229,169,60,0.08);
+    }
+    .tag-lg { font-size: 14px; font-weight: 600; }
+    .tag-md { font-size: 12px; }
+    .tag-sm { font-size: 10px; opacity: 0.7; }
+
+    /* === 13. Content Categories === */
     .cat-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -445,15 +567,149 @@
       opacity: 0.6;
       line-height: 1.5;
     }
-    .cat-code {
+    .cat-representative {
       font-family: var(--qi-font-mono);
       font-size: 10px;
       color: var(--qi-brand-amber);
       margin-top: 10px;
       display: block;
+      opacity: 0.8;
     }
 
-    /* === 13. Platform Matrix === */
+    /* === 14. Bento Grid (Featured Content) === */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--qi-gap-sm);
+    }
+    .bento-card {
+      background: var(--qi-surface-sub);
+      border-radius: var(--qi-radius);
+      padding: 20px;
+      box-shadow: var(--qi-shadow);
+      transition: all var(--qi-transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--qi-shadow-hover);
+    }
+    .bento-card.large {
+      grid-column: span 2;
+    }
+    .bento-card.small {
+      grid-column: span 1;
+    }
+    .bento-tag {
+      display: inline-block;
+      font-family: var(--qi-font-mono);
+      font-size: 10px;
+      color: var(--qi-brand-emerald);
+      background: rgba(46,125,92,0.08);
+      border: 1px solid rgba(46,125,92,0.15);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .bento-title {
+      font-family: var(--qi-font-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--qi-text-primary);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .bento-card.large .bento-title { font-size: 1.15rem; }
+    .bento-excerpt {
+      font-size: 0.82rem;
+      color: var(--qi-text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .bento-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      font-family: var(--qi-font-mono);
+      font-size: 10px;
+      color: var(--qi-text-muted);
+    }
+
+    /* === 15. Toolbox Grid === */
+    .toolbox-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--qi-gap-sm);
+    }
+    .tool-card {
+      background: var(--qi-surface-sub);
+      border-radius: var(--qi-radius);
+      padding: 14px 8px;
+      text-align: center;
+      box-shadow: var(--qi-shadow);
+      transition: all var(--qi-transition);
+      cursor: default;
+      position: relative;
+    }
+    .tool-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--qi-shadow-hover);
+    }
+    .tool-icon { font-size: 1.25rem; margin-bottom: 6px; display: block; }
+    .tool-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--qi-text-primary);
+    }
+    .tool-card .tool-tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.95);
+      background: var(--qi-surface-main);
+      color: var(--qi-text-inverse);
+      font-size: 0.72rem;
+      padding: 6px 10px;
+      border-radius: var(--qi-radius-sm);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all var(--qi-transition);
+      z-index: 10;
+    }
+    .tool-card .tool-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--qi-surface-main);
+    }
+    .tool-card:hover .tool-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* Toolbox category labels */
+    .toolbox-categories {
+      display: flex;
+      flex-direction: column;
+      gap: var(--qi-gap);
+    }
+    .toolbox-row-label {
+      font-family: var(--qi-font-mono);
+      font-size: 10px;
+      color: var(--qi-text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* === 16. Platform Matrix === */
     .platform-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -477,6 +733,7 @@
       color: var(--qi-text-inverse);
     }
     .platform-card:hover .plat-desc { opacity: 0.7; color: var(--qi-text-inverse); }
+    .platform-card:hover .plat-freq { color: var(--qi-text-inverse); }
     .platform-card:hover .plat-status { background: rgba(229,169,60,0.15); color: var(--qi-brand-amber); }
     .plat-icon { font-size: 1.5rem; margin-bottom: 8px; display: block; }
     .plat-name {
@@ -489,6 +746,13 @@
       font-size: 0.75rem;
       color: var(--qi-text-muted);
       line-height: 1.4;
+      margin-bottom: 6px;
+      transition: all 0.2s;
+    }
+    .plat-freq {
+      font-family: var(--qi-font-mono);
+      font-size: 10px;
+      color: var(--qi-brand-emerald);
       margin-bottom: 12px;
       transition: all 0.2s;
     }
@@ -503,36 +767,98 @@
       transition: all 0.2s;
     }
 
-    /* === 14. Quote Section === */
-    .section-quote {
-      padding: 40px 20px;
-      text-align: center;
+    /* === 17. Timeline === */
+    .timeline {
       position: relative;
+      padding-left: 24px;
     }
-    .section-quote blockquote {
-      font-family: var(--qi-font-serif);
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      font-weight: 500;
-      color: var(--qi-surface-main);
-      max-width: 500px;
-      margin: 0 auto;
-      position: relative;
-      padding: 0 30px;
-    }
-    .section-quote blockquote::before,
-    .section-quote blockquote::after {
-      font-size: 2.5rem;
-      color: var(--qi-brand-emerald);
-      opacity: 0.3;
+    .timeline::before {
+      content: '';
       position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--qi-brand-emerald);
+      border-radius: 1px;
     }
-    .section-quote blockquote::before { content: '"'; left: 0; top: -8px; }
-    .section-quote blockquote::after { content: '"'; right: 0; bottom: -20px; }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -22px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--qi-brand-emerald);
+      border: 2px solid var(--qi-bg-base);
+      box-shadow: 0 0 0 2px var(--qi-brand-emerald);
+    }
+    .timeline-date {
+      font-family: var(--qi-font-mono);
+      font-size: 12px;
+      color: var(--qi-brand-emerald);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .timeline-text {
+      font-size: 0.9rem;
+      color: var(--qi-text-primary);
+      line-height: 1.6;
+    }
 
-    /* === 15. Footer === */
+    /* === 18. Testimonials === */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--qi-gap);
+    }
+    .testimonial-card {
+      background: var(--qi-surface-sub);
+      border-radius: var(--qi-radius);
+      padding: 24px;
+      box-shadow: var(--qi-shadow);
+      transition: all var(--qi-transition);
+      position: relative;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--qi-shadow-hover);
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--qi-font-serif);
+      font-size: 3rem;
+      color: var(--qi-brand-emerald);
+      opacity: 0.2;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: var(--qi-text-primary);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 12px;
+      padding-top: 16px;
+    }
+    .testimonial-author {
+      font-size: 0.78rem;
+      color: var(--qi-text-muted);
+      text-align: right;
+    }
+
+    /* === 19. Footer === */
     footer {
       text-align: center;
-      padding: 32px 20px;
+      padding: 40px 20px;
       border-top: 1px solid rgba(42,42,42,0.08);
       margin-top: 20px;
       position: relative;
@@ -545,9 +871,20 @@
     }
     footer .footer-brand {
       font-family: var(--qi-font-serif);
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--qi-text-primary);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+    }
+    footer .footer-tagline {
+      font-family: var(--qi-font-serif);
+      font-size: 0.85rem;
+      color: var(--qi-brand-emerald);
+      margin-bottom: 12px;
+    }
+    footer .footer-contact {
+      font-size: 0.8rem;
+      color: var(--qi-text-muted);
+      margin-bottom: 16px;
     }
     footer .footer-links { margin-top: 12px; }
     footer .footer-links a {
@@ -559,7 +896,7 @@
     }
     footer .footer-links a:hover { color: var(--qi-brand-emerald); }
 
-    /* === 16. Divider === */
+    /* === 20. Divider === */
     .divider {
       text-align: center;
       margin: 0 auto;
@@ -592,7 +929,41 @@
       vertical-align: middle;
     }
 
-    /* === 17. Scroll Reveal Animations === */
+    /* === 21. Back to Top === */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 40px;
+      height: 40px;
+      background: var(--qi-surface-main);
+      color: var(--qi-text-inverse);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all var(--qi-transition);
+      box-shadow: var(--qi-shadow);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: var(--qi-brand-emerald);
+      transform: translateY(-2px);
+      box-shadow: var(--qi-shadow-hover);
+    }
+
+    /* === 22. Scroll Reveal Animations === */
     [data-reveal] {
       opacity: 0;
       transform: translateY(30px);
@@ -628,12 +999,14 @@
     .stagger-container.is-visible > *:nth-child(4) { transition-delay: 240ms; }
     .stagger-container.is-visible > *:nth-child(5) { transition-delay: 320ms; }
     .stagger-container.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+    .stagger-container.is-visible > *:nth-child(7) { transition-delay: 480ms; }
+    .stagger-container.is-visible > *:nth-child(8) { transition-delay: 560ms; }
     .stagger-container.is-visible > * {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* === 18. Page Load Animation === */
+    /* === 23. Page Load Animation === */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
@@ -643,12 +1016,18 @@
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
 
-    /* === 17. Responsive === */
+    /* === 24. Responsive === */
     @media (max-width: 1024px) {
       .cat-grid { grid-template-columns: repeat(2, 1fr); }
       .platform-grid { grid-template-columns: repeat(2, 1fr); }
       .about-grid { grid-template-columns: 1fr; gap: var(--qi-gap); }
+      .bento-grid { grid-template-columns: 1fr 1fr; }
+      .bento-card.large { grid-column: span 2; }
+      .bento-card.small { grid-column: span 1; }
+      .toolbox-grid { grid-template-columns: repeat(4, 1fr); }
+      .testimonial-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -668,11 +1047,14 @@
       .hero h1 { font-size: 1.75rem; }
       .hero-desc { font-size: 0.85rem; margin-bottom: 24px; }
       .section { padding: 36px 0; }
+      .section-dark { padding: 40px 0; }
       .section-header { margin-bottom: 20px; }
       .cat-grid, .platform-grid { grid-template-columns: 1fr; gap: var(--qi-gap-sm); }
-      .about-stats { grid-template-columns: 1fr 1fr; }
-      .stat-card { padding: 14px; }
-      .stat-value { font-size: 1.25rem; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card.large { grid-column: span 1; }
+      .toolbox-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-dashboard { grid-template-columns: 1fr 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
       .section-quote { padding: 30px 16px; }
       .section-quote blockquote { font-size: 1rem; padding: 0 20px; }
       footer { padding: 24px 16px; }
@@ -684,17 +1066,21 @@
       .hero h1 { font-size: 1.5rem; }
       .hero-sub { font-size: 0.85rem; margin-bottom: 16px; }
       .hero-desc { font-size: 0.8rem; }
-      .hero-cta { padding: 10px 20px; font-size: 13px; }
+      .hero-cta, .hero-cta-outline { padding: 10px 20px; font-size: 13px; }
       .section { padding: 28px 0; }
+      .section-dark { padding: 32px 0; }
       .section-title { font-size: 1.1rem; }
       .card { padding: 18px; }
       .cat-card, .platform-card { padding: 16px 12px; }
-      .about-stats { grid-template-columns: 1fr; gap: var(--qi-gap-sm); }
-      .stat-card { padding: 12px; }
-      .stat-value { font-size: 1.1rem; }
+      .about-dashboard { grid-template-columns: 1fr; gap: var(--qi-gap-sm); }
+      .toolbox-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .tool-card { padding: 10px 6px; }
+      .tool-icon { font-size: 1rem; }
+      .tool-name { font-size: 0.65rem; }
+      .back-to-top { bottom: 16px; right: 16px; width: 36px; height: 36px; font-size: 16px; }
     }
 
-    /* === 18. Reduced Motion === */
+    /* === 25. Reduced Motion === */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -708,7 +1094,7 @@
 </head>
 <body>
 
-  <!-- Scroll Progress Bar - v2.1 -->
+  <!-- Scroll Progress Bar -->
   <div class="scroll-progress"></div>
 
   <!-- Noise Texture Overlay -->
@@ -717,11 +1103,15 @@
   <!-- Particles Canvas -->
   <canvas id="particles-canvas"></canvas>
 
-  <!-- Navigation -->
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">&#8593;</button>
+
+  <!-- ===== S1: NAVIGATION ===== -->
   <nav class="nav-fixed">
     <a href="#hero" class="nav-logo">祈研所 <span>Qi-Lab</span></a>
     <ul class="nav-links">
       <li><a href="#about">关于</a></li>
+      <li><a href="#skills">技能</a></li>
       <li><a href="#content">内容</a></li>
       <li><a href="#platforms">平台</a></li>
       <li><a href="#contact">联系</a></li>
@@ -733,29 +1123,36 @@
     </button>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== S2: HERO ===== -->
   <section class="hero" id="hero">
     <div class="hero-ambient"></div>
-    <!-- Floating Orbs - v2.1 Enhancement -->
     <div class="hero-orbs">
       <div class="orb orb-emerald"></div>
       <div class="orb orb-amber"></div>
     </div>
     <div class="hero-inner">
-      <div class="hero-badge animate">SYS.INIT // QI-LAB v2.2</div>
+      <div class="hero-badge animate">SYS.INIT // QI-LAB v3.0</div>
       <h1 class="animate delay-1">祈研所 <span>Qi-Lab</span></h1>
-      <p class="hero-sub animate delay-2">知识管理 × 项目管理 × IT/AI 技巧 × 八卦前沿</p>
+      <p class="hero-sub animate delay-2">知识管理 &times; 项目管理 &times; IT/AI 技巧 &times; 八卦前沿</p>
+      <div class="hero-keywords animate delay-3">
+        <span class="hero-keyword">#知识管理</span>
+        <span class="hero-keyword">#项目管理</span>
+        <span class="hero-keyword">#AI技巧</span>
+        <span class="hero-keyword">#长期主义</span>
+        <span class="hero-keyword">#人类本体价值</span>
+        <span class="hero-keyword">#数字花园</span>
+      </div>
       <p class="hero-desc animate delay-3">
-        用来存放我数字灵魂的公开档案，顺便证明自己在 AI 时代真实存在过。<br>
-        通过个人体验，实践思考，整理笔记。坚持人类本体价值，长期主义。
+        用来存放我数字灵魂的公开档案，顺便证明自己在 AI 时代真实存在过。整理知识管理，项目管理，IT/AI 技巧，八卦前沿。通过个人体验，实践思考，整理笔记。坚持人类本体价值，长期主义。持续记录，思考，输出，减轻焦虑。
       </p>
-      <a href="#about" class="hero-cta animate delay-4" data-cursor="pointer">
-        ↓ 了解更多
-      </a>
+      <div class="hero-cta-group animate delay-4">
+        <a href="#about" class="hero-cta">&darr; 了解更多</a>
+        <a href="#content" class="hero-cta-outline">&#128214; 阅读精选</a>
+      </div>
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ===== S3: ABOUT ===== -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-header" data-reveal>
@@ -765,47 +1162,84 @@
       <div class="about-grid">
         <div class="about-text" data-reveal>
           <p>
-            祈研所是我的<strong>数字档案室</strong>——一个整理知识管理、项目管理、IT/AI 技巧和八卦前沿的地方。
+            祈研所是我的<strong>数字档案室</strong>——一个系统化整理知识管理、项目管理、IT/AI 技巧和八卦前沿的地方。在信息过载的时代，我相信<strong>结构化的知识</strong>才是真正的力量。
           </p>
-          <p style="margin-top: 1.5em;">
-            通过<strong>个人体验、实践思考、整理笔记</strong>，坚持人类本体价值，长期主义。在信息过载的时代，持续记录、思考、输出，减轻焦虑。
+          <p>
+            通过<strong>个人体验、实践思考和系统化笔记</strong>，我探索如何让技术真正服务于人的需求。每一篇文章、每一个工具推荐，都经过实际使用验证。
           </p>
-          <p style="margin-top: 1.5em;">
-            每一次分享，都是对<strong>真实存在</strong>的证明。
+          <p>
+            坚持<strong>人类本体价值</strong>，长期主义。在 AI 可以生成一切的时代，人类的思考、判断和创造力反而更加珍贵。每一次分享，都是对<strong>真实存在</strong>的证明。
           </p>
         </div>
-        <div class="about-stats stagger-container" data-reveal>
-          <div class="stat-card">
-            <span class="stat-value">4</span>
-            <span class="stat-label">内容分类</span>
+        <div class="about-dashboard stagger-container" data-reveal>
+          <div class="dash-card">
+            <div class="dash-label">内容分类</div>
+            <div class="dash-value">4 个专栏</div>
+            <div class="dash-bar-track"><div class="dash-bar-fill emerald" data-width="80"></div></div>
           </div>
-          <div class="stat-card">
-            <span class="stat-value">5</span>
-            <span class="stat-label">平台矩阵</span>
+          <div class="dash-card">
+            <div class="dash-label">覆盖平台</div>
+            <div class="dash-value">5 个平台</div>
+            <div class="dash-bar-track"><div class="dash-bar-fill emerald" data-width="100"></div></div>
           </div>
-          <div class="stat-card">
-            <span class="stat-value">0</span>
-            <span class="stat-label">费用成本</span>
+          <div class="dash-card">
+            <div class="dash-label">领域标签</div>
+            <div class="dash-value">12 个领域</div>
+            <div class="dash-bar-track"><div class="dash-bar-fill amber" data-width="60"></div></div>
           </div>
-          <div class="stat-card">
-            <span class="stat-value">∞</span>
-            <span class="stat-label">好奇心</span>
+          <div class="dash-card">
+            <div class="dash-label">内容形式</div>
+            <div class="dash-value">7 种类型</div>
+            <div class="dash-bar-track"><div class="dash-bar-fill amber" data-width="70"></div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-label">持续输出</div>
+            <div class="dash-value">365 天+</div>
+            <div class="dash-bar-track"><div class="dash-bar-fill emerald" data-width="90"></div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-label">费用投入</div>
+            <div class="dash-value">0 元</div>
+            <div class="dash-bar-track"><div class="dash-bar-fill gray" data-width="0"></div></div>
           </div>
         </div>
+      </div>
+      <div class="about-quote" data-reveal>
+        "坚持人类本体价值，长期主义。持续记录，思考，输出，减轻焦虑。"
       </div>
     </div>
   </section>
 
   <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
 
-  <!-- ===== QUOTE ===== -->
-  <section class="section-quote" data-reveal>
-    <blockquote>坚持人类本体价值，长期主义。持续记录，思考，输出，减轻焦虑。</blockquote>
+  <!-- ===== S4: SKILLS (Dark Section) ===== -->
+  <section class="section-dark" id="skills">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-label">// SKILLS</div>
+        <h2 class="section-title">技能领域</h2>
+      </div>
+      <div class="tag-cloud stagger-container" data-reveal>
+        <span class="tag-item tag-lg">知识管理</span>
+        <span class="tag-item tag-lg">AI应用</span>
+        <span class="tag-item tag-lg">效率工具</span>
+        <span class="tag-item tag-md">项目管理</span>
+        <span class="tag-item tag-md">Python</span>
+        <span class="tag-item tag-md">Notion</span>
+        <span class="tag-item tag-md">Obsidian</span>
+        <span class="tag-item tag-md">数据分析</span>
+        <span class="tag-item tag-sm">Prompt工程</span>
+        <span class="tag-item tag-sm">自动化</span>
+        <span class="tag-item tag-sm">API集成</span>
+        <span class="tag-item tag-sm">Markdown</span>
+        <span class="tag-item tag-sm">Git</span>
+        <span class="tag-item tag-sm">LaTeX</span>
+        <span class="tag-item tag-sm">信息架构</span>
+      </div>
+    </div>
   </section>
 
-  <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
-
-  <!-- ===== CONTENT CATEGORIES ===== -->
+  <!-- ===== S5: CONTENT CATEGORIES + FEATURED ===== -->
   <section class="section" id="content">
     <div class="container">
       <div class="section-header" data-reveal>
@@ -814,28 +1248,75 @@
       </div>
       <div class="cat-grid stagger-container" data-reveal>
         <div class="cat-card">
-          <span class="cat-emoji">🔬</span>
+          <span class="cat-emoji">&#128300;</span>
           <div class="cat-name">深度研析</div>
           <div class="cat-desc">技术解读、行业研究、架构分析</div>
-          <span class="cat-code">C01 · deep-analysis</span>
+          <span class="cat-representative">&#171; AI 时代知识工作者的生存指南 &#187;</span>
         </div>
         <div class="cat-card">
-          <span class="cat-emoji">🛠️</span>
+          <span class="cat-emoji">&#129527;&#65039;</span>
           <div class="cat-name">实用干货</div>
           <div class="cat-desc">工具推荐、教程指南、效率方法</div>
-          <span class="cat-code">C02 · practical-tools</span>
+          <span class="cat-representative">&#171; Notion + Obsidian 双轨笔记系统 &#187;</span>
         </div>
         <div class="cat-card">
-          <span class="cat-emoji">📡</span>
+          <span class="cat-emoji">&#128225;</span>
           <div class="cat-name">趋势洞察</div>
           <div class="cat-desc">行业动态、新闻解读、趋势预测</div>
-          <span class="cat-code">C03 · trend-insight</span>
+          <span class="cat-representative">&#171; 2025 年 5 个 AI 工具趋势 &#187;</span>
         </div>
         <div class="cat-card">
-          <span class="cat-emoji">💭</span>
+          <span class="cat-emoji">&#128173;</span>
           <div class="cat-name">随思随想</div>
           <div class="cat-desc">个人见解、经验分享、读书笔记</div>
-          <span class="cat-code">C04 · random-thoughts</span>
+          <span class="cat-representative">&#171; 为什么我选择做数字花园 &#187;</span>
+        </div>
+      </div>
+
+      <!-- Featured Content Bento Grid -->
+      <div class="section-header" style="margin-top:40px;" data-reveal>
+        <div class="section-label">// FEATURED</div>
+        <h2 class="section-title">精选内容</h2>
+      </div>
+      <div class="bento-grid stagger-container" data-reveal>
+        <div class="bento-card large">
+          <span class="bento-tag">深度研析</span>
+          <div class="bento-title">AI 时代知识工作者的生存指南</div>
+          <div class="bento-excerpt">当 AI 可以在几秒钟内生成报告、总结会议、编写代码，知识工作者该如何重新定义自己的价值？本文从认知科学、工具选择和工作流重构三个维度，探讨在 AI 时代保持竞争力的核心策略。</div>
+          <div class="bento-meta">
+            <span>2025-04-10</span>
+            <span>&middot;</span>
+            <span>12 min</span>
+          </div>
+        </div>
+        <div class="bento-card small">
+          <span class="bento-tag">实用干货</span>
+          <div class="bento-title">Notion + Obsidian 双轨笔记系统</div>
+          <div class="bento-excerpt">如何将 Notion 的协作能力与 Obsidian 的本地化优势结合，构建一套高效的个人知识管理系统。</div>
+          <div class="bento-meta">
+            <span>2025-04-05</span>
+            <span>&middot;</span>
+            <span>8 min</span>
+          </div>
+        </div>
+        <div class="bento-card small">
+          <span class="bento-tag">趋势洞察</span>
+          <div class="bento-title">2025 年 5 个 AI 工具趋势</div>
+          <div class="bento-excerpt">从 AI Agent 到多模态融合，盘点今年最值得关注的 AI 工具发展方向。</div>
+          <div class="bento-meta">
+            <span>2025-03-28</span>
+            <span>&middot;</span>
+            <span>6 min</span>
+          </div>
+        </div>
+        <div class="bento-card small">
+          <span class="bento-tag">随思随想</span>
+          <div class="bento-title">为什么我选择做数字花园</div>
+          <div class="bento-meta">
+            <span>2025-03-20</span>
+            <span>&middot;</span>
+            <span>4 min</span>
+          </div>
         </div>
       </div>
     </div>
@@ -843,7 +1324,141 @@
 
   <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
 
-  <!-- ===== PLATFORM MATRIX ===== -->
+  <!-- ===== S6: TOOLBOX ===== -->
+  <section class="section" id="toolbox">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-label">// TOOLBOX</div>
+        <h2 class="section-title">工具箱</h2>
+      </div>
+      <div class="toolbox-categories" data-reveal>
+        <div>
+          <div class="toolbox-row-label">笔记</div>
+          <div class="toolbox-grid stagger-container">
+            <div class="tool-card">
+              <span class="tool-icon">&#128221;</span>
+              <div class="tool-name">Notion</div>
+              <div class="tool-tooltip">All-in-one 知识管理与协作</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#128221;</span>
+              <div class="tool-name">Obsidian</div>
+              <div class="tool-tooltip">本地化双向链接笔记</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#128221;</span>
+              <div class="tool-name">Logseq</div>
+              <div class="tool-tooltip">大纲笔记 + 知识图谱</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="toolbox-row-label">写作</div>
+          <div class="toolbox-grid stagger-container">
+            <div class="tool-card">
+              <span class="tool-icon">&#9997;&#65039;</span>
+              <div class="tool-name">Typora</div>
+              <div class="tool-tooltip">极简 Markdown 编辑器</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#9997;&#65039;</span>
+              <div class="tool-name">VS Code</div>
+              <div class="tool-tooltip">代码编辑 + 写作利器</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#9997;&#65039;</span>
+              <div class="tool-name">Markdown</div>
+              <div class="tool-tooltip">纯文本写作标准格式</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="toolbox-row-label">AI</div>
+          <div class="toolbox-grid stagger-container">
+            <div class="tool-card">
+              <span class="tool-icon">&#129302;</span>
+              <div class="tool-name">ChatGPT</div>
+              <div class="tool-tooltip">通用 AI 对话助手</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#129302;</span>
+              <div class="tool-name">Claude</div>
+              <div class="tool-tooltip">长文本分析与写作</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#129302;</span>
+              <div class="tool-name">Midjourney</div>
+              <div class="tool-tooltip">AI 图像生成</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="toolbox-row-label">效率</div>
+          <div class="toolbox-grid stagger-container">
+            <div class="tool-card">
+              <span class="tool-icon">&#9889;</span>
+              <div class="tool-name">Todoist</div>
+              <div class="tool-tooltip">任务管理与 GTD</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#9889;</span>
+              <div class="tool-name">Raycast</div>
+              <div class="tool-tooltip">macOS 效率启动器</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#9889;</span>
+              <div class="tool-name">Alfred</div>
+              <div class="tool-tooltip">macOS 效率工具箱</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="toolbox-row-label">开发</div>
+          <div class="toolbox-grid stagger-container">
+            <div class="tool-card">
+              <span class="tool-icon">&#128187;</span>
+              <div class="tool-name">Git</div>
+              <div class="tool-tooltip">版本控制系统</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#128187;</span>
+              <div class="tool-name">GitHub</div>
+              <div class="tool-tooltip">代码托管与协作</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#128187;</span>
+              <div class="tool-name">Python</div>
+              <div class="tool-tooltip">数据处理与自动化</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="toolbox-row-label">设计</div>
+          <div class="toolbox-grid stagger-container">
+            <div class="tool-card">
+              <span class="tool-icon">&#127912;</span>
+              <div class="tool-name">Figma</div>
+              <div class="tool-tooltip">协作设计工具</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#127912;</span>
+              <div class="tool-name">Canva</div>
+              <div class="tool-tooltip">快速视觉设计</div>
+            </div>
+            <div class="tool-card">
+              <span class="tool-icon">&#127912;</span>
+              <div class="tool-name">Excalidraw</div>
+              <div class="tool-tooltip">手绘风格白板</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
+
+  <!-- ===== S7: PLATFORM MATRIX ===== -->
   <section class="section" id="platforms">
     <div class="container">
       <div class="section-header" data-reveal>
@@ -853,58 +1468,117 @@
       <div class="platform-grid stagger-container" data-reveal>
         <a href="https://mp.weixin.qq.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="platform-card">
-            <span class="plat-icon">📝</span>
+            <span class="plat-icon">&#128221;</span>
             <div class="plat-name">微信公众号</div>
-            <div class="plat-desc">主阵地 · 全部内容首发</div>
+            <div class="plat-desc">主阵地 &middot; 全部内容首发</div>
+            <div class="plat-freq">每周更新</div>
             <span class="plat-status">祈研所</span>
           </div>
         </a>
         <a href="https://channels.weixin.qq.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="platform-card">
-            <span class="plat-icon">🎬</span>
+            <span class="plat-icon">&#127916;</span>
             <div class="plat-name">微信视频号</div>
-            <div class="plat-desc">知识短视频 · 直播</div>
+            <div class="plat-desc">知识短视频 &middot; 直播</div>
+            <div class="plat-freq">每周2更</div>
             <span class="plat-status">祈研所</span>
           </div>
         </a>
         <a href="https://www.xiaohongshu.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="platform-card">
-            <span class="plat-icon">📕</span>
+            <span class="plat-icon">&#128214;</span>
             <div class="plat-name">小红书</div>
-            <div class="plat-desc">图文笔记 · 工具推荐</div>
+            <div class="plat-desc">图文笔记 &middot; 工具推荐</div>
+            <div class="plat-freq">每周3更</div>
             <span class="plat-status">@祈研所</span>
           </div>
         </a>
         <a href="https://www.douyin.com" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="platform-card">
-            <span class="plat-icon">🎵</span>
+            <span class="plat-icon">&#127925;</span>
             <div class="plat-name">抖音</div>
-            <div class="plat-desc">知识短视频 · 趋势解读</div>
+            <div class="plat-desc">知识短视频 &middot; 趋势解读</div>
+            <div class="plat-freq">每周2更</div>
             <span class="plat-status">@祈研所</span>
           </div>
         </a>
         <a href="https://github.com/matthewhemhgz-dev" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="platform-card">
-            <span class="plat-icon">⚙️</span>
+            <span class="plat-icon">&#9881;&#65039;</span>
             <div class="plat-name">GitHub</div>
-            <div class="plat-desc">技术开源 · 代码工具</div>
+            <div class="plat-desc">技术开源 &middot; 代码工具</div>
+            <div class="plat-freq">持续提交</div>
             <span class="plat-status">@matthewhemhgz-dev</span>
           </div>
         </a>
         <div class="platform-card" style="cursor:default;">
-          <span class="plat-icon">🌐</span>
+          <span class="plat-icon">&#127760;</span>
           <div class="plat-name">个人网站</div>
-          <div class="plat-desc">品牌大本营 · 你在这里</div>
+          <div class="plat-desc">品牌大本营 &middot; 你在这里</div>
+          <div class="plat-freq">持续迭代</div>
           <span class="plat-status">qi-lab.dev</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
+
+  <!-- ===== S8: TIMELINE ===== -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-label">// TIMELINE</div>
+        <h2 class="section-title">更新日志</h2>
+      </div>
+      <div class="timeline" data-reveal>
+        <div class="timeline-item">
+          <div class="timeline-date">2025-04</div>
+          <div class="timeline-text">祈研所品牌正式上线，全平台同步启动</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025-03</div>
+          <div class="timeline-text">完成品牌视觉系统设计，确定 Amber Geek 风格</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025-02</div>
+          <div class="timeline-text">开始内容体系规划，建立信息架构</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025-01</div>
+          <div class="timeline-text">祈研所项目立项，确定「数字花园」定位</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"><span class="divider-dot"></span></div></div>
+
+  <!-- ===== S9: TESTIMONIALS ===== -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-label">// TESTIMONIALS</div>
+        <h2 class="section-title">读者评价</h2>
+      </div>
+      <div class="testimonial-grid stagger-container" data-reveal>
+        <div class="testimonial-card">
+          <div class="testimonial-text">在这里找到了很多实用的 AI 工具推荐，知识管理的方法论也很受用。</div>
+          <div class="testimonial-author">&mdash; [待填写]</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-text">难得看到一个既有技术深度又有人文关怀的知识博主。</div>
+          <div class="testimonial-author">&mdash; [待填写]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== S10: FOOTER ===== -->
   <footer id="contact">
     <p class="footer-brand">祈研所 Qi-Lab</p>
-    <p>坚持人类本体价值，长期主义。持续记录，思考，输出，减轻焦虑。</p>
+    <p class="footer-tagline">坚持人类本体价值，长期主义</p>
+    <p class="footer-contact">&#128231; [待填写邮箱] &middot; &#128172; [待填写微信号]</p>
     <div class="footer-links">
       <a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">公众号</a>
       <a href="https://github.com/matthewhemhgz-dev" target="_blank" rel="noopener">GitHub</a>
@@ -912,7 +1586,7 @@
       <a href="https://www.douyin.com" target="_blank" rel="noopener">抖音</a>
     </div>
     <p style="margin-top:20px;font-family:var(--qi-font-mono);font-size:10px;opacity:0.5;">
-      SYS.BRAND // Amber Geek v2.2 // Built with ❤️ and ☕
+      SYS.BRAND // Amber Geek v3.0 // Built with &#10084;&#65039; and &#9749;
     </p>
   </footer>
 
@@ -928,7 +1602,6 @@
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
         this.mouse = { x: null, y: null, radius: 100 };
-        // v2.1: Mobile optimization
         const isMobile = window.innerWidth < 768;
         this.options = {
           count: isMobile ? 30 : 50,
@@ -970,7 +1643,6 @@
       animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Draw links
         for (let i = 0; i < this.particles.length; i++) {
           for (let j = i + 1; j < this.particles.length; j++) {
             const dx = this.particles[i].x - this.particles[j].x;
@@ -988,9 +1660,7 @@
           }
         }
 
-        // Update and draw particles
         this.particles.forEach(p => {
-          // Mouse interaction
           if (this.mouse.x && this.mouse.y) {
             const dx = p.x - this.mouse.x;
             const dy = p.y - this.mouse.y;
@@ -1005,11 +1675,9 @@
           p.x += p.vx;
           p.y += p.vy;
 
-          // Boundary bounce
           if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
           if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
 
-          // Speed limit
           const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
           if (speed > this.options.speed * 2) {
             p.vx *= 0.95;
@@ -1066,13 +1734,11 @@
       }
 
       init() {
-        // Scroll effect
         window.addEventListener('scroll', () => {
           this.nav.classList.toggle('scrolled', window.scrollY > 50);
           this.updateActiveLink();
         });
 
-        // Smooth scroll
         this.links.forEach(link => {
           link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
@@ -1080,15 +1746,13 @@
               e.preventDefault();
               const target = document.querySelector(href);
               target?.scrollIntoView({ behavior: 'smooth' });
-              // Close mobile menu
-              this.navLinks.classList.remove('open');
+              this.navLinks.classList.remove('active');
             }
           });
         });
 
-        // Mobile toggle
         this.toggle?.addEventListener('click', () => {
-          this.navLinks.classList.toggle('open');
+          this.navLinks.classList.toggle('active');
         });
       }
 
@@ -1110,67 +1774,7 @@
     }
 
     // ============================================
-    // Initialize
-    // ============================================
-    document.addEventListener('DOMContentLoaded', () => {
-      new MinimalParticles('particles-canvas');
-      new ScrollReveal();
-      new Navigation();
-      new ScrollProgress();
-      new CounterAnimation();
-      new PageSnap();
-    });
-
-    // ============================================
-    // 5. Page Snap - PPT式翻页
-    // ============================================
-    class PageSnap {
-      constructor() {
-        this.sections = document.querySelectorAll('section[id]');
-        this.isScrolling = false;
-        this.currentSection = 0;
-        this.init();
-      }
-
-      init() {
-        // 监听滚轮事件
-        window.addEventListener('wheel', (e) => {
-          if (this.isScrolling) return;
-          
-          const direction = e.deltaY > 0 ? 1 : -1;
-          const nextSection = this.currentSection + direction;
-          
-          if (nextSection >= 0 && nextSection < this.sections.length) {
-            this.isScrolling = true;
-            this.currentSection = nextSection;
-            
-            this.sections[nextSection].scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-            
-            setTimeout(() => {
-              this.isScrolling = false;
-            }, 800);
-          }
-        }, { passive: false });
-
-        // 监听滚动位置更新当前section
-        window.addEventListener('scroll', () => {
-          const scrollPos = window.scrollY + window.innerHeight / 2;
-          this.sections.forEach((section, index) => {
-            const top = section.offsetTop;
-            const bottom = top + section.offsetHeight;
-            if (scrollPos >= top && scrollPos < bottom) {
-              this.currentSection = index;
-            }
-          });
-        });
-      }
-    }
-
-    // ============================================
-    // 6. Scroll Progress
+    // 4. Scroll Progress
     // ============================================
     class ScrollProgress {
       constructor() {
@@ -1190,12 +1794,12 @@
     }
 
     // ============================================
-    // 6. Counter Animation - v2.1
+    // 5. Counter Animation (Dashboard Bars)
     // ============================================
     class CounterAnimation {
       constructor() {
-        this.counters = document.querySelectorAll('.stat-value');
-        if (!this.counters.length) return;
+        this.bars = document.querySelectorAll('.dash-bar-fill');
+        if (!this.bars.length) return;
         this.init();
       }
 
@@ -1203,43 +1807,54 @@
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              this.animate(entry.target);
-              observer.unobserve(entry.target);
+              const bar = entry.target;
+              const width = bar.getAttribute('data-width');
+              bar.style.width = width + '%';
+              observer.unobserve(bar);
             }
           });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
-        this.counters.forEach(counter => observer.observe(counter));
-      }
-
-      animate(element) {
-        const text = element.textContent;
-        if (text === '∞') return; // Skip infinity symbol
-
-        const target = parseInt(text);
-        if (isNaN(target)) return;
-
-        const duration = 1500;
-        const startTime = performance.now();
-
-        const update = (currentTime) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const easeProgress = 1 - Math.pow(1 - progress, 3);
-          const current = Math.floor(easeProgress * target);
-
-          element.textContent = current;
-
-          if (progress < 1) {
-            requestAnimationFrame(update);
-          } else {
-            element.textContent = target;
-          }
-        };
-
-        requestAnimationFrame(update);
+        this.bars.forEach(bar => observer.observe(bar));
       }
     }
+
+    // ============================================
+    // 6. Back to Top
+    // ============================================
+    class BackToTop {
+      constructor() {
+        this.btn = document.getElementById('backToTop');
+        if (!this.btn) return;
+        this.init();
+      }
+
+      init() {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 600) {
+            this.btn.classList.add('visible');
+          } else {
+            this.btn.classList.remove('visible');
+          }
+        });
+
+        this.btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    }
+
+    // ============================================
+    // Initialize
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      new MinimalParticles('particles-canvas');
+      new ScrollReveal();
+      new Navigation();
+      new ScrollProgress();
+      new CounterAnimation();
+      new BackToTop();
+    });
   </script>
 
 </body>
