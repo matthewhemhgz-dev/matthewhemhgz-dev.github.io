@@ -10,10 +10,7 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     draft: z.boolean().default(false),
     lang: z.enum(['zh', 'en']).default('zh'),
-    category: z.enum([
-      '深度研析', '实用干货', '趋势洞察', '随思随想',
-      'Deep Dive', 'Practical Tips', 'Trends', 'Thoughts'
-    ]).default('随思随想'),
+    category: z.string().default('随思随想'),
     tags: z.array(z.string()).default([]),
     image: z.object({
       src: z.string(),
@@ -22,6 +19,7 @@ const blog = defineCollection({
     readingTime: z.string().optional(),
     author: z.string().default('祈研所'),
     ogImage: z.string().optional(),
+    heroImage: z.string().optional(),
   }),
 });
 

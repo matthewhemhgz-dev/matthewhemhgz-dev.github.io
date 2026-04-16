@@ -40,6 +40,7 @@ export class CursorGlow {
 
     // 注入样式
     const style = document.createElement('style');
+    style.id = 'cursor-glow-style';
     style.textContent = `
       .cursor-glow {
         position: fixed;
@@ -48,7 +49,7 @@ export class CursorGlow {
         width: ${this.options.size}px;
         height: ${this.options.size}px;
         pointer-events: none;
-        z-index: 9997;
+        z-index: var(--qi-z-overlay);
         mix-blend-mode: ${this.options.blend};
         transform: translate(-50%, -50%);
         opacity: 0;
@@ -122,6 +123,10 @@ export class CursorGlow {
   }
 
   _animate() {
+    if (document.hidden) {
+      this.rafId = requestAnimationFrame(() => this._animate());
+      return;
+    }
     if (!this.isTouchDevice && this.el) {
       const now = performance.now();
       const deltaTime = Math.min((now - this.lastTime) / 16.67, 3); // 归一化到 60fps，上限 3 帧补偿
@@ -136,6 +141,9 @@ export class CursorGlow {
 
   destroy() {
     if (this.rafId) cancelAnimationFrame(this.rafId);
+    const styleId = 'cursor-glow-style';
+    const existingStyle = document.getElementById(styleId);
+    if (existingStyle) existingStyle.remove();
     if (this.el) this.el.remove();
   }
 }

@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Page Not Found" description="The page you're looking for doesn't exist." lang="en">
+  <main class="container" style="text-align: center; padding: calc(var(--qi-nav-height) + var(--qi-space-5xl)) var(--qi-container-padding) var(--qi-space-5xl);">
+    <h1 style="font-family: var(--qi-font-serif); font-size: 6rem; color: var(--qi-brand-emerald); margin-bottom: var(--qi-space-lg);">404</h1>
+    <p style="font-size: var(--qi-text-lg); color: var(--qi-text-muted); margin-bottom: var(--qi-space-2xl);">The page you're looking for doesn't exist.</p>
+    <a href="/en/" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: var(--qi-space-sm); padding: var(--qi-space-sm) var(--qi-space-xl); background: var(--qi-text-primary); color: var(--qi-bg-base); border-radius: var(--qi-radius-button); text-decoration: none; font-weight: 600; transition: all var(--qi-transition);">← Back to Home</a>
+  </main>
+</BaseLayout>

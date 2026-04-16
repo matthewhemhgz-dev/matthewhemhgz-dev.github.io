@@ -1,6 +1,13 @@
 import { ui, defaultLang } from './ui';
 import type { Lang } from './ui';
 
+/**
+ * i18n utility functions.
+ * NOTE: Only getLangFromUrl() is currently used (by Navigation.astro and Footer.astro).
+ * useTranslations(), useTranslatedPath(), getAlternateUrl() are available but not yet adopted.
+ * Preserved for future migration to dynamic i18n.
+ */
+
 export function getLangFromUrl(url: URL): Lang {
   const [, maybeLang] = url.pathname.split('/');
   if (maybeLang in ui) return maybeLang as Lang;

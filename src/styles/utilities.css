@@ -5,6 +5,19 @@
   padding: 0 var(--qi-container-padding, 24px);
 }
 
+/* Large screen breakpoints */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
 .text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;

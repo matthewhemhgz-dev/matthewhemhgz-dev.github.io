@@ -15,15 +15,6 @@
   --qi-text-secondary: #5A5A5A;
   --qi-text-muted: #7A7A7A;
 
-  /* 别名 - 简写引用（deprecated，请使用 --qi-brand-* / --qi-text-* / --qi-surface-*） */
-  --qi-oat: var(--qi-bg-base);
-  --qi-charcoal: var(--qi-text-primary);
-  --qi-charcoal-light: var(--qi-text-secondary);
-  --qi-charcoal-lighter: var(--qi-text-muted);
-  --qi-emerald: var(--qi-brand-emerald);
-  --qi-amber: var(--qi-brand-amber);
-  --qi-amber-dark: #B8860B; /* WCAG AA safe amber for text */
-
   /* 边框令牌 */
   --qi-border-default: rgba(42, 42, 42, 0.06);
   --qi-border-subtle: rgba(42, 42, 42, 0.04);
@@ -109,6 +100,7 @@
   --qi-z-content: 2;
   --qi-z-nav: 1000;
   --qi-z-overlay: 9998;
+  --qi-z-noise: 9995;
   --qi-z-back-top: 9999;
   --qi-z-progress: 10001;
 }

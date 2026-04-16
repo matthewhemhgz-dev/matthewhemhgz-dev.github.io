@@ -116,7 +116,7 @@ import Divider from '../components/global/Divider.astro';
   .page-label {
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-sm);
-    color: var(--qi-emerald);
+    color: var(--qi-brand-emerald);
     letter-spacing: 0.08em;
     font-weight: 500;
   }
@@ -125,13 +125,13 @@ import Divider from '../components/global/Divider.astro';
     font-family: var(--qi-font-serif);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
-    color: var(--qi-charcoal);
+    color: var(--qi-text-primary);
     line-height: 1.2;
   }
 
   .page-subtitle {
     font-size: var(--qi-text-lg);
-    color: var(--qi-charcoal-lighter);
+    color: var(--qi-text-muted);
     line-height: 1.7;
   }
 
@@ -150,7 +150,7 @@ import Divider from '../components/global/Divider.astro';
 
   .prose p {
     font-size: var(--qi-text-lg);
-    color: var(--qi-charcoal-light);
+    color: var(--qi-text-secondary);
     line-height: 1.9;
   }
 
@@ -187,14 +187,14 @@ import Divider from '../components/global/Divider.astro';
     font-family: var(--qi-font-serif);
     font-size: var(--qi-text-xl);
     font-weight: 600;
-    color: var(--qi-charcoal);
+    color: var(--qi-text-primary);
     margin-top: var(--qi-space-md);
     margin-bottom: var(--qi-space-sm);
   }
 
   .philosophy-desc {
     font-size: var(--qi-text-sm);
-    color: var(--qi-charcoal-lighter);
+    color: var(--qi-text-muted);
     line-height: 1.8;
   }
 
@@ -208,7 +208,7 @@ import Divider from '../components/global/Divider.astro';
 
   .cta-text {
     font-size: var(--qi-text-lg);
-    color: var(--qi-charcoal-light);
+    color: var(--qi-text-secondary);
     line-height: 1.8;
   }
 
@@ -227,19 +227,19 @@ import Divider from '../components/global/Divider.astro';
   .cta-label {
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-xs);
-    color: var(--qi-charcoal-lighter);
+    color: var(--qi-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
   .cta-value {
     font-size: var(--qi-text-lg);
-    color: var(--qi-charcoal);
+    color: var(--qi-text-primary);
     font-weight: 500;
   }
 
   a.cta-link .cta-value {
-    color: var(--qi-emerald);
+    color: var(--qi-brand-emerald);
     transition: color var(--qi-transition-fast);
   }
 
@@ -256,8 +256,8 @@ import Divider from '../components/global/Divider.astro';
     font-size: var(--qi-text-sm);
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: var(--qi-oat);
-    background: var(--qi-charcoal);
+    color: var(--qi-bg-base);
+    background: var(--qi-text-primary);
     border-radius: var(--qi-radius-md);
     text-decoration: none;
     box-shadow: var(--qi-shadow-md);
@@ -265,7 +265,7 @@ import Divider from '../components/global/Divider.astro';
   }
 
   .cta-btn:hover {
-    background: var(--qi-emerald);
+    background: var(--qi-brand-emerald);
     transform: translateY(-2px);
     box-shadow: var(--qi-shadow-lg);
   }

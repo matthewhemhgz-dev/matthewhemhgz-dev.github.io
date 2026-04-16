@@ -72,39 +72,39 @@ const Tag = href ? 'a' : 'button';
 
   /* Variants */
   .btn--primary {
-    background: var(--qi-charcoal);
-    color: var(--qi-oat);
+    background: var(--qi-text-primary);
+    color: var(--qi-bg-base);
     box-shadow: var(--qi-shadow-md);
   }
 
   .btn--primary:hover {
-    background: var(--qi-emerald);
+    background: var(--qi-brand-emerald);
     transform: translateY(-2px);
     box-shadow: var(--qi-shadow-lg);
-    color: var(--qi-oat);
+    color: var(--qi-bg-base);
   }
 
   .btn--secondary {
     background: transparent;
-    color: var(--qi-charcoal);
+    color: var(--qi-text-primary);
     border: 1px solid rgba(42, 42, 42, 0.15);
   }
 
   .btn--secondary:hover {
-    border-color: var(--qi-emerald);
-    color: var(--qi-emerald);
+    border-color: var(--qi-brand-emerald);
+    color: var(--qi-brand-emerald);
     transform: translateY(-2px);
   }
 
   .btn--ghost {
     background: transparent;
-    color: var(--qi-charcoal);
+    color: var(--qi-text-primary);
     padding-left: 4px;
     padding-right: 4px;
   }
 
   .btn--ghost:hover {
-    color: var(--qi-emerald);
+    color: var(--qi-brand-emerald);
   }
 
   .btn--ghost :global(.btn-arrow) {

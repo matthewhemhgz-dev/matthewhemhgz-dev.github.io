@@ -29,15 +29,15 @@
     position: fixed;
     bottom: var(--qi-space-xl);
     right: var(--qi-space-xl);
-    z-index: var(--qi-z-back-to-top);
+    z-index: var(--qi-z-back-top);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
     border-radius: var(--qi-radius-full);
-    background: var(--qi-charcoal);
-    color: var(--qi-oat);
+    background: var(--qi-text-primary);
+    color: var(--qi-bg-base);
     box-shadow: var(--qi-shadow-lg);
     opacity: 0;
     visibility: hidden;
@@ -56,7 +56,7 @@
   }
 
   .back-to-top:hover {
-    background: var(--qi-emerald);
+    background: var(--qi-brand-emerald);
     transform: translateY(-2px);
   }
 
@@ -79,18 +79,4 @@
   }
 </style>
 
-<script>
-  const btn = document.getElementById('back-to-top');
-  if (btn) {
-    const toggleVisibility = () => {
-      btn.classList.toggle('visible', window.scrollY > 400);
-    };
 
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
-    toggleVisibility();
-
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-</script>

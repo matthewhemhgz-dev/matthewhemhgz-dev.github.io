@@ -15,21 +15,436 @@ const { Content, headings } = await render(post);
 ---
 
 <BaseLayout title={`${post.data.title} — Qi-Lab`} description={post.data.description} lang="en">
-  <article class="container" style="padding-top: 120px; padding-bottom: 80px; max-width: 780px;">
-    <a href="/en/blog" style="color: var(--qi-brand-emerald); font-size: 0.9rem;">← Back to List</a>
-    <header style="margin: 1.5rem 0 2.5rem;">
-      <h1 style="font-family: var(--qi-font-serif); font-size: 2.2rem; line-height: 1.3; margin-bottom: 0.75rem;">{post.data.title}</h1>
-      <p style="color: var(--qi-text-muted);">{post.data.description}</p>
+  <article class="article-container">
+    <a href="/en/blog" class="article-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Back to List</span>
+    </a>
+
+    <header class="article-header">
+      <div class="article-meta-top">
+        <span class="article-category">{post.data.category}</span>
+        <time class="article-date">{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      </div>
+      <h1 class="article-title">{post.data.title}</h1>
+      {post.data.description && (
+        <p class="article-description">{post.data.description}</p>
+      )}
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="article-tags">
+          {post.data.tags.map(tag => (
+            <span class="article-tag" key={tag}>#{tag}</span>
+          ))}
+        </div>
+      )}
+      <div class="article-divider"></div>
     </header>
-    <div class="prose" style="font-size: 1.05rem; line-height: 1.8;">
+
+    {headings.length > 0 && (
+      <nav class="toc">
+        <div class="toc-header">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2h8M4 8h8M4 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Table of Contents</span>
+        </div>
+        <ul class="toc-list">
+          {headings.filter(h => h.depth <= 3).map(h => (
+            <li key={h.slug} class={`toc-item toc-item--depth-${h.depth}`}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <div class="prose">
       <Content />
     </div>
+
+    <footer class="article-footer">
+      <div class="article-divider"></div>
+      <div class="article-footer-content">
+        <span class="article-footer-label">— Qi-Lab —</span>
+        <p class="article-footer-hint">If this article was helpful, feel free to share it with others.</p>
+      </div>
+    </footer>
   </article>
 </BaseLayout>
 
 <style>
-  .prose :global(h2) { font-family: var(--qi-font-serif); font-size: 1.6rem; margin: 2rem 0 1rem; }
-  .prose :global(h3) { font-family: var(--qi-font-serif); font-size: 1.3rem; margin: 1.5rem 0 0.75rem; }
-  .prose :global(p) { margin-bottom: 1rem; }
-  .prose :global(a) { color: var(--qi-brand-emerald); text-decoration: underline; }
+  .article-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding) var(--qi-space-5xl);
+  }
+
+  /* Back link */
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    color: var(--qi-brand-emerald);
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-sm);
+    text-decoration: none;
+    margin-bottom: var(--qi-space-2xl);
+    transition: gap var(--qi-transition), color var(--qi-transition);
+  }
+
+  .article-back:hover {
+    gap: var(--qi-space-md);
+    color: var(--qi-brand-amber);
+  }
+
+  /* Article header */
+  .article-header {
+    margin-bottom: var(--qi-space-3xl);
+  }
+
+  .article-meta-top {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-md);
+    margin-bottom: var(--qi-space-lg);
+  }
+
+  .article-category {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    color: #fff;
+    background: var(--qi-brand-emerald);
+    padding: 3px 10px;
+    border-radius: var(--qi-radius-sm);
+    letter-spacing: 0.04em;
+  }
+
+  .article-date {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-muted);
+  }
+
+  .article-title {
+    font-family: var(--qi-font-serif);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    line-height: 1.3;
+    margin: 0 0 var(--qi-space-lg);
+    letter-spacing: -0.01em;
+  }
+
+  .article-description {
+    font-size: var(--qi-text-lg);
+    color: var(--qi-text-muted);
+    line-height: 1.7;
+    margin: 0 0 var(--qi-space-md);
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--qi-space-sm);
+  }
+
+  .article-tag {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-brand-emerald);
+    background: rgba(46, 125, 92, 0.06);
+    padding: 2px 10px;
+    border-radius: var(--qi-radius-full);
+  }
+
+  .article-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(42, 42, 42, 0.12), transparent 80%);
+    margin-top: var(--qi-space-2xl);
+  }
+
+  /* Table of Contents */
+  .toc {
+    margin-bottom: var(--qi-space-2xl);
+    padding: var(--qi-space-lg) var(--qi-space-xl);
+    background: var(--qi-surface-sub);
+    border-radius: var(--qi-radius-lg);
+    border-left: 3px solid var(--qi-brand-emerald);
+  }
+
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    color: var(--qi-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--qi-space-md);
+  }
+
+  .toc-header svg {
+    color: var(--qi-brand-emerald);
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .toc-item a {
+    display: block;
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-primary);
+    text-decoration: none;
+    padding: 4px 0;
+    border-radius: var(--qi-radius-sm);
+    transition: color var(--qi-transition-fast), background var(--qi-transition-fast);
+  }
+
+  .toc-item a:hover {
+    color: var(--qi-brand-emerald);
+    background: rgba(46, 125, 92, 0.04);
+  }
+
+  .toc-item--depth-2 a {
+    padding-left: 0;
+  }
+
+  .toc-item--depth-3 a {
+    padding-left: 16px;
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-muted);
+  }
+
+  /* === Prose Styles === */
+  .prose {
+    font-size: var(--qi-text-lg);
+    line-height: 1.9;
+    color: var(--qi-text-primary);
+  }
+
+  .prose :global(h2) {
+    font-family: var(--qi-font-serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: var(--qi-space-sm);
+    border-bottom: 1px solid rgba(42, 42, 42, 0.06);
+    letter-spacing: -0.01em;
+  }
+
+  .prose :global(h3) {
+    font-family: var(--qi-font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .prose :global(h4) {
+    font-family: var(--qi-font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose :global(strong) {
+    font-weight: 700;
+    color: var(--qi-text-primary);
+  }
+
+  .prose :global(em) {
+    font-style: italic;
+  }
+
+  /* Links */
+  .prose :global(a) {
+    color: var(--qi-brand-emerald);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(46, 125, 92, 0.3);
+    transition: color var(--qi-transition), text-decoration-color var(--qi-transition);
+  }
+
+  .prose :global(a:hover) {
+    color: var(--qi-brand-amber);
+    text-decoration-color: rgba(229, 169, 60, 0.4);
+  }
+
+  /* Lists */
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose :global(ul) {
+    list-style-type: disc;
+  }
+
+  .prose :global(ol) {
+    list-style-type: decimal;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+  }
+
+  .prose :global(li)::marker {
+    color: var(--qi-brand-emerald);
+  }
+
+  /* Inline code */
+  .prose :global(code) {
+    font-family: var(--qi-font-mono);
+    background: var(--qi-surface-sub);
+    color: var(--qi-brand-emerald);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.88em;
+    border: 1px solid rgba(42, 42, 42, 0.04);
+  }
+
+  /* Code blocks */
+  .prose :global(pre) {
+    background: var(--qi-surface-main);
+    color: var(--qi-text-inverse);
+    padding: var(--qi-space-xl);
+    border-radius: var(--qi-radius-lg);
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-size: 0.9em;
+    line-height: 1.7;
+  }
+
+  .prose :global(pre code) {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border: none;
+    font-size: inherit;
+  }
+
+  /* Blockquote */
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--qi-brand-emerald);
+    padding: var(--qi-space-md) var(--qi-space-lg);
+    margin: 1.5rem 0;
+    background: rgba(46, 125, 92, 0.03);
+    border-radius: 0 var(--qi-radius-md) var(--qi-radius-md) 0;
+    color: var(--qi-text-primary);
+    font-style: italic;
+  }
+
+  .prose :global(blockquote p) {
+    margin-bottom: 0;
+  }
+
+  /* Images */
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--qi-radius-lg);
+    margin: 1.5rem 0;
+    box-shadow: var(--qi-shadow-md);
+  }
+
+  /* Horizontal rule */
+  .prose :global(hr) {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(42, 42, 42, 0.1), transparent);
+    margin: 2.5rem 0;
+  }
+
+  /* Tables */
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95em;
+  }
+
+  .prose :global(th),
+  .prose :global(td) {
+    padding: var(--qi-space-sm) var(--qi-space-md);
+    border: 1px solid rgba(42, 42, 42, 0.08);
+    text-align: left;
+  }
+
+  .prose :global(th) {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    color: var(--qi-text-primary);
+    background: var(--qi-surface-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .prose :global(tr):hover td {
+    background: rgba(46, 125, 92, 0.02);
+  }
+
+  /* Article footer */
+  .article-footer {
+    margin-top: var(--qi-space-4xl);
+  }
+
+  .article-footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    padding: var(--qi-space-2xl) 0;
+    text-align: center;
+  }
+
+  .article-footer-label {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-base);
+    font-weight: 600;
+    color: var(--qi-text-primary);
+  }
+
+  .article-footer-hint {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .article-container {
+      padding-top: calc(var(--qi-nav-height) + var(--qi-space-2xl));
+    }
+
+    .article-title {
+      font-size: 1.6rem;
+    }
+
+    .prose {
+      font-size: var(--qi-text-base);
+      line-height: 1.8;
+    }
+
+    .prose :global(pre) {
+      padding: var(--qi-space-lg);
+      border-radius: var(--qi-radius-md);
+    }
+  }
 </style>

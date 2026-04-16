@@ -17,7 +17,7 @@ const clampedPercentage = Math.max(0, Math.min(100, percentage));
 
 const colorMap: Record<string, { bar: string; bg: string; glow: string }> = {
   emerald: {
-    bar: 'var(--qi-emerald)',
+    bar: 'var(--qi-brand-emerald)',
     bg: 'rgba(46, 125, 92, 0.1)',
     glow: 'rgba(46, 125, 92, 0.3)',
   },
@@ -27,7 +27,7 @@ const colorMap: Record<string, { bar: string; bg: string; glow: string }> = {
     glow: 'rgba(229, 169, 60, 0.3)',
   },
   gray: {
-    bar: 'var(--qi-charcoal-lighter)',
+    bar: 'var(--qi-text-muted)',
     bg: 'rgba(42, 42, 42, 0.06)',
     glow: 'rgba(42, 42, 42, 0.15)',
   },
@@ -53,7 +53,7 @@ const colors = colorMap[color] || colorMap.emerald;
 
 <style>
   .dash-card {
-    background: var(--qi-oat);
+    background: var(--qi-bg-base);
     border: 1px solid rgba(42, 42, 42, 0.06);
     border-radius: var(--qi-radius-lg);
     padding: var(--qi-space-lg);
@@ -76,7 +76,7 @@ const colors = colorMap[color] || colorMap.emerald;
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-xs);
     font-weight: 500;
-    color: var(--qi-charcoal-lighter);
+    color: var(--qi-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -85,7 +85,7 @@ const colors = colorMap[color] || colorMap.emerald;
     font-family: var(--qi-font-serif);
     font-size: var(--qi-text-2xl);
     font-weight: 700;
-    color: var(--qi-charcoal);
+    color: var(--qi-text-primary);
     line-height: 1;
   }
 
@@ -102,7 +102,7 @@ const colors = colorMap[color] || colorMap.emerald;
     position: relative;
     height: 100%;
     width: var(--fill-width, 0%);
-    background: var(--bar-color, var(--qi-emerald));
+    background: var(--bar-color, var(--qi-brand-emerald));
     border-radius: var(--qi-radius-full);
     transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
     animation: fill-in 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -124,7 +124,7 @@ const colors = colorMap[color] || colorMap.emerald;
     top: -22px;
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-xs);
-    color: var(--bar-color, var(--qi-emerald));
+    color: var(--bar-color, var(--qi-brand-emerald));
     font-weight: 600;
     opacity: 0;
     animation: fade-up 0.5s ease 0.8s forwards;

@@ -32,7 +32,7 @@ const wechatLabel = 'WeChat';
 const socialLabel = lang === 'en' ? 'Social' : '社交链接';
 const rightsText = lang === 'en' ? 'All rights reserved.' : '保留所有权利。';
 const builtWithText = lang === 'en' ? 'Built with' : '使用';
-const andText = lang === 'en' ? '&' : '&amp;';
+const andText = '&';
 ---
 
 <footer id="contact" class="footer">
@@ -93,8 +93,8 @@ const andText = lang === 'en' ? '&' : '&amp;';
   .footer {
     position: relative;
     z-index: var(--qi-z-content);
-    background: var(--qi-charcoal);
-    color: var(--qi-oat);
+    background: var(--qi-text-primary);
+    color: var(--qi-bg-base);
     padding: var(--qi-space-4xl) 0 var(--qi-space-xl);
     margin-top: var(--qi-space-4xl);
   }
@@ -116,7 +116,7 @@ const andText = lang === 'en' ? '&' : '&amp;';
     font-family: var(--qi-font-serif);
     font-size: var(--qi-text-2xl);
     font-weight: 600;
-    color: var(--qi-oat);
+    color: var(--qi-bg-base);
     margin-bottom: var(--qi-space-sm);
     letter-spacing: 0.02em;
   }
@@ -235,7 +235,7 @@ const andText = lang === 'en' ? '&' : '&amp;';
 
   .heart {
     display: inline-block;
-    color: var(--qi-emerald);
+    color: var(--qi-brand-emerald);
     animation: heartbeat 1.8s ease-in-out infinite;
   }
 

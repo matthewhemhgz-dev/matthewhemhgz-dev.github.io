@@ -52,7 +52,7 @@ const { variant = 'dot' } = Astro.props;
     width: 6px;
     height: 6px;
     border-radius: var(--qi-radius-full);
-    background: var(--qi-emerald);
+    background: var(--qi-brand-emerald);
     opacity: 0.5;
     flex-shrink: 0;
   }
@@ -63,8 +63,8 @@ const { variant = 'dot' } = Astro.props;
     height: 2px;
     background: repeating-linear-gradient(
       90deg,
-      var(--qi-charcoal) 0px,
-      var(--qi-charcoal) 6px,
+      var(--qi-text-primary) 0px,
+      var(--qi-text-primary) 6px,
       transparent 6px,
       transparent 12px
     );
@@ -80,7 +80,7 @@ const { variant = 'dot' } = Astro.props;
     background: linear-gradient(
       90deg,
       transparent,
-      var(--qi-emerald) 30%,
+      var(--qi-brand-emerald) 30%,
       var(--qi-amber) 70%,
       transparent
     );

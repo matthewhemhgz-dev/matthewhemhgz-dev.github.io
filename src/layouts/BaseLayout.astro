@@ -13,6 +13,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   tagline?: string;
+  lang?: string;
 }
 
 const {
@@ -20,13 +21,16 @@ const {
   description = '祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。个人品牌网站，分享关于开发、思考与创造的一切。',
   ogImage = '/og-default.png',
   tagline = '探索技术、设计与创意的交汇之处',
+  lang = 'zh-CN',
 } = Astro.props;
 
+const ogLocale = lang === 'en' ? 'en_US' : 'zh_CN';
+const skipLinkText = lang === 'en' ? 'Skip to main content' : '跳至主要内容';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.dev');
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,7 +50,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -63,7 +67,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">跳至主要内容</a>
+    <a href="#main-content" class="skip-link">{skipLinkText}</a>
     <ClientRouter />
     <NoiseOverlay />
     <ScrollProgress />

@@ -1,3 +1,10 @@
+/**
+ * i18n translation dictionaries.
+ * NOTE: Currently using manual translation mode — each page hardcodes its own text.
+ * These dictionaries are preserved for future migration to dynamic translations.
+ * Functions useTranslations(), useTranslatedPath(), getAlternateUrl() are defined
+ * in utils.ts but not yet used by any page.
+ */
 export const languages = {
   zh: '简体中文',
   en: 'English',

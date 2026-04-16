@@ -40,9 +40,13 @@ export class MinimalParticles {
   }
 
   _bindEvents() {
+    let resizeTimer;
     window.addEventListener('resize', () => {
-      this.resize();
-      this.init();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        this.resize();
+        this.init();
+      }, 200);
     });
 
     document.addEventListener('visibilitychange', () => {
