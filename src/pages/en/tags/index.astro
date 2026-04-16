@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+---
+
+<BaseLayout title="Tags — Qi-Lab" description="All content tags." lang="en">
+  <main class="container" style="padding-top: 120px; padding-bottom: 80px;">
+    <h1 style="font-family: var(--qi-font-serif); font-size: 2.5rem; margin-bottom: 2rem;">Tags</h1>
+    {allTags.length === 0 ? (
+      <p style="color: var(--qi-text-muted);">No English tags yet.</p>
+    ) : (
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        {allTags.map(tag => (
+          <a href={`/en/tags/${tag}/`} style="padding: 8px 18px; background: var(--qi-surface-sub); border-radius: var(--qi-radius-button); text-decoration: none; transition: all var(--qi-transition);">
+            #{tag}
+          </a>
+        ))}
+      </div>
+    )}
+  </main>
+</BaseLayout>

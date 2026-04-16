@@ -1,0 +1,117 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  rel,
+  type = 'button',
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  target={target}
+  rel={rel}
+  type={href ? undefined : type}
+  class:list={['btn', `btn--${variant}`, `btn--${size}`, className]}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--qi-space-sm);
+    font-family: var(--qi-font-mono);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: var(--qi-radius-md);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--qi-transition), box-shadow var(--qi-transition), background-color var(--qi-transition), border-color var(--qi-transition), color var(--qi-transition);
+    line-height: 1;
+  }
+
+  .btn:active {
+    transform: scale(0.96);
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Sizes */
+  .btn--sm {
+    font-size: var(--qi-text-xs);
+    padding: 8px 16px;
+  }
+
+  .btn--md {
+    font-size: var(--qi-text-sm);
+    padding: 12px 28px;
+  }
+
+  .btn--lg {
+    font-size: var(--qi-text-base);
+    padding: 14px 32px;
+  }
+
+  /* Variants */
+  .btn--primary {
+    background: var(--qi-charcoal);
+    color: var(--qi-oat);
+    box-shadow: var(--qi-shadow-md);
+  }
+
+  .btn--primary:hover {
+    background: var(--qi-emerald);
+    transform: translateY(-2px);
+    box-shadow: var(--qi-shadow-lg);
+    color: var(--qi-oat);
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--qi-charcoal);
+    border: 1px solid rgba(42, 42, 42, 0.15);
+  }
+
+  .btn--secondary:hover {
+    border-color: var(--qi-emerald);
+    color: var(--qi-emerald);
+    transform: translateY(-2px);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--qi-charcoal);
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .btn--ghost:hover {
+    color: var(--qi-emerald);
+  }
+
+  .btn--ghost :global(.btn-arrow) {
+    transition: transform var(--qi-transition);
+  }
+
+  .btn--ghost:hover :global(.btn-arrow) {
+    transform: translateX(4px);
+  }
+</style>

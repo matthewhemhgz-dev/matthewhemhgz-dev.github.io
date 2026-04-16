@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+---
+
+<BaseLayout title="标签 — 祈研所 Qi-Lab" description="所有内容标签">
+  <main class="container" style="padding-top: 120px; padding-bottom: 80px;">
+    <h1 style="font-family: var(--qi-font-serif); font-size: 2.5rem; margin-bottom: 2rem;">标签</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+      {allTags.map(tag => (
+        <a href={`/tags/${tag}/`} style="
+          display: inline-block;
+          padding: 8px 18px;
+          background: var(--qi-surface-sub);
+          border-radius: var(--qi-radius-button);
+          color: var(--qi-text-primary);
+          font-size: 0.9rem;
+          transition: all var(--qi-transition);
+          text-decoration: none;
+        ">
+          #{tag}
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  a:hover { background: var(--qi-brand-emerald) !important; color: #fff !important; }
+</style>

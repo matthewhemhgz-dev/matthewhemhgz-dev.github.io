@@ -1,0 +1,265 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+
+interface Props {
+  brandName?: string;
+  tagline?: string;
+  email?: string;
+  wechat?: string;
+  copyrightYear?: number;
+}
+
+const {
+  brandName = '祈研所',
+  tagline = '用代码构建，用设计表达',
+  email = 'hello@qi-lab.dev',
+  wechat = 'QiLab_Studio',
+  copyrightYear = new Date().getFullYear(),
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+
+const socialLinks = [
+  { name: 'GitHub', url: 'https://github.com/qi-lab', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
+  { name: 'Twitter/X', url: 'https://twitter.com/qilab_dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' },
+  { name: '知乎', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5.721 0C2.251 0 0 2.25 0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75 0 18.281 0zm1.964 4.078h6.191c.14 0 .254.114.254.254v1.191c0 .14-.114.254-.254.254H7.685c-.14 0-.254-.114-.254-.254V4.332c0-.14.114-.254.254-.254zm-1.964 8.14h3.641l1.643 2.647 1.643-2.647h3.641l-2.96 4.27 3.075 4.476h-3.641l-1.758-2.775-1.758 2.775H5.721l3.075-4.476z"/></svg>' },
+  { name: 'Bilibili', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>' },
+];
+
+const contactLabel = lang === 'en' ? 'Contact' : '联系方式';
+const emailLabel = 'Email';
+const wechatLabel = 'WeChat';
+const socialLabel = lang === 'en' ? 'Social' : '社交链接';
+const rightsText = lang === 'en' ? 'All rights reserved.' : '保留所有权利。';
+const builtWithText = lang === 'en' ? 'Built with' : '使用';
+const andText = lang === 'en' ? '&' : '&amp;';
+---
+
+<footer id="contact" class="footer">
+  <div class="footer-inner container">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <h2 class="footer-title">{brandName}</h2>
+      <p class="footer-tagline">{tagline}</p>
+    </div>
+
+    <!-- Contact + Social -->
+    <div class="footer-links">
+      <div class="footer-contact">
+        <h3 class="footer-heading">{contactLabel}</h3>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <span class="contact-label">{emailLabel}</span>
+            <a href={`mailto:${email}`} class="contact-value">{email}</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-label">{wechatLabel}</span>
+            <span class="contact-value">{wechat}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h3 class="footer-heading">{socialLabel}</h3>
+        <div class="social-grid">
+          {socialLinks.map((s) => (
+            <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.name}>
+              <span class="social-icon" set:html={s.icon} />
+              <span class="social-name">{s.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; {copyrightYear} {brandName}. {rightsText}
+      </p>
+      <p class="built-with">
+        {builtWithText}
+        <span class="heart" aria-label="love">&#9829;</span>
+        {andText} Astro
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: var(--qi-z-content);
+    background: var(--qi-charcoal);
+    color: var(--qi-oat);
+    padding: var(--qi-space-4xl) 0 var(--qi-space-xl);
+    margin-top: var(--qi-space-4xl);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--qi-space-3xl);
+    align-items: start;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--qi-space-3xl);
+  }
+
+  /* Brand */
+  .footer-title {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-2xl);
+    font-weight: 600;
+    color: var(--qi-oat);
+    margin-bottom: var(--qi-space-sm);
+    letter-spacing: 0.02em;
+  }
+
+  .footer-tagline {
+    font-size: var(--qi-text-sm);
+    color: rgba(247, 243, 238, 0.6);
+    max-width: 320px;
+    line-height: 1.7;
+  }
+
+  /* Contact */
+  .footer-heading {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--qi-amber);
+    margin-bottom: var(--qi-space-md);
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-sm);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-md);
+  }
+
+  .contact-label {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: rgba(247, 243, 238, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    min-width: 56px;
+  }
+
+  .contact-value {
+    font-size: var(--qi-text-sm);
+    color: rgba(247, 243, 238, 0.85);
+    transition: color var(--qi-transition-fast);
+  }
+
+  a.contact-value:hover {
+    color: var(--qi-amber);
+  }
+
+  /* Social */
+  .social-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-sm);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    padding: var(--qi-space-xs) 0;
+    text-decoration: none;
+    transition: opacity var(--qi-transition-fast);
+  }
+
+  .social-link:hover {
+    opacity: 0.7;
+  }
+
+  .social-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .social-name {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-sm);
+    color: rgba(247, 243, 238, 0.85);
+  }
+
+  /* Divider */
+  .footer-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(247, 243, 238, 0.12),
+      transparent
+    );
+  }
+
+  /* Bottom */
+  .footer-bottom {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .copyright {
+    font-size: var(--qi-text-xs);
+    color: rgba(247, 243, 238, 0.55);
+    letter-spacing: 0.02em;
+  }
+
+  .built-with {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: rgba(247, 243, 238, 0.5);
+  }
+
+  .heart {
+    display: inline-block;
+    color: var(--qi-emerald);
+    animation: heartbeat 1.8s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--qi-space-2xl);
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: var(--qi-space-2xl);
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: var(--qi-space-sm);
+      text-align: center;
+    }
+  }
+</style>

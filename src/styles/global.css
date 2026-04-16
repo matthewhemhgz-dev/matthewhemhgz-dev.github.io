@@ -1,0 +1,20 @@
+@import './tokens.css';
+@import './reset.css';
+@import './utilities.css';
+@import './animations.css';
+
+body {
+  font-family: var(--qi-font-sans);
+  background: var(--qi-bg-base);
+  color: var(--qi-text-primary);
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--qi-brand-emerald);
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--qi-brand-amber);
+}

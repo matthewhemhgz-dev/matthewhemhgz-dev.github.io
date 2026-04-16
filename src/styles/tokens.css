@@ -1,0 +1,125 @@
+/* === 1. 色彩令牌 === */
+:root {
+  /* 基础背景与表面 */
+  --qi-bg-base: #F7F3EE;
+  --qi-surface-main: #2A2A2A;
+  --qi-surface-sub: #E8E3DD;
+
+  /* 品牌色 */
+  --qi-brand-emerald: #2E7D5C;
+  --qi-brand-amber: #E5A93C;
+
+  /* 文字色 */
+  --qi-text-inverse: #F7F3EE;
+  --qi-text-primary: #2A2A2A;
+  --qi-text-secondary: #5A5A5A;
+  --qi-text-muted: #7A7A7A;
+
+  /* 别名 - 简写引用（deprecated，请使用 --qi-brand-* / --qi-text-* / --qi-surface-*） */
+  --qi-oat: var(--qi-bg-base);
+  --qi-charcoal: var(--qi-text-primary);
+  --qi-charcoal-light: var(--qi-text-secondary);
+  --qi-charcoal-lighter: var(--qi-text-muted);
+  --qi-emerald: var(--qi-brand-emerald);
+  --qi-amber: var(--qi-brand-amber);
+  --qi-amber-dark: #B8860B; /* WCAG AA safe amber for text */
+
+  /* 边框令牌 */
+  --qi-border-default: rgba(42, 42, 42, 0.06);
+  --qi-border-subtle: rgba(42, 42, 42, 0.04);
+  --qi-border-strong: rgba(42, 42, 42, 0.12);
+
+  /* 不透明度令牌 */
+  --qi-opacity-subtle: 0.06;
+  --qi-opacity-medium: 0.12;
+  --qi-opacity-strong: 0.2;
+}
+
+/* === 2. 字体令牌 === */
+:root {
+  --qi-font-serif: "Noto Serif SC", "Noto Serif", "Songti SC", STSong, "Georgia", "Times New Roman", serif;
+  --qi-font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
+  --qi-font-mono: "Fira Code", "SF Mono", "Cascadia Code", "Consolas", monospace;
+}
+
+/* === 3. 字号令牌 === */
+:root {
+  --qi-text-xs: 0.75rem;      /* 12px */
+  --qi-text-sm: 0.875rem;     /* 14px */
+  --qi-text-base: 1rem;       /* 16px */
+  --qi-text-lg: 1.125rem;     /* 18px */
+  --qi-text-xl: 1.25rem;      /* 20px */
+  --qi-text-2xl: 1.5rem;      /* 24px */
+  --qi-text-3xl: 1.875rem;    /* 30px */
+  --qi-text-4xl: 2.25rem;     /* 36px */
+  --qi-text-5xl: 3rem;        /* 48px */
+}
+
+/* === 4. 空间令牌 === */
+:root {
+  --qi-space-xs: 0.25rem;     /* 4px */
+  --qi-space-sm: 0.5rem;      /* 8px */
+  --qi-space-md: 0.75rem;     /* 12px */
+  --qi-space-lg: 1rem;        /* 16px */
+  --qi-space-xl: 1.5rem;      /* 24px */
+  --qi-space-2xl: 2rem;       /* 32px */
+  --qi-space-3xl: 3rem;       /* 48px */
+  --qi-space-4xl: 4rem;       /* 64px */
+  --qi-space-5xl: 6rem;       /* 96px */
+}
+
+/* === 5. 圆角令牌 === */
+:root {
+  --qi-radius: 12px;
+  --qi-radius-sm: 6px;
+  --qi-radius-md: 8px;
+  --qi-radius-lg: 12px;
+  --qi-radius-xl: 16px;
+  --qi-radius-card: 16px;
+  --qi-radius-button: 8px;
+  --qi-radius-full: 9999px;
+}
+
+/* === 6. 间距/布局令牌 === */
+:root {
+  --qi-gap: 16px;
+  --qi-gap-sm: 10px;
+  --qi-gap-bento: 24px;
+  --qi-container-padding: 24px;
+  --qi-content-width: 680px;
+  --qi-max-width: 1200px;
+  --qi-nav-height: 64px;
+}
+
+/* === 7. 阴影令牌 === */
+:root {
+  --qi-shadow-sm: 0 1px 3px rgba(42,42,42,0.06), 0 1px 2px rgba(42,42,42,0.04);
+  --qi-shadow: 0 4px 16px rgba(42,42,42,0.1);
+  --qi-shadow-md: 0 4px 12px rgba(42,42,42,0.08), 0 2px 4px rgba(42,42,42,0.04);
+  --qi-shadow-lg: 0 10px 24px rgba(42,42,42,0.12), 0 4px 8px rgba(42,42,42,0.06);
+  --qi-shadow-xl: 0 20px 40px rgba(42,42,42,0.15), 0 8px 16px rgba(42,42,42,0.08);
+  --qi-shadow-hover: 0 8px 24px rgba(42,42,42,0.15);
+  --qi-shadow-hover-warm: 0 16px 32px rgba(42,42,42,0.15), 0 4px 8px rgba(229,169,60,0.1);
+  --qi-shadow-inset: inset 2px 2px 5px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(255,255,255,0.05);
+}
+
+/* === 8. Z-index 令牌 === */
+:root {
+  --qi-z-base: 1;
+  --qi-z-content: 2;
+  --qi-z-nav: 1000;
+  --qi-z-overlay: 9998;
+  --qi-z-back-top: 9999;
+  --qi-z-progress: 10001;
+}
+
+/* === 9. 动画令牌 === */
+:root {
+  --qi-transition: 0.25s ease;
+  --qi-transition-base: 0.3s ease;
+  --qi-transition-fast: 0.15s ease;
+  --qi-anim-duration: 0.6s;
+  --qi-anim-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --qi-anim-stagger: 0.1s;
+  --qi-anim-offset: 24px;
+}

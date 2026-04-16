@@ -1,0 +1,38 @@
+---
+import { getLangFromUrl, getAlternateUrl } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
+import type { Lang } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<div class="lang-switcher">
+  {Object.entries(languages).map(([locale, label]) => (
+    <a
+      href={getAlternateUrl(Astro.url, locale as Lang)}
+      class:list={['lang-link', { active: locale === lang }]}
+      data-astro-reload
+    >
+      {label}
+    </a>
+  ))}
+</div>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    gap: 4px;
+  }
+  .lang-link {
+    padding: 4px 10px;
+    border-radius: var(--qi-radius-sm);
+    font-size: 0.8rem;
+    color: var(--qi-text-muted);
+    transition: all var(--qi-transition);
+  }
+  .lang-link:hover,
+  .lang-link.active {
+    color: var(--qi-brand-emerald);
+    background: rgba(46, 125, 92, 0.1);
+  }
+</style>

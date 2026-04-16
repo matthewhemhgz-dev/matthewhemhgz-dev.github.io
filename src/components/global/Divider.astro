@@ -1,0 +1,98 @@
+---
+interface Props {
+  variant?: 'dot' | 'dash' | 'gradient' | 'minimal';
+}
+
+const { variant = 'dot' } = Astro.props;
+---
+
+<div class:list={['divider', `divider--${variant}`]} role="separator">
+  {variant === 'dot' && (
+    <>
+      <span class="divider-line"></span>
+      <span class="divider-dot"></span>
+      <span class="divider-line"></span>
+    </>
+  )}
+  {variant === 'dash' && (
+    <span class="divider-dash"></span>
+  )}
+  {variant === 'gradient' && (
+    <span class="divider-gradient"></span>
+  )}
+  {variant === 'minimal' && (
+    <span class="divider-minimal"></span>
+  )}
+</div>
+
+<style>
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--qi-space-md);
+    padding: var(--qi-space-2xl) 0;
+    width: 100%;
+  }
+
+  /* Variant: dot (default) - line-dot-line */
+  .divider--dot .divider-line {
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(42, 42, 42, 0.15),
+      transparent
+    );
+  }
+
+  .divider--dot .divider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--qi-radius-full);
+    background: var(--qi-emerald);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  /* Variant: dash - short dashed line */
+  .divider--dash .divider-dash {
+    width: 48px;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--qi-charcoal) 0px,
+      var(--qi-charcoal) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    opacity: 0.2;
+    border-radius: 1px;
+  }
+
+  /* Variant: gradient - wide gradient line */
+  .divider--gradient .divider-gradient {
+    width: 100%;
+    max-width: 300px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--qi-emerald) 30%,
+      var(--qi-amber) 70%,
+      transparent
+    );
+    opacity: 0.3;
+    border-radius: 1px;
+  }
+
+  /* Variant: minimal - thin subtle line */
+  .divider--minimal .divider-minimal {
+    width: 100%;
+    max-width: 200px;
+    height: 1px;
+    background: rgba(42, 42, 42, 0.06);
+  }
+</style>

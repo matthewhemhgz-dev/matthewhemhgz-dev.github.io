@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace('en/', '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} — Qi-Lab`} description={post.data.description} lang="en">
+  <article class="container" style="padding-top: 120px; padding-bottom: 80px; max-width: 780px;">
+    <a href="/en/blog" style="color: var(--qi-brand-emerald); font-size: 0.9rem;">← Back to List</a>
+    <header style="margin: 1.5rem 0 2.5rem;">
+      <h1 style="font-family: var(--qi-font-serif); font-size: 2.2rem; line-height: 1.3; margin-bottom: 0.75rem;">{post.data.title}</h1>
+      <p style="color: var(--qi-text-muted);">{post.data.description}</p>
+    </header>
+    <div class="prose" style="font-size: 1.05rem; line-height: 1.8;">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose :global(h2) { font-family: var(--qi-font-serif); font-size: 1.6rem; margin: 2rem 0 1rem; }
+  .prose :global(h3) { font-family: var(--qi-font-serif); font-size: 1.3rem; margin: 1.5rem 0 0.75rem; }
+  .prose :global(p) { margin-bottom: 1rem; }
+  .prose :global(a) { color: var(--qi-brand-emerald); text-decoration: underline; }
+</style>

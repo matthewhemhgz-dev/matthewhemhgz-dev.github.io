@@ -1,0 +1,278 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+const navItems = lang === 'en'
+  ? [
+      { label: 'Home', href: '/en/' },
+      { label: 'About', href: '/en/about' },
+      { label: 'Blog', href: '/en/blog' },
+      { label: 'Tags', href: '/en/tags' },
+    ]
+  : [
+      { label: '首页', href: '/' },
+      { label: '关于', href: '/about' },
+      { label: '博客', href: '/blog' },
+      { label: '标签', href: '/tags' },
+    ];
+
+const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
+---
+
+<header class="nav-wrapper" transition:persist transition:name="main-nav">
+  <nav class="nav">
+    <a href={lang === 'en' ? '/en/' : '/'} class="nav-brand">
+      <span class="brand-icon">&#x1F52C;</span>
+      <span class="brand-text">{brandName}</span>
+    </a>
+
+    <!-- Mobile checkbox hack -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label="Toggle navigation" aria-expanded="false" />
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </label>
+    <div id="nav-status" class="sr-only" aria-live="polite"></div>
+
+    <ul class="nav-links">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={['nav-link', { active: currentPath === item.href || (item.href !== '/' && item.href !== '/en/' && currentPath.startsWith(item.href)) }]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li class="nav-lang-separator">
+        <LanguageSwitcher />
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--qi-z-nav);
+    background: rgba(247, 243, 238, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--qi-transition-base), box-shadow var(--qi-transition-base);
+  }
+
+  .nav-wrapper.scrolled {
+    border-bottom-color: rgba(42, 42, 42, 0.08);
+    box-shadow: var(--qi-shadow-sm);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--qi-max-width);
+    margin-inline: auto;
+    padding: 0 var(--qi-space-lg);
+    height: var(--qi-nav-height);
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    font-family: var(--qi-font-serif);
+    font-weight: 600;
+    font-size: var(--qi-text-xl);
+    color: var(--qi-charcoal);
+    transition: color var(--qi-transition-fast);
+    text-decoration: none;
+  }
+
+  .nav-brand:hover {
+    color: var(--qi-emerald);
+  }
+
+  .brand-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .brand-text {
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-xs);
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--qi-space-sm) var(--qi-space-md);
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-sm);
+    font-weight: 500;
+    color: var(--qi-charcoal-lighter);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border-radius: var(--qi-radius-md);
+    transition: color var(--qi-transition-fast), background-color var(--qi-transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--qi-charcoal);
+    background-color: rgba(42, 42, 42, 0.04);
+  }
+
+  .nav-link.active {
+    color: var(--qi-emerald);
+    background-color: rgba(46, 125, 92, 0.06);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 2px;
+    background: var(--qi-emerald);
+    border-radius: var(--qi-radius-full);
+  }
+
+  .nav-lang-separator {
+    margin-left: var(--qi-space-sm);
+    padding-left: var(--qi-space-sm);
+    border-left: 1px solid rgba(42, 42, 42, 0.1);
+  }
+
+  .nav-toggle-input {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    z-index: calc(var(--qi-z-nav) + 1);
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--qi-charcoal);
+    border-radius: var(--qi-radius-full);
+    transition: transform var(--qi-transition-base), opacity var(--qi-transition-fast);
+    transform-origin: center;
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle-label {
+      display: flex;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(280px, 80vw);
+      height: 100vh;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--qi-space-sm);
+      padding: var(--qi-space-2xl);
+      background: var(--qi-oat);
+      border-left: 1px solid rgba(42, 42, 42, 0.08);
+      box-shadow: var(--qi-shadow-xl);
+      transform: translateX(100%);
+      transition: transform var(--qi-transition-base);
+      z-index: var(--qi-z-nav);
+    }
+
+    .nav-link {
+      font-size: var(--qi-text-base);
+      padding: var(--qi-space-md) var(--qi-space-lg);
+      width: 100%;
+    }
+
+    .nav-link.active::after {
+      left: 0;
+      transform: none;
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 16px;
+    }
+
+    .nav-lang-separator {
+      margin-left: 0;
+      padding-left: 0;
+      border-left: none;
+      margin-top: var(--qi-space-sm);
+      padding-top: var(--qi-space-sm);
+      border-top: 1px solid rgba(42, 42, 42, 0.08);
+    }
+
+    .nav-toggle-input:checked ~ .nav-links {
+      transform: translateX(0);
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const navWrapper = document.querySelector('.nav-wrapper');
+  if (navWrapper) {
+    const handleScroll = () => {
+      navWrapper.classList.toggle('scrolled', window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+  const navToggle = document.getElementById('nav-toggle');
+  const navStatus = document.getElementById('nav-status');
+  if (navToggle) {
+    navToggle.addEventListener('change', () => {
+      const isOpen = navToggle.checked;
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      if (navStatus) {
+        navStatus.textContent = isOpen ? '导航菜单已打开' : '导航菜单已关闭';
+      }
+    });
+  }
+</script>

@@ -1,0 +1,97 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Navigation from '../components/global/Navigation.astro';
+import ScrollProgress from '../components/global/ScrollProgress.astro';
+import BackToTop from '../components/global/BackToTop.astro';
+import ParticlesCanvas from '../components/global/ParticlesCanvas.astro';
+import NoiseOverlay from '../components/global/NoiseOverlay.astro';
+import Footer from '../components/global/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  tagline?: string;
+}
+
+const {
+  title = '祈研所 | Qi-Lab',
+  description = '祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。个人品牌网站，分享关于开发、思考与创造的一切。',
+  ogImage = '/og-default.png',
+  tagline = '探索技术、设计与创意的交汇之处',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.dev');
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon (emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">跳至主要内容</a>
+    <ClientRouter />
+    <NoiseOverlay />
+    <ScrollProgress />
+    <Navigation currentPath={Astro.url.pathname} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <BackToTop />
+    <Footer
+      brandName="祈研所"
+      tagline={tagline}
+      email="hello@qi-lab.dev"
+      wechat="QiLab_Studio"
+      copyrightYear={new Date().getFullYear()}
+    />
+    <ParticlesCanvas />
+
+    <!-- Global Scripts: particles, cursor-glow, scroll-parallax, scroll-handler -->
+    <script>
+      import '../scripts/init.js';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  main {
+    position: relative;
+    z-index: var(--qi-z-content);
+    min-height: 100vh;
+  }
+</style>

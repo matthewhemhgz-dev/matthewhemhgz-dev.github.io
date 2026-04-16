@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Divider from '../components/global/Divider.astro';
+---
+
+<BaseLayout title="关于 | 祈研所" description="了解祈研所的品牌故事、理念与联系方式。">
+  <div class="about-page">
+    <div class="container">
+
+      <!-- Page Hero -->
+      <section class="page-hero" data-reveal>
+        <span class="page-label">// ABOUT</span>
+        <h1 class="page-title">关于祈研所</h1>
+        <p class="page-subtitle">
+          一个关于技术、设计与创造力的个人品牌
+        </p>
+      </section>
+
+      <Divider />
+
+      <!-- Brand Story -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// STORY" title="品牌故事" />
+        <div class="prose">
+          <p>
+            祈研所（Qi-Lab）的名字源自对「祈」与「研」二字的理解 —— 「祈」代表对美好事物的向往与追求，
+            「研」代表对技术深度的执着探索。二者结合，便是一个致力于在代码与美学之间寻找平衡的创意实验室。
+          </p>
+          <p>
+            在这里，我们不满足于仅仅写出能运行的代码。每一行代码都承载着对优雅的追求，
+            每一个设计决策都经过深思熟虑。从像素级的视觉打磨到系统级的架构思考，
+            祈研所始终秉持着「精益求精」的工匠精神。
+          </p>
+          <p>
+            我们相信，技术不是冰冷的工具，而是表达创意的媒介。好的工程师同时也是好的艺术家，
+            他们用代码绘制蓝图，用逻辑编织梦想。祈研所正是这种理念的践行者。
+          </p>
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- Philosophy -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// PHILOSOPHY" title="设计理念" />
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <span class="philosophy-number">01</span>
+            <h3 class="philosophy-title">温暖物理感</h3>
+            <p class="philosophy-desc">
+              Amber Geek 设计系统的核心。燕麦灰的底色如同温暖的纸张，
+              每一个交互都带有物理世界的质感与温度。
+            </p>
+          </div>
+          <div class="philosophy-card">
+            <span class="philosophy-number">02</span>
+            <h3 class="philosophy-title">代码即艺术</h3>
+            <p class="philosophy-desc">
+              代码不仅仅是功能的实现，更是一种创造性的表达。
+              我们追求可读性、可维护性与美学的统一。
+            </p>
+          </div>
+          <div class="philosophy-card">
+            <span class="philosophy-number">03</span>
+            <h3 class="philosophy-title">持续探索</h3>
+            <p class="philosophy-desc">
+              技术在不断演进，学习永无止境。保持好奇心，
+              勇于尝试新技术，在实践中不断成长。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- Contact CTA -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// CONTACT" title="取得联系" />
+        <div class="contact-cta">
+          <p class="cta-text">
+            无论是技术合作、项目咨询，还是单纯想聊聊技术与设计，
+            都欢迎通过以下方式联系祈研所。
+          </p>
+          <div class="cta-links">
+            <a href="mailto:hello@qi-lab.dev" class="cta-link">
+              <span class="cta-label">Email</span>
+              <span class="cta-value">hello@qi-lab.dev</span>
+            </a>
+            <div class="cta-link">
+              <span class="cta-label">WeChat</span>
+              <span class="cta-value">QiLab_Studio</span>
+            </div>
+          </div>
+          <a href="/#contact" class="cta-btn">查看完整联系方式</a>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-page {
+    padding-top: var(--qi-nav-height);
+  }
+
+  /* --- Page Hero --- */
+  .page-hero {
+    padding: var(--qi-space-5xl) 0 var(--qi-space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-md);
+  }
+
+  .page-label {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-sm);
+    color: var(--qi-emerald);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .page-title {
+    font-family: var(--qi-font-serif);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--qi-charcoal);
+    line-height: 1.2;
+  }
+
+  .page-subtitle {
+    font-size: var(--qi-text-lg);
+    color: var(--qi-charcoal-lighter);
+    line-height: 1.7;
+  }
+
+  /* --- About Sections --- */
+  .about-section {
+    padding: var(--qi-space-3xl) 0;
+  }
+
+  /* --- Prose --- */
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-lg);
+    max-width: var(--qi-content-width);
+  }
+
+  .prose p {
+    font-size: var(--qi-text-lg);
+    color: var(--qi-charcoal-light);
+    line-height: 1.9;
+  }
+
+  /* --- Philosophy --- */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--qi-space-xl);
+  }
+
+  .philosophy-card {
+    padding: var(--qi-space-2xl);
+    background: rgba(42, 42, 42, 0.02);
+    border: 1px solid rgba(42, 42, 42, 0.06);
+    border-radius: var(--qi-radius-lg);
+    transition: all var(--qi-transition-base);
+  }
+
+  .philosophy-card:hover {
+    background: rgba(42, 42, 42, 0.03);
+    box-shadow: var(--qi-shadow-md);
+    transform: translateY(-4px);
+  }
+
+  .philosophy-number {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-amber);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .philosophy-title {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-xl);
+    font-weight: 600;
+    color: var(--qi-charcoal);
+    margin-top: var(--qi-space-md);
+    margin-bottom: var(--qi-space-sm);
+  }
+
+  .philosophy-desc {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-charcoal-lighter);
+    line-height: 1.8;
+  }
+
+  /* --- Contact CTA --- */
+  .contact-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-xl);
+    max-width: var(--qi-content-width);
+  }
+
+  .cta-text {
+    font-size: var(--qi-text-lg);
+    color: var(--qi-charcoal-light);
+    line-height: 1.8;
+  }
+
+  .cta-links {
+    display: flex;
+    gap: var(--qi-space-xl);
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-xs);
+  }
+
+  .cta-label {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-charcoal-lighter);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .cta-value {
+    font-size: var(--qi-text-lg);
+    color: var(--qi-charcoal);
+    font-weight: 500;
+  }
+
+  a.cta-link .cta-value {
+    color: var(--qi-emerald);
+    transition: color var(--qi-transition-fast);
+  }
+
+  a.cta-link:hover .cta-value {
+    color: var(--qi-emerald-dark);
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 12px 28px;
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--qi-oat);
+    background: var(--qi-charcoal);
+    border-radius: var(--qi-radius-md);
+    text-decoration: none;
+    box-shadow: var(--qi-shadow-md);
+    transition: all var(--qi-transition-base);
+  }
+
+  .cta-btn:hover {
+    background: var(--qi-emerald);
+    transform: translateY(-2px);
+    box-shadow: var(--qi-shadow-lg);
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-links {
+      flex-direction: column;
+      gap: var(--qi-space-lg);
+    }
+  }
+</style>
