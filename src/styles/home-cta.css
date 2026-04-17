@@ -11,11 +11,26 @@
   );
   color: var(--qi-text-inverse);
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
-  padding-left: var(--qi-container-padding, 24px);
-  padding-right: var(--qi-container-padding, 24px);
+  padding: 80px var(--qi-container-padding, 24px) var(--qi-space-3xl);
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+/* CTA 顶部渐变缓冲区 — 柔化浅色→深色过渡 */
+.cta-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    var(--qi-bg-base),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* CTA 顶部琥珀金环境光 */
