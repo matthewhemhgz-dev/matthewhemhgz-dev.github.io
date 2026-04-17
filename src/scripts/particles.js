@@ -52,7 +52,12 @@ export class MinimalParticles {
 
     const defaults = {
       count: 60,
-      colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
+      colors: [
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
+      ],
       maxSize: 3,
       speed: 0.25,
       linkDistance: 120,
@@ -64,10 +69,26 @@ export class MinimalParticles {
     };
 
     this.options = { ...defaults, ...options };
+    this._parseColors();
     this._prerenderGlowTextures();
     this.resize();
     this.init();
     this._bindEvents();
+  }
+
+  /**
+   * 解析颜色为 RGB 对象缓存，供连线绘制使用
+   */
+  _parseColors() {
+    this.colorRGB = {};
+    for (const color of this.options.colors) {
+      if (color && color.startsWith('#') && color.length >= 7) {
+        const r = parseInt(color.slice(1, 3), 16);
+        const g = parseInt(color.slice(3, 5), 16);
+        const b = parseInt(color.slice(5, 7), 16);
+        this.colorRGB[color] = { r, g, b };
+      }
+    }
   }
 
   /**
@@ -273,9 +294,11 @@ export class MinimalParticles {
           }
 
           ctx.globalAlpha = baseAlpha + lineHighlight;
+          const emeraldRGB = this.colorRGB[this.options.colors[0]] || { r: 46, g: 125, b: 92 };
+          const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
           ctx.strokeStyle = lineHighlight > 0.03
-            ? `rgba(229, 169, 60, ${baseAlpha + lineHighlight})`
-            : `rgba(46, 125, 92, ${baseAlpha})`;
+            ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
+            : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
           ctx.beginPath();
           ctx.moveTo(this.particles[i].x, this.particles[i].y);
           ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -293,7 +316,8 @@ export class MinimalParticles {
         if (dist < mouseRadius * 0.8) {
           const alpha = (1 - dist / (mouseRadius * 0.8)) * 0.12;
           ctx.globalAlpha = alpha;
-          ctx.strokeStyle = 'rgba(229, 169, 60, 1)';
+          const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
+          ctx.strokeStyle = `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, 1)`;
           ctx.lineWidth = 0.8;
           ctx.beginPath();
           ctx.moveTo(this.mouse.x, this.mouse.y);

@@ -18,13 +18,19 @@ function initQiLab() {
 
   // 1. 粒子系统（增强版：鼠标交互 + 光晕 + 连线高亮）
   const screenWidth = window.innerWidth;
+  const cs = getComputedStyle(document.documentElement);
   const particleCount = screenWidth < 768 ? 40
     : screenWidth < 1440 ? 80
     : screenWidth < 2560 ? 100
     : 120;
   const particleOptions = {
     count: particleCount,
-    colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
+    colors: [
+      cs.getPropertyValue('--qi-brand-emerald').trim(),
+      cs.getPropertyValue('--qi-brand-mint').trim(),
+      cs.getPropertyValue('--qi-brand-amber').trim(),
+      cs.getPropertyValue('--qi-bg-base').trim(),
+    ],
     maxSize: 4,
     speed: 0.4,
     linkDistance: 160,
@@ -49,8 +55,8 @@ function initQiLab() {
   // 2. 鼠标追踪光效
   if (!prefersReducedMotion) {
     cursorGlow = new CursorGlow({
-      size: 350,
-      speed: 0.06,
+      size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 350,
+      speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.06,
       blend: 'screen',
     });
     cleanupFns.push(() => cursorGlow.destroy());

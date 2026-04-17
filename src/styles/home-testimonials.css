@@ -29,6 +29,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--qi-gap-bento);
+  align-items: stretch;
 }
 
 .testimonial-card {

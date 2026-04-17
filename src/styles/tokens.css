@@ -5,13 +5,13 @@
   --qi-surface-main: #2A2A2A;
   --qi-surface-sub: #E8E3DD;
 
-  /* 品牌色 — 完整色阶 */
-  --qi-brand-emerald: #2E7D5C;
-  --qi-brand-emerald-dark: #1B5E40;
-  --qi-brand-mint: #78B4A0;
-  --qi-brand-mint-dark: #5A9A82;
-  --qi-brand-amber: #E5A93C;
-  --qi-brand-amber-dark: #C78A1E;
+  /* 品牌色 — 引用色阶令牌 */
+  --qi-brand-emerald: var(--qi-emerald-500);
+  --qi-brand-emerald-dark: var(--qi-emerald-700);
+  --qi-brand-mint: var(--qi-mint-400);
+  --qi-brand-mint-dark: var(--qi-mint-500);
+  --qi-brand-amber: var(--qi-amber-400);
+  --qi-brand-amber-dark: var(--qi-amber-600);
 
   /* 语义别名 — 兼容旧代码引用 */
   --qi-amber: var(--qi-brand-amber);

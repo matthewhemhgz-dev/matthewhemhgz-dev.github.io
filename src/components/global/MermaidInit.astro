@@ -15,16 +15,20 @@
       mermaid.default.initialize({
         startOnLoad: false,
         theme: 'dark',
-        themeVariables: {
-          primaryColor: '#2E7D5C',
-          primaryTextColor: '#F7F3EE',
-          primaryBorderColor: '#E5A93C',
-          lineColor: '#F7F3EE',
-          secondaryColor: '#1A1A1A',
-          tertiaryColor: '#2A2A2A',
-          fontSize: '16px',
-          fontFamily: 'var(--qi-font-mono), ui-monospace, monospace',
-        },
+        themeVariables: (() => {
+          const cs = getComputedStyle(document.documentElement);
+          const v = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
+          return {
+            primaryColor: v('--qi-brand-emerald', '#2E7D5C'),
+            primaryTextColor: v('--qi-bg-base', '#F7F3EE'),
+            primaryBorderColor: v('--qi-brand-amber', '#E5A93C'),
+            lineColor: v('--qi-bg-base', '#F7F3EE'),
+            secondaryColor: v('--qi-ink', '#1E1B18'),
+            tertiaryColor: v('--qi-ink-light', '#2D2924'),
+            fontSize: '16px',
+            fontFamily: 'var(--qi-font-mono), ui-monospace, monospace',
+          };
+        })(),
         flowchart: {
           htmlLabels: true,
           curve: 'basis',

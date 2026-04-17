@@ -28,7 +28,7 @@
   height: 150px;
   background: linear-gradient(
     to bottom,
-    var(--qi-brand-amber-18),
+    var(--qi-glow-accent),
     transparent
   );
   pointer-events: none;
@@ -184,7 +184,7 @@
   height: 100px;
   background: linear-gradient(
     to top,
-    var(--qi-brand-emerald-12),
+    var(--qi-glow-primary),
     transparent
   );
   pointer-events: none;

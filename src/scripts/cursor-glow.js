@@ -22,6 +22,12 @@ export class CursorGlow {
   }
 
   _create() {
+    // 从 CSS 变量读取品牌色
+    const cs = getComputedStyle(document.documentElement);
+    const mintRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-mint').trim());
+    const emeraldRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-emerald').trim());
+    const amberRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-amber').trim());
+
     // 避免重复创建样式
     if (!document.getElementById('cursor-glow-style')) {
       const style = document.createElement('style');
@@ -59,8 +65,8 @@ export class CursorGlow {
           border-radius: 50%;
           background: radial-gradient(
             circle,
-            rgba(120, 180, 160, 0.05) 0%,
-            rgba(120, 180, 160, 0.02) 40%,
+            rgba(${mintRGB.r}, ${mintRGB.g}, ${mintRGB.b}, 0.05) 0%,
+            rgba(${mintRGB.r}, ${mintRGB.g}, ${mintRGB.b}, 0.02) 40%,
             transparent 70%
           );
           filter: blur(30px);
@@ -74,8 +80,8 @@ export class CursorGlow {
           border-radius: 50%;
           background: radial-gradient(
             circle,
-            rgba(46, 125, 92, 0.14) 0%,
-            rgba(46, 125, 92, 0.04) 35%,
+            rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, 0.14) 0%,
+            rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, 0.04) 35%,
             transparent 65%
           );
           filter: blur(2px);
@@ -92,8 +98,8 @@ export class CursorGlow {
           border-radius: 50%;
           background: radial-gradient(
             circle,
-            rgba(229, 169, 60, 0.10) 0%,
-            rgba(229, 169, 60, 0.03) 45%,
+            rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, 0.10) 0%,
+            rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, 0.03) 45%,
             transparent 60%
           );
           transform: translate(12%, 12%);
@@ -187,5 +193,19 @@ export class CursorGlow {
       this.el.remove();
       this.el = null;
     }
+  }
+
+  _hexToRGB(hex) {
+    if (!hex || hex === '') return { r: 0, g: 0, b: 0 };
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    const num = parseInt(hex, 16);
+    return {
+      r: (num >> 16) & 255,
+      g: (num >> 8) & 255,
+      b: num & 255,
+    };
   }
 }

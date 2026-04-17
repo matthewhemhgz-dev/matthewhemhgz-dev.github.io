@@ -80,8 +80,8 @@
   height: 70%;
   background: radial-gradient(
     ellipse at center,
-    var(--qi-brand-emerald-15) 0%,
-    var(--qi-brand-emerald-08) 40%,
+    var(--qi-glow-primary) 0%,
+    var(--qi-glow-secondary) 40%,
     transparent 70%
   );
   filter: blur(80px);
