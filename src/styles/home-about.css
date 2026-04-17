@@ -167,7 +167,7 @@
   }
 
   .about-layout {
-    gap: var(--qi-space-7xl);
+    gap: var(--qi-space-7xl, 10rem);
   }
 
   .about-deco-number {

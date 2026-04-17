@@ -17,7 +17,7 @@ function initQiLab() {
 
   // 1. 粒子系统（增强版：鼠标交互 + 光晕 + 连线高亮）
   const screenWidth = window.innerWidth;
-  const particleCount = screenWidth < 768 ? 30
+  const particleCount = screenWidth < 768 ? 40
     : screenWidth < 1440 ? 80
     : screenWidth < 2560 ? 100
     : 120;

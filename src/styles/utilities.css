@@ -5,17 +5,17 @@
   padding: 0 var(--qi-container-padding, 24px);
 }
 
+/* Tablet breakpoint — must come before mobile (max-width cascade) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--qi-space-xl);
+  }
+}
+
 /* Mobile breakpoint */
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--qi-space-lg);
-  }
-}
-
-/* Tablet breakpoint */
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 var(--qi-space-xl);
   }
 }
 

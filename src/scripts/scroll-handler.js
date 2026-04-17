@@ -18,6 +18,7 @@ export function initScrollReveal() {
 // 存储事件处理函数引用，以便后续清理
 let _scrollHandler = null;
 let _backToTopHandler = null;
+let _scrollTimeout = null;
 
 export function initScrollHandler(particles) {
   const nav = document.querySelector('.nav-wrapper');
@@ -61,7 +62,7 @@ export function initScrollHandler(particles) {
     if (particles) {
       particles.pause();
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => particles.resume(), 150);
+      _scrollTimeout = scrollTimeout = setTimeout(() => particles.resume(), 150);
     }
   };
   window.addEventListener('scroll', _scrollHandler, { passive: true });
@@ -70,6 +71,10 @@ export function initScrollHandler(particles) {
 }
 
 export function cleanupScrollHandler() {
+  if (_scrollTimeout) {
+    clearTimeout(_scrollTimeout);
+    _scrollTimeout = null;
+  }
   if (_scrollHandler) {
     window.removeEventListener('scroll', _scrollHandler);
     _scrollHandler = null;
