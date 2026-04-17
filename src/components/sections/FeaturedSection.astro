@@ -56,7 +56,7 @@ const blogPrefix = '/blog/';
         {posts.map((post, i) => (
           <a
             href={`${blogPrefix}${post.id}`}
-            class:list={['bento-card', i === 0 ? 'bento-card--large' : 'bento-card--small']}
+            class:list={['bento-card', 'tilt-card', i === 0 ? 'bento-card--large' : 'bento-card--small']}
           >
             {largeCardLayout && i === 0 && post.data.heroImage ? (
               <div class="bento-card--large__bg">

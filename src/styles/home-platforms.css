@@ -172,7 +172,8 @@
 
 @media (max-width: 768px) {
   .platforms-node-deco {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 }
 

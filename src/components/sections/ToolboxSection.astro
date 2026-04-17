@@ -33,7 +33,7 @@ const { label, title, categories } = Astro.props;
     <SectionHeader label={label} title={title} />
     <div class="toolbox-grid">
       {categories.map((cat) => (
-        <div class="toolbox-category">
+        <div class="toolbox-category tilt-card">
           <div class="toolbox-header">
             <span class="toolbox-icon" set:html={svgIcons[cat.icon]} />
             <h3 class="toolbox-label">{cat.label}</h3>

@@ -57,7 +57,7 @@ function initQiLab() {
   }
 
   // 2.5 卡片 3D 倾斜 + 光泽效果
-  new CardTilt('.bento-card, .testimonial-card, .platform-card');
+  new CardTilt('.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category');
 
   // 3. 滚动视差光影
   if (!prefersReducedMotion) {

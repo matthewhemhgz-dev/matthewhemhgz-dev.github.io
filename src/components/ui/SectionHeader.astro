@@ -52,7 +52,8 @@ const { label = '// SECTION', title = 'Section Title', align = 'left', variant =
   }
 
   .section-header--center .section-label::before {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .section-header--center .section-label::after {
@@ -95,7 +96,7 @@ const { label = '// SECTION', title = 'Section Title', align = 'left', variant =
     border-radius: inherit;
     background: inherit;
     filter: blur(4px);
-    opacity: 0.4;
+    opacity: var(--qi-deco-strong);
   }
 
   .section-header--center .section-accent {
@@ -104,7 +105,8 @@ const { label = '// SECTION', title = 'Section Title', align = 'left', variant =
   }
 
   .section-header--minimal .section-accent {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   @media (max-width: 768px) {

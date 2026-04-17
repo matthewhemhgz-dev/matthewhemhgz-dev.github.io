@@ -18,7 +18,8 @@
   }
 
   .hero-stat-divider {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   /* About asymmetric -> single column on mobile */
@@ -83,7 +84,8 @@
   }
 
   .testimonial-deco-quote {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .cta-section {

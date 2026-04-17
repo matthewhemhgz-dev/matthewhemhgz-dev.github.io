@@ -218,7 +218,7 @@
 
 .prose :global(a:hover) {
   color: var(--qi-brand-amber);
-  text-decoration-color: rgba(229, 169, 60, 0.4);
+  text-decoration-color: var(--qi-brand-amber-40);
 }
 
 /* Lists */

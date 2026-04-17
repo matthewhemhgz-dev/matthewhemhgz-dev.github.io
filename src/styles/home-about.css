@@ -27,7 +27,7 @@
   font-weight: 900;
   color: var(--qi-brand-emerald);
   line-height: 1;
-  opacity: 0.15;
+  opacity: var(--qi-deco-subtle);
 }
 
 .about-deco-slogan {

@@ -87,7 +87,9 @@
   /* 装饰元素透明度令牌 */
   --qi-deco-subtle: 0.15;
   --qi-deco-visible: 0.25;
+  --qi-deco-medium: 0.35;
   --qi-deco-strong: 0.40;
+  --qi-deco-ghost: 0.05;
 
   /* 光效系统令牌 */
   --qi-glow-size: 350px;

@@ -16,7 +16,7 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--qi-brand-emerald);
-  opacity: 0.35;
+  opacity: var(--qi-deco-medium);
   background: var(--qi-brand-emerald-06);
   padding: 4px 12px;
   border-radius: 9999px;
@@ -37,7 +37,8 @@
 
 @media (max-width: 768px) {
   .toolbox-float-tags {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
@@ -249,6 +250,7 @@
 
 @media (max-width: 768px) {
   .toolbox-grid-deco {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 }

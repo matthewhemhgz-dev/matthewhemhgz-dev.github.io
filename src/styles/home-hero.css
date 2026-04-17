@@ -80,8 +80,8 @@
   height: 70%;
   background: radial-gradient(
     ellipse at center,
-    rgba(46, 125, 92, 0.15) 0%,
-    rgba(46, 125, 92, 0.08) 40%,
+    var(--qi-brand-emerald-15) 0%,
+    var(--qi-brand-emerald-08) 40%,
     transparent 70%
   );
   filter: blur(80px);
@@ -120,8 +120,8 @@
   inset: -50%;
   background: repeating-conic-gradient(
     from 45deg at 75% 25%,
-    rgba(46, 125, 92, 0.08) 0deg,
-    rgba(46, 125, 92, 0.15) 3deg,
+    var(--qi-brand-emerald-08) 0deg,
+    var(--qi-brand-emerald-15) 3deg,
     transparent 5deg,
     transparent 20deg
   );
@@ -164,9 +164,9 @@
   background: linear-gradient(
     165deg,
     transparent 0%,
-    rgba(229, 169, 60, 0.12) 30%,
-    rgba(229, 169, 60, 0.20) 50%,
-    rgba(229, 169, 60, 0.12) 70%,
+    var(--qi-brand-amber-12) 30%,
+    var(--qi-brand-amber-20) 50%,
+    var(--qi-brand-amber-12) 70%,
     transparent 100%
   );
   filter: blur(60px);
@@ -181,9 +181,9 @@
   background: linear-gradient(
     195deg,
     transparent 0%,
-    rgba(120, 180, 160, 0.10) 25%,
-    rgba(120, 180, 160, 0.18) 50%,
-    rgba(120, 180, 160, 0.10) 75%,
+    var(--qi-brand-mint-10) 25%,
+    var(--qi-brand-mint-18) 50%,
+    var(--qi-brand-mint-10) 75%,
     transparent 100%
   );
   filter: blur(50px);
@@ -206,7 +206,7 @@
   inset: 0;
   background-image: radial-gradient(
     circle,
-    rgba(46, 125, 92, 0.18) 1px,
+    var(--qi-brand-emerald-18) 1px,
     transparent 1px
   );
   background-size: 32px 32px;
@@ -234,7 +234,7 @@
   font-size: clamp(20rem, 40vw, 35rem);
   font-weight: 900;
   color: var(--qi-text-primary);
-  opacity: 0.05;
+  opacity: var(--qi-deco-ghost);
   pointer-events: none;
   user-select: none;
   line-height: 1;
@@ -243,7 +243,7 @@
 }
 
 @keyframes watermark-breathe {
-  0%, 100% { opacity: 0.05; }
+  0%, 100% { opacity: var(--qi-deco-ghost); }
   50% { opacity: 0.08; }
 }
 
@@ -505,7 +505,8 @@
   }
 
   .hero-stat-divider {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 }
 

@@ -9,7 +9,7 @@
   font-size: clamp(10rem, 15vw, 15rem);
   font-weight: 900;
   color: var(--qi-brand-mint);
-  opacity: 0.22;
+  opacity: var(--qi-deco-visible);
   pointer-events: none;
   user-select: none;
   line-height: 1;

@@ -18,25 +18,25 @@ const clampedPercentage = Math.max(0, Math.min(100, percentage));
 const colorMap: Record<string, { bar: string; bg: string; glow: string }> = {
   emerald: {
     bar: 'var(--qi-brand-emerald)',
-    bg: 'rgba(46, 125, 92, 0.1)',
-    glow: 'rgba(46, 125, 92, 0.3)',
+    bg: 'var(--qi-brand-emerald-10)',
+    glow: 'var(--qi-brand-emerald-30)',
   },
   amber: {
     bar: 'var(--qi-amber)',
-    bg: 'rgba(229, 169, 60, 0.1)',
-    glow: 'rgba(229, 169, 60, 0.3)',
+    bg: 'var(--qi-brand-amber-10)',
+    glow: 'var(--qi-brand-amber-30)',
   },
   gray: {
     bar: 'var(--qi-text-muted)',
-    bg: 'rgba(42, 42, 42, 0.06)',
-    glow: 'rgba(42, 42, 42, 0.15)',
+    bg: 'var(--qi-base-06)',
+    glow: 'var(--qi-base-15)',
   },
 };
 
 const colors = colorMap[color] || colorMap.emerald;
 ---
 
-<div class="dash-card" data-color={color}>
+<div class="dash-card tilt-card" data-color={color}>
   <div class="card-header">
     <span class="card-label">{label}</span>
     <span class="card-value">{value}</span>
@@ -104,8 +104,8 @@ const colors = colorMap[color] || colorMap.emerald;
     width: var(--fill-width, 0%);
     background: var(--bar-color, var(--qi-brand-emerald));
     border-radius: var(--qi-radius-full);
-    transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-    animation: fill-in 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transition: width 1s var(--qi-spring);
+    animation: fill-in 1.2s var(--qi-spring) forwards;
     box-shadow: 0 0 8px var(--bar-glow, transparent);
   }
 
