@@ -65,3 +65,46 @@
   border-color: var(--qi-brand-amber);
   color: var(--qi-brand-amber);
 }
+
+/* === Large screen: CTA Section === */
+@media (min-width: 2560px) {
+  .cta-content {
+    max-width: 720px;
+    gap: var(--qi-space-xl);
+  }
+
+  .cta-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
+
+  .cta-desc {
+    font-size: var(--qi-text-lg);
+    line-height: 1.8;
+  }
+
+  .cta-section .btn {
+    padding: var(--qi-space-lg) var(--qi-space-2xl);
+    font-size: var(--qi-text-base);
+  }
+}
+
+@media (min-width: 3440px) {
+  .cta-content {
+    max-width: 900px;
+    gap: var(--qi-space-2xl);
+  }
+
+  .cta-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+
+  .cta-desc {
+    font-size: var(--qi-text-xl);
+    line-height: 1.9;
+  }
+
+  .cta-section .btn {
+    padding: var(--qi-space-xl) var(--qi-space-3xl);
+    font-size: var(--qi-text-lg);
+  }
+}

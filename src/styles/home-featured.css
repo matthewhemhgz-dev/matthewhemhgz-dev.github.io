@@ -167,3 +167,55 @@
   font-size: var(--qi-text-sm);
   color: var(--qi-text-muted);
 }
+
+/* === Large screen: Featured Section === */
+@media (min-width: 2560px) {
+  .bento-card {
+    padding: var(--qi-space-2xl);
+  }
+
+  .bento-title {
+    font-size: var(--qi-text-2xl);
+  }
+
+  .bento-desc {
+    font-size: var(--qi-text-base);
+    line-height: 1.8;
+  }
+
+  .bento-image-wrap {
+    width: 320px;
+    height: 200px;
+  }
+
+  .bento-card--large .bento-title {
+    font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  }
+}
+
+@media (min-width: 3440px) {
+  .bento-card {
+    padding: var(--qi-space-3xl);
+  }
+
+  .bento-title {
+    font-size: var(--qi-text-3xl);
+  }
+
+  .bento-desc {
+    font-size: var(--qi-text-lg);
+  }
+
+  .bento-image-wrap {
+    width: 400px;
+    height: 260px;
+  }
+
+  .bento-card--large .bento-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+  }
+
+  .bento-card--large .bento-card__content {
+    padding: var(--qi-space-3xl);
+  }
+}

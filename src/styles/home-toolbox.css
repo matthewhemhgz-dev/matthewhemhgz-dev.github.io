@@ -115,3 +115,50 @@
   white-space: nowrap;
   transition: transform 0.3s ease;
 }
+
+/* === Large screen: Toolbox Section === */
+@media (min-width: 2560px) {
+  .toolbox-category {
+    padding: var(--qi-space-2xl);
+  }
+
+  .toolbox-label {
+    font-size: var(--qi-text-sm);
+  }
+
+  .tool-name {
+    font-size: var(--qi-text-base);
+  }
+
+  .tool-desc {
+    font-size: var(--qi-text-sm);
+  }
+
+  .toolbox-icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (min-width: 3440px) {
+  .toolbox-category {
+    padding: var(--qi-space-3xl);
+  }
+
+  .toolbox-label {
+    font-size: var(--qi-text-base);
+  }
+
+  .tool-name {
+    font-size: var(--qi-text-lg);
+  }
+
+  .tool-desc {
+    font-size: var(--qi-text-base);
+  }
+
+  .toolbox-icon :global(svg) {
+    width: 28px;
+    height: 28px;
+  }
+}

@@ -83,3 +83,52 @@
   flex-shrink: 0;
   transition: transform var(--qi-transition), color var(--qi-transition);
 }
+
+/* === Large screen: Platforms Section === */
+@media (min-width: 2560px) {
+  .platform-card {
+    padding: var(--qi-space-xl);
+    gap: var(--qi-space-lg);
+  }
+
+  .platform-name {
+    font-size: var(--qi-text-base);
+  }
+
+  .platform-handle {
+    font-size: var(--qi-text-sm);
+  }
+
+  .platform-desc {
+    font-size: var(--qi-text-sm);
+  }
+
+  .platform-icon :global(svg) {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (min-width: 3440px) {
+  .platform-card {
+    padding: var(--qi-space-2xl);
+    gap: var(--qi-space-xl);
+  }
+
+  .platform-name {
+    font-size: var(--qi-text-lg);
+  }
+
+  .platform-handle {
+    font-size: var(--qi-text-base);
+  }
+
+  .platform-desc {
+    font-size: var(--qi-text-base);
+  }
+
+  .platform-icon :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+}

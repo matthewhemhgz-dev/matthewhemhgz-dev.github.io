@@ -148,3 +148,62 @@
   font-size: var(--qi-text-xs);
   color: var(--qi-text-muted);
 }
+
+/* === Large screen: Testimonials Section === */
+@media (min-width: 2560px) {
+  .testimonial-card {
+    padding: var(--qi-space-2xl);
+    gap: var(--qi-space-lg);
+  }
+
+  .testimonial-quote {
+    font-size: 3.5rem;
+  }
+
+  .testimonial-text {
+    font-size: var(--qi-text-base);
+    line-height: 1.9;
+  }
+
+  .testimonial-author {
+    font-size: var(--qi-text-base);
+  }
+
+  .testimonial-role {
+    font-size: var(--qi-text-sm);
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 3440px) {
+  .testimonial-card {
+    padding: var(--qi-space-3xl);
+    gap: var(--qi-space-xl);
+  }
+
+  .testimonial-quote {
+    font-size: 4rem;
+  }
+
+  .testimonial-text {
+    font-size: var(--qi-text-lg);
+    line-height: 2;
+  }
+
+  .testimonial-author {
+    font-size: var(--qi-text-lg);
+  }
+
+  .testimonial-role {
+    font-size: var(--qi-text-base);
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+  }
+}
