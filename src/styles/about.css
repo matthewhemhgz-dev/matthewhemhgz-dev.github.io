@@ -1,0 +1,185 @@
+/* ==========================================================================
+   About Page — Shared Styles
+   Used by: /about  &  /en/about
+   ========================================================================== */
+
+.about-page {
+  padding-top: var(--qi-nav-height);
+}
+
+/* --- Page Hero --- */
+.page-hero {
+  padding: var(--qi-space-5xl) 0 var(--qi-space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-md);
+}
+
+.page-label {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-brand-emerald);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.page-title {
+  font-family: var(--qi-font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: var(--qi-text-lg);
+  color: var(--qi-text-muted);
+  line-height: 1.7;
+}
+
+/* --- About Sections --- */
+.about-section {
+  padding: var(--qi-space-3xl) 0;
+}
+
+/* --- Prose --- */
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-lg);
+  max-width: var(--qi-content-width);
+}
+
+.prose p {
+  font-size: var(--qi-text-lg);
+  color: var(--qi-text-secondary);
+  line-height: 1.9;
+}
+
+/* --- Philosophy --- */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--qi-space-xl);
+}
+
+.philosophy-card {
+  padding: var(--qi-space-2xl);
+  background: rgba(42, 42, 42, 0.02);
+  border: 1px solid rgba(42, 42, 42, 0.06);
+  border-radius: var(--qi-radius-lg);
+  transition: all var(--qi-transition-base);
+}
+
+.philosophy-card:hover {
+  background: rgba(42, 42, 42, 0.03);
+  box-shadow: var(--qi-shadow-md);
+  transform: translateY(-4px);
+}
+
+.philosophy-number {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-amber);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.philosophy-title {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-xl);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin-top: var(--qi-space-md);
+  margin-bottom: var(--qi-space-sm);
+}
+
+.philosophy-desc {
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-muted);
+  line-height: 1.8;
+}
+
+/* --- Contact CTA --- */
+.contact-cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-xl);
+  max-width: var(--qi-content-width);
+}
+
+.cta-text {
+  font-size: var(--qi-text-lg);
+  color: var(--qi-text-secondary);
+  line-height: 1.8;
+}
+
+.cta-links {
+  display: flex;
+  gap: var(--qi-space-xl);
+  flex-wrap: wrap;
+}
+
+.cta-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-xs);
+}
+
+.cta-label {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cta-value {
+  font-size: var(--qi-text-lg);
+  color: var(--qi-text-primary);
+  font-weight: 500;
+}
+
+a.cta-link .cta-value {
+  color: var(--qi-brand-emerald);
+  transition: color var(--qi-transition-fast);
+}
+
+a.cta-link:hover .cta-value {
+  color: var(--qi-emerald-dark);
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 12px 28px;
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--qi-bg-base);
+  background: var(--qi-text-primary);
+  border-radius: var(--qi-radius-md);
+  text-decoration: none;
+  box-shadow: var(--qi-shadow-md);
+  transition: all var(--qi-transition-base);
+}
+
+.cta-btn:hover {
+  background: var(--qi-brand-emerald);
+  transform: translateY(-2px);
+  box-shadow: var(--qi-shadow-lg);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-links {
+    flex-direction: column;
+    gap: var(--qi-space-lg);
+  }
+}
