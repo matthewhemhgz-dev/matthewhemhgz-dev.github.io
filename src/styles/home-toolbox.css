@@ -40,6 +40,11 @@
     opacity: 0;
     pointer-events: none;
   }
+
+  .tool-name,
+  .tool-desc {
+    white-space: normal;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

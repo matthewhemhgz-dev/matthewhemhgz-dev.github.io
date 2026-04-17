@@ -570,7 +570,7 @@
 
 @media (min-width: 2560px) {
   .hero-container {
-    max-width: min(1100px, 45%);
+    max-width: min(1200px, 50%);
   }
 
   .hero-title {
@@ -610,7 +610,7 @@
 
 @media (min-width: 3440px) {
   .hero-container {
-    max-width: min(1400px, 40%);
+    max-width: min(1600px, 45%);
   }
 
   .hero-title {

@@ -145,6 +145,7 @@
   }
 
   .about-layout {
+    grid-template-columns: 35% 65%;
     gap: var(--qi-space-6xl);
   }
 
@@ -174,6 +175,7 @@
   }
 
   .about-layout {
+    grid-template-columns: 30% 70%;
     gap: var(--qi-space-7xl, 10rem);
   }
 

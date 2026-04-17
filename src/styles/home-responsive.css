@@ -75,7 +75,12 @@
 
   @media (max-width: 480px) {
     .platform-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--qi-space-sm);
+    }
+
+    .platform-desc {
+      display: none;
     }
   }
 
@@ -170,30 +175,31 @@
 /* 2560px - 2K/QHD */
 @media (min-width: 2560px) {
   .hero-title {
-    font-size: 7rem;
+    font-size: clamp(4rem, 4.5vw, 7rem);
   }
 
   .bento-grid {
     gap: 48px;
-    max-width: 1600px;
+    max-width: var(--qi-container-max);
     margin-inline: auto;
   }
 
   .toolbox-grid {
+    grid-template-columns: repeat(4, 1fr);
     gap: 36px;
-    max-width: 1600px;
+    max-width: var(--qi-container-max);
     margin-inline: auto;
   }
 
   .platform-grid {
     gap: 32px;
-    max-width: 1400px;
+    max-width: var(--qi-container-max);
     margin-inline: auto;
   }
 
   .testimonial-grid {
     gap: 36px;
-    max-width: 1400px;
+    max-width: var(--qi-container-max);
     margin-inline: auto;
   }
 
@@ -213,29 +219,29 @@
 /* 3440px - 4K/UWQHD */
 @media (min-width: 3440px) {
   .hero-title {
-    font-size: 9rem;
+    font-size: clamp(5rem, 4vw, 9rem);
   }
 
   .bento-grid {
     gap: 56px;
-    max-width: 1920px;
+    max-width: var(--qi-container-max);
   }
 
   .toolbox-grid {
     gap: 44px;
-    max-width: 1800px;
+    max-width: var(--qi-container-max);
   }
 
   .platform-grid {
     gap: 40px;
-    max-width: 1600px;
+    max-width: var(--qi-container-max);
   }
 
   .testimonial-grid {
-    max-width: 1600px;
+    max-width: var(--qi-container-max);
   }
 
   .section {
-    padding: 12rem 0;
+    padding: 10rem 0;
   }
 }

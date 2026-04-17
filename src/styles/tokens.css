@@ -292,6 +292,10 @@
     --qi-container-max: 1600px;
     --qi-font-scale: 1.15;
     --qi-spacing-scale: 1.25;
+    --qi-prose-width: 850px;
+    --qi-gap: 20px;
+    --qi-gap-bento: 30px;
+    --qi-container-padding: 32px;
   }
 }
 
@@ -300,5 +304,9 @@
     --qi-container-max: 1920px;
     --qi-font-scale: 1.3;
     --qi-spacing-scale: 1.4;
+    --qi-prose-width: 1020px;
+    --qi-gap: 24px;
+    --qi-gap-bento: 36px;
+    --qi-container-padding: 40px;
   }
 }
