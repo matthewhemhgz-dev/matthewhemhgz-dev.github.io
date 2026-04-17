@@ -13,7 +13,6 @@ interface Props {
   description?: string;
   ogImage?: string;
   tagline?: string;
-  lang?: string;
   ogType?: string;
 }
 
@@ -22,37 +21,14 @@ const {
   description = '祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。个人品牌网站，分享关于开发、思考与创造的一切。',
   ogImage = '/og-default.png',
   tagline = '探索技术、设计与创意的交汇之处',
-  lang = 'zh-CN',
   ogType = 'website',
 } = Astro.props;
 
-const isEn = lang === 'en' || lang.startsWith('en');
-const ogLocale = isEn ? 'en_US' : 'zh_CN';
-const skipLinkText = isEn ? 'Skip to main content' : '跳至主要内容';
-const brandName = isEn ? 'Qi-Lab' : '祈研所';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.dev');
-
-// hreflang: generate alternate URLs for zh/en
-const path = Astro.url.pathname;
-let zhPath = path;
-let enPath = path;
-if (path.startsWith('/en/')) {
-  zhPath = path.replace(/^\/en/, '') || '/';
-  enPath = path;
-} else if (path === '/en') {
-  zhPath = '/';
-  enPath = '/en/';
-} else {
-  zhPath = path;
-  enPath = `/en${path}`;
-}
-const baseUrl = Astro.site ?? 'https://qi-lab.dev';
-const zhUrl = new URL(zhPath, baseUrl);
-const enUrl = new URL(enPath, baseUrl);
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -72,12 +48,7 @@ const enUrl = new URL(enPath, baseUrl);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content={ogLocale} />
-
-    <!-- hreflang for bilingual SEO -->
-    <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
-    <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="x-default" href={zhUrl} />
+    <meta property="og:locale" content="zh_CN" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -94,7 +65,7 @@ const enUrl = new URL(enPath, baseUrl);
     />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">{skipLinkText}</a>
+    <a href="#main-content" class="skip-link">跳至主要内容</a>
     <ClientRouter />
     <NoiseOverlay />
     <ScrollProgress />
@@ -104,7 +75,6 @@ const enUrl = new URL(enPath, baseUrl);
     </main>
     <BackToTop />
     <Footer
-      brandName={brandName}
       tagline={tagline}
       email="hello@qi-lab.dev"
       wechat="QiLab_Studio"

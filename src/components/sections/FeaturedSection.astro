@@ -17,13 +17,12 @@ interface Props {
   label: string;
   title: string;
   posts: PostItem[];
-  locale: string;
   emptyText: string;
   emptyIcon?: 'svg' | 'emoji';
   readMoreText: string;
   browseBlogHref: string;
   browseBlogText: string;
-  /** If true, use the large magazine-style card layout (zh) */
+  /** If true, use the large magazine-style card layout */
   largeCardLayout?: boolean;
 }
 
@@ -31,7 +30,6 @@ const {
   label,
   title,
   posts,
-  locale,
   emptyText,
   emptyIcon = 'emoji',
   readMoreText,
@@ -40,12 +38,8 @@ const {
   largeCardLayout = false,
 } = Astro.props;
 
-const localeMap: Record<string, string> = {
-  zh: 'zh-CN',
-  en: 'en-US',
-};
-const localeKey = localeMap[locale] || locale;
-const blogPrefix = locale === 'en' ? '/en/blog/' : '/blog/';
+const localeKey = 'zh-CN';
+const blogPrefix = '/blog/';
 ---
 
 <section class="section" data-reveal>
