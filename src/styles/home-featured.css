@@ -9,6 +9,8 @@
 }
 
 .bento-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
   display: flex;
   flex-direction: column;
   gap: var(--qi-space-sm);
@@ -23,6 +25,28 @@
   position: relative;
 }
 
+/* Mouse-following light effect (Design Spells inspired) */
+.bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-card:hover::after {
+  opacity: 1;
+}
+
+/* Bottom gradient line on hover */
 .bento-card::before {
   content: '';
   position: absolute;

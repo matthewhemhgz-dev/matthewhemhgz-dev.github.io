@@ -155,19 +155,20 @@ main {
   0% {
     clip-path: inset(100% 0 0 0);
     opacity: 0;
-  }
-  30% {
-    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.95);
+    filter: blur(4px);
   }
   100% {
     clip-path: inset(0 0 0 0);
-    opacity: 1;
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0);
   }
 }
 
 .hero-watermark {
-  animation: qi-stroke-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both,
-             watermark-breathe 10s ease-in-out 1.2s infinite;
+  animation: qi-stroke-reveal 3s cubic-bezier(0.25, 0.1, 0.25, 1) both,
+             watermark-breathe 15s ease-in-out 3s infinite;
 }
 
 /* === Reduced motion === */

@@ -86,6 +86,9 @@ const andText = '&';
         {andText} Astro
       </p>
     </div>
+
+    <!-- Easter egg for curious scrollers -->
+    <p class="footer-easter-egg">感谢你滚动到这里 ✨</p>
   </div>
 </footer>
 
@@ -241,6 +244,23 @@ const andText = '&';
   @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.15); }
+  }
+
+  /* Easter egg styling */
+  .footer-easter-egg {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-muted);
+    opacity: 0.5;
+    margin-top: var(--qi-space-xl);
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+
+  .footer-easter-egg:hover {
+    opacity: 1;
+    color: var(--qi-brand-amber);
   }
 
   /* Responsive */
