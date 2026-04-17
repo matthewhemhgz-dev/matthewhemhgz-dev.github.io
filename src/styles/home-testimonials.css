@@ -2,6 +2,29 @@
    Testimonials Section
    ========================================================================== */
 
+/* 大号中文引号装饰（Task 17c） */
+.testimonial-deco-quote {
+  position: absolute;
+  font-family: var(--qi-font-serif);
+  font-size: clamp(10rem, 15vw, 15rem);
+  font-weight: 900;
+  color: var(--qi-brand-mint);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.testimonial-deco-quote--open {
+  top: -2rem;
+  left: 5%;
+}
+
+.testimonial-deco-quote--close {
+  bottom: -2rem;
+  right: 5%;
+}
+
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

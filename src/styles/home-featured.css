@@ -40,7 +40,10 @@
 
 .bento-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px -12px var(--qi-base-08), 0 8px 16px -8px var(--qi-base-06);
+  box-shadow:
+    0 20px 40px -12px var(--qi-base-08),
+    0 8px 16px -8px var(--qi-base-06),
+    0 0 40px -8px rgba(46, 125, 92, 0.08);
 }
 
 .bento-card:hover::before {

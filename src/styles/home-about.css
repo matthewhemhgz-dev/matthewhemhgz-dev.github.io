@@ -39,6 +39,13 @@
   opacity: 0.6;
 }
 
+/* 十字准星装饰（Task 17b） */
+.about-crosshair {
+  color: var(--qi-brand-amber);
+  margin-top: var(--qi-space-xl);
+  opacity: 0.6;
+}
+
 .about-main {
   display: flex;
   flex-direction: column;

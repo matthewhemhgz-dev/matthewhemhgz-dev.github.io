@@ -15,7 +15,7 @@ export function initScrollParallax() {
 
   // 为所有卡片添加滚动光影效果
   const cards = document.querySelectorAll(
-    '.category-card, .bento-card, .toolbox-category, .platform-card, .testimonial-card, .dash-card'
+    '.bento-card, .toolbox-category, .platform-card, .testimonial-card, .dash-card'
   );
 
   // 为装饰元素添加视差

@@ -1,65 +1,17 @@
 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- 背景径向渐变：中心亮翡翠 → 边缘深翡翠 -->
-    <radialGradient id="bg-grad" cx="50%" cy="45%" r="55%">
-      <stop offset="0%" stop-color="#7BC4A4"/>
-      <stop offset="100%" stop-color="#4A9A7A"/>
-    </radialGradient>
-
-    <!-- 金色文字渐变：顶部亮金 → 底部深金 -->
-    <linearGradient id="gold-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8C870"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EDD98A"/>
       <stop offset="100%" stop-color="#C49A3A"/>
     </linearGradient>
-
-    <!-- 角落光晕 -->
-    <radialGradient id="corner-glow">
-      <stop offset="0%" stop-color="#FFFFF0" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#FFFFF0" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- 内阴影效果 -->
-    <filter id="inner-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
-      <feOffset dx="0" dy="2" result="offsetBlur"/>
-      <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"/>
-    </filter>
-
-    <!-- 文字阴影 -->
-    <filter id="text-shadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4A9078" flood-opacity="0.5"/>
-    </filter>
   </defs>
 
-  <!-- 1. 圆角矩形背景 -->
-  <rect x="2" y="2" width="508" height="508" rx="115" ry="115"
-        fill="url(#bg-grad)" stroke="#4A9078" stroke-width="1"/>
+  <!-- 圆角方形背景 -->
+  <rect width="512" height="512" rx="96" fill="#2E7D5C"/>
 
-  <!-- 2. 同心云纹装饰（传统云纹/水波纹） -->
-  <g opacity="0.3" stroke="#A8D4C4" fill="none" stroke-width="1.2" stroke-linecap="round">
-    <!-- 外圈 -->
-    <path d="M 130,256 Q 130,140 256,130 Q 382,140 382,256 Q 382,372 256,382 Q 130,372 130,256"/>
-    <!-- 中圈 -->
-    <path d="M 160,256 Q 160,165 256,158 Q 352,165 352,256 Q 352,347 256,354 Q 160,347 160,256"/>
-    <!-- 内圈 -->
-    <path d="M 190,256 Q 190,190 256,185 Q 322,190 322,256 Q 322,322 256,327 Q 190,322 190,256"/>
-    <!-- 流动云纹点缀（左下） -->
-    <path d="M 100,380 Q 120,360 145,370 Q 160,378 150,395" opacity="0.5"/>
-    <path d="M 110,400 Q 135,385 155,395 Q 170,405 158,420" opacity="0.4"/>
-    <!-- 流动云纹点缀（右上） -->
-    <path d="M 412,132 Q 392,112 367,122 Q 352,130 362,147" opacity="0.5"/>
-    <path d="M 402,112 Q 377,97 357,107 Q 342,117 354,132" opacity="0.4"/>
-  </g>
-
-  <!-- 3. 四角光晕 -->
-  <circle cx="85" cy="85" r="40" fill="url(#corner-glow)"/>
-  <circle cx="427" cy="85" r="40" fill="url(#corner-glow)"/>
-  <circle cx="85" cy="427" r="40" fill="url(#corner-glow)"/>
-  <circle cx="427" cy="427" r="40" fill="url(#corner-glow)"/>
-
-  <!-- 4. "祈" 字（金色渐变 + 阴影） -->
-  <text x="256" y="300" text-anchor="middle" dominant-baseline="central"
-        font-family="'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif"
-        font-weight="700" font-size="230"
-        fill="url(#gold-grad)" filter="url(#text-shadow)">祈</text>
+  <!-- "祈" 字 -->
+  <text x="256" y="256" text-anchor="middle" dominant-baseline="central"
+        font-family="'Noto Serif SC','Source Han Serif SC','SimSun',serif"
+        font-weight="700" font-size="280"
+        fill="url(#gold)">祈</text>
 </svg>

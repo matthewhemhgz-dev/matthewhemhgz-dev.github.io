@@ -2,6 +2,51 @@
    Toolbox Section
    ========================================================================== */
 
+/* 浮动标签装饰（Task 18b） */
+.toolbox-float-tags {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float-tag {
+  position: absolute;
+  font-family: var(--qi-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--qi-brand-emerald);
+  opacity: 0.06;
+  background: var(--qi-brand-emerald-04);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--qi-brand-emerald-06);
+  animation: float-tag 6s ease-in-out infinite;
+}
+
+.float-tag--1 { top: 12%; left: 4%; animation-delay: 0s; }
+.float-tag--2 { top: 25%; right: 6%; animation-delay: 1.2s; }
+.float-tag--3 { top: 55%; left: 8%; animation-delay: 2.4s; }
+.float-tag--4 { top: 70%; right: 5%; animation-delay: 3.6s; }
+.float-tag--5 { top: 85%; left: 15%; animation-delay: 4.8s; }
+
+@keyframes float-tag {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 768px) {
+  .toolbox-float-tags {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-tag {
+    animation: none;
+  }
+}
+
 .toolbox-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

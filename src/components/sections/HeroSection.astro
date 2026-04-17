@@ -20,7 +20,7 @@ const {
   accentIndex = 1,
   subtitle,
   watermark = '祈',
-  badgeText = 'Amber Geek Design System',
+  badgeText = '祈研所 · Qi-Lab',
   stats,
   primaryBtn,
   secondaryBtn,
@@ -32,8 +32,19 @@ const {
     <div class="hero-gradient-orb hero-gradient-orb--1"></div>
     <div class="hero-gradient-orb hero-gradient-orb--2"></div>
     <div class="hero-gradient-orb hero-gradient-orb--3"></div>
+    <div class="hero-rays"></div>
+    <div class="hero-beam hero-beam--amber"></div>
+    <div class="hero-beam hero-beam--mint"></div>
     <div class="hero-grid-pattern"></div>
+    <div class="hero-dot-pattern"></div>
     <div class="hero-watermark" aria-hidden="true">{watermark}</div>
+    <!-- 同心圆弧装饰 -->
+    <svg class="hero-arcs" width="280" height="280" viewBox="0 0 280 280" fill="none" aria-hidden="true">
+      <circle cx="140" cy="140" r="120" stroke="currentColor" stroke-width="0.5" opacity="0.08" />
+      <circle cx="140" cy="140" r="90" stroke="currentColor" stroke-width="0.5" opacity="0.06" />
+      <circle cx="140" cy="140" r="60" stroke="currentColor" stroke-width="0.5" opacity="0.04" />
+      <circle cx="140" cy="140" r="130" stroke="currentColor" stroke-width="0.8" opacity="0.1" stroke-dasharray="80 740" stroke-linecap="round" />
+    </svg>
   </div>
   <div class="container hero-container">
     <div class="hero-badge hero-stagger hero-stagger--1">

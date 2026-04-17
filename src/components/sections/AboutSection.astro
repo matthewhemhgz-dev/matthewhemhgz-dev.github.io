@@ -32,6 +32,15 @@ const {
       <div class="about-deco" aria-hidden="true">
         <span class="about-deco-number">{decoNumber}</span>
         {decoSlogan && <span class="about-deco-slogan">{decoSlogan}</span>}
+        <!-- 十字准星装饰 -->
+        <svg class="about-crosshair" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <line x1="0" y1="32" x2="24" y2="32" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+          <line x1="40" y1="32" x2="64" y2="32" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+          <line x1="32" y1="0" x2="32" y2="24" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+          <line x1="32" y1="40" x2="32" y2="64" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+          <circle cx="32" cy="32" r="3" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
+          <circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="0.5" opacity="0.15" stroke-dasharray="3 3" />
+        </svg>
       </div>
       <div class="about-main">
         <SectionHeader label={label} title={title} />

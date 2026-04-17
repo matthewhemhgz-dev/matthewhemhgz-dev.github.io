@@ -41,6 +41,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
 
     <!-- Favicon (VI Logo) -->
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
@@ -56,13 +57,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (async load) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Serif+SC:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <a href="#main-content" class="skip-link">跳至主要内容</a>

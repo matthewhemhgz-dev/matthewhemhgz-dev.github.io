@@ -42,3 +42,31 @@ const navItems = [
     </ul>
   </nav>
 </header>
+
+<style>
+  .nav-wrapper {
+    position: relative;
+  }
+
+  .nav-wrapper.nav-collapsed {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .nav-wrapper.nav-collapsed .nav {
+    backdrop-filter: blur(8px);
+    background: rgba(247, 243, 238, 0.85);
+  }
+
+  /* 导航栏底部翡翠绿光晕线（滚动后显示） */
+  .nav-wrapper.nav-collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(46, 125, 92, 0.15), transparent);
+    box-shadow: 0 2px 20px -4px rgba(46, 125, 92, 0.1);
+    pointer-events: none;
+  }
+</style>

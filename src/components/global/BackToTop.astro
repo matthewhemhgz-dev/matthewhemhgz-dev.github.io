@@ -1,5 +1,5 @@
 ---
-// BackToTop - Fixed button, JS controls visibility
+// BackToTop - Fixed button, visibility controlled by scroll-handler.js
 ---
 
 <button
@@ -23,16 +23,6 @@
     <polyline points="18 15 12 9 6 15"></polyline>
   </svg>
 </button>
-
-<script>
-  // BackToTop visibility control
-  const btt = document.getElementById('back-to-top');
-  if (btt) {
-    window.addEventListener('scroll', () => {
-      btt.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-  }
-</script>
 
 <style>
   .back-to-top {

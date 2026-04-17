@@ -1,7 +1,5 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-
-import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
 
 export default defineConfig({
@@ -19,7 +17,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale: 'zh',
-    locales: ['zh', 'en'],
+    locales: ['zh'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -30,10 +28,9 @@ export default defineConfig({
       defaultLocale: 'zh',
       locales: {
         zh: 'zh-CN',
-        en: 'en',
       },
     },
-  }), react(), markdoc()],
+  }), markdoc()],
   vite: {
     build: {
       cssMinify: true,

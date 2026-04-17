@@ -10,7 +10,7 @@ export function initScrollReveal() {
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('[data-reveal], .data-bar-fill, .stagger-container').forEach(el => {
+  document.querySelectorAll('[data-reveal]').forEach(el => {
     revealObserver.observe(el);
   });
 }

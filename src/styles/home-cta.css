@@ -14,6 +14,24 @@
   padding-left: var(--qi-container-padding, 24px);
   padding-right: var(--qi-container-padding, 24px);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CTA 顶部琥珀金环境光 */
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(229, 169, 60, 0.08),
+    transparent
+  );
+  pointer-events: none;
 }
 
 .cta-content {

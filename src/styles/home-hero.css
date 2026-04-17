@@ -112,6 +112,113 @@
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
 }
 
+/* === Hero 光线放射效果（Task 13） === */
+.hero-rays {
+  position: absolute;
+  inset: -50%;
+  background: repeating-conic-gradient(
+    from 45deg at 70% 30%,
+    rgba(46, 125, 92, 0.03) 0deg,
+    rgba(46, 125, 92, 0.06) 2deg,
+    transparent 4deg,
+    transparent 18deg
+  );
+  mask-image: radial-gradient(
+    ellipse 60% 50% at 70% 30%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.6) 20%,
+    rgba(0, 0, 0, 0.8) 40%,
+    transparent 70%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 50% at 70% 30%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.6) 20%,
+    rgba(0, 0, 0, 0.8) 40%,
+    transparent 70%
+  );
+  animation: rays-spin 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rays-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* === Hero 体积光束效果（Task 14） === */
+.hero-beam {
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-beam--amber {
+  top: -20%;
+  right: -5%;
+  width: 35%;
+  height: 140%;
+  background: linear-gradient(
+    165deg,
+    transparent 0%,
+    rgba(229, 169, 60, 0.04) 25%,
+    rgba(229, 169, 60, 0.07) 50%,
+    rgba(229, 169, 60, 0.04) 75%,
+    transparent 100%
+  );
+  filter: blur(40px);
+  animation: beam-breathe-amber 20s ease-in-out infinite alternate;
+}
+
+.hero-beam--mint {
+  top: -10%;
+  left: 10%;
+  width: 28%;
+  height: 120%;
+  background: linear-gradient(
+    195deg,
+    transparent 0%,
+    rgba(120, 180, 160, 0.03) 20%,
+    rgba(120, 180, 160, 0.05) 50%,
+    rgba(120, 180, 160, 0.03) 80%,
+    transparent 100%
+  );
+  filter: blur(35px);
+  animation: beam-breathe-mint 25s ease-in-out infinite alternate;
+}
+
+@keyframes beam-breathe-amber {
+  0%   { opacity: 0.5; transform: scaleX(1); }
+  100% { opacity: 0.9; transform: scaleX(1.08); }
+}
+
+@keyframes beam-breathe-mint {
+  0%   { opacity: 0.4; transform: scaleX(1); }
+  100% { opacity: 0.7; transform: scaleX(1.05); }
+}
+
+/* === Hero 点阵背景（Task 18a） === */
+.hero-dot-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(46, 125, 92, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    black 20%,
+    transparent 75%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    black 20%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
 /* Hero watermark character */
 .hero-watermark {
   position: absolute;
@@ -332,6 +439,12 @@
     background-size: 40px 40px;
   }
 
+  .hero-rays,
+  .hero-beam,
+  .hero-dot-pattern {
+    display: none;
+  }
+
   .hero-watermark {
     opacity: 0.03;
   }
@@ -488,5 +601,55 @@
 
   .hero-stat-value {
     font-size: var(--qi-text-4xl);
+  }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  .hero-rays {
+    animation: none;
+  }
+
+  .hero-beam--amber,
+  .hero-beam--mint {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .hero-gradient-orb--1,
+  .hero-gradient-orb--2,
+  .hero-gradient-orb--3 {
+    animation: none;
+  }
+
+  .hero-watermark {
+    animation: none;
+  }
+}
+
+/* === 同心圆弧装饰（Task 17a） === */
+.hero-arcs {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  color: var(--qi-brand-emerald);
+  animation: arcs-rotate 120s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes arcs-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .hero-arcs {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-arcs {
+    animation: none;
   }
 }

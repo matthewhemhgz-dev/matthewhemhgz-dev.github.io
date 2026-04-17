@@ -8,6 +8,7 @@ import ToolboxSection from '../components/sections/ToolboxSection.astro';
 import PlatformsSection from '../components/sections/PlatformsSection.astro';
 import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
 import CtaSection from '../components/sections/CtaSection.astro';
+import SectionDivider from '../components/decorations/SectionDivider.astro';
 import { getCollection } from 'astro:content';
 
 const recentPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh'))
@@ -54,6 +55,8 @@ const testimonials = [
     secondaryBtn={{ text: '浏览博客', href: '/blog' }}
   />
 
+  <SectionDivider variant="dots" />
+
   <AboutSection
     label="// ABOUT"
     title="关于祈研所"
@@ -68,6 +71,8 @@ const testimonials = [
     ]}
   />
 
+  <SectionDivider variant="line" />
+
   <FeaturedSection
     label="// FEATURED"
     title="精选内容"
@@ -79,6 +84,8 @@ const testimonials = [
     browseBlogText="浏览博客"
     largeCardLayout={true}
   />
+
+  <SectionDivider variant="diamond" />
 
   <ToolboxSection
     label="// TOOLBOX"

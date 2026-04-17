@@ -1,0 +1,58 @@
+---
+/**
+ * SectionDivider — 章节分隔装饰组件
+ * 在 section 之间添加优雅的品牌色分隔线
+ *
+ * Props:
+ *   variant: 'dots' | 'line' | 'diamond'
+ */
+interface Props {
+  variant?: 'dots' | 'line' | 'diamond';
+}
+
+const { variant = 'dots' } = Astro.props;
+---
+
+<div class="section-divider section-divider--{variant}" aria-hidden="true">
+  {variant === 'dots' && (
+    <svg width="240" height="24" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="12" x2="88" y2="12" stroke="currentColor" stroke-width="0.5" opacity="0.2" />
+      <circle cx="105" cy="12" r="3" fill="currentColor" opacity="0.25" />
+      <circle cx="120" cy="12" r="3.5" fill="currentColor" opacity="0.35" />
+      <circle cx="135" cy="12" r="3" fill="currentColor" opacity="0.25" />
+      <line x1="152" y1="12" x2="240" y2="12" stroke="currentColor" stroke-width="0.5" opacity="0.2" />
+    </svg>
+  )}
+
+  {variant === 'line' && (
+    <svg width="240" height="8" viewBox="0 0 240 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="4" x2="240" y2="4" stroke="currentColor" stroke-width="0.5" opacity="0.15" />
+    </svg>
+  )}
+
+  {variant === 'diamond' && (
+    <svg width="240" height="24" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="12" x2="108" y2="12" stroke="currentColor" stroke-width="0.5" opacity="0.2" />
+      <rect x="116" y="8" width="8" height="8" rx="1" transform="rotate(45 120 12)" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+      <line x1="132" y1="12" x2="240" y2="12" stroke="currentColor" stroke-width="0.5" opacity="0.2" />
+    </svg>
+  )}
+</div>
+
+<style>
+  .section-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--qi-space-lg) 0;
+    color: var(--qi-brand-emerald);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .section-divider svg {
+    max-width: 240px;
+    width: 100%;
+    height: auto;
+  }
+</style>

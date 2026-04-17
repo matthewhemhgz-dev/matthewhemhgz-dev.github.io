@@ -82,6 +82,10 @@
     grid-template-columns: 1fr;
   }
 
+  .testimonial-deco-quote {
+    display: none;
+  }
+
   .cta-section {
     margin: 0 calc(-1 * var(--qi-container-padding, 24px));
     padding-left: var(--qi-container-padding, 24px);
