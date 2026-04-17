@@ -24,15 +24,26 @@ const s = sizeMap[size];
 ---
 
 <a href="/" class="brand-logo brand-logo--{variant} brand-logo--{size}" aria-label="祈研所">
-  <img
+  <svg
     class="brand-logo__icon"
-    src="/images/logo.svg"
-    alt=""
+    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
     width={s.icon}
     height={s.icon}
-    loading="eager"
-    decoding="async"
-  />
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="qi-logo-gold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#EDD98A"/>
+        <stop offset="100%" stop-color="#C49A3A"/>
+      </linearGradient>
+    </defs>
+    <rect width="512" height="512" rx="96" fill="#2E7D5C"/>
+    <text x="256" y="256" text-anchor="middle" dominant-baseline="central"
+          font-family="'Noto Serif SC','Source Han Serif SC','SimSun',serif"
+          font-weight="700" font-size="280"
+          fill="url(#qi-logo-gold)">祈</text>
+  </svg>
 
   {variant === 'full' && (
     <span class="brand-logo__text" style={`font-size: ${s.text}`}>祈研所</span>
