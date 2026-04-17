@@ -16,28 +16,33 @@ function initQiLab() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // 1. 粒子系统（增强版：鼠标交互 + 光晕 + 连线高亮）
+  const screenWidth = window.innerWidth;
+  const particleCount = screenWidth < 768 ? 50
+    : screenWidth < 1440 ? 120
+    : screenWidth < 2560 ? 180
+    : 250;
   particles = prefersReducedMotion ? null : new MinimalParticles('particles-canvas', {
-    count: window.innerWidth < 768 ? 30 : 60,
+    count: particleCount,
     colors: ['#2E7D5C', '#E5A93C', '#F7F3EE'],
-    maxSize: 3,
-    speed: 0.25,
-    linkDistance: 120,
-    linkOpacity: 0.08,
-    mouseRadius: 150,
-    mouseForce: 0.02,
-    glowSize: 8,
-    glowOpacity: 0.15,
+    maxSize: 4,
+    speed: 0.4,
+    linkDistance: 160,
+    linkOpacity: 0.12,
+    mouseRadius: 200,
+    mouseForce: 0.04,
+    glowSize: 12,
+    glowOpacity: 0.25,
   });
   if (particles) cleanupFns.push(() => particles.destroy());
 
   // 2. 鼠标追踪光效
   if (!prefersReducedMotion) {
     cursorGlow = new CursorGlow({
-      size: 400,
-      color: 'rgba(46, 125, 92, 0.06)',
-      colorAmber: 'rgba(229, 169, 60, 0.04)',
+      size: 300,
+      color: 'rgba(46, 125, 92, 0.12)',
+      colorAmber: 'rgba(229, 169, 60, 0.08)',
       blend: 'screen',
-      speed: 0.12,
+      speed: 0.08,
     });
     cleanupFns.push(() => cursorGlow.destroy());
   }

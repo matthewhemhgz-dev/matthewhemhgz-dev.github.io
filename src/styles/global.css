@@ -2,6 +2,7 @@
 @import './reset.css';
 @import './utilities.css';
 @import './animations.css';
+@import './article.css';
 
 body {
   font-family: var(--qi-font-sans);

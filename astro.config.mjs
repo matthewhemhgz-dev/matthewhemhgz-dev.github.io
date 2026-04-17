@@ -9,6 +9,11 @@ export default defineConfig({
   build: {
     assets: '_astro',
   },
+  markdown: {
+    syntaxHighlight: {
+      excludeLangs: ['mermaid'],
+    },
+  },
   i18n: {
     defaultLocale: 'zh',
     locales: ['zh', 'en'],

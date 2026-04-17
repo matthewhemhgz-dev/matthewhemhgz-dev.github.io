@@ -95,4 +95,25 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
     font-size: var(--qi-text-xs);
     opacity: 0.6;
   }
+
+  /* === Large screen: EN Blog === */
+  @media (min-width: 1440px) {
+    .blog-list-title { font-size: var(--qi-text-2xl); }
+    .blog-grid { gap: 32px; }
+  }
+
+  @media (min-width: 2560px) {
+    .blog-list-title { font-size: var(--qi-text-3xl); }
+    .blog-grid { gap: 40px; max-width: 1600px; margin-inline: auto; }
+    .blog-card { padding: var(--qi-space-2xl); }
+    .blog-card-title { font-size: var(--qi-text-xl); }
+    .blog-card-desc { font-size: var(--qi-text-base); }
+  }
+
+  @media (min-width: 3440px) {
+    .blog-grid { gap: 48px; max-width: 1920px; }
+    .blog-card { padding: var(--qi-space-3xl); }
+    .blog-card-title { font-size: var(--qi-text-2xl); }
+    .blog-card-desc { font-size: var(--qi-text-lg); }
+  }
 </style>

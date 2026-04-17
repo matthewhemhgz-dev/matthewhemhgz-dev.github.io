@@ -1,0 +1,54 @@
+---
+// MermaidInit.astro — Client-side Mermaid diagram renderer
+// Uses CDN to avoid Playwright build dependency
+// Include this component only on article detail pages
+---
+
+<script>
+  document.addEventListener('astro:page-load', async () => {
+    const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+    if (mermaidBlocks.length === 0) return;
+
+    try {
+      const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+
+      mermaid.default.initialize({
+        startOnLoad: false,
+        theme: 'dark',
+        themeVariables: {
+          primaryColor: '#2E7D5C',
+          primaryTextColor: '#F7F3EE',
+          primaryBorderColor: '#E5A93C',
+          lineColor: '#F7F3EE',
+          secondaryColor: '#1A1A1A',
+          tertiaryColor: '#2A2A2A',
+          fontSize: '16px',
+          fontFamily: 'var(--qi-font-mono), ui-monospace, monospace',
+        },
+        flowchart: {
+          htmlLabels: true,
+          curve: 'basis',
+        },
+        sequence: {
+          mirrorActors: false,
+        },
+      });
+
+      for (const block of mermaidBlocks) {
+        const parent = block.parentElement;
+        const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
+        try {
+          const { svg } = await mermaid.default.render(id, block.textContent);
+          parent.innerHTML = svg;
+          parent.classList.add('mermaid-container');
+        } catch (e) {
+          console.warn('Mermaid render error:', e);
+          parent.classList.add('mermaid-error');
+          parent.innerHTML = `<p style="color: var(--qi-brand-amber); font-family: var(--qi-font-mono); font-size: var(--qi-text-sm);">⚠ Mermaid 渲染失败: ${e.message || '语法错误'}</p>`;
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to load Mermaid:', e);
+    }
+  });
+</script>
