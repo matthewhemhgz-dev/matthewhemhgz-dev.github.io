@@ -36,8 +36,8 @@
 }
 
 .bento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--qi-shadow-hover-warm);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px var(--qi-base-08), 0 8px 16px -8px var(--qi-base-06);
 }
 
 .bento-card:hover::before {

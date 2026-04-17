@@ -67,11 +67,11 @@ const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
     left: 50%;
     transform: translateX(-50%);
     z-index: var(--qi-z-nav);
-    background: rgba(247, 243, 238, 0.88);
+    background: var(--qi-inverse-88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 9999px;
-    padding: 10px 28px;
+    border-radius: var(--qi-radius-full);
+    padding: var(--qi-space-md) var(--qi-space-xl);
     border: 1px solid var(--qi-base-06);
     box-shadow: 0 4px 24px var(--qi-base-06);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -108,7 +108,7 @@ const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
   }
 
   .nav-wrapper.nav-collapsed:hover {
-    padding: 10px 28px;
+    padding: var(--qi-space-md) var(--qi-space-xl);
     box-shadow: 0 4px 24px var(--qi-base-06);
   }
 

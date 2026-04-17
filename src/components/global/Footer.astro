@@ -63,7 +63,7 @@ const andText = '&';
         <h3 class="footer-heading">{socialLabel}</h3>
         <div class="social-grid">
           {socialLinks.map((s) => (
-            <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.url === '#' ? (lang === 'en' ? 'Coming soon' : '即将上线') : s.name}>
+            <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.url === '#' ? (lang === 'en' ? 'Coming soon' : '即将上线') : s.name} aria-label={`${s.name} (opens in new window)`}>
               <span class="social-icon" set:html={s.icon} />
               <span class="social-name">{s.name}</span>
             </a>
@@ -122,7 +122,7 @@ const andText = '&';
 
   .footer-tagline {
     font-size: var(--qi-text-sm);
-    color: rgba(247, 243, 238, 0.6);
+    color: var(--qi-inverse-60);
     max-width: 320px;
     line-height: 1.7;
   }

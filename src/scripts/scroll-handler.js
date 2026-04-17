@@ -15,6 +15,10 @@ export function initScrollReveal() {
   });
 }
 
+// 存储事件处理函数引用，以便后续清理
+let _scrollHandler = null;
+let _backToTopHandler = null;
+
 export function initScrollHandler(particles) {
   const nav = document.querySelector('.nav-wrapper');
   const backToTopBtn = document.getElementById('back-to-top');
@@ -49,7 +53,7 @@ export function initScrollHandler(particles) {
     scrollTicking = false;
   }
 
-  window.addEventListener('scroll', () => {
+  _scrollHandler = () => {
     if (!scrollTicking) {
       requestAnimationFrame(handleScroll);
       scrollTicking = true;
@@ -59,12 +63,26 @@ export function initScrollHandler(particles) {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => particles.resume(), 150);
     }
-  }, { passive: true });
+  };
+  window.addEventListener('scroll', _scrollHandler, { passive: true });
 
   handleScroll(); // Initial call
 }
 
+export function cleanupScrollHandler() {
+  if (_scrollHandler) {
+    window.removeEventListener('scroll', _scrollHandler);
+    _scrollHandler = null;
+  }
+  if (_backToTopHandler) {
+    const btn = document.getElementById('back-to-top');
+    if (btn) btn.removeEventListener('click', _backToTopHandler);
+    _backToTopHandler = null;
+  }
+}
+
 export function initBackToTop() {
   const btn = document.getElementById('back-to-top');
-  if (btn) btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  _backToTopHandler = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (btn) btn.addEventListener('click', _backToTopHandler);
 }

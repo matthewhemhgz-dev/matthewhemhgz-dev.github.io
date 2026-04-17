@@ -41,36 +41,42 @@ export class MinimalParticles {
 
   _bindEvents() {
     let resizeTimer;
-    window.addEventListener('resize', () => {
+
+    this._onResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         this.resize();
         this.init();
       }, 200);
-    });
+    };
+    window.addEventListener('resize', this._onResize);
 
-    document.addEventListener('visibilitychange', () => {
+    this._onVisibilityChange = () => {
       if (document.hidden) this.pause();
       else this.resume();
-    });
+    };
+    document.addEventListener('visibilitychange', this._onVisibilityChange);
 
     // 鼠标交互
-    document.addEventListener('mousemove', (e) => {
+    this._onMouseMove = (e) => {
       this.mouse.x = e.clientX;
       this.mouse.y = e.clientY;
       this.mouse.active = true;
-    }, { passive: true });
+    };
+    document.addEventListener('mousemove', this._onMouseMove, { passive: true });
 
-    document.addEventListener('mouseleave', () => {
+    this._onMouseLeave = () => {
       this.mouse.active = false;
       this.mouse.x = -9999;
       this.mouse.y = -9999;
-    });
+    };
+    document.addEventListener('mouseleave', this._onMouseLeave);
 
     // 触屏设备不启用鼠标交互
-    window.addEventListener('touchstart', () => {
+    this._onTouchStart = () => {
       this.mouse.active = false;
-    }, { once: true, passive: true });
+    };
+    window.addEventListener('touchstart', this._onTouchStart, { once: true, passive: true });
   }
 
   resize() {
@@ -267,5 +273,26 @@ export class MinimalParticles {
       this.isRunning = true;
       this.animate();
     }
+  }
+
+  destroy() {
+    // 停止动画循环
+    this.pause();
+
+    // 移除所有事件监听器
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._onVisibilityChange) document.removeEventListener('visibilitychange', this._onVisibilityChange);
+    if (this._onMouseMove) document.removeEventListener('mousemove', this._onMouseMove);
+    if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
+    if (this._onTouchStart) window.removeEventListener('touchstart', this._onTouchStart);
+
+    // 移除 canvas 元素
+    if (this.canvas) {
+      this.canvas.remove();
+      this.canvas = null;
+    }
+
+    // 清空粒子数据
+    this.particles = [];
   }
 }

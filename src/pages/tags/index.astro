@@ -82,7 +82,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 
   .tag-link:hover {
     background: var(--qi-brand-emerald);
-    color: #fff;
+    color: var(--qi-text-inverse);
     transform: translateY(-2px);
   }
 
@@ -118,7 +118,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
   .tags-post-category {
     display: inline-block;
     background: var(--qi-brand-emerald);
-    color: #fff;
+    color: var(--qi-text-inverse);
     padding: 2px 10px;
     border-radius: var(--qi-radius-sm);
     font-size: 0.75rem;

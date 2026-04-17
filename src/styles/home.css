@@ -10,7 +10,7 @@
 
 /* Base section style */
 .section {
-  padding: var(--qi-space-5xl) 0;
+  padding: var(--qi-space-6xl) 0;
   position: relative;
 }
 
@@ -31,4 +31,16 @@
 /* First section after hero should not have top border */
 .hero-section + .section {
   border-top: none;
+}
+
+/* Unified section label style */
+.section-label {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  font-weight: 600;
+  color: var(--qi-brand-emerald);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--qi-space-sm);
+  display: block;
 }

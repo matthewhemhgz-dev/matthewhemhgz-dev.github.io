@@ -29,6 +29,7 @@ const { label, title, platforms } = Astro.props;
           class="platform-card"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${p.name} - ${p.desc} (opens in new window)`}
         >
           <span class="platform-icon" set:html={svgIcons[p.icon]} />
           <div class="platform-info">

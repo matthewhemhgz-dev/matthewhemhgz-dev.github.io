@@ -12,6 +12,8 @@ const lang = getLangFromUrl(Astro.url);
       href={getAlternateUrl(Astro.url, locale as Lang)}
       class:list={['lang-link', { active: locale === lang }]}
       data-astro-reload
+      aria-label={`切换到${label}`}
+      lang={locale}
     >
       {label}
     </a>
@@ -33,6 +35,6 @@ const lang = getLangFromUrl(Astro.url);
   .lang-link:hover,
   .lang-link.active {
     color: var(--qi-brand-emerald);
-    background: rgba(46, 125, 92, 0.1);
+    background: var(--qi-brand-emerald-10);
   }
 </style>

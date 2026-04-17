@@ -9,11 +9,33 @@
 }
 
 .toolbox-category {
+  position: relative;
+  overflow: hidden;
   padding: var(--qi-space-xl);
   background: var(--qi-bg-base);
-  border: 1px solid rgba(42, 42, 42, 0.06);
+  border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-card);
   transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+}
+
+.toolbox-category::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--light-x, 50%) var(--light-y, 0%),
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--qi-transition);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.toolbox-category:hover::before {
+  opacity: 1;
 }
 
 .toolbox-category:hover {
@@ -36,7 +58,7 @@
   gap: var(--qi-space-sm);
   margin-bottom: var(--qi-space-md);
   padding-bottom: var(--qi-space-sm);
-  border-bottom: 1px solid rgba(42, 42, 42, 0.06);
+  border-bottom: 1px solid var(--qi-base-06);
 }
 
 .toolbox-icon {
@@ -74,7 +96,7 @@
 }
 
 .tool-chip:not(:last-child) {
-  border-bottom: 1px solid rgba(42, 42, 42, 0.04);
+  border-bottom: 1px solid var(--qi-base-04);
 }
 
 .tool-name {

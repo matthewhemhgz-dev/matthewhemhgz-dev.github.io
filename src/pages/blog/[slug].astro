@@ -111,7 +111,7 @@ const { Content, headings } = await render(post);
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-xs);
     font-weight: 600;
-    color: #fff;
+    color: var(--qi-text-inverse);
     background: var(--qi-brand-emerald);
     padding: 3px 10px;
     border-radius: var(--qi-radius-sm);
@@ -158,7 +158,7 @@ const { Content, headings } = await render(post);
 
   .article-divider {
     height: 1px;
-    background: linear-gradient(90deg, rgba(42, 42, 42, 0.12), transparent 80%);
+    background: linear-gradient(90deg, var(--qi-base-10), transparent 80%);
     margin-top: var(--qi-space-2xl);
   }
 
@@ -209,7 +209,7 @@ const { Content, headings } = await render(post);
 
   .toc-item a:hover {
     color: var(--qi-brand-emerald);
-    background: rgba(46, 125, 92, 0.04);
+    background: var(--qi-brand-emerald-04);
   }
 
   .toc-item--depth-2 a {
@@ -398,7 +398,7 @@ const { Content, headings } = await render(post);
   }
 
   .prose :global(tr):hover td {
-    background: rgba(46, 125, 92, 0.02);
+    background: var(--qi-brand-emerald-03);
   }
 
   /* Article footer */

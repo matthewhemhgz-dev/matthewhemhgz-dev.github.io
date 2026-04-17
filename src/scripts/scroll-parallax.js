@@ -4,6 +4,11 @@
  * - 装饰元素视差滚动
  * - 触屏设备支持卡片光效
  */
+
+// 存储事件处理函数引用，以便后续清理
+let _onScroll = null;
+let _cardTouchHandlers = []; // { card, touchstart, touchmove, touchend }
+
 export function initScrollParallax() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return;
@@ -18,7 +23,7 @@ export function initScrollParallax() {
 
   let ticking = false;
 
-  function onScroll() {
+  _onScroll = () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const scrollY = window.scrollY;
@@ -52,36 +57,16 @@ export function initScrollParallax() {
       });
       ticking = true;
     }
-  }
+  };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', _onScroll, { passive: true });
 
   // 初始调用
-  onScroll();
+  _onScroll();
 
   // 触屏设备卡片光效支持
   if ('ontouchstart' in window) {
     let activeCard = null;
-
-    cards.forEach((card) => {
-      card.addEventListener('touchstart', (e) => {
-        activeCard = card;
-        updateCardLight(card, e.touches[0]);
-      }, { passive: true });
-
-      card.addEventListener('touchmove', (e) => {
-        if (activeCard === card) {
-          updateCardLight(card, e.touches[0]);
-        }
-      }, { passive: true });
-
-      card.addEventListener('touchend', () => {
-        if (activeCard === card) {
-          card.style.setProperty('--light-intensity', '0');
-          activeCard = null;
-        }
-      }, { passive: true });
-    });
 
     function updateCardLight(card, touch) {
       const rect = card.getBoundingClientRect();
@@ -91,5 +76,45 @@ export function initScrollParallax() {
       card.style.setProperty('--light-y', `${y}%`);
       card.style.setProperty('--light-intensity', '0.06');
     }
+
+    cards.forEach((card) => {
+      const onTouchStart = (e) => {
+        activeCard = card;
+        updateCardLight(card, e.touches[0]);
+      };
+      const onTouchMove = (e) => {
+        if (activeCard === card) {
+          updateCardLight(card, e.touches[0]);
+        }
+      };
+      const onTouchEnd = () => {
+        if (activeCard === card) {
+          card.style.setProperty('--light-intensity', '0');
+          activeCard = null;
+        }
+      };
+
+      card.addEventListener('touchstart', onTouchStart, { passive: true });
+      card.addEventListener('touchmove', onTouchMove, { passive: true });
+      card.addEventListener('touchend', onTouchEnd, { passive: true });
+
+      _cardTouchHandlers.push({ card, onTouchStart, onTouchMove, onTouchEnd });
+    });
   }
+}
+
+export function cleanupScrollParallax() {
+  // 移除 scroll 监听器
+  if (_onScroll) {
+    window.removeEventListener('scroll', _onScroll);
+    _onScroll = null;
+  }
+
+  // 移除所有卡片的 touch 监听器
+  for (const { card, onTouchStart, onTouchMove, onTouchEnd } of _cardTouchHandlers) {
+    card.removeEventListener('touchstart', onTouchStart);
+    card.removeEventListener('touchmove', onTouchMove);
+    card.removeEventListener('touchend', onTouchEnd);
+  }
+  _cardTouchHandlers = [];
 }
