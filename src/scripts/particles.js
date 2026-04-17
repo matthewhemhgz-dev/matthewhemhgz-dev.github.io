@@ -22,7 +22,7 @@ export class MinimalParticles {
 
     const defaults = {
       count: 60,
-      colors: ['#2E7D5C', '#E5A93C', '#F7F3EE'],
+      colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
       maxSize: 3,
       speed: 0.25,
       linkDistance: 120,
@@ -96,17 +96,19 @@ export class MinimalParticles {
       ? Math.floor(this.options.count * 0.5)
       : this.options.count;
     for (let i = 0; i < count; i++) {
+      const isStar = Math.random() < 0.08; // 8% 概率成为明星粒子
       this.particles.push({
         x: Math.random() * this.width,
         y: Math.random() * this.height,
         vx: (Math.random() - 0.5) * this.options.speed * 2,
         vy: (Math.random() - 0.5) * this.options.speed * 2,
-        size: Math.random() * this.options.maxSize + 0.8,
+        size: isStar ? this.options.maxSize * 1.6 : Math.random() * this.options.maxSize + 0.8,
         color: this.options.colors[Math.floor(Math.random() * this.options.colors.length)],
-        opacity: Math.random() * 0.5 + 0.25,
+        opacity: isStar ? Math.random() * 0.3 + 0.5 : Math.random() * 0.5 + 0.25,
         baseOpacity: 0, // 将在下面设置
         pulsePhase: Math.random() * Math.PI * 2, // 脉冲相位
         pulseSpeed: 0.008 + Math.random() * 0.004,
+        isStar: isStar,
       });
       this.particles[i].baseOpacity = this.particles[i].opacity;
     }
@@ -177,13 +179,16 @@ export class MinimalParticles {
         }
       }
 
-      // 绘制光晕
+      // 绘制光晕 — 柔化边缘渐变
       if (currentSize > 1.5) {
-        const glowRadius = Math.max(0.1, currentSize * glowSize);
+        const glowRadius = Math.max(0.1, currentSize * glowSize * (p.isStar ? 1.3 : 1));
         const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
+        const glowAlpha = (currentOpacity + highlight) * glowOpacity;
         gradient.addColorStop(0, p.color);
+        gradient.addColorStop(0.25, p.color);
+        gradient.addColorStop(0.5, p.color);
         gradient.addColorStop(1, 'transparent');
-        ctx.globalAlpha = (currentOpacity + highlight) * glowOpacity;
+        ctx.globalAlpha = glowAlpha;
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(p.x, p.y, glowRadius, 0, Math.PI * 2);

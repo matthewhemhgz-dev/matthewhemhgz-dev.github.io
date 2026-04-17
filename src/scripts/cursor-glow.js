@@ -1,7 +1,8 @@
 /**
- * CursorGlow — 鼠标追踪光效
- * 在鼠标位置生成柔和的径向渐变光晕，跟随鼠标移动
- * 支持移动端自动禁用、reduced-motion 媒体查询
+ * CursorGlow — 鼠标追踪光效 (v2 美学升级版)
+ * 三层渐变光晕：外层环境光 → 中层品牌光 → 内层聚焦点
+ * 页面加载即半透明可见，首次鼠标移动增强到满亮度
+ * 支持呼吸动画、移动端自动禁用、reduced-motion 媒体查询
  */
 export class CursorGlow {
   constructor(options = {}) {
@@ -11,16 +12,16 @@ export class CursorGlow {
     this.currentX = 0;
     this.currentY = 0;
     this.isVisible = false;
+    this.hasInteracted = false;
     this.rafId = null;
     this.isTouchDevice = false;
     this.lastTime = performance.now();
+    this.breathePhase = 0;
 
     const defaults = {
-      size: 400,
-      color: 'rgba(46, 125, 92, 0.06)',
-      colorAmber: 'rgba(229, 169, 60, 0.04)',
+      size: 350,
       blend: 'screen',
-      speed: 0.12,
+      speed: 0.06,
     };
     this.options = { ...defaults, ...options };
 
@@ -29,16 +30,21 @@ export class CursorGlow {
   }
 
   _create() {
-    // 创建两层光晕：主光 + 琥珀辅光
     this.el = document.createElement('div');
     this.el.className = 'cursor-glow';
     this.el.setAttribute('aria-hidden', 'true');
     this.el.innerHTML = `
+      <div class="cursor-glow__outer"></div>
       <div class="cursor-glow__main"></div>
-      <div class="cursor-glow__amber"></div>
+      <div class="cursor-glow__accent"></div>
     `;
 
-    // 注入样式
+    // 初始定位在页面中心，半透明可见
+    this.currentX = window.innerWidth / 2;
+    this.currentY = window.innerHeight / 2;
+    this.mouseX = this.currentX;
+    this.mouseY = this.currentY;
+
     const style = document.createElement('style');
     style.id = 'cursor-glow-style';
     style.textContent = `
@@ -52,43 +58,88 @@ export class CursorGlow {
         z-index: var(--qi-z-overlay);
         mix-blend-mode: ${this.options.blend};
         transform: translate(-50%, -50%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        will-change: transform;
+        opacity: 0.4;
+        will-change: transform, opacity;
+        transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
       }
-      .cursor-glow.is-visible {
+      .cursor-glow.is-active {
         opacity: 1;
       }
+      .cursor-glow.is-leaving {
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+
+      /* 外层：大范围柔和环境光 — 薄荷蓝 */
+      .cursor-glow__outer {
+        position: absolute;
+        inset: -35%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(120, 180, 160, 0.05) 0%,
+          rgba(120, 180, 160, 0.02) 40%,
+          transparent 70%
+        );
+        filter: blur(30px);
+        animation: glow-breathe-outer 6s ease-in-out infinite;
+      }
+
+      /* 中层：翡翠绿主光 — 柔和扩散 */
       .cursor-glow__main {
         position: absolute;
         inset: 0;
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          ${this.options.color} 0%,
-          rgba(46, 125, 92, 0.02) 40%,
-          transparent 70%
+          rgba(46, 125, 92, 0.14) 0%,
+          rgba(46, 125, 92, 0.04) 35%,
+          transparent 65%
         );
+        filter: blur(2px);
+        animation: glow-breathe-main 4s ease-in-out infinite;
       }
-      .cursor-glow__amber {
+
+      /* 内层：琥珀金聚焦点 — 小而精致 */
+      .cursor-glow__accent {
         position: absolute;
-        top: 25%;
-        left: 25%;
-        width: 50%;
-        height: 50%;
+        top: 28%;
+        left: 28%;
+        width: 44%;
+        height: 44%;
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          ${this.options.colorAmber} 0%,
+          rgba(229, 169, 60, 0.10) 0%,
+          rgba(229, 169, 60, 0.03) 45%,
           transparent 60%
         );
-        transform: translate(20%, 20%);
+        transform: translate(12%, 12%);
+        filter: blur(1px);
+        animation: glow-breathe-accent 5s ease-in-out infinite;
       }
+
+      @keyframes glow-breathe-outer {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.05); }
+      }
+      @keyframes glow-breathe-main {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.85; transform: scale(1.03); }
+      }
+      @keyframes glow-breathe-accent {
+        0%, 100% { opacity: 1; transform: translate(12%, 12%) scale(1); }
+        50% { opacity: 0.75; transform: translate(14%, 14%) scale(1.08); }
+      }
+
       @media (max-width: 768px) {
         .cursor-glow { display: none; }
       }
       @media (prefers-reduced-motion: reduce) {
         .cursor-glow { display: none; }
+        .cursor-glow__outer,
+        .cursor-glow__main,
+        .cursor-glow__accent { animation: none; }
       }
     `;
     document.head.appendChild(style);
@@ -96,7 +147,6 @@ export class CursorGlow {
   }
 
   _bindEvents() {
-    // 检测触屏设备
     window.addEventListener('touchstart', () => {
       this.isTouchDevice = true;
       if (this.el) this.el.style.display = 'none';
@@ -106,17 +156,24 @@ export class CursorGlow {
       if (this.isTouchDevice) return;
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
-      if (!this.isVisible) {
-        this.isVisible = true;
+
+      if (!this.hasInteracted) {
+        this.hasInteracted = true;
         this.currentX = this.mouseX;
         this.currentY = this.mouseY;
-        this.el.classList.add('is-visible');
+        // 平滑过渡到满亮度
+        this.el.classList.add('is-active');
       }
     }, { passive: true });
 
     document.addEventListener('mouseleave', () => {
-      this.isVisible = false;
-      if (this.el) this.el.classList.remove('is-visible');
+      if (this.el) this.el.classList.add('is-leaving');
+    });
+
+    document.addEventListener('mouseenter', () => {
+      if (this.el && this.hasInteracted) {
+        this.el.classList.remove('is-leaving');
+      }
     });
 
     this._animate();
@@ -129,7 +186,7 @@ export class CursorGlow {
     }
     if (!this.isTouchDevice && this.el) {
       const now = performance.now();
-      const deltaTime = Math.min((now - this.lastTime) / 16.67, 3); // 归一化到 60fps，上限 3 帧补偿
+      const deltaTime = Math.min((now - this.lastTime) / 16.67, 3);
       this.lastTime = now;
       const factor = 1 - Math.pow(1 - this.options.speed, deltaTime);
       this.currentX += (this.mouseX - this.currentX) * factor;

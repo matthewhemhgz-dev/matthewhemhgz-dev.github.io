@@ -38,11 +38,9 @@ function initQiLab() {
   // 2. 鼠标追踪光效
   if (!prefersReducedMotion) {
     cursorGlow = new CursorGlow({
-      size: 300,
-      color: 'rgba(46, 125, 92, 0.12)',
-      colorAmber: 'rgba(229, 169, 60, 0.08)',
+      size: 350,
+      speed: 0.06,
       blend: 'screen',
-      speed: 0.08,
     });
     cleanupFns.push(() => cursorGlow.destroy());
   }

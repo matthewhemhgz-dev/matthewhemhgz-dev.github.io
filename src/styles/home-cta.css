@@ -3,7 +3,12 @@
    ========================================================================== */
 
 .cta-section {
-  background: linear-gradient(135deg, var(--qi-surface-main) 0%, color-mix(in srgb, var(--qi-surface-main) 85%, var(--qi-brand-emerald)) 100%);
+  background: linear-gradient(135deg,
+    var(--qi-surface-main) 0%,
+    color-mix(in srgb, var(--qi-surface-main) 92%, var(--qi-brand-emerald)) 35%,
+    color-mix(in srgb, var(--qi-surface-main) 90%, var(--qi-brand-mint)) 65%,
+    color-mix(in srgb, var(--qi-surface-main) 88%, var(--qi-brand-amber)) 100%
+  );
   color: var(--qi-text-inverse);
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
   padding-left: var(--qi-container-padding, 24px);
