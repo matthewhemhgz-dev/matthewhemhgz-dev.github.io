@@ -20,5 +20,15 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# IDE
+.vscode/
+
 # jetbrains setting folder
 .idea/
+
+# Build
+.vercel/
+.netlify/
+
+# Local
+*.local

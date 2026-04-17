@@ -124,6 +124,7 @@ const svgIcons: Record<string, string> = {
       <div class="hero-gradient-orb hero-gradient-orb--1"></div>
       <div class="hero-gradient-orb hero-gradient-orb--2"></div>
       <div class="hero-grid-pattern"></div>
+      <div class="hero-watermark" aria-hidden="true">祈</div>
     </div>
     <div class="container hero-container">
       <div class="hero-badge">
@@ -164,24 +165,30 @@ const svgIcons: Record<string, string> = {
     </div>
   </section>
 
-  <Divider />
+  <!-- Hero -> About: no divider, large spacing for natural transition -->
 
-  <!-- ===== About Section ===== -->
-  <section class="section" data-reveal>
+  <!-- ===== About Section (Asymmetric Layout) ===== -->
+  <section class="section about-section" data-reveal>
     <div class="container">
-      <SectionHeader label="// ABOUT" title="About Qi-Lab" />
-      <div class="about-content">
-        <p class="about-text">
-          Qi-Lab was born from a relentless curiosity about the intersection of technology and aesthetics.
-          We believe that great code should feel like a carefully crafted work of art, and that good design
-          stems from an unwavering pursuit of detail. Here we document our reflections and practices on
-          front-end development, system design, open-source contributions, and creative experiments.
-        </p>
-        <div class="dash-grid">
-          <DashCard label="Front-End Dev" value="5+" percentage="92" color="emerald" />
-          <DashCard label="System Design" value="3+" percentage="78" color="amber" />
-          <DashCard label="Open Source" value="20+" percentage="85" color="emerald" />
-          <DashCard label="Creative Experiments" value="10+" percentage="70" color="gray" />
+      <div class="about-layout">
+        <div class="about-deco" aria-hidden="true">
+          <span class="about-deco-number">01</span>
+          <span class="about-deco-slogan">Explore · Create · Share</span>
+        </div>
+        <div class="about-main">
+          <SectionHeader label="// ABOUT" title="About Qi-Lab" />
+          <p class="about-text">
+            Qi-Lab was born from a relentless curiosity about the intersection of technology and aesthetics.
+            We believe that great code should feel like a carefully crafted work of art, and that good design
+            stems from an unwavering pursuit of detail. Here we document our reflections and practices on
+            front-end development, system design, open-source contributions, and creative experiments.
+          </p>
+          <div class="dash-grid">
+            <DashCard label="Front-End Dev" value="5+" percentage="92" color="emerald" />
+            <DashCard label="System Design" value="3+" percentage="78" color="amber" />
+            <DashCard label="Open Source" value="20+" percentage="85" color="emerald" />
+            <DashCard label="Creative Experiments" value="10+" percentage="70" color="gray" />
+          </div>
         </div>
       </div>
     </div>
@@ -231,7 +238,9 @@ const svgIcons: Record<string, string> = {
     </div>
   </section>
 
-  <Divider />
+  <!-- Featured -> Skills: gradient divider -->
+
+  <Divider variant="gradient" />
 
   <!-- ===== Skills Section (Dark Background) ===== -->
   <section class="section skills-section" data-reveal>
@@ -261,9 +270,10 @@ const svgIcons: Record<string, string> = {
         ]}
       />
     </div>
+    <div class="skills-fade-out" aria-hidden="true"></div>
   </section>
 
-  <Divider />
+  <!-- Skills -> Categories: no divider, gradient transition handles it -->
 
   <!-- ===== ContentCategories Section ===== -->
   <section class="section" data-reveal>
@@ -289,7 +299,7 @@ const svgIcons: Record<string, string> = {
     </div>
   </section>
 
-  <Divider />
+  <!-- Categories -> Toolbox: no divider -->
 
   <!-- ===== Toolbox Section ===== -->
   <section class="section" data-reveal>
@@ -316,7 +326,7 @@ const svgIcons: Record<string, string> = {
     </div>
   </section>
 
-  <Divider />
+  <Divider variant="dash" />
 
   <!-- ===== PlatformMatrix Section ===== -->
   <section class="section" data-reveal>
@@ -324,7 +334,7 @@ const svgIcons: Record<string, string> = {
       <SectionHeader label="// PLATFORMS" title="Platform Matrix" />
       <div class="platform-grid">
         {platforms.map((p) => (
-          <a href={p.url} class="platform-card" target="_blank" rel="noopener noreferrer">
+          <a href={p.url} title={p.url === '#' ? 'Coming soon' : undefined} class="platform-card" target="_blank" rel="noopener noreferrer">
             <span class="platform-icon" set:html={svgIcons[p.icon]} />
             <div class="platform-info">
               <h3 class="platform-name">{p.name}</h3>
@@ -338,7 +348,7 @@ const svgIcons: Record<string, string> = {
     </div>
   </section>
 
-  <Divider />
+  <!-- Platform -> Timeline: no divider -->
 
   <!-- ===== Timeline Section ===== -->
   <section class="section" data-reveal>
@@ -346,7 +356,7 @@ const svgIcons: Record<string, string> = {
       <SectionHeader label="// TIMELINE" title="Changelog" />
       <div class="timeline">
         {timelineItems.map((item, i) => (
-          <div class="timeline-item">
+          <div class:list={['timeline-item', i % 2 === 1 && 'timeline-item--alt']}>
             <div class="timeline-marker">
               <span class="timeline-dot"></span>
               {i < timelineItems.length - 1 && <span class="timeline-line"></span>}
@@ -354,7 +364,7 @@ const svgIcons: Record<string, string> = {
             <div class="timeline-body">
               <div class="timeline-header">
                 <span class="timeline-date">{item.date}</span>
-                <span class="timeline-tag">{item.tag}</span>
+                <span class:list={['timeline-tag', `timeline-tag--${item.tag}`]}>{item.tag}</span>
               </div>
               <h3 class="timeline-title">{item.title}</h3>
               <p class="timeline-desc">{item.desc}</p>
@@ -365,21 +375,19 @@ const svgIcons: Record<string, string> = {
     </div>
   </section>
 
-  <Divider />
+  <Divider variant="minimal" />
 
   <!-- ===== Testimonials Section ===== -->
   <section class="section" data-reveal>
     <div class="container">
       <SectionHeader label="// VOICES" title="Reader Reviews" />
       <div class="testimonial-grid">
-        {testimonials.map((t) => (
-          <blockquote class="testimonial-card">
+        {testimonials.map((t, i) => (
+          <blockquote class:list={['testimonial-card', `testimonial-card--${i}`]}>
             <span class="testimonial-quote">&ldquo;</span>
             <p class="testimonial-text">{t.quote}</p>
             <footer class="testimonial-footer">
-              <div class="testimonial-avatar" aria-hidden="true">
-                <span>&#x1F464;</span>
-              </div>
+              <div class="testimonial-avatar" aria-hidden="true" set:html={svgIcons['user']}></div>
               <div class="testimonial-author-info">
                 <span class="testimonial-author">{t.author}</span>
                 <span class="testimonial-role">{t.role}</span>
@@ -477,6 +485,29 @@ const svgIcons: Record<string, string> = {
     max-width: 720px;
     position: relative;
     z-index: 1;
+  }
+
+  /* Hero watermark "祈" character */
+  .hero-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--qi-font-serif);
+    font-size: clamp(20rem, 40vw, 35rem);
+    font-weight: 900;
+    color: var(--qi-text-primary);
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    z-index: 0;
+    animation: watermark-breathe 10s ease-in-out infinite;
+  }
+
+  @keyframes watermark-breathe {
+    0%, 100% { opacity: 0.05; }
+    50% { opacity: 0.08; }
   }
 
   .hero-badge {
@@ -641,8 +672,45 @@ const svgIcons: Record<string, string> = {
     background: rgba(42, 42, 42, 0.1);
   }
 
-  /* --- About --- */
-  .about-content {
+  /* --- About Section (Asymmetric Layout) --- */
+  .about-section {
+    padding-top: var(--qi-space-6xl, 8rem);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: var(--qi-space-3xl);
+    align-items: start;
+  }
+
+  .about-deco {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-lg);
+    position: sticky;
+    top: calc(var(--qi-nav-height) + var(--qi-space-xl));
+  }
+
+  .about-deco-number {
+    font-family: var(--qi-font-serif);
+    font-size: clamp(6rem, 10vw, 10rem);
+    font-weight: 900;
+    color: var(--qi-brand-emerald);
+    line-height: 1;
+    opacity: 0.15;
+  }
+
+  .about-deco-slogan {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-xl);
+    font-weight: 600;
+    color: var(--qi-brand-emerald);
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+  }
+
+  .about-main {
     display: flex;
     flex-direction: column;
     gap: var(--qi-space-2xl);
@@ -669,7 +737,7 @@ const svgIcons: Record<string, string> = {
     padding-left: var(--qi-container-padding, 24px);
     padding-right: var(--qi-container-padding, 24px);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .skills-bg-decoration {
@@ -706,6 +774,18 @@ const svgIcons: Record<string, string> = {
     font-style: italic;
   }
 
+  /* Skills fade-out gradient transition */
+  .skills-fade-out {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--qi-surface-main), var(--qi-bg-base));
+    pointer-events: none;
+    z-index: 2;
+  }
+
   /* --- Content Categories --- */
   .category-grid {
     display: grid;
@@ -737,7 +817,7 @@ const svgIcons: Record<string, string> = {
     width: 3px;
     height: 100%;
     border-radius: 0 2px 2px 0;
-    transition: height var(--qi-transition);
+    transition: width 0.3s ease;
   }
 
   .category-card--emerald::before {
@@ -754,6 +834,15 @@ const svgIcons: Record<string, string> = {
     border-color: rgba(42, 42, 42, 0.1);
   }
 
+  /* 3C: Category card unique hover - left bar expands, icon rotates */
+  .category-card:hover::before {
+    width: 6px;
+  }
+
+  .category-card:hover .category-icon-wrap {
+    transform: rotate(5deg);
+  }
+
   .category-icon-wrap {
     width: 48px;
     height: 48px;
@@ -763,6 +852,12 @@ const svgIcons: Record<string, string> = {
     justify-content: center;
     flex-shrink: 0;
     font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .category-icon-wrap :global(svg) {
+    width: 24px;
+    height: 24px;
   }
 
   .category-card--emerald .category-icon-wrap {
@@ -989,6 +1084,15 @@ const svgIcons: Record<string, string> = {
     box-shadow: var(--qi-shadow-hover-warm);
   }
 
+  /* 3C: Toolbox hover - tool name turns emerald, desc slides in */
+  .toolbox-category:hover .tool-name {
+    color: var(--qi-brand-emerald);
+  }
+
+  .toolbox-category:hover .tool-desc {
+    transform: translateX(4px);
+  }
+
   .toolbox-header {
     display: flex;
     align-items: center;
@@ -999,8 +1103,13 @@ const svgIcons: Record<string, string> = {
   }
 
   .toolbox-icon {
-    font-size: 1.25rem;
     line-height: 1;
+    color: var(--qi-brand-emerald);
+  }
+
+  .toolbox-icon :global(svg) {
+    width: 20px;
+    height: 20px;
   }
 
   .toolbox-label {
@@ -1037,6 +1146,7 @@ const svgIcons: Record<string, string> = {
     font-weight: 600;
     color: var(--qi-text-primary);
     white-space: nowrap;
+    transition: color 0.3s ease;
   }
 
   .tool-desc {
@@ -1044,6 +1154,7 @@ const svgIcons: Record<string, string> = {
     color: var(--qi-text-muted);
     text-align: right;
     white-space: nowrap;
+    transition: transform 0.3s ease;
   }
 
   /* --- Platform Matrix --- */
@@ -1072,10 +1183,25 @@ const svgIcons: Record<string, string> = {
     border-color: rgba(42, 42, 42, 0.1);
   }
 
+  /* 3C: Platform hover - icon scales, arrow translates with amber color */
+  .platform-card:hover .platform-icon {
+    transform: scale(1.15);
+  }
+
+  .platform-card:hover .platform-arrow {
+    transform: translate(3px, -3px);
+    color: var(--qi-amber);
+  }
+
   .platform-icon {
-    font-size: 1.5rem;
     line-height: 1;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .platform-icon :global(svg) {
+    width: 24px;
+    height: 24px;
   }
 
   .platform-info {
@@ -1114,11 +1240,6 @@ const svgIcons: Record<string, string> = {
     transition: transform var(--qi-transition), color var(--qi-transition);
   }
 
-  .platform-card:hover .platform-arrow {
-    transform: translate(2px, -2px);
-    color: var(--qi-brand-emerald);
-  }
-
   /* --- Timeline --- */
   .timeline {
     display: flex;
@@ -1131,6 +1252,15 @@ const svgIcons: Record<string, string> = {
     display: flex;
     gap: var(--qi-space-lg);
     position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .timeline-item:hover {
+    transform: translateX(4px);
+  }
+
+  .timeline-item--alt:hover {
+    transform: translateX(-4px);
   }
 
   .timeline-marker {
@@ -1149,18 +1279,45 @@ const svgIcons: Record<string, string> = {
     flex-shrink: 0;
     margin-top: 6px;
     box-shadow: 0 0 0 4px rgba(46, 125, 92, 0.12);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .timeline-item:hover .timeline-dot {
+    box-shadow: 0 0 0 6px rgba(46, 125, 92, 0.18);
+    transform: scale(1.2);
+  }
+
+  .timeline-item--alt .timeline-dot {
+    background: var(--qi-brand-amber);
+    box-shadow: 0 0 0 4px rgba(229, 169, 60, 0.12);
+  }
+
+  .timeline-item--alt:hover .timeline-dot {
+    box-shadow: 0 0 0 6px rgba(229, 169, 60, 0.18);
   }
 
   .timeline-line {
     width: 2px;
     flex: 1;
-    background: rgba(42, 42, 42, 0.08);
+    background: linear-gradient(to bottom, rgba(42, 42, 42, 0.1), rgba(42, 42, 42, 0.04));
     margin-top: var(--qi-space-sm);
   }
 
   .timeline-body {
     flex: 1;
     padding-bottom: var(--qi-space-xl);
+    transition: background 0.3s ease;
+    border-radius: var(--qi-radius-md);
+    margin: -4px -8px -4px 0;
+    padding: 4px 8px var(--qi-space-xl) 0;
+  }
+
+  .timeline-item:hover .timeline-body {
+    background: rgba(46, 125, 92, 0.03);
+  }
+
+  .timeline-item--alt:hover .timeline-body {
+    background: rgba(229, 169, 60, 0.03);
   }
 
   .timeline-item:last-child .timeline-body {
@@ -1182,6 +1339,10 @@ const svgIcons: Record<string, string> = {
     letter-spacing: 0.04em;
   }
 
+  .timeline-item--alt .timeline-date {
+    color: var(--qi-amber-dark);
+  }
+
   .timeline-tag {
     font-family: var(--qi-font-mono);
     font-size: 10px;
@@ -1192,6 +1353,32 @@ const svgIcons: Record<string, string> = {
     letter-spacing: 0.04em;
   }
 
+  /* Tag color variants */
+  .timeline-tag--Milestone {
+    background: rgba(46, 125, 92, 0.1);
+    color: var(--qi-brand-emerald);
+  }
+
+  .timeline-tag--Origin {
+    background: rgba(229, 169, 60, 0.1);
+    color: var(--qi-amber-dark);
+  }
+
+  .timeline-tag--System {
+    background: rgba(42, 42, 42, 0.06);
+    color: var(--qi-text-secondary);
+  }
+
+  .timeline-tag--Content {
+    background: rgba(42, 42, 42, 0.06);
+    color: var(--qi-text-secondary);
+  }
+
+  .timeline-tag--Open Source {
+    background: rgba(229, 169, 60, 0.08);
+    color: var(--qi-amber-dark);
+  }
+
   .timeline-title {
     font-family: var(--qi-font-serif);
     font-size: var(--qi-text-base);
@@ -1199,6 +1386,15 @@ const svgIcons: Record<string, string> = {
     color: var(--qi-text-primary);
     margin: 0;
     line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+
+  .timeline-item:hover .timeline-title {
+    color: var(--qi-brand-emerald);
+  }
+
+  .timeline-item--alt:hover .timeline-title {
+    color: var(--qi-amber-dark);
   }
 
   .timeline-desc {
@@ -1223,24 +1419,75 @@ const svgIcons: Record<string, string> = {
     background: var(--qi-bg-base);
     border: 1px solid rgba(42, 42, 42, 0.06);
     border-radius: var(--qi-radius-card);
-    transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+    transition: transform var(--qi-transition), box-shadow var(--qi-transition), border-color var(--qi-transition);
     margin: 0;
     position: relative;
   }
 
-  .testimonial-card:hover {
-    transform: translateY(-4px);
+  /* Card 0: Emerald accent - standard card */
+  .testimonial-card--0 {
+    border-top: 3px solid var(--qi-brand-emerald);
+  }
+
+  .testimonial-card--0:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(46, 125, 92, 0.12), 0 4px 8px rgba(42, 42, 42, 0.06);
+  }
+
+  .testimonial-card--0:hover .testimonial-quote {
+    transform: scale(1.2) rotate(-5deg);
+    opacity: 0.7;
+  }
+
+  /* Card 1: Amber accent - warm card with different hover */
+  .testimonial-card--1 {
+    border-top: 3px solid var(--qi-brand-amber);
+  }
+
+  .testimonial-card--1:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 32px rgba(229, 169, 60, 0.12), 0 4px 8px rgba(42, 42, 42, 0.06);
+  }
+
+  .testimonial-card--1:hover .testimonial-quote {
+    transform: scale(1.3) rotate(5deg);
+    opacity: 0.7;
+  }
+
+  .testimonial-card--1 .testimonial-quote {
+    color: var(--qi-brand-amber);
+  }
+
+  /* Card 2: Neutral accent - subtle card */
+  .testimonial-card--2 {
+    border-top: 3px solid rgba(42, 42, 42, 0.15);
+  }
+
+  .testimonial-card--2:hover {
+    transform: translateY(-3px);
     box-shadow: var(--qi-shadow-hover-warm);
+    border-color: rgba(42, 42, 42, 0.12);
+  }
+
+  .testimonial-card--2:hover .testimonial-quote {
+    transform: translateY(-4px);
+    opacity: 0.6;
+  }
+
+  .testimonial-card--2 .testimonial-quote {
+    color: var(--qi-text-muted);
   }
 
   .testimonial-quote {
     font-family: var(--qi-font-serif);
     font-size: 3rem;
     line-height: 1;
-    color: var(--qi-brand-amber);
+    color: var(--qi-brand-emerald);
     opacity: 0.4;
     margin: 0;
     padding: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: inline-block;
   }
 
   .testimonial-text {
@@ -1267,8 +1514,23 @@ const svgIcons: Record<string, string> = {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.875rem;
     flex-shrink: 0;
+    color: var(--qi-text-muted);
+  }
+
+  .testimonial-card--0 .testimonial-avatar {
+    background: rgba(46, 125, 92, 0.08);
+    color: var(--qi-brand-emerald);
+  }
+
+  .testimonial-card--1 .testimonial-avatar {
+    background: rgba(229, 169, 60, 0.08);
+    color: var(--qi-amber-dark);
+  }
+
+  .testimonial-avatar :global(svg) {
+    width: 18px;
+    height: 18px;
   }
 
   .testimonial-author-info {
@@ -1375,6 +1637,32 @@ const svgIcons: Record<string, string> = {
       display: none;
     }
 
+    /* About asymmetric -> single column on mobile */
+    .about-section {
+      padding-top: var(--qi-space-5xl);
+    }
+
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: var(--qi-space-xl);
+    }
+
+    .about-deco {
+      position: static;
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--qi-space-md);
+    }
+
+    .about-deco-number {
+      font-size: 4rem;
+    }
+
+    .about-deco-slogan {
+      font-size: var(--qi-text-sm);
+      letter-spacing: 0.1em;
+    }
+
     .dash-grid {
       grid-template-columns: 1fr;
     }
@@ -1402,6 +1690,12 @@ const svgIcons: Record<string, string> = {
 
     .platform-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .testimonial-grid {

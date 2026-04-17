@@ -2,6 +2,12 @@
   "name": "qi-lab-site",
   "type": "module",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewhemhgz-dev/matthewhemhgz-dev.github.io"
+  },
+  "description": "祈研所（Qi-Lab）— 个人品牌网站",
+  "license": "MIT",
   "engines": {
     "node": ">=22.12.0"
   },

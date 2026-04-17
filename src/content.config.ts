@@ -17,7 +17,7 @@ const blog = defineCollection({
       alt: z.string(),
     }).optional(),
     readingTime: z.string().optional(),
-    author: z.string().default('祈研所'),
+    author: z.string().default('Qi-Lab'),
     ogImage: z.string().optional(),
     heroImage: z.string().optional(),
   }),

@@ -269,7 +269,10 @@ const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
       const isOpen = navToggle.checked;
       navToggle.setAttribute('aria-expanded', String(isOpen));
       if (navStatus) {
-        navStatus.textContent = isOpen ? '导航菜单已打开' : '导航菜单已关闭';
+        const isEn = document.documentElement.lang === 'en';
+        navStatus.textContent = isOpen
+          ? (isEn ? 'Navigation menu opened' : '导航菜单已打开')
+          : (isEn ? 'Navigation menu closed' : '导航菜单已关闭');
       }
     });
   }

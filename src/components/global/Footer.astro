@@ -63,7 +63,7 @@ const andText = '&';
         <h3 class="footer-heading">{socialLabel}</h3>
         <div class="social-grid">
           {socialLinks.map((s) => (
-            <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.name}>
+            <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.url === '#' ? (lang === 'en' ? 'Coming soon' : '即将上线') : s.name}>
               <span class="social-icon" set:html={s.icon} />
               <span class="social-name">{s.name}</span>
             </a>

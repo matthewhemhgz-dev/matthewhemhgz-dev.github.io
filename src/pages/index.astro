@@ -337,7 +337,7 @@ const svgIcons: Record<string, string> = {
       <SectionHeader label="// PLATFORMS" title="平台矩阵" />
       <div class="platform-grid">
         {platforms.map((p) => (
-          <a href={p.url} class="platform-card" target="_blank" rel="noopener noreferrer">
+          <a href={p.url} title={p.url === '#' ? '即将上线' : undefined} class="platform-card" target="_blank" rel="noopener noreferrer">
             <span class="platform-icon" set:html={svgIcons[p.icon]} />
             <div class="platform-info">
               <h3 class="platform-name">{p.name}</h3>
@@ -1857,6 +1857,12 @@ const svgIcons: Record<string, string> = {
 
     .platform-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .testimonial-grid {

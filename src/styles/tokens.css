@@ -102,6 +102,7 @@
   --qi-z-overlay: 9998;
   --qi-z-noise: 9995;
   --qi-z-back-top: 9999;
+  --qi-z-skip-link: 10000;
   --qi-z-progress: 10001;
 }
 

@@ -59,7 +59,7 @@ button:focus-visible {
   position: absolute;
   top: -100%;
   left: 16px;
-  z-index: 10000;
+  z-index: var(--qi-z-skip-link);
   padding: 8px 16px;
   background: var(--qi-brand-emerald);
   color: #fff;

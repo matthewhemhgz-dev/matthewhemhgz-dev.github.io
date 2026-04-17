@@ -24,6 +24,16 @@
   </svg>
 </button>
 
+<script>
+  // P2-17: Dynamic aria-label based on page language
+  const btt = document.getElementById('back-to-top');
+  if (btt) {
+    const isEn = document.documentElement.lang === 'en';
+    btt.setAttribute('aria-label', isEn ? 'Back to top' : '回到顶部');
+    btt.setAttribute('title', isEn ? 'Back to top' : '回到顶部');
+  }
+</script>
+
 <style>
   .back-to-top {
     position: fixed;
