@@ -49,33 +49,7 @@
   animation: qi-fade-left var(--qi-anim-duration) var(--qi-anim-ease) forwards;
 }
 
-/* Stagger */
-.stagger-container > * {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.stagger-container.is-visible > * {
-  animation: qi-fade-up 0.5s ease forwards;
-}
-
-.stagger-container.is-visible > *:nth-child(1) { animation-delay: 0ms; }
-.stagger-container.is-visible > *:nth-child(2) { animation-delay: 80ms; }
-.stagger-container.is-visible > *:nth-child(3) { animation-delay: 160ms; }
-.stagger-container.is-visible > *:nth-child(4) { animation-delay: 240ms; }
-.stagger-container.is-visible > *:nth-child(5) { animation-delay: 320ms; }
-.stagger-container.is-visible > *:nth-child(6) { animation-delay: 400ms; }
-.stagger-container.is-visible > *:nth-child(7) { animation-delay: 480ms; }
-.stagger-container.is-visible > *:nth-child(8) { animation-delay: 560ms; }
-
-/* Data bar */
-.data-bar-fill {
-  width: 0;
-  transition: width 1.2s var(--qi-anim-ease);
-}
-
 /* === Scroll Light Effect on Cards === */
-.category-card,
 .bento-card,
 .toolbox-category,
 .platform-card,
@@ -85,7 +59,6 @@
   overflow: hidden;
 }
 
-.category-card::after,
 .bento-card::after,
 .toolbox-category::after,
 .platform-card::after,
@@ -108,7 +81,6 @@
   transition: opacity 0.3s ease;
 }
 
-.category-card:hover::after,
 .bento-card:hover::after,
 .toolbox-category:hover::after,
 .platform-card:hover::after,
@@ -176,17 +148,15 @@ main {
   main {
     animation: none !important;
   }
-  [data-reveal], .stagger-container > * {
+  [data-reveal] {
     opacity: 1;
     transform: none;
     animation: none !important;
   }
-  .data-bar-fill { transition: none; }
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: 0.01ms !important;
   }
-  .category-card::after,
   .bento-card::after,
   .toolbox-category::after,
   .platform-card::after,

@@ -4,7 +4,9 @@ import { languages } from '../../i18n/ui';
 import type { Lang } from '../../i18n/ui';
 
 const lang = getLangFromUrl(Astro.url);
+const isEn = lang === 'en';
 ---
+
 
 <div class="lang-switcher">
   {Object.entries(languages).map(([locale, label]) => (
@@ -12,7 +14,7 @@ const lang = getLangFromUrl(Astro.url);
       href={getAlternateUrl(Astro.url, locale as Lang)}
       class:list={['lang-link', { active: locale === lang }]}
       data-astro-reload
-      aria-label={`切换到${label}`}
+      aria-label={isEn ? `Switch to ${label}` : `切换到${label}`}
       lang={locale}
     >
       {label}

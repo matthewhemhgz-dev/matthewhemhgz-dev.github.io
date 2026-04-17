@@ -23,7 +23,15 @@ const { tag, posts } = Astro.props;
     <h1 style="font-family: var(--qi-font-serif); font-size: 2.5rem; margin: 1rem 0 2rem;">#{tag}</h1>
     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
       {posts.map(post => (
-        <a href={`/en/blog/${post.id.replace('en/', '')}/`} style="display: block; padding: 1.25rem; background: var(--qi-surface-main); color: var(--qi-text-inverse); border-radius: var(--qi-radius-card); text-decoration: none; transition: transform var(--qi-transition);">
+        <a href={`/en/blog/${post.id.replace('en/', '')}/`} style="
+          display: block;
+          padding: 1.25rem;
+          background: var(--qi-surface-main);
+          color: var(--qi-text-inverse);
+          border-radius: var(--qi-radius-card);
+          text-decoration: none;
+          transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+        ">
           <h2 style="font-family: var(--qi-font-serif); font-size: 1.15rem; margin-bottom: 0.4rem;">{post.data.title}</h2>
           <time style="font-size: 0.8rem; opacity: 0.6;">{post.data.pubDate.toDateString()}</time>
         </a>
@@ -31,3 +39,10 @@ const { tag, posts } = Astro.props;
     </div>
   </main>
 </BaseLayout>
+
+<style>
+  a[style]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--qi-shadow-hover);
+  }
+</style>

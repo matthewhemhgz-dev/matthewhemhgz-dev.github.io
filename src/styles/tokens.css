@@ -83,8 +83,12 @@
   --qi-inverse-88: rgba(247, 243, 238, 0.88);
   --qi-inverse-70: rgba(247, 243, 238, 0.70);
   --qi-inverse-60: rgba(247, 243, 238, 0.60);
+  --qi-inverse-55: rgba(247, 243, 238, 0.55);
+  --qi-inverse-50: rgba(247, 243, 238, 0.50);
+  --qi-inverse-40: rgba(247, 243, 238, 0.40);
   --qi-inverse-20: rgba(247, 243, 238, 0.20);
   --qi-inverse-15: rgba(247, 243, 238, 0.15);
+  --qi-inverse-12: rgba(247, 243, 238, 0.12);
 }
 
 /* === 2. 字体令牌 === */
@@ -184,7 +188,6 @@
   /* Large screen scaling */
   --qi-font-scale: 1;
   --qi-spacing-scale: 1;
-  --qi-container-max: 1200px;
 
   /* Responsive font helpers (scale with large screens) */
   --qi-font-scaled-sm: calc(var(--qi-text-sm) * var(--qi-font-scale, 1));

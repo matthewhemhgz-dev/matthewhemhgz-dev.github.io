@@ -43,14 +43,14 @@
 }
 
 /* --- Prose --- */
-.prose {
+.about-prose {
   display: flex;
   flex-direction: column;
   gap: var(--qi-space-lg);
   max-width: var(--qi-prose-width);
 }
 
-.prose p {
+.about-prose p {
   font-size: var(--qi-text-lg);
   color: var(--qi-text-secondary);
   line-height: 1.9;
