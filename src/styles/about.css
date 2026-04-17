@@ -47,7 +47,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--qi-space-lg);
-  max-width: var(--qi-content-width);
+  max-width: var(--qi-prose-width);
 }
 
 .prose p {
@@ -65,14 +65,14 @@
 
 .philosophy-card {
   padding: var(--qi-space-2xl);
-  background: rgba(42, 42, 42, 0.02);
-  border: 1px solid rgba(42, 42, 42, 0.06);
+  background: var(--qi-base-02);
+  border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-lg);
   transition: all var(--qi-transition-base);
 }
 
 .philosophy-card:hover {
-  background: rgba(42, 42, 42, 0.03);
+  background: var(--qi-base-03);
   box-shadow: var(--qi-shadow-md);
   transform: translateY(-4px);
 }
@@ -80,7 +80,7 @@
 .philosophy-number {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-amber);
+  color: var(--qi-brand-amber);
   letter-spacing: 0.1em;
   font-weight: 600;
 }
@@ -105,7 +105,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--qi-space-xl);
-  max-width: var(--qi-content-width);
+  max-width: var(--qi-prose-width);
 }
 
 .cta-text {
@@ -146,7 +146,7 @@ a.cta-link .cta-value {
 }
 
 a.cta-link:hover .cta-value {
-  color: var(--qi-emerald-dark);
+  color: var(--qi-brand-emerald-dark);
 }
 
 .cta-btn {

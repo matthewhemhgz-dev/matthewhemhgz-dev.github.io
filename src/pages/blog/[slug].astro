@@ -151,7 +151,7 @@ const { Content, headings } = await render(post);
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-xs);
     color: var(--qi-brand-emerald);
-    background: rgba(46, 125, 92, 0.06);
+    background: var(--qi-brand-emerald-06);
     padding: 2px 10px;
     border-radius: var(--qi-radius-full);
   }
@@ -236,7 +236,7 @@ const { Content, headings } = await render(post);
     color: var(--qi-text-primary);
     margin: 2.5rem 0 1rem;
     padding-bottom: var(--qi-space-sm);
-    border-bottom: 1px solid rgba(42, 42, 42, 0.06);
+    border-bottom: 1px solid var(--qi-base-06);
     letter-spacing: -0.01em;
   }
 
@@ -274,7 +274,7 @@ const { Content, headings } = await render(post);
     color: var(--qi-brand-emerald);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: rgba(46, 125, 92, 0.3);
+    text-decoration-color: var(--qi-brand-emerald-30);
     transition: color var(--qi-transition), text-decoration-color var(--qi-transition);
   }
 
@@ -315,7 +315,7 @@ const { Content, headings } = await render(post);
     padding: 2px 7px;
     border-radius: 4px;
     font-size: 0.88em;
-    border: 1px solid rgba(42, 42, 42, 0.04);
+    border: 1px solid var(--qi-base-04);
   }
 
   /* Code blocks */
@@ -345,7 +345,7 @@ const { Content, headings } = await render(post);
     border-left: 3px solid var(--qi-brand-emerald);
     padding: var(--qi-space-md) var(--qi-space-lg);
     margin: 1.5rem 0;
-    background: rgba(46, 125, 92, 0.03);
+    background: var(--qi-brand-emerald-03);
     border-radius: 0 var(--qi-radius-md) var(--qi-radius-md) 0;
     color: var(--qi-text-primary);
     font-style: italic;
@@ -368,7 +368,7 @@ const { Content, headings } = await render(post);
   .prose :global(hr) {
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(42, 42, 42, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, var(--qi-base-10), transparent);
     margin: 2.5rem 0;
   }
 
@@ -383,7 +383,7 @@ const { Content, headings } = await render(post);
   .prose :global(th),
   .prose :global(td) {
     padding: var(--qi-space-sm) var(--qi-space-md);
-    border: 1px solid rgba(42, 42, 42, 0.08);
+    border: 1px solid var(--qi-base-08);
     text-align: left;
   }
 

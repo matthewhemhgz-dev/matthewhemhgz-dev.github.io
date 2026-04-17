@@ -14,7 +14,7 @@
   gap: var(--qi-space-sm);
   padding: var(--qi-space-xl);
   background: var(--qi-bg-base);
-  border: 1px solid rgba(42, 42, 42, 0.06);
+  border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-card);
   transition: transform var(--qi-transition), box-shadow var(--qi-transition);
   text-decoration: none;
@@ -65,7 +65,7 @@
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
   color: var(--qi-brand-emerald);
-  background: rgba(46, 125, 92, 0.08);
+  background: var(--qi-brand-emerald-08);
   padding: 2px 8px;
   border-radius: var(--qi-radius-full);
 }
@@ -130,7 +130,7 @@
   align-items: center;
   gap: var(--qi-space-lg);
   padding: var(--qi-space-4xl) var(--qi-space-xl);
-  border: 1px dashed rgba(42, 42, 42, 0.12);
+  border: 1px dashed var(--qi-opacity-medium);
   border-radius: var(--qi-radius-lg);
 }
 

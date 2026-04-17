@@ -5,9 +5,16 @@
   --qi-surface-main: #2A2A2A;
   --qi-surface-sub: #E8E3DD;
 
-  /* 品牌色 */
+  /* 品牌色 — 完整色阶 */
   --qi-brand-emerald: #2E7D5C;
+  --qi-brand-emerald-dark: #1B5E40;
   --qi-brand-amber: #E5A93C;
+  --qi-brand-amber-dark: #C78A1E;
+
+  /* 语义别名 — 兼容旧代码引用 */
+  --qi-amber: var(--qi-brand-amber);
+  --qi-amber-dark: var(--qi-brand-amber-dark);
+  --qi-emerald-dark: var(--qi-brand-emerald-dark);
 
   /* 文字色 */
   --qi-text-inverse: #F7F3EE;
@@ -24,6 +31,34 @@
   --qi-opacity-subtle: 0.06;
   --qi-opacity-medium: 0.12;
   --qi-opacity-strong: 0.2;
+
+  /* 品牌色透明度令牌 */
+  --qi-brand-emerald-03: rgba(46, 125, 92, 0.03);
+  --qi-brand-emerald-04: rgba(46, 125, 92, 0.04);
+  --qi-brand-emerald-06: rgba(46, 125, 92, 0.06);
+  --qi-brand-emerald-08: rgba(46, 125, 92, 0.08);
+  --qi-brand-emerald-10: rgba(46, 125, 92, 0.10);
+  --qi-brand-emerald-12: rgba(46, 125, 92, 0.12);
+  --qi-brand-emerald-15: rgba(46, 125, 92, 0.15);
+  --qi-brand-emerald-18: rgba(46, 125, 92, 0.18);
+  --qi-brand-emerald-30: rgba(46, 125, 92, 0.30);
+
+  --qi-brand-amber-04: rgba(229, 169, 60, 0.04);
+  --qi-brand-amber-08: rgba(229, 169, 60, 0.08);
+  --qi-brand-amber-10: rgba(229, 169, 60, 0.10);
+  --qi-brand-amber-12: rgba(229, 169, 60, 0.12);
+  --qi-brand-amber-15: rgba(229, 169, 60, 0.15);
+  --qi-brand-amber-18: rgba(229, 169, 60, 0.18);
+  --qi-brand-amber-20: rgba(229, 169, 60, 0.20);
+
+  /* 基础色透明度令牌 */
+  --qi-base-02: rgba(42, 42, 42, 0.02);
+  --qi-base-03: rgba(42, 42, 42, 0.03);
+  --qi-base-04: rgba(42, 42, 42, 0.04);
+  --qi-base-06: rgba(42, 42, 42, 0.06);
+  --qi-base-08: rgba(42, 42, 42, 0.08);
+  --qi-base-10: rgba(42, 42, 42, 0.10);
+  --qi-base-15: rgba(42, 42, 42, 0.15);
 }
 
 /* === 2. 字体令牌 === */
@@ -77,8 +112,11 @@
   --qi-gap-sm: 10px;
   --qi-gap-bento: 24px;
   --qi-container-padding: 24px;
-  --qi-content-width: 680px;
-  --qi-max-width: 1200px;
+  /* 文本内容最大宽度（文章、描述） */
+  --qi-prose-width: 680px;
+
+  /* 页面容器最大宽度 */
+  --qi-container-max: 1200px;
   --qi-nav-height: 64px;
 }
 
@@ -119,18 +157,25 @@
   /* Large screen scaling */
   --qi-font-scale: 1;
   --qi-spacing-scale: 1;
-  --qi-content-max: 1200px;
+  --qi-container-max: 1200px;
+
+  /* Responsive font helpers (scale with large screens) */
+  --qi-font-scaled-sm: calc(var(--qi-text-sm) * var(--qi-font-scale, 1));
+  --qi-font-scaled-base: calc(var(--qi-text-base) * var(--qi-font-scale, 1));
+  --qi-font-scaled-lg: calc(var(--qi-text-lg) * var(--qi-font-scale, 1));
+  --qi-font-scaled-xl: calc(var(--qi-text-xl) * var(--qi-font-scale, 1));
+  --qi-font-scaled-2xl: calc(var(--qi-text-2xl) * var(--qi-font-scale, 1));
 }
 
 @media (min-width: 1440px) {
   :root {
-    --qi-content-max: 1320px;
+    --qi-container-max: 1320px;
   }
 }
 
 @media (min-width: 1920px) {
   :root {
-    --qi-content-max: 1400px;
+    --qi-container-max: 1400px;
     --qi-font-scale: 1.05;
     --qi-spacing-scale: 1.1;
   }
@@ -138,7 +183,7 @@
 
 @media (min-width: 2560px) {
   :root {
-    --qi-content-max: 1600px;
+    --qi-container-max: 1600px;
     --qi-font-scale: 1.15;
     --qi-spacing-scale: 1.25;
   }
@@ -146,7 +191,7 @@
 
 @media (min-width: 3440px) {
   :root {
-    --qi-content-max: 1920px;
+    --qi-container-max: 1920px;
     --qi-font-scale: 1.3;
     --qi-spacing-scale: 1.4;
   }

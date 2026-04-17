@@ -1,12 +1,9 @@
 /* Home page shared styles — split into section files */
 @import './home-hero.css';
 @import './home-about.css';
-@import './home-skills.css';
-@import './home-categories.css';
 @import './home-featured.css';
 @import './home-toolbox.css';
 @import './home-platforms.css';
-@import './home-timeline.css';
 @import './home-testimonials.css';
 @import './home-cta.css';
 @import './home-responsive.css';
@@ -15,4 +12,23 @@
 .section {
   padding: var(--qi-space-5xl) 0;
   position: relative;
+}
+
+/* Section spacing variants */
+.section--compact {
+  padding: var(--qi-space-3xl) 0;
+}
+
+.section--spacious {
+  padding: var(--qi-space-5xl) 0;
+}
+
+/* Visual separator between sections (replaces Divider component) */
+.section + .section {
+  border-top: 1px solid var(--qi-border-subtle);
+}
+
+/* First section after hero should not have top border */
+.hero-section + .section {
+  border-top: none;
 }

@@ -43,7 +43,7 @@ const { variant = 'dot' } = Astro.props;
     background: linear-gradient(
       to right,
       transparent,
-      rgba(42, 42, 42, 0.15),
+      var(--qi-base-15),
       transparent
     );
   }
@@ -93,6 +93,6 @@ const { variant = 'dot' } = Astro.props;
     width: 100%;
     max-width: 200px;
     height: 1px;
-    background: rgba(42, 42, 42, 0.06);
+    background: var(--qi-base-06);
   }
 </style>

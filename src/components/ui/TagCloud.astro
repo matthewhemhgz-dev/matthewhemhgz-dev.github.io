@@ -86,15 +86,15 @@ const sizeConfig = {
 
   /* Light variant */
   .tag-cloud--light .tag-item {
-    background: rgba(42, 42, 42, 0.04);
+    background: var(--qi-base-04);
     color: var(--qi-text-secondary);
-    border: 1px solid rgba(42, 42, 42, 0.06);
+    border: 1px solid var(--qi-base-06);
   }
 
   .tag-cloud--light .tag-item:hover {
-    background: rgba(46, 125, 92, 0.08);
+    background: var(--qi-brand-emerald-08);
     color: var(--qi-brand-emerald);
-    border-color: rgba(46, 125, 92, 0.15);
+    border-color: var(--qi-brand-emerald-15);
     transform: translateY(-1px);
     box-shadow: var(--qi-shadow-sm);
   }
@@ -107,9 +107,9 @@ const sizeConfig = {
   }
 
   .tag-cloud--dark .tag-item:hover {
-    background: rgba(229, 169, 60, 0.12);
+    background: var(--qi-brand-amber-12);
     color: var(--qi-amber);
-    border-color: rgba(229, 169, 60, 0.2);
+    border-color: var(--qi-brand-amber-20);
     transform: translateY(-1px);
   }
 

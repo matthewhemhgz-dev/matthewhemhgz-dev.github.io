@@ -49,7 +49,7 @@
   font-size: var(--qi-text-lg);
   color: var(--qi-text-secondary);
   line-height: 1.9;
-  max-width: var(--qi-content-width);
+  max-width: var(--qi-prose-width);
 }
 
 .dash-grid {

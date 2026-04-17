@@ -14,7 +14,7 @@
   gap: var(--qi-space-md);
   padding: var(--qi-space-lg);
   background: var(--qi-bg-base);
-  border: 1px solid rgba(42, 42, 42, 0.06);
+  border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-card);
   transition: transform var(--qi-transition), box-shadow var(--qi-transition), border-color var(--qi-transition);
   text-decoration: none;
@@ -24,7 +24,7 @@
 .platform-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--qi-shadow-hover-warm);
-  border-color: rgba(42, 42, 42, 0.1);
+  border-color: var(--qi-base-10);
 }
 
 /* Platform hover - icon scales, arrow translates with amber color */

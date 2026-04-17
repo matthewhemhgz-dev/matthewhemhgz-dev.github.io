@@ -30,7 +30,7 @@
 .hero-gradient-orb--1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(46, 125, 92, 0.15), transparent 70%);
+  background: radial-gradient(circle, var(--qi-brand-emerald-15), transparent 70%);
   top: -100px;
   right: -100px;
 }
@@ -38,7 +38,7 @@
 .hero-gradient-orb--2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(229, 169, 60, 0.12), transparent 70%);
+  background: radial-gradient(circle, var(--qi-brand-amber-12), transparent 70%);
   bottom: -50px;
   left: -50px;
 }
@@ -47,8 +47,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(42, 42, 42, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 42, 42, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--qi-base-03) 1px, transparent 1px),
+    linear-gradient(90deg, var(--qi-base-03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
@@ -81,7 +81,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--qi-space-xl);
-  max-width: 720px;
+  max-width: min(720px, 60%);
   position: relative;
   z-index: 1;
 }
@@ -91,8 +91,8 @@
   align-items: center;
   gap: var(--qi-space-sm);
   padding: var(--qi-space-xs) var(--qi-space-md);
-  background: rgba(46, 125, 92, 0.06);
-  border: 1px solid rgba(46, 125, 92, 0.12);
+  background: var(--qi-brand-emerald-06);
+  border: 1px solid var(--qi-brand-emerald-12);
   border-radius: var(--qi-radius-full);
   width: fit-content;
   backdrop-filter: blur(8px);
@@ -144,7 +144,7 @@
   left: 0;
   width: 100%;
   height: 8px;
-  background: rgba(46, 125, 92, 0.12);
+  background: var(--qi-brand-emerald-12);
   border-radius: 4px;
   z-index: -1;
 }
@@ -153,7 +153,7 @@
   font-size: var(--qi-text-lg);
   color: var(--qi-text-muted);
   line-height: 1.8;
-  max-width: 560px;
+  max-width: min(560px, 80%);
 }
 
 .hero-actions {
@@ -202,7 +202,7 @@
 .btn-secondary {
   background: transparent;
   color: var(--qi-text-primary);
-  border: 1px solid rgba(42, 42, 42, 0.15);
+  border: 1px solid var(--qi-base-15);
 }
 
 .btn-secondary:hover {
@@ -218,7 +218,7 @@
   gap: var(--qi-space-xl);
   margin-top: var(--qi-space-xl);
   padding-top: var(--qi-space-xl);
-  border-top: 1px solid rgba(42, 42, 42, 0.08);
+  border-top: 1px solid var(--qi-base-08);
 }
 
 .hero-stat {
@@ -245,5 +245,115 @@
 .hero-stat-divider {
   width: 1px;
   height: 32px;
-  background: rgba(42, 42, 42, 0.1);
+  background: var(--qi-base-10);
+}
+
+/* === Large screen adaptations === */
+
+@media (min-width: 1440px) {
+  .hero-container {
+    max-width: min(800px, 55%);
+  }
+
+  .hero-gradient-orb--1 {
+    width: 600px;
+    height: 600px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-container {
+    max-width: min(960px, 50%);
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 5vw, 5.5rem);
+  }
+
+  .hero-gradient-orb--1 {
+    width: 800px;
+    height: 800px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 650px;
+    height: 650px;
+  }
+
+  .hero-stats {
+    gap: var(--qi-space-2xl);
+  }
+}
+
+@media (min-width: 2560px) {
+  .hero-container {
+    max-width: min(1100px, 45%);
+  }
+
+  .hero-title {
+    font-size: clamp(4rem, 4.5vw, 7rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--qi-text-2xl);
+  }
+
+  .hero-gradient-orb--1 {
+    width: 1000px;
+    height: 1000px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 800px;
+    height: 800px;
+  }
+
+  .hero-stats {
+    gap: var(--qi-space-3xl);
+  }
+
+  .hero-stat-value {
+    font-size: var(--qi-text-3xl);
+  }
+
+  .hero-stat-label {
+    font-size: var(--qi-text-sm);
+  }
+
+  .hero-stat-divider {
+    height: 40px;
+  }
+}
+
+@media (min-width: 3440px) {
+  .hero-container {
+    max-width: min(1400px, 40%);
+  }
+
+  .hero-title {
+    font-size: clamp(5rem, 4vw, 9rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--qi-text-3xl);
+  }
+
+  .hero-gradient-orb--1 {
+    width: 1200px;
+    height: 1200px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 1000px;
+    height: 1000px;
+  }
+
+  .hero-stat-value {
+    font-size: var(--qi-text-4xl);
+  }
 }

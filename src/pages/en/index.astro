@@ -1,14 +1,11 @@
 ---
+import '../../styles/home.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Divider from '../../components/global/Divider.astro';
 import HeroSection from '../../components/sections/HeroSection.astro';
 import AboutSection from '../../components/sections/AboutSection.astro';
 import FeaturedSection from '../../components/sections/FeaturedSection.astro';
-import SkillsSection from '../../components/sections/SkillsSection.astro';
-import CategoriesSection from '../../components/sections/CategoriesSection.astro';
 import ToolboxSection from '../../components/sections/ToolboxSection.astro';
 import PlatformsSection from '../../components/sections/PlatformsSection.astro';
-import TimelineSection from '../../components/sections/TimelineSection.astro';
 import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
 import CtaSection from '../../components/sections/CtaSection.astro';
 import { getCollection } from 'astro:content';
@@ -18,14 +15,6 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft && da
   .slice(0, 4);
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
-const countByCategory = (cat) => allPosts.filter(p => p.data.category === cat).length;
-
-const contentCategories = [
-  { icon: 'chart-bar', title: 'Deep Dive', desc: 'In-depth analysis uncovering the essence and underlying principles of technology', color: 'emerald', count: countByCategory('Deep Dive'), countLabel: 'posts' },
-  { icon: 'wrench', title: 'Practical Tips', desc: 'Actionable techniques, tools, and workflow sharing', color: 'amber', count: countByCategory('Practical Tips'), countLabel: 'posts' },
-  { icon: 'magnifier', title: 'Trends', desc: 'Cutting-edge technology trends and industry observations', color: 'emerald', count: countByCategory('Trends'), countLabel: 'posts' },
-  { icon: 'thought-bubble', title: 'Thoughts', desc: 'Sparks of inspiration, reflections, and life musings', color: 'amber', count: countByCategory('Thoughts'), countLabel: 'posts' },
-];
 
 const toolboxCategories = [
   { label: 'Knowledge Management', icon: 'book', tools: [{ name: 'Notion', desc: 'All-in-one workspace' }, { name: 'Obsidian', desc: 'Local-first knowledge graph' }, { name: 'Logseq', desc: 'Outliner notes & bi-directional links' }] },
@@ -43,23 +32,13 @@ const platforms = [
   { name: 'Bilibili', handle: 'Qi-Lab', url: '#', icon: 'film', desc: 'Video tutorials & demos', comingSoonText: 'Coming soon' },
 ];
 
-const timelineItems = [
-  { date: '2025.04', title: 'Qi-Lab Website v4.0 Launch', desc: 'Astro rebuild with new design system & i18n support', tag: 'Milestone' },
-  { date: '2025.03', title: 'Dual-Track Knowledge System', desc: 'Obsidian + Notion collaborative workflow', tag: 'System' },
-  { date: '2025.02', title: 'AI Tools Deep Review Series', desc: 'Systematic review of mainstream AI tools', tag: 'Content' },
-  { date: '2025.01', title: 'Qi-Lab Brand Founded', desc: 'The starting point for tech exploration & creative experiments', tag: 'Origin' },
-  { date: '2024.11', title: 'First Open-Source Tool Library', desc: 'Published utility toolkit, gained community traction', tag: 'Open Source' },
-  { date: '2024.09', title: 'Started Systematic Tech Writing', desc: 'Built content system, focused on frontend & productivity', tag: 'Origin' },
-];
-
 const testimonials = [
   { quote: 'Qi-Lab\'s tech articles always explain complex concepts with remarkable clarity. The front-end performance optimization piece was especially enlightening.', author: 'A Front-End Developer', role: 'Reader Feedback' },
-  { quote: 'The toolbox recommendations are incredibly practical, saving me hours of tool research. The knowledge management series directly changed how I organize my notes.', author: 'A Product Manager', role: 'Long-Time Reader' },
   { quote: 'Rare to find a personal blog with both technical depth and design aesthetics. Every visit is a genuine pleasure.', author: 'A Designer', role: 'Subscriber' },
 ];
 ---
 
-<BaseLayout title="Qi-Lab" description="Qi-Lab — Where technology, design, and creativity converge." tagline="Build with code, express through design">
+<BaseLayout title="Qi-Lab" description="Qi-Lab — Where technology, design, and creativity converge." tagline="Build with code, express through design" lang="en">
 
   <HeroSection
     titleLines={['Where Technology,', 'Design & Creativity', 'Converge']}
@@ -89,8 +68,6 @@ const testimonials = [
     ]}
   />
 
-  <Divider />
-
   <FeaturedSection
     label="// FEATURED"
     title="Featured Content"
@@ -104,57 +81,17 @@ const testimonials = [
     largeCardLayout={false}
   />
 
-  <Divider variant="gradient" />
-
-  <SkillsSection
-    label="// SKILLS"
-    title="Tech Stack"
-    intro="Building creative possibilities with technology"
-    tags={[
-      { text: 'TypeScript', size: 'lg', href: '/en/tags/typescript' },
-      { text: 'React', size: 'lg', href: '/en/tags/react' },
-      { text: 'Astro', size: 'lg', href: '/en/tags/astro' },
-      { text: 'Node.js', size: 'md', href: '/en/tags/nodejs' },
-      { text: 'Vue', size: 'md', href: '/en/tags/vue' },
-      { text: 'CSS', size: 'md', href: '/en/tags/css' },
-      { text: 'Rust', size: 'md' },
-      { text: 'Go', size: 'sm' },
-      { text: 'PostgreSQL', size: 'sm' },
-      { text: 'Docker', size: 'sm' },
-      { text: 'Figma', size: 'sm' },
-      { text: 'Git', size: 'sm' },
-      { text: 'Linux', size: 'sm' },
-      { text: 'WebGL', size: 'sm' },
-    ]}
-  />
-
-  <CategoriesSection
-    label="// CATEGORIES"
-    title="Content Categories"
-    categories={contentCategories}
-  />
-
   <ToolboxSection
     label="// TOOLBOX"
     title="Toolbox"
     categories={toolboxCategories}
   />
 
-  <Divider variant="dash" />
-
   <PlatformsSection
     label="// PLATFORMS"
     title="Platform Matrix"
     platforms={platforms}
   />
-
-  <TimelineSection
-    label="// TIMELINE"
-    title="Changelog"
-    items={timelineItems}
-  />
-
-  <Divider variant="minimal" />
 
   <TestimonialsSection
     label="// VOICES"
@@ -191,31 +128,5 @@ const testimonials = [
   /* Empty state icon (emoji version) */
   .empty-icon {
     font-size: 2.5rem;
-  }
-
-  /* English timeline tag color variants */
-  .timeline-tag--Milestone {
-    background: rgba(46, 125, 92, 0.1);
-    color: var(--qi-brand-emerald);
-  }
-
-  .timeline-tag--Origin {
-    background: rgba(229, 169, 60, 0.1);
-    color: var(--qi-amber-dark);
-  }
-
-  .timeline-tag--System {
-    background: rgba(42, 42, 42, 0.06);
-    color: var(--qi-text-secondary);
-  }
-
-  .timeline-tag--Content {
-    background: rgba(42, 42, 42, 0.06);
-    color: var(--qi-text-secondary);
-  }
-
-  .timeline-tag--Open Source {
-    background: rgba(229, 169, 60, 0.08);
-    color: var(--qi-amber-dark);
   }
 </style>

@@ -13,7 +13,7 @@ body {
 
 a {
   color: var(--qi-brand-emerald);
-  transition: color 0.2s;
+  transition: color var(--qi-transition-fast);
 }
 
 a:hover {
