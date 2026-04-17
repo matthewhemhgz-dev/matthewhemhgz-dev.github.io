@@ -46,6 +46,7 @@
   top: -100px;
   right: -100px;
   animation: orb-color-shift-1 25s ease-in-out infinite;
+  transition: width 0.4s ease, height 0.4s ease;
 }
 
 .hero-gradient-orb--2 {
@@ -55,6 +56,7 @@
   bottom: -50px;
   left: -50px;
   animation: orb-color-shift-2 30s ease-in-out infinite;
+  transition: width 0.4s ease, height 0.4s ease;
 }
 
 /* 颜色过渡关键帧 — 翡翠 ↔ 薄荷 ↔ 琥珀 缓慢循环 */
@@ -98,6 +100,7 @@
   );
   pointer-events: none;
   z-index: 3;
+  transition: opacity 0.5s ease;
 }
 
 .hero-grid-pattern {
@@ -138,6 +141,7 @@
   );
   animation: rays-spin 120s linear infinite;
   pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 @keyframes rays-spin {
@@ -149,6 +153,7 @@
 .hero-beam {
   position: absolute;
   pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 .hero-beam--amber {
@@ -216,6 +221,7 @@
     transparent 75%
   );
   pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 /* Hero watermark character */
@@ -338,8 +344,20 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   border-radius: var(--qi-radius-md);
-  transition: all var(--qi-transition);
+  transition: transform 0.2s var(--qi-spring),
+              box-shadow 0.3s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease,
+              color 0.3s ease;
   text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.1s;
 }
 
 .btn-primary {
@@ -442,7 +460,8 @@
   }
 
   .hero-vignette {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .hero-gradient-orb:first-child {
@@ -458,7 +477,8 @@
   .hero-rays,
   .hero-beam,
   .hero-dot-pattern {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .hero-watermark {
@@ -646,6 +666,7 @@
   opacity: 0.85;
   animation: arcs-rotate 180s linear infinite;
   pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 @keyframes arcs-rotate {
@@ -655,7 +676,8 @@
 
 @media (max-width: 768px) {
   .hero-arcs {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 }
 

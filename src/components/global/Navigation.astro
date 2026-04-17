@@ -57,7 +57,11 @@ const navItems = [
     padding: var(--qi-space-md) var(--qi-space-xl);
     border: 1px solid var(--qi-base-06);
     box-shadow: 0 4px 24px var(--qi-base-06);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: calc(100% - 32px);
   }
 

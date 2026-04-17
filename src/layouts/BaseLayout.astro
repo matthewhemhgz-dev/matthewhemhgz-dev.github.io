@@ -79,7 +79,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <NoiseOverlay />
     <ScrollProgress />
     <Navigation currentPath={Astro.url.pathname} />
-    <main id="main-content">
+    <main id="main-content" transition:name="main-content">
       <slot />
     </main>
     <BackToTop />
@@ -88,6 +88,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
       email="hello@qi-lab.dev"
       wechat="QiLab_Studio"
       copyrightYear={new Date().getFullYear()}
+      transition:name="site-footer"
     />
     <ParticlesCanvas />
 

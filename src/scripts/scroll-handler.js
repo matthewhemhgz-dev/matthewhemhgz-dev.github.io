@@ -5,6 +5,11 @@ export function initScrollReveal() {
   revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        const parent = entry.target.parentElement;
+        const siblings = parent ? parent.querySelectorAll('[data-reveal]') : [];
+        const siblingIndex = Array.from(siblings).indexOf(entry.target);
+        const delay = siblingIndex * 80;
+        entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
         entry.target.classList.add('is-visible');
         revealObserver?.unobserve(entry.target);
       }

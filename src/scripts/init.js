@@ -1,6 +1,7 @@
 import 'astro:transitions/client';
 import { MinimalParticles } from './particles.js';
 import { CursorGlow } from './cursor-glow.js';
+import { CardTilt } from './card-tilt.js';
 import { initScrollReveal, initScrollHandler, initBackToTop, cleanupScrollHandler } from './scroll-handler.js';
 import { initScrollParallax, cleanupScrollParallax } from './scroll-parallax.js';
 
@@ -54,6 +55,9 @@ function initQiLab() {
     });
     cleanupFns.push(() => cursorGlow.destroy());
   }
+
+  // 2.5 卡片 3D 倾斜 + 光泽效果
+  new CardTilt('.bento-card, .testimonial-card, .platform-card');
 
   // 3. 滚动视差光影
   if (!prefersReducedMotion) {
