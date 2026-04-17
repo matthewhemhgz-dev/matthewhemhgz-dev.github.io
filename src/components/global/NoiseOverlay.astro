@@ -1,5 +1,5 @@
 ---
-// NoiseOverlay - Subtle texture overlay for physical warmth
+// NoiseOverlay - 纸张纹理叠加层，模拟真实纸张纤维质感
 ---
 
 <div class="noise-overlay" aria-hidden="true"></div>
@@ -13,10 +13,24 @@
     height: 100%;
     z-index: var(--qi-z-noise);
     pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    /* 第一层：细腻的纸张纤维纹理 */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0' in='noise' result='grayNoise'/%3E%3CfeBlend in='SourceGraphic' in2='grayNoise' mode='multiply'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n1)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 256px 256px;
     mix-blend-mode: overlay;
+  }
+
+  /* 第二层：极淡的纤维方向性纹理 */
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
   }
 </style>

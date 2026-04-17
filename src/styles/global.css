@@ -7,7 +7,9 @@
 body {
   font-family: var(--qi-font-sans);
   font-size: calc(1rem * var(--qi-font-scale, 1));
-  background: var(--qi-bg-base);
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.25) 0%, transparent 70%),
+    var(--qi-bg-base);
   color: var(--qi-text-primary);
   overflow-x: hidden;
 }
