@@ -72,6 +72,48 @@
 }
 
 /* === Large screen: CTA Section === */
+@media (min-width: 1440px) {
+  .cta-content {
+    max-width: 620px;
+    gap: var(--qi-space-xl);
+  }
+
+  .cta-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+  }
+
+  .cta-desc {
+    font-size: var(--qi-text-lg);
+    line-height: 1.75;
+  }
+
+  .cta-section .btn {
+    padding: var(--qi-space-md) var(--qi-space-xl);
+    font-size: var(--qi-text-sm);
+  }
+}
+
+@media (min-width: 1920px) {
+  .cta-content {
+    max-width: 680px;
+    gap: var(--qi-space-xl);
+  }
+
+  .cta-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
+
+  .cta-desc {
+    font-size: var(--qi-text-lg);
+    line-height: 1.8;
+  }
+
+  .cta-section .btn {
+    padding: var(--qi-space-lg) var(--qi-space-2xl);
+    font-size: var(--qi-text-base);
+  }
+}
+
 @media (min-width: 2560px) {
   .cta-content {
     max-width: 720px;

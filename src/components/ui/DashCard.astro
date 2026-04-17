@@ -140,4 +140,19 @@ const colors = colorMap[color] || colorMap.emerald;
       transform: translateY(0);
     }
   }
+
+  @media (max-width: 768px) {
+    .dash-card {
+      padding: var(--qi-space-md);
+    }
+
+    .card-value {
+      font-size: var(--qi-text-xl);
+    }
+
+    .progress-pct {
+      top: -20px;
+      font-size: 0.65rem;
+    }
+  }
 </style>

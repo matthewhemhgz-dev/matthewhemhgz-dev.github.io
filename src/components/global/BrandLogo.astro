@@ -1,0 +1,157 @@
+---
+/**
+ * BrandLogo — 祈研所品牌 Logo 组件
+ * 基于 VI 设计：祈字 + 月桂环 + 品牌渐变
+ *
+ * Props:
+ *   variant: 'full' | 'icon'  — 完整 Logo（图标+文字）或仅图标
+ *   size:    'sm' | 'md' | 'lg'
+ *   lang:    'zh' | 'en'  — 控制品牌名称显示
+ */
+interface Props {
+  variant?: 'full' | 'icon';
+  size?: 'sm' | 'md' | 'lg';
+  lang?: string;
+}
+
+const { variant = 'icon', size = 'md', lang = 'zh' } = Astro.props;
+
+const sizeMap = {
+  sm: { icon: 28, text: '0.95rem', gap: '6px' },
+  md: { icon: 36, text: '1.15rem', gap: '8px' },
+  lg: { icon: 48, text: '1.5rem', gap: '12px' },
+};
+
+const s = sizeMap[size];
+const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
+---
+
+<a href={lang === 'en' ? '/en/' : '/'} class="brand-logo brand-logo--{variant} brand-logo--{size}" aria-label={brandName}>
+  <svg
+    class="brand-logo__icon"
+    width={s.icon}
+    height={s.icon}
+    viewBox="0 0 100 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="qi-logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#2E7D5C" />
+        <stop offset="50%" stop-color="#78B4A0" />
+        <stop offset="100%" stop-color="#E5A93C" />
+      </linearGradient>
+      <linearGradient id="qi-logo-gradient-text" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#2E7D5C" />
+        <stop offset="100%" stop-color="#78B4A0" />
+      </linearGradient>
+    </defs>
+
+    <!-- 外圈：月桂环 -->
+    <circle
+      cx="50" cy="50" r="46"
+      stroke="url(#qi-logo-gradient)"
+      stroke-width="2"
+      fill="none"
+      opacity="0.6"
+    />
+
+    <!-- 左侧月桂叶 -->
+    <path
+      d="M50 8 C42 14, 30 22, 22 34 C18 40, 14 48, 14 50"
+      stroke="url(#qi-logo-gradient)"
+      stroke-width="1.5"
+      fill="none"
+      opacity="0.4"
+      stroke-linecap="round"
+    />
+    <path
+      d="M38 14 C34 20, 28 28, 24 36"
+      stroke="url(#qi-logo-gradient)"
+      stroke-width="1"
+      fill="none"
+      opacity="0.3"
+      stroke-linecap="round"
+    />
+
+    <!-- 右侧月桂叶 -->
+    <path
+      d="M50 8 C58 14, 70 22, 78 34 C82 40, 86 48, 86 50"
+      stroke="url(#qi-logo-gradient)"
+      stroke-width="1.5"
+      fill="none"
+      opacity="0.4"
+      stroke-linecap="round"
+    />
+    <path
+      d="M62 14 C66 20, 72 28, 76 36"
+      stroke="url(#qi-logo-gradient)"
+      stroke-width="1"
+      fill="none"
+      opacity="0.3"
+      stroke-linecap="round"
+    />
+
+    <!-- 中心祈字 -->
+    <text
+      x="50" y="58"
+      text-anchor="middle"
+      font-family="'Noto Serif SC', serif"
+      font-weight="700"
+      font-size="42"
+      fill="url(#qi-logo-gradient-text)"
+    >祈</text>
+
+    <!-- 底部装饰线 -->
+    <line
+      x1="36" y1="72" x2="64" y2="72"
+      stroke="url(#qi-logo-gradient)"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      opacity="0.5"
+    />
+  </svg>
+
+  {variant === 'full' && (
+    <span class="brand-logo__text" style={`font-size: ${s.text}`}>{brandName}</span>
+  )}
+</a>
+
+<style>
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--logo-gap, 8px);
+    text-decoration: none;
+    color: var(--qi-text-primary);
+    transition: color var(--qi-transition-fast), opacity var(--qi-transition-fast);
+  }
+
+  .brand-logo:hover {
+    color: var(--qi-brand-emerald);
+  }
+
+  .brand-logo--sm {
+    --logo-gap: 6px;
+  }
+
+  .brand-logo--md {
+    --logo-gap: 8px;
+  }
+
+  .brand-logo--lg {
+    --logo-gap: 12px;
+  }
+
+  .brand-logo__icon {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  .brand-logo__text {
+    font-family: var(--qi-font-serif);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+</style>

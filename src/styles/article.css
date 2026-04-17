@@ -427,10 +427,27 @@
   }
 }
 
+/* === Desktop: Article === */
+@media (min-width: 1024px) {
+  .article-container {
+    max-width: 820px;
+  }
+}
+
 /* === Large screen: Article === */
 @media (min-width: 1440px) {
   .article-container { max-width: 860px; }
   .prose :global(h2) { font-size: 1.8rem; }
+}
+
+/* === XL screen: Article === */
+@media (min-width: 1920px) {
+  .article-container { max-width: 900px; }
+  .prose { font-size: calc(var(--qi-text-lg) + 0.05rem); line-height: 1.95; }
+  .prose :global(h2) { font-size: 1.9rem; }
+  .prose :global(h3) { font-size: 1.4rem; }
+  .toc { padding: var(--qi-space-lg) var(--qi-space-2xl); }
+  .article-title { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
 }
 
 @media (min-width: 2560px) {

@@ -281,4 +281,44 @@ const andText = '&';
       text-align: center;
     }
   }
+
+  @media (min-width: 1024px) {
+    .footer-links {
+      gap: var(--qi-space-4xl);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .footer-inner {
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+
+    .footer-tagline {
+      max-width: 400px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .footer-title {
+      font-size: var(--qi-text-3xl);
+    }
+
+    .footer-tagline {
+      font-size: var(--qi-text-base);
+    }
+
+    .footer-heading {
+      font-size: var(--qi-text-sm);
+    }
+
+    .contact-value,
+    .social-name {
+      font-size: var(--qi-text-base);
+    }
+
+    .footer-links {
+      gap: var(--qi-space-5xl);
+    }
+  }
 </style>

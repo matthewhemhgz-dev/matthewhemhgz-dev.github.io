@@ -57,3 +57,135 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--qi-space-lg);
 }
+
+/* ==========================================================================
+   About Section — Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .about-section {
+    padding-top: var(--qi-space-4xl, 4rem);
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: var(--qi-space-2xl);
+  }
+
+  .about-deco {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--qi-space-md);
+  }
+
+  .about-deco-number {
+    font-size: clamp(4rem, 12vw, 6rem);
+  }
+
+  .about-deco-slogan {
+    font-size: var(--qi-text-base);
+    letter-spacing: 0.08em;
+  }
+
+  .about-text {
+    font-size: var(--qi-text-base);
+    line-height: 1.8;
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-layout {
+    gap: var(--qi-space-4xl);
+  }
+
+  .about-text {
+    font-size: var(--qi-text-xl);
+  }
+}
+
+@media (min-width: 1440px) {
+  .about-section {
+    padding-top: var(--qi-space-7xl, 10rem);
+  }
+
+  .about-layout {
+    gap: var(--qi-space-5xl);
+  }
+
+  .about-text {
+    font-size: var(--qi-text-2xl);
+    line-height: 2;
+  }
+
+  .about-deco-slogan {
+    font-size: var(--qi-text-2xl);
+  }
+
+  .dash-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--qi-space-xl);
+  }
+}
+
+@media (min-width: 2560px) {
+  .about-section {
+    padding-top: var(--qi-space-8xl, 12rem);
+  }
+
+  .about-layout {
+    gap: var(--qi-space-6xl);
+  }
+
+  .about-deco-number {
+    font-size: clamp(8rem, 10vw, 14rem);
+  }
+
+  .about-deco-slogan {
+    font-size: var(--qi-text-3xl);
+    letter-spacing: 0.2em;
+  }
+
+  .about-text {
+    font-size: var(--qi-text-3xl);
+    line-height: 2.1;
+  }
+
+  .dash-grid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: var(--qi-space-2xl);
+  }
+}
+
+@media (min-width: 3440px) {
+  .about-section {
+    padding-top: var(--qi-space-9xl, 16rem);
+  }
+
+  .about-layout {
+    gap: var(--qi-space-7xl);
+  }
+
+  .about-deco-number {
+    font-size: clamp(12rem, 10vw, 18rem);
+  }
+
+  .about-deco-slogan {
+    font-size: var(--qi-text-4xl);
+    letter-spacing: 0.25em;
+  }
+
+  .about-text {
+    font-size: var(--qi-text-4xl);
+    line-height: 2.2;
+  }
+
+  .dash-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--qi-space-3xl);
+  }
+}

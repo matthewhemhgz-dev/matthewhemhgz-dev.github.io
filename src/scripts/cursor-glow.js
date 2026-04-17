@@ -147,12 +147,13 @@ export class CursorGlow {
   }
 
   _bindEvents() {
-    window.addEventListener('touchstart', () => {
+    this._onTouchStart = () => {
       this.isTouchDevice = true;
       if (this.el) this.el.style.display = 'none';
-    }, { once: true, passive: true });
+    };
+    window.addEventListener('touchstart', this._onTouchStart, { once: true, passive: true });
 
-    document.addEventListener('mousemove', (e) => {
+    this._onMouseMove = (e) => {
       if (this.isTouchDevice) return;
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
@@ -161,20 +162,22 @@ export class CursorGlow {
         this.hasInteracted = true;
         this.currentX = this.mouseX;
         this.currentY = this.mouseY;
-        // 平滑过渡到满亮度
         this.el.classList.add('is-active');
       }
-    }, { passive: true });
+    };
+    document.addEventListener('mousemove', this._onMouseMove, { passive: true });
 
-    document.addEventListener('mouseleave', () => {
+    this._onMouseLeave = () => {
       if (this.el) this.el.classList.add('is-leaving');
-    });
+    };
+    document.addEventListener('mouseleave', this._onMouseLeave);
 
-    document.addEventListener('mouseenter', () => {
+    this._onMouseEnter = () => {
       if (this.el && this.hasInteracted) {
         this.el.classList.remove('is-leaving');
       }
-    });
+    };
+    document.addEventListener('mouseenter', this._onMouseEnter);
 
     this._animate();
   }
@@ -198,9 +201,16 @@ export class CursorGlow {
 
   destroy() {
     if (this.rafId) cancelAnimationFrame(this.rafId);
+    // 移除事件监听器
+    if (this._onTouchStart) window.removeEventListener('touchstart', this._onTouchStart);
+    if (this._onMouseMove) document.removeEventListener('mousemove', this._onMouseMove);
+    if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
+    if (this._onMouseEnter) document.removeEventListener('mouseenter', this._onMouseEnter);
+    // 移除注入的样式和 DOM 元素
     const styleId = 'cursor-glow-style';
     const existingStyle = document.getElementById(styleId);
     if (existingStyle) existingStyle.remove();
     if (this.el) this.el.remove();
+    this.el = null;
   }
 }

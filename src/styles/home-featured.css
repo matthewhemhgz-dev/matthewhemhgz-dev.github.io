@@ -148,6 +148,23 @@
 }
 
 /* === Large screen: Featured Section === */
+@media (min-width: 1440px) {
+  .bento-grid {
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .bento-title {
+    font-size: calc(var(--qi-text-xl) + 0.1rem);
+  }
+
+  .bento-desc {
+    font-size: var(--qi-text-base);
+    line-height: 1.75;
+  }
+}
+
 @media (min-width: 2560px) {
   .bento-card {
     padding: var(--qi-space-2xl);

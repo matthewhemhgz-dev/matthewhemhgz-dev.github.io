@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl } from '../../i18n/utils';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import BrandLogo from './BrandLogo.astro';
 
 interface Props {
   currentPath: string;
@@ -28,10 +29,7 @@ const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
 
 <header class="nav-wrapper" transition:persist transition:name="main-nav">
   <nav class="nav">
-    <a href={lang === 'en' ? '/en/' : '/'} class="nav-brand">
-      <span class="brand-icon">&#x1F52C;</span>
-      <span class="brand-text">{brandName}</span>
-    </a>
+    <BrandLogo variant="icon" size="sm" lang={lang} />
 
     <!-- Mobile checkbox hack -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label="Toggle navigation" aria-expanded="false" />
@@ -130,30 +128,8 @@ const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
     height: var(--qi-nav-height);
   }
 
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: var(--qi-space-sm);
-    font-family: var(--qi-font-serif);
-    font-weight: 600;
-    font-size: var(--qi-text-xl);
-    color: var(--qi-text-primary);
-    transition: color var(--qi-transition-fast);
-    text-decoration: none;
+  .brand-logo {
     margin-right: var(--qi-space-xl);
-  }
-
-  .nav-brand:hover {
-    color: var(--qi-brand-emerald);
-  }
-
-  .brand-icon {
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-
-  .brand-text {
-    letter-spacing: 0.02em;
   }
 
   .nav-links {
@@ -324,6 +300,16 @@ const brandName = lang === 'en' ? 'Qi-Lab' : '祈研所';
 
     .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .nav-wrapper {
+      max-width: calc(var(--qi-container-max) + 64px);
+    }
+
+    .nav-links {
+      gap: var(--qi-space-md);
     }
   }
 </style>

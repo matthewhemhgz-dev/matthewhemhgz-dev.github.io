@@ -83,9 +83,9 @@
   }
 
   .cta-section {
-    margin: 0 -16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin: 0 calc(-1 * var(--qi-container-padding, 24px));
+    padding-left: var(--qi-container-padding, 24px);
+    padding-right: var(--qi-container-padding, 24px);
   }
 
   .cta-actions {
@@ -96,6 +96,27 @@
   .cta-actions .btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* --- Tablet (1024px) --- */
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .toolbox-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .platform-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

@@ -150,6 +150,23 @@
 }
 
 /* === Large screen: Testimonials Section === */
+@media (min-width: 1440px) {
+  .testimonial-grid {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .testimonial-text {
+    font-size: calc(var(--qi-text-sm) + 0.05rem);
+    line-height: 1.85;
+  }
+
+  .testimonial-author {
+    font-size: calc(var(--qi-text-sm) + 0.05rem);
+  }
+}
+
 @media (min-width: 2560px) {
   .testimonial-card {
     padding: var(--qi-space-2xl);

@@ -112,4 +112,16 @@ const { label = '// SECTION', title = 'Section Title', align = 'left', variant =
       font-size: var(--qi-text-3xl);
     }
   }
+
+  @media (min-width: 1024px) {
+    .section-title {
+      font-size: clamp(var(--qi-text-4xl), 2.5vw, var(--qi-text-5xl));
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .section-title {
+      font-size: var(--qi-text-5xl);
+    }
+  }
 </style>

@@ -121,4 +121,21 @@ const sizeConfig = {
   .tag-item--lg {
     font-weight: 600;
   }
+
+  @media (max-width: 768px) {
+    .tag-item--lg {
+      padding: 7px 14px;
+      font-size: var(--qi-text-sm);
+    }
+
+    .tag-item--md {
+      padding: 6px 12px;
+      font-size: var(--qi-text-xs);
+    }
+
+    .tag-item--sm {
+      padding: 4px 10px;
+      font-size: 0.65rem;
+    }
+  }
 </style>

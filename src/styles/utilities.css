@@ -5,10 +5,17 @@
   padding: 0 var(--qi-container-padding, 24px);
 }
 
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--qi-space-lg);
+  }
+}
+
 /* Tablet breakpoint */
 @media (max-width: 1024px) {
   .container {
-    padding: 0 var(--qi-space-2xl);
+    padding: 0 var(--qi-space-xl);
   }
 }
 

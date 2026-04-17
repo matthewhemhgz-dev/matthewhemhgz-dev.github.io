@@ -85,6 +85,26 @@
 }
 
 /* === Large screen: Platforms Section === */
+@media (min-width: 1440px) {
+  .platform-grid {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .platform-name {
+    font-size: calc(var(--qi-text-sm) + 0.05rem);
+  }
+
+  .platform-handle {
+    font-size: calc(var(--qi-text-xs) + 0.05rem);
+  }
+
+  .platform-desc {
+    font-size: calc(var(--qi-text-xs) + 0.05rem);
+  }
+}
+
 @media (min-width: 2560px) {
   .platform-card {
     padding: var(--qi-space-xl);

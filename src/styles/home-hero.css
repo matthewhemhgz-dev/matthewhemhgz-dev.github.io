@@ -271,6 +271,81 @@
   background: var(--qi-base-10);
 }
 
+/* === Mobile & Tablet Breakpoints === */
+
+@media (max-width: 768px) {
+  .hero-container {
+    max-width: 100%;
+  }
+
+  .hero-gradient-orb--1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .hero-gradient-orb--3 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-grid-pattern {
+    background-size: 40px 40px;
+  }
+
+  .hero-watermark {
+    opacity: 0.03;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--qi-text-base);
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--qi-space-sm);
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: var(--qi-space-md);
+  }
+
+  .hero-stat-divider {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-container {
+    max-width: min(680px, 55%);
+  }
+
+  .hero-gradient-orb--1 {
+    width: 450px;
+    height: 450px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 350px;
+    height: 350px;
+  }
+
+  .hero-gradient-orb--3 {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 /* === Large screen adaptations === */
 
 @media (min-width: 1440px) {
