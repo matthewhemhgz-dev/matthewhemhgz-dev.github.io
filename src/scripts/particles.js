@@ -179,14 +179,14 @@ export class MinimalParticles {
         }
       }
 
-      // 绘制光晕 — 柔化边缘渐变
+      // 绘制光晕 — 多段柔化边缘渐变
       if (currentSize > 1.5) {
         const glowRadius = Math.max(0.1, currentSize * glowSize * (p.isStar ? 1.3 : 1));
         const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
         const glowAlpha = (currentOpacity + highlight) * glowOpacity;
         gradient.addColorStop(0, p.color);
-        gradient.addColorStop(0.25, p.color);
-        gradient.addColorStop(0.5, p.color);
+        gradient.addColorStop(0.2, colorWithAlpha(p.color, 0.6));
+        gradient.addColorStop(0.5, colorWithAlpha(p.color, 0.2));
         gradient.addColorStop(1, 'transparent');
         ctx.globalAlpha = glowAlpha;
         ctx.fillStyle = gradient;

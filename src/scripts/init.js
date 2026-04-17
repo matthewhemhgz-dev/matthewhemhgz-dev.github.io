@@ -23,7 +23,7 @@ function initQiLab() {
     : 250;
   particles = prefersReducedMotion ? null : new MinimalParticles('particles-canvas', {
     count: particleCount,
-    colors: ['#2E7D5C', '#E5A93C', '#F7F3EE'],
+    colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
     maxSize: 4,
     speed: 0.4,
     linkDistance: 160,
