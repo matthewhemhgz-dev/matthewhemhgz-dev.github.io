@@ -4,10 +4,10 @@
 
 .cta-section {
   background: linear-gradient(135deg,
-    var(--qi-surface-main) 0%,
-    color-mix(in srgb, var(--qi-surface-main) 92%, var(--qi-brand-emerald)) 35%,
-    color-mix(in srgb, var(--qi-surface-main) 90%, var(--qi-brand-mint)) 65%,
-    color-mix(in srgb, var(--qi-surface-main) 88%, var(--qi-brand-amber)) 100%
+    var(--qi-ink) 0%,
+    color-mix(in srgb, var(--qi-ink) 92%, var(--qi-brand-emerald)) 35%,
+    color-mix(in srgb, var(--qi-ink) 90%, var(--qi-brand-mint)) 65%,
+    color-mix(in srgb, var(--qi-ink) 88%, var(--qi-brand-amber)) 100%
   );
   color: var(--qi-text-inverse);
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
@@ -28,7 +28,7 @@
   height: 150px;
   background: linear-gradient(
     to bottom,
-    rgba(229, 169, 60, 0.12),
+    rgba(229, 169, 60, 0.18),
     transparent
   );
   pointer-events: none;
@@ -184,7 +184,7 @@
   height: 100px;
   background: linear-gradient(
     to top,
-    rgba(46, 125, 92, 0.08),
+    rgba(46, 125, 92, 0.12),
     transparent
   );
   pointer-events: none;
@@ -213,7 +213,7 @@
 
 @keyframes sparkle {
   0%, 100% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {

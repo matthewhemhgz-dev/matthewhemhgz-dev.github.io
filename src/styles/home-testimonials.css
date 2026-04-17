@@ -9,7 +9,7 @@
   font-size: clamp(10rem, 15vw, 15rem);
   font-weight: 900;
   color: var(--qi-brand-mint);
-  opacity: 0.15;
+  opacity: 0.22;
   pointer-events: none;
   user-select: none;
   line-height: 1;
@@ -257,9 +257,9 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--qi-brand-mint-15) 30%,
-    var(--qi-brand-emerald-12) 50%,
-    var(--qi-brand-mint-15) 70%,
+    var(--qi-brand-mint-25) 30%,
+    var(--qi-brand-emerald-20) 50%,
+    var(--qi-brand-mint-25) 70%,
     transparent
   );
   pointer-events: none;

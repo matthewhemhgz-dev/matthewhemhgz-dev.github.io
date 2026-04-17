@@ -160,6 +160,7 @@
   right: 5%;
   color: var(--qi-brand-mint);
   pointer-events: none;
+  opacity: 0.8;
   animation: node-float 15s ease-in-out infinite;
 }
 

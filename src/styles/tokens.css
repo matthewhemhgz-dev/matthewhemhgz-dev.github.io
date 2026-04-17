@@ -34,16 +34,22 @@
   --qi-opacity-medium: 0.12;
   --qi-opacity-strong: 0.2;
 
-  /* 品牌色透明度令牌 */
+  /* 品牌色透明度令牌 — 扩展到 60 */
   --qi-brand-emerald-03: rgba(46, 125, 92, 0.03);
   --qi-brand-emerald-04: rgba(46, 125, 92, 0.04);
+  --qi-brand-emerald-05: rgba(46, 125, 92, 0.05);
   --qi-brand-emerald-06: rgba(46, 125, 92, 0.06);
   --qi-brand-emerald-08: rgba(46, 125, 92, 0.08);
   --qi-brand-emerald-10: rgba(46, 125, 92, 0.10);
   --qi-brand-emerald-12: rgba(46, 125, 92, 0.12);
   --qi-brand-emerald-15: rgba(46, 125, 92, 0.15);
   --qi-brand-emerald-18: rgba(46, 125, 92, 0.18);
+  --qi-brand-emerald-20: rgba(46, 125, 92, 0.20);
+  --qi-brand-emerald-25: rgba(46, 125, 92, 0.25);
   --qi-brand-emerald-30: rgba(46, 125, 92, 0.30);
+  --qi-brand-emerald-40: rgba(46, 125, 92, 0.40);
+  --qi-brand-emerald-50: rgba(46, 125, 92, 0.50);
+  --qi-brand-emerald-60: rgba(46, 125, 92, 0.60);
 
   --qi-brand-amber-04: rgba(229, 169, 60, 0.04);
   --qi-brand-amber-08: rgba(229, 169, 60, 0.08);
@@ -52,28 +58,51 @@
   --qi-brand-amber-15: rgba(229, 169, 60, 0.15);
   --qi-brand-amber-18: rgba(229, 169, 60, 0.18);
   --qi-brand-amber-20: rgba(229, 169, 60, 0.20);
+  --qi-brand-amber-25: rgba(229, 169, 60, 0.25);
+  --qi-brand-amber-30: rgba(229, 169, 60, 0.30);
+  --qi-brand-amber-40: rgba(229, 169, 60, 0.40);
+  --qi-brand-amber-50: rgba(229, 169, 60, 0.50);
+  --qi-brand-amber-60: rgba(229, 169, 60, 0.60);
 
-  /* 薄荷蓝透明度令牌 */
+  /* 薄荷蓝透明度令牌 — 扩展到 60 */
   --qi-brand-mint-04: rgba(120, 180, 160, 0.04);
   --qi-brand-mint-06: rgba(120, 180, 160, 0.06);
   --qi-brand-mint-08: rgba(120, 180, 160, 0.08);
   --qi-brand-mint-10: rgba(120, 180, 160, 0.10);
   --qi-brand-mint-12: rgba(120, 180, 160, 0.12);
   --qi-brand-mint-15: rgba(120, 180, 160, 0.15);
+  --qi-brand-mint-18: rgba(120, 180, 160, 0.18);
+  --qi-brand-mint-20: rgba(120, 180, 160, 0.20);
+  --qi-brand-mint-25: rgba(120, 180, 160, 0.25);
+  --qi-brand-mint-30: rgba(120, 180, 160, 0.30);
+  --qi-brand-mint-40: rgba(120, 180, 160, 0.40);
+  --qi-brand-mint-50: rgba(120, 180, 160, 0.50);
+  --qi-brand-mint-60: rgba(120, 180, 160, 0.60);
+
+  /* 暖墨棕 — 新增深色体系，替代纯灰 */
+  --qi-ink: #1E1B18;
+  --qi-ink-light: #2D2924;
+  --qi-ink-muted: #3D3832;
+
+  /* 装饰元素透明度令牌 */
+  --qi-deco-subtle: 0.15;
+  --qi-deco-visible: 0.25;
+  --qi-deco-strong: 0.40;
 
   /* 光效系统令牌 */
   --qi-glow-size: 350px;
   --qi-glow-speed: 0.06;
-  --qi-glow-primary: rgba(46, 125, 92, 0.15);
-  --qi-glow-secondary: rgba(120, 180, 160, 0.10);
-  --qi-glow-accent: rgba(229, 169, 60, 0.10);
+  --qi-glow-primary: rgba(46, 125, 92, 0.20);
+  --qi-glow-secondary: rgba(120, 180, 160, 0.15);
+  --qi-glow-accent: rgba(229, 169, 60, 0.15);
   --qi-glow-highlight: rgba(255, 255, 255, 0.08);
-  --qi-card-glow-intensity: 0.06;
+  --qi-card-glow-intensity: 0.10;
 
   /* 基础色透明度令牌 */
   --qi-base-02: rgba(42, 42, 42, 0.02);
   --qi-base-03: rgba(42, 42, 42, 0.03);
   --qi-base-04: rgba(42, 42, 42, 0.04);
+  --qi-base-05: rgba(42, 42, 42, 0.05);
   --qi-base-06: rgba(42, 42, 42, 0.06);
   --qi-base-08: rgba(42, 42, 42, 0.08);
   --qi-base-10: rgba(42, 42, 42, 0.10);
@@ -89,6 +118,45 @@
   --qi-inverse-20: rgba(247, 243, 238, 0.20);
   --qi-inverse-15: rgba(247, 243, 238, 0.15);
   --qi-inverse-12: rgba(247, 243, 238, 0.12);
+}
+
+/* === 1.1 品牌色阶令牌（10级） === */
+:root {
+  /* 翡翠绿 — H:153, S:46% */
+  --qi-emerald-50: #EEFAF3;
+  --qi-emerald-100: #D0F0E0;
+  --qi-emerald-200: #A3E0C0;
+  --qi-emerald-300: #6BBF96;
+  --qi-emerald-400: #4DA07A;
+  --qi-emerald-500: #2E7D5C;
+  --qi-emerald-600: #256A4D;
+  --qi-emerald-700: #1B5E40;
+  --qi-emerald-800: #134D33;
+  --qi-emerald-900: #0A3322;
+
+  /* 琥珀金 — H:40, S:78% */
+  --qi-amber-50: #FFF8E8;
+  --qi-amber-100: #FFEFC0;
+  --qi-amber-200: #FFE08A;
+  --qi-amber-300: #F0C85C;
+  --qi-amber-400: #E5A93C;
+  --qi-amber-500: #D49520;
+  --qi-amber-600: #C78A1E;
+  --qi-amber-700: #A06E15;
+  --qi-amber-800: #7A5410;
+  --qi-amber-900: #543A0A;
+
+  /* 薄荷蓝 — H:160, S:29% */
+  --qi-mint-50: #F0F8F5;
+  --qi-mint-100: #D8EDE5;
+  --qi-mint-200: #B8DAD0;
+  --qi-mint-300: #98C8BA;
+  --qi-mint-400: #78B4A0;
+  --qi-mint-500: #5A9A82;
+  --qi-mint-600: #4A826C;
+  --qi-mint-700: #3A6A56;
+  --qi-mint-800: #2A5240;
+  --qi-mint-900: #1A3A2A;
 }
 
 /* === 2. 字体令牌 === */

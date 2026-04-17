@@ -13,11 +13,6 @@
   inherits: false;
   initial-value: 35;
 }
-@property --orb-hue-3 {
-  syntax: '<number>';
-  inherits: false;
-  initial-value: 160;
-}
 
 /* === Hero === */
 .hero-section {
@@ -41,13 +36,13 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .hero-gradient-orb--1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, hsla(var(--orb-hue-1), 45%, 38%, 0.15), transparent 70%);
+  background: radial-gradient(circle, hsla(var(--orb-hue-1), 45%, 38%, 0.25), transparent 70%);
   top: -100px;
   right: -100px;
   animation: orb-color-shift-1 25s ease-in-out infinite;
@@ -56,26 +51,10 @@
 .hero-gradient-orb--2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, hsla(var(--orb-hue-2), 60%, 50%, 0.12), transparent 70%);
+  background: radial-gradient(circle, hsla(var(--orb-hue-2), 60%, 50%, 0.22), transparent 70%);
   bottom: -50px;
   left: -50px;
   animation: orb-color-shift-2 30s ease-in-out infinite;
-}
-
-/* 第三渐变球 — 薄荷蓝（翡翠绿与琥珀金之间的过渡色） */
-.hero-gradient-orb--3 {
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  background: radial-gradient(circle, hsla(var(--orb-hue-3), 40%, 55%, 0.12), transparent 70%);
-  filter: blur(80px);
-  opacity: 0.35;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: orb-float-mint 20s ease-in-out infinite, orb-color-shift-3 22s ease-in-out infinite;
 }
 
 /* 颜色过渡关键帧 — 翡翠 ↔ 薄荷 ↔ 琥珀 缓慢循环 */
@@ -89,24 +68,44 @@
   33% { --orb-hue-2: 155; }      /* 翡翠 */
   66% { --orb-hue-2: 160; }      /* 薄荷 */
 }
-@keyframes orb-color-shift-3 {
-  0%, 100% { --orb-hue-3: 160; } /* 薄荷 */
-  50% { --orb-hue-3: 35; }       /* 琥珀 */
+
+/* === 柔光晕 — 大面积翡翠绿氛围光（Layer 1） === */
+.hero-ambient-glow {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 60%;
+  height: 70%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(46, 125, 92, 0.15) 0%,
+    rgba(46, 125, 92, 0.08) 40%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes orb-float-mint {
-  0%, 100% { transform: translate(-50%, -50%) translate(0, 0); }
-  25% { transform: translate(-50%, -50%) translate(30px, -20px); }
-  50% { transform: translate(-50%, -50%) translate(-20px, 30px); }
-  75% { transform: translate(-50%, -50%) translate(20px, 20px); }
+/* === 边缘暗角 — 焦点引导（Layer 8） === */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 45%,
+    transparent 40%,
+    rgba(30, 27, 24, 0.06) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
 }
 
 .hero-grid-pattern {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(var(--qi-base-03) 1px, transparent 1px),
-    linear-gradient(90deg, var(--qi-base-03) 1px, transparent 1px);
+    linear-gradient(var(--qi-base-06) 1px, transparent 1px),
+    linear-gradient(90deg, var(--qi-base-06) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
@@ -118,8 +117,8 @@
   inset: -50%;
   background: repeating-conic-gradient(
     from 45deg at 75% 25%,
-    rgba(46, 125, 92, 0.03) 0deg,
-    rgba(46, 125, 92, 0.07) 3deg,
+    rgba(46, 125, 92, 0.08) 0deg,
+    rgba(46, 125, 92, 0.15) 3deg,
     transparent 5deg,
     transparent 20deg
   );
@@ -160,9 +159,9 @@
   background: linear-gradient(
     165deg,
     transparent 0%,
-    rgba(229, 169, 60, 0.04) 30%,
-    rgba(229, 169, 60, 0.08) 50%,
-    rgba(229, 169, 60, 0.04) 70%,
+    rgba(229, 169, 60, 0.12) 30%,
+    rgba(229, 169, 60, 0.20) 50%,
+    rgba(229, 169, 60, 0.12) 70%,
     transparent 100%
   );
   filter: blur(60px);
@@ -177,9 +176,9 @@
   background: linear-gradient(
     195deg,
     transparent 0%,
-    rgba(120, 180, 160, 0.03) 25%,
-    rgba(120, 180, 160, 0.06) 50%,
-    rgba(120, 180, 160, 0.03) 75%,
+    rgba(120, 180, 160, 0.10) 25%,
+    rgba(120, 180, 160, 0.18) 50%,
+    rgba(120, 180, 160, 0.10) 75%,
     transparent 100%
   );
   filter: blur(50px);
@@ -202,7 +201,7 @@
   inset: 0;
   background-image: radial-gradient(
     circle,
-    rgba(46, 125, 92, 0.12) 1px,
+    rgba(46, 125, 92, 0.18) 1px,
     transparent 1px
   );
   background-size: 32px 32px;
@@ -435,9 +434,21 @@
     height: 150px;
   }
 
-  .hero-gradient-orb--3 {
-    width: 120px;
-    height: 120px;
+  .hero-ambient-glow {
+    width: 80%;
+    height: 50%;
+    top: -5%;
+    filter: blur(60px);
+  }
+
+  .hero-vignette {
+    display: none;
+  }
+
+  .hero-gradient-orb:first-child {
+    display: block;
+    width: 200px;
+    height: 200px;
   }
 
   .hero-grid-pattern {
@@ -491,11 +502,6 @@
   .hero-gradient-orb--2 {
     width: 350px;
     height: 350px;
-  }
-
-  .hero-gradient-orb--3 {
-    width: 300px;
-    height: 300px;
   }
 }
 
@@ -622,8 +628,7 @@
   }
 
   .hero-gradient-orb--1,
-  .hero-gradient-orb--2,
-  .hero-gradient-orb--3 {
+  .hero-gradient-orb--2 {
     animation: none;
   }
 
@@ -638,7 +643,7 @@
   top: 5%;
   right: 5%;
   color: var(--qi-brand-emerald);
-  opacity: 0.6;
+  opacity: 0.85;
   animation: arcs-rotate 180s linear infinite;
   pointer-events: none;
 }

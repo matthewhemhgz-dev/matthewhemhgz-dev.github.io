@@ -86,7 +86,7 @@
 .platform-card:hover::after,
 .testimonial-card:hover::after,
 .dash-card:hover::after {
-  --light-intensity: 0.06;
+  --light-intensity: 0.10;
 }
 
 /* === Magnetic Hover on Buttons === */

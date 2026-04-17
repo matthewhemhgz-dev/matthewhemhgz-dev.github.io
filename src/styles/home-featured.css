@@ -226,6 +226,7 @@
   right: var(--qi-container-padding, 24px);
   color: var(--qi-brand-emerald);
   pointer-events: none;
+  opacity: 0.25;
 }
 
 @media (max-width: 768px) {
