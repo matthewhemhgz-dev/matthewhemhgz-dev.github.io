@@ -39,9 +39,18 @@
 </style>
 
 <script>
-  const progressBar = document.querySelector('.progress-bar');
-  if (progressBar) {
-    const updateProgress = () => {
+  let scrollHandler = null;
+
+  function initScrollProgress() {
+    // 清理旧的监听器（View Transitions 页面切换时）
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler);
+    }
+
+    const progressBar = document.querySelector('.progress-bar');
+    if (!progressBar) return;
+
+    scrollHandler = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? scrollTop / docHeight : 0;
@@ -49,7 +58,9 @@
       progressBar.parentElement.setAttribute('aria-valuenow', Math.round(progress * 100));
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
   }
+
+  document.addEventListener('astro:page-load', initScrollProgress);
 </script>

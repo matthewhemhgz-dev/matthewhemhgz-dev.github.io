@@ -2,6 +2,23 @@
    Hero Section
    ========================================================================== */
 
+/* === CSS @property 渐进增强：渐变球颜色过渡 === */
+@property --orb-hue-1 {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 155;
+}
+@property --orb-hue-2 {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 35;
+}
+@property --orb-hue-3 {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 160;
+}
+
 /* === Hero === */
 .hero-section {
   min-height: 100vh;
@@ -30,17 +47,19 @@
 .hero-gradient-orb--1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, var(--qi-brand-emerald-15), transparent 70%);
+  background: radial-gradient(circle, hsla(var(--orb-hue-1), 45%, 38%, 0.15), transparent 70%);
   top: -100px;
   right: -100px;
+  animation: orb-color-shift-1 25s ease-in-out infinite;
 }
 
 .hero-gradient-orb--2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, var(--qi-brand-amber-12), transparent 70%);
+  background: radial-gradient(circle, hsla(var(--orb-hue-2), 60%, 50%, 0.12), transparent 70%);
   bottom: -50px;
   left: -50px;
+  animation: orb-color-shift-2 30s ease-in-out infinite;
 }
 
 /* 第三渐变球 — 薄荷蓝（翡翠绿与琥珀金之间的过渡色） */
@@ -49,14 +68,30 @@
   width: 350px;
   height: 350px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--qi-brand-mint-12), transparent 70%);
+  background: radial-gradient(circle, hsla(var(--orb-hue-3), 40%, 55%, 0.12), transparent 70%);
   filter: blur(80px);
   opacity: 0.35;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  animation: orb-float-mint 20s ease-in-out infinite;
+  animation: orb-float-mint 20s ease-in-out infinite, orb-color-shift-3 22s ease-in-out infinite;
+}
+
+/* 颜色过渡关键帧 — 翡翠 ↔ 薄荷 ↔ 琥珀 缓慢循环 */
+@keyframes orb-color-shift-1 {
+  0%, 100% { --orb-hue-1: 155; } /* 翡翠 */
+  33% { --orb-hue-1: 160; }      /* 薄荷 */
+  66% { --orb-hue-1: 45; }       /* 暖金 */
+}
+@keyframes orb-color-shift-2 {
+  0%, 100% { --orb-hue-2: 35; }  /* 琥珀 */
+  33% { --orb-hue-2: 155; }      /* 翡翠 */
+  66% { --orb-hue-2: 160; }      /* 薄荷 */
+}
+@keyframes orb-color-shift-3 {
+  0%, 100% { --orb-hue-3: 160; } /* 薄荷 */
+  50% { --orb-hue-3: 35; }       /* 琥珀 */
 }
 
 @keyframes orb-float-mint {

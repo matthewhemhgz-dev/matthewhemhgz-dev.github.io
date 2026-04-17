@@ -17,11 +17,11 @@ function initQiLab() {
 
   // 1. 粒子系统（增强版：鼠标交互 + 光晕 + 连线高亮）
   const screenWidth = window.innerWidth;
-  const particleCount = screenWidth < 768 ? 50
-    : screenWidth < 1440 ? 120
-    : screenWidth < 2560 ? 180
-    : 250;
-  particles = prefersReducedMotion ? null : new MinimalParticles('particles-canvas', {
+  const particleCount = screenWidth < 768 ? 30
+    : screenWidth < 1440 ? 80
+    : screenWidth < 2560 ? 100
+    : 120;
+  const particleOptions = {
     count: particleCount,
     colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
     maxSize: 4,
@@ -32,7 +32,17 @@ function initQiLab() {
     mouseForce: 0.04,
     glowSize: 12,
     glowOpacity: 0.25,
-  });
+  };
+
+  if (prefersReducedMotion) {
+    particles = null;
+  } else if (particles && particles.canvas) {
+    // 复用已有实例，调用 rebuild 重建粒子
+    particles.rebuild(particleOptions);
+  } else {
+    // 首次创建
+    particles = new MinimalParticles('particles-canvas', particleOptions);
+  }
   if (particles) cleanupFns.push(() => particles.destroy());
 
   // 2. 鼠标追踪光效
@@ -70,6 +80,6 @@ document.addEventListener('astro:page-load', () => {
   // 重置状态，重新初始化
   initialized = false;
   cursorGlow = null;
-  particles = null;
+  // 注意：不将 particles 设为 null，复用已有实例调用 rebuild()
   initQiLab();
 });

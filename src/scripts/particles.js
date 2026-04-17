@@ -1,9 +1,9 @@
 /**
- * MinimalParticles — 增强版粒子系统
+ * MinimalParticles — 增强版粒子系统 (v3 性能优化)
  * - 鼠标交互：粒子被鼠标排斥/吸引
- * - 光晕效果：粒子带有柔和发光
+ * - 光晕效果：预渲染离屏纹理，避免每帧创建渐变
  * - 鼠标附近粒子连线高亮
- * - DPR 适配、性能优化
+ * - DPR 适配、FPS 自动降级
  */
 
 // 工具函数：将 hex 颜色转换为带 alpha 的 rgba
@@ -12,6 +12,25 @@ function colorWithAlpha(hex, alpha) {
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// 预渲染光晕纹理到离屏 Canvas
+function createGlowTexture(color, radius) {
+  const size = Math.ceil(radius * 2);
+  const offscreen = document.createElement('canvas');
+  offscreen.width = size;
+  offscreen.height = size;
+  const octx = offscreen.getContext('2d');
+  const cx = size / 2;
+  const cy = size / 2;
+  const gradient = octx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+  gradient.addColorStop(0, color);
+  gradient.addColorStop(0.2, colorWithAlpha(color, 0.6));
+  gradient.addColorStop(0.5, colorWithAlpha(color, 0.2));
+  gradient.addColorStop(1, 'transparent');
+  octx.fillStyle = gradient;
+  octx.fillRect(0, 0, size, size);
+  return offscreen;
 }
 
 export class MinimalParticles {
@@ -28,6 +47,8 @@ export class MinimalParticles {
     this.frameCount = 0;
     this.fps = 60;
     this.reducedMode = false;
+    this.glowTextures = {}; // 预渲染光晕纹理缓存
+    this.glowFrameSkip = 0; // 光晕降频计数器
 
     const defaults = {
       count: 60,
@@ -43,9 +64,22 @@ export class MinimalParticles {
     };
 
     this.options = { ...defaults, ...options };
+    this._prerenderGlowTextures();
     this.resize();
     this.init();
     this._bindEvents();
+  }
+
+  /**
+   * 预渲染各颜色的光晕纹理到离屏 Canvas
+   * 避免每帧创建 createRadialGradient 的开销
+   */
+  _prerenderGlowTextures() {
+    const { colors, glowSize, maxSize } = this.options;
+    const maxGlowRadius = Math.ceil(maxSize * 1.6 * glowSize * 1.3); // 明星粒子最大光晕
+    for (const color of colors) {
+      this.glowTextures[color] = createGlowTexture(color, maxGlowRadius);
+    }
   }
 
   _bindEvents() {
@@ -188,20 +222,19 @@ export class MinimalParticles {
         }
       }
 
-      // 绘制光晕 — 多段柔化边缘渐变
-      if (currentSize > 1.5) {
-        const glowRadius = Math.max(0.1, currentSize * glowSize * (p.isStar ? 1.3 : 1));
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
-        const glowAlpha = (currentOpacity + highlight) * glowOpacity;
-        gradient.addColorStop(0, p.color);
-        gradient.addColorStop(0.2, colorWithAlpha(p.color, 0.6));
-        gradient.addColorStop(0.5, colorWithAlpha(p.color, 0.2));
-        gradient.addColorStop(1, 'transparent');
-        ctx.globalAlpha = glowAlpha;
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, glowRadius, 0, Math.PI * 2);
-        ctx.fill();
+      // 绘制光晕 — 使用预渲染纹理（每 2 帧更新一次，降低开销）
+      this.glowFrameSkip++;
+      const shouldDrawGlow = this.glowFrameSkip % 2 === 0;
+      if (shouldDrawGlow && currentSize > 1.5) {
+        const texture = this.glowTextures[p.color];
+        if (texture) {
+          const glowRadius = Math.max(0.1, currentSize * glowSize * (p.isStar ? 1.3 : 1));
+          const glowAlpha = (currentOpacity + highlight) * glowOpacity;
+          ctx.globalAlpha = glowAlpha;
+          // drawImage 使用目标尺寸缩放预渲染纹理
+          const drawSize = glowRadius * 2;
+          ctx.drawImage(texture, p.x - glowRadius, p.y - glowRadius, drawSize, drawSize);
+        }
       }
 
       // 绘制粒子核心
@@ -300,13 +333,30 @@ export class MinimalParticles {
     if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
     if (this._onTouchStart) window.removeEventListener('touchstart', this._onTouchStart);
 
-    // 移除 canvas 元素
-    if (this.canvas) {
-      this.canvas.remove();
-      this.canvas = null;
+    // 清空 canvas 内容（不移除 DOM 元素，保留给下次重建使用）
+    if (this.ctx && this.canvas) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    // 清空粒子数据
+    // 清空粒子数据和状态
     this.particles = [];
+    this.mouse = { x: -9999, y: -9999, active: false };
+    this.reducedMode = false;
+    this.fps = 60;
+    this.frameCount = 0;
+  }
+
+  /**
+   * 重建粒子系统 — 复用已有 canvas 元素
+   * 在 View Transitions 页面切换后调用，替代 destroy + new
+   */
+  rebuild(newOptions = {}) {
+    this.destroy();
+    if (newOptions) Object.assign(this.options, newOptions);
+    this._prerenderGlowTextures();
+    this.resize();
+    this.init();
+    this._bindEvents();
+    this.resume();
   }
 }

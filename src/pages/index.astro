@@ -270,10 +270,12 @@ const testimonials = [
 </style>
 
 <script>
-  // Animate hero stat numbers on load
-  document.addEventListener('DOMContentLoaded', () => {
+  // Animate hero stat numbers on page load (compatible with View Transitions)
+  function animateStats() {
     const statValues = document.querySelectorAll('.hero-stat-value[data-count]');
     statValues.forEach((el) => {
+      // 重置为 0 以便重新触发动画
+      el.textContent = '0';
       const target = parseInt(el.getAttribute('data-count') || '0', 10);
       if (isNaN(target) || target === 0) return;
       let current = 0;
@@ -288,5 +290,6 @@ const testimonials = [
         el.textContent = String(current);
       }, 30);
     });
-  });
+  }
+  document.addEventListener('astro:page-load', animateStats);
 </script>
