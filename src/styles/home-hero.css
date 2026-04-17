@@ -24,7 +24,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) 0 var(--qi-space-4xl);
+  padding: calc(var(--qi-nav-total-height) + var(--qi-space-2xl)) 0 var(--qi-space-4xl);
   position: relative;
   overflow: hidden;
 }
@@ -117,27 +117,27 @@
   position: absolute;
   inset: -50%;
   background: repeating-conic-gradient(
-    from 45deg at 70% 30%,
-    rgba(46, 125, 92, 0.06) 0deg,
-    rgba(46, 125, 92, 0.12) 2deg,
-    transparent 4deg,
-    transparent 18deg
+    from 45deg at 75% 25%,
+    rgba(46, 125, 92, 0.03) 0deg,
+    rgba(46, 125, 92, 0.07) 3deg,
+    transparent 5deg,
+    transparent 20deg
   );
   mask-image: radial-gradient(
-    ellipse 60% 50% at 70% 30%,
-    transparent 0%,
-    rgba(0, 0, 0, 0.6) 15%,
-    rgba(0, 0, 0, 0.8) 35%,
+    ellipse 55% 45% at 75% 25%,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.2) 45%,
     transparent 70%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 60% 50% at 70% 30%,
-    transparent 0%,
-    rgba(0, 0, 0, 0.6) 15%,
-    rgba(0, 0, 0, 0.8) 35%,
+    ellipse 55% 45% at 75% 25%,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.2) 45%,
     transparent 70%
   );
-  animation: rays-spin 60s linear infinite;
+  animation: rays-spin 120s linear infinite;
   pointer-events: none;
 }
 
@@ -153,47 +153,47 @@
 }
 
 .hero-beam--amber {
-  top: -20%;
-  right: -5%;
-  width: 35%;
-  height: 140%;
+  top: -10%;
+  right: 0%;
+  width: 20%;
+  height: 120%;
   background: linear-gradient(
     165deg,
     transparent 0%,
-    rgba(229, 169, 60, 0.08) 25%,
-    rgba(229, 169, 60, 0.14) 50%,
-    rgba(229, 169, 60, 0.08) 75%,
+    rgba(229, 169, 60, 0.04) 30%,
+    rgba(229, 169, 60, 0.08) 50%,
+    rgba(229, 169, 60, 0.04) 70%,
     transparent 100%
   );
-  filter: blur(40px);
-  animation: beam-breathe-amber 20s ease-in-out infinite alternate;
+  filter: blur(60px);
+  animation: beam-breathe-amber 30s ease-in-out infinite alternate;
 }
 
 .hero-beam--mint {
-  top: -10%;
-  left: 10%;
-  width: 28%;
-  height: 120%;
+  top: -5%;
+  left: 15%;
+  width: 15%;
+  height: 110%;
   background: linear-gradient(
     195deg,
     transparent 0%,
-    rgba(120, 180, 160, 0.06) 20%,
-    rgba(120, 180, 160, 0.10) 50%,
-    rgba(120, 180, 160, 0.06) 80%,
+    rgba(120, 180, 160, 0.03) 25%,
+    rgba(120, 180, 160, 0.06) 50%,
+    rgba(120, 180, 160, 0.03) 75%,
     transparent 100%
   );
-  filter: blur(35px);
-  animation: beam-breathe-mint 25s ease-in-out infinite alternate;
+  filter: blur(50px);
+  animation: beam-breathe-mint 35s ease-in-out infinite alternate;
 }
 
 @keyframes beam-breathe-amber {
-  0%   { opacity: 0.6; transform: scaleX(1); }
-  100% { opacity: 1; transform: scaleX(1.08); }
+  0%   { opacity: 0.5; transform: scaleX(1) translateX(0); }
+  100% { opacity: 0.8; transform: scaleX(1.05) translateX(10px); }
 }
 
 @keyframes beam-breathe-mint {
-  0%   { opacity: 0.5; transform: scaleX(1); }
-  100% { opacity: 0.8; transform: scaleX(1.05); }
+  0%   { opacity: 0.4; transform: scaleX(1) translateX(0); }
+  100% { opacity: 0.7; transform: scaleX(1.03) translateX(-8px); }
 }
 
 /* === Hero 点阵背景（Task 18a） === */
@@ -416,6 +416,11 @@
 /* === Mobile & Tablet Breakpoints === */
 
 @media (max-width: 768px) {
+  .hero-section {
+    /* 移动端导航栏 top:0, 无外边距, 总高度 = nav-height */
+    padding-top: calc(var(--qi-nav-height) + var(--qi-space-xl));
+  }
+
   .hero-container {
     max-width: 100%;
   }
@@ -630,10 +635,11 @@
 /* === 同心圆弧装饰（Task 17a） === */
 .hero-arcs {
   position: absolute;
-  top: 8%;
-  right: 8%;
+  top: 5%;
+  right: 5%;
   color: var(--qi-brand-emerald);
-  animation: arcs-rotate 120s linear infinite;
+  opacity: 0.6;
+  animation: arcs-rotate 180s linear infinite;
   pointer-events: none;
 }
 

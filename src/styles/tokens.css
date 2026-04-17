@@ -149,6 +149,8 @@
   /* 页面容器最大宽度 */
   --qi-container-max: 1200px;
   --qi-nav-height: 64px;
+  /* 导航栏外部总高度 = top偏移 + 上下padding + 内部高度 + border */
+  --qi-nav-total-height: calc(12px + var(--qi-space-md) + var(--qi-nav-height) + var(--qi-space-md) + 1px);
 }
 
 /* === 7. 阴影令牌 === */

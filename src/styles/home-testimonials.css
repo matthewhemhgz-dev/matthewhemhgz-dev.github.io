@@ -9,7 +9,7 @@
   font-size: clamp(10rem, 15vw, 15rem);
   font-weight: 900;
   color: var(--qi-brand-mint);
-  opacity: 0.08;
+  opacity: 0.15;
   pointer-events: none;
   user-select: none;
   line-height: 1;
@@ -246,4 +246,21 @@
     width: 48px;
     height: 48px;
   }
+}
+
+.testimonial-top-line {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--qi-brand-mint-15) 30%,
+    var(--qi-brand-emerald-12) 50%,
+    var(--qi-brand-mint-15) 70%,
+    transparent
+  );
+  pointer-events: none;
 }

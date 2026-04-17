@@ -19,6 +19,17 @@ const { label, title, platforms } = Astro.props;
 ---
 
 <section class="section" data-reveal>
+  <!-- 连接节点装饰 -->
+  <div class="platforms-node-deco" aria-hidden="true">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+      <circle cx="40" cy="100" r="4" fill="currentColor" opacity="0.12" />
+      <circle cx="160" cy="60" r="3" fill="currentColor" opacity="0.10" />
+      <circle cx="120" cy="160" r="5" fill="currentColor" opacity="0.08" />
+      <line x1="40" y1="100" x2="160" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.06" />
+      <line x1="160" y1="60" x2="120" y2="160" stroke="currentColor" stroke-width="0.5" opacity="0.06" stroke-dasharray="4 6" />
+      <line x1="40" y1="100" x2="120" y2="160" stroke="currentColor" stroke-width="0.5" opacity="0.04" />
+    </svg>
+  </div>
   <div class="container">
     <SectionHeader label={label} title={title} />
     <div class="platform-grid">

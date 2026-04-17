@@ -11,6 +11,12 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
 ---
 
 <section class="section cta-section" data-reveal>
+  <!-- 微光粒子装饰 -->
+  <div class="cta-sparkles" aria-hidden="true">
+    <span class="cta-sparkle cta-sparkle--1"></span>
+    <span class="cta-sparkle cta-sparkle--2"></span>
+    <span class="cta-sparkle cta-sparkle--3"></span>
+  </div>
   <div class="container">
     <div class="cta-content">
       <span class="cta-label">{label}</span>

@@ -218,3 +218,18 @@
     padding: var(--qi-space-3xl);
   }
 }
+
+/* 角落装饰 */
+.featured-corner-deco {
+  position: absolute;
+  top: var(--qi-space-3xl);
+  right: var(--qi-container-padding, 24px);
+  color: var(--qi-brand-emerald);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .featured-corner-deco {
+    display: none;
+  }
+}

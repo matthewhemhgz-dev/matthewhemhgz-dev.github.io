@@ -18,7 +18,7 @@
   flex-direction: column;
   gap: var(--qi-space-lg);
   position: sticky;
-  top: calc(var(--qi-nav-height) + var(--qi-space-xl));
+  top: calc(var(--qi-nav-total-height) + var(--qi-space-lg));
 }
 
 .about-deco-number {
@@ -41,9 +41,9 @@
 
 /* 十字准星装饰（Task 17b） */
 .about-crosshair {
-  color: var(--qi-brand-amber);
+  color: var(--qi-brand-emerald);
   margin-top: var(--qi-space-xl);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .about-main {
@@ -195,4 +195,10 @@
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: var(--qi-space-3xl);
   }
+}
+
+/* 装饰连接线 */
+.about-deco-lines {
+  color: var(--qi-brand-emerald);
+  margin-top: var(--qi-space-sm);
 }

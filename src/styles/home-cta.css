@@ -23,12 +23,12 @@
   content: '';
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
-  height: 120px;
+  left: 5%;
+  right: 5%;
+  height: 150px;
   background: linear-gradient(
     to bottom,
-    rgba(229, 169, 60, 0.08),
+    rgba(229, 169, 60, 0.12),
     transparent
   );
   pointer-events: none;
@@ -171,5 +171,54 @@
   .cta-section .btn {
     padding: var(--qi-space-xl) var(--qi-space-3xl);
     font-size: var(--qi-text-lg);
+  }
+}
+
+/* 底部翡翠绿环境光 */
+.cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  height: 100px;
+  background: linear-gradient(
+    to top,
+    rgba(46, 125, 92, 0.08),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.cta-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cta-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--qi-brand-amber);
+  opacity: 0;
+  animation: sparkle 4s ease-in-out infinite;
+}
+
+.cta-sparkle--1 { top: 20%; left: 15%; animation-delay: 0s; }
+.cta-sparkle--2 { top: 40%; right: 20%; animation-delay: 1.5s; }
+.cta-sparkle--3 { bottom: 30%; left: 40%; animation-delay: 3s; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.4; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-sparkle {
+    animation: none;
+    opacity: 0.2;
   }
 }

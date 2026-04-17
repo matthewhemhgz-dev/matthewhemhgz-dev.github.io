@@ -152,3 +152,31 @@
     height: 32px;
   }
 }
+
+/* 连接节点装饰 — 呼应"平台矩阵"概念 */
+.platforms-node-deco {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  color: var(--qi-brand-mint);
+  pointer-events: none;
+  animation: node-float 15s ease-in-out infinite;
+}
+
+@keyframes node-float {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(5px, -8px); }
+  66% { transform: translate(-3px, 5px); }
+}
+
+@media (max-width: 768px) {
+  .platforms-node-deco {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platforms-node-deco {
+    animation: none;
+  }
+}
