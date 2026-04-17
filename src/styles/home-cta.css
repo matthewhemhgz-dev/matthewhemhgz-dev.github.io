@@ -1,0 +1,67 @@
+/* ==========================================================================
+   CTA Section
+   ========================================================================== */
+
+.cta-section {
+  background: var(--qi-surface-main);
+  color: var(--qi-text-inverse);
+  margin: 0 calc(-1 * var(--qi-container-padding, 24px));
+  padding-left: var(--qi-container-padding, 24px);
+  padding-right: var(--qi-container-padding, 24px);
+  text-align: center;
+}
+
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--qi-space-lg);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.cta-label {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  font-weight: 500;
+  color: var(--qi-amber);
+  letter-spacing: 0.08em;
+}
+
+.cta-title {
+  font-family: var(--qi-font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--qi-text-inverse);
+  line-height: 1.3;
+}
+
+.cta-desc {
+  font-size: var(--qi-text-base);
+  color: rgba(247, 243, 238, 0.7);
+  line-height: 1.7;
+}
+
+.cta-actions {
+  display: flex;
+  gap: var(--qi-space-md);
+  margin-top: var(--qi-space-sm);
+}
+
+.cta-section .btn-primary {
+  background: var(--qi-brand-emerald);
+}
+
+.cta-section .btn-primary:hover {
+  background: var(--qi-brand-amber);
+}
+
+.cta-section .btn-secondary {
+  border-color: rgba(247, 243, 238, 0.2);
+  color: var(--qi-text-inverse);
+}
+
+.cta-section .btn-secondary:hover {
+  border-color: var(--qi-brand-amber);
+  color: var(--qi-brand-amber);
+}

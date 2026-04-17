@@ -1,0 +1,47 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import DashCard from '../ui/DashCard.astro';
+
+interface Props {
+  label: string;
+  title: string;
+  text: string;
+  decoNumber?: string;
+  decoSlogan?: string;
+  dashItems: Array<{
+    label: string;
+    value: string;
+    percentage: number;
+    color: string;
+  }>;
+}
+
+const {
+  label,
+  title,
+  text,
+  decoNumber = '01',
+  decoSlogan,
+  dashItems,
+} = Astro.props;
+---
+
+<section class="section about-section" data-reveal>
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-deco" aria-hidden="true">
+        <span class="about-deco-number">{decoNumber}</span>
+        {decoSlogan && <span class="about-deco-slogan">{decoSlogan}</span>}
+      </div>
+      <div class="about-main">
+        <SectionHeader label={label} title={title} />
+        <p class="about-text">{text}</p>
+        <div class="dash-grid">
+          {dashItems.map((item) => (
+            <DashCard label={item.label} value={item.value} percentage={item.percentage} color={item.color} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

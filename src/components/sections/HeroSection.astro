@@ -1,0 +1,75 @@
+---
+interface Props {
+  titleLines: string[];
+  accentIndex?: number;
+  subtitle: string;
+  watermark?: string;
+  badgeText?: string;
+  stats: Array<{
+    value: string;
+    label: string;
+    dataCount?: number;
+    isText?: boolean;
+  }>;
+  primaryBtn?: { text: string; href: string };
+  secondaryBtn?: { text: string; href: string };
+}
+
+const {
+  titleLines,
+  accentIndex = 1,
+  subtitle,
+  watermark = '祈',
+  badgeText = 'Amber Geek Design System',
+  stats,
+  primaryBtn,
+  secondaryBtn,
+} = Astro.props;
+---
+
+<section class="hero-section" data-reveal>
+  <div class="hero-bg-decoration" aria-hidden="true">
+    <div class="hero-gradient-orb hero-gradient-orb--1"></div>
+    <div class="hero-gradient-orb hero-gradient-orb--2"></div>
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-watermark" aria-hidden="true">{watermark}</div>
+  </div>
+  <div class="container hero-container">
+    <div class="hero-badge hero-stagger hero-stagger--1">
+      <span class="badge-dot"></span>
+      <span class="badge-text">{badgeText}</span>
+    </div>
+    <h1 class="hero-title">
+      {titleLines.map((line, i) => (
+        <span class:list={['title-line', 'hero-stagger', `hero-stagger--${i + 2}`, i === accentIndex && 'title-accent']}>
+          {line}
+        </span>
+      ))}
+    </h1>
+    <p class="hero-subtitle hero-fade-in">{subtitle}</p>
+    <div class="hero-actions hero-fade-in">
+      {primaryBtn && (
+        <a href={primaryBtn.href} class="btn btn-primary">
+          <span>{primaryBtn.text}</span>
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      )}
+      {secondaryBtn && (
+        <a href={secondaryBtn.href} class="btn btn-secondary">{secondaryBtn.text}</a>
+      )}
+    </div>
+    <div class="hero-stats hero-fade-in">
+      {stats.map((stat, i) => (
+        <>
+          {i > 0 && <div class="hero-stat-divider"></div>}
+          <div class="hero-stat">
+            <span class:list={['hero-stat-value', stat.isText && 'hero-stat-text']} data-count={stat.dataCount}>
+              {stat.isText ? stat.value : '0'}
+            </span>
+            <span class="hero-stat-label">{stat.label}</span>
+          </div>
+        </>
+      ))}
+    </div>
+  </div>
+</section>

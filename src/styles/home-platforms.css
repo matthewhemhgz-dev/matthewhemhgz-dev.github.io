@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Platform Matrix Section
+   ========================================================================== */
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--qi-gap);
+}
+
+.platform-card {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-md);
+  padding: var(--qi-space-lg);
+  background: var(--qi-bg-base);
+  border: 1px solid rgba(42, 42, 42, 0.06);
+  border-radius: var(--qi-radius-card);
+  transition: transform var(--qi-transition), box-shadow var(--qi-transition), border-color var(--qi-transition);
+  text-decoration: none;
+  color: inherit;
+}
+
+.platform-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--qi-shadow-hover-warm);
+  border-color: rgba(42, 42, 42, 0.1);
+}
+
+/* Platform hover - icon scales, arrow translates with amber color */
+.platform-card:hover .platform-icon {
+  transform: scale(1.15);
+}
+
+.platform-card:hover .platform-arrow {
+  transform: translate(3px, -3px);
+  color: var(--qi-amber);
+}
+
+.platform-icon {
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.platform-icon :global(svg) {
+  width: 24px;
+  height: 24px;
+}
+
+.platform-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.platform-name {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-sm);
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.platform-handle {
+  display: block;
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-brand-emerald);
+  margin-top: 2px;
+}
+
+.platform-desc {
+  display: block;
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+  margin-top: 2px;
+}
+
+.platform-arrow {
+  font-size: var(--qi-text-lg);
+  color: var(--qi-text-muted);
+  flex-shrink: 0;
+  transition: transform var(--qi-transition), color var(--qi-transition);
+}

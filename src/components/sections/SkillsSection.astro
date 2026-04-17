@@ -1,0 +1,31 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import TagCloud from '../ui/TagCloud.astro';
+
+interface TagItem {
+  text: string;
+  size: 'lg' | 'md' | 'sm';
+  href?: string;
+}
+
+interface Props {
+  label: string;
+  title: string;
+  intro: string;
+  tags: TagItem[];
+}
+
+const { label, title, intro, tags } = Astro.props;
+---
+
+<section class="section skills-section" data-reveal>
+  <div class="skills-bg-decoration" aria-hidden="true">
+    <div class="skills-glow"></div>
+  </div>
+  <div class="container">
+    <SectionHeader label={label} title={title} />
+    <p class="skills-intro">{intro}</p>
+    <TagCloud variant="dark" tags={tags} />
+  </div>
+  <div class="skills-fade-out" aria-hidden="true"></div>
+</section>

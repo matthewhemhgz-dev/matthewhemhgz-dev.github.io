@@ -18,25 +18,50 @@ export function initScrollReveal() {
 export function initScrollHandler(particles) {
   const nav = document.querySelector('.nav-wrapper');
   const backToTopBtn = document.getElementById('back-to-top');
-  let ticking = false;
+  let lastScrollY = window.scrollY;
+  let scrollTicking = false;
   let scrollTimeout;
 
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
-        if (backToTopBtn) backToTopBtn.classList.toggle('visible', window.scrollY > 600);
-        ticking = false;
-      });
-      ticking = true;
+  function handleScroll() {
+    if (!nav) return;
+
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+
+    // Toggle .scrolled for subtle border/shadow (keep existing behavior)
+    nav.classList.toggle('scrolled', currentScrollY > 50);
+
+    // Back to top button visibility
+    if (backToTopBtn) backToTopBtn.classList.toggle('visible', currentScrollY > 600);
+
+    // Collapse/expand pill navigation (desktop only)
+    if (window.innerWidth > 768) {
+      if (currentScrollY > 100 && scrollDelta > 0) {
+        // Scrolling down past 100px → collapse
+        nav.classList.add('nav-collapsed');
+      } else if (scrollDelta < -5 || currentScrollY <= 100) {
+        // Scrolling up or near top → expand
+        nav.classList.remove('nav-collapsed');
+      }
+    }
+
+    lastScrollY = currentScrollY;
+    scrollTicking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(handleScroll);
+      scrollTicking = true;
     }
     if (particles) {
       particles.pause();
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => particles.resume(), 150);
     }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
+  }, { passive: true });
+
+  handleScroll(); // Initial call
 }
 
 export function initBackToTop() {

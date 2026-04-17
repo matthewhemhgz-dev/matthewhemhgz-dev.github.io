@@ -1,0 +1,43 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { svgIcons } from '../../data/icons';
+
+interface Props {
+  label: string;
+  title: string;
+  categories: Array<{
+    label: string;
+    icon: string;
+    tools: Array<{
+      name: string;
+      desc: string;
+    }>;
+  }>;
+}
+
+const { label, title, categories } = Astro.props;
+---
+
+<section class="section" data-reveal>
+  <div class="container">
+    <SectionHeader label={label} title={title} />
+    <div class="toolbox-grid">
+      {categories.map((cat) => (
+        <div class="toolbox-category">
+          <div class="toolbox-header">
+            <span class="toolbox-icon" set:html={svgIcons[cat.icon]} />
+            <h3 class="toolbox-label">{cat.label}</h3>
+          </div>
+          <div class="toolbox-items">
+            {cat.tools.map((tool) => (
+              <div class="tool-chip">
+                <span class="tool-name">{tool.name}</span>
+                <span class="tool-desc">{tool.desc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Skills Section (Dark)
+   ========================================================================== */
+
+.skills-section {
+  background: var(--qi-surface-main);
+  color: var(--qi-text-inverse);
+  margin: 0 calc(-1 * var(--qi-container-padding, 24px));
+  padding-left: var(--qi-container-padding, 24px);
+  padding-right: var(--qi-container-padding, 24px);
+  position: relative;
+  overflow: visible;
+}
+
+.skills-bg-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.skills-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46, 125, 92, 0.08), transparent 70%);
+  top: -200px;
+  right: -200px;
+  filter: blur(60px);
+}
+
+.skills-section :global(.section-label) {
+  color: var(--qi-amber);
+}
+
+.skills-section :global(.section-title) {
+  color: var(--qi-text-inverse);
+}
+
+.skills-intro {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-base);
+  color: rgba(247, 243, 238, 0.5);
+  text-align: center;
+  margin-bottom: var(--qi-space-2xl);
+  font-style: italic;
+}
+
+/* Skills fade-out gradient transition */
+.skills-fade-out {
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--qi-surface-main), var(--qi-bg-base));
+  pointer-events: none;
+  z-index: 2;
+}

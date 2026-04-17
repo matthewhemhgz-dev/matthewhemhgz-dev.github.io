@@ -5,6 +5,7 @@
 
 body {
   font-family: var(--qi-font-sans);
+  font-size: calc(1rem * var(--qi-font-scale, 1));
   background: var(--qi-bg-base);
   color: var(--qi-text-primary);
   overflow-x: hidden;

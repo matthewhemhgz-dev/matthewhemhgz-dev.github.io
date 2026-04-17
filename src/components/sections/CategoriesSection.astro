@@ -1,0 +1,42 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { svgIcons } from '../../data/icons';
+
+interface Props {
+  label: string;
+  title: string;
+  categories: Array<{
+    icon: string;
+    title: string;
+    desc: string;
+    color: string;
+    count: number;
+    countLabel: string;
+  }>;
+}
+
+const { label, title, categories } = Astro.props;
+---
+
+<section class="section" data-reveal>
+  <div class="container">
+    <SectionHeader label={label} title={title} />
+    <div class="category-grid">
+      {categories.map((cat) => (
+        <div class:list={['category-card', `category-card--${cat.color}`]}>
+          <div class="category-icon-wrap">
+            <span class="category-icon" set:html={svgIcons[cat.icon]} />
+          </div>
+          <div class="category-body">
+            <div class="category-header">
+              <h3 class="category-title">{cat.title}</h3>
+              <span class="category-count">{cat.count} {cat.countLabel}</span>
+            </div>
+            <p class="category-desc">{cat.desc}</p>
+          </div>
+          <span class="category-arrow">&rarr;</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

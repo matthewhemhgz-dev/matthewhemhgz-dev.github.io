@@ -1,0 +1,40 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+
+interface Props {
+  label: string;
+  title: string;
+  items: Array<{
+    date: string;
+    title: string;
+    desc: string;
+    tag: string;
+  }>;
+}
+
+const { label, title, items } = Astro.props;
+---
+
+<section class="section" data-reveal>
+  <div class="container">
+    <SectionHeader label={label} title={title} />
+    <div class="timeline">
+      {items.map((item, i) => (
+        <div class:list={['timeline-item', i % 2 === 1 && 'timeline-item--alt']}>
+          <div class="timeline-marker">
+            <span class="timeline-dot"></span>
+            {i < items.length - 1 && <span class="timeline-line"></span>}
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-header">
+              <span class="timeline-date">{item.date}</span>
+              <span class:list={['timeline-tag', `timeline-tag--${item.tag}`]}>{item.tag}</span>
+            </div>
+            <h3 class="timeline-title">{item.title}</h3>
+            <p class="timeline-desc">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

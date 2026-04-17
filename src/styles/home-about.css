@@ -1,0 +1,59 @@
+/* ==========================================================================
+   About Section (Asymmetric Layout)
+   ========================================================================== */
+
+.about-section {
+  padding-top: var(--qi-space-6xl, 8rem);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: var(--qi-space-3xl);
+  align-items: start;
+}
+
+.about-deco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-lg);
+  position: sticky;
+  top: calc(var(--qi-nav-height) + var(--qi-space-xl));
+}
+
+.about-deco-number {
+  font-family: var(--qi-font-serif);
+  font-size: clamp(6rem, 10vw, 10rem);
+  font-weight: 900;
+  color: var(--qi-brand-emerald);
+  line-height: 1;
+  opacity: 0.15;
+}
+
+.about-deco-slogan {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-xl);
+  font-weight: 600;
+  color: var(--qi-brand-emerald);
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+.about-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-2xl);
+}
+
+.about-text {
+  font-size: var(--qi-text-lg);
+  color: var(--qi-text-secondary);
+  line-height: 1.9;
+  max-width: var(--qi-content-width);
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--qi-space-lg);
+}

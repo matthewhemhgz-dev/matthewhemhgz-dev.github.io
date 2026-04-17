@@ -1,0 +1,102 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { svgIcons } from '../../data/icons';
+
+interface PostItem {
+  id: string;
+  data: {
+    title: string;
+    pubDate: Date;
+    description?: string;
+    heroImage?: string;
+    tags?: string[];
+  };
+}
+
+interface Props {
+  label: string;
+  title: string;
+  posts: PostItem[];
+  locale: string;
+  emptyText: string;
+  emptyIcon?: 'svg' | 'emoji';
+  readMoreText: string;
+  browseBlogHref: string;
+  browseBlogText: string;
+  /** If true, use the large magazine-style card layout (zh) */
+  largeCardLayout?: boolean;
+}
+
+const {
+  label,
+  title,
+  posts,
+  locale,
+  emptyText,
+  emptyIcon = 'emoji',
+  readMoreText,
+  browseBlogHref,
+  browseBlogText,
+  largeCardLayout = false,
+} = Astro.props;
+
+const localeMap: Record<string, string> = {
+  zh: 'zh-CN',
+  en: 'en-US',
+};
+const localeKey = localeMap[locale] || locale;
+const blogPrefix = locale === 'en' ? '/en/blog/' : '/blog/';
+---
+
+<section class="section" data-reveal>
+  <div class="container">
+    <SectionHeader label={label} title={title} />
+    {posts.length > 0 ? (
+      <div class="bento-grid">
+        {posts.map((post, i) => (
+          <a
+            href={`${blogPrefix}${post.id}`}
+            class:list={['bento-card', i === 0 ? 'bento-card--large' : 'bento-card--small']}
+          >
+            {largeCardLayout && i === 0 && post.data.heroImage ? (
+              <div class="bento-card--large__bg">
+                <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
+                <div class="bento-card--large__overlay"></div>
+              </div>
+            ) : largeCardLayout && i === 0 && !post.data.heroImage ? (
+              <div class="bento-card--large__bg bento-card--large__bg--gradient"></div>
+            ) : null}
+            <div class="bento-card__content">
+              <div class="bento-meta">
+                <span class="bento-date">
+                  {post.data.pubDate.toLocaleDateString(localeKey, { year: 'numeric', month: 'short', day: 'numeric' })}
+                </span>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <span class="bento-tag">{post.data.tags[0]}</span>
+                )}
+              </div>
+              <h3 class="bento-title">{post.data.title}</h3>
+              {post.data.description && (
+                <p class="bento-desc">{post.data.description}</p>
+              )}
+              {!largeCardLayout && i === 0 && post.data.heroImage && (
+                <div class="bento-image-wrap">
+                  <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
+                </div>
+              )}
+              <span class="bento-link">{readMoreText} &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <div class="empty-icon" aria-hidden="true">
+          {emptyIcon === 'svg' ? <Fragment set:html={svgIcons['edit']} /> : <>&#x1F4DD;</>}
+        </div>
+        <p class="empty-text">{emptyText}</p>
+        <a href={browseBlogHref} class="btn btn-secondary">{browseBlogText}</a>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+  primaryBtn: { text: string; href: string };
+  secondaryBtn: { text: string; href: string; external?: boolean };
+}
+
+const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
+---
+
+<section class="section cta-section" data-reveal>
+  <div class="container">
+    <div class="cta-content">
+      <span class="cta-label">{label}</span>
+      <h2 class="cta-title">{title}</h2>
+      <p class="cta-desc">{description}</p>
+      <div class="cta-actions">
+        <a href={primaryBtn.href} class="btn btn-primary">
+          <span>{primaryBtn.text}</span>
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href={secondaryBtn.href} class="btn btn-secondary" target={secondaryBtn.external ? '_blank' : undefined} rel={secondaryBtn.external ? 'noopener noreferrer' : undefined}>
+          {secondaryBtn.text}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

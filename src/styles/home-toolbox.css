@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Toolbox Section
+   ========================================================================== */
+
+.toolbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--qi-gap-bento);
+}
+
+.toolbox-category {
+  padding: var(--qi-space-xl);
+  background: var(--qi-bg-base);
+  border: 1px solid rgba(42, 42, 42, 0.06);
+  border-radius: var(--qi-radius-card);
+  transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+}
+
+.toolbox-category:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--qi-shadow-hover-warm);
+}
+
+/* Toolbox hover - tool name turns emerald, desc slides in */
+.toolbox-category:hover .tool-name {
+  color: var(--qi-brand-emerald);
+}
+
+.toolbox-category:hover .tool-desc {
+  transform: translateX(4px);
+}
+
+.toolbox-header {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  margin-bottom: var(--qi-space-md);
+  padding-bottom: var(--qi-space-sm);
+  border-bottom: 1px solid rgba(42, 42, 42, 0.06);
+}
+
+.toolbox-icon {
+  line-height: 1;
+  color: var(--qi-brand-emerald);
+}
+
+.toolbox-icon :global(svg) {
+  width: 20px;
+  height: 20px;
+}
+
+.toolbox-label {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  font-weight: 600;
+  color: var(--qi-brand-emerald);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.toolbox-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-sm);
+}
+
+.tool-chip {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--qi-space-sm);
+  padding: var(--qi-space-sm) 0;
+}
+
+.tool-chip:not(:last-child) {
+  border-bottom: 1px solid rgba(42, 42, 42, 0.04);
+}
+
+.tool-name {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.tool-desc {
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+  text-align: right;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+}

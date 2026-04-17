@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: var(--qi-space-lg);
+  }
+
+  .hero-stat-divider {
+    display: none;
+  }
+
+  /* About asymmetric -> single column on mobile */
+  .about-section {
+    padding-top: var(--qi-space-5xl);
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: var(--qi-space-xl);
+  }
+
+  .about-deco {
+    position: static;
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--qi-space-md);
+  }
+
+  .about-deco-number {
+    font-size: 4rem;
+  }
+
+  .about-deco-slogan {
+    font-size: var(--qi-text-sm);
+    letter-spacing: 0.1em;
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-card--large {
+    flex-direction: column;
+  }
+
+  .bento-image-wrap {
+    width: 100%;
+    height: 180px;
+  }
+
+  .toolbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    .platform-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-section {
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cta-section {
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* --- Large screen --- */
+@media (min-width: 1440px) {
+  .hero-title {
+    font-size: 5rem;
+  }
+
+  .bento-grid {
+    gap: 32px;
+  }
+
+  .category-grid {
+    gap: 28px;
+  }
+
+  .toolbox-grid {
+    gap: 28px;
+  }
+
+  .platform-grid {
+    gap: 24px;
+  }
+
+  .testimonial-grid {
+    gap: 28px;
+  }
+
+  .section {
+    padding: 7rem 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-title {
+    font-size: 5.5rem;
+  }
+
+  .bento-grid {
+    gap: 40px;
+  }
+
+  .section {
+    padding: 8rem 0;
+  }
+}
