@@ -9,9 +9,37 @@
 
 ## [Unreleased]
 
+## [2026-04-18] — Phase 3 用户体验 + 视觉设计 + 内容扩展
+
 ### 新增
-- **阅读时间计算** — 自动根据中英文字数计算文章阅读时间，显示在文章详情页和博客列表
-- **阅读时间单元测试** — 10 个测试覆盖空内容、中文、英文、混合、代码块、图片等边界情况
+- **Pagefind 静态搜索** — 30 页全文索引，Cmd+K 弹窗，中文分词支持
+- **暗色模式** — 123 行暗色令牌覆盖，主题切换按钮，localStorage 持久化
+- **代码块复制按钮** — 博客文章代码块右上角 hover 显示，剪贴板 API + fallback
+- **构建产物预算检查** — CI 自动化，6 类别 6MB 上限
+- **博客文章 ×6** — 6 篇深度文章（8000+ 字），含 Mermaid 图表、代码示例、对比表格
+- **文章封面图 ×6** — AI 生成杂志风格封面，首页精选区域大卡片布局
+- **Hero 浮动装饰卡片** — 右侧代码片段卡片 + Lighthouse 评分卡片
+- **设计令牌扩展** — 行高/字间距/display 字号/border-inverse/mint-03 等新令牌
+- **CSS 文件拆分** — code-blocks.css (82行)、search-modal.css (175行)、hero-float-cards.css (116行)
+
+### 变更
+- **Hero 射线→聚光灯** — repeating-conic-gradient 替换为三层 radial-gradient 聚光灯效果
+- **Hero 布局** — 单列→CSS Grid 双列（内容 + 浮动装饰）
+- **Hero subtitle** — 字号提升，颜色改为 secondary，增加字间距
+- **搜索弹窗** — 使用独立 --sm-* 变量，亮/暗模式始终深色外观
+- **平台链接** — 移除"即将上线"标签，改为中性待上线状态
+- **读者评价** — 2 条匿名→3 条具名，内容更具体
+- **About 页面** — 品牌故事增加技术细节，设计理念卡片扩展
+- **标签页 SEO** — meta description 优化
+- **NoiseOverlay** — 暗色模式混合模式 multiply→overlay
+- **构建预算** — 调整为 6MB（30 页 + 6 封面图）
+
+### 修复
+- **CTA 颜色 banding** — 主渐变 4→8 色阶，环境光增加中间色阶
+- **暗色 body 渐变** — alpha 0.03→0.06，增加可用色阶
+- **暗色模式覆盖补全** — --qi-border-inverse、--qi-brand-mint-03 等
+- **prefers-reduced-motion** — 统一覆盖 8 个 Hero 装饰动画
+- **SearchModal 硬编码颜色** — 移除所有 fallback 硬编码值
 
 ## [2026-04-18] — Phase 1 工程基础 + Phase 2 SEO
 
