@@ -342,8 +342,10 @@
 
 /* === Dark Mode === */
 :global(.dark) .nav-wrapper {
-  background: var(--qi-inverse-70);
-  border-color: var(--qi-base-06);
+  background: rgba(232, 227, 221, 0.06);
+  border-color: rgba(232, 227, 221, 0.10);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 :global(.dark) .nav-link {

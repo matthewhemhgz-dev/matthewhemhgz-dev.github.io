@@ -135,6 +135,12 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
     font-family: var(--qi-font-mono);
   }
 
+  /* === Dark Mode === */
+  :global(.dark) .blog-card {
+    border-color: var(--qi-border-strong);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  }
+
   /* === Responsive === */
   @media (max-width: 768px) {
     .blog-grid {

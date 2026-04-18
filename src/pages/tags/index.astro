@@ -161,6 +161,11 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
     color: var(--qi-on-surface-secondary);
   }
 
+  :global(.dark) .tags-post-card {
+    border-color: var(--qi-border-strong);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  }
+
   @media (max-width: 768px) {
     .tags-posts-grid {
       grid-template-columns: 1fr;
