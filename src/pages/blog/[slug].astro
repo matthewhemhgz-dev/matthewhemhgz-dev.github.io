@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import MermaidInit from '../../components/global/MermaidInit.astro';
 import { getCollection, render } from 'astro:content';
+import { getReadingTime } from '../../utils/reading-time';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
@@ -13,6 +14,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const readingTime = getReadingTime(post.body || '');
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
@@ -62,6 +64,10 @@ const articleJsonLd = {
       <div class="article-meta-top">
         <span class="article-category">{post.data.category}</span>
         <time class="article-date">{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        <span class="article-reading-time">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zM8.25 4.5v3.75l2.5 1.5-.75 1.25-3.25-1.95V4.5h1.5z" fill="currentColor"/></svg>
+          {readingTime}
+        </span>
       </div>
       <h1 class="article-title">{post.data.title}</h1>
       {post.data.description && (

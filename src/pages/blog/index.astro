@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { getReadingTime } from '../../utils/reading-time';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -23,7 +24,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
           </p>
           <div class="blog-card-meta">
             <time>{post.data.pubDate.toDateString()}</time>
-            <span>{(post.data.tags || []).slice(0, 3).join(' · ')}</span>
+            <span class="blog-card-reading-time">{getReadingTime(post.body || '')}</span>
           </div>
         </a>
       ))}
@@ -94,6 +95,10 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
     justify-content: space-between;
     font-size: var(--qi-text-xs);
     opacity: 0.6;
+  }
+
+  .blog-card-reading-time {
+    font-family: var(--qi-font-mono);
   }
 
   /* === Responsive === */
