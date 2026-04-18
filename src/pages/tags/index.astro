@@ -10,6 +10,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 
 <BaseLayout title="标签 — 祈研所 Qi-Lab" description="所有内容标签">
   <main class="container tags-page">
+    <h1 class="sr-only">标签</h1>
     <!-- Tag Cloud Section -->
     <section class="tags-cloud-section" data-reveal>
       <SectionHeader label="// TAGS" title="标签" />

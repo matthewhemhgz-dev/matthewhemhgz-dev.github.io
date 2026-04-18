@@ -153,7 +153,7 @@ a.cta-link:hover .cta-value {
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  padding: 12px 28px;
+  padding: var(--qi-space-md) var(--qi-space-2xl);
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
   font-weight: 600;
@@ -201,7 +201,7 @@ a.cta-link:hover .cta-value {
   .philosophy-desc { font-size: var(--qi-text-lg); line-height: 2; }
   .cta-text { font-size: var(--qi-text-2xl); line-height: 2; }
   .cta-value { font-size: var(--qi-text-xl); }
-  .cta-btn { padding: 16px 36px; font-size: var(--qi-text-base); }
+  .cta-btn { padding: var(--qi-space-lg) 2.25rem; font-size: var(--qi-text-base); }
 }
 
 @media (min-width: 3440px) {
@@ -209,5 +209,5 @@ a.cta-link:hover .cta-value {
   .philosophy-card { padding: var(--qi-space-4xl); }
   .philosophy-title { font-size: var(--qi-text-3xl); }
   .cta-text { font-size: var(--qi-text-2xl); }
-  .cta-btn { padding: 20px 44px; font-size: var(--qi-text-lg); }
+  .cta-btn { padding: var(--qi-space-xl) 2.75rem; font-size: var(--qi-text-lg); }
 }

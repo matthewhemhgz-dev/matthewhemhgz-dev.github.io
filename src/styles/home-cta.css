@@ -11,7 +11,7 @@
   );
   color: var(--qi-text-inverse);
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
-  padding: 80px var(--qi-container-padding, 24px) var(--qi-space-3xl);
+  padding: var(--qi-space-5xl) var(--qi-container-padding, 24px) var(--qi-space-3xl);
   text-align: center;
   position: relative;
   overflow: hidden;

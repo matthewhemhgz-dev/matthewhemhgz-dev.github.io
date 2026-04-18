@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Hero Section — 装饰效果
+   从 home-hero.css 拆分，保持主文件 <500 行
+   ========================================================================== */
+
+/* === 网格背景 === */
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--qi-base-06) 1px, transparent 1px),
+    linear-gradient(90deg, var(--qi-base-06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
+}
+
+/* === 光线放射效果 === */
+.hero-rays {
+  position: absolute;
+  inset: -50%;
+  background: repeating-conic-gradient(
+    from 45deg at 75% 25%,
+    var(--qi-brand-emerald-08) 0deg,
+    var(--qi-brand-emerald-15) 3deg,
+    transparent 5deg,
+    transparent 20deg
+  );
+  mask-image: radial-gradient(
+    ellipse 55% 45% at 75% 25%,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.2) 45%,
+    transparent 70%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 55% 45% at 75% 25%,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.2) 45%,
+    transparent 70%
+  );
+  animation: rays-spin 120s linear infinite;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes rays-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* === 体积光束效果 === */
+.hero-beam {
+  position: absolute;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.hero-beam--amber {
+  top: -10%;
+  right: 0%;
+  width: 20%;
+  height: 120%;
+  background: linear-gradient(
+    165deg,
+    transparent 0%,
+    var(--qi-brand-amber-12) 30%,
+    var(--qi-brand-amber-20) 50%,
+    var(--qi-brand-amber-12) 70%,
+    transparent 100%
+  );
+  filter: blur(60px);
+  animation: beam-breathe-amber 30s ease-in-out infinite alternate;
+}
+
+.hero-beam--mint {
+  top: -5%;
+  left: 15%;
+  width: 15%;
+  height: 110%;
+  background: linear-gradient(
+    195deg,
+    transparent 0%,
+    var(--qi-brand-mint-10) 25%,
+    var(--qi-brand-mint-18) 50%,
+    var(--qi-brand-mint-10) 75%,
+    transparent 100%
+  );
+  filter: blur(50px);
+  animation: beam-breathe-mint 35s ease-in-out infinite alternate;
+}
+
+@keyframes beam-breathe-amber {
+  0%   { opacity: 0.5; transform: scaleX(1) translateX(0); }
+  100% { opacity: 0.8; transform: scaleX(1.05) translateX(10px); }
+}
+
+@keyframes beam-breathe-mint {
+  0%   { opacity: 0.4; transform: scaleX(1) translateX(0); }
+  100% { opacity: 0.7; transform: scaleX(1.03) translateX(-8px); }
+}
+
+/* === 点阵背景 === */
+.hero-dot-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    var(--qi-brand-emerald-18) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    black 15%,
+    transparent 75%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    black 15%,
+    transparent 75%
+  );
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* === 水印字符 === */
+.hero-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--qi-font-serif);
+  font-size: clamp(20rem, 40vw, 35rem);
+  font-weight: 900;
+  color: var(--qi-text-primary);
+  opacity: var(--qi-deco-ghost);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+  animation: watermark-breathe 10s ease-in-out infinite;
+}
+
+@keyframes watermark-breathe {
+  0%, 100% { opacity: var(--qi-deco-ghost); }
+  50% { opacity: 0.08; }
+}

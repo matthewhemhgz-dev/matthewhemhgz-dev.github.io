@@ -245,3 +245,62 @@
     padding: 10rem 0;
   }
 }
+
+/* === Hero 4K 断点 (从 home-hero.css 迁移) === */
+@media (min-width: 3440px) {
+  .hero-container {
+    max-width: min(1600px, 45%);
+  }
+
+  .hero-title {
+    font-size: clamp(5rem, 4vw, 9rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--qi-font-scaled-3xl);
+  }
+
+  .hero-gradient-orb--1 {
+    width: 1200px;
+    height: 1200px;
+  }
+
+  .hero-gradient-orb--2 {
+    width: 1000px;
+    height: 1000px;
+  }
+
+  .hero-stat-value {
+    font-size: var(--qi-font-scaled-4xl);
+  }
+}
+
+/* === Hero 同心圆弧装饰 (从 home-hero.css 迁移) === */
+.hero-arcs {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  color: var(--qi-brand-emerald);
+  opacity: 0.85;
+  animation: arcs-rotate 180s linear infinite;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes arcs-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .hero-arcs {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-arcs {
+    animation: none;
+  }
+}
