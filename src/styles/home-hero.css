@@ -35,26 +35,26 @@
 .hero-gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.6;
+  filter: blur(60px);
+  opacity: 0.8;
 }
 
 .hero-gradient-orb--1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, hsla(var(--orb-hue-1), 45%, 38%, 0.25), transparent 70%);
-  top: -100px;
-  right: -100px;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, hsla(var(--orb-hue-1), 50%, 40%, 0.35), transparent 70%);
+  top: -120px;
+  right: -120px;
   animation: orb-color-shift-1 25s ease-in-out infinite;
   transition: width 0.4s ease, height 0.4s ease;
 }
 
 .hero-gradient-orb--2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, hsla(var(--orb-hue-2), 60%, 50%, 0.22), transparent 70%);
-  bottom: -50px;
-  left: -50px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, hsla(var(--orb-hue-2), 65%, 50%, 0.30), transparent 70%);
+  bottom: -60px;
+  left: -60px;
   animation: orb-color-shift-2 30s ease-in-out infinite;
   transition: width 0.4s ease, height 0.4s ease;
 }
@@ -71,20 +71,20 @@
   66% { --orb-hue-2: 160; }      /* 薄荷 */
 }
 
-/* === 柔光晕 — 大面积翡翠绿氛围光（Layer 1） === */
+/* === Ambient glow === */
 .hero-ambient-glow {
   position: absolute;
   top: -10%;
   right: -5%;
-  width: 60%;
-  height: 70%;
+  width: 65%;
+  height: 75%;
   background: radial-gradient(
     ellipse at center,
-    var(--qi-glow-primary) 0%,
-    var(--qi-glow-secondary) 40%,
+    var(--qi-brand-emerald-30) 0%,
+    var(--qi-brand-mint-18) 40%,
     transparent 70%
   );
-  filter: blur(80px);
+  filter: blur(60px);
   pointer-events: none;
   z-index: 1;
 }

@@ -1,111 +1,144 @@
-/* ==========================================================================
-   Hero Float Cards — 右侧浮动装饰元素
-   ========================================================================== */
+/* Hero Float Cards */
 
 .hero-float-card {
   position: relative;
   border-radius: var(--qi-radius-lg);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   animation: float-gentle 6s ease-in-out infinite;
+  border: 1px solid var(--qi-border-default);
+  background: var(--qi-surface-main);
+  box-shadow: var(--qi-shadow-lg);
 }
 
-.hero-float-card--code {
-  background: rgba(30, 27, 24, 0.75);
-  border: 1px solid var(--qi-base-08);
-  padding: 0;
-  width: 260px;
-  box-shadow: var(--qi-shadow-xl);
+/* Insight card — Design Token stats */
+.hero-float-card--insight {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-md);
+  padding: var(--qi-space-lg) var(--qi-space-xl);
+  width: 280px;
   animation-delay: 0s;
 }
 
-.float-card-header {
+.float-insight-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--qi-base-06);
+  justify-content: center;
+  border-radius: var(--qi-radius-md);
+  background: var(--qi-brand-emerald-10);
+  color: var(--qi-brand-emerald);
 }
 
-.float-card-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.float-insight-body {
+  flex: 1;
+  min-width: 0;
 }
-.float-card-dot--red { background: #ff5f57; }
-.float-card-dot--yellow { background: #febc2e; }
-.float-card-dot--green { background: #28c840; }
 
-.float-card-filename {
-  margin-left: 6px;
+.float-insight-label {
   font-family: var(--qi-font-mono);
-  font-size: 11px;
-  color: var(--qi-text-muted);
-}
-
-.float-card-body {
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.float-card-body code {
-  font-family: var(--qi-font-mono);
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--qi-text-secondary);
-}
-
-.fc-prop { color: var(--qi-brand-mint); }
-.fc-val { color: var(--qi-brand-amber); }
-.fc-comment { color: var(--qi-text-muted); font-style: italic; }
-
-.hero-float-card--stat {
-  background: rgba(30, 27, 24, 0.65);
-  border: 1px solid var(--qi-base-06);
-  padding: 16px 20px;
-  width: 180px;
-  box-shadow: var(--qi-shadow-lg);
-  animation-delay: -3s;
-  margin-top: -40px;
-  margin-left: -30px;
-}
-
-.float-stat-label {
-  font-family: var(--qi-font-mono);
-  font-size: 10px;
+  font-size: var(--qi-text-xs);
   color: var(--qi-text-muted);
   text-transform: uppercase;
   letter-spacing: var(--qi-tracking-wider);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.float-stat-value {
+.float-insight-value {
   font-family: var(--qi-font-serif);
-  font-size: 2rem;
+  font-size: var(--qi-text-xl);
   font-weight: 700;
-  color: var(--qi-brand-emerald);
-  line-height: 1;
-  margin-bottom: 8px;
+  color: var(--qi-text-primary);
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
-.float-stat-bar {
-  height: 4px;
+.float-insight-bar {
+  height: 3px;
   background: var(--qi-base-04);
   border-radius: var(--qi-radius-full);
   overflow: hidden;
 }
 
-.float-stat-fill {
+.float-insight-fill {
   height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
+  width: 85%;
   border-radius: var(--qi-radius-full);
+}
+
+.float-insight-fill--emerald {
+  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
+}
+
+/* Metric card — Core Web Vitals */
+.hero-float-card--metric {
+  padding: var(--qi-space-lg) var(--qi-space-xl);
+  width: 240px;
+  animation-delay: -3s;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+.float-metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--qi-space-md);
+}
+
+.float-metric-title {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--qi-tracking-wider);
+}
+
+.float-metric-badge {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  font-weight: 700;
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-10);
+  padding: 2px 8px;
+  border-radius: var(--qi-radius-full);
+}
+
+.float-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--qi-space-sm);
+}
+
+.float-metric-item {
+  text-align: center;
+}
+
+.float-metric-num {
+  display: block;
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-2xl);
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  line-height: 1.2;
+}
+
+.float-metric-label {
+  display: block;
+  font-family: var(--qi-font-mono);
+  font-size: 10px;
+  color: var(--qi-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--qi-tracking-wider);
+  margin-top: 2px;
 }
 
 @keyframes float-gentle {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 /* Mobile: hide float cards */

@@ -15,28 +15,25 @@
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
 }
 
-/* === 聚光灯聚焦效果 — 聚焦在品牌宣言区域 === */
+/* === Spotlight focus effect === */
 .hero-rays {
   position: absolute;
   inset: 0;
   background:
-    /* 主聚光灯：从左上角照射到中心内容区域 */
     radial-gradient(
       ellipse 60% 50% at 30% 40%,
-      var(--qi-brand-emerald-18) 0%,
-      var(--qi-brand-emerald-08) 40%,
+      var(--qi-brand-emerald-25) 0%,
+      var(--qi-brand-emerald-12) 40%,
       transparent 70%
     ),
-    /* 辅助聚光灯：右下角暖色补光 */
     radial-gradient(
       ellipse 40% 40% at 80% 70%,
-      var(--qi-brand-amber-12) 0%,
+      var(--qi-brand-amber-18) 0%,
       transparent 60%
     ),
-    /* 顶部柔光：增加层次感 */
     radial-gradient(
       ellipse 80% 30% at 50% 10%,
-      var(--qi-brand-mint-08) 0%,
+      var(--qi-brand-mint-12) 0%,
       transparent 70%
     );
   mask-image: radial-gradient(
@@ -63,7 +60,7 @@
   50% { opacity: 0.7; }
 }
 
-/* === 体积光束效果 === */
+/* === Volumetric light beams === */
 .hero-beam {
   position: absolute;
   pointer-events: none;
@@ -73,34 +70,34 @@
 .hero-beam--amber {
   top: -10%;
   right: 0%;
-  width: 20%;
+  width: 25%;
   height: 120%;
   background: linear-gradient(
     165deg,
     transparent 0%,
-    var(--qi-brand-amber-12) 30%,
-    var(--qi-brand-amber-20) 50%,
-    var(--qi-brand-amber-12) 70%,
+    var(--qi-brand-amber-18) 30%,
+    var(--qi-brand-amber-30) 50%,
+    var(--qi-brand-amber-18) 70%,
     transparent 100%
   );
-  filter: blur(60px);
+  filter: blur(50px);
   animation: beam-breathe-amber 30s ease-in-out infinite alternate;
 }
 
 .hero-beam--mint {
   top: -5%;
-  left: 15%;
-  width: 15%;
+  left: 10%;
+  width: 20%;
   height: 110%;
   background: linear-gradient(
     195deg,
     transparent 0%,
-    var(--qi-brand-mint-10) 25%,
-    var(--qi-brand-mint-18) 50%,
-    var(--qi-brand-mint-10) 75%,
+    var(--qi-brand-mint-15) 25%,
+    var(--qi-brand-mint-25) 50%,
+    var(--qi-brand-mint-15) 75%,
     transparent 100%
   );
-  filter: blur(50px);
+  filter: blur(40px);
   animation: beam-breathe-mint 35s ease-in-out infinite alternate;
 }
 
@@ -114,13 +111,13 @@
   100% { opacity: 0.7; transform: scaleX(1.03) translateX(-8px); }
 }
 
-/* === 点阵背景 === */
+/* === Dot pattern === */
 .hero-dot-pattern {
   position: absolute;
   inset: 0;
   background-image: radial-gradient(
     circle,
-    var(--qi-brand-emerald-18) 1px,
+    var(--qi-brand-emerald-25) 1px,
     transparent 1px
   );
   background-size: 32px 32px;
@@ -138,7 +135,7 @@
   transition: opacity 0.5s ease;
 }
 
-/* === 水印字符 === */
+/* === Watermark character === */
 .hero-watermark {
   position: absolute;
   top: 50%;

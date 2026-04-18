@@ -85,25 +85,36 @@ const {
         ))}
       </div>
     </div>
-    <div class="hero-float-card hero-float-card--code" aria-hidden="true">
-      <div class="float-card-header">
-        <span class="float-card-dot float-card-dot--red"></span>
-        <span class="float-card-dot float-card-dot--yellow"></span>
-        <span class="float-card-dot float-card-dot--green"></span>
-        <span class="float-card-filename">theme.css</span>
+    <div class="hero-float-card hero-float-card--insight" aria-hidden="true">
+      <div class="float-insight-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.09 7.26L18 7.64L13.55 11.42L14.82 17.18L10 14.27L5.18 17.18L6.45 11.42L2 7.64L7.91 7.26L10 2Z" fill="currentColor"/></svg>
       </div>
-      <div class="float-card-body">
-        <code><span class="fc-prop">--qi-brand-emerald</span>: <span class="fc-val">#4ADE80</span>;</code>
-        <code><span class="fc-prop">--qi-brand-amber</span>: <span class="fc-val">#FBbF24</span>;</code>
-        <code><span class="fc-prop">--qi-brand-mint</span>: <span class="fc-val">#99F6E4</span>;</code>
-        <code><span class="fc-comment">/* 工程美学 */</span></code>
+      <div class="float-insight-body">
+        <div class="float-insight-label">Design Token</div>
+        <div class="float-insight-value">168 variables</div>
+        <div class="float-insight-bar">
+          <div class="float-insight-fill float-insight-fill--emerald"></div>
+        </div>
       </div>
     </div>
-    <div class="hero-float-card hero-float-card--stat" aria-hidden="true">
-      <div class="float-stat-label">Lighthouse</div>
-      <div class="float-stat-value">100</div>
-      <div class="float-stat-bar">
-        <div class="float-stat-fill"></div>
+    <div class="hero-float-card hero-float-card--metric" aria-hidden="true">
+      <div class="float-metric-header">
+        <span class="float-metric-title">Performance</span>
+        <span class="float-metric-badge">A+</span>
+      </div>
+      <div class="float-metric-grid">
+        <div class="float-metric-item">
+          <span class="float-metric-num">98</span>
+          <span class="float-metric-label">LCP</span>
+        </div>
+        <div class="float-metric-item">
+          <span class="float-metric-num">0</span>
+          <span class="float-metric-label">CLS</span>
+        </div>
+        <div class="float-metric-item">
+          <span class="float-metric-num">12</span>
+          <span class="float-metric-label">FID</span>
+        </div>
       </div>
     </div>
   </div>
