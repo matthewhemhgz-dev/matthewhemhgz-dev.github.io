@@ -4,6 +4,7 @@ description: "设计令牌是设计系统的原子单位。本文从概念到实
 pubDate: 2026-04-12
 category: "前端工程"
 tags: ["CSS", "设计系统", "Design Tokens", "最佳实践"]
+heroImage: "/images/blog/design-tokens-system-guide.jpg"
 author: "祈研所"
 draft: false
 lang: zh

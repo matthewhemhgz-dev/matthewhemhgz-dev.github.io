@@ -4,6 +4,7 @@ description: "从 Next.js 到 Astro 的技术选型心路历程，以及 Islands
 pubDate: 2026-04-15
 category: "技术选型"
 tags: ["Astro", "SSG", "前端工程", "性能优化"]
+heroImage: "/images/blog/astro-ssg-why-i-chose.jpg"
 author: "祈研所"
 draft: false
 lang: zh

@@ -5,6 +5,7 @@ pubDate: 2025-03-28
 updatedDate: 2026-04-18
 category: "实用干货"
 tags: ["Notion", "Obsidian", "知识管理", "PKM"]
+heroImage: "/images/blog/notion-obsidian-dual-track.jpg"
 author: "祈研所"
 draft: false
 lang: zh

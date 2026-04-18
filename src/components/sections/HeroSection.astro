@@ -50,41 +50,65 @@ const {
     </svg>
   </div>
   <div class="container hero-container">
-    <div class="hero-badge hero-stagger hero-stagger--1">
-      <span class="badge-dot"></span>
-      <span class="badge-text">{badgeText}</span>
+    <div class="hero-content">
+      <div class="hero-badge hero-stagger hero-stagger--1">
+        <span class="badge-dot"></span>
+        <span class="badge-text">{badgeText}</span>
+      </div>
+      <h1 class="hero-title">
+        {titleLines.map((line, i) => (
+          <span class:list={['title-line', 'hero-stagger', `hero-stagger--${i + 2}`, i === accentIndex && 'title-accent']}>
+            {line}
+          </span>
+        ))}
+      </h1>
+      <p class="hero-subtitle hero-fade-in">{subtitle}</p>
+      <div class="hero-actions hero-fade-in">
+        {primaryBtn && (
+          <a href={primaryBtn.href} class="btn btn-primary">
+            <span>{primaryBtn.text}</span>
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        )}
+        {secondaryBtn && (
+          <a href={secondaryBtn.href} class="btn btn-secondary">{secondaryBtn.text}</a>
+        )}
+      </div>
+      <div class="hero-stats hero-fade-in">
+        {stats.map((stat, i) => (
+          <>
+            {i > 0 && <div class="hero-stat-divider"></div>}
+            <div class="hero-stat">
+              <span class:list={['hero-stat-value', stat.isText && 'hero-stat-text']} data-count={stat.dataCount}>
+                {stat.isText ? stat.value : '0'}
+              </span>
+              <span class="hero-stat-label">{stat.label}</span>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
-    <h1 class="hero-title">
-      {titleLines.map((line, i) => (
-        <span class:list={['title-line', 'hero-stagger', `hero-stagger--${i + 2}`, i === accentIndex && 'title-accent']}>
-          {line}
-        </span>
-      ))}
-    </h1>
-    <p class="hero-subtitle hero-fade-in">{subtitle}</p>
-    <div class="hero-actions hero-fade-in">
-      {primaryBtn && (
-        <a href={primaryBtn.href} class="btn btn-primary">
-          <span>{primaryBtn.text}</span>
-          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      )}
-      {secondaryBtn && (
-        <a href={secondaryBtn.href} class="btn btn-secondary">{secondaryBtn.text}</a>
-      )}
+    <!-- 右侧浮动代码卡片装饰 -->
+    <div class="hero-float-card hero-float-card--code" aria-hidden="true">
+      <div class="float-card-header">
+        <span class="float-card-dot float-card-dot--red"></span>
+        <span class="float-card-dot float-card-dot--yellow"></span>
+        <span class="float-card-dot float-card-dot--green"></span>
+        <span class="float-card-filename">tokens.css</span>
+      </div>
+      <div class="float-card-body">
+        <code><span class="fc-prop">--qi-brand-emerald</span>: <span class="fc-val">#4ADE80</span>;</code>
+        <code><span class="fc-prop">--qi-brand-amber</span>: <span class="fc-val">#FBbF24</span>;</code>
+        <code><span class="fc-prop">--qi-brand-mint</span>: <span class="fc-val">#99F6E4</span>;</code>
+        <code><span class="fc-comment">/* 工程美学 */</span></code>
+      </div>
     </div>
-    <div class="hero-stats hero-fade-in">
-      {stats.map((stat, i) => (
-        <>
-          {i > 0 && <div class="hero-stat-divider"></div>}
-          <div class="hero-stat">
-            <span class:list={['hero-stat-value', stat.isText && 'hero-stat-text']} data-count={stat.dataCount}>
-              {stat.isText ? stat.value : '0'}
-            </span>
-            <span class="hero-stat-label">{stat.label}</span>
-          </div>
-        </>
-      ))}
+    <div class="hero-float-card hero-float-card--stat" aria-hidden="true">
+      <div class="float-stat-label">Lighthouse</div>
+      <div class="float-stat-value">100</div>
+      <div class="float-stat-bar">
+        <div class="float-stat-fill"></div>
+      </div>
     </div>
   </div>
 </section>

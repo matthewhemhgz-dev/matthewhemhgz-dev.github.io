@@ -5,6 +5,7 @@ pubDate: 2025-04-10
 updatedDate: 2026-04-18
 category: "深度研析"
 tags: ["AI", "知识管理", "效率工具", "长期主义"]
+heroImage: "/images/blog/ai-era-knowledge-worker.jpg"
 author: "祈研所"
 draft: false
 lang: zh
