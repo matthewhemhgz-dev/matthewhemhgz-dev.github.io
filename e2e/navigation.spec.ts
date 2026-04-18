@@ -37,7 +37,8 @@ test.describe('导航', () => {
 
   test('从标签页点击标签筛选文章', async ({ page }) => {
     await page.goto('/tags/');
-    await page.locator('a', { hasText: '#AI' }).click();
+    // 使用 .tag-link 类精确选择标签链接，避免匹配到文章卡片
+    await page.locator('a.tag-link', { hasText: '#AI' }).click();
     await expect(page).toHaveTitle(/AI/);
     // 应只显示 AI 相关文章
     await expect(page.locator('a', { hasText: 'AI 时代知识工作者的生存指南' })).toBeVisible();
