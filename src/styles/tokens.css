@@ -23,9 +23,12 @@
   --qi-text-primary: #2A2A2A;
   --qi-text-secondary: #5A5A5A;
   --qi-text-muted: #7A7A7A;
+  --qi-text-faint: #9A9A9A;
   --qi-on-surface: #E8E3DD;
+  --qi-on-surface-secondary: #C8C3BD;
   --qi-on-surface-muted: #A8A29E;
-  --qi-on-surface-dim: #78716C;
+  --qi-on-surface-dim: #8A8580;
+  --qi-on-surface-faint: #6A655F;
 
   /* Border */
   --qi-border-default: rgba(42, 42, 42, 0.06);

@@ -15,6 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: contain;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img, picture, video, canvas, svg {

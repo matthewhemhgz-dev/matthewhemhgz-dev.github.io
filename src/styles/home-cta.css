@@ -17,6 +17,7 @@
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
   padding: var(--qi-space-5xl) var(--qi-container-padding, 24px) var(--qi-space-3xl);
   text-align: center;
+  transition: color 0.3s ease;
   position: relative;
   overflow: hidden;
 }
