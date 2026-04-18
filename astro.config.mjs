@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/',
   output: 'static',
   outDir: './dist',
+  compressHTML: true,
   build: {
     assets: '_astro',
   },

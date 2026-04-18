@@ -68,10 +68,13 @@ const blogPrefix = '/blog/';
               <div class="bento-card--large__bg bento-card--large__bg--gradient"></div>
             ) : null}
             <div class="bento-card__content">
+              {!largeCardLayout && post.data.heroImage && (
+                <div class="bento-image-wrap">
+                  <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={600} height={340} loading="lazy" />
+                </div>
+              )}
               <div class="bento-meta">
-                <span class="bento-date">
-                  {post.data.pubDate.toLocaleDateString(localeKey, { year: 'numeric', month: 'short', day: 'numeric' })}
-                </span>
+                <span class="bento-date">{post.data.pubDate.toLocaleDateString(localeKey, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                 {post.data.tags && post.data.tags.length > 0 && (
                   <span class="bento-tag">{post.data.tags[0]}</span>
                 )}
@@ -79,11 +82,6 @@ const blogPrefix = '/blog/';
               <h3 class="bento-title">{post.data.title}</h3>
               {post.data.description && (
                 <p class="bento-desc">{post.data.description}</p>
-              )}
-              {!largeCardLayout && i === 0 && post.data.heroImage && (
-                <div class="bento-image-wrap">
-                  <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={600} height={340} />
-                </div>
               )}
               <span class="bento-link">{readMoreText} &rarr;</span>
             </div>

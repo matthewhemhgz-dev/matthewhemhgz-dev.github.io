@@ -86,7 +86,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
 
     <!-- Theme init (prevent FOUC) -->
     <script is:inline>
-      (function(){let t=localStorage.getItem('qi-theme');if(!t){t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.classList.toggle('dark',t==='dark')})();
+      (function(){const t=localStorage.getItem('qi-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark');const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#121010':'#F7F3EE'})();
     </script>
   </head>
   <body>

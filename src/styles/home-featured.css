@@ -234,4 +234,9 @@
     opacity: 0;
     pointer-events: none;
   }
+
+  .bento-image-wrap {
+    width: 100%;
+    height: 180px;
+  }
 }
