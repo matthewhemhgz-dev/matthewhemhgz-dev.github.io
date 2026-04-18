@@ -59,11 +59,11 @@ const { tag, posts } = Astro.props;
     display: block;
     padding: 1.25rem;
     background: var(--qi-surface-main);
-    /* 深色卡片始终使用浅色文字 */
-    color: #E8E3DD;
+    color: var(--qi-on-surface);
     border-radius: var(--qi-radius-card);
     text-decoration: none;
     transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+    border: 1px solid var(--qi-border-subtle);
   }
 
   .tag-post-card:hover {
@@ -79,7 +79,7 @@ const { tag, posts } = Astro.props;
 
   .tag-post-date {
     font-size: 0.8rem;
-    opacity: 0.6;
+    color: var(--qi-on-surface-dim);
   }
 
   @media (max-width: 768px) {

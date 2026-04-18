@@ -6,6 +6,8 @@
    ========================================================================== */
 
 .dark {
+  color-scheme: dark;
+
   /* 基础背景与表面 — 深色暖调 */
   --qi-bg-base: #121010;
   --qi-surface-main: #1E1B18;
@@ -15,7 +17,7 @@
   --qi-text-inverse: #1E1B18;
   --qi-text-primary: #E8E3DD;
   --qi-text-secondary: #A8A29E;
-  --qi-text-muted: #78716C;
+  --qi-text-muted: #918C87;
 
   /* 边框令牌 — 暖色透明度 */
   --qi-border-default: rgba(232, 227, 221, 0.08);

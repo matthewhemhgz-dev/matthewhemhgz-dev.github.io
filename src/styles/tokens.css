@@ -24,6 +24,11 @@
   --qi-text-secondary: #5A5A5A;
   --qi-text-muted: #7A7A7A;
 
+  /* 深色表面上的文字（始终浅色，不随暗色模式反转） */
+  --qi-on-surface: #E8E3DD;
+  --qi-on-surface-muted: #A8A29E;
+  --qi-on-surface-dim: #78716C;
+
   /* 边框令牌 */
   --qi-border-default: rgba(42, 42, 42, 0.06);
   --qi-border-subtle: rgba(42, 42, 42, 0.04);

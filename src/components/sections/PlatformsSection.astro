@@ -35,12 +35,14 @@ const { label, title, platforms } = Astro.props;
     <div class="platform-grid">
       {platforms.map((p) => (
         <a
-          href={p.url}
+          href={p.url === '#' ? undefined : p.url}
           title={p.url === '#' ? '敬请期待' : undefined}
           class:list={['platform-card tilt-card', { 'platform-card--soon': p.url === '#' }]}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${p.name} - ${p.desc} (opens in new window)`}
+          {...(p.url !== '#' && { target: '_blank', rel: 'noopener noreferrer' })}
+          aria-label={`${p.name} - ${p.desc}${p.url === '#' ? ' (即将上线)' : ' (opens in new window)'}`}
+          role={p.url === '#' ? 'button' : undefined}
+          tabindex={p.url === '#' ? 0 : undefined}
+          onclick={p.url === '#' ? 'event.preventDefault()' : undefined}
         >
           <span class="platform-icon" set:html={svgIcons[p.icon]} />
           <div class="platform-info">

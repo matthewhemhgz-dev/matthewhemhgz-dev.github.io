@@ -84,6 +84,21 @@
   transition: transform var(--qi-transition), color var(--qi-transition);
 }
 
+.platform-card--soon {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.platform-card--soon:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.platform-card--soon .platform-arrow {
+  content: '…';
+  color: var(--qi-text-muted);
+}
+
 /* === Large screen: Platforms Section === */
 @media (min-width: 1440px) {
   .platform-grid {
