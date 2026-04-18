@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Code Blocks — 代码块样式 + 复制按钮
+   ========================================================================== */
+
+/* Inline code */
+.prose :global(code) {
+  font-family: var(--qi-font-mono);
+  background: var(--qi-surface-sub);
+  color: var(--qi-brand-emerald);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  border: 1px solid var(--qi-base-04);
+}
+
+/* Code blocks */
+.prose :global(pre) {
+  background: var(--qi-surface-main);
+  color: var(--qi-text-inverse);
+  padding: var(--qi-space-xl);
+  border-radius: var(--qi-radius-lg);
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--qi-border-default);
+  position: relative;
+  font-size: 0.9em;
+  line-height: 1.7;
+  box-shadow: var(--qi-shadow-lg);
+}
+
+/* Code block wrapper for copy button */
+.code-block-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.code-block-wrapper :global(pre) {
+  margin-bottom: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  opacity: 0;
+}
+
+.code-block-wrapper:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-btn:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--qi-brand-emerald);
+  outline-offset: 1px;
+}
+
+.prose :global(pre code) {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+}
