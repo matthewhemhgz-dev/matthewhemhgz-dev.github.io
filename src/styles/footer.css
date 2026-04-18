@@ -8,7 +8,7 @@
   background: var(--qi-ink);
   color: var(--qi-bg-base);
   padding: var(--qi-space-4xl) 0 var(--qi-space-xl);
-  border-top: 1px solid var(--qi-border-inverse, rgba(255, 255, 255, 0.06));
+  border-top: 1px solid var(--qi-border-inverse);
 }
 
 .footer-inner {

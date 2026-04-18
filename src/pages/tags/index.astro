@@ -8,7 +8,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
 const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 ---
 
-<BaseLayout title="标签 — 祈研所 Qi-Lab" description="所有内容标签">
+<BaseLayout title="标签 — 祈研所 Qi-Lab" description="祈研所所有内容标签 — 探索 AI、知识管理、前端开发等主题的深度文章">
   <main class="container tags-page">
     <h1 class="sr-only">标签</h1>
     <!-- Tag Cloud Section -->

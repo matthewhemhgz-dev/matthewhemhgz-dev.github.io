@@ -1,5 +1,9 @@
 /* ==========================================================================
    Search Modal — Pagefind 搜索弹窗样式
+   ==========================================================================
+   设计意图：搜索弹窗始终使用深色背景（类似 macOS Spotlight），
+   在亮色和暗色模式下保持一致的深色外观。
+   使用 CSS 自定义属性实现，避免硬编码颜色值。
    ========================================================================== */
 
 .search-modal {
@@ -27,14 +31,24 @@
   backdrop-filter: blur(4px);
 }
 
+/* 搜索弹窗始终深色 — 使用独立的 CSS 变量 */
 .search-container {
+  --sm-bg: #1E1B18;
+  --sm-border: rgba(255, 255, 255, 0.1);
+  --sm-text: #E8E3DD;
+  --sm-text-muted: rgba(255, 255, 255, 0.45);
+  --sm-text-dimmed: rgba(255, 255, 255, 0.3);
+  --sm-hover: rgba(255, 255, 255, 0.06);
+  --sm-input-bg: rgba(255, 255, 255, 0.06);
+  --sm-kbd-border: rgba(255, 255, 255, 0.12);
+
   position: relative;
   width: 90%;
   max-width: 560px;
   max-height: 60vh;
-  background: var(--qi-surface-main, #1a1714);
-  border: 1px solid var(--qi-border-inverse, rgba(255, 255, 255, 0.1));
-  border-radius: var(--qi-radius-card, 12px);
+  background: var(--sm-bg);
+  border: 1px solid var(--sm-border);
+  border-radius: var(--qi-radius-card);
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
@@ -42,14 +56,14 @@
 .search-input-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--qi-border-inverse, rgba(255, 255, 255, 0.1));
+  gap: var(--qi-space-md);
+  padding: var(--qi-space-lg) var(--qi-space-xl);
+  border-bottom: 1px solid var(--sm-border);
 }
 
 .search-icon {
   flex-shrink: 0;
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.5));
+  color: var(--sm-text-muted);
 }
 
 .search-input {
@@ -57,59 +71,59 @@
   background: none;
   border: none;
   outline: none;
-  color: var(--qi-text-primary, #fff);
-  font-size: var(--qi-text-base, 1rem);
-  font-family: var(--qi-font-sans, system-ui);
+  color: var(--sm-text);
+  font-size: var(--qi-text-base);
+  font-family: var(--qi-font-sans);
 }
 
 .search-input::placeholder {
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.4));
+  color: var(--sm-text-dimmed);
 }
 
 .search-kbd {
   flex-shrink: 0;
   padding: 2px 6px;
   font-size: 11px;
-  font-family: var(--qi-font-mono, monospace);
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.4));
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  font-family: var(--qi-font-mono);
+  color: var(--sm-text-muted);
+  background: var(--sm-input-bg);
+  border: 1px solid var(--sm-kbd-border);
+  border-radius: var(--qi-radius-sm);
 }
 
 .search-results {
   overflow-y: auto;
   max-height: calc(60vh - 60px);
-  padding: 8px;
+  padding: var(--qi-space-sm);
 }
 
 .search-hint {
-  padding: 20px;
+  padding: var(--qi-space-2xl);
   text-align: center;
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.4));
-  font-size: var(--qi-text-sm, 0.875rem);
+  color: var(--sm-text-dimmed);
+  font-size: var(--qi-text-sm);
 }
 
 .search-result-item {
   display: block;
-  padding: 12px 14px;
-  border-radius: var(--qi-radius-sm, 8px);
+  padding: var(--qi-space-md) var(--qi-space-lg);
+  border-radius: var(--qi-radius-sm);
   text-decoration: none;
-  color: var(--qi-text-primary, #fff);
+  color: var(--sm-text);
   transition: background 0.15s ease;
 }
 
 .search-result-item:hover,
 .search-result-item:focus-visible {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--sm-hover);
   outline: none;
 }
 
 .search-result-title {
-  font-family: var(--qi-font-serif, serif);
-  font-size: var(--qi-text-base, 1rem);
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-base);
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: var(--qi-space-xs);
   line-height: 1.4;
 }
 
@@ -121,8 +135,8 @@
 }
 
 .search-result-excerpt {
-  font-size: var(--qi-text-xs, 0.8rem);
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.5));
+  font-size: var(--qi-text-xs);
+  color: var(--sm-text-muted);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -139,15 +153,15 @@
 
 .search-result-meta {
   font-size: 11px;
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.35));
-  margin-top: 4px;
-  font-family: var(--qi-font-mono, monospace);
+  color: var(--sm-text-dimmed);
+  margin-top: var(--qi-space-xs);
+  font-family: var(--qi-font-mono);
 }
 
 .search-status {
-  padding: 12px 14px;
-  font-size: var(--qi-text-xs, 0.8rem);
-  color: var(--qi-text-muted, rgba(255, 255, 255, 0.4));
+  padding: var(--qi-space-md) var(--qi-space-lg);
+  font-size: var(--qi-text-xs);
+  color: var(--sm-text-dimmed);
   text-align: center;
 }
 
@@ -167,9 +181,9 @@
     max-width: 700px;
   }
   .search-input {
-    font-size: var(--qi-text-lg, 1.125rem);
+    font-size: var(--qi-text-lg);
   }
   .search-result-title {
-    font-size: var(--qi-text-lg, 1.125rem);
+    font-size: var(--qi-text-lg);
   }
 }

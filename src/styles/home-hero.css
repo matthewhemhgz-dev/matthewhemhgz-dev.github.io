@@ -176,9 +176,10 @@
 }
 
 .hero-subtitle {
-  font-size: var(--qi-text-lg);
-  color: var(--qi-text-muted);
-  line-height: 1.8;
+  font-size: var(--qi-text-xl);
+  color: var(--qi-text-secondary);
+  letter-spacing: var(--qi-tracking-wide);
+  line-height: var(--qi-leading-normal);
   max-width: min(560px, 80%);
 }
 

@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 const { tag, posts } = Astro.props;
 ---
 
-<BaseLayout title={`#${tag} — 祈研所 Qi-Lab`} description={`标签 ${tag} 下的所有文章`}>
+<BaseLayout title={`#${tag} — 祈研所 Qi-Lab`} description={`${tag} 相关文章 — 祈研所的深度技术分享与思考`}>
   <main class="tag-page container">
     <a href="/tags" class="tag-back-link">← 所有标签</a>
     <h1 class="tag-heading">#{tag}</h1>
