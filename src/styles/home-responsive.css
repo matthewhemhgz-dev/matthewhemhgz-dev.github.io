@@ -208,11 +208,11 @@
   }
 
   .section-title {
-    font-size: var(--qi-text-4xl);
+    font-size: var(--qi-font-scaled-4xl);
   }
 
   .about-text {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
   }
 }
 

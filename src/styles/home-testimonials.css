@@ -202,16 +202,16 @@
   }
 
   .testimonial-text {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
     line-height: 1.9;
   }
 
   .testimonial-author {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .testimonial-role {
-    font-size: var(--qi-text-sm);
+    font-size: var(--qi-font-scaled-sm);
   }
 
   .testimonial-avatar {
@@ -231,16 +231,16 @@
   }
 
   .testimonial-text {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
     line-height: 2;
   }
 
   .testimonial-author {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
   }
 
   .testimonial-role {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .testimonial-avatar {

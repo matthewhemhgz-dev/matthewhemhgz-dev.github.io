@@ -190,15 +190,15 @@
   }
 
   .toolbox-label {
-    font-size: var(--qi-text-sm);
+    font-size: var(--qi-font-scaled-sm);
   }
 
   .tool-name {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .tool-desc {
-    font-size: var(--qi-text-sm);
+    font-size: var(--qi-font-scaled-sm);
   }
 
   .toolbox-icon :global(svg) {
@@ -213,15 +213,15 @@
   }
 
   .toolbox-label {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .tool-name {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
   }
 
   .tool-desc {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .toolbox-icon :global(svg) {

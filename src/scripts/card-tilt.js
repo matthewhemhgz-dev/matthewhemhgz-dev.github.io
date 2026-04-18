@@ -22,6 +22,11 @@ export class CardTilt {
     });
   }
 
+  _getPerspective(el) {
+    const width = el.getBoundingClientRect().width;
+    return Math.max(800, width * 1.2);
+  }
+
   _onMove(e, el) {
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -31,8 +36,9 @@ export class CardTilt {
 
     const rotateX = -((y - centerY) / centerY) * this.maxRotation;
     const rotateY = ((x - centerX) / centerX) * this.maxRotation;
+    const perspective = this._getPerspective(el);
 
-    el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${this.scale}, ${this.scale}, ${this.scale})`;
+    el.style.transform = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${this.scale}, ${this.scale}, ${this.scale})`;
 
     // 更新光泽位置
     const percentX = (x / rect.width) * 100;
@@ -42,7 +48,8 @@ export class CardTilt {
   }
 
   _onLeave(e, el) {
-    el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    const perspective = this._getPerspective(el);
+    el.style.transform = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
   }
 
   destroy() {

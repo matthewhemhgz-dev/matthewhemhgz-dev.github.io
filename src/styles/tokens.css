@@ -266,11 +266,14 @@
   --qi-spacing-scale: 1;
 
   /* Responsive font helpers (scale with large screens) */
+  --qi-font-scaled-xs: calc(var(--qi-text-xs) * var(--qi-font-scale, 1));
   --qi-font-scaled-sm: calc(var(--qi-text-sm) * var(--qi-font-scale, 1));
   --qi-font-scaled-base: calc(var(--qi-text-base) * var(--qi-font-scale, 1));
   --qi-font-scaled-lg: calc(var(--qi-text-lg) * var(--qi-font-scale, 1));
   --qi-font-scaled-xl: calc(var(--qi-text-xl) * var(--qi-font-scale, 1));
   --qi-font-scaled-2xl: calc(var(--qi-text-2xl) * var(--qi-font-scale, 1));
+  --qi-font-scaled-3xl: calc(var(--qi-text-3xl) * var(--qi-font-scale, 1));
+  --qi-font-scaled-4xl: calc(var(--qi-text-4xl) * var(--qi-font-scale, 1));
 }
 
 @media (min-width: 1440px) {

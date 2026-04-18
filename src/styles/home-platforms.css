@@ -112,15 +112,15 @@
   }
 
   .platform-name {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .platform-handle {
-    font-size: var(--qi-text-sm);
+    font-size: var(--qi-font-scaled-sm);
   }
 
   .platform-desc {
-    font-size: var(--qi-text-sm);
+    font-size: var(--qi-font-scaled-sm);
   }
 
   .platform-icon :global(svg) {
@@ -136,15 +136,15 @@
   }
 
   .platform-name {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
   }
 
   .platform-handle {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .platform-desc {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 
   .platform-icon :global(svg) {

@@ -578,7 +578,7 @@
   }
 
   .hero-subtitle {
-    font-size: var(--qi-text-2xl);
+    font-size: var(--qi-font-scaled-2xl);
   }
 
   .hero-gradient-orb--1 {
@@ -596,11 +596,11 @@
   }
 
   .hero-stat-value {
-    font-size: var(--qi-text-3xl);
+    font-size: var(--qi-font-scaled-3xl);
   }
 
   .hero-stat-label {
-    font-size: var(--qi-text-sm);
+    font-size: var(--qi-font-scaled-sm);
   }
 
   .hero-stat-divider {
@@ -618,7 +618,7 @@
   }
 
   .hero-subtitle {
-    font-size: var(--qi-text-3xl);
+    font-size: var(--qi-font-scaled-3xl);
   }
 
   .hero-gradient-orb--1 {
@@ -632,7 +632,7 @@
   }
 
   .hero-stat-value {
-    font-size: var(--qi-text-4xl);
+    font-size: var(--qi-font-scaled-4xl);
   }
 }
 

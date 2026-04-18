@@ -178,7 +178,7 @@
   }
 
   .bento-desc {
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
     line-height: 1.8;
   }
 
@@ -198,11 +198,11 @@
   }
 
   .bento-title {
-    font-size: var(--qi-text-3xl);
+    font-size: var(--qi-font-scaled-3xl);
   }
 
   .bento-desc {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
   }
 
   .bento-image-wrap {

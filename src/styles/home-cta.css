@@ -158,13 +158,13 @@
   }
 
   .cta-desc {
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
     line-height: 1.8;
   }
 
   .cta-section .btn {
     padding: var(--qi-space-lg) var(--qi-space-2xl);
-    font-size: var(--qi-text-base);
+    font-size: var(--qi-font-scaled-base);
   }
 }
 
@@ -185,7 +185,7 @@
 
   .cta-section .btn {
     padding: var(--qi-space-xl) var(--qi-space-3xl);
-    font-size: var(--qi-text-lg);
+    font-size: var(--qi-font-scaled-lg);
   }
 }
 
