@@ -17,6 +17,26 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft && da
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
 
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '祈研所 Qi-Lab',
+  url: siteUrl,
+  description: '探索技术、设计与创意的交汇之处',
+  inLanguage: 'zh-CN',
+  publisher: {
+    '@type': 'Organization',
+    name: '祈研所',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/images/logo.svg`,
+    },
+  },
+};
+
 const toolboxCategories = [
   { label: '知识管理', icon: 'book', tools: [{ name: 'Notion', desc: 'All-in-one 工作空间' }, { name: 'Obsidian', desc: '本地优先知识图谱' }, { name: 'Logseq', desc: '大纲笔记与双向链接' }] },
   { label: '开发工具', icon: 'cog', tools: [{ name: 'VS Code', desc: '主力代码编辑器' }, { name: 'Git', desc: '版本控制与协作' }, { name: 'Docker', desc: '容器化部署' }, { name: 'Astro', desc: '静态站点生成' }] },
@@ -39,7 +59,7 @@ const testimonials = [
 ];
 ---
 
-<BaseLayout title="祈研所 | Qi-Lab" description="祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。">
+<BaseLayout title="祈研所 | Qi-Lab" description="祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。" jsonLd={websiteJsonLd}>
 
   <HeroSection
     titleLines={['探索技术', '设计与创意', '的交汇之处']}

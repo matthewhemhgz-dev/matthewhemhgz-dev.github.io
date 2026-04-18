@@ -14,6 +14,8 @@ interface Props {
   ogImage?: string;
   tagline?: string;
   ogType?: string;
+  /** JSON-LD 结构化数据（自动注入 <script type="application/ld+json">） */
+  jsonLd?: Record<string, unknown>;
 }
 
 const {
@@ -22,6 +24,7 @@ const {
   ogImage = '/og-default.png',
   tagline = '探索技术、设计与创意的交汇之处',
   ogType = 'website',
+  jsonLd,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.dev');
@@ -51,6 +54,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
     <meta property="og:locale" content="zh_CN" />
+    {ogType === 'article' && (
+      <meta property="article:author" content="祈研所" />
+    )}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -73,6 +79,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
         rel="stylesheet"
       />
     </noscript>
+
+    <!-- JSON-LD Structured Data -->
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
     <a href="#main-content" class="skip-link">跳至主要内容</a>

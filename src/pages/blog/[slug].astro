@@ -13,9 +13,45 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
+const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  url: articleUrl,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: post.data.author || 'Qi-Lab',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: '祈研所',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/images/logo.svg`,
+    },
+  },
+  inLanguage: 'zh-CN',
+  ...(post.data.tags?.length > 0 && {
+    keywords: post.data.tags.join(', '),
+  }),
+};
 ---
 
-<BaseLayout title={`${post.data.title} — 祈研所 Qi-Lab`} description={post.data.description}>
+<BaseLayout
+  title={`${post.data.title} — 祈研所 Qi-Lab`}
+  description={post.data.description}
+  ogType="article"
+  jsonLd={articleJsonLd}
+>
   <article class="article-container">
     <a href="/blog" class="article-back">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
