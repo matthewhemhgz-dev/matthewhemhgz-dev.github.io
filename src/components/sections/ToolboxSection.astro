@@ -19,7 +19,6 @@ const { label, title, categories } = Astro.props;
 ---
 
 <section class="section" data-reveal>
-  <!-- 浮动标签装饰 -->
   <div class="toolbox-float-tags" aria-hidden="true">
     <span class="float-tag float-tag--1">PKM</span>
     <span class="float-tag float-tag--2">AI</span>
@@ -27,7 +26,6 @@ const { label, title, categories } = Astro.props;
     <span class="float-tag float-tag--4">Code</span>
     <span class="float-tag float-tag--5">Create</span>
   </div>
-  <!-- 背景点阵装饰 -->
   <div class="toolbox-grid-deco" aria-hidden="true"></div>
   <div class="container">
     <SectionHeader label={label} title={title} />

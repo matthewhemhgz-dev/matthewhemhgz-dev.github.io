@@ -25,7 +25,7 @@ const { tag, posts } = Astro.props;
       {posts.map(post => (
         <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tag-post-card">
           <h2 class="tag-post-title">{post.data.title}</h2>
-          <time class="tag-post-date">{post.data.pubDate.toDateString()}</time>
+          <time class="tag-post-date">{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
         </a>
       ))}
     </div>

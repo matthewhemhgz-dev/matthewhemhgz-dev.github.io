@@ -29,7 +29,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
               {post.data.description}
             </p>
             <div class="blog-card-meta">
-              <time>{post.data.pubDate.toDateString()}</time>
+              <time>{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
               <span class="blog-card-reading-time">{getReadingTime(post.body || '')}</span>
             </div>
           </div>
