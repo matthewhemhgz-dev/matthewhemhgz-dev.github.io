@@ -220,6 +220,10 @@
 .btn:hover {
   transform: translateY(-2px);
 }
+.btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--qi-shadow-lg);
+}
 .btn:active {
   transform: translateY(0) scale(0.97);
   transition-duration: 0.1s;
@@ -298,6 +302,31 @@
 
 /* Float card styles in hero-float-cards.css */
 /* === Mobile & Tablet Breakpoints === */
+
+/* === Extra small screen === */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--qi-text-sm);
+  }
+
+  .hero-stat-value {
+    font-size: var(--qi-text-xl);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--qi-space-sm);
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 @media (max-width: 768px) {
   .hero-section {
@@ -385,6 +414,7 @@
 @media (min-width: 1024px) {
   .hero-container {
     max-width: min(680px, 55%);
+    grid-template-columns: 1fr;
   }
 
   .hero-gradient-orb--1 {

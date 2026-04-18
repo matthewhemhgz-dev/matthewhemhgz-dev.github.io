@@ -109,6 +109,10 @@
   color: var(--qi-text-primary);
   background-color: var(--qi-base-04);
 }
+.nav-link:focus-visible {
+  color: var(--qi-text-primary);
+  background-color: var(--qi-base-04);
+}
 
 .nav-link.active {
   color: var(--qi-brand-emerald);
@@ -267,6 +271,20 @@
 
   .nav-toggle-input:checked ~ .nav-links {
     transform: translateX(0);
+  }
+
+  .nav-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: calc(var(--qi-z-nav) - 1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  .nav-toggle-input:checked ~ .nav-backdrop {
+    display: block;
   }
 
   .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(1) {
