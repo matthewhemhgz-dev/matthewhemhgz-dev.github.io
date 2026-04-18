@@ -22,13 +22,11 @@
   --qi-text-inverse: #F7F3EE;
   --qi-text-primary: #2A2A2A;
   --qi-text-secondary: #5A5A5A;
-  --qi-text-muted: #7A7A7A;
-  --qi-text-faint: #9A9A9A;
+  --qi-text-muted: #686868;
   --qi-on-surface: #E8E3DD;
   --qi-on-surface-secondary: #C8C3BD;
   --qi-on-surface-muted: #A8A29E;
-  --qi-on-surface-dim: #8A8580;
-  --qi-on-surface-faint: #6A655F;
+  --qi-on-surface-dim: #9A9590;
 
   /* Border */
   --qi-border-default: rgba(42, 42, 42, 0.06);
@@ -41,52 +39,52 @@
   --qi-opacity-medium: 0.12;
   --qi-opacity-strong: 0.2;
 
-  /* Brand — Emerald */
-  --qi-brand-emerald-03: rgba(46, 125, 92, 0.03);
-  --qi-brand-emerald-04: rgba(46, 125, 92, 0.04);
-  --qi-brand-emerald-05: rgba(46, 125, 92, 0.05);
-  --qi-brand-emerald-06: rgba(46, 125, 92, 0.06);
-  --qi-brand-emerald-08: rgba(46, 125, 92, 0.08);
-  --qi-brand-emerald-10: rgba(46, 125, 92, 0.10);
-  --qi-brand-emerald-12: rgba(46, 125, 92, 0.12);
-  --qi-brand-emerald-15: rgba(46, 125, 92, 0.15);
-  --qi-brand-emerald-18: rgba(46, 125, 92, 0.18);
-  --qi-brand-emerald-20: rgba(46, 125, 92, 0.20);
-  --qi-brand-emerald-25: rgba(46, 125, 92, 0.25);
-  --qi-brand-emerald-30: rgba(46, 125, 92, 0.30);
-  --qi-brand-emerald-40: rgba(46, 125, 92, 0.40);
-  --qi-brand-emerald-50: rgba(46, 125, 92, 0.50);
-  --qi-brand-emerald-60: rgba(46, 125, 92, 0.60);
+  /* Brand — Emerald (light: bright base for visibility on light bg) */
+  --qi-brand-emerald-03: rgba(74, 222, 153, 0.06);
+  --qi-brand-emerald-04: rgba(74, 222, 153, 0.08);
+  --qi-brand-emerald-05: rgba(74, 222, 153, 0.10);
+  --qi-brand-emerald-06: rgba(74, 222, 153, 0.12);
+  --qi-brand-emerald-08: rgba(74, 222, 153, 0.15);
+  --qi-brand-emerald-10: rgba(74, 222, 153, 0.18);
+  --qi-brand-emerald-12: rgba(74, 222, 153, 0.22);
+  --qi-brand-emerald-15: rgba(74, 222, 153, 0.28);
+  --qi-brand-emerald-18: rgba(74, 222, 153, 0.33);
+  --qi-brand-emerald-20: rgba(74, 222, 153, 0.36);
+  --qi-brand-emerald-25: rgba(74, 222, 153, 0.42);
+  --qi-brand-emerald-30: rgba(74, 222, 153, 0.48);
+  --qi-brand-emerald-40: rgba(74, 222, 153, 0.58);
+  --qi-brand-emerald-50: rgba(74, 222, 153, 0.68);
+  --qi-brand-emerald-60: rgba(74, 222, 153, 0.78);
 
-  /* Brand — Amber */
-  --qi-brand-amber-04: rgba(229, 169, 60, 0.04);
-  --qi-brand-amber-08: rgba(229, 169, 60, 0.08);
-  --qi-brand-amber-10: rgba(229, 169, 60, 0.10);
-  --qi-brand-amber-12: rgba(229, 169, 60, 0.12);
-  --qi-brand-amber-15: rgba(229, 169, 60, 0.15);
-  --qi-brand-amber-18: rgba(229, 169, 60, 0.18);
-  --qi-brand-amber-20: rgba(229, 169, 60, 0.20);
-  --qi-brand-amber-25: rgba(229, 169, 60, 0.25);
-  --qi-brand-amber-30: rgba(229, 169, 60, 0.30);
-  --qi-brand-amber-40: rgba(229, 169, 60, 0.40);
-  --qi-brand-amber-50: rgba(229, 169, 60, 0.50);
-  --qi-brand-amber-60: rgba(229, 169, 60, 0.60);
+  /* Brand — Amber (light: bright base for visibility on light bg) */
+  --qi-brand-amber-04: rgba(251, 191, 36, 0.08);
+  --qi-brand-amber-08: rgba(251, 191, 36, 0.15);
+  --qi-brand-amber-10: rgba(251, 191, 36, 0.18);
+  --qi-brand-amber-12: rgba(251, 191, 36, 0.22);
+  --qi-brand-amber-15: rgba(251, 191, 36, 0.28);
+  --qi-brand-amber-18: rgba(251, 191, 36, 0.33);
+  --qi-brand-amber-20: rgba(251, 191, 36, 0.36);
+  --qi-brand-amber-25: rgba(251, 191, 36, 0.42);
+  --qi-brand-amber-30: rgba(251, 191, 36, 0.48);
+  --qi-brand-amber-40: rgba(251, 191, 36, 0.58);
+  --qi-brand-amber-50: rgba(251, 191, 36, 0.68);
+  --qi-brand-amber-60: rgba(251, 191, 36, 0.78);
 
-  /* Brand — Mint */
-  --qi-brand-mint-03: rgba(120, 180, 160, 0.03);
-  --qi-brand-mint-04: rgba(120, 180, 160, 0.04);
-  --qi-brand-mint-06: rgba(120, 180, 160, 0.06);
-  --qi-brand-mint-08: rgba(120, 180, 160, 0.08);
-  --qi-brand-mint-10: rgba(120, 180, 160, 0.10);
-  --qi-brand-mint-12: rgba(120, 180, 160, 0.12);
-  --qi-brand-mint-15: rgba(120, 180, 160, 0.15);
-  --qi-brand-mint-18: rgba(120, 180, 160, 0.18);
-  --qi-brand-mint-20: rgba(120, 180, 160, 0.20);
-  --qi-brand-mint-25: rgba(120, 180, 160, 0.25);
-  --qi-brand-mint-30: rgba(120, 180, 160, 0.30);
-  --qi-brand-mint-40: rgba(120, 180, 160, 0.40);
-  --qi-brand-mint-50: rgba(120, 180, 160, 0.50);
-  --qi-brand-mint-60: rgba(120, 180, 160, 0.60);
+  /* Brand — Mint (light: bright base for visibility on light bg) */
+  --qi-brand-mint-03: rgba(153, 246, 228, 0.06);
+  --qi-brand-mint-04: rgba(153, 246, 228, 0.08);
+  --qi-brand-mint-06: rgba(153, 246, 228, 0.12);
+  --qi-brand-mint-08: rgba(153, 246, 228, 0.15);
+  --qi-brand-mint-10: rgba(153, 246, 228, 0.18);
+  --qi-brand-mint-12: rgba(153, 246, 228, 0.22);
+  --qi-brand-mint-15: rgba(153, 246, 228, 0.28);
+  --qi-brand-mint-18: rgba(153, 246, 228, 0.33);
+  --qi-brand-mint-20: rgba(153, 246, 228, 0.36);
+  --qi-brand-mint-25: rgba(153, 246, 228, 0.42);
+  --qi-brand-mint-30: rgba(153, 246, 228, 0.48);
+  --qi-brand-mint-40: rgba(153, 246, 228, 0.58);
+  --qi-brand-mint-50: rgba(153, 246, 228, 0.68);
+  --qi-brand-mint-60: rgba(153, 246, 228, 0.78);
 
   /* Ink */
   --qi-ink: #1E1B18;
@@ -103,11 +101,11 @@
   /* Glow */
   --qi-glow-size: 350px;
   --qi-glow-speed: 0.06;
-  --qi-glow-primary: rgba(46, 125, 92, 0.20);
-  --qi-glow-secondary: rgba(120, 180, 160, 0.15);
-  --qi-glow-accent: rgba(229, 169, 60, 0.15);
-  --qi-glow-highlight: rgba(255, 255, 255, 0.08);
-  --qi-card-glow-intensity: 0.10;
+  --qi-glow-primary: rgba(74, 222, 153, 0.35);
+  --qi-glow-secondary: rgba(153, 246, 228, 0.30);
+  --qi-glow-accent: rgba(251, 191, 36, 0.30);
+  --qi-glow-highlight: rgba(255, 255, 255, 0.15);
+  --qi-card-glow-intensity: 0.15;
 
   /* Base alpha */
   --qi-base-02: rgba(42, 42, 42, 0.02);
