@@ -101,7 +101,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
   .blog-card-category {
     display: inline-block;
     background: var(--qi-brand-emerald);
-    color: var(--qi-on-surface-dim);
+    color: var(--qi-on-surface-secondary);
     padding: 2px 10px;
     border-radius: var(--qi-radius-sm);
     font-size: var(--qi-text-xs);
@@ -127,7 +127,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
     display: flex;
     justify-content: space-between;
     font-size: var(--qi-text-xs);
-    color: var(--qi-on-surface-dim);
+    color: var(--qi-on-surface-muted);
     margin-top: auto;
   }
 

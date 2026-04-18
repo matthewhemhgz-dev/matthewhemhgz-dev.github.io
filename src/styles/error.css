@@ -161,9 +161,8 @@
 .error-hint {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-text-muted);
+  color: var(--qi-text-secondary);
   margin-top: var(--qi-space-xl);
-  opacity: 0.6;
 }
 
 @media (max-width: 768px) {

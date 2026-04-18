@@ -67,7 +67,7 @@
 .contact-label {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-40);
+  color: var(--qi-inverse-60);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   min-width: 56px;
@@ -136,14 +136,14 @@ a.contact-value:hover {
 
 .copyright {
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-55);
+  color: var(--qi-inverse-60);
   letter-spacing: 0.02em;
 }
 
 .built-with {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-50);
+  color: var(--qi-inverse-60);
 }
 
 .heart {
@@ -163,8 +163,7 @@ a.contact-value:hover {
   text-align: center;
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-text-muted);
-  opacity: 0.5;
+  color: var(--qi-inverse-40);
   margin-top: var(--qi-space-xl);
   transition: opacity 0.3s ease, color 0.3s ease;
 }
@@ -250,11 +249,21 @@ a.contact-value:hover {
   color: var(--qi-on-surface);
 }
 
-:global(.dark) .footer-link {
+:global(.dark) .footer-link,
+:global(.dark) .contact-value,
+:global(.dark) .social-name {
   color: var(--qi-on-surface-secondary);
 }
 
-:global(.dark) .footer-copyright {
+:global(.dark) .copyright {
+  color: var(--qi-on-surface-dim);
+}
+
+:global(.dark) .built-with {
+  color: var(--qi-on-surface-dim);
+}
+
+:global(.dark) .contact-label {
   color: var(--qi-on-surface-dim);
 }
 
