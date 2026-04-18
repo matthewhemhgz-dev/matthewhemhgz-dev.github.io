@@ -141,7 +141,7 @@
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
   font-weight: 500;
-  color: var(--qi-text-muted);
+  color: var(--qi-text-secondary);
   background: none;
   border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-md);

@@ -37,18 +37,18 @@
       transparent 70%
     );
   mask-image: radial-gradient(
-    ellipse 90% 80% at 45% 50%,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 0.2) 70%,
-    transparent 90%
+    ellipse 100% 90% at 45% 50%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent 85%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 90% 80% at 45% 50%,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 0.2) 70%,
-    transparent 90%
+    ellipse 100% 90% at 45% 50%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent 85%
   );
   animation: spotlight-breathe 15s ease-in-out infinite;
   pointer-events: none;
