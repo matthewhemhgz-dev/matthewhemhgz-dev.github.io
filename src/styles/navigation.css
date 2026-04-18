@@ -127,6 +127,49 @@
   border-radius: var(--qi-radius-full);
 }
 
+/* Search button in nav */
+.nav-search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--qi-space-sm) var(--qi-space-md);
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  font-weight: 500;
+  color: var(--qi-text-muted);
+  background: none;
+  border: 1px solid var(--qi-base-06);
+  border-radius: var(--qi-radius-md);
+  cursor: pointer;
+  transition: color var(--qi-transition-fast), background-color var(--qi-transition-fast), border-color var(--qi-transition-fast);
+}
+
+.nav-search-btn:hover {
+  color: var(--qi-text-primary);
+  background-color: var(--qi-base-04);
+  border-color: var(--qi-base-08);
+}
+
+.nav-search-btn:focus-visible {
+  outline: 2px solid var(--qi-brand-emerald);
+  outline-offset: 2px;
+}
+
+.nav-search-label {
+  display: inline;
+}
+
+.nav-search-kbd {
+  font-size: 10px;
+  padding: 1px 5px;
+  color: var(--qi-text-muted);
+  background: var(--qi-base-04);
+  border: 1px solid var(--qi-base-06);
+  border-radius: 4px;
+  font-family: var(--qi-font-mono);
+  line-height: 1.4;
+}
+
 .nav-toggle-input {
   display: none;
 }

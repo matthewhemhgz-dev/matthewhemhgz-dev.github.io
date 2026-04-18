@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import pagefind from 'astro-pagefind';
 
 export default defineConfig({
   site: 'https://matthewhemhgz-dev.github.io',
@@ -29,11 +30,14 @@ export default defineConfig({
         zh: 'zh-CN',
       },
     },
-  }),],
+  }), pagefind()],
   vite: {
     build: {
       cssMinify: true,
       assetsInlineLimit: 0,
+      rollupOptions: {
+        external: ['/pagefind/pagefind.js'],
+      },
     },
   },
 });

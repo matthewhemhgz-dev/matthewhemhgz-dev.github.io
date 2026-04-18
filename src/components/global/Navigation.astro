@@ -40,6 +40,21 @@ const navItems = [
           </a>
         </li>
       ))}
+      <li>
+        <button
+          class="nav-search-btn"
+          id="nav-search-btn"
+          aria-label="搜索文章 (Ctrl+K)"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" />
+            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <span class="nav-search-label">搜索</span>
+          <kbd class="nav-search-kbd">⌘K</kbd>
+        </button>
+      </li>
     </ul>
   </nav>
 </header>
@@ -64,4 +79,15 @@ const navItems = [
       }
     });
   }
+
+  // Search button opens search modal
+  document.addEventListener('astro:page-load', () => {
+    const searchBtn = document.getElementById('nav-search-btn');
+    const searchModal = document.getElementById('search-modal');
+    searchBtn?.addEventListener('click', () => {
+      searchModal?.setAttribute('aria-hidden', 'false');
+      const searchInput = document.getElementById('search-input') as HTMLInputElement;
+      searchInput?.focus();
+    });
+  });
 </script>

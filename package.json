@@ -26,7 +26,9 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.1.6"
+    "astro": "^6.1.6",
+    "astro-pagefind": "^1.8.6",
+    "pagefind": "^1.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

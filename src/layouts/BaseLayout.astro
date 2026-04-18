@@ -6,6 +6,7 @@ import BackToTop from '../components/global/BackToTop.astro';
 import ParticlesCanvas from '../components/global/ParticlesCanvas.astro';
 import NoiseOverlay from '../components/global/NoiseOverlay.astro';
 import Footer from '../components/global/Footer.astro';
+import SearchModal from '../components/global/SearchModal.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -89,7 +90,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <NoiseOverlay />
     <ScrollProgress />
     <Navigation currentPath={Astro.url.pathname} />
-    <main id="main-content" transition:name="main-content">
+    <main id="main-content" transition:name="main-content" data-pagefind-body>
       <slot />
     </main>
     <BackToTop />
@@ -101,6 +102,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
       transition:name="site-footer"
     />
     <ParticlesCanvas />
+    <SearchModal />
 
     <!-- Global Scripts: particles, cursor-glow, scroll-parallax, scroll-handler -->
     <script>
