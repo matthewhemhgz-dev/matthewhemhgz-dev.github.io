@@ -1,5 +1,6 @@
 ---
 import BrandLogo from './BrandLogo.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import '../../styles/navigation.css';
 
 interface Props {
@@ -19,6 +20,9 @@ const navItems = [
 <header class="nav-wrapper" transition:name="main-nav">
   <nav class="nav">
     <BrandLogo variant="icon" size="sm" />
+
+    <!-- Theme toggle -->
+    <ThemeToggle />
 
     <!-- Mobile checkbox hack -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label="Toggle navigation" aria-expanded="false" />

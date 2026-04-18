@@ -1,0 +1,139 @@
+---
+/**
+ * ThemeToggle — 明暗主题切换按钮
+ *
+ * 功能：
+ * - 在 .dark / 浅色之间切换
+ * - localStorage 持久化用户偏好
+ * - 尊重 prefers-color-scheme 系统偏好
+ * - View Transitions 兼容
+ */
+---
+
+<button
+  class="theme-toggle"
+  id="theme-toggle"
+  type="button"
+  aria-label="切换深色模式"
+  title="切换深色模式"
+>
+  <!-- Sun icon (shown in dark mode) -->
+  <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
+    <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+  </svg>
+  <!-- Moon icon (shown in light mode) -->
+  <svg class="theme-icon theme-icon--moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M14 8.5A6.5 6.5 0 017.5 2 6.5 6.5 0 1014 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: none;
+    border: 1px solid var(--qi-base-06);
+    border-radius: var(--qi-radius-md);
+    cursor: pointer;
+    color: var(--qi-text-muted);
+    transition: color var(--qi-transition-fast), background-color var(--qi-transition-fast), border-color var(--qi-transition-fast);
+  }
+
+  .theme-toggle:hover {
+    color: var(--qi-text-primary);
+    background-color: var(--qi-base-04);
+    border-color: var(--qi-base-08);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--qi-brand-emerald);
+    outline-offset: 2px;
+  }
+
+  .theme-icon {
+    position: absolute;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .theme-toggle {
+    position: relative;
+  }
+
+  /* Light mode: show moon, hide sun */
+  .theme-icon--sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  .theme-icon--moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Dark mode: show sun, hide moon */
+  :global(.dark) .theme-icon--sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  :global(.dark) .theme-icon--moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'qi-theme';
+
+  function getSystemPreference(): 'dark' | 'light' {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function getStoredTheme(): 'dark' | 'light' | null {
+    return localStorage.getItem(STORAGE_KEY) as 'dark' | 'light' | null;
+  }
+
+  function applyTheme(theme: 'dark' | 'light') {
+    const html = document.documentElement;
+    if (theme === 'dark') {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+    // Update meta theme-color
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', theme === 'dark' ? '#121010' : '#F7F3EE');
+    }
+  }
+
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const newTheme = isDark ? 'light' : 'dark';
+    applyTheme(newTheme);
+    localStorage.setItem(STORAGE_KEY, newTheme);
+  }
+
+  // Initialize theme before paint (prevent flash)
+  (function initTheme() {
+    const stored = getStoredTheme();
+    const theme = stored || getSystemPreference();
+    applyTheme(theme);
+  })();
+
+  // Bind toggle button after DOM ready
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('theme-toggle');
+    btn?.addEventListener('click', toggleTheme);
+
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!getStoredTheme()) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  });
+</script>

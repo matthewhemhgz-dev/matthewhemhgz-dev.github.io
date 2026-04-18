@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Dark Mode Tokens — 暗色模式令牌覆盖
+   ==========================================================================
+   通过 .dark 类名激活（添加到 <html> 元素）
+   与 tokens.css 保持相同的令牌结构，仅覆盖色彩相关值
+   ========================================================================== */
+
+.dark {
+  /* 基础背景与表面 — 深色暖调 */
+  --qi-bg-base: #121010;
+  --qi-surface-main: #1E1B18;
+  --qi-surface-sub: #2D2924;
+
+  /* 文字色 — 暖灰调 */
+  --qi-text-inverse: #1E1B18;
+  --qi-text-primary: #E8E3DD;
+  --qi-text-secondary: #A8A29E;
+  --qi-text-muted: #78716C;
+
+  /* 边框令牌 — 暖色透明度 */
+  --qi-border-default: rgba(232, 227, 221, 0.08);
+  --qi-border-subtle: rgba(232, 227, 221, 0.05);
+  --qi-border-strong: rgba(232, 227, 221, 0.15);
+
+  /* 不透明度令牌 — 反转 */
+  --qi-opacity-subtle: 0.08;
+  --qi-opacity-medium: 0.15;
+  --qi-opacity-strong: 0.25;
+
+  /* 品牌色透明度令牌 — 暗色背景上调高亮度 */
+  --qi-brand-emerald-03: rgba(74, 222, 153, 0.05);
+  --qi-brand-emerald-04: rgba(74, 222, 153, 0.07);
+  --qi-brand-emerald-05: rgba(74, 222, 153, 0.08);
+  --qi-brand-emerald-06: rgba(74, 222, 153, 0.10);
+  --qi-brand-emerald-08: rgba(74, 222, 153, 0.13);
+  --qi-brand-emerald-10: rgba(74, 222, 153, 0.16);
+  --qi-brand-emerald-12: rgba(74, 222, 153, 0.19);
+  --qi-brand-emerald-15: rgba(74, 222, 153, 0.23);
+  --qi-brand-emerald-18: rgba(74, 222, 153, 0.27);
+  --qi-brand-emerald-20: rgba(74, 222, 153, 0.30);
+  --qi-brand-emerald-25: rgba(74, 222, 153, 0.37);
+  --qi-brand-emerald-30: rgba(74, 222, 153, 0.43);
+  --qi-brand-emerald-40: rgba(74, 222, 153, 0.55);
+  --qi-brand-emerald-50: rgba(74, 222, 153, 0.65);
+  --qi-brand-emerald-60: rgba(74, 222, 153, 0.75);
+
+  --qi-brand-amber-04: rgba(251, 191, 36, 0.06);
+  --qi-brand-amber-08: rgba(251, 191, 36, 0.12);
+  --qi-brand-amber-10: rgba(251, 191, 36, 0.15);
+  --qi-brand-amber-12: rgba(251, 191, 36, 0.18);
+  --qi-brand-amber-15: rgba(251, 191, 36, 0.22);
+  --qi-brand-amber-18: rgba(251, 191, 36, 0.26);
+  --qi-brand-amber-20: rgba(251, 191, 36, 0.30);
+  --qi-brand-amber-25: rgba(251, 191, 36, 0.37);
+  --qi-brand-amber-30: rgba(251, 191, 36, 0.43);
+  --qi-brand-amber-40: rgba(251, 191, 36, 0.55);
+  --qi-brand-amber-50: rgba(251, 191, 36, 0.65);
+  --qi-brand-amber-60: rgba(251, 191, 36, 0.75);
+
+  --qi-brand-mint-04: rgba(153, 246, 228, 0.06);
+  --qi-brand-mint-06: rgba(153, 246, 228, 0.08);
+  --qi-brand-mint-08: rgba(153, 246, 228, 0.11);
+  --qi-brand-mint-10: rgba(153, 246, 228, 0.14);
+  --qi-brand-mint-12: rgba(153, 246, 228, 0.17);
+  --qi-brand-mint-15: rgba(153, 246, 228, 0.21);
+  --qi-brand-mint-18: rgba(153, 246, 228, 0.25);
+  --qi-brand-mint-20: rgba(153, 246, 228, 0.28);
+  --qi-brand-mint-25: rgba(153, 246, 228, 0.34);
+  --qi-brand-mint-30: rgba(153, 246, 228, 0.40);
+  --qi-brand-mint-40: rgba(153, 246, 228, 0.52);
+  --qi-brand-mint-50: rgba(153, 246, 228, 0.62);
+  --qi-brand-mint-60: rgba(153, 246, 228, 0.72);
+
+  /* 暖墨棕 — 暗色模式下调亮 */
+  --qi-ink: #0D0B0A;
+  --qi-ink-light: #1A1714;
+  --qi-ink-muted: #2D2924;
+
+  /* 装饰元素透明度令牌 — 暗色下调低 */
+  --qi-deco-subtle: 0.10;
+  --qi-deco-visible: 0.18;
+  --qi-deco-medium: 0.28;
+  --qi-deco-strong: 0.35;
+  --qi-deco-ghost: 0.04;
+
+  /* 光效系统令牌 — 暗色下增强发光 */
+  --qi-glow-primary: rgba(74, 222, 153, 0.25);
+  --qi-glow-secondary: rgba(153, 246, 228, 0.20);
+  --qi-glow-accent: rgba(251, 191, 36, 0.20);
+  --qi-glow-highlight: rgba(255, 255, 255, 0.05);
+  --qi-card-glow-intensity: 0.15;
+
+  /* 基础色透明度令牌 — 暗色下反转 */
+  --qi-base-02: rgba(232, 227, 221, 0.04);
+  --qi-base-03: rgba(232, 227, 221, 0.06);
+  --qi-base-04: rgba(232, 227, 221, 0.08);
+  --qi-base-05: rgba(232, 227, 221, 0.10);
+  --qi-base-06: rgba(232, 227, 221, 0.12);
+  --qi-base-08: rgba(232, 227, 221, 0.15);
+  --qi-base-10: rgba(232, 227, 221, 0.18);
+  --qi-base-15: rgba(232, 227, 221, 0.25);
+
+  /* 文字反转色透明度令牌 — 暗色下反转 */
+  --qi-inverse-88: rgba(30, 27, 24, 0.88);
+  --qi-inverse-70: rgba(30, 27, 24, 0.70);
+  --qi-inverse-60: rgba(30, 27, 24, 0.60);
+  --qi-inverse-55: rgba(30, 27, 24, 0.55);
+  --qi-inverse-50: rgba(30, 27, 24, 0.50);
+  --qi-inverse-40: rgba(30, 27, 24, 0.40);
+  --qi-inverse-20: rgba(30, 27, 24, 0.20);
+  --qi-inverse-15: rgba(30, 27, 24, 0.15);
+  --qi-inverse-12: rgba(30, 27, 24, 0.12);
+
+  /* 阴影令牌 — 暗色下使用更深的阴影 */
+  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --qi-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
+  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3);
+  --qi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(251, 191, 36, 0.15);
+  --qi-shadow-inset: inset 2px 2px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03);
+}

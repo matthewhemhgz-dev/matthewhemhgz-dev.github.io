@@ -83,6 +83,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
 
     <!-- JSON-LD Structured Data -->
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <!-- Theme init (prevent FOUC) -->
+    <script is:inline>
+      (function(){var t=localStorage.getItem('qi-theme');if(!t){t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.classList.toggle('dark',t==='dark')})();
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">跳至主要内容</a>
