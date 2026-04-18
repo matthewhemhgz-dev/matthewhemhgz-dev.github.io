@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  fetchpriority,
+  class: className,
+  sizes,
+} = Astro.props;
+
+/**
+ * OptimizedImage — 封装 Astro <Image /> 的优化图片组件
+ *
+ * 对于 /images/ 或 /public/ 下的本地图片，使用 Astro 内置优化（WebP/AVIF + srcset）
+ * 对于外部 URL，回退到原生 <img> 标签（添加 loading + decoding 优化）
+ */
+const isLocalImage = src.startsWith('/') && !src.startsWith('//') && !src.startsWith('http');
+---
+
+{isLocalImage ? (
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    class={className}
+    sizes={sizes}
+    decoding="async"
+  />
+) : (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    class={className}
+    decoding="async"
+  />
+)}
