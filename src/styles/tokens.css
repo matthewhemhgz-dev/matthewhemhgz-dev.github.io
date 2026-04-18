@@ -1,5 +1,7 @@
 /* === 1. 色彩令牌 === */
 :root {
+  color-scheme: light;
+
   /* 基础背景与表面 */
   --qi-bg-base: #F7F3EE;
   --qi-surface-main: #2A2A2A;

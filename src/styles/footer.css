@@ -238,3 +238,25 @@ a.contact-value:hover {
     gap: var(--qi-space-5xl);
   }
 }
+
+/* Footer 始终深色背景，暗色模式下文字保持浅色 */
+:global(.dark) .footer {
+  color: var(--qi-on-surface-muted);
+  border-top-color: var(--qi-border-subtle);
+}
+
+:global(.dark) .footer-heading {
+  color: var(--qi-on-surface);
+}
+
+:global(.dark) .footer-link {
+  color: var(--qi-on-surface-muted);
+}
+
+:global(.dark) .footer-copyright {
+  color: var(--qi-on-surface-dim);
+}
+
+:global(.dark) .footer-easter-egg {
+  color: var(--qi-on-surface-dim);
+}

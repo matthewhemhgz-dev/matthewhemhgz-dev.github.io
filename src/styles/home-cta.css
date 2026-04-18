@@ -245,3 +245,25 @@
     opacity: 0.2;
   }
 }
+
+/* CTA 始终深色背景，暗色模式下文字保持浅色 */
+:global(.dark) .cta-section {
+  color: var(--qi-on-surface);
+}
+
+:global(.dark) .cta-label {
+  color: var(--qi-brand-amber);
+}
+
+:global(.dark) .cta-title {
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .cta-desc {
+  color: var(--qi-on-surface-muted);
+}
+
+:global(.dark) .cta-btn--outline {
+  border-color: var(--qi-inverse-40);
+  color: var(--qi-on-surface);
+}

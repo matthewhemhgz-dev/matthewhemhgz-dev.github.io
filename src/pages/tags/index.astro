@@ -120,7 +120,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
   .tags-post-category {
     display: inline-block;
     background: var(--qi-brand-emerald);
-    color: var(--qi-text-inverse);
+    color: var(--qi-on-surface-dim);
     padding: 2px 10px;
     border-radius: var(--qi-radius-sm);
     font-size: 0.75rem;
@@ -139,8 +139,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
   }
 
   .tags-post-desc {
-    color: var(--qi-text-inverse);
-    opacity: 0.7;
+    color: var(--qi-on-surface-muted);
     font-size: var(--qi-text-sm);
     margin-bottom: var(--qi-space-md);
     line-height: 1.6;

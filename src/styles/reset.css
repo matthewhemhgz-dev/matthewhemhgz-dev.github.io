@@ -48,6 +48,17 @@ ul, ol {
   outline: none;
 }
 
+/* Typography best practices */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/* Scroll offset for fixed nav */
+section,
+[id] {
+  scroll-margin-top: var(--qi-nav-total-height);
+}
+
 /* Smooth focus for interactive elements */
 a:focus-visible,
 button:focus-visible {

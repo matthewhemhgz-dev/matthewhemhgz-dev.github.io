@@ -18,6 +18,9 @@ const readingTime = getReadingTime(post.body || '');
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
+const ogImage = post.data.heroImage
+  ? `${siteUrl}${post.data.heroImage}`
+  : '/og-default.png';
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -51,6 +54,7 @@ const articleJsonLd = {
 <BaseLayout
   title={`${post.data.title} — 祈研所 Qi-Lab`}
   description={post.data.description}
+  ogImage={ogImage}
   ogType="article"
   jsonLd={articleJsonLd}
 >
