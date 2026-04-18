@@ -95,7 +95,7 @@
     transparent 60%
   );
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   opacity: 1;
   transition: opacity 0.3s var(--qi-spring-snappy);
 }

@@ -99,7 +99,7 @@
     rgba(30, 27, 24, 0.06) 100%
   );
   pointer-events: none;
-  z-index: 3;
+  z-index: 0;
   transition: opacity 0.5s ease;
 }
 

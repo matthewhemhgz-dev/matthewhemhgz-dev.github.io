@@ -92,6 +92,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
   <body>
     <a href="#main-content" class="skip-link">跳至主要内容</a>
     <ClientRouter />
+    <script is:inline>
+      document.addEventListener('astro:before-swap', function(e) {
+        if (document.documentElement.classList.contains('dark')) {
+          e.newDocument.documentElement.classList.add('dark');
+        }
+        const currentMeta = document.querySelector('meta[name="theme-color"]');
+        const newMeta = e.newDocument.querySelector('meta[name="theme-color"]');
+        if (currentMeta && newMeta) {
+          newMeta.setAttribute('content', currentMeta.getAttribute('content'));
+        }
+      });
+    </script>
     <NoiseOverlay />
     <ScrollProgress />
     <Navigation currentPath={Astro.url.pathname} />
