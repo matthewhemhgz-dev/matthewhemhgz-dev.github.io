@@ -8,6 +8,7 @@ export class CardTilt {
     this.maxRotation = options.maxRotation || 8;
     this.scale = options.scale || 1.02;
     this.elements = [];
+    this._handlers = new Map();
 
     if (window.matchMedia('(pointer: fine)').matches) {
       this.elements = Array.from(document.querySelectorAll(selector));
@@ -17,8 +18,11 @@ export class CardTilt {
 
   _bind() {
     this.elements.forEach(el => {
-      el.addEventListener('mousemove', (e) => this._onMove(e, el));
-      el.addEventListener('mouseleave', (e) => this._onLeave(e, el));
+      const moveHandler = (e) => this._onMove(e, el);
+      const leaveHandler = (e) => this._onLeave(e, el);
+      el.addEventListener('mousemove', moveHandler);
+      el.addEventListener('mouseleave', leaveHandler);
+      this._handlers.set(el, { moveHandler, leaveHandler });
     });
   }
 
@@ -54,9 +58,13 @@ export class CardTilt {
 
   destroy() {
     this.elements.forEach(el => {
-      el.removeEventListener('mousemove', this._onMove);
-      el.removeEventListener('mouseleave', this._onLeave);
+      const handlers = this._handlers.get(el);
+      if (handlers) {
+        el.removeEventListener('mousemove', handlers.moveHandler);
+        el.removeEventListener('mouseleave', handlers.leaveHandler);
+      }
     });
     this.elements = [];
+    this._handlers.clear();
   }
 }

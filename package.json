@@ -21,7 +21,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/markdoc": "^1.0.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.6"

@@ -4,7 +4,7 @@
  * 在 section 之间添加优雅的品牌色分隔线
  */
 interface Props {
-  variant?: 'dots' | 'line' | 'diamond';
+  variant?: 'dots' | 'line' | 'diamond' | 'arcs';
 }
 
 const { variant = 'dots' } = Astro.props;
@@ -62,6 +62,21 @@ const { variant = 'dots' } = Astro.props;
       <line x1="0" y1="12" x2="164" y2="12" stroke="url(#diamond-fade-left)" stroke-width="0.75" />
       <rect x="172" y="8" width="8" height="8" rx="1" transform="rotate(45 176 12)" stroke="currentColor" stroke-width="0.75" opacity="0.50" />
       <line x1="188" y1="12" x2="360" y2="12" stroke="url(#diamond-fade-right)" stroke-width="0.75" />
+    </svg>
+  )}
+
+  {variant === 'arcs' && (
+    <svg width="360" height="20" viewBox="0 0 360 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="arcs-fade" x1="0" y1="0" x2="360" y2="0">
+          <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
+          <stop offset="20%" stop-color="currentColor" stop-opacity="0.25" />
+          <stop offset="50%" stop-color="currentColor" stop-opacity="0.4" />
+          <stop offset="80%" stop-color="currentColor" stop-opacity="0.25" />
+          <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <path d="M0 10 Q90 2 180 10 Q270 18 360 10" stroke="url(#arcs-fade)" stroke-width="0.75" fill="none" />
     </svg>
   )}
 </div>

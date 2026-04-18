@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import markdoc from '@astrojs/markdoc';
 
 export default defineConfig({
   site: 'https://matthewhemhgz-dev.github.io',
@@ -30,7 +29,7 @@ export default defineConfig({
         zh: 'zh-CN',
       },
     },
-  }), markdoc()],
+  }),],
   vite: {
     build: {
       cssMinify: true,

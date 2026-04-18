@@ -27,7 +27,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
       <SectionHeader label="// RECENT" title="最新文章" />
       <div class="tags-posts-grid">
         {allPosts.map(post => (
-          <a href={`/blog/${post.id}/`} class="tags-post-card">
+          <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tags-post-card">
             <div class="tags-post-meta">
               <span class="tags-post-category">{post.data.category}</span>
               <time class="tags-post-date">

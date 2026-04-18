@@ -306,6 +306,15 @@ const navItems = [
       padding: var(--qi-space-md) var(--qi-space-xl);
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-wrapper,
+    .nav-links,
+    .nav-link,
+    .hamburger-line {
+      transition: none !important;
+    }
+  }
 </style>
 
 <script>

@@ -68,7 +68,7 @@
   background: var(--qi-base-02);
   border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-lg);
-  transition: all var(--qi-transition-base);
+  transition: opacity var(--qi-transition-base), transform var(--qi-transition-base), border-color var(--qi-transition-base), box-shadow var(--qi-transition-base);
 }
 
 .philosophy-card:hover {
@@ -163,7 +163,7 @@ a.cta-link:hover .cta-value {
   border-radius: var(--qi-radius-md);
   text-decoration: none;
   box-shadow: var(--qi-shadow-md);
-  transition: all var(--qi-transition-base);
+  transition: opacity var(--qi-transition-base), transform var(--qi-transition-base), box-shadow var(--qi-transition-base);
 }
 
 .cta-btn:hover {

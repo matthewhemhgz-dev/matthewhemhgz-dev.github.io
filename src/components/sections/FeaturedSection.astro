@@ -55,7 +55,7 @@ const blogPrefix = '/blog/';
       <div class="bento-grid">
         {posts.map((post, i) => (
           <a
-            href={`${blogPrefix}${post.id}`}
+            href={`${blogPrefix}${post.id.replace('zh/', '')}`}
             class:list={['bento-card', 'tilt-card', i === 0 ? 'bento-card--large' : 'bento-card--small']}
           >
             {largeCardLayout && i === 0 && post.data.heroImage ? (
