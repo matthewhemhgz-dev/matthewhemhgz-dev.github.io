@@ -169,6 +169,7 @@
 .title-accent {
   color: var(--qi-brand-emerald);
   position: relative;
+  text-shadow: 0 0 20px rgba(46, 125, 92, 0.3);
 }
 
 .title-accent::after {

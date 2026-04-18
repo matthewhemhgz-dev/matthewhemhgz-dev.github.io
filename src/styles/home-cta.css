@@ -13,7 +13,7 @@
     color-mix(in srgb, var(--qi-ink) 72%, var(--qi-brand-amber)) 88%,
     color-mix(in srgb, var(--qi-ink) 70%, var(--qi-brand-amber)) 100%
   );
-  color: var(--qi-text-inverse);
+  color: #F0ECE6;
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
   padding: var(--qi-space-5xl) var(--qi-container-padding, 24px) var(--qi-space-3xl);
   text-align: center;
@@ -79,13 +79,13 @@
   font-family: var(--qi-font-serif);
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 700;
-  color: var(--qi-text-inverse);
+  color: #FFFFFF;
   line-height: 1.3;
 }
 
 .cta-desc {
   font-size: var(--qi-text-base);
-  color: var(--qi-inverse-70);
+  color: rgba(240, 236, 230, 0.80);
   line-height: 1.7;
 }
 
@@ -249,9 +249,9 @@
   }
 }
 
-/* CTA 始终深色背景，暗色模式下文字保持浅色 */
+/* CTA 始终深色背景，暗色模式下文字保持白色 */
 :global(.dark) .cta-section {
-  color: var(--qi-on-surface);
+  color: #F0ECE6;
 }
 
 :global(.dark) .cta-label {
@@ -259,14 +259,14 @@
 }
 
 :global(.dark) .cta-title {
-  color: var(--qi-text-primary);
+  color: #FFFFFF;
 }
 
 :global(.dark) .cta-desc {
-  color: var(--qi-on-surface-muted);
+  color: rgba(240, 236, 230, 0.75);
 }
 
 :global(.dark) .cta-btn--outline {
-  border-color: var(--qi-inverse-40);
-  color: var(--qi-on-surface);
+  border-color: rgba(240, 236, 230, 0.30);
+  color: #F0ECE6;
 }
