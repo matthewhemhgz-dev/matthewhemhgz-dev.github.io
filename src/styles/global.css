@@ -20,7 +20,7 @@ body {
 /* Dark mode body background adjustment */
 :global(.dark) body {
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.03) 0%, transparent 70%),
+    radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06) 0%, transparent 70%),
     var(--qi-bg-base);
 }
 

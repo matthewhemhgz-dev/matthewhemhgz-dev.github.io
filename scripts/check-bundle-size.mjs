@@ -8,10 +8,10 @@
  * 预算配置（单位：KB）：
  * - JS 总计: 600 KB（含 Pagefind wasm + worker）
  * - CSS 总计: 200 KB（含 Pagefind UI CSS）
- * - HTML 总计: 400 KB
- * - 图片总计: 2000 KB（含 favicon + og-image）
- * - 其他总计: 500 KB（含 Pagefind 索引 + 字体）
- * - 全部总计: 3500 KB
+ * - HTML 总计: 1000 KB（含 30 页面）
+ * - 图片总计: 4000 KB（含 favicon + og-image + 6 张博客封面）
+ * - 其他总计: 600 KB（含 Pagefind 索引 + 字体）
+ * - 全部总计: 6000 KB
  */
 
 import { readdirSync, statSync } from 'fs';
@@ -22,10 +22,10 @@ const DIST_DIR = 'dist';
 const BUDGETS = {
   js: 600,
   css: 200,
-  html: 400,
-  image: 2000,
-  other: 500,
-  total: 3500,
+  html: 1000,
+  image: 4000,
+  other: 600,
+  total: 6000,
 };
 
 function getCategory(file) {

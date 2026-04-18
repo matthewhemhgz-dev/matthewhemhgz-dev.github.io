@@ -4,6 +4,7 @@ description: "探讨 CSS 架构方法论的发展历程，从 BEM、ITCSS、Util
 pubDate: 2026-04-08
 category: "前端工程"
 tags: ["CSS", "架构设计", "BEM", "设计系统"]
+heroImage: "/images/blog/css-architecture-scalable-projects.jpg"
 author: "祈研所"
 draft: false
 lang: zh

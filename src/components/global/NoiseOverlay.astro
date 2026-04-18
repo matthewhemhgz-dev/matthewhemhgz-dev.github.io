@@ -22,6 +22,12 @@
     mix-blend-mode: multiply;
   }
 
+  /* 暗色背景使用 overlay 模式，噪点在深色上可见 */
+  :global(.dark) .noise-overlay {
+    mix-blend-mode: overlay;
+    opacity: 0.06;
+  }
+
   /* 第二层：细微的纸张纤维方向性纹理 */
   .noise-overlay::after {
     content: '';
@@ -33,5 +39,10 @@
     background-size: 300px 300px;
     mix-blend-mode: multiply;
     pointer-events: none;
+  }
+
+  :global(.dark) .noise-overlay::after {
+    mix-blend-mode: overlay;
+    opacity: 0.4;
   }
 </style>

@@ -5,8 +5,12 @@
 .cta-section {
   background: linear-gradient(135deg,
     var(--qi-ink) 0%,
-    color-mix(in srgb, var(--qi-ink) 92%, var(--qi-brand-emerald)) 35%,
-    color-mix(in srgb, var(--qi-ink) 90%, var(--qi-brand-mint)) 65%,
+    color-mix(in srgb, var(--qi-ink) 95%, var(--qi-brand-emerald)) 12%,
+    color-mix(in srgb, var(--qi-ink) 93%, var(--qi-brand-emerald)) 25%,
+    color-mix(in srgb, var(--qi-ink) 92%, var(--qi-brand-mint)) 45%,
+    color-mix(in srgb, var(--qi-ink) 91%, var(--qi-brand-mint)) 55%,
+    color-mix(in srgb, var(--qi-ink) 90%, var(--qi-brand-amber)) 75%,
+    color-mix(in srgb, var(--qi-ink) 89%, var(--qi-brand-amber)) 88%,
     color-mix(in srgb, var(--qi-ink) 88%, var(--qi-brand-amber)) 100%
   );
   color: var(--qi-text-inverse);
@@ -44,6 +48,8 @@
   background: linear-gradient(
     to bottom,
     var(--qi-glow-accent),
+    color-mix(in srgb, var(--qi-glow-accent) 50%, transparent) 40%,
+    color-mix(in srgb, var(--qi-glow-accent) 15%, transparent) 70%,
     transparent
   );
   pointer-events: none;
@@ -200,6 +206,8 @@
   background: linear-gradient(
     to top,
     var(--qi-glow-primary),
+    color-mix(in srgb, var(--qi-glow-primary) 50%, transparent) 40%,
+    color-mix(in srgb, var(--qi-glow-primary) 15%, transparent) 70%,
     transparent
   );
   pointer-events: none;

@@ -4,6 +4,7 @@ description: "如何将零散的信息碎片转化为结构化的知识网络，
 pubDate: 2026-04-05
 category: "随思随想"
 tags: ["知识管理", "PKM", "笔记方法", "终身学习"]
+heroImage: "/images/blog/personal-knowledge-graph.jpg"
 author: "祈研所"
 draft: false
 lang: zh

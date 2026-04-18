@@ -21,6 +21,7 @@
   --qi-border-default: rgba(232, 227, 221, 0.08);
   --qi-border-subtle: rgba(232, 227, 221, 0.05);
   --qi-border-strong: rgba(232, 227, 221, 0.15);
+  --qi-border-inverse: rgba(30, 27, 24, 0.08);
 
   /* 不透明度令牌 — 反转 */
   --qi-opacity-subtle: 0.08;
@@ -57,6 +58,7 @@
   --qi-brand-amber-50: rgba(251, 191, 36, 0.65);
   --qi-brand-amber-60: rgba(251, 191, 36, 0.75);
 
+  --qi-brand-mint-03: rgba(153, 246, 228, 0.05);
   --qi-brand-mint-04: rgba(153, 246, 228, 0.06);
   --qi-brand-mint-06: rgba(153, 246, 228, 0.08);
   --qi-brand-mint-08: rgba(153, 246, 228, 0.11);

@@ -15,39 +15,50 @@
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 80%);
 }
 
-/* === 光线放射效果 === */
+/* === 聚光灯聚焦效果 — 聚焦在品牌宣言区域 === */
 .hero-rays {
   position: absolute;
-  inset: -50%;
-  background: repeating-conic-gradient(
-    from 45deg at 75% 25%,
-    var(--qi-brand-emerald-08) 0deg,
-    var(--qi-brand-emerald-15) 3deg,
-    transparent 5deg,
-    transparent 20deg
-  );
+  inset: 0;
+  background:
+    /* 主聚光灯：从左上角照射到中心内容区域 */
+    radial-gradient(
+      ellipse 60% 50% at 30% 40%,
+      var(--qi-brand-emerald-06) 0%,
+      var(--qi-brand-emerald-03) 40%,
+      transparent 70%
+    ),
+    /* 辅助聚光灯：右下角暖色补光 */
+    radial-gradient(
+      ellipse 40% 40% at 80% 70%,
+      var(--qi-brand-amber-04) 0%,
+      transparent 60%
+    ),
+    /* 顶部柔光：增加层次感 */
+    radial-gradient(
+      ellipse 80% 30% at 50% 10%,
+      var(--qi-brand-mint-03) 0%,
+      transparent 70%
+    );
   mask-image: radial-gradient(
-    ellipse 55% 45% at 75% 25%,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.4) 20%,
-    rgba(0, 0, 0, 0.2) 45%,
-    transparent 70%
+    ellipse 90% 80% at 45% 50%,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 80%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 55% 45% at 75% 25%,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.4) 20%,
-    rgba(0, 0, 0, 0.2) 45%,
-    transparent 70%
+    ellipse 90% 80% at 45% 50%,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 80%
   );
-  animation: rays-spin 120s linear infinite;
+  animation: spotlight-breathe 15s ease-in-out infinite;
   pointer-events: none;
   transition: opacity 0.5s ease;
 }
 
-@keyframes rays-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes spotlight-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 /* === 体积光束效果 === */
