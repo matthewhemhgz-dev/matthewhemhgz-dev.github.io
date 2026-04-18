@@ -59,7 +59,8 @@ const { tag, posts } = Astro.props;
     display: block;
     padding: 1.25rem;
     background: var(--qi-surface-main);
-    color: var(--qi-text-inverse);
+    /* 深色卡片始终使用浅色文字 */
+    color: #E8E3DD;
     border-radius: var(--qi-radius-card);
     text-decoration: none;
     transition: transform var(--qi-transition), box-shadow var(--qi-transition);

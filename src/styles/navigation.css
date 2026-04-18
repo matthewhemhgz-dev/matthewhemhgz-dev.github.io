@@ -320,3 +320,34 @@
     transition: none !important;
   }
 }
+
+/* === Dark Mode === */
+:global(.dark) .nav-wrapper {
+  background: rgba(30, 27, 24, 0.75);
+  border-color: var(--qi-base-06);
+}
+
+:global(.dark) .nav-link {
+  color: var(--qi-text-secondary);
+}
+
+:global(.dark) .nav-link:hover {
+  color: var(--qi-text-primary);
+  background-color: var(--qi-base-06);
+}
+
+:global(.dark) .nav-link.active {
+  color: var(--qi-brand-emerald);
+}
+
+:global(.dark) .nav-logo-text {
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .nav-search-text {
+  color: var(--qi-text-secondary);
+}
+
+:global(.dark) .nav-hamburger-line {
+  background: var(--qi-text-primary);
+}

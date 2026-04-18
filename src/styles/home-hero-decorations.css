@@ -23,33 +23,35 @@
     /* 主聚光灯：从左上角照射到中心内容区域 */
     radial-gradient(
       ellipse 60% 50% at 30% 40%,
-      var(--qi-brand-emerald-06) 0%,
-      var(--qi-brand-emerald-03) 40%,
+      var(--qi-brand-emerald-18) 0%,
+      var(--qi-brand-emerald-08) 40%,
       transparent 70%
     ),
     /* 辅助聚光灯：右下角暖色补光 */
     radial-gradient(
       ellipse 40% 40% at 80% 70%,
-      var(--qi-brand-amber-04) 0%,
+      var(--qi-brand-amber-12) 0%,
       transparent 60%
     ),
     /* 顶部柔光：增加层次感 */
     radial-gradient(
       ellipse 80% 30% at 50% 10%,
-      var(--qi-brand-mint-03) 0%,
+      var(--qi-brand-mint-08) 0%,
       transparent 70%
     );
   mask-image: radial-gradient(
     ellipse 90% 80% at 45% 50%,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    transparent 80%
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent 90%
   );
   -webkit-mask-image: radial-gradient(
     ellipse 90% 80% at 45% 50%,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    transparent 80%
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent 90%
   );
   animation: spotlight-breathe 15s ease-in-out infinite;
   pointer-events: none;
