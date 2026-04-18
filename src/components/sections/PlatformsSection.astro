@@ -36,8 +36,8 @@ const { label, title, platforms } = Astro.props;
       {platforms.map((p) => (
         <a
           href={p.url}
-          title={p.url === '#' ? (p.comingSoonText || 'Coming soon') : undefined}
-          class="platform-card tilt-card"
+          title={p.url === '#' ? '敬请期待' : undefined}
+          class:list={['platform-card tilt-card', { 'platform-card--soon': p.url === '#' }]}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${p.name} - ${p.desc} (opens in new window)`}

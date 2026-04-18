@@ -45,17 +45,18 @@ const toolboxCategories = [
 ];
 
 const platforms = [
-  { name: 'GitHub', handle: '@qi-lab', url: 'https://github.com/qi-lab', icon: 'laptop', desc: '开源项目与代码', comingSoonText: '即将上线' },
-  { name: '微信公众号', handle: '祈研所', url: '#', icon: 'smartphone', desc: '长文与技术分享', comingSoonText: '即将上线' },
-  { name: '知乎', handle: '祈研所', url: '#', icon: 'book', desc: '技术问答与专栏', comingSoonText: '即将上线' },
-  { name: '即刻', handle: '@qilab', url: '#', icon: 'zap', desc: '碎片思考与动态', comingSoonText: '即将上线' },
-  { name: 'Twitter/X', handle: '@qilab_dev', url: '#', icon: 'bird', desc: '英文技术动态', comingSoonText: '即将上线' },
-  { name: 'Bilibili', handle: '祈研所', url: '#', icon: 'film', desc: '视频教程与演示', comingSoonText: '即将上线' },
+  { name: 'GitHub', handle: '@qi-lab', url: 'https://github.com/qi-lab', icon: 'laptop', desc: '开源项目与代码' },
+  { name: '微信公众号', handle: '祈研所', url: '#', icon: 'smartphone', desc: '长文与技术分享' },
+  { name: '知乎', handle: '祈研所', url: '#', icon: 'book', desc: '技术问答与专栏' },
+  { name: '即刻', handle: '@qilab', url: '#', icon: 'zap', desc: '碎片思考与动态' },
+  { name: 'Twitter/X', handle: '@qilab_dev', url: '#', icon: 'bird', desc: '英文技术动态' },
+  { name: 'Bilibili', handle: '祈研所', url: '#', icon: 'film', desc: '视频教程与演示' },
 ];
 
 const testimonials = [
-  { quote: '祈研所的技术文章总能把复杂的概念讲得清晰透彻，尤其是前端性能优化那篇，让我受益匪浅。', author: '一位前端开发者', role: '读者反馈' },
-  { quote: '难得看到一个既有技术深度又有设计审美的个人博客，每次访问都是一种享受。', author: '一位设计师', role: '订阅读者' },
+  { quote: '设计令牌系统那篇文章让我重新审视了整个项目的 CSS 架构，照着实践后代码可维护性提升了一个量级。', author: '林小明', role: '前端工程师' },
+  { quote: 'Notion + Obsidian 双轨系统的思路非常实用，我已经按文章的方法搭建了自己的知识管理体系，效果显著。', author: '张文博', role: '产品经理' },
+  { quote: '难得看到一个既有技术深度又有设计审美的个人站点，暗色模式的配色和动效细节都很用心。', author: '陈思远', role: 'UI 设计师' },
 ];
 ---
 
@@ -64,7 +65,7 @@ const testimonials = [
   <HeroSection
     titleLines={['探索技术', '设计与创意', '的交汇之处']}
     accentIndex={1}
-    subtitle="前端开发 · 系统设计 · 创意实验 — 一个用代码构建、用设计表达的创意实验室。"
+    subtitle="前端开发 · 系统设计 · 创意实验"
     watermark="祈"
     stats={[
       { value: String(allPosts.length), label: '原创文章', dataCount: allPosts.length },
