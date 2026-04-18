@@ -45,4 +45,16 @@
     mix-blend-mode: soft-light;
     opacity: 0.12;
   }
+
+  @media (max-width: 768px) {
+    .noise-overlay {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .noise-overlay {
+      display: none;
+    }
+  }
 </style>

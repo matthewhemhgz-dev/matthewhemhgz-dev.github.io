@@ -120,7 +120,7 @@ export class CursorGlow {
           50% { opacity: 0.75; transform: translate(14%, 14%) scale(1.08); }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .cursor-glow { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {

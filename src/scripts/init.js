@@ -14,46 +14,46 @@ function initQiLab() {
   if (initialized) return;
   initialized = true;
 
+  const isHomePage = location.pathname === '/' || location.pathname === '';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 1. 粒子系统（增强版：鼠标交互 + 光晕 + 连线高亮）
-  const screenWidth = window.innerWidth;
-  const cs = getComputedStyle(document.documentElement);
-  const particleCount = screenWidth < 768 ? 40
-    : screenWidth < 1440 ? 80
-    : screenWidth < 2560 ? 100
-    : 120;
-  const particleOptions = {
-    count: particleCount,
-    colors: [
-      cs.getPropertyValue('--qi-brand-emerald').trim(),
-      cs.getPropertyValue('--qi-brand-mint').trim(),
-      cs.getPropertyValue('--qi-brand-amber').trim(),
-      cs.getPropertyValue('--qi-bg-base').trim(),
-    ],
-    maxSize: 4,
-    speed: 0.4,
-    linkDistance: 160,
-    linkOpacity: 0.12,
-    mouseRadius: 200,
-    mouseForce: 0.04,
-    glowSize: 12,
-    glowOpacity: 0.25,
-  };
+  // 1. 粒子系统（仅首页启用）
+  if (isHomePage && !prefersReducedMotion) {
+    const screenWidth = window.innerWidth;
+    const cs = getComputedStyle(document.documentElement);
+    const particleCount = screenWidth < 768 ? 40
+      : screenWidth < 1440 ? 80
+      : screenWidth < 2560 ? 100
+      : 120;
+    const particleOptions = {
+      count: particleCount,
+      colors: [
+        cs.getPropertyValue('--qi-brand-emerald').trim(),
+        cs.getPropertyValue('--qi-brand-mint').trim(),
+        cs.getPropertyValue('--qi-brand-amber').trim(),
+        cs.getPropertyValue('--qi-bg-base').trim(),
+      ],
+      maxSize: 4,
+      speed: 0.4,
+      linkDistance: 160,
+      linkOpacity: 0.12,
+      mouseRadius: 200,
+      mouseForce: 0.04,
+      glowSize: 12,
+      glowOpacity: 0.25,
+    };
 
-  if (prefersReducedMotion) {
-    particles = null;
-  } else if (particles && particles.canvas) {
-    // 复用已有实例，调用 rebuild 重建粒子
-    particles.rebuild(particleOptions);
-  } else {
-    // 首次创建
-    particles = new MinimalParticles('particles-canvas', particleOptions);
+    if (particles && particles.canvas) {
+      particles.rebuild(particleOptions);
+    } else {
+      particles = new MinimalParticles('particles-canvas', particleOptions);
+    }
+    if (particles) cleanupFns.push(() => particles.destroy());
   }
-  if (particles) cleanupFns.push(() => particles.destroy());
 
-  // 2. 鼠标追踪光效
-  if (!prefersReducedMotion) {
+  // 2. 鼠标追踪光效（仅首页启用）
+  if (isHomePage && !prefersReducedMotion) {
+    const cs = getComputedStyle(document.documentElement);
     cursorGlow = new CursorGlow({
       size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 350,
       speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.06,
@@ -63,7 +63,8 @@ function initQiLab() {
   }
 
   // 2.5 卡片 3D 倾斜 + 光泽效果
-  new CardTilt('.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category');
+  const cardTilt = new CardTilt('.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category');
+  cleanupFns.push(() => cardTilt.destroy());
 
   // 3. 滚动视差光影
   if (!prefersReducedMotion) {

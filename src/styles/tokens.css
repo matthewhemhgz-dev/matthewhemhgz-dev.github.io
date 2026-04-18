@@ -1,48 +1,44 @@
-/* === 1. 色彩令牌 === */
+/* Colors */
 :root {
   color-scheme: light;
 
-  /* 基础背景与表面 */
+  /* Background & Surface */
   --qi-bg-base: #F7F3EE;
   --qi-surface-main: #2A2A2A;
   --qi-surface-sub: #E8E3DD;
 
-  /* 品牌色 — 引用色阶令牌 */
+  /* Brand */
   --qi-brand-emerald: var(--qi-emerald-500);
   --qi-brand-emerald-dark: var(--qi-emerald-700);
   --qi-brand-mint: var(--qi-mint-400);
   --qi-brand-mint-dark: var(--qi-mint-500);
   --qi-brand-amber: var(--qi-amber-400);
   --qi-brand-amber-dark: var(--qi-amber-600);
-
-  /* 语义别名 — 兼容旧代码引用 */
   --qi-amber: var(--qi-brand-amber);
   --qi-amber-dark: var(--qi-brand-amber-dark);
   --qi-emerald-dark: var(--qi-brand-emerald-dark);
 
-  /* 文字色 */
+  /* Text */
   --qi-text-inverse: #F7F3EE;
   --qi-text-primary: #2A2A2A;
   --qi-text-secondary: #5A5A5A;
   --qi-text-muted: #7A7A7A;
-
-  /* 深色表面上的文字（始终浅色，不随暗色模式反转） */
   --qi-on-surface: #E8E3DD;
   --qi-on-surface-muted: #A8A29E;
   --qi-on-surface-dim: #78716C;
 
-  /* 边框令牌 */
+  /* Border */
   --qi-border-default: rgba(42, 42, 42, 0.06);
   --qi-border-subtle: rgba(42, 42, 42, 0.04);
   --qi-border-strong: rgba(42, 42, 42, 0.12);
   --qi-border-inverse: rgba(247, 243, 238, 0.08);
 
-  /* 不透明度令牌 */
+  /* Opacity */
   --qi-opacity-subtle: 0.06;
   --qi-opacity-medium: 0.12;
   --qi-opacity-strong: 0.2;
 
-  /* 品牌色透明度令牌 — 扩展到 60 */
+  /* Brand — Emerald */
   --qi-brand-emerald-03: rgba(46, 125, 92, 0.03);
   --qi-brand-emerald-04: rgba(46, 125, 92, 0.04);
   --qi-brand-emerald-05: rgba(46, 125, 92, 0.05);
@@ -59,6 +55,7 @@
   --qi-brand-emerald-50: rgba(46, 125, 92, 0.50);
   --qi-brand-emerald-60: rgba(46, 125, 92, 0.60);
 
+  /* Brand — Amber */
   --qi-brand-amber-04: rgba(229, 169, 60, 0.04);
   --qi-brand-amber-08: rgba(229, 169, 60, 0.08);
   --qi-brand-amber-10: rgba(229, 169, 60, 0.10);
@@ -72,7 +69,7 @@
   --qi-brand-amber-50: rgba(229, 169, 60, 0.50);
   --qi-brand-amber-60: rgba(229, 169, 60, 0.60);
 
-  /* 薄荷蓝透明度令牌 — 扩展到 60 */
+  /* Brand — Mint */
   --qi-brand-mint-03: rgba(120, 180, 160, 0.03);
   --qi-brand-mint-04: rgba(120, 180, 160, 0.04);
   --qi-brand-mint-06: rgba(120, 180, 160, 0.06);
@@ -88,19 +85,19 @@
   --qi-brand-mint-50: rgba(120, 180, 160, 0.50);
   --qi-brand-mint-60: rgba(120, 180, 160, 0.60);
 
-  /* 暖墨棕 — 新增深色体系，替代纯灰 */
+  /* Ink */
   --qi-ink: #1E1B18;
   --qi-ink-light: #2D2924;
   --qi-ink-muted: #3D3832;
 
-  /* 装饰元素透明度令牌 */
+  /* Decoration */
   --qi-deco-subtle: 0.15;
   --qi-deco-visible: 0.25;
   --qi-deco-medium: 0.35;
   --qi-deco-strong: 0.40;
   --qi-deco-ghost: 0.05;
 
-  /* 光效系统令牌 */
+  /* Glow */
   --qi-glow-size: 350px;
   --qi-glow-speed: 0.06;
   --qi-glow-primary: rgba(46, 125, 92, 0.20);
@@ -109,7 +106,7 @@
   --qi-glow-highlight: rgba(255, 255, 255, 0.08);
   --qi-card-glow-intensity: 0.10;
 
-  /* 基础色透明度令牌 */
+  /* Base alpha */
   --qi-base-02: rgba(42, 42, 42, 0.02);
   --qi-base-03: rgba(42, 42, 42, 0.03);
   --qi-base-04: rgba(42, 42, 42, 0.04);
@@ -119,7 +116,7 @@
   --qi-base-10: rgba(42, 42, 42, 0.10);
   --qi-base-15: rgba(42, 42, 42, 0.15);
 
-  /* 文字反转色透明度令牌（深色背景上的文字） */
+  /* Inverse alpha */
   --qi-inverse-88: rgba(247, 243, 238, 0.88);
   --qi-inverse-70: rgba(247, 243, 238, 0.70);
   --qi-inverse-60: rgba(247, 243, 238, 0.60);
@@ -131,9 +128,9 @@
   --qi-inverse-12: rgba(247, 243, 238, 0.12);
 }
 
-/* === 1.1 品牌色阶令牌（10级） === */
+/* Color Scale */
 :root {
-  /* 翡翠绿 — H:153, S:46% */
+  /* Emerald */
   --qi-emerald-50: #EEFAF3;
   --qi-emerald-100: #D0F0E0;
   --qi-emerald-200: #A3E0C0;
@@ -145,7 +142,7 @@
   --qi-emerald-800: #134D33;
   --qi-emerald-900: #0A3322;
 
-  /* 琥珀金 — H:40, S:78% */
+  /* Amber */
   --qi-amber-50: #FFF8E8;
   --qi-amber-100: #FFEFC0;
   --qi-amber-200: #FFE08A;
@@ -157,7 +154,7 @@
   --qi-amber-800: #7A5410;
   --qi-amber-900: #543A0A;
 
-  /* 薄荷蓝 — H:160, S:29% */
+  /* Mint */
   --qi-mint-50: #F0F8F5;
   --qi-mint-100: #D8EDE5;
   --qi-mint-200: #B8DAD0;
@@ -170,46 +167,46 @@
   --qi-mint-900: #1A3A2A;
 }
 
-/* === 2. 字体令牌 === */
+/* Typography */
 :root {
   --qi-font-serif: "Noto Serif SC", "Noto Serif", "Songti SC", STSong, "Georgia", "Times New Roman", serif;
   --qi-font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
   --qi-font-mono: "Fira Code", "SF Mono", "Cascadia Code", "Consolas", monospace;
 }
 
-/* === 3. 字号令牌 === */
+/* Font Size */
 :root {
-  --qi-text-xs: 0.75rem;      /* 12px */
-  --qi-text-sm: 0.875rem;     /* 14px */
-  --qi-text-base: 1rem;       /* 16px */
-  --qi-text-lg: 1.125rem;     /* 18px */
-  --qi-text-xl: 1.25rem;      /* 20px */
-  --qi-text-2xl: 1.5rem;      /* 24px */
-  --qi-text-3xl: 1.875rem;    /* 30px */
-  --qi-text-4xl: 2.25rem;     /* 36px */
-  --qi-text-5xl: 3rem;        /* 48px */
-  --qi-text-6xl: 3.75rem;     /* 60px */
-  --qi-text-7xl: 4.5rem;      /* 72px */
+  --qi-text-xs: 0.75rem;
+  --qi-text-sm: 0.875rem;
+  --qi-text-base: 1rem;
+  --qi-text-lg: 1.125rem;
+  --qi-text-xl: 1.25rem;
+  --qi-text-2xl: 1.5rem;
+  --qi-text-3xl: 1.875rem;
+  --qi-text-4xl: 2.25rem;
+  --qi-text-5xl: 3rem;
+  --qi-text-6xl: 3.75rem;
+  --qi-text-7xl: 4.5rem;
 }
 
-/* === 4. 空间令牌 === */
+/* Spacing */
 :root {
-  --qi-space-xs: 0.25rem;     /* 4px */
-  --qi-space-sm: 0.5rem;      /* 8px */
-  --qi-space-md: 0.75rem;     /* 12px */
-  --qi-space-lg: 1rem;        /* 16px */
-  --qi-space-xl: 1.5rem;      /* 24px */
-  --qi-space-2xl: 2rem;       /* 32px */
-  --qi-space-3xl: 3rem;       /* 48px */
-  --qi-space-4xl: 4rem;       /* 64px */
-  --qi-space-5xl: 6rem;       /* 96px */
-  --qi-space-6xl: 8rem;       /* 128px */
-  --qi-space-7xl: 10rem;      /* 160px */
-  --qi-space-8xl: 12rem;      /* 192px */
-  --qi-space-9xl: 16rem;      /* 256px */
+  --qi-space-xs: 0.25rem;
+  --qi-space-sm: 0.5rem;
+  --qi-space-md: 0.75rem;
+  --qi-space-lg: 1rem;
+  --qi-space-xl: 1.5rem;
+  --qi-space-2xl: 2rem;
+  --qi-space-3xl: 3rem;
+  --qi-space-4xl: 4rem;
+  --qi-space-5xl: 6rem;
+  --qi-space-6xl: 8rem;
+  --qi-space-7xl: 10rem;
+  --qi-space-8xl: 12rem;
+  --qi-space-9xl: 16rem;
 }
 
-/* === 5. 圆角令牌 === */
+/* Radius */
 :root {
   --qi-radius: 12px;
   --qi-radius-sm: 6px;
@@ -221,23 +218,19 @@
   --qi-radius-full: 9999px;
 }
 
-/* === 6. 间距/布局令牌 === */
+/* Layout */
 :root {
   --qi-gap: 16px;
   --qi-gap-sm: 10px;
   --qi-gap-bento: 24px;
   --qi-container-padding: 24px;
-  /* 文本内容最大宽度（文章、描述） */
   --qi-prose-width: 680px;
-
-  /* 页面容器最大宽度 */
   --qi-container-max: 1200px;
   --qi-nav-height: 64px;
-  /* 导航栏外部总高度 = top偏移 + 上下padding + 内部高度 + border */
   --qi-nav-total-height: calc(12px + var(--qi-space-md) + var(--qi-nav-height) + var(--qi-space-md) + 1px);
 }
 
-/* === 7. 阴影令牌 === */
+/* Shadow */
 :root {
   --qi-shadow-sm: 0 1px 3px rgba(42,42,42,0.06), 0 1px 2px rgba(42,42,42,0.04);
   --qi-shadow: 0 4px 16px rgba(42,42,42,0.1);
@@ -249,7 +242,7 @@
   --qi-shadow-inset: inset 2px 2px 5px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(255,255,255,0.05);
 }
 
-/* === 8. Z-index 令牌 === */
+/* Z-Index */
 :root {
   --qi-z-base: 1;
   --qi-z-content: 2;
@@ -261,16 +254,13 @@
   --qi-z-progress: 10001;
 }
 
-/* === 9. 排版节奏令牌 === */
+/* Rhythm */
 :root {
-  /* 行高 */
   --qi-leading-tight: 1.1;
   --qi-leading-snug: 1.3;
   --qi-leading-normal: 1.7;
   --qi-leading-relaxed: 1.9;
   --qi-leading-loose: 2.1;
-
-  /* 字间距 */
   --qi-tracking-tight: -0.03em;
   --qi-tracking-normal: 0.02em;
   --qi-tracking-wide: 0.06em;
@@ -278,12 +268,11 @@
   --qi-tracking-widest: 0.12em;
 }
 
-/* === 10. 动画令牌 === */
+/* Animation */
 :root {
   --qi-transition: 0.25s ease;
   --qi-transition-base: 0.3s ease;
   --qi-transition-fast: 0.15s ease;
-  /* 弹簧物理缓动 — 模拟 spring bounce */
   --qi-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --qi-spring-soft: cubic-bezier(0.22, 1.2, 0.36, 1);
   --qi-spring-snappy: cubic-bezier(0.5, 1.8, 0.5, 0.8);
@@ -291,12 +280,8 @@
   --qi-anim-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --qi-anim-stagger: 0.1s;
   --qi-anim-offset: 24px;
-
-  /* Large screen scaling */
   --qi-font-scale: 1;
   --qi-spacing-scale: 1;
-
-  /* Responsive font helpers (scale with large screens) */
   --qi-font-scaled-xs: calc(var(--qi-text-xs) * var(--qi-font-scale, 1));
   --qi-font-scaled-sm: calc(var(--qi-text-sm) * var(--qi-font-scale, 1));
   --qi-font-scaled-base: calc(var(--qi-text-base) * var(--qi-font-scale, 1));
@@ -307,10 +292,9 @@
   --qi-font-scaled-4xl: calc(var(--qi-text-4xl) * var(--qi-font-scale, 1));
 }
 
+/* Responsive */
 @media (min-width: 1440px) {
-  :root {
-    --qi-container-max: 1320px;
-  }
+  :root { --qi-container-max: 1320px; }
 }
 
 @media (min-width: 1920px) {
