@@ -6,7 +6,7 @@
   position: relative;
   z-index: var(--qi-z-content);
   background: var(--qi-ink);
-  color: var(--qi-bg-base);
+  color: var(--qi-text-inverse);
   padding: var(--qi-space-4xl) 0 var(--qi-space-xl);
   border-top: 1px solid var(--qi-border-inverse);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
@@ -29,7 +29,7 @@
   font-family: var(--qi-font-serif);
   font-size: var(--qi-text-2xl);
   font-weight: 600;
-  color: var(--qi-bg-base);
+  color: var(--qi-text-inverse);
   margin-bottom: var(--qi-space-sm);
   letter-spacing: 0.02em;
 }
@@ -75,7 +75,7 @@
 
 .contact-value {
   font-size: var(--qi-text-sm);
-  color: var(--qi-inverse-88);
+  color: var(--qi-text-inverse);
   transition: color var(--qi-transition-fast);
 }
 
@@ -106,12 +106,67 @@ a.contact-value:hover {
 .social-icon {
   font-size: 1rem;
   line-height: 1;
+  color: var(--qi-text-inverse);
+  transition: color var(--qi-transition-fast);
+}
+
+.social-link:hover .social-icon {
+  color: var(--qi-amber);
+}
+
+:global(.dark) .social-icon {
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .social-link:hover .social-icon {
+  color: var(--qi-amber);
 }
 
 .social-name {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
-  color: var(--qi-inverse-88);
+  color: var(--qi-text-inverse);
+}
+
+/* QR Code */
+.footer-qr {
+  display: flex;
+  flex-direction: column;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  background: var(--qi-bg-base);
+  padding: var(--qi-space-md);
+  border-radius: var(--qi-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow var(--qi-transition-fast);
+}
+
+.qr-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.qr-code {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: var(--qi-radius-sm);
+  background: white;
+  padding: var(--qi-space-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.qr-text {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-primary);
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* Divider */
@@ -193,6 +248,15 @@ a.contact-value:hover {
     gap: var(--qi-space-sm);
     text-align: center;
   }
+
+  .qr-container {
+    align-items: center;
+  }
+
+  .qr-code {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -241,32 +305,32 @@ a.contact-value:hover {
 
 /* Footer 始终深色背景，暗色模式下文字保持浅色 */
 :global(.dark) .footer {
-  color: rgba(240, 236, 230, 0.85);
+  color: var(--qi-text-primary);
   border-top-color: var(--qi-border-subtle);
 }
 
 :global(.dark) .footer-heading {
-  color: #FFFFFF;
+  color: var(--qi-amber);
 }
 
-:global(.dark) .footer-link,
 :global(.dark) .contact-value,
 :global(.dark) .social-name {
-  color: rgba(240, 236, 230, 0.90);
+  color: var(--qi-text-primary);
 }
 
 :global(.dark) .copyright {
-  color: rgba(240, 236, 230, 0.65);
+  color: var(--qi-text-muted);
 }
 
 :global(.dark) .built-with {
-  color: rgba(240, 236, 230, 0.65);
+  color: var(--qi-text-muted);
 }
 
 :global(.dark) .contact-label {
-  color: rgba(240, 236, 230, 0.65);
+  color: var(--qi-text-muted);
 }
 
 :global(.dark) .footer-easter-egg {
-  color: rgba(240, 236, 230, 0.45);
+  color: var(--qi-text-muted);
+  opacity: 0.6;
 }

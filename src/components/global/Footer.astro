@@ -6,6 +6,7 @@ interface Props {
   email?: string;
   wechat?: string;
   copyrightYear?: number;
+  lang?: 'zh' | 'en';
 }
 
 const {
@@ -13,15 +14,26 @@ const {
   email = 'matthewhemhgz@gmail.com',
   wechat = '祈研所或 Qi-Lab',
   copyrightYear = new Date().getFullYear(),
+  lang = 'zh',
 } = Astro.props;
 
-const socialLinks = [
+// 社交媒体链接 - 根据语言选择
+const socialLinks = lang === 'en' ? [
   { name: 'GitHub', url: 'https://github.com/matthewhemhgz-dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
-  { name: '微信公众号', url: 'https://mp.weixin.qq.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-1 17.93c-2.97 0-5.4-2.43-5.4-5.4 0-2.97 2.43-5.4 5.4-5.4 2.97 0 5.4 2.43 5.4 5.4 0 2.97-2.43 5.4-5.4 5.4zm0-9.43c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>' },
-  { name: '视频号', url: 'https://channels.weixin.qq.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>' },
-  { name: '小红书', url: 'https://www.xiaohongshu.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm4.8 14.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-3.6-3.6-1.8 1.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-2.4-2.4c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7l3.6-3.6 1.8 1.8c.2.2.4.3.7.3s.5-.1.7-.3l2.4-2.4c.2-.2.4-.3.7-.3s.5.1.7.3l3.6 3.6 1.8-1.8c.2-.2.4-.3.7-.3s.5.1.7.3l2.4 2.4c.2.2.3.4.3.7s-.1.5-.3.7l-3.6 3.6-1.8-1.8c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3l-2.4 2.4z"/></svg>' },
-  { name: '抖音', url: 'https://www.douyin.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+  { name: 'Twitter (X)', url: 'https://x.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>' },
+  { name: 'YouTube', url: 'https://youtube.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>' },
+  { name: 'Instagram', url: 'https://instagram.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' },
+] : [
+  { name: 'GitHub', url: 'https://github.com/matthewhemhgz-dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
+  { name: '微信公众号', url: 'https://mp.weixin.qq.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S18.63 2 12 2z"/><path d="M11 7.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"/></svg>' },
+  { name: '视频号', url: 'https://channels.weixin.qq.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="10 8 16 12 10 16 10 8"/></svg>' },
+  { name: '小红书', url: 'https://www.xiaohongshu.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>' },
+  { name: '抖音', url: 'https://www.douyin.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="9 12 15 15 15 9 9 12"/></svg>' },
 ];
+
+// 微信二维码图片URL，使用API生成
+const wechatQrCodeUrl = `https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=WeChat QR code for QiLab_Studio, black on white background, clean, high resolution&image_size=square_hd`;
 ---
 
 <footer id="contact" class="footer">
@@ -59,6 +71,14 @@ const socialLinks = [
               </a>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div class="footer-qr">
+        <h3 class="footer-heading">扫码添加微信</h3>
+        <div class="qr-container">
+          <img src={wechatQrCodeUrl} alt="微信二维码" class="qr-code" />
+          <p class="qr-text">{wechat}</p>
         </div>
       </div>
     </div>

@@ -132,6 +132,8 @@
 .nav-link:focus-visible {
   color: var(--qi-text-primary);
   background-color: var(--qi-base-04);
+  outline: 2px solid var(--qi-brand-emerald);
+  outline-offset: 2px;
 }
 
 .nav-link.active {

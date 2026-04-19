@@ -9,6 +9,12 @@
   border: 1px solid var(--qi-border-default);
   background: var(--qi-surface-main);
   box-shadow: var(--qi-shadow-lg);
+  transition: all var(--qi-transition-base);
+}
+
+.hero-float-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--qi-shadow-xl);
 }
 
 /* Insight card — Design Token stats */
@@ -31,6 +37,7 @@
   border-radius: var(--qi-radius-md);
   background: var(--qi-brand-emerald-10);
   color: var(--qi-brand-emerald);
+  box-shadow: 0 4px 12px var(--qi-brand-emerald-20);
 }
 
 .float-insight-body {
@@ -67,10 +74,13 @@
   height: 100%;
   width: 85%;
   border-radius: var(--qi-radius-full);
+  transition: width 1.5s var(--qi-spring);
+  animation: fill-progress 1.5s var(--qi-spring) forwards;
 }
 
 .float-insight-fill--emerald {
   background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
+  box-shadow: 0 0 8px var(--qi-brand-emerald-30);
 }
 
 /* Metric card — Core Web Vitals */
@@ -105,6 +115,7 @@
   background: var(--qi-brand-emerald-10);
   padding: 2px 8px;
   border-radius: var(--qi-radius-full);
+  box-shadow: 0 2px 8px var(--qi-brand-emerald-20);
 }
 
 .float-metric-grid {
@@ -115,6 +126,11 @@
 
 .float-metric-item {
   text-align: center;
+  transition: transform var(--qi-transition-base);
+}
+
+.float-metric-item:hover {
+  transform: scale(1.05);
 }
 
 .float-metric-num {
@@ -139,6 +155,11 @@
 @keyframes float-gentle {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
+}
+
+@keyframes fill-progress {
+  from { width: 0; }
+  to { width: 85%; }
 }
 
 /* Mobile: hide float cards */

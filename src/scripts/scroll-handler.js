@@ -42,7 +42,11 @@ export function initScrollHandler(particles) {
     nav.classList.toggle('scrolled', currentScrollY > 50);
 
     // Back to top button visibility
-    if (backToTopBtn) backToTopBtn.classList.toggle('visible', currentScrollY > 600);
+    if (backToTopBtn) {
+      const isVisible = currentScrollY > 600;
+      backToTopBtn.classList.toggle('visible', isVisible);
+      backToTopBtn.setAttribute('aria-hidden', String(!isVisible));
+    }
 
     // Collapse/expand pill navigation (desktop only)
     if (window.innerWidth > 768) {

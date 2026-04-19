@@ -207,10 +207,10 @@ const articleJsonLd = {
             qrCode.style.display = 'block';
             // 清除之前的定时器
             if (touchTimer) clearTimeout(touchTimer);
-            // 3秒后自动隐藏
+            // 5秒后自动隐藏
             touchTimer = setTimeout(() => {
               qrCode.style.display = 'none';
-            }, 3000);
+            }, 5000);
           }
         });
         

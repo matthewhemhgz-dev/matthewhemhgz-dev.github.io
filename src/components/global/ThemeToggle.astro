@@ -31,33 +31,46 @@
 
 <script>
   const STORAGE_KEY = 'qi-theme';
+  let htmlElement: HTMLElement;
+  let themeToggleBtn: HTMLElement | null;
+  let themeMeta: HTMLMetaElement | null;
 
   function getSystemPreference(): 'dark' | 'light' {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   function getStoredTheme(): 'dark' | 'light' | null {
-    return localStorage.getItem(STORAGE_KEY) as 'dark' | 'light' | null;
+    try {
+      return localStorage.getItem(STORAGE_KEY) as 'dark' | 'light' | null;
+    } catch (e) {
+      // localStorage access might be blocked
+      return null;
+    }
   }
 
   function applyTheme(theme: 'dark' | 'light') {
-    const html = document.documentElement;
+    // Cache DOM elements for better performance
+    if (!htmlElement) htmlElement = document.documentElement;
+    if (!themeMeta) themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (!themeToggleBtn) themeToggleBtn = document.getElementById('theme-toggle');
+
+    // Apply theme class
     if (theme === 'dark') {
-      html.classList.add('dark');
+      htmlElement.classList.add('dark');
     } else {
-      html.classList.remove('dark');
+      htmlElement.classList.remove('dark');
     }
+
     // Update meta theme-color
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) {
-      meta.setAttribute('content', theme === 'dark' ? '#121010' : '#F7F3EE');
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === 'dark' ? '#121010' : '#F7F3EE');
     }
+
     // Update aria attributes
-    const btn = document.getElementById('theme-toggle');
-    if (btn) {
-      btn.setAttribute('aria-pressed', String(theme === 'dark'));
-      btn.setAttribute('aria-label', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
-      btn.setAttribute('title', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+      themeToggleBtn.setAttribute('aria-label', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
+      themeToggleBtn.setAttribute('title', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
     }
   }
 
@@ -65,7 +78,13 @@
     const isDark = document.documentElement.classList.contains('dark');
     const newTheme = isDark ? 'light' : 'dark';
     applyTheme(newTheme);
-    localStorage.setItem(STORAGE_KEY, newTheme);
+    
+    // Optimize localStorage write
+    try {
+      localStorage.setItem(STORAGE_KEY, newTheme);
+    } catch (e) {
+      // Ignore if localStorage is blocked
+    }
   }
 
   // Initialize theme before paint (prevent flash)
@@ -78,10 +97,15 @@
   // Bind toggle button after DOM ready
   document.addEventListener('astro:page-load', () => {
     const btn = document.getElementById('theme-toggle');
-    btn?.addEventListener('click', toggleTheme);
+    if (btn) {
+      themeToggleBtn = btn;
+      // Use passive event listener for better performance
+      btn.addEventListener('click', toggleTheme, { passive: true });
+    }
 
     // Listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (e) => {
       if (!getStoredTheme()) {
         applyTheme(e.matches ? 'dark' : 'light');
       }
