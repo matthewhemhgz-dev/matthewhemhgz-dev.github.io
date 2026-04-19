@@ -54,9 +54,12 @@ const colors = colorMap[color] || colorMap.emerald;
 <style>
   .dash-card {
     background: var(--qi-bg-base);
-    border: 1px solid var(--qi-base-06);
+    border: 1px solid var(--qi-border-default);
     border-radius: var(--qi-radius-lg);
     padding: var(--qi-space-lg);
+    box-shadow: 
+      0 1px 3px rgba(0,0,0,0.05), 
+      inset 0 1px 0 rgba(255,255,255,0.3);
     transition: box-shadow var(--qi-transition-base), transform var(--qi-transition-base);
   }
 
