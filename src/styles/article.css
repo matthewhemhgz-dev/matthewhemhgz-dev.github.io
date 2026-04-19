@@ -386,13 +386,10 @@
 }
 
 /* Tables */
-.prose {
-  overflow-x: auto;
-}
-
+/* 为表格创建一个滚动容器 */
 .prose :global(table) {
   width: 100%;
-  min-width: 100%;
+  min-width: 800px; /* 设置最小宽度，确保表格在小屏幕上可以滚动 */
   border-collapse: collapse;
   font-size: 0.95em;
   margin: 1.5rem 0;
@@ -400,6 +397,9 @@
   overflow: hidden;
   box-shadow: var(--qi-shadow-sm);
   border: 1px solid var(--qi-border);
+  /* 让表格本身可滚动 */
+  display: block;
+  overflow-x: auto;
 }
 
 .prose :global(th),
