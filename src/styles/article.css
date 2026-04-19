@@ -430,7 +430,7 @@
 }
 
 /* 暗色模式表格样式 */
-:global(.dark) .table-container {
+:global(.dark) .prose :global(table) {
   border-color: var(--qi-border-dark);
   box-shadow: var(--qi-shadow-dark-sm);
 }

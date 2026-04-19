@@ -14,7 +14,7 @@
   - `human-judgment` TR-1.2: 切换到暗色模式，确保图表样式与主题一致
 - **Notes**: 可能需要检查 Mermaid 初始化代码和主题设置
 
-## [/] Task 2: 优化表格样式
+## [x] Task 2: 优化表格样式
 - **Priority**: P0
 - **Depends On**: None
 - **Description**: 
@@ -28,7 +28,7 @@
   - `human-judgment` TR-2.2: 在小屏幕设备上测试表格，确保可以水平滚动
 - **Notes**: 重点关注表格的边框、背景色、hover 效果等
 
-## [ ] Task 3: 调整暗色模式对比度
+## [x] Task 3: 调整暗色模式对比度
 - **Priority**: P0
 - **Depends On**: None
 - **Description**: 
@@ -41,7 +41,7 @@
   - `human-judgment` TR-3.2: 浏览网站内容，确保所有元素的可读性良好
 - **Notes**: 重点检查导航栏、文章内容、按钮等元素的对比度
 
-## [ ] Task 4: 完善响应式设计
+## [x] Task 4: 完善响应式设计
 - **Priority**: P0
 - **Depends On**: None
 - **Description**: 
@@ -54,7 +54,7 @@
   - `human-judgment` TR-4.2: 在移动设备上测试网站的可用性
 - **Notes**: 重点测试导航栏、Hero 区域、内容布局等在小屏幕上的显示
 
-## [ ] Task 5: 优化 SEO 元数据
+## [x] Task 5: 优化 SEO 元数据
 - **Priority**: P1
 - **Depends On**: None
 - **Description**: 
@@ -67,7 +67,7 @@
   - `programmatic` TR-5.2: 使用 SEO 测试工具验证元数据的完整性
 - **Notes**: 确保所有页面都有适当的元数据
 
-## [ ] Task 6: 运行构建和测试命令
+## [x] Task 6: 运行构建和测试命令
 - **Priority**: P0
 - **Depends On**: Task 1, Task 2, Task 3, Task 4, Task 5
 - **Description**: 

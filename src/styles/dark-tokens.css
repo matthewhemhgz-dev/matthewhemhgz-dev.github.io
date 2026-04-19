@@ -9,19 +9,19 @@
 
   /* Text */
   --qi-text-inverse: #1E1B18;
-  --qi-text-primary: #E8E3DD;
-  --qi-text-secondary: #A8A29E;
-  --qi-text-muted: #918C87;
-  --qi-on-surface: #E8E3DD;
-  --qi-on-surface-secondary: #C8C3BD;
-  --qi-on-surface-muted: #A8A29E;
-  --qi-on-surface-dim: #8A8580;
+  --qi-text-primary: #F0ECE6;
+  --qi-text-secondary: #C8C3BD;
+  --qi-text-muted: #A8A29E;
+  --qi-on-surface: #F0ECE6;
+  --qi-on-surface-secondary: #D8D3CD;
+  --qi-on-surface-muted: #C8C3BD;
+  --qi-on-surface-dim: #A8A29E;
 
   /* Border */
-  --qi-border-default: rgba(232, 227, 221, 0.08);
-  --qi-border-subtle: rgba(232, 227, 221, 0.05);
-  --qi-border-strong: rgba(232, 227, 221, 0.15);
-  --qi-border-inverse: rgba(30, 27, 24, 0.08);
+  --qi-border-default: rgba(232, 227, 221, 0.12);
+  --qi-border-subtle: rgba(232, 227, 221, 0.08);
+  --qi-border-strong: rgba(232, 227, 221, 0.20);
+  --qi-border-inverse: rgba(30, 27, 24, 0.12);
 
   /* Opacity */
   --qi-opacity-subtle: 0.08;
