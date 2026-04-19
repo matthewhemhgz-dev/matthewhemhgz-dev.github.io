@@ -160,6 +160,11 @@ a.contact-value:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+:global(.dark) .qr-code {
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
 .qr-text {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);

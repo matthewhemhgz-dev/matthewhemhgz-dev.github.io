@@ -182,19 +182,19 @@
   line-height: 2;
   color: var(--qi-text-primary);
   padding: var(--qi-space-3xl);
-  background: var(--qi-bg-secondary);
+  background: var(--qi-surface-sub);
   border-radius: var(--qi-radius-xl);
-  border: 1px solid var(--qi-border);
-  box-shadow: var(--qi-shadow-sm);
+  border: 1px solid var(--qi-border-default);
+  box-shadow: var(--qi-shadow);
   transition: all 0.3s ease;
   margin-bottom: var(--qi-space-2xl);
 }
 
 /* 深色模式样式 */
 :global(.dark) .prose {
-  background: var(--qi-bg-primary);
-  border-color: var(--qi-border-dark);
-  box-shadow: var(--qi-shadow-dark-sm);
+  background: var(--qi-surface-sub);
+  border-color: var(--qi-border-default);
+  box-shadow: var(--qi-shadow);
 }
 
 :global(.dark) .prose :global(h2),
@@ -415,7 +415,7 @@
   font-size: var(--qi-text-xs);
   font-weight: 600;
   color: var(--qi-text-primary);
-  background: var(--qi-bg-secondary);
+  background: var(--qi-surface-main);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -426,26 +426,26 @@
 }
 
 .prose :global(tr:nth-child(even)) td {
-  background: var(--qi-bg-secondary);
+  background: var(--qi-surface-main);
 }
 
 /* 暗色模式表格样式 */
 :global(.dark) .prose :global(table) {
-  border-color: var(--qi-border-dark);
-  box-shadow: var(--qi-shadow-dark-sm);
+  border-color: var(--qi-border-default);
+  box-shadow: var(--qi-shadow);
 }
 
 :global(.dark) .prose :global(th),
 :global(.dark) .prose :global(td) {
-  border-color: var(--qi-border-dark);
+  border-color: var(--qi-border-default);
 }
 
 :global(.dark) .prose :global(th) {
-  background: var(--qi-bg-primary);
+  background: var(--qi-surface-main);
 }
 
 :global(.dark) .prose :global(tr:nth-child(even)) td {
-  background: var(--qi-bg-primary);
+  background: var(--qi-surface-main);
 }
 
 :global(.dark) .prose :global(tr):hover td {
@@ -460,6 +460,8 @@
   margin: 1.5rem 0;
   text-align: center;
   overflow-x: auto;
+  border: 1px solid var(--qi-border-default);
+  box-shadow: var(--qi-shadow-sm);
 }
 
 .mermaid-container svg {
