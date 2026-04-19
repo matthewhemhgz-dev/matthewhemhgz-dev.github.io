@@ -104,6 +104,8 @@
   text-decoration: none;
   border-radius: var(--qi-radius-md);
   transition: color var(--qi-transition-fast), background-color var(--qi-transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
 }
 
 .nav-link:hover {
@@ -147,6 +149,8 @@
   border-radius: var(--qi-radius-md);
   cursor: pointer;
   transition: color var(--qi-transition-fast), background-color var(--qi-transition-fast), border-color var(--qi-transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
 }
 
 .nav-search-btn:hover {
@@ -264,6 +268,7 @@
     display: flex;
     align-items: center;
     -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.05em;
   }
 
   .nav-link.active::after {

@@ -26,13 +26,13 @@ const {
 /**
  * OptimizedImage — 封装 Astro <Image /> 的优化图片组件
  *
- * 对于 /images/ 或 /public/ 下的本地图片，使用 Astro 内置优化（WebP/AVIF + srcset）
+ * 对于本地图片，使用 Astro 内置优化（WebP/AVIF + srcset）
  * 对于外部 URL，回退到原生 <img> 标签（添加 loading + decoding 优化）
  */
-const isLocalImage = src.startsWith('/') && !src.startsWith('//') && !src.startsWith('http');
+const isExternalImage = src.startsWith('http') || src.startsWith('//');
 ---
 
-{isLocalImage ? (
+{!isExternalImage ? (
   <Image
     src={src}
     alt={alt}
@@ -42,7 +42,6 @@ const isLocalImage = src.startsWith('/') && !src.startsWith('//') && !src.starts
     fetchpriority={fetchpriority}
     class={className}
     sizes={sizes}
-    decoding="async"
   />
 ) : (
   <img

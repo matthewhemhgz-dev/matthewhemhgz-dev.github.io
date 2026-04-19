@@ -13,6 +13,14 @@ export default defineConfig({
   build: {
     assets: '_astro',
   },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+    formats: ['avif', 'webp', 'jpeg'],
+    quality: 80,
+    placeholder: 'blur',
+  },
   markdown: {
     syntaxHighlight: {
       excludeLangs: ['mermaid'],
