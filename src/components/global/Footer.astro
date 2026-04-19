@@ -17,10 +17,10 @@ const {
 
 const socialLinks = [
   { name: 'GitHub', url: 'https://github.com/matthewhemhgz-dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
-  { name: '微信公众号', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-1 17.93c-2.97 0-5.4-2.43-5.4-5.4 0-2.97 2.43-5.4 5.4-5.4 2.97 0 5.4 2.43 5.4 5.4 0 2.97-2.43 5.4-5.4 5.4zm0-9.43c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>' },
-  { name: '视频号', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>' },
-  { name: '小红书', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm4.8 14.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-3.6-3.6-1.8 1.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-2.4-2.4c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7l3.6-3.6 1.8 1.8c.2.2.4.3.7.3s.5-.1.7-.3l2.4-2.4c.2-.2.4-.3.7-.3s.5.1.7.3l3.6 3.6 1.8-1.8c.2-.2.4-.3.7-.3s.5.1.7.3l2.4 2.4c.2.2.3.4.3.7s-.1.5-.3.7l-3.6 3.6-1.8-1.8c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3l-2.4 2.4z"/></svg>' },
-  { name: '抖音', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+  { name: '微信公众号', url: 'https://mp.weixin.qq.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-1 17.93c-2.97 0-5.4-2.43-5.4-5.4 0-2.97 2.43-5.4 5.4-5.4 2.97 0 5.4 2.43 5.4 5.4 0 2.97-2.43 5.4-5.4 5.4zm0-9.43c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>' },
+  { name: '视频号', url: 'https://channels.weixin.qq.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>' },
+  { name: '小红书', url: 'https://www.xiaohongshu.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm4.8 14.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-3.6-3.6-1.8 1.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-2.4-2.4c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7l3.6-3.6 1.8 1.8c.2.2.4.3.7.3s.5-.1.7-.3l2.4-2.4c.2-.2.4-.3.7-.3s.5.1.7.3l3.6 3.6 1.8-1.8c.2-.2.4-.3.7-.3s.5.1.7.3l2.4 2.4c.2.2.3.4.3.7s-.1.5-.3.7l-3.6 3.6-1.8-1.8c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3l-2.4 2.4z"/></svg>' },
+  { name: '抖音', url: 'https://www.douyin.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
 ];
 ---
 
@@ -53,7 +53,7 @@ const socialLinks = [
         <div class="social-grid">
           {socialLinks.map((s) => (
             <div class:list={['social-item']}>
-              <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.url === '#' ? '即将上线' : s.name} aria-label={`${s.name} (opens in new window)`}>
+              <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.name} aria-label={`${s.name} (opens in new window)`}>
                 <span class="social-icon" set:html={s.icon} />
                 <span class="social-name">{s.name}</span>
               </a>

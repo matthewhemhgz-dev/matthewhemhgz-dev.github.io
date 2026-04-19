@@ -1,4 +1,6 @@
 ---
+import HeroFloatCard from '../ui/HeroFloatCard.astro';
+
 interface Props {
   titleLines: string[];
   accentIndex?: number;
@@ -25,6 +27,8 @@ const {
   primaryBtn,
   secondaryBtn,
 } = Astro.props;
+
+const trophyIcon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.09 7.26L18 7.64L13.55 11.42L14.82 17.18L10 14.27L5.18 17.18L6.45 11.42L2 7.64L7.91 7.26L10 2Z" fill="currentColor"/></svg>';
 ---
 
 <section class="hero-section" data-reveal>
@@ -85,17 +89,13 @@ const {
         ))}
       </div>
     </div>
-    <div class="hero-float-card hero-float-card--insight" aria-hidden="true">
-      <div class="float-insight-icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.09 7.26L18 7.64L13.55 11.42L14.82 17.18L10 14.27L5.18 17.18L6.45 11.42L2 7.64L7.91 7.26L10 2Z" fill="currentColor"/></svg>
-      </div>
-      <div class="float-insight-body">
-        <div class="float-insight-label">知识管理</div>
-        <div class="float-insight-value">75+ 知识点</div>
-        <div class="float-insight-bar">
-          <div class="float-insight-fill float-insight-fill--emerald"></div>
-        </div>
-      </div>
-    </div>
+    <HeroFloatCard
+      type="insight"
+      icon={trophyIcon}
+      label="知识管理"
+      value="75+ 知识点"
+      color="emerald"
+      ariaHidden={true}
+    />
   </div>
 </section>

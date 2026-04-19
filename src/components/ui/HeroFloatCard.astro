@@ -1,0 +1,36 @@
+---
+interface Props {
+  type?: 'insight' | 'feature' | 'stat';
+  icon?: string;
+  label: string;
+  value: string;
+  color?: 'emerald' | 'amber' | 'mint' | 'gray';
+  ariaHidden?: boolean;
+}
+
+const {
+  type = 'insight',
+  icon,
+  label,
+  value,
+  color = 'emerald',
+  ariaHidden = true,
+} = Astro.props;
+---
+
+<div class:list={['hero-float-card', `hero-float-card--${type}`]} aria-hidden={ariaHidden}>
+  {icon && (
+    <div class="float-insight-icon">
+      <span set:html={icon} />
+    </div>
+  )}
+  <div class="float-insight-body">
+    <div class="float-insight-label">{label}</div>
+    <div class="float-insight-value">{value}</div>
+    {type === 'insight' && (
+      <div class="float-insight-bar">
+        <div class:list={['float-insight-fill', `float-insight-fill--${color}`]} />
+      </div>
+    )}
+  </div>
+</div>

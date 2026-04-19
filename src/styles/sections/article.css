@@ -631,3 +631,98 @@
     aspect-ratio: 2 / 1;
   }
 }
+
+/* === Article Share === */
+.article-share {
+  margin-top: var(--qi-space-lg);
+  margin-bottom: var(--qi-space-lg);
+}
+
+.article-share-label {
+  display: block;
+  margin-bottom: var(--qi-space-sm);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-on-surface-secondary);
+}
+
+.article-share-buttons {
+  display: flex;
+  gap: var(--qi-space-sm);
+  flex-wrap: wrap;
+}
+
+.article-share-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--qi-border-subtle);
+  border-radius: var(--qi-radius-md);
+  background: var(--qi-surface-main);
+  color: var(--qi-on-surface);
+  text-decoration: none;
+  font-size: var(--qi-text-xs);
+  transition: all var(--qi-transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.article-share-btn:hover {
+  background: var(--qi-surface-hover);
+  border-color: var(--qi-brand-emerald);
+  transform: translateY(-2px);
+}
+
+.article-share-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.article-share-wechat {
+  position: relative;
+}
+
+.article-share-wechat-qr {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+  background: var(--qi-surface-main);
+  border: 1px solid var(--qi-border-subtle);
+  border-radius: var(--qi-radius-md);
+  padding: var(--qi-space-sm);
+  box-shadow: var(--qi-shadow-hover-warm);
+  display: none;
+  z-index: 100;
+}
+
+.article-share-wechat-qr-code {
+  margin-bottom: var(--qi-space-xs);
+}
+
+.article-share-wechat-qr-code img {
+  width: 128px;
+  height: 128px;
+}
+
+.article-share-wechat-qr span {
+  display: block;
+  text-align: center;
+  font-size: var(--qi-text-xs);
+  color: var(--qi-on-surface-secondary);
+}
+
+@media (max-width: 768px) {
+  .article-share-buttons {
+    flex-direction: column;
+  }
+  
+  .article-share-btn {
+    justify-content: center;
+  }
+  
+  .article-share-wechat-qr {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

@@ -1,18 +1,7 @@
 ---
+import '../../styles/components/particles-canvas.css';
+
 // ParticlesCanvas — 仅提供 canvas 元素，粒子逻辑由 init.js 统一管理
 ---
 
 <canvas id="particles-canvas" aria-hidden="true"></canvas>
-
-<style>
-  #particles-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.85;
-  }
-</style>

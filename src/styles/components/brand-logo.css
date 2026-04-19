@@ -1,0 +1,37 @@
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--logo-gap, 8px);
+  text-decoration: none;
+  color: var(--qi-text-primary);
+  transition: color var(--qi-transition-fast), opacity var(--qi-transition-fast);
+}
+
+.brand-logo:hover {
+  color: var(--qi-brand-emerald);
+}
+
+.brand-logo--sm {
+  --logo-gap: 6px;
+}
+
+.brand-logo--md {
+  --logo-gap: 8px;
+}
+
+.brand-logo--lg {
+  --logo-gap: 12px;
+}
+
+.brand-logo__icon {
+  flex-shrink: 0;
+  line-height: 0;
+  object-fit: contain;
+  border-radius: var(--qi-radius-sm);
+}
+
+.brand-logo__text {
+  font-family: var(--qi-font-serif);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
