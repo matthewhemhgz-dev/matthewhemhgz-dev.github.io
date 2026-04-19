@@ -22,9 +22,9 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhem
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: '祈研所 Qi-Lab',
+  name: '祈研所 QiLab',
   url: siteUrl,
-  description: '探索技术、设计与创意的交汇之处',
+  description: '一个系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿的地方',
   inLanguage: 'zh-CN',
   publisher: {
     '@type': 'Organization',
@@ -38,19 +38,19 @@ const websiteJsonLd = {
 };
 
 const toolboxCategories = [
-  { label: '知识管理', icon: 'book', tools: [{ name: 'Notion', desc: 'All-in-one 工作空间' }, { name: 'Obsidian', desc: '本地优先知识图谱' }, { name: 'Logseq', desc: '大纲笔记与双向链接' }] },
-  { label: '开发工具', icon: 'cog', tools: [{ name: 'VS Code', desc: '主力代码编辑器' }, { name: 'Git', desc: '版本控制与协作' }, { name: 'Docker', desc: '容器化部署' }, { name: 'Astro', desc: '静态站点生成' }] },
-  { label: 'AI 工具', icon: 'robot', tools: [{ name: 'ChatGPT', desc: '对话式 AI 助手' }, { name: 'Claude', desc: '深度推理与写作' }, { name: 'Midjourney', desc: 'AI 图像生成' }] },
-  { label: '设计工具', icon: 'palette', tools: [{ name: 'Figma', desc: '协作界面设计' }, { name: 'Excalidraw', desc: '手绘风格白板' }] },
+  { label: '知识管理', icon: 'book', tools: [{ name: 'Obsidian', desc: '本地优先知识图谱与双向链接' }, { name: 'Graphify', desc: 'LLM 驱动的知识库自动构建器' }, { name: 'Markdown', desc: '单点真理的文档格式标准' }] },
+  { label: '开发工具', icon: 'cog', tools: [{ name: 'Trae', desc: 'AI 增强代码编辑器' }, { name: 'Git + GitHub', desc: '版本控制与开源协作' }, { name: 'Docker', desc: '容器化部署与编排' }, { name: 'Astro', desc: '零 JS 静态站点生成' }] },
+  { label: 'AI 工具', icon: 'robot', tools: [{ name: 'OpenClaw', desc: '专属数字孪生外脑（模型路由）' }, { name: 'Trae SOLO', desc: 'AI 编程代理与 Subagent 编排' }, { name: 'Superpowers', desc: 'TDD + 系统化调试的 AI 工作流' }] },
+  { label: '数据与运维', icon: 'database', tools: [{ name: 'n8n', desc: '自动化工作流引擎' }, { name: 'Metabase', desc: '运营数据可视化看板' }, { name: 'PostgreSQL', desc: '结构化数据持久化存储' }] },
 ];
 
 const platforms = [
-  { name: 'GitHub', handle: '@qi-lab', url: 'https://github.com/qi-lab', icon: 'laptop', desc: '开源项目与代码' },
-  { name: '微信公众号', handle: '祈研所', url: '#', icon: 'smartphone', desc: '长文与技术分享' },
-  { name: '知乎', handle: '祈研所', url: '#', icon: 'book', desc: '技术问答与专栏' },
-  { name: '即刻', handle: '@qilab', url: '#', icon: 'zap', desc: '碎片思考与动态' },
-  { name: 'Twitter/X', handle: '@qilab_dev', url: '#', icon: 'bird', desc: '英文技术动态' },
-  { name: 'Bilibili', handle: '祈研所', url: '#', icon: 'film', desc: '视频教程与演示' },
+  { name: 'GitHub', handle: '@matthewhemhgz-dev', url: 'https://github.com/matthewhemhgz-dev', icon: 'laptop', desc: '开源项目与知识库' },
+  { name: '微信公众号', handle: '祈研所', url: '#', icon: 'smartphone', desc: '深度长文与系统化分享' },
+  { name: '视频号', handle: '祈研所', url: '#', icon: 'film', desc: '短视频' },
+  { name: '小红书', handle: '祈研所（Qi_Lab）', url: '#', icon: 'book', desc: '干货图文与实用技巧' },
+  { name: '抖音', handle: '祈研所（QiLab）', url: '#', icon: 'zap', desc: '短视频' },
+  { name: 'GitHub Pages', handle: 'QiLab', url: 'https://matthewhemhgz-dev.github.io', icon: 'globe', desc: '博客与项目展示' },
 ];
 
 const testimonials = [
@@ -60,16 +60,16 @@ const testimonials = [
 ];
 ---
 
-<BaseLayout title="祈研所 | Qi-Lab" description="祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。" jsonLd={websiteJsonLd}>
+<BaseLayout title="祈研所 | QiLab" description="一个系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿的地方" jsonLd={websiteJsonLd}>
 
   <HeroSection
-    titleLines={['探索技术', '设计与创意', '的交汇之处']}
+    titleLines={['在信息过载的时代', '结构化的知识', '才是真正的力量']}
     accentIndex={1}
-    subtitle="前端开发 · 系统设计 · 创意实验"
+    subtitle="知识管理 · 项目管理 · IT/AI 技巧 · 八卦前沿"
     watermark="祈"
     stats={[
       { value: String(allPosts.length), label: '原创文章', dataCount: allPosts.length },
-      { value: '6', label: '内容平台', dataCount: 6 },
+      { value: '5', label: '内容平台', dataCount: 5 },
       { value: '持续', label: '更新中', isText: true },
     ]}
     primaryBtn={{ text: '了解更多', href: '/about' }}
@@ -81,14 +81,14 @@ const testimonials = [
   <AboutSection
     label="// ABOUT"
     title="关于祈研所"
-    text="祈研所诞生于对技术与美学交汇点的持续探索。我们相信，优秀的代码应当如同精心雕琢的艺术品，而好的设计则源于对细节的执着追求。这里记录着关于前端开发、系统设计、开源贡献以及创意实验的思考与实践。"
+    text="祈研所是我的数字档案室——一个系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿的地方。通过个人体验、实践思考和系统化笔记，我探索如何让技术真正服务于人的需求。每一篇文章、每一个工具推荐，都经过实际使用验证。坚持人类本体价值，长期主义。"
     decoNumber="01"
-    decoSlogan="探索 · 创造 · 分享"
+    decoSlogan="整理 · 验证 · 分享"
     dashItems={[
-      { label: '前端开发', value: '5+', percentage: 92, color: 'emerald' },
-      { label: '系统设计', value: '3+', percentage: 78, color: 'amber' },
-      { label: '开源贡献', value: '20+', percentage: 85, color: 'emerald' },
-      { label: '创意实验', value: '10+', percentage: 70, color: 'gray' },
+      { label: '知识管理', value: '75+', percentage: 92, color: 'emerald' },
+      { label: '项目管理', value: '7证', percentage: 88, color: 'amber' },
+      { label: 'IT/AI 技巧', value: '5+', percentage: 85, color: 'emerald' },
+      { label: '八卦前沿', value: '10+', percentage: 70, color: 'gray' },
     ]}
   />
 
@@ -130,10 +130,10 @@ const testimonials = [
 
   <CtaSection
     label="// LET'S CONNECT"
-    title="一起探索技术的可能性"
-    description="无论是技术交流、项目合作还是创意碰撞，欢迎随时联系。"
-    primaryBtn={{ text: '发送邮件', href: 'mailto:hello@qi-lab.dev' }}
-    secondaryBtn={{ text: 'GitHub', href: 'https://github.com/qi-lab', external: true }}
+    title="一起让知识真正有用"
+    description="无论是知识管理交流、AI 工作流探讨还是项目合作，欢迎随时联系。"
+    primaryBtn={{ text: '发送邮件', href: 'mailto:matthewhemhgz@gmail.com' }}
+    secondaryBtn={{ text: 'GitHub', href: 'https://github.com/matthewhemhgz-dev', external: true }}
   />
 
 </BaseLayout>
