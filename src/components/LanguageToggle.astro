@@ -1,0 +1,43 @@
+---
+import { Astro } from 'astro';
+
+const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
+const locales = ['zh', 'en'];
+
+const isDefaultLocale = (locale) => locale === 'zh';
+---
+
+<div class="language-toggle">
+  {locales.map((locale) => (
+    <a
+      key={locale}
+      href={isDefaultLocale(locale) ? '/' : `/${locale}`}
+      class={`language-toggle__link ${currentLocale === locale ? 'active' : ''}`}
+      aria-label={`Switch to ${locale === 'zh' ? '中文' : 'English'}`}
+    >
+      {locale === 'zh' ? '中文' : 'English'}
+    </a>
+  ))}
+</div>
+
+<style>
+  .language-toggle {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .language-toggle__link {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .language-toggle__link:hover {
+    background-color: var(--color-primary-light);
+  }
+
+  .language-toggle__link.active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+</style>

@@ -7,6 +7,7 @@ import ParticlesCanvas from '../components/global/ParticlesCanvas.astro';
 import NoiseOverlay from '../components/global/NoiseOverlay.astro';
 import Footer from '../components/global/Footer.astro';
 import SearchModal from '../components/global/SearchModal.astro';
+import { Astro } from 'astro';
 import '../styles/global.css';
 
 interface Props {
@@ -19,11 +20,14 @@ interface Props {
   jsonLd?: Record<string, unknown>;
 }
 
+const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
+const isEnglish = currentLocale === 'en';
+
 const {
-  title = '祈研所 | Qi-Lab',
-  description = '祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。个人品牌网站，分享关于开发、思考与创造的一切。',
+  title = isEnglish ? 'Qi-Lab' : '祈研所 | Qi-Lab',
+  description = isEnglish ? 'Qi-Lab — Exploring the intersection of technology, design, and creativity.' : '祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。个人品牌网站，分享关于开发、思考与创造的一切。',
   ogImage = '/og-default.png',
-  tagline = '探索技术、设计与创意的交汇之处',
+  tagline = isEnglish ? 'Exploring the intersection of technology, design, and creativity' : '探索技术、设计与创意的交汇之处',
   ogType = 'website',
   jsonLd,
 } = Astro.props;
@@ -32,7 +36,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={isEnglish ? "en-US" : "zh-CN"}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,9 +58,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={isEnglish ? "en_US" : "zh_CN"} />
     {ogType === 'article' && (
-      <meta property="article:author" content="祈研所" />
+      <meta property="article:author" content={isEnglish ? "Qi-Lab" : "祈研所"} />
     )}
 
     <!-- Twitter Card -->
@@ -90,7 +94,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     </script>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">跳至主要内容</a>
+    <a href="#main-content" class="skip-link">{isEnglish ? 'Skip to main content' : '跳至主要内容'}</a>
     <ClientRouter />
     <script is:inline>
       document.addEventListener('astro:before-swap', function(e) {

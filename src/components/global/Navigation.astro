@@ -1,6 +1,8 @@
 ---
 import BrandLogo from './BrandLogo.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from '../LanguageToggle.astro';
+import { Astro } from 'astro';
 import '../../styles/navigation.css';
 
 interface Props {
@@ -8,12 +10,15 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
+const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
+
+const isEnglish = currentLocale === 'en';
 
 const navItems = [
-  { label: '首页', href: '/' },
-  { label: '关于', href: '/about' },
-  { label: '博客', href: '/blog' },
-  { label: '标签', href: '/tags' },
+  { label: isEnglish ? 'Home' : '首页', href: isEnglish ? '/en' : '/' },
+  { label: isEnglish ? 'About' : '关于', href: isEnglish ? '/en/about' : '/about' },
+  { label: isEnglish ? 'Blog' : '博客', href: isEnglish ? '/en/blog' : '/blog' },
+  { label: isEnglish ? 'Tags' : '标签', href: isEnglish ? '/en/tags' : '/tags' },
 ];
 ---
 
@@ -24,9 +29,12 @@ const navItems = [
     <!-- Theme toggle -->
     <ThemeToggle />
 
+    <!-- Language toggle -->
+    <LanguageToggle />
+
     <!-- Mobile checkbox hack -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label="Toggle navigation" aria-expanded="false" />
-    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true" touch-action="manipulation">
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -39,6 +47,7 @@ const navItems = [
           <a
             href={item.href}
             class:list={['nav-link', { active: currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) }]}
+            touch-action="manipulation"
           >
             {item.label}
           </a>
@@ -50,6 +59,7 @@ const navItems = [
           id="nav-search-btn"
           aria-label="搜索文章 (Ctrl+K)"
           type="button"
+          touch-action="manipulation"
         >
           <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" />
@@ -57,6 +67,20 @@ const navItems = [
           </svg>
           <span class="nav-search-label">搜索</span>
           <kbd class="nav-search-kbd">⌘K</kbd>
+        </button>
+      </li>
+      <li class="nav-close-item">
+        <button
+          class="nav-close-btn"
+          aria-label="关闭导航菜单"
+          type="button"
+          touch-action="manipulation"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <span>关闭</span>
         </button>
       </li>
     </ul>
@@ -85,8 +109,21 @@ const navItems = [
     });
   }
 
-  // Search button opens search modal
+  // Close button functionality
   document.addEventListener('astro:page-load', () => {
+    const closeBtn = document.querySelector('.nav-close-btn');
+    closeBtn?.addEventListener('click', () => {
+      const navToggle = document.getElementById('nav-toggle');
+      if (navToggle) {
+        navToggle.checked = false;
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (navStatus) {
+          navStatus.textContent = '导航菜单已关闭';
+        }
+      }
+    });
+
+    // Search button opens search modal
     const searchBtn = document.getElementById('nav-search-btn');
     const searchModal = document.getElementById('search-modal');
     searchBtn?.addEventListener('click', () => {

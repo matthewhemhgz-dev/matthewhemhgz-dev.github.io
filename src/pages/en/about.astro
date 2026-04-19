@@ -1,0 +1,110 @@
+---
+import '../../styles/about.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Divider from '../../components/global/Divider.astro';
+---
+
+<BaseLayout title="About | Qi-Lab" description="Learn about Qi-Lab's brand story, philosophy, and contact information.">
+  <div class="about-page">
+    <div class="container">
+
+      <!-- Page Hero -->
+      <section class="page-hero" data-reveal>
+        <span class="page-label">// ABOUT</span>
+        <h1 class="page-title">About Qi-Lab</h1>
+        <p class="page-subtitle">
+          A personal brand focused on technology, design, and creativity
+        </p>
+      </section>
+
+      <Divider />
+
+      <!-- Brand Story -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// STORY" title="Brand Story" />
+        <div class="about-prose">
+          <p>
+            The name Qi-Lab comes from the understanding of two Chinese characters: "Qi" represents the pursuit of beautiful things, 
+            while "Yan" represents the persistent exploration of technical depth. Combined, they form a creative laboratory dedicated to finding balance between code and aesthetics.
+          </p>
+          <p>
+            We focus on three intersecting areas: frontend engineering, system design, and creative experiments. In our daily practice, we use 
+            Astro to build high-performance static sites, design tokens to maintain visual consistency, 
+            and structured knowledge management methods (Notion + Obsidian dual-track system) to accumulate technical thinking. 
+            Every project is a validation of the "engineering aesthetics" concept.
+          </p>
+          <p>
+            Here, we are not satisfied with just writing code that works. Every line of code carries a pursuit of elegance, 
+            and every design decision is carefully considered. From pixel-level visual polishing to system-level architectural thinking, 
+            Qi-Lab always adheres to the craftsmanship spirit of "continuous improvement". We believe that technology is not a cold tool, 
+            but a medium for expressing creativity — good engineers are also good artists, 
+            who draw blueprints with code and weave dreams with logic.
+          </p>
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- Philosophy -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// PHILOSOPHY" title="Design Philosophy" />
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <span class="philosophy-number">01</span>
+            <h3 class="philosophy-title">Warm Physicality</h3>
+            <p class="philosophy-desc">
+              The oat gray background is like warm paper, with emerald green and amber gold accents like hand-drawn marks. 
+              We pursue physical texture in digital interfaces — the layering of frosted glass, the warmth of paper textures, 
+              and the rhythm of light and shadow flow. Every interaction should make people feel "carefully designed".
+            </p>
+          </div>
+          <div class="philosophy-card">
+            <span class="philosophy-number">02</span>
+            <h3 class="philosophy-title">Code as Art</h3>
+            <p class="philosophy-desc">
+              Code is not just a functional implementation, but also a creative expression. 
+              We use CSS custom properties to build 300+ design tokens, Astro's Islands Architecture 
+              to achieve zero-redundancy interactions, and Playwright to ensure every commit stands the test. 
+              Readability, maintainability, and aesthetics are all essential.
+            </p>
+          </div>
+          <div class="philosophy-card">
+            <span class="philosophy-number">03</span>
+            <h3 class="philosophy-title">Continuous Exploration</h3>
+            <p class="philosophy-desc">
+              Technology is constantly evolving, and learning never ends. The migration from Next.js to Astro allowed us to rediscover the 
+              value of "zero JS by default", and the transition from Tailwind to design tokens helped us grasp the essence of visual consistency. 
+              Maintain curiosity, be brave to try new technologies, and continue to grow through practice.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- Contact CTA -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// CONTACT" title="Get in Touch" />
+        <div class="contact-cta">
+          <p class="cta-text">
+            Whether it's technical cooperation, project consultation, or just a chat about technology and design, 
+            feel free to contact Qi-Lab through the following methods.
+          </p>
+          <div class="cta-links">
+            <a href="mailto:hello@qi-lab.dev" class="cta-link">
+              <span class="cta-label">Email</span>
+              <span class="cta-value">hello@qi-lab.dev</span>
+            </a>
+            <div class="cta-link">
+              <span class="cta-label">WeChat</span>
+              <span class="cta-value">QiLab_Studio</span>
+            </div>
+          </div>
+          <a href="/en#contact" class="cta-btn">View Full Contact Information</a>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>

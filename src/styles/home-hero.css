@@ -216,6 +216,9 @@
               border-color 0.3s ease,
               color 0.3s ease;
   text-decoration: none;
+  min-height: 48px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn:hover {

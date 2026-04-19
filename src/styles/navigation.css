@@ -233,6 +233,8 @@
 
   .nav-toggle-label {
     display: flex;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .nav-links {
@@ -250,7 +252,7 @@
     border-left: 1px solid var(--qi-base-08);
     box-shadow: var(--qi-shadow-xl);
     transform: translateX(100%);
-    transition: transform var(--qi-transition-base);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--qi-z-nav);
   }
 
@@ -258,6 +260,10 @@
     font-size: var(--qi-text-base);
     padding: var(--qi-space-md) var(--qi-space-lg);
     width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .nav-link.active::after {
@@ -282,10 +288,12 @@
     z-index: calc(var(--qi-z-nav) - 1);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
+    transition: opacity 0.3s ease;
   }
 
   .nav-toggle-input:checked ~ .nav-backdrop {
     display: block;
+    opacity: 1;
   }
 
   .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(1) {
@@ -298,6 +306,58 @@
 
   .nav-toggle-input:checked ~ .nav-toggle-label .hamburger-line:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Close button */
+  .nav-close-item {
+    margin-top: var(--qi-space-lg);
+    width: 100%;
+  }
+
+  .nav-close-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-md);
+    padding: var(--qi-space-md) var(--qi-space-lg);
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-base);
+    font-weight: 500;
+    color: var(--qi-text-secondary);
+    background: var(--qi-base-04);
+    border: 1px solid var(--qi-base-06);
+    border-radius: var(--qi-radius-md);
+    cursor: pointer;
+    transition: all var(--qi-transition-fast);
+    width: 100%;
+    min-height: 48px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-close-btn:hover {
+    color: var(--qi-text-primary);
+    background-color: var(--qi-base-06);
+    border-color: var(--qi-base-08);
+  }
+
+  .nav-close-btn:focus-visible {
+    outline: 2px solid var(--qi-brand-emerald);
+    outline-offset: 2px;
+  }
+
+  /* Search button on mobile */
+  .nav-search-btn {
+    min-height: 48px;
+    width: 100%;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-search-label {
+    display: inline;
+  }
+
+  .nav-search-kbd {
+    display: none;
   }
 }
 

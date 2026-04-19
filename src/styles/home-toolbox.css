@@ -59,6 +59,12 @@
   gap: var(--qi-gap-bento);
 }
 
+@media (max-width: 768px) {
+  .toolbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .toolbox-category {
   position: relative;
   overflow: hidden;

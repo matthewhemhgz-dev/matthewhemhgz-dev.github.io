@@ -8,6 +8,18 @@
   gap: var(--qi-gap);
 }
 
+@media (max-width: 768px) {
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .platform-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .platform-card {
   display: flex;
   align-items: center;
@@ -19,6 +31,9 @@
   transition: transform var(--qi-transition), box-shadow var(--qi-transition), border-color var(--qi-transition);
   text-decoration: none;
   color: inherit;
+  min-height: 80px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .platform-card:hover {

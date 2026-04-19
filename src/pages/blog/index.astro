@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getReadingTime } from '../../utils/reading-time';
+import OptimizedImage from '../../components/ui/OptimizedImage.astro';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -15,7 +16,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
         <a href={`/blog/${post.id.replace('zh/', '')}/`} class="blog-card" data-reveal>
           {post.data.heroImage && (
             <div class="blog-card-image">
-              <img src={post.data.heroImage} alt={post.data.title} width={800} height={450} loading="lazy" />
+              <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={800} height={450} loading="lazy" />
             </div>
           )}
           <div class="blog-card-body">

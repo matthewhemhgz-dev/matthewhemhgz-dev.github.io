@@ -1,0 +1,68 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: 'var(--qi-brand-emerald)',
+        secondary: 'var(--qi-text-secondary)',
+        success: 'var(--qi-emerald-500)',
+        danger: '#dc3545',
+        warning: 'var(--qi-brand-amber)',
+        info: 'var(--qi-brand-mint)',
+        light: 'var(--qi-bg-base)',
+        dark: 'var(--qi-surface-main)',
+      },
+      fontFamily: {
+        sans: ['var(--qi-font-sans)'],
+        serif: ['var(--qi-font-serif)'],
+        mono: ['var(--qi-font-mono)'],
+      },
+      spacing: {
+        xs: 'var(--qi-space-xs)',
+        sm: 'var(--qi-space-sm)',
+        md: 'var(--qi-space-md)',
+        lg: 'var(--qi-space-lg)',
+        xl: 'var(--qi-space-xl)',
+        '2xl': 'var(--qi-space-2xl)',
+        '3xl': 'var(--qi-space-3xl)',
+        '4xl': 'var(--qi-space-4xl)',
+        '5xl': 'var(--qi-space-5xl)',
+        '6xl': 'var(--qi-space-6xl)',
+        '7xl': 'var(--qi-space-7xl)',
+        '8xl': 'var(--qi-space-8xl)',
+        '9xl': 'var(--qi-space-9xl)',
+      },
+      borderRadius: {
+        sm: 'var(--qi-radius-sm)',
+        md: 'var(--qi-radius-md)',
+        lg: 'var(--qi-radius-lg)',
+        xl: 'var(--qi-radius-xl)',
+        full: 'var(--qi-radius-full)',
+        card: 'var(--qi-radius-card)',
+        button: 'var(--qi-radius-button)',
+      },
+      boxShadow: {
+        sm: 'var(--qi-shadow-sm)',
+        DEFAULT: 'var(--qi-shadow)',
+        md: 'var(--qi-shadow-md)',
+        lg: 'var(--qi-shadow-lg)',
+        xl: 'var(--qi-shadow-xl)',
+        hover: 'var(--qi-shadow-hover)',
+      },
+      zIndex: {
+        base: 'var(--qi-z-base)',
+        content: 'var(--qi-z-content)',
+        nav: 'var(--qi-z-nav)',
+        overlay: 'var(--qi-z-overlay)',
+        noise: 'var(--qi-z-noise)',
+        'back-top': 'var(--qi-z-back-top)',
+        'skip-link': 'var(--qi-z-skip-link)',
+        progress: 'var(--qi-z-progress)',
+      },
+    },
+  },
+  plugins: [],
+}

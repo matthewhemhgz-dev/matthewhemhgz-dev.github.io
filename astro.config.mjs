@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
+import tailwind from '@astrojs/tailwind';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://matthewhemhgz-dev.github.io',
@@ -18,7 +20,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale: 'zh',
-    locales: ['zh'],
+    locales: ['zh', 'en'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -29,9 +31,10 @@ export default defineConfig({
       defaultLocale: 'zh',
       locales: {
         zh: 'zh-CN',
+        en: 'en-US',
       },
     },
-  }), pagefind()],
+  }), pagefind(), tailwind(), mdx()],
   vite: {
     build: {
       cssMinify: true,
@@ -39,6 +42,12 @@ export default defineConfig({
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
       },
+      chunkSizeWarningLimit: 100,
+      cssCodeSplit: true,
+      dynamicImportVars: true,
+    },
+    optimizeDeps: {
+      include: [],
     },
   },
 });
