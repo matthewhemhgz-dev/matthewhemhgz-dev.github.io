@@ -1,6 +1,6 @@
 # GitHub 部署与视觉审查 - 任务计划
 
-## [/] 任务 1: 检查 git 状态和配置
+## [x] 任务 1: 检查 git 状态和配置
 - **Priority**: P0
 - **Depends On**: None
 - **Description**: 
@@ -13,7 +13,7 @@
   - `programmatic` TR-1.2: git remote -v 显示正确的远程仓库
 - **Notes**: 确保本地代码与远程仓库同步
 
-## [ ] 任务 2: 推送代码到 GitHub
+## [x] 任务 2: 推送代码到 GitHub
 - **Priority**: P0
 - **Depends On**: 任务 1
 - **Description**: 
@@ -26,7 +26,7 @@
   - `programmatic` TR-2.2: 构建流程在 GitHub Actions 中被触发
 - **Notes**: 可能需要输入 GitHub 凭据
 
-## [ ] 任务 3: 监控 GitHub Actions 构建状态
+## [x] 任务 3: 监控 GitHub Actions 构建状态
 - **Priority**: P0
 - **Depends On**: 任务 2
 - **Description**: 
@@ -39,7 +39,7 @@
   - `programmatic` TR-3.2: 构建过程成功完成，无错误
 - **Notes**: 构建可能需要几分钟时间，请耐心等待
 
-## [ ] 任务 4: 访问部署后的网站
+## [x] 任务 4: 访问部署后的网站
 - **Priority**: P0
 - **Depends On**: 任务 3
 - **Description**: 
@@ -52,7 +52,7 @@
   - `programmatic` TR-4.2: 浏览器控制台无严重错误
 - **Notes**: 部署可能需要一些时间生效，请等待几分钟后再访问
 
-## [ ] 任务 5: 审查导航模块
+## [x] 任务 5: 审查导航模块
 - **Priority**: P1
 - **Depends On**: 任务 4
 - **Description**: 
@@ -68,7 +68,7 @@
   - `human-judgment` TR-5.4: 语言切换功能正常
 - **Notes**: 测试移动设备上的汉堡菜单
 
-## [ ] 任务 6: 审查首页模块
+## [x] 任务 6: 审查首页模块
 - **Priority**: P1
 - **Depends On**: 任务 4
 - **Description**: 
@@ -84,7 +84,7 @@
   - `human-judgment` TR-6.4: 工具箱和平台矩阵显示正常
 - **Notes**: 检查图片加载和动画效果
 
-## [ ] 任务 7: 审查博客模块
+## [x] 任务 7: 审查博客模块
 - **Priority**: P1
 - **Depends On**: 任务 4
 - **Description**: 
@@ -100,7 +100,7 @@
   - `human-judgment` TR-7.4: 标签分类功能正常
 - **Notes**: 测试代码块和图片显示
 
-## [ ] 任务 8: 审查关于页面
+## [x] 任务 8: 审查关于页面
 - **Priority**: P1
 - **Depends On**: 任务 4
 - **Description**: 
@@ -114,7 +114,7 @@
   - `human-judgment` TR-8.3: 联系信息显示正确
 - **Notes**: 检查图片和排版
 
-## [ ] 任务 9: 审查标签页面
+## [x] 任务 9: 审查标签页面
 - **Priority**: P1
 - **Depends On**: 任务 4
 - **Description**: 
@@ -128,7 +128,7 @@
   - `human-judgment` TR-9.3: 页面布局合理，响应式正常
 - **Notes**: 测试多个标签的筛选
 
-## [ ] 任务 10: 测试黑白模式和响应式设计
+## [x] 任务 10: 测试黑白模式和响应式设计
 - **Priority**: P1
 - **Depends On**: 任务 4
 - **Description**: 
