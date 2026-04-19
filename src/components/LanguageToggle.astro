@@ -5,13 +5,36 @@ const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
 const locales = ['zh', 'en'];
 
 const isDefaultLocale = (locale) => locale === 'zh';
+
+// 生成对应语言的路径
+const getLanguagePath = (locale) => {
+  const currentPath = Astro.url.pathname;
+  
+  // 移除当前语言前缀
+  let basePath = currentPath;
+  if (currentLocale === 'en') {
+    basePath = basePath.replace(/^\/en/, '');
+  }
+  
+  // 确保路径以斜杠开头
+  if (!basePath.startsWith('/')) {
+    basePath = `/${basePath}`;
+  }
+  
+  // 添加目标语言前缀
+  if (isDefaultLocale(locale)) {
+    return basePath === '' ? '/' : basePath;
+  } else {
+    return `/en${basePath === '/' ? '' : basePath}`;
+  }
+};
 ---
 
 <div class="language-toggle">
   {locales.map((locale) => (
     <a
       key={locale}
-      href={isDefaultLocale(locale) ? '/' : `/${locale}`}
+      href={getLanguagePath(locale)}
       class={`language-toggle__link ${currentLocale === locale ? 'active' : ''}`}
       aria-label={`Switch to ${locale === 'zh' ? '中文' : 'English'}`}
     >
