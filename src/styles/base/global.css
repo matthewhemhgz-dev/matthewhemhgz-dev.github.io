@@ -1,11 +1,11 @@
-@import './tailwind.css';
+@import '../tailwind.css';
 @import './tokens.css';
 @import './dark-tokens.css';
 @import './reset.css';
-@import './hero-float-cards.css';
-@import './utilities.css';
-@import './animations.css';
-@import './article.css';
+@import '../sections/hero-float-cards.css';
+@import '../utilities/utilities.css';
+@import '../utilities/animations.css';
+@import '../sections/article.css';
 
 body {
   font-family: var(--qi-font-sans);

@@ -1,13 +1,13 @@
 /* Home page shared styles — split into section files */
-@import './home-hero.css';
-@import './home-hero-decorations.css';
-@import './home-about.css';
-@import './home-featured.css';
-@import './home-toolbox.css';
-@import './home-platforms.css';
-@import './home-testimonials.css';
-@import './home-cta.css';
-@import './home-responsive.css';
+@import './sections/home-hero.css';
+@import './sections/home-hero-decorations.css';
+@import './sections/home-about.css';
+@import './sections/home-featured.css';
+@import './sections/home-toolbox.css';
+@import './sections/home-platforms.css';
+@import './sections/home-testimonials.css';
+@import './sections/home-cta.css';
+@import './sections/home-responsive.css';
 
 /* Base section style */
 .section {

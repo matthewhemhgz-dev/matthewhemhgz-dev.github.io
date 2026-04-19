@@ -30,67 +30,19 @@ const getLanguagePath = (locale) => {
 };
 ---
 
-<div class="language-toggle">
+<div class="flex gap-1 bg-[var(--qi-base-04)] dark:bg-bg-surface rounded-md p-0.5">
   {locales.map((locale) => (
     <a
       key={locale}
       href={getLanguagePath(locale)}
-      class={`language-toggle__link ${currentLocale === locale ? 'active' : ''}`}
+      class={`px-3 py-1.5 rounded-sm font-mono text-xs font-medium transition-colors duration-200 no-underline min-h-9 flex items-center justify-center ${
+        currentLocale === locale
+          ? 'bg-[var(--qi-brand-emerald-12)] text-primary'
+          : 'text-text-muted hover:text-text-primary'
+      }`}
       aria-label={`Switch to ${locale === 'zh' ? '中文' : 'English'}`}
     >
       {locale === 'zh' ? '中文' : 'English'}
     </a>
   ))}
 </div>
-
-<style>
-  .language-toggle {
-    display: flex;
-    gap: 0.25rem;
-    background: var(--qi-base-04);
-    border-radius: var(--qi-radius-md);
-    padding: 2px;
-  }
-
-  .language-toggle__link {
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--qi-radius-sm);
-    font-family: var(--qi-font-mono);
-    font-size: var(--qi-text-xs);
-    font-weight: 500;
-    color: var(--qi-text-muted);
-    transition: all 0.2s ease;
-    text-decoration: none;
-    min-height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .language-toggle__link:hover {
-    color: var(--qi-text-primary);
-  }
-
-  .language-toggle__link.active {
-    background: var(--qi-brand-emerald-12);
-    color: var(--qi-brand-emerald);
-  }
-
-  /* Dark mode styles */
-  :global(.dark) .language-toggle {
-    background: var(--qi-bg-secondary);
-  }
-
-  :global(.dark) .language-toggle__link {
-    color: var(--qi-text-muted);
-  }
-
-  :global(.dark) .language-toggle__link:hover {
-    color: var(--qi-text-primary);
-  }
-
-  :global(.dark) .language-toggle__link.active {
-    background: var(--qi-brand-emerald-12);
-    color: var(--qi-brand-emerald);
-  }
-</style>

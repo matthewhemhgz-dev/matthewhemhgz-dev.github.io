@@ -36,123 +36,17 @@ const colorMap: Record<string, { bar: string; bg: string; glow: string }> = {
 const colors = colorMap[color] || colorMap.emerald;
 ---
 
-<div class="dash-card tilt-card" data-color={color}>
-  <div class="card-header">
-    <span class="card-label">{label}</span>
-    <span class="card-value">{value}</span>
+<div class="bg-bg-base border border-[var(--qi-base-06)] rounded-lg p-lg hover:shadow-md hover:-translate-y-0.5 transition-all duration-base tilt-card" data-color={color}>
+  <div class="flex justify-between items-baseline mb-md">
+    <span class="font-mono text-xs font-medium text-text-muted uppercase tracking-[0.08em]">{label}</span>
+    <span class="font-serif text-2xl font-bold text-text-primary leading-none">{value}</span>
   </div>
-  <div class="progress-track">
+  <div class="w-full h-1.5 bg-[var(--qi-base-06)] rounded-full overflow-hidden relative">
     <div
-      class="progress-fill"
-      style={`--fill-width: ${clampedPercentage}%; --bar-color: ${colors.bar}; --bar-bg: ${colors.bg}; --bar-glow: ${colors.glow};`}
+      class="relative h-full rounded-full transition-all duration-1000 ease-spring animate-fillIn"
+      style={`width: ${clampedPercentage}%; background: ${colors.bar}; box-shadow: 0 0 8px ${colors.glow};`}
     >
-      <span class="progress-pct">{clampedPercentage}%</span>
+      <span class="absolute right-0 -top-5.5 font-mono text-xs font-semibold opacity-0 animate-fadeUp" style="color: ${colors.bar}">{clampedPercentage}%</span>
     </div>
   </div>
 </div>
-
-<style>
-  .dash-card {
-    background: var(--qi-bg-base);
-    border: 1px solid var(--qi-base-06);
-    border-radius: var(--qi-radius-lg);
-    padding: var(--qi-space-lg);
-    transition: box-shadow var(--qi-transition-base), transform var(--qi-transition-base);
-  }
-
-  .dash-card:hover {
-    box-shadow: var(--qi-shadow-md);
-    transform: translateY(-2px);
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: var(--qi-space-md);
-  }
-
-  .card-label {
-    font-family: var(--qi-font-mono);
-    font-size: var(--qi-text-xs);
-    font-weight: 500;
-    color: var(--qi-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .card-value {
-    font-family: var(--qi-font-serif);
-    font-size: var(--qi-text-2xl);
-    font-weight: 700;
-    color: var(--qi-text-primary);
-    line-height: 1;
-  }
-
-  .progress-track {
-    width: 100%;
-    height: 6px;
-    background: var(--qi-base-06);
-    border-radius: var(--qi-radius-full);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .progress-fill {
-    position: relative;
-    height: 100%;
-    width: var(--fill-width, 0%);
-    background: var(--bar-color, var(--qi-brand-emerald));
-    border-radius: var(--qi-radius-full);
-    transition: width 1s var(--qi-spring);
-    animation: fill-in 1.2s var(--qi-spring) forwards;
-    box-shadow: 0 0 8px var(--bar-glow, transparent);
-  }
-
-  @keyframes fill-in {
-    from {
-      width: 0%;
-    }
-    to {
-      width: var(--fill-width, 0%);
-    }
-  }
-
-  .progress-pct {
-    position: absolute;
-    right: 0;
-    top: -22px;
-    font-family: var(--qi-font-mono);
-    font-size: var(--qi-text-xs);
-    color: var(--bar-color, var(--qi-brand-emerald));
-    font-weight: 600;
-    opacity: 0;
-    animation: fade-up 0.5s ease 0.8s forwards;
-  }
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .dash-card {
-      padding: var(--qi-space-md);
-    }
-
-    .card-value {
-      font-size: var(--qi-text-xl);
-    }
-
-    .progress-pct {
-      top: -20px;
-      font-size: 0.65rem;
-    }
-  }
-</style>
