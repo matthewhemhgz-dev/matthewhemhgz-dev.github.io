@@ -77,10 +77,25 @@
   margin-inline: auto;
   padding: 0 var(--qi-space-lg);
   height: var(--qi-nav-height);
+  gap: var(--qi-space-md);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-md);
+  flex-shrink: 0;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  flex-shrink: 0;
 }
 
 .brand-logo {
-  margin-right: var(--qi-space-xl);
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -89,6 +104,8 @@
   gap: var(--qi-space-sm);
   transition: opacity 0.3s ease, width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
   white-space: nowrap;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-link {

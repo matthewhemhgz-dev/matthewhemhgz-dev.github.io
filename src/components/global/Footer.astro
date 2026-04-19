@@ -11,16 +11,16 @@ interface Props {
 const {
   tagline = '知识管理 · 项目管理 · IT/AI 技巧 · 八卦前沿',
   email = 'matthewhemhgz@gmail.com',
-  wechat = '祈研所或 QiLab',
+  wechat = '祈研所或 Qi-Lab',
   copyrightYear = new Date().getFullYear(),
 } = Astro.props;
 
 const socialLinks = [
   { name: 'GitHub', url: 'https://github.com/matthewhemhgz-dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
   { name: '微信公众号', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-1 17.93c-2.97 0-5.4-2.43-5.4-5.4 0-2.97 2.43-5.4 5.4-5.4 2.97 0 5.4 2.43 5.4 5.4 0 2.97-2.43 5.4-5.4 5.4zm0-9.43c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>' },
-  { name: '视频号', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>' },
-  { name: '小红书', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.8 14.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-3.6-3.6-1.8 1.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-2.4-2.4c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7l3.6-3.6 1.8 1.8c.2.2.4.3.7.3s.5-.1.7-.3l2.4-2.4c.2-.2.4-.3.7-.3s.5.1.7.3l3.6 3.6 1.8-1.8c.2-.2.4-.3.7-.3s.5.1.7.3l2.4 2.4c.2.2.3.4.3.7s-.1.5-.3.7l-3.6 3.6-1.8-1.8c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3l-2.4 2.4z"/></svg>' },
-  { name: '抖音', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
+  { name: '视频号', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>' },
+  { name: '小红书', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm4.8 14.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-3.6-3.6-1.8 1.8c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-2.4-2.4c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7l3.6-3.6 1.8 1.8c.2.2.4.3.7.3s.5-.1.7-.3l2.4-2.4c.2-.2.4-.3.7-.3s.5.1.7.3l3.6 3.6 1.8-1.8c.2-.2.4-.3.7-.3s.5.1.7.3l2.4 2.4c.2.2.3.4.3.7s-.1.5-.3.7l-3.6 3.6-1.8-1.8c-.2-.2-.4-.3-.7-.3s-.5.1-.7.3l-2.4 2.4z"/></svg>' },
+  { name: '抖音', url: '#', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>' },
 ];
 ---
 
@@ -44,10 +44,6 @@ const socialLinks = [
           <li class="contact-item">
             <span class="contact-label">微信</span>
             <span class="contact-value">{wechat}</span>
-            <div class="qrcode-container" id="wechat-qrcode">
-              <img src="https://matthewhemhgz-dev.github.io/images/qrcode-wechat.png" alt="微信二维码" class="qrcode" />
-              <span class="qrcode-hint">扫描二维码添加微信</span>
-            </div>
           </li>
         </ul>
       </div>
@@ -61,16 +57,6 @@ const socialLinks = [
                 <span class="social-icon" set:html={s.icon} />
                 <span class="social-name">{s.name}</span>
               </a>
-              {(s.name === '微信公众号' || s.name === '小红书' || s.name === '抖音') && (
-                <div class="qrcode-container" id={`${s.name.toLowerCase().replace(/\s+/g, '-')}-qrcode`}>
-                  <img 
-                    src={`https://matthewhemhgz-dev.github.io/images/qrcode-${s.name.toLowerCase().replace(/\s+/g, '-')}.png`} 
-                    alt={`${s.name}二维码`} 
-                    class="qrcode" 
-                  />
-                  <span class="qrcode-hint">扫描二维码关注{s.name}</span>
-                </div>
-              )}
             </div>
           ))}
         </div>
@@ -83,7 +69,7 @@ const socialLinks = [
     <!-- Copyright -->
     <div class="footer-bottom">
       <p class="copyright">
-        &copy; {copyrightYear} 祈研所. 保留所有权利。
+        &copy; {copyrightYear} 祈研所. 保留所有权利.
       </p>
       <p class="built-with">
         使用
@@ -96,99 +82,3 @@ const socialLinks = [
     <p class="footer-easter-egg">感谢你滚动到这里 ✨</p>
   </div>
 </footer>
-
-<script>
-  // 滚动检测逻辑，当滚动到联系区域时显示二维码
-  document.addEventListener('DOMContentLoaded', function() {
-    const contactSection = document.getElementById('contact');
-    const qrcodeContainers = document.querySelectorAll('.qrcode-container');
-
-    // 初始隐藏所有二维码
-    qrcodeContainers.forEach(container => {
-      container.style.opacity = '0';
-      container.style.visibility = 'hidden';
-      container.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
-    });
-
-    function checkScroll() {
-      if (!contactSection) return;
-
-      const rect = contactSection.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
-
-      qrcodeContainers.forEach(container => {
-        if (isVisible) {
-          container.style.opacity = '1';
-          container.style.visibility = 'visible';
-        } else {
-          container.style.opacity = '0';
-          container.style.visibility = 'hidden';
-        }
-      });
-    }
-
-    // 初始检查
-    checkScroll();
-
-    // 滚动时检查
-    window.addEventListener('scroll', checkScroll);
-  });
-</script>
-
-<style>
-  .social-item {
-    position: relative;
-  }
-
-  .qrcode-container {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 10px;
-    background: var(--qi-bg-primary);
-    padding: 12px;
-    border-radius: var(--qi-radius-lg);
-    box-shadow: var(--qi-shadow-md);
-    border: 1px solid var(--qi-border);
-    z-index: 100;
-    text-align: center;
-    min-width: 150px;
-  }
-
-  .qrcode-container::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 8px solid transparent;
-    border-top-color: var(--qi-bg-primary);
-  }
-
-  .qrcode {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 8px;
-  }
-
-  .qrcode-hint {
-    font-size: var(--qi-text-xs);
-    color: var(--qi-text-secondary);
-    white-space: nowrap;
-  }
-
-  /* 确保二维码在移动设备上正确显示 */
-  @media (max-width: 768px) {
-    .qrcode-container {
-      position: static;
-      transform: none;
-      margin-top: 8px;
-      margin-bottom: 0;
-    }
-
-    .qrcode-container::after {
-      display: none;
-    }
-  }
-</style>

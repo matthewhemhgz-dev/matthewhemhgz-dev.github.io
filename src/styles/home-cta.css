@@ -82,8 +82,26 @@
 
 .cta-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--qi-space-md);
   margin-top: var(--qi-space-sm);
+  width: 100%;
+  justify-content: center;
+}
+
+.cta-actions .btn {
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .cta-actions {
+    flex-direction: column;
+  }
+  
+  .cta-actions .btn {
+    width: 100%;
+  }
 }
 
 .cta-section .btn-primary {

@@ -24,13 +24,9 @@ const navItems = [
 
 <header class="nav-wrapper" transition:name="main-nav">
     <nav class="nav" aria-label="主导航">
-      <BrandLogo variant="icon" size="sm" />
-
-      <!-- Theme toggle -->
-      <ThemeToggle />
-
-      <!-- Language toggle -->
-      <LanguageToggle />
+      <div class="nav-left">
+        <BrandLogo variant="icon" size="sm" />
+      </div>
 
       <!-- Mobile checkbox hack -->
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label="切换导航菜单" aria-expanded="false" />
@@ -88,6 +84,14 @@ const navItems = [
           </button>
         </li>
       </ul>
+
+      <div class="nav-right">
+        <!-- Theme toggle -->
+        <ThemeToggle />
+
+        <!-- Language toggle -->
+        <LanguageToggle />
+      </div>
       <label for="nav-toggle" class="nav-backdrop" aria-hidden="true" tabindex="-1"></label>
     </nav>
   </header>

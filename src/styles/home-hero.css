@@ -219,6 +219,10 @@
   min-height: 48px;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn:hover {
