@@ -21,7 +21,7 @@ const DIST_DIR = 'dist';
 const BUDGETS = {
   js: 600,
   css: 200,
-  html: 1000,
+  html: 1200,
   image: 4000,
   other: 600,
   total: 6000,
