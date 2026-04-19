@@ -1,40 +1,143 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
-import { svgIcons } from '../../data/icons';
 
 interface Props {
   label: string;
   title: string;
-  testimonials: Array<{
-    quote: string;
-    author: string;
-    role: string;
-  }>;
 }
 
-const { label, title, testimonials } = Astro.props;
+const { label, title } = Astro.props;
+
+const timelineEvents = [
+  {
+    year: '2026',
+    title: '祈研所成立',
+    description: '创建个人数字档案室，系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿',
+    icon: '📁'
+  },
+  {
+    year: '2026',
+    title: '知识库搭建',
+    description: '使用Obsidian构建基于Bloom六层认知模型的知识图谱，用Markdown + Git维护单点真理的文档体系',
+    icon: '🧠'
+  },
+  {
+    year: '2026',
+    title: 'AI工作流整合',
+    description: '集成Superpowers + OpenClaw AI Agent，驱动开发与内容生产流水线',
+    icon: '🤖'
+  },
+  {
+    year: '2026',
+    title: '网站上线',
+    description: '使用Astro构建高性能静态站点，实现多语言支持和响应式设计',
+    icon: '🚀'
+  }
+];
 ---
 
 <section class="section" data-reveal>
-  <span class="testimonial-deco-quote testimonial-deco-quote--open" aria-hidden="true">「</span>
-  <span class="testimonial-deco-quote testimonial-deco-quote--close" aria-hidden="true">」</span>
-  <div class="testimonial-top-line" aria-hidden="true"></div>
   <div class="container">
     <SectionHeader label={label} title={title} />
-    <div class="testimonial-grid">
-      {testimonials.map((t, i) => (
-        <blockquote class:list={['testimonial-card', 'tilt-card', `testimonial-card--${i}`]}>
-          <span class="testimonial-quote">&ldquo;</span>
-          <p class="testimonial-text">{t.quote}</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-avatar" aria-hidden="true" set:html={svgIcons['user']}></div>
-            <div class="testimonial-author-info">
-              <span class="testimonial-author">{t.author}</span>
-              <span class="testimonial-role">{t.role}</span>
-            </div>
-          </footer>
-        </blockquote>
+    <div class="timeline">
+      {timelineEvents.map((event, index) => (
+        <div class:list={['timeline-item', index % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right']}>
+          <div class="timeline-year">{event.year}</div>
+          <div class="timeline-content">
+            <div class="timeline-icon">{event.icon}</div>
+            <h3 class="timeline-title">{event.title}</h3>
+            <p class="timeline-description">{event.description}</p>
+          </div>
+        </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .timeline {
+    position: relative;
+    margin-top: var(--qi-space-2xl);
+    padding-left: var(--qi-space-xl);
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--qi-brand-emerald), var(--qi-brand-amber));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--qi-space-3xl);
+    padding-left: var(--qi-space-3xl);
+  }
+
+  .timeline-year {
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    font-size: var(--qi-text-sm);
+    font-weight: 600;
+    color: var(--qi-brand-amber);
+    background: var(--qi-bg-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--qi-radius-lg);
+    border: 1px solid var(--qi-border);
+    z-index: 1;
+  }
+
+  .timeline-content {
+    background: var(--qi-bg-secondary);
+    border-radius: var(--qi-radius-lg);
+    padding: var(--qi-space-xl);
+    border: 1px solid var(--qi-border);
+    box-shadow: var(--qi-shadow-sm);
+    transition: all 0.3s ease;
+  }
+
+  .timeline-content:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--qi-shadow-md);
+  }
+
+  .timeline-icon {
+    font-size: var(--qi-text-2xl);
+    margin-bottom: var(--qi-space-md);
+  }
+
+  .timeline-title {
+    font-size: var(--qi-text-lg);
+    font-weight: 600;
+    margin-bottom: var(--qi-space-sm);
+    color: var(--qi-text-primary);
+  }
+
+  .timeline-description {
+    font-size: var(--qi-text-sm);
+    line-height: 1.6;
+    color: var(--qi-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .timeline {
+      padding-left: var(--qi-space-md);
+    }
+
+    .timeline::before {
+      left: 1rem;
+    }
+
+    .timeline-item {
+      padding-left: var(--qi-space-2xl);
+    }
+
+    .timeline-year {
+      left: -0.75rem;
+    }
+  }
+</style>

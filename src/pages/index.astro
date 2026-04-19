@@ -53,11 +53,7 @@ const platforms = [
   { name: 'GitHub Pages', handle: 'QiLab', url: 'https://matthewhemhgz-dev.github.io', icon: 'globe', desc: '博客与项目展示' },
 ];
 
-const testimonials = [
-  { quote: '设计令牌系统那篇文章让我重新审视了整个项目的 CSS 架构，照着实践后代码可维护性提升了一个量级。', author: '林小明', role: '前端工程师' },
-  { quote: 'Notion + Obsidian 双轨系统的思路非常实用，我已经按文章的方法搭建了自己的知识管理体系，效果显著。', author: '张文博', role: '产品经理' },
-  { quote: '难得看到一个既有技术深度又有设计审美的个人站点，暗色模式的配色和动效细节都很用心。', author: '陈思远', role: 'UI 设计师' },
-];
+
 ---
 
 <BaseLayout title="祈研所 | QiLab" description="一个系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿的地方" jsonLd={websiteJsonLd}>
@@ -121,9 +117,8 @@ const testimonials = [
   />
 
   <TestimonialsSection
-    label="// VOICES"
-    title="读者评价"
-    testimonials={testimonials}
+    label="// TIMELINE"
+    title="发展历程"
   />
 
   <SectionDivider variant="arcs" />

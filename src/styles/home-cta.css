@@ -3,16 +3,7 @@
    ========================================================================== */
 
 .cta-section {
-  background: linear-gradient(135deg,
-    var(--qi-ink) 0%,
-    color-mix(in srgb, var(--qi-ink) 85%, var(--qi-brand-emerald)) 12%,
-    color-mix(in srgb, var(--qi-ink) 80%, var(--qi-brand-emerald)) 25%,
-    color-mix(in srgb, var(--qi-ink) 78%, var(--qi-brand-mint)) 45%,
-    color-mix(in srgb, var(--qi-ink) 76%, var(--qi-brand-mint)) 55%,
-    color-mix(in srgb, var(--qi-ink) 74%, var(--qi-brand-amber)) 75%,
-    color-mix(in srgb, var(--qi-ink) 72%, var(--qi-brand-amber)) 88%,
-    color-mix(in srgb, var(--qi-ink) 70%, var(--qi-brand-amber)) 100%
-  );
+  background: var(--qi-ink);
   color: #F0ECE6;
   margin: 0 calc(-1 * var(--qi-container-padding, 24px));
   padding: var(--qi-space-5xl) var(--qi-container-padding, 24px) var(--qi-space-3xl);

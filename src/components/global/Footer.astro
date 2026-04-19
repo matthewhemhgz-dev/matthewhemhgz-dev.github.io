@@ -44,6 +44,10 @@ const socialLinks = [
           <li class="contact-item">
             <span class="contact-label">微信</span>
             <span class="contact-value">{wechat}</span>
+            <div class="qrcode-container" id="wechat-qrcode">
+              <img src="https://matthewhemhgz-dev.github.io/images/qrcode-wechat.png" alt="微信二维码" class="qrcode" />
+              <span class="qrcode-hint">扫描二维码添加微信</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -52,10 +56,22 @@ const socialLinks = [
         <h3 class="footer-heading">社交链接</h3>
         <div class="social-grid">
           {socialLinks.map((s) => (
-            <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.url === '#' ? '即将上线' : s.name} aria-label={`${s.name} (opens in new window)`}>
-              <span class="social-icon" set:html={s.icon} />
-              <span class="social-name">{s.name}</span>
-            </a>
+            <div class:list={['social-item']}>
+              <a href={s.url} class="social-link" target="_blank" rel="noopener noreferrer" title={s.url === '#' ? '即将上线' : s.name} aria-label={`${s.name} (opens in new window)`}>
+                <span class="social-icon" set:html={s.icon} />
+                <span class="social-name">{s.name}</span>
+              </a>
+              {(s.name === '微信公众号' || s.name === '小红书' || s.name === '抖音') && (
+                <div class="qrcode-container" id={`${s.name.toLowerCase().replace(/\s+/g, '-')}-qrcode`}>
+                  <img 
+                    src={`https://matthewhemhgz-dev.github.io/images/qrcode-${s.name.toLowerCase().replace(/\s+/g, '-')}.png`} 
+                    alt={`${s.name}二维码`} 
+                    class="qrcode" 
+                  />
+                  <span class="qrcode-hint">扫描二维码关注{s.name}</span>
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -71,7 +87,7 @@ const socialLinks = [
       </p>
       <p class="built-with">
         使用
-        <span class="heart" aria-label="love">&#9829;</span>
+        <span class="heart" aria-label="love">♥</span>
         &amp; Astro 构建
       </p>
     </div>
@@ -80,3 +96,99 @@ const socialLinks = [
     <p class="footer-easter-egg">感谢你滚动到这里 ✨</p>
   </div>
 </footer>
+
+<script>
+  // 滚动检测逻辑，当滚动到联系区域时显示二维码
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactSection = document.getElementById('contact');
+    const qrcodeContainers = document.querySelectorAll('.qrcode-container');
+
+    // 初始隐藏所有二维码
+    qrcodeContainers.forEach(container => {
+      container.style.opacity = '0';
+      container.style.visibility = 'hidden';
+      container.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+    });
+
+    function checkScroll() {
+      if (!contactSection) return;
+
+      const rect = contactSection.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+
+      qrcodeContainers.forEach(container => {
+        if (isVisible) {
+          container.style.opacity = '1';
+          container.style.visibility = 'visible';
+        } else {
+          container.style.opacity = '0';
+          container.style.visibility = 'hidden';
+        }
+      });
+    }
+
+    // 初始检查
+    checkScroll();
+
+    // 滚动时检查
+    window.addEventListener('scroll', checkScroll);
+  });
+</script>
+
+<style>
+  .social-item {
+    position: relative;
+  }
+
+  .qrcode-container {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    background: var(--qi-bg-primary);
+    padding: 12px;
+    border-radius: var(--qi-radius-lg);
+    box-shadow: var(--qi-shadow-md);
+    border: 1px solid var(--qi-border);
+    z-index: 100;
+    text-align: center;
+    min-width: 150px;
+  }
+
+  .qrcode-container::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--qi-bg-primary);
+  }
+
+  .qrcode {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 8px;
+  }
+
+  .qrcode-hint {
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-secondary);
+    white-space: nowrap;
+  }
+
+  /* 确保二维码在移动设备上正确显示 */
+  @media (max-width: 768px) {
+    .qrcode-container {
+      position: static;
+      transform: none;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    .qrcode-container::after {
+      display: none;
+    }
+  }
+</style>

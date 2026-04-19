@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MermaidInit from '../../components/global/MermaidInit.astro';
 import { getCollection, render } from 'astro:content';
 import { getReadingTime } from '../../utils/reading-time';
 import OptimizedImage from '../../components/ui/OptimizedImage.astro';
@@ -176,7 +175,6 @@ const articleJsonLd = {
       </nav>
     </footer>
   </article>
-  <MermaidInit />
   <script>
     import '../../scripts/copy-code.ts';
     

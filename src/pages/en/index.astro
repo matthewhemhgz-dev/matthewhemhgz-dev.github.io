@@ -22,13 +22,13 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhem
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Qi-Lab',
+  name: 'QiLab',
   url: siteUrl,
-  description: 'Exploring the intersection of technology, design, and creativity',
+  description: 'A systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends',
   inLanguage: 'en-US',
   publisher: {
     '@type': 'Organization',
-    name: 'Qi-Lab',
+    name: 'QiLab',
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
@@ -38,38 +38,34 @@ const websiteJsonLd = {
 };
 
 const toolboxCategories = [
-  { label: 'Knowledge Management', icon: 'book', tools: [{ name: 'Notion', desc: 'All-in-one workspace' }, { name: 'Obsidian', desc: 'Local-first knowledge graph' }, { name: 'Logseq', desc: 'Outline notes & bidirectional links' }] },
-  { label: 'Development Tools', icon: 'cog', tools: [{ name: 'VS Code', desc: 'Primary code editor' }, { name: 'Git', desc: 'Version control & collaboration' }, { name: 'Docker', desc: 'Containerized deployment' }, { name: 'Astro', desc: 'Static site generation' }] },
-  { label: 'AI Tools', icon: 'robot', tools: [{ name: 'ChatGPT', desc: 'Conversational AI assistant' }, { name: 'Claude', desc: 'Deep reasoning & writing' }, { name: 'Midjourney', desc: 'AI image generation' }] },
-  { label: 'Design Tools', icon: 'palette', tools: [{ name: 'Figma', desc: 'Collaborative UI design' }, { name: 'Excalidraw', desc: 'Hand-drawn style whiteboard' }] },
+  { label: 'Knowledge Management', icon: 'book', tools: [{ name: 'Obsidian', desc: 'Local-first knowledge graph with bidirectional links' }, { name: 'Graphify', desc: 'LLM-driven knowledge base auto-builder' }, { name: 'Markdown', desc: 'Single source of truth document format standard' }] },
+  { label: 'Development Tools', icon: 'cog', tools: [{ name: 'Trae', desc: 'AI-enhanced code editor' }, { name: 'Git + GitHub', desc: 'Version control & open source collaboration' }, { name: 'Docker', desc: 'Containerized deployment & orchestration' }, { name: 'Astro', desc: 'Zero JS static site generation' }] },
+  { label: 'AI Tools', icon: 'robot', tools: [{ name: 'OpenClaw', desc: 'Exclusive digital twin outer brain (model routing)' }, { name: 'Trae SOLO', desc: 'AI programming agent & Subagent orchestration' }, { name: 'Superpowers', desc: 'TDD + systematic debugging AI workflow' }] },
+  { label: 'Data & DevOps', icon: 'database', tools: [{ name: 'n8n', desc: 'Automated workflow engine' }, { name: 'Metabase', desc: 'Operational data visualization dashboard' }, { name: 'PostgreSQL', desc: 'Structured data persistence storage' }] },
 ];
 
 const platforms = [
-  { name: 'GitHub', handle: '@qi-lab', url: 'https://github.com/qi-lab', icon: 'laptop', desc: 'Open source projects & code' },
-  { name: 'WeChat Official Account', handle: '祈研所', url: '#', icon: 'smartphone', desc: 'Long-form articles & tech sharing' },
-  { name: 'Zhihu', handle: '祈研所', url: '#', icon: 'book', desc: 'Tech Q&A & columns' },
-  { name: 'Jike', handle: '@qilab', url: '#', icon: 'zap', desc: 'Fragmented thoughts & updates' },
-  { name: 'Twitter/X', handle: '@qilab_dev', url: '#', icon: 'bird', desc: 'English tech updates' },
-  { name: 'Bilibili', handle: '祈研所', url: '#', icon: 'film', desc: 'Video tutorials & demos' },
+  { name: 'GitHub', handle: '@matthewhemhgz-dev', url: 'https://github.com/matthewhemhgz-dev', icon: 'laptop', desc: 'Open source projects & knowledge base' },
+  { name: 'WeChat Official Account', handle: '祈研所', url: '#', icon: 'smartphone', desc: 'In-depth articles & systematic sharing' },
+  { name: 'Video Account', handle: '祈研所', url: '#', icon: 'film', desc: 'Short videos' },
+  { name: 'Xiaohongshu', handle: '祈研所（Qi_Lab）', url: '#', icon: 'book', desc: 'Practical tips &图文 content' },
+  { name: 'Douyin', handle: '祈研所（QiLab）', url: '#', icon: 'zap', desc: 'Short videos' },
+  { name: 'GitHub Pages', handle: 'QiLab', url: 'https://matthewhemhgz-dev.github.io', icon: 'globe', desc: 'Blog & project showcase' },
 ];
 
-const testimonials = [
-  { quote: 'The article on design token systems made me re-examine the entire CSS architecture of my project. After implementing it, the code maintainability improved significantly.', author: 'Lin Xiaoming', role: 'Frontend Engineer' },
-  { quote: 'The dual-track system of Notion + Obsidian is very practical. I have built my own knowledge management system according to the method in the article, and the effect is remarkable.', author: 'Zhang Wenbo', role: 'Product Manager' },
-  { quote: 'It\'s rare to see a personal site that has both technical depth and design aesthetics. The dark mode color scheme and animation details are very thoughtful.', author: 'Chen Siyuan', role: 'UI Designer' },
-];
+
 ---
 
-<BaseLayout title="Qi-Lab" description="Qi-Lab — Exploring the intersection of technology, design, and creativity." jsonLd={websiteJsonLd}>
+<BaseLayout title="QiLab" description="A systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends" jsonLd={websiteJsonLd}>
 
   <HeroSection
-    titleLines={['Exploring Technology', 'Design & Creativity', 'at Their Intersection']}
+    titleLines={['In the Age of Information Overload', 'Structured Knowledge', 'Is True Power']}
     accentIndex={1}
-    subtitle="Frontend Development · System Design · Creative Experiments"
+    subtitle="Knowledge Management · Project Management · IT/AI Skills · Cutting-edge Trends"
     watermark="Qi"
     stats={[
       { value: String(allPosts.length), label: 'Original Articles', dataCount: allPosts.length },
-      { value: '6', label: 'Content Platforms', dataCount: 6 },
+      { value: '5', label: 'Content Platforms', dataCount: 5 },
       { value: 'Continuously', label: 'Updating', isText: true },
     ]}
     primaryBtn={{ text: 'Learn More', href: '/en/about' }}
@@ -80,15 +76,15 @@ const testimonials = [
 
   <AboutSection
     label="// ABOUT"
-    title="About Qi-Lab"
-    text="Qi-Lab was born from the continuous exploration of the intersection of technology and aesthetics. We believe that excellent code should be like a carefully crafted work of art, and good design stems from a relentless pursuit of details. Here we document thoughts and practices about frontend development, system design, open source contributions, and creative experiments."
+    title="About QiLab"
+    text="QiLab is my digital archive — a systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends. Through personal experience, practical thinking, and systematic notes, I explore how to make technology truly serve human needs. Every article, every tool recommendation, has been verified through actual use. Adhering to human ontological value, long-termism."
     decoNumber="01"
-    decoSlogan="Explore · Create · Share"
+    decoSlogan="Organize · Verify · Share"
     dashItems={[
-      { label: 'Frontend Development', value: '5+', percentage: 92, color: 'emerald' },
-      { label: 'System Design', value: '3+', percentage: 78, color: 'amber' },
-      { label: 'Open Source Contributions', value: '20+', percentage: 85, color: 'emerald' },
-      { label: 'Creative Experiments', value: '10+', percentage: 70, color: 'gray' },
+      { label: 'Knowledge Management', value: '75+', percentage: 92, color: 'emerald' },
+      { label: 'Project Management', value: '7 Certifications', percentage: 88, color: 'amber' },
+      { label: 'IT/AI Skills', value: '5+', percentage: 85, color: 'emerald' },
+      { label: 'Cutting-edge Trends', value: '10+', percentage: 70, color: 'gray' },
     ]}
   />
 
@@ -121,19 +117,18 @@ const testimonials = [
   />
 
   <TestimonialsSection
-    label="// VOICES"
-    title="Reader Feedback"
-    testimonials={testimonials}
+    label="// TIMELINE"
+    title="Development History"
   />
 
   <SectionDivider variant="arcs" />
 
   <CtaSection
     label="// LET'S CONNECT"
-    title="Explore the Possibilities of Technology Together"
-    description="Whether it's technical exchanges, project cooperation, or creative collisions, feel free to contact us anytime."
-    primaryBtn={{ text: 'Send Email', href: 'mailto:hello@qi-lab.dev' }}
-    secondaryBtn={{ text: 'GitHub', href: 'https://github.com/qi-lab', external: true }}
+    title="Let's Make Knowledge Truly Useful Together"
+    description="Whether it's knowledge management exchange, AI workflow discussion, or project cooperation, feel free to contact us anytime."
+    primaryBtn={{ text: 'Send Email', href: 'mailto:matthewhemhgz@gmail.com' }}
+    secondaryBtn={{ text: 'GitHub', href: 'https://github.com/matthewhemhgz-dev', external: true }}
   />
 
 </BaseLayout>

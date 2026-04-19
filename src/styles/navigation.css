@@ -407,10 +407,25 @@
 
 /* === Dark Mode === */
 :global(.dark) .nav-wrapper {
-  background: rgba(232, 227, 221, 0.06);
-  border-color: rgba(232, 227, 221, 0.10);
+  background: var(--qi-inverse-88);
+  border-color: var(--qi-border-dark);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--qi-shadow-dark-md);
+}
+
+:global(.dark) .nav-wrapper.scrolled {
+  border-color: var(--qi-border-dark);
+  box-shadow: var(--qi-shadow-dark-sm);
+}
+
+:global(.dark) .nav-wrapper.nav-collapsed {
+  border-color: var(--qi-border-dark);
+  box-shadow: var(--qi-shadow-dark-lg);
+}
+
+:global(.dark) .nav-wrapper.nav-collapsed:hover {
+  box-shadow: var(--qi-shadow-dark-md);
 }
 
 :global(.dark) .nav-link {
@@ -419,21 +434,48 @@
 
 :global(.dark) .nav-link:hover {
   color: var(--qi-text-primary);
-  background-color: var(--qi-base-06);
+  background-color: var(--qi-bg-secondary);
 }
 
 :global(.dark) .nav-link.active {
   color: var(--qi-brand-emerald);
+  background-color: var(--qi-brand-emerald-06);
 }
 
-:global(.dark) .nav-logo-text {
-  color: var(--qi-text-primary);
-}
-
-:global(.dark) .nav-search-text {
+:global(.dark) .nav-search-btn {
   color: var(--qi-text-secondary);
+  border-color: var(--qi-border-dark);
 }
 
-:global(.dark) .nav-hamburger-line {
+:global(.dark) .nav-search-btn:hover {
+  color: var(--qi-text-primary);
+  background-color: var(--qi-bg-secondary);
+  border-color: var(--qi-border-dark);
+}
+
+:global(.dark) .nav-search-kbd {
+  color: var(--qi-text-muted);
+  background: var(--qi-bg-secondary);
+  border-color: var(--qi-border-dark);
+}
+
+:global(.dark) .hamburger-line {
   background: var(--qi-text-primary);
+}
+
+:global(.dark) .nav-links {
+  background: var(--qi-bg-base);
+  border-left: 1px solid var(--qi-border-dark);
+}
+
+:global(.dark) .nav-close-btn {
+  color: var(--qi-text-secondary);
+  background: var(--qi-bg-secondary);
+  border-color: var(--qi-border-dark);
+}
+
+:global(.dark) .nav-close-btn:hover {
+  color: var(--qi-text-primary);
+  background-color: var(--qi-bg-secondary);
+  border-color: var(--qi-border-dark);
 }

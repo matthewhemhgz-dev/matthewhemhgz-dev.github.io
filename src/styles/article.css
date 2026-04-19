@@ -181,6 +181,72 @@
   font-size: var(--qi-text-lg);
   line-height: 2;
   color: var(--qi-text-primary);
+  padding: var(--qi-space-3xl);
+  background: var(--qi-bg-secondary);
+  border-radius: var(--qi-radius-xl);
+  border: 1px solid var(--qi-border);
+  box-shadow: var(--qi-shadow-sm);
+  transition: all 0.3s ease;
+  margin-bottom: var(--qi-space-2xl);
+}
+
+/* 深色模式样式 */
+:global(.dark) .prose {
+  background: var(--qi-bg-primary);
+  border-color: var(--qi-border-dark);
+  box-shadow: var(--qi-shadow-dark-sm);
+}
+
+:global(.dark) .prose :global(h2),
+:global(.dark) .prose :global(h3),
+:global(.dark) .prose :global(h4) {
+  color: var(--qi-text-primary);
+  border-bottom-color: var(--qi-border-dark);
+}
+
+:global(.dark) .prose :global(strong) {
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .prose :global(a) {
+  color: var(--qi-brand-emerald);
+  text-decoration-color: var(--qi-brand-emerald-30);
+}
+
+:global(.dark) .prose :global(a:hover) {
+  color: var(--qi-brand-amber);
+  text-decoration-color: var(--qi-brand-amber-40);
+}
+
+:global(.dark) .prose :global(li)::marker {
+  color: var(--qi-brand-emerald);
+}
+
+:global(.dark) .prose :global(blockquote) {
+  border-left-color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-03);
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .prose :global(img) {
+  box-shadow: var(--qi-shadow-dark-md);
+}
+
+:global(.dark) .prose :global(hr) {
+  background: linear-gradient(90deg, transparent, var(--qi-border-dark), transparent);
+}
+
+:global(.dark) .prose :global(th) {
+  color: var(--qi-text-primary);
+  background: var(--qi-surface-sub);
+}
+
+:global(.dark) .prose :global(tr):hover td {
+  background: var(--qi-brand-emerald-03);
+}
+
+:global(.dark) .mermaid-container {
+  background: var(--qi-surface-main);
 }
 
 .prose :global(h2) {
