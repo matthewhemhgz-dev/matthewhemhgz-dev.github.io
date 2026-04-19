@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import { getReadingTime } from '../../utils/reading-time';
 import OptimizedImage from '../../components/ui/OptimizedImage.astro';
+import MermaidInit from '../../components/global/MermaidInit.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
@@ -175,6 +176,7 @@ const articleJsonLd = {
       </nav>
     </footer>
   </article>
+  <MermaidInit />
   <script>
     import '../../scripts/copy-code.ts';
     

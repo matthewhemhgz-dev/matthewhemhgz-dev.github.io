@@ -386,18 +386,28 @@
 }
 
 /* Tables */
+.prose {
+  overflow-x: auto;
+}
+
 .prose :global(table) {
   width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
-  margin: 1.5rem 0;
   font-size: 0.95em;
+  margin: 1.5rem 0;
+  border-radius: var(--qi-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--qi-shadow-sm);
+  border: 1px solid var(--qi-border);
 }
 
 .prose :global(th),
 .prose :global(td) {
-  padding: var(--qi-space-sm) var(--qi-space-md);
-  border: 1px solid var(--qi-base-08);
+  padding: var(--qi-space-md) var(--qi-space-lg);
+  border: 1px solid var(--qi-border);
   text-align: left;
+  transition: background-color var(--qi-transition-fast);
 }
 
 .prose :global(th) {
@@ -405,12 +415,40 @@
   font-size: var(--qi-text-xs);
   font-weight: 600;
   color: var(--qi-text-primary);
-  background: var(--qi-surface-sub);
+  background: var(--qi-bg-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .prose :global(tr):hover td {
+  background: var(--qi-brand-emerald-03);
+}
+
+.prose :global(tr:nth-child(even)) td {
+  background: var(--qi-bg-secondary);
+}
+
+/* 暗色模式表格样式 */
+:global(.dark) .table-container {
+  border-color: var(--qi-border-dark);
+  box-shadow: var(--qi-shadow-dark-sm);
+}
+
+:global(.dark) .prose :global(th),
+:global(.dark) .prose :global(td) {
+  border-color: var(--qi-border-dark);
+}
+
+:global(.dark) .prose :global(th) {
+  background: var(--qi-bg-primary);
+}
+
+:global(.dark) .prose :global(tr:nth-child(even)) td {
+  background: var(--qi-bg-primary);
+}
+
+:global(.dark) .prose :global(tr):hover td {
   background: var(--qi-brand-emerald-03);
 }
 

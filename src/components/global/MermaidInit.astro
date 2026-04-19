@@ -14,17 +14,18 @@
 
       mermaid.default.initialize({
         startOnLoad: false,
-        theme: 'dark',
+        theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
         themeVariables: (() => {
           const cs = getComputedStyle(document.documentElement);
           const v = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
+          const isDark = document.documentElement.classList.contains('dark');
           return {
             primaryColor: v('--qi-brand-emerald', '#2E7D5C'),
-            primaryTextColor: v('--qi-bg-base', '#F7F3EE'),
+            primaryTextColor: v('--qi-text-primary', isDark ? '#F7F3EE' : '#1E1B18'),
             primaryBorderColor: v('--qi-brand-amber', '#E5A93C'),
-            lineColor: v('--qi-bg-base', '#F7F3EE'),
-            secondaryColor: v('--qi-ink', '#1E1B18'),
-            tertiaryColor: v('--qi-ink-light', '#2D2924'),
+            lineColor: v('--qi-text-primary', isDark ? '#F7F3EE' : '#1E1B18'),
+            secondaryColor: v('--qi-bg-secondary', isDark ? '#2D2924' : '#F0ECE6'),
+            tertiaryColor: v('--qi-bg-tertiary', isDark ? '#36312C' : '#E9E5DF'),
             fontSize: '16px',
             fontFamily: 'var(--qi-font-mono), ui-monospace, monospace',
           };
