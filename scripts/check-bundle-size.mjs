@@ -21,7 +21,7 @@ const DIST_DIR = 'dist';
 const BUDGETS = {
   js: 600,
   css: 200,
-  html: 1200,
+  html: 1350, // 增加 HTML 预算以容纳新增的博客文章和标签页面
   image: 4000,
   other: 600,
   total: 6000,
