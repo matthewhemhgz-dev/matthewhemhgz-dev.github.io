@@ -92,24 +92,33 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
 
         <div class="social-grid">
           {socialLinks.map((s) => (
-            <div class:list={['social-item']}>
-              <a 
-                href={s.qrImage ? 'javascript:void(0)' : s.url} 
-                class="social-link" 
-                {...(!s.qrImage && { target: '_blank', rel: 'noopener noreferrer' })}
-                {...(s.qrImage && { 
-                  'data-qr-trigger': '', 
-                  'data-platform': s.name, 
-                  'data-qr-image': s.qrImage, 
-                  'data-account': s.handle 
-                })}
-                title={s.name} 
-                aria-label={`${s.name}${s.qrImage ? labels.qrAria : labels.externalAria}`}
-              >
-
-                <span class="social-icon" set:html={s.icon} />
-                <span class="social-name">{s.name}</span>
-              </a>
+            <div class="social-item">
+              {s.qrImage ? (
+                <button
+                  class="social-link social-link--btn"
+                  data-qr-trigger
+                  data-platform={s.name}
+                  data-qr-image={s.qrImage}
+                  data-account={s.handle}
+                  title={s.name}
+                  aria-label={`${s.name}${labels.qrAria}`}
+                >
+                  <span class="social-icon" set:html={s.icon} />
+                  <span class="social-name">{s.name}</span>
+                </button>
+              ) : (
+                <a 
+                  href={s.url} 
+                  class="social-link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title={s.name} 
+                  aria-label={`${s.name}${labels.externalAria}`}
+                >
+                  <span class="social-icon" set:html={s.icon} />
+                  <span class="social-name">{s.name}</span>
+                </a>
+              )}
             </div>
           ))}
         </div>

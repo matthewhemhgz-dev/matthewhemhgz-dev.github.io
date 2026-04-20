@@ -38,9 +38,9 @@ test.describe('Senior Level Site Audit (Round 2)', () => {
 
         // Click a QR trigger and check modal
         await qrTriggers.first().click();
-        const modal = page.locator('#qr-modal-container');
+        const modal = page.locator('#social-qr-modal');
         // Wait for modal transition
-        await page.waitForTimeout(300);
+        await page.waitForTimeout(500);
         await expect(modal).toBeVisible();
 
         // Check if QR image has loaded or has alt
@@ -99,6 +99,9 @@ test.describe('Senior Level Site Audit (Round 2)', () => {
         const modal = page.locator('#search-modal');
         await expect(modal).toHaveAttribute('aria-hidden', 'false');
 
+        // Wait for focus to shift
+        await page.waitForFunction(() => document.activeElement?.id === 'search-input');
+
         // Check focus trap - tab through
         await page.keyboard.press('Tab');
         const activeId = await page.evaluate(() => document.activeElement?.id);
@@ -111,11 +114,11 @@ test.describe('Senior Level Site Audit (Round 2)', () => {
 
     test('Audit: 404 Visual Harmony', async ({ page }) => {
         await page.goto('/obviously-broken-link');
-        const h1 = page.locator('h1');
-        await expect(h1).toHaveText(/404/);
+        const code = page.locator('.error-code');
+        await expect(code).toHaveText(/404/);
 
         // Check return home button contrast
-        const homeBtn = page.locator('a[href="/"], a[href="/en/"]');
+        const homeBtn = page.locator('a.error-btn--primary');
         await expect(homeBtn).toBeVisible();
     });
 });

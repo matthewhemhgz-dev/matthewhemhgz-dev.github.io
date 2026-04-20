@@ -19,16 +19,16 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout title={`#${tag} — 祈研所 Qi-Lab`} description={`${tag} 相关文章 — 祈研所的深度技术分享与思考`}>
-  <main class="tag-page container">
-    <a href="/tags" class="tag-back-link">← 所有标签</a>
-    <h1 class="tag-heading">#{tag}</h1>
-    <div class="tag-post-list">
-      {posts.map(post => (
-        <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tag-post-card">
-          <h2 class="tag-post-title">{post.data.title}</h2>
-          <time class="tag-post-date">{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-        </a>
-      ))}
-    </div>
-  </main>
+  <div class="tag-page container">
+  <a href="/tags" class="tag-back-link">← 所有标签</a>
+  <h1 class="tag-heading">#{tag}</h1>
+  <div class="tag-post-list">
+    {posts.map(post => (
+      <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tag-post-card">
+        <h2 class="tag-post-title">{post.data.title}</h2>
+        <time class="tag-post-date">{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      </a>
+    ))}
+  </div>
+</div>
 </BaseLayout>

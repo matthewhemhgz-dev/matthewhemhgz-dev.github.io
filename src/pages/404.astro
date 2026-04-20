@@ -2,9 +2,35 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandLogo from '../components/global/BrandLogo.astro';
 import '../styles/sections/error.css';
+
+const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
+const isEnglish = currentLocale === 'en';
+
+const labels = isEnglish ? {
+  title: '404 - Page Not Found',
+  description: 'The page you are looking for does not exist.',
+  code: '404',
+  heading: 'Page Not Found',
+  message: 'Sorry, the page you are looking for does not exist or has been moved. Please check the URL or return to the home page.',
+  backHome: 'Back to Home',
+  browseBlog: 'Browse Blog',
+  hint: 'Tip: Try selecting a page from the navigation bar'
+} : {
+  title: '404 - 页面未找到',
+  description: '您访问的页面不存在。',
+  code: '404',
+  heading: '页面未找到',
+  message: '抱歉，您访问的页面不存在或已被移除。请检查 URL 是否正确，或返回首页探索更多内容。',
+  backHome: '返回首页',
+  browseBlog: '浏览博客',
+  hint: '提示：试试从导航栏选择一个页面'
+};
+
+const homeHref = isEnglish ? '/en' : '/';
+const blogHref = isEnglish ? '/en/blog' : '/blog';
 ---
 
-<BaseLayout title="404 - 页面未找到 | 祈研所" description="您访问的页面不存在。">
+<BaseLayout title={`${labels.title} | Qi-Lab`} description={labels.description}>
   <div class="error-page">
     <div class="error-bg" aria-hidden="true">
       <div class="error-orb error-orb--1"></div>
@@ -14,22 +40,21 @@ import '../styles/sections/error.css';
       <div class="error-logo-wrap">
         <BrandLogo variant="icon" size="lg" />
       </div>
-      <div class="error-badge">// 404</div>
+      <div class="error-badge">// {labels.code}</div>
       <span class="error-code">404</span>
-      <h1 class="error-title">页面未找到</h1>
+      <h1 class="error-title">{labels.heading}</h1>
       <p class="error-message">
-        抱歉，您访问的页面不存在或已被移除。<br />
-        请检查 URL 是否正确，或返回首页探索更多内容。
+        {labels.message}
       </p>
       <div class="error-actions">
-        <a href="/" class="error-btn error-btn--primary">
+        <a href={homeHref} class="error-btn error-btn--primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5" />
             <polyline points="12 19 5 12 12 5" />
           </svg>
-          返回首页
+          {labels.backHome}
         </a>
-        <a href="/blog" class="error-btn error-btn--secondary">浏览博客</a>
+        <a href={blogHref} class="error-btn error-btn--secondary">{labels.browseBlog}</a>
       </div>
       <p class="error-hint">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;">
@@ -37,7 +62,7 @@ import '../styles/sections/error.css';
           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
           <line x1="12" y1="17" x2="12.01" y2="17" />
         </svg>
-        提示：试试从导航栏选择一个页面
+        {labels.hint}
       </p>
     </div>
   </div>

@@ -1,8 +1,6 @@
----
 import BrandLogo from './BrandLogo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageToggle from '../LanguageToggle.astro';
-import { Astro } from 'astro';
 import '../../styles/components/navigation.css';
 
 interface Props {
@@ -10,9 +8,9 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
-const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
 
-const isEnglish = currentLocale === 'en';
+// 更稳健的 Language 判定逻辑：优先检查路径前缀
+const isEnglish = currentPath.startsWith('/en') || Astro.url.pathname.startsWith('/en');
 
 const navItems = [
   { label: isEnglish ? 'Home' : '首页', href: isEnglish ? '/en' : '/' },
@@ -143,8 +141,10 @@ const navItems = [
     const searchModal = document.getElementById('search-modal');
     searchBtn?.addEventListener('click', () => {
       searchModal?.setAttribute('aria-hidden', 'false');
-      const searchInput = document.getElementById('search-input') as HTMLInputElement;
-      searchInput?.focus();
+      setTimeout(() => {
+        const searchInput = document.getElementById('search-input') as HTMLInputElement;
+        searchInput?.focus();
+      }, 100);
     });
 
     // Keyboard navigation for mobile menu
