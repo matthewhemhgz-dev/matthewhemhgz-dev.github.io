@@ -87,11 +87,11 @@
     });
 
     // 监听显式调用的自定义事件
-    window.addEventListener('open-social-qr', (e: any) => {
+    window.addEventListener('open-social-qr', ((e: CustomEvent) => {
       if (e.detail) {
         openModal(e.detail);
       }
-    });
+    }) as EventListener);
 
     // 关闭事件
     backdrop?.addEventListener('click', closeModal);

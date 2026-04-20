@@ -42,7 +42,7 @@
   function getStoredTheme(): 'dark' | 'light' | null {
     try {
       return localStorage.getItem(STORAGE_KEY) as 'dark' | 'light' | null;
-    } catch (e) {
+    } catch {
       // localStorage access might be blocked
       return null;
     }
@@ -82,7 +82,7 @@
     // Optimize localStorage write
     try {
       localStorage.setItem(STORAGE_KEY, newTheme);
-    } catch (e) {
+    } catch {
       // Ignore if localStorage is blocked
     }
   }
@@ -105,9 +105,9 @@
 
     // Listen for system preference changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
+    mediaQuery.addEventListener('change', (event) => {
       if (!getStoredTheme()) {
-        applyTheme(e.matches ? 'dark' : 'light');
+        applyTheme(event.matches ? 'dark' : 'light');
       }
     });
   });

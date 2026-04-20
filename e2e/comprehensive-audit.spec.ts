@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const BASE_URL = 'http://localhost:4321';
-
 const PAGES = [
     { path: '/', name: '首页 (ZH)' },
     { path: '/en', name: 'Home (EN)' },
