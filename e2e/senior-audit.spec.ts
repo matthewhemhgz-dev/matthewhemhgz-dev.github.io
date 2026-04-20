@@ -41,7 +41,6 @@ test.describe('Senior Level Site Audit', () => {
             await page.goto('/');
 
             // 检查 Hero 卡片是否溢出容器
-            const heroStats = page.locator('.hero-stats');
             const heroExtra = page.locator('.hero-extra');
 
             if (await heroExtra.isVisible()) {
@@ -111,7 +110,6 @@ test.describe('Senior Level Site Audit', () => {
             await page.waitForLoadState('networkidle');
 
             // 检查是否有 Mermaid 报错气泡
-            const errorBubbles = page.locator('.mermaid .error');
             const syntaxErrorText = page.locator('text=/Syntax error/i');
 
             await expect(syntaxErrorText).not.toBeVisible();

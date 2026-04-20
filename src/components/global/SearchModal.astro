@@ -74,8 +74,7 @@
 
   function tNoResults(q: string): string {
     const fn = (i18n[getLang()] || i18n.zh).noResults;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return typeof fn === 'function' ? (fn as (_arg: string) => string)(q) : String(fn);
+    return typeof fn === 'function' ? (fn as (_: string) => string)(q) : String(fn);
   }
 
   function applyI18n() {
