@@ -32,14 +32,17 @@ pnpm-debug.log*
 
 # Local
 *.local
+# Logs & Reports
+*.log
 test-results/
 playwright-report/
 blob-report/
 scan_results/
 audit-results/
+dogfood-output/
+ScanCode_Media/
 
 # Temporary and Log files
-*.log
 *_results.txt
 *_results_utf8.json
 audit_results*.json

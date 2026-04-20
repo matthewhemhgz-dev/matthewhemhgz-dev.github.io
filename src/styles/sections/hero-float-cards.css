@@ -22,9 +22,9 @@
   display: flex;
   align-items: center;
   gap: var(--qi-space-md);
-  padding: var(--qi-space-md) var(--qi-space-lg);
+  padding: var(--qi-space-lg) var(--qi-space-xl);
   width: auto;
-  min-width: 240px;
+  min-width: 280px;
 }
 
 .hero-extra-item--1 .hero-float-card {
@@ -68,8 +68,8 @@
   font-size: var(--qi-text-xl);
   font-weight: 700;
   color: var(--qi-on-dark-primary);
-  line-height: 1.2;
-  margin-bottom: 6px;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
 
 .float-insight-bar {
