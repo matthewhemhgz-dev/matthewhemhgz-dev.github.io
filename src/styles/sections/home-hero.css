@@ -8,6 +8,7 @@
   inherits: false;
   initial-value: 155;
 }
+
 @property --orb-hue-2 {
   syntax: '<number>';
   inherits: false;
@@ -61,14 +62,43 @@
 
 /* 颜色过渡关键帧 — 翡翠 ↔ 薄荷 ↔ 琥珀 缓慢循环 */
 @keyframes orb-color-shift-1 {
-  0%, 100% { --orb-hue-1: 155; } /* 翡翠 */
-  33% { --orb-hue-1: 160; }      /* 薄荷 */
-  66% { --orb-hue-1: 45; }       /* 暖金 */
+
+  0%,
+  100% {
+    --orb-hue-1: 155;
+  }
+
+  /* 翡翠 */
+  33% {
+    --orb-hue-1: 160;
+  }
+
+  /* 薄荷 */
+  66% {
+    --orb-hue-1: 45;
+  }
+
+  /* 暖金 */
 }
+
 @keyframes orb-color-shift-2 {
-  0%, 100% { --orb-hue-2: 35; }  /* 琥珀 */
-  33% { --orb-hue-2: 155; }      /* 翡翠 */
-  66% { --orb-hue-2: 160; }      /* 薄荷 */
+
+  0%,
+  100% {
+    --orb-hue-2: 35;
+  }
+
+  /* 琥珀 */
+  33% {
+    --orb-hue-2: 155;
+  }
+
+  /* 翡翠 */
+  66% {
+    --orb-hue-2: 160;
+  }
+
+  /* 薄荷 */
 }
 
 /* === Ambient glow === */
@@ -78,12 +108,10 @@
   right: -5%;
   width: 65%;
   height: 75%;
-  background: radial-gradient(
-    ellipse at center,
-    var(--qi-brand-emerald-30) 0%,
-    var(--qi-brand-mint-18) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse at center,
+      var(--qi-brand-emerald-30) 0%,
+      var(--qi-brand-mint-18) 40%,
+      transparent 70%);
   filter: blur(60px);
   pointer-events: none;
   z-index: 1;
@@ -93,21 +121,17 @@
 .hero-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 70% 60% at 50% 45%,
-    transparent 40%,
-    rgba(30, 27, 24, 0.06) 100%
-  );
+  background: radial-gradient(ellipse 70% 60% at 50% 45%,
+      transparent 40%,
+      rgba(30, 27, 24, 0.06) 100%);
   pointer-events: none;
   z-index: 0;
   transition: opacity 0.5s ease;
 }
 
 .hero-container {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--qi-space-3xl);
-  align-items: center;
+  display: block;
+  /* Change from grid to block for absolute positioning relative to section background or container */
   max-width: 1100px;
   position: relative;
   z-index: 1;
@@ -141,8 +165,17 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.3);
+  }
 }
 
 .badge-text {
@@ -207,14 +240,14 @@
   padding: var(--qi-space-md) var(--qi-space-xl);
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
-  font-weight: 600;
+  font-weight: var(--qi-weight-semibold);
   letter-spacing: 0.04em;
   border-radius: var(--qi-radius-md);
   transition: transform 0.2s var(--qi-spring),
-              box-shadow 0.3s ease,
-              background-color 0.3s ease,
-              border-color 0.3s ease,
-              color 0.3s ease;
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
   text-decoration: none;
   min-height: 48px;
   touch-action: manipulation;
@@ -228,10 +261,12 @@
 .btn:hover {
   transform: translateY(-2px);
 }
+
 .btn:focus-visible {
   transform: translateY(-2px);
   box-shadow: var(--qi-shadow-lg);
 }
+
 .btn:active {
   transform: translateY(0) scale(0.97);
   transition-duration: 0.1s;
@@ -245,9 +280,12 @@
 
 .btn-primary:hover {
   background: var(--qi-brand-emerald);
-  transform: translateY(-2px);
-  box-shadow: var(--qi-shadow-lg);
+  box-shadow: 0 8px 30px var(--qi-brand-emerald-15);
   color: var(--qi-bg-base);
+}
+
+:global(.dark) .btn-primary:hover {
+  box-shadow: 0 8px 30px rgba(74, 222, 128, 0.25);
 }
 
 .btn-primary .btn-arrow {
@@ -262,12 +300,17 @@
   background: transparent;
   color: var(--qi-text-primary);
   border: 1px solid var(--qi-base-15);
+  font-weight: var(--qi-weight-medium);
 }
 
 .btn-secondary:hover {
   border-color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-05);
   color: var(--qi-brand-emerald);
-  transform: translateY(-2px);
+}
+
+:global(.dark) .btn-secondary:hover {
+  background: var(--qi-base-04);
 }
 
 /* Hero Stats */
@@ -308,7 +351,47 @@
   background: var(--qi-base-10);
 }
 
-/* Float card styles in hero-float-cards.css */
+/* Hero Extra Area (Floating items) */
+.hero-extra {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-xl);
+  pointer-events: none;
+}
+
+.hero-extra>* {
+  pointer-events: auto;
+}
+
+.hero-extra-item--1 {
+  transform: translateX(-40px);
+}
+
+.hero-extra-item--2 {
+  transform: translateX(20px);
+}
+
+@media (max-width: 1200px) {
+  .hero-extra {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    margin-top: var(--qi-space-2xl);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-extra-item {
+    transform: none !important;
+  }
+}
+
 /* === Mobile & Tablet Breakpoints === */
 
 /* === Extra small screen === */
@@ -519,6 +602,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .hero-rays,
   .hero-beam--amber,
   .hero-beam--mint,
@@ -530,6 +614,7 @@
   .hero-float-card {
     animation: none !important;
   }
+
   .hero-beam--amber,
   .hero-beam--mint {
     opacity: 0.6;

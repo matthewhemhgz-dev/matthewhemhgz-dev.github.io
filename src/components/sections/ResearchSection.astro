@@ -1,0 +1,187 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+
+interface Props {
+  label: string;
+  title: string;
+}
+
+const { label, title } = Astro.props;
+
+const methodologies = [
+  {
+    step: '01',
+    title: '全量捕获 (Capture)',
+    description: '通过数字孪生外脑与分身，过滤信息噪音，即时捕捉碎片化的灵感、原始素材与跨领域信息。',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
+    color: 'emerald'
+  },
+  {
+    step: '02',
+    title: '深度提炼 (Refine)',
+    description: '采用「费曼学习法」与「原子化原则」，将冗余信息重构为高度内化、可理解的结构化知识单元。',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    color: 'amber'
+  },
+  {
+    step: '03',
+    title: '网状关联 (Connect)',
+    description: '在 Obsidian 中通过双向链接，打破文件夹的层级束缚，让知识在交叉引用中自然生发新的洞察。',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+    color: 'mint'
+  },
+  {
+    step: '04',
+    title: '价值显现 (Manifest)',
+    description: '坚持「以输出驱动输入」，在实践、开源与系统化分享中，完成从信息积累到智慧生成的闭环。',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    color: 'emerald'
+  }
+];
+---
+
+<section class="research-section" data-reveal>
+  <div class="container">
+    <SectionHeader label={label} title={title} />
+    
+    <div class="research-grid">
+      {methodologies.map((item) => (
+        <div class:list={['research-card', `research-card--${item.color}`]}>
+          <div class="research-card-header">
+            <span class="research-step">{item.step}</span>
+            <div class="research-icon" set:html={item.icon}></div>
+          </div>
+          <h3 class="research-title">{item.title}</h3>
+          <p class="research-desc">{item.description}</p>
+          <div class="research-deco-line"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .research-section {
+    padding: var(--qi-space-4xl) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--qi-space-xl);
+    margin-top: var(--qi-space-3xl);
+  }
+
+  .research-card {
+    position: relative;
+    padding: var(--qi-space-xl);
+    background: var(--qi-bg-base);
+    border: 1px solid var(--qi-base-08);
+    border-radius: var(--qi-radius-lg);
+    transition: all 0.4s var(--qi-spring);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-md);
+  }
+
+  .research-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--qi-base-10);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .research-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--qi-shadow-lg);
+    border-color: var(--qi-base-15);
+  }
+
+  .research-card--emerald:hover::before { background: var(--qi-brand-emerald); opacity: 1; }
+  .research-card--amber:hover::before { background: var(--qi-brand-amber); opacity: 1; }
+  .research-card--mint:hover::before { background: var(--qi-brand-mint); opacity: 1; }
+
+  .research-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--qi-space-sm);
+  }
+
+  .research-step {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-muted);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .research-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--qi-base-04);
+    border-radius: var(--qi-radius-md);
+    color: var(--qi-text-secondary);
+    transition: all 0.3s ease;
+  }
+
+  .research-card:hover .research-icon {
+    background: var(--qi-base-06);
+    color: var(--qi-text-primary);
+    transform: scale(1.05) rotate(5deg);
+  }
+
+  .research-title {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-lg);
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    line-height: 1.4;
+  }
+
+  .research-desc {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .research-deco-line {
+    position: absolute;
+    bottom: var(--qi-space-lg);
+    right: var(--qi-space-lg);
+    width: 20px;
+    height: 1px;
+    background: var(--qi-base-15);
+    transition: width 0.3s var(--qi-spring);
+  }
+
+  .research-card:hover .research-deco-line {
+    width: 40px;
+    background: var(--qi-brand-emerald);
+  }
+
+  .research-card--amber:hover .research-deco-line { background: var(--qi-brand-amber); }
+
+  :global(.dark) .research-card {
+    background: var(--qi-ink-light);
+    border-color: var(--qi-border-strong);
+  }
+
+  @media (max-width: 640px) {
+    .research-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -10,12 +10,40 @@ interface Props {
 }
 
 const {
-  tagline = '知识管理 · 项目管理 · IT/AI 技巧 · 八卦前沿',
+  tagline = lang === 'en' ? 'Knowledge Management · Project Management · IT/AI Skills · Trends' : '知识管理 · 项目管理 · IT/AI 技巧 · 八卦前沿',
   email = 'matthewhemhgz@gmail.com',
-  wechat = '祈研所或 Qi-Lab',
+  wechat = lang === 'en' ? 'Qi-Lab (祈研所)' : '祈研所或 Qi-Lab',
   copyrightYear = new Date().getFullYear(),
-  lang = 'zh',
 } = Astro.props;
+
+const labels = lang === 'en' ? {
+  contact: 'Contact',
+  email: 'Email',
+  wechat: 'WeChat',
+  social: 'Social Links',
+  qrTitle: 'Scan to Add WeChat',
+  qrHint: 'Mobile screenshot or scan to identify',
+  copyright: 'Qi-Lab. All rights reserved.',
+  builtWith: 'Built with',
+  title: 'Qi-Lab',
+  easterEgg: 'Thanks for scrolling all the way down ✨',
+  qrAria: ' (Click to view QR code)',
+  externalAria: ' (Opens in new window)'
+} : {
+  contact: '联系方式',
+  email: '邮箱',
+  wechat: '微信',
+  social: '社交链接',
+  qrTitle: '扫码添加微信',
+  qrHint: '手机截屏或扫码识别',
+  copyright: '祈研所. 保留所有权利.',
+  builtWith: '使用',
+  title: '祈研所',
+  easterEgg: '感谢你滚动到这里 ✨',
+  qrAria: ' (点击查看二维码)',
+  externalAria: ' (在新窗口打开)'
+};
+
 
 // 社交媒体链接 - 根据语言选择
 const socialLinks = lang === 'en' ? [
@@ -36,28 +64,29 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
   <div class="footer-inner container">
     <!-- Brand -->
     <div class="footer-brand">
-      <h2 class="footer-title">祈研所</h2>
+      <h2 class="footer-title">{labels.title}</h2>
       <p class="footer-tagline">{tagline}</p>
     </div>
 
     <!-- Contact + Social -->
     <div class="footer-links">
       <div class="footer-contact">
-        <h3 class="footer-heading">联系方式</h3>
+        <h3 class="footer-heading">{labels.contact}</h3>
         <ul class="contact-list">
           <li class="contact-item">
-            <span class="contact-label">邮箱</span>
+            <span class="contact-label">{labels.email}</span>
             <a href={`mailto:${email}`} class="contact-value">{email}</a>
           </li>
           <li class="contact-item">
-            <span class="contact-label">微信</span>
+            <span class="contact-label">{labels.wechat}</span>
             <span class="contact-value">{wechat}</span>
           </li>
         </ul>
       </div>
 
       <div class="footer-social">
-        <h3 class="footer-heading">社交链接</h3>
+        <h3 class="footer-heading">{labels.social}</h3>
+
         <div class="social-grid">
           {socialLinks.map((s) => (
             <div class:list={['social-item']}>
@@ -72,8 +101,9 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
                   'data-account': s.handle 
                 })}
                 title={s.name} 
-                aria-label={`${s.name}${s.qrImage ? ' (点击查看二维码)' : ' (opens in new window)'}`}
+                aria-label={`${s.name}${s.qrImage ? labels.qrAria : labels.externalAria}`}
               >
+
                 <span class="social-icon" set:html={s.icon} />
                 <span class="social-name">{s.name}</span>
               </a>
@@ -83,12 +113,13 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
       </div>
 
       <div class="footer-qr">
-        <h3 class="footer-heading">扫码添加微信</h3>
+        <h3 class="footer-heading">{labels.qrTitle}</h3>
         <div class="qr-container">
-          <img src={wechatQrCodeUrl} alt="微信二维码" class="qr-code" />
+          <img src={wechatQrCodeUrl} alt={labels.wechat} class="qr-code" />
           <p class="qr-text">{wechat}</p>
         </div>
       </div>
+
     </div>
 
     <!-- Divider -->
@@ -97,16 +128,17 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
     <!-- Copyright -->
     <div class="footer-bottom">
       <p class="copyright">
-        &copy; {copyrightYear} 祈研所. 保留所有权利.
+        &copy; {copyrightYear} {labels.copyright}
       </p>
       <p class="built-with">
-        使用
+        {labels.builtWith}
         <span class="heart" aria-label="love">♥</span>
         &amp; Astro 构建
       </p>
     </div>
 
     <!-- Easter egg for curious scrollers -->
-    <p class="footer-easter-egg">感谢你滚动到这里 ✨</p>
+    <p class="footer-easter-egg">{labels.easterEgg}</p>
+
   </div>
 </footer>

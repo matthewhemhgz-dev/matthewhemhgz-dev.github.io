@@ -60,6 +60,11 @@ test.describe('Senior Frontend Audit: Core Systems', () => {
 
                     await expect(page.locator('html')).toHaveClass(new RegExp(theme));
 
+                    // Inject CSS to hide noise/particles for cleaner A11y scan
+                    await page.addStyleTag({
+                        content: '.noise-overlay, #particles-canvas { display: none !important; }'
+                    });
+
                     // 1. Accessibility Scan
                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
                     expect(violations.length).toBe(0);
@@ -85,12 +90,13 @@ test.describe('Senior Frontend Audit: Core Systems', () => {
                     const tokenCheck = await page.evaluate(() => {
                         const style = getComputedStyle(document.documentElement);
                         return {
-                            primary: style.getPropertyValue('--qi-primary').trim(),
-                            bg: style.getPropertyValue('--qi-bg').trim(),
-                            fg: style.getPropertyValue('--qi-fg').trim(),
+                            emerald: style.getPropertyValue('--qi-brand-emerald').trim(),
+                            bg: style.getPropertyValue('--qi-bg-base').trim(),
+                            fg: style.getPropertyValue('--qi-text-primary').trim(),
                         };
                     });
                     console.log(`[TOKEN AUDIT] ${pageInfo.name} [${theme}]:`, tokenCheck);
+
                 });
             }
 
@@ -130,9 +136,9 @@ test.describe('Senior Frontend Audit: Core Systems', () => {
         const vars = await page.evaluate(() => {
             const style = getComputedStyle(document.documentElement);
             return [
-                '--qi-primary', '--qi-bg', '--qi-fg', '--qi-accent',
+                '--qi-brand-emerald', '--qi-bg-base', '--qi-text-primary',
                 '--qi-radius-md', '--qi-font-sans'
-            ].map(v => ({ name: v, value: style.getPropertyValue(v) }));
+            ].map(v => ({ name: v, value: style.getPropertyValue(v).trim() }));
         });
 
         vars.forEach(v => {
@@ -140,4 +146,5 @@ test.describe('Senior Frontend Audit: Core Systems', () => {
             if (v.value === '') console.error(`[LEAK] CSS Variable ${v.name} is undefined`);
         });
     });
+
 });

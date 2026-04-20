@@ -91,7 +91,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
 
     <!-- Theme init (prevent FOUC) -->
     <script is:inline>
-      (function(){const t=localStorage.getItem('qi-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark');const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#121010':'#F7F3EE'})();
+      (function(){const t=localStorage.getItem('qi-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark');document.documentElement.classList.toggle('light',t==='light');const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#121010':'#F7F3EE'})();
     </script>
   </head>
   <body>
@@ -101,7 +101,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
       document.addEventListener('astro:before-swap', function(e) {
         if (document.documentElement.classList.contains('dark')) {
           e.newDocument.documentElement.classList.add('dark');
+          e.newDocument.documentElement.classList.remove('light');
+        } else {
+          e.newDocument.documentElement.classList.add('light');
+          e.newDocument.documentElement.classList.remove('dark');
         }
+
         const currentMeta = document.querySelector('meta[name="theme-color"]');
         const newMeta = e.newDocument.querySelector('meta[name="theme-color"]');
         if (currentMeta && newMeta) {

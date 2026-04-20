@@ -263,6 +263,14 @@
   --qi-z-progress: 10001;
 }
 
+/* Dual-Logic Typography (Weights adjust per theme) */
+:root {
+  --qi-weight-normal: 400;
+  --qi-weight-medium: 500;
+  --qi-weight-semibold: 600;
+  --qi-weight-bold: 700;
+}
+
 /* Rhythm */
 :root {
   --qi-leading-tight: 1.1;

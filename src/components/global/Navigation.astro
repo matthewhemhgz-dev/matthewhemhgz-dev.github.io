@@ -23,13 +23,15 @@ const navItems = [
 ---
 
 <header class="nav-wrapper" transition:name="main-nav">
-    <nav class="nav" aria-label="主导航">
+    <nav class="nav" aria-label={isEnglish ? "Main Navigation" : "主导航"}>
+
       <div class="nav-left">
         <BrandLogo variant="icon" size="sm" />
       </div>
 
       <!-- Mobile checkbox hack -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links" />
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label={isEnglish ? "Toggle navigation menu" : "切换导航菜单"} aria-expanded="false" aria-controls="nav-links" />
+
       <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true" touch-action="manipulation" tabindex="-1">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -80,8 +82,9 @@ const navItems = [
               <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             </svg>
-            <span>关闭</span>
+            <span>{isEnglish ? 'Close' : '关闭'}</span>
           </button>
+
         </li>
       </ul>
 
@@ -108,17 +111,20 @@ const navItems = [
   if (navToggle) {
     navToggle.addEventListener('change', () => {
       const isOpen = navToggle.checked;
+      const isEn = document.documentElement.lang.startsWith('en');
       navToggle.setAttribute('aria-expanded', String(isOpen));
       if (navStatus) {
         navStatus.textContent = isOpen
-          ? '导航菜单已打开'
-          : '导航菜单已关闭';
+          ? (isEn ? 'Navigation menu opened' : '导航菜单已打开')
+          : (isEn ? 'Navigation menu closed' : '导航菜单已关闭');
       }
+
     });
   }
 
   // Close button functionality
   document.addEventListener('astro:page-load', () => {
+    const isEn = document.documentElement.lang.startsWith('en');
     const closeBtn = document.querySelector('.nav-close-btn');
     closeBtn?.addEventListener('click', () => {
       const navToggle = document.getElementById('nav-toggle');
@@ -126,8 +132,9 @@ const navItems = [
         navToggle.checked = false;
         navToggle.setAttribute('aria-expanded', 'false');
         if (navStatus) {
-          navStatus.textContent = '导航菜单已关闭';
+          navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
         }
+
       }
     });
 
@@ -150,8 +157,9 @@ const navItems = [
             navToggle.checked = false;
             navToggle.setAttribute('aria-expanded', 'false');
             if (navStatus) {
-              navStatus.textContent = '导航菜单已关闭';
+              navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
             }
+
           }
         }
       });

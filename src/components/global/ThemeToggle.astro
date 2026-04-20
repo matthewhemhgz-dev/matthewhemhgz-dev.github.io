@@ -11,7 +11,7 @@
 ---
 
 <button
-  class="inline-flex items-center justify-center w-8 h-8 p-0 bg-transparent border border-[var(--qi-base-06)] rounded-md cursor-pointer text-text-secondary hover:text-text-primary hover:bg-[var(--qi-base-04)] hover:border-[var(--qi-base-08)] focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-fast relative"
+  class="theme-toggle-btn"
   id="theme-toggle"
   type="button"
   aria-label="切换深色模式"
@@ -19,15 +19,63 @@
   aria-pressed="false"
 >
   <!-- Sun icon (shown in dark mode) -->
-  <svg class="theme-icon-sun absolute transition-opacity duration-200 transition-transform duration-200" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+  <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
     <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
   </svg>
   <!-- Moon icon (shown in light mode) -->
-  <svg class="theme-icon-moon absolute transition-opacity duration-200 transition-transform duration-200" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+  <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <path d="M14 8.5A6.5 6.5 0 017.5 2 6.5 6.5 0 1014 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 </button>
+
+<style>
+  .theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: var(--qi-base-04);
+    border: 1px solid var(--qi-base-06);
+    border-radius: var(--qi-radius-md);
+    cursor: pointer;
+    color: var(--qi-text-secondary);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle-btn:hover {
+    color: var(--qi-text-primary);
+    background: var(--qi-base-06);
+    border-color: var(--qi-base-08);
+  }
+
+  .theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--qi-brand-emerald);
+    outline-offset: 2px;
+  }
+
+  .theme-icon-sun,
+  .theme-icon-moon {
+    position: absolute;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  }
+
+  /* Logic handled by script classes, but we can set defaults */
+  :global(.light) .theme-icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  :global(.light) .theme-icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+  
+  :global(.dark) .theme-icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+  :global(.dark) .theme-icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+
+  :global(.dark) .theme-toggle-btn {
+    background: var(--qi-surface-sub);
+    border-color: var(--qi-border-strong);
+  }
+</style>
 
 <script>
   const STORAGE_KEY = 'qi-theme';
@@ -57,8 +105,10 @@
     // Apply theme class
     if (theme === 'dark') {
       htmlElement.classList.add('dark');
+      htmlElement.classList.remove('light');
     } else {
       htmlElement.classList.remove('dark');
+      htmlElement.classList.add('light');
     }
 
     // Update meta theme-color
@@ -91,6 +141,8 @@
   (function initTheme() {
     const stored = getStoredTheme();
     const theme = stored || getSystemPreference();
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle('light', theme === 'light');
     applyTheme(theme);
   })();
 

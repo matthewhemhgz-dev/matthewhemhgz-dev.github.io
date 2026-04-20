@@ -74,9 +74,9 @@
 .article-title {
   font-family: var(--qi-font-serif);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: var(--qi-weight-bold);
   color: var(--qi-text-primary);
-  line-height: 1.3;
+  line-height: var(--qi-leading-tight);
   margin: 0 0 var(--qi-space-lg);
   letter-spacing: -0.01em;
 }
@@ -225,16 +225,19 @@
 
 :global(.dark) .prose :global(blockquote) {
   border-left-color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-03);
-  color: var(--qi-text-primary);
+  background: var(--qi-surface-main);
+  color: var(--qi-on-surface-secondary);
+  border-radius: var(--qi-radius-md);
 }
 
 :global(.dark) .prose :global(img) {
-  box-shadow: var(--qi-shadow-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--qi-border-subtle);
 }
 
 :global(.dark) .prose :global(hr) {
-  background: linear-gradient(90deg, transparent, var(--qi-border-strong), transparent);
+  background: var(--qi-border-subtle);
+  opacity: 0.5;
 }
 
 :global(.dark) .prose :global(th) {
@@ -394,7 +397,8 @@
 /* 为表格创建一个滚动容器 */
 .prose :global(table) {
   width: 100%;
-  min-width: 800px; /* 设置最小宽度，确保表格在小屏幕上可以滚动 */
+  min-width: 800px;
+  /* 设置最小宽度，确保表格在小屏幕上可以滚动 */
   border-collapse: collapse;
   font-size: 0.95em;
   margin: 1.5rem 0;
@@ -531,35 +535,90 @@
 
 /* === Large screen: Article === */
 @media (min-width: 1440px) {
-  .article-container { max-width: 900px; }
-  .prose :global(h2) { font-size: 1.8rem; }
+  .article-container {
+    max-width: 900px;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.8rem;
+  }
 }
 
 /* === XL screen: Article === */
 @media (min-width: 1920px) {
-  .article-container { max-width: 900px; }
-  .prose { font-size: calc(var(--qi-text-lg) + 0.05rem); line-height: 1.95; }
-  .prose :global(h2) { font-size: 1.9rem; }
-  .prose :global(h3) { font-size: 1.4rem; }
-  .toc { padding: var(--qi-space-lg) var(--qi-space-2xl); }
-  .article-title { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+  .article-container {
+    max-width: 900px;
+  }
+
+  .prose {
+    font-size: calc(var(--qi-text-lg) + 0.05rem);
+    line-height: 1.95;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.9rem;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.4rem;
+  }
+
+  .toc {
+    padding: var(--qi-space-lg) var(--qi-space-2xl);
+  }
+
+  .article-title {
+    font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  }
 }
 
 @media (min-width: 2560px) {
-  .article-container { max-width: 960px; }
-  .prose { font-size: var(--qi-text-xl); line-height: 2; }
-  .prose :global(h2) { font-size: 2rem; }
-  .prose :global(h3) { font-size: 1.5rem; }
-  .prose :global(pre) { padding: var(--qi-space-2xl); }
-  .toc { padding: var(--qi-space-xl) var(--qi-space-2xl); }
-  .article-title { font-size: clamp(2rem, 3.5vw, 3rem); }
+  .article-container {
+    max-width: 960px;
+  }
+
+  .prose {
+    font-size: var(--qi-text-xl);
+    line-height: 2;
+  }
+
+  .prose :global(h2) {
+    font-size: 2rem;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.5rem;
+  }
+
+  .prose :global(pre) {
+    padding: var(--qi-space-2xl);
+  }
+
+  .toc {
+    padding: var(--qi-space-xl) var(--qi-space-2xl);
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
 }
 
 @media (min-width: 3440px) {
-  .article-container { max-width: 1080px; }
-  .prose :global(h2) { font-size: 2.2rem; }
-  .prose :global(h3) { font-size: 1.7rem; }
-  .article-title { font-size: clamp(2.5rem, 4vw, 3.5rem); }
+  .article-container {
+    max-width: 1080px;
+  }
+
+  .prose :global(h2) {
+    font-size: 2.2rem;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.7rem;
+  }
+
+  .article-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
 }
 
 /* === Hero Image === */
@@ -623,6 +682,7 @@
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -723,11 +783,11 @@
   .article-share-buttons {
     flex-direction: column;
   }
-  
+
   .article-share-btn {
     justify-content: center;
   }
-  
+
   .article-share-wechat-qr {
     right: 50%;
     transform: translateX(50%);

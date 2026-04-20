@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionDivider from '../../../components/decorations/SectionDivider.astro';
+import OptimizedImage from '../../../components/ui/OptimizedImage.astro';
+import MermaidInit from '../../../components/global/MermaidInit.astro';
+
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => data.lang === 'en');
+  return posts.map(post => ({
+    params: { slug: post.id.replace('en/', '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
+const ogImage = post.data.heroImage
+  ? `${siteUrl}${post.data.heroImage}`
+  : '/og-default.png';
+---
+
+<BaseLayout title={`${post.data.title} | Qi-Lab`} description={post.data.description} ogImage={ogImage} ogType="article">
+  <article class="article-container container">
+    <header class="article-header">
+      <div class="article-meta-top">
+        <span class="article-category">{post.data.category}</span>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </div>
+      <h1 class="article-title">{post.data.title}</h1>
+      {post.data.description && <p class="article-description">{post.data.description}</p>}
+      
+      {post.data.heroImage && (
+        <div class="article-hero-image">
+          <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={1200} height={675} loading="eager" />
+        </div>
+      )}
+      <div class="article-divider"></div>
+    </header>
+
+
+    <SectionDivider variant="line" />
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <SectionDivider variant="dots" />
+    
+    <footer class="article-footer">
+      <div class="article-divider"></div>
+      <div class="article-tags">
+        {post.data.tags.map(tag => (
+          <a href={`/en/tags/${tag}/`} class="article-tag">#{tag}</a>
+        ))}
+      </div>
+    </footer>
+  </article>
+  <MermaidInit />
+</BaseLayout>
+

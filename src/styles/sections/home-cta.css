@@ -108,13 +108,15 @@
 }
 
 .cta-section .btn-secondary {
-  border-color: var(--qi-inverse-40);
-  color: var(--qi-text-inverse);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--qi-on-dark-secondary);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .cta-section .btn-secondary:hover {
-  border-color: var(--qi-brand-amber);
-  color: var(--qi-brand-amber);
+  border-color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-10);
+  color: var(--qi-brand-emerald);
 }
 
 /* === Large screen: CTA Section === */

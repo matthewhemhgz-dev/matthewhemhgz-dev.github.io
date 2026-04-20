@@ -139,7 +139,7 @@
 
 .nav-link.active {
   color: var(--qi-brand-emerald);
-  background-color: var(--qi-brand-emerald-06);
+  background-color: var(--qi-brand-emerald-05);
 }
 
 .nav-link.active::after {
@@ -185,7 +185,13 @@
 }
 
 .nav-search-label {
-  display: inline;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-search-label {
+    display: inline;
+  }
 }
 
 .nav-search-kbd {
@@ -245,9 +251,7 @@
     padding: 0 var(--qi-container-padding, 24px);
   }
 
-  .nav-wrapper.nav-collapsed .nav-links {
-    /* Keep hidden on mobile — hamburger menu handles navigation */
-  }
+  /* .nav-wrapper.nav-collapsed handled by hamburger menu on mobile */
 
   .nav-wrapper.nav-collapsed:hover .nav-links {
     opacity: 0;
@@ -499,4 +503,14 @@
   color: var(--qi-text-primary);
   background-color: var(--qi-surface-sub);
   border-color: var(--qi-border-strong);
+}
+
+.nav-close-item {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-close-item {
+    display: block;
+  }
 }

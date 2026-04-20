@@ -18,8 +18,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  /* Fixed: Removed overscroll-behavior-y: contain to allow natural scrolling */
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: var(--qi-weight-normal);
+  background-color: var(--qi-bg-base);
+  color: var(--qi-text-primary);
+  font-family: var(--qi-font-sans);
 }
 
 img,
@@ -48,6 +51,21 @@ h6 {
   overflow-wrap: break-word;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--qi-weight-bold);
+  text-wrap: balance;
+  line-height: 1.25;
+}
+
+p {
+  font-weight: var(--qi-weight-normal);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -66,16 +84,6 @@ ol {
 
 :focus:not(:focus-visible) {
   outline: none;
-}
-
-/* Typography best practices */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
 }
 
 /* Scroll offset for fixed nav */
@@ -101,7 +109,7 @@ button:focus-visible {
   color: var(--qi-text-inverse);
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
-  font-weight: 600;
+  font-weight: var(--qi-weight-bold);
   border-radius: var(--qi-radius-md);
   text-decoration: none;
   transition: top 0.2s ease;

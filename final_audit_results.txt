@@ -1,0 +1,51 @@
+﻿
+Running 13 tests using 8 workers
+
+  鉁?  5 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Modal Integrity - Social QR (1.2s)
+  鉁?  1 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Modal Integrity - Social QR (1.7s)
+  鉁?  9 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Modal Integrity - Social QR (4.7s)
+[TOKEN AUDIT] About (ZH) [dark]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁?  7 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: dark (7.2s)
+[TOKEN AUDIT] Blog (ZH) [light]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁?  6 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: light (7.4s)
+[TOKEN AUDIT] About (ZH) [light]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁?  3 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: light (7.6s)
+[TOKEN AUDIT] Home (ZH) [light]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁?  2 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: light (7.7s)
+[TOKEN AUDIT] Home (ZH) [dark]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁?  4 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: dark (8.0s)
+  鉁? 12 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Modal Integrity - Social QR (1.2s)
+[A11Y VIOLATIONS] in Blog (ZH) [dark]:
+ - ID: color-contrast | Impact: serious | Help: Elements must meet minimum color contrast ratio thresholds
+   * Target: .is-visible.blog-card[data-reveal=""]:nth-child(1) > .blog-card-body > .blog-card-category
+   * Target: a[href$="astro-ssg-why-i-chose/"] > .blog-card-body > .blog-card-category
+   * Target: .is-visible.blog-card[data-reveal=""]:nth-child(3) > .blog-card-body > .blog-card-category
+[TOKEN AUDIT] Home (EN) [light]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁?  8 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: dark (8.6s)
+  鉁? 10 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: light (7.0s)
+  鉁? 13 [chromium] 鈥?e2e\senior-audit.spec.ts:127:5 鈥?Senior Frontend Audit: Core Systems 鈥?Design System Consistency: Color Palette (1.4s)
+[TOKEN AUDIT] Home (EN) [dark]: { primary: [32m''[39m, bg: [32m''[39m, fg: [32m''[39m }
+  鉁? 11 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: dark (3.6s)
+
+
+  1) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: dark 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+    > 65 |                     expect(violations.length).toBe(0);
+         |                                               ^
+      66 |
+      67 |                     // 2. Interactive States Audit
+      68 |                     // Focus on buttons to ensure focus-visible is clear
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:65:47
+
+    Error Context: test-results\senior-audit-Senior-Fronte-a8207-ehensive-Audit---Theme-dark-chromium\error-context.md
+
+  1 failed
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: dark 
+  12 passed (13.6s)

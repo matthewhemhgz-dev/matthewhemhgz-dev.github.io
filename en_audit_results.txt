@@ -1,0 +1,32 @@
+﻿
+Running 4 tests using 4 workers
+
+  鉁? 3 [chromium] 鈥?e2e\en-audit.spec.ts:13:9 鈥?English Version Deep Audit 鈥?Audit: Blog List (EN) (797ms)
+[TYPO] Title font family: "Noto Serif SC", "Noto Serif", "Songti SC", STSong, Georgia, "Times New Roman", serif
+  鉁? 2 [chromium] 鈥?e2e\en-audit.spec.ts:63:5 鈥?English Version Deep Audit 鈥?English specific Typography (1.1s)
+[TRANS] Potential Chinese leakage on About (EN):
+ - "鍏抽棴"
+ - "涓枃"
+ - "绁堢爺鎵€鎴?QiLab"
+ - "绁堢爺鎵€"
+ - "鑱旂郴鏂瑰紡"
+ - "閭"
+ - "寰俊"
+ - "绁堢爺鎵€鎴?QiLab"
+ - "绀句氦閾炬帴"
+ - "鎵爜娣诲姞寰俊"
+  鉁? 1 [chromium] 鈥?e2e\en-audit.spec.ts:13:9 鈥?English Version Deep Audit 鈥?Audit: About (EN) (1.9s)
+[TRANS] Potential Chinese leakage on Home (EN):
+ - "鍏抽棴"
+ - "涓枃"
+ - "绁堢爺鎵€ 路 Qi-Lab"
+ - "鐭ヨ瘑绠＄悊"
+ - "75+ 鐭ヨ瘑鐐?
+ - "绁堢爺鎵€"
+ - "绁堢爺鎵€"
+ - "绁堢爺鎵€锛圦i_Lab锛?
+ - "绁堢爺鎵€锛圦iLab锛?
+ - "绁堢爺鎵€鎴愮珛"
+  鉁? 4 [chromium] 鈥?e2e\en-audit.spec.ts:13:9 鈥?English Version Deep Audit 鈥?Audit: Home (EN) (2.0s)
+
+  4 passed (40.2s)

@@ -49,6 +49,8 @@ graph TD
     G --> J
 ```
 
+![渐进式重构周期](/images/blog/progressive-refactor-cycle.jpg)
+
 ## 为什么选择渐进式重构？
 
 重构的最大敌人是"全部重写"的诱惑。在我分析项目后，发现了三个主要问题：

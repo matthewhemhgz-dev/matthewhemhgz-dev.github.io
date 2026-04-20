@@ -22,9 +22,17 @@
   display: flex;
   align-items: center;
   gap: var(--qi-space-md);
-  padding: var(--qi-space-lg) var(--qi-space-xl);
-  width: 280px;
+  padding: var(--qi-space-md) var(--qi-space-lg);
+  width: auto;
+  min-width: 240px;
+}
+
+.hero-extra-item--1 .hero-float-card {
   animation-delay: 0s;
+}
+
+.hero-extra-item--2 .hero-float-card {
+  animation-delay: -3s;
 }
 
 .float-insight-icon {
