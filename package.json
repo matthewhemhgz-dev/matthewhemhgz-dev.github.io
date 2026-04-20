@@ -8,6 +8,12 @@
   },
   "description": "祈研所（Qi-Lab）— 个人品牌网站",
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "matthewhemhgz-dev QiLab",
+      "url": "https://github.com/matthewhemhgz-dev"
+    }
+  ],
   "engines": {
     "node": ">=20.0.0"
   },
