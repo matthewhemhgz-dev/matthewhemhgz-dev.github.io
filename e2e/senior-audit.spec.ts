@@ -110,7 +110,6 @@ test.describe('Senior Frontend Audit: Core Systems', () => {
 
                     // Check Focus Trapping (Simplified check)
                     await page.keyboard.press('Tab');
-                    const activeElement = await page.evaluate(() => document.activeElement?.tagName);
                     // Senior check: Focus should be inside modal
                     const isInside = await page.evaluate(() => {
                         const modal = document.querySelector('#social-qr-modal, [role="dialog"]');

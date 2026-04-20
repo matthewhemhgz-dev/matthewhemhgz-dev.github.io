@@ -1,0 +1,44 @@
+﻿[2m09:34:21[22m [34m[content][39m Syncing content
+[2m09:34:22[22m [34m[content][39m Synced content
+[2m09:34:22[22m [34m[types][39m Generated [2m1.16s[22m
+[2m09:34:22[22m [34m[build][39m output: [34m"static"[39m
+[2m09:34:22[22m [34m[build][39m mode: [34m"static"[39m
+[2m09:34:22[22m [34m[build][39m directory: [34mD:\Project\GithubPage_PerBrand\dist\[39m
+[2m09:34:22[22m [34m[build][39m Collecting build info...
+[2m09:34:22[22m [34m[build][39m [32m鉁?Completed in 2.22s.[39m
+[2m09:34:22[22m [34m[build][39m Building static entrypoints...
+node.exe : [31m[1m09:34:24
+[22m [ERROR] [vite][39m [31
+m鉁?[39m Build failed in 2.29s
+所在位置 行:1 字符: 1
++ & "D:\Program Files\nodejs/
+node.exe" "D:\Program Files\n
+odejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: ([31m[  
+  1m09:34:...failed in 2.2   
+ 9s:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+ENOENT: no such file or direc
+tory, open 'D:\Project\Github
+Page_PerBrand\dist\.prerender
+\.vite\manifest.json'
+  [1mLocation:[22m
+    [4mD:\Project\GithubPage
+_PerBrand\node_modules\rollup
+\dist\es\shared\node-entry.js
+:23091:32[24m
+  [1mStack trace:[22m
+[2m    at async open (node:i
+nternal/fs/promises:639:25)
+    at async Queue.work (file
+:///D:/Project/GithubPage_Per
+Brand/node_modules/rollup/dis
+t/es/shared/node-entry.js:230
+91:32)[22m

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const EN_PAGES = [
@@ -34,12 +34,13 @@ test.describe('English Version Deep Audit', () => {
             const chineseContent = await page.evaluate(() => {
                 const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
                 const findings: string[] = [];
-                let node;
-                while (node = walker.nextNode()) {
+                let node = walker.nextNode();
+                while (node) {
                     if (/[\u4e00-\u9fa5]/.test(node.textContent || '')) {
                         // Ignore some common false positives or decorations if any
                         findings.push(node.textContent?.trim() || '');
                     }
+                    node = walker.nextNode();
                 }
                 return findings;
             });
