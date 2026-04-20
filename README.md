@@ -7,8 +7,9 @@
 - **框架**: [Astro 6](https://astro.build) — 静态站点生成 (SSG)，Islands Architecture
 - **样式**: 原生 CSS + 设计令牌系统 (`--qi-*` variables, 338 行 tokens)
 - **交互**: 原生 JavaScript (View Transitions / Canvas / 3D Tilt / Pagefind)
-- **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，中文分词
+- **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，支持中英双语分词
 - **部署**: GitHub Pages
+- **质量保障**: 通过 6 轮深度的高级 UI/UX 审计与 Playwright 自动化回归测试
 - **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Deploy)
 
 ## 快速开始
@@ -55,9 +56,11 @@ src/
 │   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
 ├── data/blog/zh/      # 博客文章 (7 篇 Markdown, 65,000+ 字)
 ├── layouts/           # 页面布局 (BaseLayout)
-├── pages/             # 路由页面 (首页/博客/标签/关于/404)
+├── pages/             # 路由页面
+│   ├── [zh]/          # 中文主站 (首页/博客/标签/关于)
+│   └── en/            # 英文分站 (全量 Feature Parity)
 ├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code...)
-├── styles/            # CSS 样式 (36 个文件, 设计令牌驱动)
+├── styles/            # CSS 样式 (38 个文件, 设计令牌驱动)
 │   ├── base/               # 基础样式 (tokens, dark-tokens, reset, global)
 │   ├── components/         # 组件样式
 │   ├── sections/           # 区块样式
@@ -82,6 +85,13 @@ src/
 博客文章使用 Astro Content Layer，Markdown 文件位于 `src/data/blog/zh/`。
 
 支持的 frontmatter 字段：`title` / `description` / `pubDate` / `updatedDate` / `heroImage` / `tags` / `category` / `author` / `draft` / `lang`。
+
+## 国际化 (i18n)
+
+项目支持全量的中英双语切换：
+- **路由**: `/` (中文) 和 `/en/` (英文)
+- **内容同步**: 博客文章与标签系统在不同语境下保持功能对等。
+- **SEO**: 自动注入对应的 `hreflang` 与各语种 JSON-LD 结构化数据。
 
 ## 质量基线
 
