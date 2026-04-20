@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import '../../../styles/pages/tag.css';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
+  const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))];
+  return allTags.map(tag => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: allPosts.filter(p => p.data.tags.includes(tag)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`#${tag} — Qi-Lab`} description={`Articles related to ${tag} — Thoughtful technical sharing and insights from Qi-Lab.`}>
+  <div class="tag-page container">
+    <a href="/en/tags" class="tag-back-link">← All Tags</a>
+    <h1 class="tag-heading">#{tag}</h1>
+    <div class="tag-post-list">
+      {posts.map(post => (
+        <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="tag-post-card">
+          <h2 class="tag-post-title">{post.data.title}</h2>
+          <time class="tag-post-date">{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

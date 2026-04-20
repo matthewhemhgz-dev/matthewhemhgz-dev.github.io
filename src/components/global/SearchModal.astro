@@ -43,23 +43,23 @@
   const i18n: Record<string, Record<string, string>> = {
     zh: {
       title: '搜索',
-      placeholder: '搜索文章…',
+      placeholder: '搜索文章、标签或主题…',
       ariaLabel: '搜索文章',
-      hint: '输入关键词开始搜索',
-      searching: '搜索中…',
-      devOnly: '搜索功能仅在生产环境可用',
-      noResults: (q: string) => `未找到与"${q}"相关的结果`,
-      error: '搜索出错，请重试',
+      hint: '输入关键词，开启深度阅读…',
+      searching: '正在为您寻觅内容…',
+      devOnly: '搜索功能仅在生产环境（Build 后）可用',
+      noResults: (q: string) => `未找到与 “${q}” 匹配的内容。换个关键词试试？`,
+      error: '深感抱歉，搜索过程中出现了一点小意外'
     },
     en: {
       title: 'Search',
-      placeholder: 'Search articles…',
+      placeholder: 'Search articles, tags, or topics…',
       ariaLabel: 'Search articles',
-      hint: 'Type a keyword to search',
-      searching: 'Searching…',
-      devOnly: 'Search is only available in production',
-      noResults: (q: string) => `No results found for "${q}"`,
-      error: 'Search failed, please try again',
+      hint: 'Type a keyword to explore insights…',
+      searching: 'Looking for contents…',
+      devOnly: 'Search is only available in production (after build)',
+      noResults: (q: string) => `We couldn't find anything for "${q}". Try another keyword?`,
+      error: 'Something went wrong with the search',
     },
   };
 

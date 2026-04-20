@@ -1,11 +1,11 @@
 ---
-title: "AI 时代知识工作者的生存指南"
-description: "当 AI 可以在几秒钟内生成报告，知识工作者该如何重新定义自己的价值？"
+title: "AI 时代知识工作者的生存指南：从知识储备到系统连接"
+description: "当生成式 AI 瓦解了信息的稀缺性，知识工作者应如何重构『价值锚点』？深度探讨人机协作下的系统化生存策略。"
 pubDate: 2025-04-10
 updatedDate: 2026-04-18
 category: "深度研析"
 tags: ["AI", "知识管理", "效率工具", "长期主义"]
-heroImage: "/images/blog/ai-era-knowledge-worker.jpg"
+heroImage: "/images/blog/ai-era-knowledge-worker.png"
 author: "祈研所"
 draft: false
 lang: zh
