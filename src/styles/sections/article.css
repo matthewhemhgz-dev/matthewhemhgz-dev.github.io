@@ -176,25 +176,16 @@
   color: var(--qi-text-muted);
 }
 
-/* === Prose Styles — Magazine Grade Reading Experience === */
-.article-container .prose,
-.prose {
-  font-size: var(--qi-text-lg) !important;
-  line-height: 1.85 !important;
-  color: var(--qi-text-primary) !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border-radius: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-  transition: none !important;
-  margin-bottom: var(--qi-space-2xl) !important;
-  max-width: 100% !important;
-  letter-spacing: 0.01em !important;
+/* === Article Content Styles — Magazine Grade Reading Experience === */
+.article-container {
+  font-size: var(--qi-text-lg);
+  line-height: 1.85;
+  color: var(--qi-text-primary);
+  letter-spacing: 0.01em;
 }
 
 /* = Headings = */
-.prose :global(h2) {
+.article-container h2 {
   font-family: var(--qi-font-serif);
   font-size: 1.9rem;
   font-weight: 700;
@@ -207,7 +198,7 @@
   line-height: 1.25;
 }
 
-.prose :global(h2)::after {
+.article-container h2::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -218,7 +209,7 @@
   border-radius: 2px;
 }
 
-.prose :global(h3) {
+.article-container h3 {
   font-family: var(--qi-font-serif);
   font-size: 1.55rem;
   font-weight: 700;
@@ -231,7 +222,7 @@
   letter-spacing: -0.01em;
 }
 
-.prose :global(h3)::before {
+.article-container h3::before {
   content: "";
   position: absolute;
   left: 0;
@@ -243,7 +234,7 @@
   border-radius: 2px;
 }
 
-.prose :global(h4) {
+.article-container h4 {
   font-family: var(--qi-font-serif);
   font-size: 1.3rem;
   font-weight: 600;
@@ -254,30 +245,30 @@
 }
 
 /* = Paragraphs & Text = */
-.prose :global(p) {
+.article-container p {
   margin-bottom: 1.6rem;
   text-align: left;
   text-wrap: pretty;
 }
 
-.prose :global(strong) {
+.article-container strong {
   font-weight: 600;
   color: var(--qi-text-primary);
 }
 
-.prose :global(em) {
+.article-container em {
   font-style: italic;
 }
 
 /* = Links = */
-.prose :global(a) {
+.article-container a {
   color: var(--qi-brand-emerald);
   text-decoration: none;
   position: relative;
   transition: color var(--qi-transition);
 }
 
-.prose :global(a)::after {
+.article-container a::after {
   content: "";
   position: absolute;
   bottom: -1px;
@@ -288,34 +279,34 @@
   transition: height var(--qi-transition-fast), bottom var(--qi-transition-fast), background var(--qi-transition-fast);
 }
 
-.prose :global(a:hover) {
+.article-container a:hover {
   color: var(--qi-brand-amber);
 }
 
-.prose :global(a:hover)::after {
+.article-container a:hover::after {
   height: 2px;
   bottom: -2px;
   background: linear-gradient(90deg, var(--qi-brand-amber-50), var(--qi-brand-amber-15), transparent);
 }
 
 /* = Lists = */
-.prose :global(ul),
-.prose :global(ol) {
+.article-container ul,
+.article-container ol {
   padding-left: 1.75rem;
   margin-bottom: 1.5rem;
 }
 
-.prose :global(ul) {
+.article-container ul {
   list-style: none;
   position: relative;
 }
 
-.prose :global(ul) > :global(li) {
+.article-container ul > li {
   position: relative;
   padding-left: 0.5rem;
 }
 
-.prose :global(ul) > :global(li)::before {
+.article-container ul > li::before {
   content: "";
   position: absolute;
   left: -1.25rem;
@@ -327,18 +318,18 @@
   box-shadow: 0 0 0 3px var(--qi-brand-emerald-10);
 }
 
-.prose :global(ol) {
+.article-container ol {
   list-style: none;
   counter-reset: list-counter;
 }
 
-.prose :global(ol) > :global(li) {
+.article-container ol > li {
   counter-increment: list-counter;
   position: relative;
   padding-left: 0.5rem;
 }
 
-.prose :global(ol) > :global(li)::before {
+.article-container ol > li::before {
   content: counter(list-counter);
   position: absolute;
   left: -1.75rem;
@@ -356,17 +347,17 @@
   border-radius: 4px;
 }
 
-.prose :global(li) {
+.article-container li {
   margin-bottom: 0.75rem;
   line-height: 1.9;
 }
 
-.prose :global(li)::marker {
+.article-container li::marker {
   color: var(--qi-brand-emerald);
 }
 
 /* = Blockquote = */
-.prose :global(blockquote) {
+.article-container blockquote {
   border-left: 4px solid var(--qi-brand-emerald);
   padding: 1.75rem 1.75rem 1.75rem 2rem;
   margin: 2.5rem 0;
@@ -378,12 +369,12 @@
   transition: transform var(--qi-transition-fast), background var(--qi-transition-fast);
 }
 
-.prose :global(blockquote):hover {
+.article-container blockquote:hover {
   transform: translateX(6px);
   background: var(--qi-brand-emerald-08);
 }
 
-.prose :global(blockquote)::before {
+.article-container blockquote::before {
   content: '"';
   position: absolute;
   top: 0.5rem;
@@ -396,14 +387,14 @@
   font-weight: 700;
 }
 
-.prose :global(blockquote p) {
+.article-container blockquote p {
   margin-bottom: 0;
   line-height: 1.8;
   font-size: 1.05em;
 }
 
 /* = Images = */
-.prose :global(img) {
+.article-container img {
   max-width: 100%;
   height: auto;
   border-radius: var(--qi-radius-lg);
@@ -413,22 +404,22 @@
   display: block;
 }
 
-.prose :global(img):hover {
+.article-container img:hover {
   transform: scale(1.015);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.prose :global(img):only-child {
+.article-container img:only-child {
   margin-inline: auto;
 }
 
 /* Figure with caption */
-.prose :global(figure) {
+.article-container figure {
   margin: 2.25rem 0;
   text-align: center;
 }
 
-.prose :global(figcaption) {
+.article-container figcaption {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
   color: var(--qi-text-muted);
@@ -438,7 +429,7 @@
 }
 
 /* = Horizontal Rule = */
-.prose :global(hr) {
+.article-container hr {
   border: none;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--qi-base-12), var(--qi-base-12), transparent);
@@ -446,7 +437,7 @@
   position: relative;
 }
 
-.prose :global(hr)::before {
+.article-container hr::before {
   content: "• • •";
   position: absolute;
   top: 50%;
@@ -460,7 +451,7 @@
 }
 
 /* = Tables = */
-.prose :global(table) {
+.article-container table {
   width: 100%;
   min-width: 700px;
   border-collapse: separate;
@@ -476,8 +467,8 @@
   background: var(--qi-surface-main);
 }
 
-.prose :global(th),
-.prose :global(td) {
+.article-container th,
+.article-container td {
   padding: 0.9rem 1.25rem;
   border: none;
   border-bottom: 1px solid var(--qi-border-subtle);
@@ -485,7 +476,7 @@
   transition: background-color var(--qi-transition-fast);
 }
 
-.prose :global(th) {
+.article-container th {
   font-family: var(--qi-font-mono);
   font-size: 0.78rem;
   font-weight: 600;
@@ -497,24 +488,24 @@
   border-bottom: 2px solid var(--qi-brand-emerald-20);
 }
 
-.prose :global(tr:last-child) td {
+.article-container tr:last-child td {
   border-bottom: none;
 }
 
-.prose :global(tr:nth-child(even)) td {
+.article-container tr:nth-child(even) td {
   background: var(--qi-brand-emerald-03);
 }
 
-.prose :global(tr:hover) td {
+.article-container tr:hover td {
   background: var(--qi-brand-emerald-08);
 }
 
-.prose :global(tr:nth-child(even)):hover td {
+.article-container tr:nth-child(even):hover td {
   background: var(--qi-brand-emerald-10);
 }
 
 /* = Mermaid diagrams = */
-.mermaid-container {
+.article-container .mermaid-container {
   background: var(--qi-surface-main);
   border-radius: var(--qi-radius-lg);
   padding: var(--qi-space-xl);
@@ -525,124 +516,122 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-.mermaid-container svg {
+.article-container .mermaid-container svg {
   max-width: 100%;
   height: auto;
 }
 
 /* = Dark Mode Specifics = */
-:global(.dark) .prose {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-:global(.dark) .prose :global(h2),
-:global(.dark) .prose :global(h3),
-:global(.dark) .prose :global(h4) {
+:global(.dark) .article-container {
   color: var(--qi-text-primary);
 }
 
-:global(.dark) .prose :global(h2)::after {
+:global(.dark) .article-container h2,
+:global(.dark) .article-container h3,
+:global(.dark) .article-container h4 {
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .article-container h2::after {
   background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
 }
 
-:global(.dark) .prose :global(h3)::before {
+:global(.dark) .article-container h3::before {
   background: var(--qi-brand-emerald);
 }
 
-:global(.dark) .prose :global(strong) {
+:global(.dark) .article-container strong {
   color: var(--qi-text-primary);
 }
 
-:global(.dark) .prose :global(a) {
+:global(.dark) .article-container a {
   color: var(--qi-brand-emerald);
 }
 
-:global(.dark) .prose :global(a)::after {
+:global(.dark) .article-container a::after {
   background: linear-gradient(90deg, var(--qi-brand-emerald-40), var(--qi-brand-emerald-10), transparent);
 }
 
-:global(.dark) .prose :global(a:hover) {
+:global(.dark) .article-container a:hover {
   color: var(--qi-brand-amber);
 }
 
-:global(.dark) .prose :global(a:hover)::after {
+:global(.dark) .article-container a:hover::after {
   background: linear-gradient(90deg, var(--qi-brand-amber-50), var(--qi-brand-amber-15), transparent);
 }
 
-:global(.dark) .prose :global(ul) > :global(li)::before {
+:global(.dark) .article-container ul > li::before {
   background: var(--qi-brand-emerald);
   box-shadow: 0 0 0 3px var(--qi-brand-emerald-08);
 }
 
-:global(.dark) .prose :global(ol) > :global(li)::before {
+:global(.dark) .article-container ol > li::before {
   color: var(--qi-brand-emerald);
   background: var(--qi-brand-emerald-08);
 }
 
-:global(.dark) .prose :global(blockquote) {
+:global(.dark) .article-container blockquote {
   border-left-color: var(--qi-brand-emerald);
   background: var(--qi-brand-emerald-06);
   color: var(--qi-text-primary);
 }
 
-:global(.dark) .prose :global(blockquote):hover {
+:global(.dark) .article-container blockquote:hover {
   background: var(--qi-brand-emerald-10);
 }
 
-:global(.dark) .prose :global(blockquote)::before {
+:global(.dark) .article-container blockquote::before {
   color: var(--qi-brand-emerald);
   opacity: 0.15;
 }
 
-:global(.dark) .prose :global(img) {
+:global(.dark) .article-container img {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-:global(.dark) .prose :global(img):hover {
+:global(.dark) .article-container img:hover {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-:global(.dark) .prose :global(hr)::before {
+:global(.dark) .article-container hr::before {
   background: var(--qi-bg-base);
   color: var(--qi-brand-emerald);
 }
 
-:global(.dark) .prose :global(hr) {
+:global(.dark) .article-container hr {
   background: linear-gradient(90deg, transparent, var(--qi-base-16), var(--qi-base-16), transparent);
 }
 
-:global(.dark) .prose :global(table) {
+:global(.dark) .article-container table {
   border-color: var(--qi-border-default);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
   background: var(--qi-surface-main);
 }
 
-:global(.dark) .prose :global(th) {
+:global(.dark) .article-container th {
   color: var(--qi-text-primary);
   background: var(--qi-surface-sub);
   border-bottom-color: var(--qi-brand-emerald-25);
 }
 
-:global(.dark) .prose :global(th),
-:global(.dark) .prose :global(td) {
+:global(.dark) .article-container th,
+:global(.dark) .article-container td {
   border-bottom-color: var(--qi-border-subtle);
 }
 
-:global(.dark) .prose :global(tr:nth-child(even)) td {
+:global(.dark) .article-container tr:nth-child(even) td {
   background: var(--qi-brand-emerald-05);
 }
 
-:global(.dark) .prose :global(tr:hover) td {
+:global(.dark) .article-container tr:hover td {
   background: var(--qi-brand-emerald-10);
 }
 
-:global(.dark) .prose :global(tr:nth-child(even)):hover td {
+:global(.dark) .article-container tr:nth-child(even):hover td {
   background: var(--qi-brand-emerald-12);
 }
 
-:global(.dark) .mermaid-container {
+:global(.dark) .article-container .mermaid-container {
   background: var(--qi-surface-main);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
