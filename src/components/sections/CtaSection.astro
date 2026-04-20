@@ -1,4 +1,6 @@
 ---
+import { svgIcons } from '../../data/icons';
+
 interface Props {
   label: string;
   title: string;
@@ -48,7 +50,7 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
             data-account="祈研所"
             title="微信公众号"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S18.63 2 12 2z"/><path d="M11 7.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"/></svg>
+            <Fragment set:html={svgIcons.wechat} />
           </button>
           <button 
             type="button" 
@@ -59,7 +61,7 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
             data-account="祈研所（Qi_Lab）"
             title="小红书"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            <Fragment set:html={svgIcons.xhs} />
           </button>
           <button 
             type="button" 
@@ -70,7 +72,7 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
             data-account="祈研所（QiLab）"
             title="抖音"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="9 12 15 15 15 9 9 12"/></svg>
+            <Fragment set:html={svgIcons.douyin} />
           </button>
         </div>
       </div>
