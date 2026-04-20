@@ -74,7 +74,7 @@
 
   function tNoResults(q: string): string {
     const fn = (i18n[getLang()] || i18n.zh).noResults;
-    return typeof fn === 'function' ? (fn as (_: string) => string)(q) : String(fn);
+    return typeof fn === 'function' ? fn(q) : String(fn);
   }
 
   function applyI18n() {

@@ -16,33 +16,10 @@
   animation: 300ms ease-in both qi-fade-slide-in;
 }
 
-::view-transition-old(main-content) {
-  animation: fade-out 0.2s ease both;
-}
-::view-transition-new(main-content) {
-  animation: fade-in 0.3s var(--qi-spring-soft) both;
-}
-::view-transition-old(site-footer) {
-  animation: fade-out 0.15s ease both;
-}
-::view-transition-new(site-footer) {
-  animation: fade-in 0.25s ease both;
-}
-
 /* === Scroll Reveal === */
 @keyframes qi-fade-up {
   from { opacity: 0; transform: translateY(var(--qi-anim-offset)); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes qi-fade-scale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes qi-fade-left {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
 }
 
 [data-reveal] {
@@ -53,59 +30,6 @@
 [data-reveal].is-visible {
   animation: qi-fade-up var(--qi-anim-duration) var(--qi-spring-soft) forwards;
   animation-delay: var(--reveal-delay, 0ms);
-}
-
-[data-reveal="scale"].is-visible {
-  animation: qi-fade-scale var(--qi-anim-duration) var(--qi-anim-ease) forwards;
-}
-
-[data-reveal="fade-left"].is-visible {
-  animation: qi-fade-left var(--qi-anim-duration) var(--qi-anim-ease) forwards;
-}
-
-/* === Scroll Light Effect on Cards === */
-.bento-card,
-.toolbox-category,
-.platform-card,
-.dash-card {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Testimonials 卡片不使用 overflow:hidden，避免 border-top + border-radius 渲染冲突 */
-.testimonial-card {
-  position: relative;
-}
-
-.bento-card::after,
-.toolbox-category::after,
-.platform-card::after,
-.testimonial-card::after,
-.dash-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle at var(--light-x, 50%) var(--light-y, 0%),
-    rgba(229, 169, 60, var(--light-intensity, 0)) 0%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 0;
-  opacity: 1;
-  transition: opacity 0.3s var(--qi-spring-snappy);
-}
-
-.bento-card:hover::after,
-.toolbox-category:hover::after,
-.platform-card:hover::after,
-.testimonial-card:hover::after,
-.dash-card:hover::after {
-  --light-intensity: var(--qi-card-glow-intensity);
 }
 
 /* === Magnetic Hover on Buttons === */
@@ -141,27 +65,6 @@ main {
   animation-delay: 0.05s;
 }
 
-/* === Brand Signature: "祈" Stroke Reveal === */
-@keyframes qi-stroke-reveal {
-  0% {
-    clip-path: inset(100% 0 0 0);
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
-    filter: blur(4px);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-    opacity: 0.05;
-    transform: translate(-50%, -50%) scale(1);
-    filter: blur(0);
-  }
-}
-
-.hero-watermark {
-  animation: qi-stroke-reveal 3s cubic-bezier(0.25, 0.1, 0.25, 1) both,
-             watermark-breathe 15s ease-in-out 3s infinite;
-}
-
 /* === Reduced motion === */
 @media (prefers-reduced-motion: reduce) {
   main {
@@ -176,45 +79,13 @@ main {
   ::view-transition-new(root) {
     animation: 0.01ms !important;
   }
-  .bento-card::after,
-  .toolbox-category::after,
-  .platform-card::after,
-  .testimonial-card::after,
-  .dash-card::after {
-    display: none;
-  }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* === 卡片 3D 倾斜 + 光泽效果 === */
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease-out;
-  will-change: transform;
-}
-
-.tilt-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle at var(--tilt-x, 50%) var(--tilt-y, 50%),
-    rgba(255, 255, 255, 0.18) 0%,
-    transparent 55%
-  );
-  opacity: 0;
-  transition: opacity 0.3s var(--qi-spring-snappy);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.tilt-card:hover::before {
-  opacity: 1;
 }

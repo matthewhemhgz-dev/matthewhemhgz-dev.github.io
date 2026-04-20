@@ -9,6 +9,10 @@
   margin: 0 auto;
   padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding) var(--qi-space-5xl);
   scroll-margin-top: var(--qi-nav-total-height);
+  font-size: var(--qi-text-lg);
+  line-height: 1.85;
+  color: var(--qi-text-primary);
+  letter-spacing: 0.01em;
 }
 
 /* Back link */
@@ -176,13 +180,7 @@
   color: var(--qi-text-muted);
 }
 
-/* === Article Content Styles — Magazine Grade Reading Experience === */
-.article-container {
-  font-size: var(--qi-text-lg);
-  line-height: 1.85;
-  color: var(--qi-text-primary);
-  letter-spacing: 0.01em;
-}
+/* === Article Content Styles — Magazine Grade Reading Experience ===
 
 /* = Headings = */
 .article-container h2 {
@@ -350,10 +348,6 @@
 .article-container li {
   margin-bottom: 0.75rem;
   line-height: 1.9;
-}
-
-.article-container li::marker {
-  color: var(--qi-brand-emerald);
 }
 
 /* = Blockquote = */
@@ -677,25 +671,25 @@
     font-size: var(--qi-text-lg);
   }
 
-  .prose {
+  .article-container {
     font-size: var(--qi-text-base);
     line-height: 1.8;
   }
 
-  .prose :global(h2) {
+  .article-container h2 {
     font-size: 1.6rem;
     margin-top: 2.5rem;
   }
 
-  .prose :global(h3) {
+  .article-container h3 {
     font-size: 1.35rem;
   }
 
-  .prose :global(h4) {
+  .article-container h4 {
     font-size: 1.15rem;
   }
 
-  .prose :global(blockquote) {
+  .article-container blockquote {
     padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   }
 }
@@ -713,7 +707,7 @@
     max-width: 780px;
   }
 
-  .prose :global(h2) {
+  .article-container h2 {
     font-size: 2rem;
   }
 }
@@ -724,16 +718,16 @@
     max-width: 820px;
   }
 
-  .prose {
+  .article-container {
     font-size: calc(var(--qi-text-lg) + 0.05rem);
     line-height: 1.9;
   }
 
-  .prose :global(h2) {
+  .article-container h2 {
     font-size: 2.1rem;
   }
 
-  .prose :global(h3) {
+  .article-container h3 {
     font-size: 1.65rem;
   }
 
@@ -751,20 +745,20 @@
     max-width: 900px;
   }
 
-  .prose {
+  .article-container {
     font-size: var(--qi-text-xl);
     line-height: 1.95;
   }
 
-  .prose :global(h2) {
+  .article-container h2 {
     font-size: 2.3rem;
   }
 
-  .prose :global(h3) {
+  .article-container h3 {
     font-size: 1.8rem;
   }
 
-  .prose :global(pre) {
+  .article-container pre {
     padding: var(--qi-space-xl);
   }
 
@@ -782,11 +776,11 @@
     max-width: 1000px;
   }
 
-  .prose :global(h2) {
+  .article-container h2 {
     font-size: 2.5rem;
   }
 
-  .prose :global(h3) {
+  .article-container h3 {
     font-size: 2rem;
   }
 
