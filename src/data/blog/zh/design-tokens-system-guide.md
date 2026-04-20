@@ -4,7 +4,7 @@ description: "设计令牌是设计系统的原子单位。本文从概念到实
 pubDate: 2026-04-12
 category: "前端工程"
 tags: ["CSS", "设计系统", "Design Tokens", "最佳实践"]
-heroImage: "/images/blog/design-tokens-system-guide.jpg"
+heroImage: "/images/blog/design-tokens-system-guide.png"
 author: "祈研所"
 draft: false
 lang: zh
@@ -101,9 +101,9 @@ graph TD
     A[全局令牌 Global Tokens] --> B[别名令牌 Alias Tokens]
     B --> C[组件令牌 Component Tokens]
 
-    A -- 原始设计值 -->|如: blue-500: #2563EB| A
-    B -- 语义化映射 -->|如: color-primary: blue-500| B
-    C -- 组件级绑定 -->|如: button-bg: color-primary| C
+    A -- "原始设计值 | 如: blue-500: #2563EB" --> A
+    B -- "语义化映射 | 如: color-primary: blue-500" --> B
+    C -- "组件级绑定 | 如: button-bg: color-primary" --> C
 ```
 
 ### 第一层：全局令牌（Global Tokens）

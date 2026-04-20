@@ -1,10 +1,10 @@
 ---
-title: "渐进式重构实战：从内联 CSS 到 Tailwind 优化"
-description: "分享在 Astro 项目中进行渐进式 CSS 重构的完整实践经验，包括踩过的坑、心得体会和具体实施方案。"
+title: "渐进式重构实战：在 Astro + Tailwind 下实现工程美学"
+description: "一场从 legacy 到 modern 的蜕变。分享 Qi-Lab 在不中断发布的前提下，如何逐步进化至高级感视觉系统的全过程。"
 pubDate: 2026-04-19
-category: "前端工程"
-tags: ["CSS", "重构", "Tailwind", "Astro", "架构设计"]
-heroImage: "/images/blog/progressive-refactor-astro-tailwind.jpg"
+category: "重构实战"
+tags: ["Refactoring", "TailwindCSS", "工程实践"]
+heroImage: "/images/blog/progressive-refactor-astro-tailwind.png"
 author: "祈研所"
 draft: false
 lang: zh

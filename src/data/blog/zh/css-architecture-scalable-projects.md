@@ -1,10 +1,10 @@
 ---
-title: "可扩展的 CSS 架构：从 BEM 到设计令牌的演进"
-description: "探讨 CSS 架构方法论的发展历程，从 BEM、ITCSS、Utility-First 到设计令牌，找到适合中大型项目的最佳实践。"
-pubDate: 2026-04-08
-category: "前端工程"
-tags: ["CSS", "架构设计", "BEM", "设计系统"]
-heroImage: "/images/blog/css-architecture-scalable-projects.jpg"
+title: "可扩展的 CSS 架构：Token 驱动的视觉系统实践"
+description: "如何通过 Design Tokens 构建一套在深色模式下依然具备视觉深度与一致性的组件体系？分享 Qi-Lab 的工程实践。"
+pubDate: 2025-06-20
+category: "设计系统"
+tags: ["CSS", "Design Tokens", "UI/UX", "设计系统"]
+heroImage: "/images/blog/css-architecture-scalable-projects.png"
 author: "祈研所"
 draft: false
 lang: zh

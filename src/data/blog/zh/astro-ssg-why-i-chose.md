@@ -1,10 +1,10 @@
 ---
-title: "为什么选择 Astro 作为静态站点生成器"
-description: "从 Next.js 到 Astro 的技术选型心路历程，以及 Islands Architecture 带来的性能飞跃。"
-pubDate: 2026-04-15
-category: "技术选型"
-tags: ["Astro", "SSG", "前端工程", "性能优化"]
-heroImage: "/images/blog/astro-ssg-why-i-chose.jpg"
+title: "为何我选择 Astro 作为 Qi-Lab 的工程基石？"
+description: "拒绝过度工程，拥抱内容优先。深入分析 Astro 如何通过群岛架构实现极致的性能表现与开发体验的平衡。"
+pubDate: 2025-05-15
+category: "技术洞察"
+tags: ["Astro", "前端架构", "SSG", "性能优化"]
+heroImage: "/images/blog/astro-ssg-why-i-chose.png"
 author: "祈研所"
 draft: false
 lang: zh

@@ -1,11 +1,10 @@
 ---
-title: "Notion + Obsidian 双轨知识管理系统"
-description: "如何用 Notion 做项目管理，Obsidian 做知识沉淀，构建互补的双轨系统。"
-pubDate: 2025-03-28
-updatedDate: 2026-04-18
-category: "实用干货"
-tags: ["Notion", "Obsidian", "知识管理", "PKM"]
-heroImage: "/images/blog/notion-obsidian-dual-track.jpg"
+title: "Notion + Obsidian：双轨制知识资产管理方案"
+description: "拒绝工具内耗。基于数据主权与协作效率，构建『双向链接』与『强结构化数据』并行的个人第二大脑。"
+pubDate: 2025-08-12
+category: "系统方案"
+tags: ["Notion", "Obsidian", "知识管理", "双向链接"]
+heroImage: "/images/blog/notion-obsidian-dual-track.png"
 author: "祈研所"
 draft: false
 lang: zh
