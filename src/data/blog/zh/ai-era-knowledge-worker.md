@@ -133,17 +133,17 @@ graph LR
 
 ```mermaid
 graph TB
-    subgraph 核心能力
+    subgraph "核心能力"
         A[问题定义能力]
         B[批判性思维]
         C[跨域连接能力]
     end
-    subgraph 增强能力
+    subgraph "增强能力"
         D[AI 工具熟练度]
         E[Prompt Engineering]
         F[人机协作设计]
     end
-    subgraph 底层素养
+    subgraph "底层素养"
         G[持续学习]
         H[适应变化]
         I[长期主义]
