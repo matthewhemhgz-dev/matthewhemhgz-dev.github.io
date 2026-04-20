@@ -8,7 +8,39 @@ interface Props {
 
 const { label, title } = Astro.props;
 
-const methodologies = [
+const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
+const isEnglish = currentLocale === 'en';
+
+const methodologies = isEnglish ? [
+  {
+    step: '01',
+    title: 'Seamless Capture',
+    description: 'Filtering informational noise and instantly capturing fleeting inspirations, raw materials, and cross-domain information via a Digital Twin.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
+    color: 'emerald'
+  },
+  {
+    step: '02',
+    title: 'Deep Refinement',
+    description: 'Applying Feynman learning and Atomic principles to restructure redundant info into highly internalized, structural knowledge units.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    color: 'amber'
+  },
+  {
+    step: '03',
+    title: 'Networked Connection',
+    description: 'Breaking hierarchical constraints with bidirectional links in Obsidian, allowing new insights to emerge through cross-referencing.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+    color: 'mint'
+  },
+  {
+    step: '04',
+    title: 'Value Manifestation',
+    description: 'Adhering to "Output-Driven Input" to complete the loop from info accumulation to wisdom generation via practice and sharing.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    color: 'emerald'
+  }
+] : [
   {
     step: '01',
     title: '全量捕获 (Capture)',
@@ -87,6 +119,12 @@ const methodologies = [
     gap: var(--qi-space-md);
   }
 
+  :global(.dark) .research-card {
+    background: var(--qi-surface-main);
+    border-color: var(--qi-border-strong);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
+  }
+
   .research-card::before {
     content: '';
     position: absolute;
@@ -97,6 +135,10 @@ const methodologies = [
     background: var(--qi-base-10);
     opacity: 0.5;
     transition: opacity 0.3s ease;
+  }
+
+  :global(.dark) .research-card::before {
+    background: var(--qi-border-strong);
   }
 
   .research-card:hover {

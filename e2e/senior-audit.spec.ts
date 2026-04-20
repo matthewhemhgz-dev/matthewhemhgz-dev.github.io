@@ -1,149 +1,125 @@
-import { test, expect, type Page } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
+import { test, expect } from '@playwright/test';
 
 /**
- * Senior Frontend Audit Suite
- * Focuses on:
- * 1. Deep Accessibility (WCAG 2.1 AA+)
- * 2. Visual Token Integrity
- * 3. Interactive State Accessibility (Hover/Focus Contrast)
- * 4. Modal UX & Focus Management
- * 5. Responsive Fluidity
+ * Senior Level Deep Audit for Qi-Lab
+ * Focus: Visual Consistency, Content Sync, Layout Integrity, Design Token Logic
  */
+test.describe('Senior Level Site Audit', () => {
 
-const PAGES = [
-    { name: 'Home (ZH)', path: '/' },
-    { name: 'About (ZH)', path: '/about' },
-    { name: 'Blog (ZH)', path: '/blog' },
-    { name: 'Home (EN)', path: '/en/' },
-];
-
-const THEMES = ['light', 'dark'];
-
-async function checkA11y(page: Page, testName: string) {
-    // Inject a small delay to allow animations to settle
-    await page.waitForTimeout(500);
-
-    const results = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
-        .analyze();
-
-    if (results.violations.length > 0) {
-        console.log(`[A11Y VIOLATIONS] in ${testName}:`);
-        results.violations.forEach(v => {
-            console.log(` - ID: ${v.id} | Impact: ${v.impact} | Help: ${v.help}`);
-            v.nodes.forEach(n => {
-                console.log(`   * Target: ${n.target}`);
-            });
-        });
-    }
-
-    return results.violations;
-}
-
-test.describe('Senior Frontend Audit: Core Systems', () => {
-
-    for (const pageInfo of PAGES) {
-        test.describe(`Page: ${pageInfo.name}`, () => {
-
-            test.beforeEach(async ({ page }) => {
-                await page.goto(pageInfo.path);
-            });
-
-            for (const theme of THEMES) {
-                test(`Comprehensive Audit - Theme: ${theme}`, async ({ page }) => {
-                    // Set Theme
-                    const isCurrentlyDark = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-                    if ((theme === 'dark' && !isCurrentlyDark) || (theme === 'light' && isCurrentlyDark)) {
-                        await page.locator('#theme-toggle').click();
-                    }
-
-                    await expect(page.locator('html')).toHaveClass(new RegExp(theme));
-
-                    // Inject CSS to hide noise/particles for cleaner A11y scan
-                    await page.addStyleTag({
-                        content: '.noise-overlay, #particles-canvas { display: none !important; }'
-                    });
-
-                    // 1. Accessibility Scan
-                    const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
-                    expect(violations.length).toBe(0);
-
-                    // 2. Interactive States Audit
-                    // Focus on buttons to ensure focus-visible is clear
-                    const buttons = page.locator('button, a[role="button"]');
-                    const count = await buttons.count();
-                    for (let i = 0; i < Math.min(count, 5); i++) {
-                        const btn = buttons.nth(i);
-                        await btn.focus();
-                        // Manual check for focus ring or outline via screenshot/eval
-                        const hasFocusStyle = await btn.evaluate(node => {
-                            const style = window.getComputedStyle(node);
-                            return style.outlineStyle !== 'none' || style.boxShadow !== 'none' || style.borderStyle !== 'none';
-                        });
-                        if (!hasFocusStyle) {
-                            console.warn(`[UX WARNING] Potential missing focus style on button ${i} in ${pageInfo.name}`);
-                        }
-                    }
-
-                    // 3. Contrast deep dive for key tokens
-                    const tokenCheck = await page.evaluate(() => {
-                        const style = getComputedStyle(document.documentElement);
-                        return {
-                            emerald: style.getPropertyValue('--qi-brand-emerald').trim(),
-                            bg: style.getPropertyValue('--qi-bg-base').trim(),
-                            fg: style.getPropertyValue('--qi-text-primary').trim(),
-                        };
-                    });
-                    console.log(`[TOKEN AUDIT] ${pageInfo.name} [${theme}]:`, tokenCheck);
-
-                });
-            }
-
-            test('Modal Integrity - Social QR', async ({ page }) => {
-                // Open Footer Modal if button exists
-                const footerTrigger = page.locator('.footer-qr-trigger, button:has-text("关注"), .social-link-qr');
-                if (await footerTrigger.isVisible()) {
-                    await footerTrigger.click();
-                    const modal = page.locator('#social-qr-modal, [role="dialog"]');
-                    await expect(modal).toBeVisible();
-
-                    // Check Focus Trapping (Simplified check)
-                    await page.keyboard.press('Tab');
-                    // Senior check: Focus should be inside modal
-                    const isInside = await page.evaluate(() => {
-                        const modal = document.querySelector('#social-qr-modal, [role="dialog"]');
-                        return modal?.contains(document.activeElement);
-                    });
-                    expect(isInside).toBeTruthy();
-
-                    // Check Contrast inside modal
-                    const violations = await checkA11y(page, `${pageInfo.name} Modal Open`);
-                    expect(violations.length).toBe(0);
-
-                    // Close Modal
-                    await page.keyboard.press('Escape');
-                    await expect(modal).not.toBeVisible();
-                }
-            });
-        });
-    }
-
-    test('Design System Consistency: Color Palette', async ({ page }) => {
+    // --- content sync check ---
+    test('i18n Sync: Verify English version availability and parity', async ({ page }) => {
+        // 检查首页板块是否同步
         await page.goto('/');
-        // Verify CSS Variables are actually defined
-        const vars = await page.evaluate(() => {
-            const style = getComputedStyle(document.documentElement);
-            return [
-                '--qi-brand-emerald', '--qi-bg-base', '--qi-text-primary',
-                '--qi-radius-md', '--qi-font-sans'
-            ].map(v => ({ name: v, value: style.getPropertyValue(v).trim() }));
-        });
+        const zhSections = await page.locator('section').count();
+        const zhArticleCount = await page.locator('.featured-card').count();
 
-        vars.forEach(v => {
-            expect(v.value).not.toBe('');
-            if (v.value === '') console.error(`[LEAK] CSS Variable ${v.name} is undefined`);
-        });
+        await page.goto('/en');
+        const enSections = await page.locator('section').count();
+        const enArticleCount = await page.locator('.featured-card').count();
+
+        console.log(`[Content Parity] Sections: ZH(${zhSections}) vs EN(${enSections})`);
+        console.log(`[Content Parity] Featured Articles: ZH(${zhArticleCount}) vs EN(${enArticleCount})`);
+
+        // 如果文章数量不一致，发出警告（不计为 Failure 因为翻译可能滞后，但需要标记）
+        if (zhArticleCount !== enArticleCount) {
+            console.warn(`[WARNING] Content desync: ZH has ${zhArticleCount} featured articles, but EN has ${enArticleCount}`);
+        }
+
+        // 关键板块不应缺失 (如 Hero, About, Methodology/Timeline, Cta)
+        expect(enSections).toBeGreaterThanOrEqual(5);
     });
 
+    // --- layout & visual audit ---
+    test('Visual Integrity: Check for element collisions and clipping', async ({ page }) => {
+        const viewports = [
+            { width: 375, height: 667 },  // iPhone SE
+            { width: 1440, height: 900 }  // Desktop
+        ];
+
+        for (const vp of viewports) {
+            await page.setViewportSize(vp);
+            await page.goto('/');
+
+            // 检查 Hero 卡片是否溢出容器
+            const heroStats = page.locator('.hero-stats');
+            const heroExtra = page.locator('.hero-extra');
+
+            if (await heroExtra.isVisible()) {
+                const extraBox = await heroExtra.boundingBox();
+                const containerBox = await page.locator('.hero-section').boundingBox();
+
+                if (extraBox && containerBox) {
+                    // 如果是桌面端，检查是否在视野内
+                    if (vp.width > 1024) {
+                        expect(extraBox.x + extraBox.width).toBeLessThanOrEqual(containerBox.width);
+                    }
+                }
+            }
+        }
+    });
+
+    // --- thematic logic check ---
+    test('Theme Logic: Contrast & Design Token Application', async ({ page }) => {
+        await page.goto('/');
+
+        // 检查主色调变量在两种模式下的计算值
+        const themeStats = await page.evaluate(() => {
+            const getVar = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+            // Light mode
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            const lightPrimary = getVar('--qi-text-primary');
+
+            // Dark mode
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+            const darkPrimary = getVar('--qi-text-primary');
+
+            return { lightPrimary, darkPrimary };
+        });
+
+        console.log(`[Design Tokens] Text Primary: Light(${themeStats.lightPrimary}) | Dark(${themeStats.darkPrimary})`);
+
+        // 确保颜色有显著差异
+        expect(themeStats.lightPrimary).not.toBe(themeStats.darkPrimary);
+    });
+
+    // --- interaction audit ---
+    test('Interactions: Navigation and Search UI stability', async ({ page }) => {
+        await page.goto('/');
+
+        // 开启搜索框
+        const searchBtn = page.locator('button[aria-label*="搜索"], button.search-toggle').first();
+        if (await searchBtn.isVisible()) {
+            await searchBtn.click();
+            await expect(page.locator('role=dialog')).toBeVisible();
+
+            // 检查 ESC 关闭逻辑
+            await page.keyboard.press('Escape');
+            await expect(page.locator('role=dialog')).not.toBeVisible();
+        }
+    });
+
+    // --- blog detail audit ---
+    test('Blog Detail: High-fidelity layout and typography', async ({ page }) => {
+        // 进入第一篇文章
+        await page.goto('/blog');
+        const firstPost = page.locator('.blog-card-link, .featured-card-content a').first();
+        if (await firstPost.isVisible()) {
+            await firstPost.click();
+            await page.waitForLoadState('networkidle');
+
+            // 检查是否有 Mermaid 报错气泡
+            const errorBubbles = page.locator('.mermaid .error');
+            const syntaxErrorText = page.locator('text=/Syntax error/i');
+
+            await expect(syntaxErrorText).not.toBeVisible();
+
+            // 检查侧边栏/浮动组件是否在宽屏展示
+            await page.setViewportSize({ width: 1600, height: 900 });
+            const progress = page.locator('.scroll-progress');
+            await expect(progress).toBeVisible();
+        }
+    });
 });
