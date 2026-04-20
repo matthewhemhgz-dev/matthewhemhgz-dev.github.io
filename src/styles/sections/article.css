@@ -177,19 +177,20 @@
 }
 
 /* === Prose Styles — Magazine Grade Reading Experience === */
+.article-container .prose,
 .prose {
-  font-size: var(--qi-text-lg);
-  line-height: 1.85;
-  color: var(--qi-text-primary);
-  padding: 0;
-  background: transparent;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-  transition: none;
-  margin-bottom: var(--qi-space-2xl);
-  max-width: 100%;
-  letter-spacing: 0.01em;
+  font-size: var(--qi-text-lg) !important;
+  line-height: 1.85 !important;
+  color: var(--qi-text-primary) !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  margin-bottom: var(--qi-space-2xl) !important;
+  max-width: 100% !important;
+  letter-spacing: 0.01em !important;
 }
 
 /* = Headings = */
