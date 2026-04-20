@@ -1,0 +1,249 @@
+﻿
+Running 13 tests using 8 workers
+
+  鉁?  8 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Modal Integrity - Social QR (1.6s)
+  鉁?  3 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Modal Integrity - Social QR (1.7s)
+  鉁?  9 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Modal Integrity - Social QR (654ms)
+[A11Y VIOLATIONS] in About (ZH) [dark]:
+ - ID: region | Impact: moderate | Help: All page content should be contained by landmarks
+   * Target: #scroll-progress
+  鉁?  2 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: dark (2.9s)
+[A11Y VIOLATIONS] in Blog (ZH) [dark]:
+ - ID: color-contrast | Impact: serious | Help: Elements must meet minimum color contrast ratio thresholds
+   * Target: .is-visible.blog-card[data-reveal=""]:nth-child(1) > .blog-card-body > .blog-card-category
+   * Target: a[href$="astro-ssg-why-i-chose/"] > .blog-card-body > .blog-card-category
+   * Target: .is-visible.blog-card[data-reveal=""]:nth-child(3) > .blog-card-body > .blog-card-category
+ - ID: landmark-main-is-top-level | Impact: moderate | Help: Main landmark should not be contained in another landmark
+   * Target: .blog-list-page
+ - ID: landmark-no-duplicate-main | Impact: moderate | Help: Document should not have more than one main landmark
+   * Target: #main-content
+ - ID: landmark-unique | Impact: moderate | Help: Landmarks should have a unique role or role/label/title (i.e. accessible name) combination
+   * Target: #main-content
+ - ID: region | Impact: moderate | Help: All page content should be contained by landmarks
+   * Target: #scroll-progress
+  鉁?  5 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: dark (3.8s)
+[A11Y VIOLATIONS] in Home (ZH) [dark]:
+ - ID: region | Impact: moderate | Help: All page content should be contained by landmarks
+   * Target: #scroll-progress
+  鉁?  7 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: dark (4.7s)
+[A11Y VIOLATIONS] in Home (EN) [dark]:
+ - ID: region | Impact: moderate | Help: All page content should be contained by landmarks
+   * Target: #scroll-progress
+  鉁? 12 [chromium] 鈥?e2e\senior-audit.spec.ts:97:13 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Modal Integrity - Social QR (1.0s)
+  鉁?  6 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: light (5.7s)
+  鉁? 11 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: dark (3.4s)
+  鉁?  4 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: light (6.4s)
+  鉁? 13 [chromium] 鈥?e2e\senior-audit.spec.ts:127:5 鈥?Senior Frontend Audit: Core Systems 鈥?Design System Consistency: Color Palette (1.0s)
+  鉁?  1 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: light (6.9s)
+  鉁? 10 [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: light (6.1s)
+
+
+  1) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: light 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('html')
+    Expected pattern: [32m/light/[39m
+    Received string:  [31m""[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('html')[22m
+    [2m    8 脳 locator resolved to <html lang="zh-CN">鈥?/html>[22m
+    [2m      - unexpected value ""[22m
+
+
+      59 |                     }
+      60 |
+    > 61 |                     await expect(page.locator('html')).toHaveClass(new RegExp(theme));
+         |                                                        ^
+      62 |
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:61:56
+
+    Error Context: test-results\senior-audit-Senior-Fronte-80b31-hensive-Audit---Theme-light-chromium\error-context.md
+
+  2) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: dark 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+    > 65 |                     expect(violations.length).toBe(0);
+         |                                               ^
+      66 |
+      67 |                     // 2. Interactive States Audit
+      68 |                     // Focus on buttons to ensure focus-visible is clear
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:65:47
+
+    Error Context: test-results\senior-audit-Senior-Fronte-5ed20-ehensive-Audit---Theme-dark-chromium\error-context.md
+
+  3) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: light 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('html')
+    Expected pattern: [32m/light/[39m
+    Received string:  [31m""[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('html')[22m
+    [2m    8 脳 locator resolved to <html lang="zh-CN">鈥?/html>[22m
+    [2m      - unexpected value ""[22m
+
+
+      59 |                     }
+      60 |
+    > 61 |                     await expect(page.locator('html')).toHaveClass(new RegExp(theme));
+         |                                                        ^
+      62 |
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:61:56
+
+    Error Context: test-results\senior-audit-Senior-Fronte-c9204-hensive-Audit---Theme-light-chromium\error-context.md
+
+  4) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: dark 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+    > 65 |                     expect(violations.length).toBe(0);
+         |                                               ^
+      66 |
+      67 |                     // 2. Interactive States Audit
+      68 |                     // Focus on buttons to ensure focus-visible is clear
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:65:47
+
+    Error Context: test-results\senior-audit-Senior-Fronte-a66f8-ehensive-Audit---Theme-dark-chromium\error-context.md
+
+  5) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: light 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('html')
+    Expected pattern: [32m/light/[39m
+    Received string:  [31m""[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('html')[22m
+    [2m    8 脳 locator resolved to <html lang="zh-CN">鈥?/html>[22m
+    [2m      - unexpected value ""[22m
+
+
+      59 |                     }
+      60 |
+    > 61 |                     await expect(page.locator('html')).toHaveClass(new RegExp(theme));
+         |                                                        ^
+      62 |
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:61:56
+
+    Error Context: test-results\senior-audit-Senior-Fronte-67e75-hensive-Audit---Theme-light-chromium\error-context.md
+
+  6) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: dark 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m5[39m
+
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+    > 65 |                     expect(violations.length).toBe(0);
+         |                                               ^
+      66 |
+      67 |                     // 2. Interactive States Audit
+      68 |                     // Focus on buttons to ensure focus-visible is clear
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:65:47
+
+    Error Context: test-results\senior-audit-Senior-Fronte-a8207-ehensive-Audit---Theme-dark-chromium\error-context.md
+
+  7) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: light 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('html')
+    Expected pattern: [32m/light/[39m
+    Received string:  [31m""[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('html')[22m
+    [2m    8 脳 locator resolved to <html lang="en-US">鈥?/html>[22m
+    [2m      - unexpected value ""[22m
+
+
+      59 |                     }
+      60 |
+    > 61 |                     await expect(page.locator('html')).toHaveClass(new RegExp(theme));
+         |                                                        ^
+      62 |
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:61:56
+
+    Error Context: test-results\senior-audit-Senior-Fronte-7b7b1-hensive-Audit---Theme-light-chromium\error-context.md
+
+  8) [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: dark 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m0[39m
+    Received: [31m1[39m
+
+      63 |                     // 1. Accessibility Scan
+      64 |                     const violations = await checkA11y(page, `${pageInfo.name} [${theme}]`);
+    > 65 |                     expect(violations.length).toBe(0);
+         |                                               ^
+      66 |
+      67 |                     // 2. Interactive States Audit
+      68 |                     // Focus on buttons to ensure focus-visible is clear
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:65:47
+
+    Error Context: test-results\senior-audit-Senior-Fronte-719db-ehensive-Audit---Theme-dark-chromium\error-context.md
+
+  9) [chromium] 鈥?e2e\senior-audit.spec.ts:127:5 鈥?Senior Frontend Audit: Core Systems 鈥?Design System Consistency: Color Palette 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: not [32m""[39m
+
+      137 |
+      138 |         vars.forEach(v => {
+    > 139 |             expect(v.value).not.toBe('');
+          |                                 ^
+      140 |             if (v.value === '') console.error(`[LEAK] CSS Variable ${v.name} is undefined`);
+      141 |         });
+      142 |     });
+        at forEach (D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:139:33)
+        at D:\Project\GithubPage_PerBrand\e2e\senior-audit.spec.ts:138:14
+
+    Error Context: test-results\senior-audit-Senior-Fronte-3433d-m-Consistency-Color-Palette-chromium\error-context.md
+
+  9 failed
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: light 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (ZH) 鈥?Comprehensive Audit - Theme: dark 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: light 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: About (ZH) 鈥?Comprehensive Audit - Theme: dark 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: light 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Blog (ZH) 鈥?Comprehensive Audit - Theme: dark 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: light 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:54:17 鈥?Senior Frontend Audit: Core Systems 鈥?Page: Home (EN) 鈥?Comprehensive Audit - Theme: dark 
+    [chromium] 鈥?e2e\senior-audit.spec.ts:127:5 鈥?Senior Frontend Audit: Core Systems 鈥?Design System Consistency: Color Palette 
+  4 passed (11.5s)

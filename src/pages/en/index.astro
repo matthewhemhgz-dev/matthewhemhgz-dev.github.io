@@ -1,5 +1,6 @@
 ---
 import '../../styles/home.css';
+import '../../styles/page-home.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroSection from '../../components/sections/HeroSection.astro';
 import AboutSection from '../../components/sections/AboutSection.astro';
@@ -46,13 +47,12 @@ const toolboxCategories = [
 
 const platforms = [
   { name: 'GitHub', handle: '@matthewhemhgz-dev', url: 'https://github.com/matthewhemhgz-dev', icon: 'laptop', desc: 'Open source projects & knowledge base' },
-  { name: 'WeChat Official Account', handle: '祈研所', url: '#', icon: 'smartphone', desc: 'In-depth articles & systematic sharing' },
-  { name: 'Video Account', handle: '祈研所', url: '#', icon: 'film', desc: 'Short videos' },
-  { name: 'Xiaohongshu', handle: '祈研所（Qi_Lab）', url: '#', icon: 'book', desc: 'Practical tips &图文 content' },
-  { name: 'Douyin', handle: '祈研所（QiLab）', url: '#', icon: 'zap', desc: 'Short videos' },
+  { name: 'WeChat OA', handle: '祈研所', url: '#', icon: 'smartphone', desc: 'In-depth articles & sharing', qrImage: '/images/social/wechat-oa-qr.jpg' },
+  { name: 'Video Channel', handle: '祈研所', url: '#', icon: 'film', desc: 'Short videos', qrImage: '/images/social/wechat-oa-qr.jpg' },
+  { name: 'Xiaohongshu', handle: '祈研所（Qi_Lab）', url: '#', icon: 'book', desc: 'Practical tips & content', qrImage: '/images/social/xhs-qr.jpg' },
+  { name: 'Douyin', handle: '祈研所（QiLab）', url: '#', icon: 'zap', desc: 'Short videos', qrImage: '/images/social/douyin-qr.jpg' },
   { name: 'GitHub Pages', handle: 'QiLab', url: 'https://matthewhemhgz-dev.github.io', icon: 'globe', desc: 'Blog & project showcase' },
 ];
-
 
 ---
 
@@ -61,12 +61,12 @@ const platforms = [
   <HeroSection
     titleLines={['In the Age of Information Overload', 'Structured Knowledge', 'Is True Power']}
     accentIndex={1}
-    subtitle="Knowledge Management · Project Management · IT/AI Skills · Cutting-edge Trends"
+    subtitle="Knowledge Management · Project Management · IT/AI Skills · Trends"
     watermark="Qi"
     stats={[
-      { value: String(allPosts.length), label: 'Original Articles', dataCount: allPosts.length },
-      { value: '5', label: 'Content Platforms', dataCount: 5 },
-      { value: 'Continuously', label: 'Updating', isText: true },
+      { value: String(allPosts.length), label: 'Articles', dataCount: allPosts.length },
+      { value: '5', label: 'Platforms', dataCount: 5 },
+      { value: 'Ongoing', label: 'Update', isText: true },
     ]}
     primaryBtn={{ text: 'Learn More', href: '/en/about' }}
     secondaryBtn={{ text: 'Browse Blog', href: '/en/blog' }}
@@ -77,14 +77,14 @@ const platforms = [
   <AboutSection
     label="// ABOUT"
     title="About QiLab"
-    text="QiLab is my digital archive — a systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends. Through personal experience, practical thinking, and systematic notes, I explore how to make technology truly serve human needs. Every article, every tool recommendation, has been verified through actual use. Adhering to human ontological value, long-termism."
+    text="QiLab is my digital archive — a systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends. Through personal experience, practical thinking, and systematic notes, I explore how to make technology truly serve human needs. Adhering to human ontological value, long-termism."
     decoNumber="01"
     decoSlogan="Organize · Verify · Share"
     dashItems={[
       { label: 'Knowledge Management', value: '75+', percentage: 92, color: 'emerald' },
-      { label: 'Project Management', value: '7 Certifications', percentage: 88, color: 'amber' },
+      { label: 'Project Management', value: '7 Certs', percentage: 88, color: 'amber' },
       { label: 'IT/AI Skills', value: '5+', percentage: 85, color: 'emerald' },
-      { label: 'Cutting-edge Trends', value: '10+', percentage: 70, color: 'gray' },
+      { label: 'Trends', value: '10+', percentage: 70, color: 'gray' },
     ]}
   />
 
@@ -118,16 +118,16 @@ const platforms = [
 
   <TestimonialsSection
     label="// TIMELINE"
-    title="Development History"
+    title="History"
   />
 
   <SectionDivider variant="arcs" />
 
   <CtaSection
     label="// LET'S CONNECT"
-    title="Let's Make Knowledge Truly Useful Together"
-    description="Whether it's knowledge management exchange, AI workflow discussion, or project cooperation, feel free to contact us anytime."
-    primaryBtn={{ text: 'Send Email', href: 'mailto:matthewhemhgz@gmail.com' }}
+    title="Let's Make Knowledge Truly Useful"
+    description="Whether it's knowledge management exchange, AI workflows or project cooperation, feel free to contact us."
+    primaryBtn={{ text: 'Email', href: 'mailto:matthewhemhgz@gmail.com' }}
     secondaryBtn={{ text: 'GitHub', href: 'https://github.com/matthewhemhgz-dev', external: true }}
   />
 

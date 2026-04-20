@@ -17,9 +17,8 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overscroll-behavior-y: contain;
   overflow-x: hidden;
-  /* Added to prevent horizontal scroll */
+  /* Fixed: Removed overscroll-behavior-y: contain to allow natural scrolling */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

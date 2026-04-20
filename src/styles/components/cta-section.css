@@ -54,7 +54,7 @@
     position: relative;
     overflow: hidden;
     background: var(--qi-surface-main);
-    color: var(--qi-text-inverse);
+    color: var(--qi-on-dark-primary);
 }
 
 .cta-section .cta-social-icon {

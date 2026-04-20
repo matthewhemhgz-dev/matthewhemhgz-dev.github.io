@@ -10,9 +10,9 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
 ---
 
 <BaseLayout title="博客 — 祈研所 Qi-Lab" description="知识管理 × 项目管理 × IT/AI 技巧 × 八卦前沿">
-  <main class="container blog-list-page">
-    <h1 class="blog-list-title">博客</h1>
-    <div class="blog-grid">
+  <div class="container blog-list-page">
+    <h1 id="blog-title" class="blog-list-title">博客</h1>
+    <section class="blog-grid" aria-labelledby="blog-title">
       {allPosts.map(post => (
         <a href={`/blog/${post.id.replace('zh/', '')}/`} class="blog-card" data-reveal>
           {post.data.heroImage && (
@@ -37,6 +37,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
           </div>
         </a>
       ))}
-    </div>
-  </main>
+    </section>
+  </div>
+
 </BaseLayout>

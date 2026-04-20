@@ -110,7 +110,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
       });
     </script>
     <NoiseOverlay />
-    <ScrollProgress />
+    <aside aria-label="页面进度">
+      <ScrollProgress />
+    </aside>
+
     <Navigation currentPath={Astro.url.pathname} />
     <main id="main-content" transition:name="main-content" data-pagefind-body>
       <slot />

@@ -30,19 +30,61 @@ const getLanguagePath = (locale) => {
 };
 ---
 
-<div class="flex gap-1 bg-[var(--qi-base-04)] dark:bg-bg-surface rounded-md p-0.5">
+<div class="lang-toggle-wrapper">
   {locales.map((locale) => (
     <a
-      key={locale}
       href={getLanguagePath(locale)}
-      class={`px-3 py-1.5 rounded-sm font-mono text-xs font-medium transition-colors duration-200 no-underline min-h-9 flex items-center justify-center ${
-        currentLocale === locale
-          ? 'bg-[var(--qi-brand-emerald-12)] text-primary'
-          : 'text-text-muted hover:text-text-primary'
-      }`}
+      class:list={['lang-toggle-item', { active: currentLocale === locale }]}
       aria-label={`Switch to ${locale === 'zh' ? '中文' : 'English'}`}
     >
       {locale === 'zh' ? '中文' : 'English'}
     </a>
   ))}
 </div>
+
+<style>
+  .lang-toggle-wrapper {
+    display: flex;
+    gap: 4px;
+    background: var(--qi-base-04);
+    padding: 2px;
+    border-radius: var(--qi-radius-md);
+    border: 1px solid var(--qi-base-06);
+  }
+
+  .lang-toggle-item {
+    padding: 6px 12px;
+    border-radius: var(--qi-radius-sm);
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--qi-text-secondary);
+  }
+
+  .lang-toggle-item:hover {
+    color: var(--qi-text-primary);
+    background: var(--qi-base-04);
+  }
+
+  .lang-toggle-item.active {
+    background: var(--qi-brand-emerald-12);
+    color: var(--qi-brand-emerald);
+    box-shadow: var(--qi-shadow-sm);
+  }
+
+  :global(.dark) .lang-toggle-wrapper {
+    background: var(--qi-surface-sub);
+    border-color: var(--qi-border-strong);
+  }
+
+  :global(.dark) .lang-toggle-item.active {
+    background: var(--qi-brand-emerald-10);
+    color: var(--qi-brand-emerald);
+  }
+</style>
