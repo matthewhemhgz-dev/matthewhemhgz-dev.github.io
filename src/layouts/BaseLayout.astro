@@ -7,6 +7,7 @@ import ParticlesCanvas from '../components/global/ParticlesCanvas.astro';
 import NoiseOverlay from '../components/global/NoiseOverlay.astro';
 import Footer from '../components/global/Footer.astro';
 import SearchModal from '../components/global/SearchModal.astro';
+import SocialQRModal from '../components/ui/SocialQRModal.astro';
 import { Astro } from 'astro';
 import '../styles/base/global.css';
 
@@ -125,6 +126,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     />
     <ParticlesCanvas />
     <SearchModal />
+    <SocialQRModal />
 
     <!-- Global Scripts: particles, cursor-glow, scroll-parallax, scroll-handler -->
     <script>

@@ -15,23 +15,21 @@
 
 ```
 /src
-├── components/        # Astro 组件 (18 个)
+├── components/        # Astro 组件 (25 个)
 │   ├── decorations/   # 装饰性组件 (SectionDivider)
-│   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, NoiseOverlay...)
-│   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms...)
+│   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, BackToTop, ScrollProgress...)
+│   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms, Testimonials...)
 │   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
-├── data/blog/zh/      # 博客文章 (6 篇 Markdown, 8000+ 字)
+├── data/blog/zh/      # 博客文章 (7 篇 Markdown, 65,000+ 字)
 ├── layouts/           # 页面布局 (BaseLayout)
 ├── pages/             # 路由页面 (首页/博客/标签/关于/404)
 ├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code...)
-├── styles/            # CSS 样式 (24 个文件, 设计令牌驱动)
-│   ├── tokens.css          # 设计令牌 (338 行)
-│   ├── dark-tokens.css     # 暗色模式令牌 (123 行)
-│   ├── animations.css      # 动画系统
-│   ├── home-hero.css       # Hero 主样式
-│   ├── hero-float-cards.css # Hero 浮动装饰
-│   ├── search-modal.css    # 搜索弹窗
-│   └── code-blocks.css     # 代码块 + 复制按钮
+├── styles/            # CSS 样式 (36 个文件, 设计令牌驱动)
+│   ├── base/               # 基础样式 (tokens, dark-tokens, reset, global)
+│   ├── components/         # 组件样式
+│   ├── sections/           # 区块样式
+│   ├── pages/              # 页面样式
+│   └── utilities/          # 工具类样式
 ├── test/              # 测试文件 (Vitest, 15 tests)
 └── utils/             # 工具函数 (reading-time.ts)
 ```
@@ -130,9 +128,9 @@ heroImage: "/images/blog/ai-era-knowledge-worker.jpg"
 **功能**：提供统一的样式系统，基于设计令牌实现响应式设计和主题切换。
 
 **实现**：
-- 设计令牌系统：[tokens.css](file:///workspace/src/styles/tokens.css)（338 行）
-- 暗色模式令牌：[dark-tokens.css](file:///workspace/src/styles/dark-tokens.css)（123 行）
-- 模块化 CSS 文件，按功能和页面组织
+- 设计令牌系统：[tokens.css](file:///workspace/src/styles/base/tokens.css)
+- 暗色模式令牌：[dark-tokens.css](file:///workspace/src/styles/base/dark-tokens.css)
+- 模块化 CSS 文件，按功能（base/components/sections/pages/utilities）组织
 
 **设计令牌**：
 - **色彩**: `--qi-brand-emerald` / `--qi-brand-amber` / `--qi-brand-mint` + 10+ 级透明度
@@ -366,14 +364,14 @@ export default defineConfig({
 
 | 指标 | 值 | 来源 |
 |------|-----|------|
-| 静态页面 | 30 页 | [README.md](file:///workspace/README.md) |
-| 博客文章 | 6 篇 (8000+ 字) | [README.md](file:///workspace/README.md) |
+| 静态页面 | 38 页 | [README.md](file:///workspace/README.md) |
+| 博客文章 | 7 篇 (65,000+ 字) | [README.md](file:///workspace/README.md) |
 | 单元测试 | 15 passing | [README.md](file:///workspace/README.md) |
-| 构建时间 | ~3.6s | [README.md](file:///workspace/README.md) |
-| 构建产物 | 4.0 MB / 6 MB 预算 | [README.md](file:///workspace/README.md) |
-| CSS 文件 | 24 个 (均 ≤500 行) | [README.md](file:///workspace/README.md) |
-| 组件文件 | 18 个 (均 ≤300 行) | [README.md](file:///workspace/README.md) |
-| Pagefind 索引 | 30 页 | [README.md](file:///workspace/README.md) |
+| 构建时间 | ~6.0s | [README.md](file:///workspace/README.md) |
+| 构建产物 | 4.3 MB / 6 MB 预算 | [README.md](file:///workspace/README.md) |
+| CSS 文件 | 36 个 (均 ≤500 行) | [README.md](file:///workspace/README.md) |
+| 组件文件 | 25 个 (均 ≤300 行) | [README.md](file:///workspace/README.md) |
+| Pagefind 索引 | 38 页 | [README.md](file:///workspace/README.md) |
 
 ## 10. 总结与亮点回顾
 

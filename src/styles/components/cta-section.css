@@ -1,0 +1,74 @@
+.cta-social-fast {
+    margin-top: var(--qi-space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    animation: fadeIn 0.8s ease 1s both;
+}
+
+.cta-social-label {
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--qi-tracking-widest);
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.cta-social-icons {
+    display: flex;
+    gap: var(--qi-space-md);
+}
+
+.cta-social-icon {
+    background: var(--qi-base-04);
+    color: var(--qi-text-secondary);
+    border: 1px solid var(--qi-border-subtle);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--qi-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--qi-transition-fast);
+    padding: 0;
+}
+
+.cta-social-icon:hover {
+    background: var(--qi-bg-base);
+    color: var(--qi-brand-emerald);
+    border-color: var(--qi-brand-emerald);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--qi-brand-emerald-08);
+}
+
+.cta-social-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Ensure icons are visible on dark/colored background of CTA */
+.cta-section {
+    position: relative;
+    overflow: hidden;
+    background: var(--qi-surface-main);
+    color: var(--qi-text-inverse);
+}
+
+.cta-section .cta-social-icon {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--qi-text-inverse);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cta-section .cta-social-icon:hover {
+    background: var(--qi-brand-emerald);
+    color: white;
+    border-color: var(--qi-brand-emerald);
+}
+
+.cta-section .cta-social-label {
+    color: var(--qi-text-inverse);
+}

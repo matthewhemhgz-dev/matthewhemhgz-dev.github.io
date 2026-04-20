@@ -94,9 +94,8 @@
   }
 
   .cta-section {
-    margin: 0 calc(-1 * var(--qi-container-padding, 24px));
-    padding-left: var(--qi-container-padding, 24px);
-    padding-right: var(--qi-container-padding, 24px);
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .cta-actions {
@@ -288,8 +287,13 @@
 }
 
 @keyframes arcs-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {

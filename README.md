@@ -30,7 +30,7 @@ npm install
 
 ```bash
 npm run dev        # 启动开发服务器 (localhost:4321)
-npm run build      # 生产构建 (30 页面, ~3.6s)
+npm run build      # 生产构建 (38 页面, ~6.0s)
 npm run preview    # 预览构建产物
 ```
 
@@ -48,23 +48,21 @@ npm run size-check     # 构建产物大小检查 (6MB 预算)
 
 ```
 src/
-├── components/        # Astro 组件 (18 个)
+├── components/        # Astro 组件 (25 个)
 │   ├── decorations/   # 装饰性组件 (SectionDivider)
-│   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, NoiseOverlay...)
-│   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms...)
+│   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, BackToTop...)
+│   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms, Testimonials...)
 │   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
-├── data/blog/zh/      # 博客文章 (6 篇 Markdown, 8000+ 字)
+├── data/blog/zh/      # 博客文章 (7 篇 Markdown, 65,000+ 字)
 ├── layouts/           # 页面布局 (BaseLayout)
 ├── pages/             # 路由页面 (首页/博客/标签/关于/404)
 ├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code...)
-├── styles/            # CSS 样式 (24 个文件, 设计令牌驱动)
-│   ├── tokens.css          # 设计令牌 (338 行)
-│   ├── dark-tokens.css     # 暗色模式令牌 (123 行)
-│   ├── animations.css      # 动画系统
-│   ├── home-hero.css       # Hero 主样式
-│   ├── hero-float-cards.css # Hero 浮动装饰
-│   ├── search-modal.css    # 搜索弹窗
-│   └── code-blocks.css     # 代码块 + 复制按钮
+├── styles/            # CSS 样式 (36 个文件, 设计令牌驱动)
+│   ├── base/               # 基础样式 (tokens, dark-tokens, reset, global)
+│   ├── components/         # 组件样式
+│   ├── sections/           # 区块样式
+│   ├── pages/              # 页面样式
+│   └── utilities/          # 工具类样式
 └── test/              # 测试文件 (Vitest, 15 tests)
 ```
 
@@ -89,14 +87,14 @@ src/
 
 | 指标 | 值 |
 |------|-----|
-| 静态页面 | 30 页 |
-| 博客文章 | 6 篇 (8000+ 字) |
+| 静态页面 | 38 页 |
+| 博客文章 | 7 篇 (65,000+ 字) |
 | 单元测试 | 15 passing |
-| 构建时间 | ~3.6s |
-| 构建产物 | 4.0 MB / 6 MB 预算 |
-| CSS 文件 | 24 个 (均 ≤500 行) |
-| 组件文件 | 18 个 (均 ≤300 行) |
-| Pagefind 索引 | 30 页 |
+| 构建时间 | ~6.0s |
+| 构建产物 | 4.3 MB / 6 MB 预算 |
+| CSS 文件 | 36 个 (均 ≤500 行) |
+| 组件文件 | 25 个 (均 ≤300 行) |
+| Pagefind 索引 | 38 页 |
 
 ## 许可证
 

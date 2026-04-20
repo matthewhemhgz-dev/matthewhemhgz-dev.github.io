@@ -1,0 +1,110 @@
+---
+/**
+ * SocialQRModal — 社交媒体二维码弹窗
+ *
+ * 用于在点击微信、小红书、抖音等社交链接时显示二维码
+ * 支持通过自定义事件 'open-social-qr' 唤起
+ */
+---
+
+<div id="social-qr-modal" class="social-qr-modal" role="dialog" aria-labelledby="qr-modal-title" aria-hidden="true" aria-modal="true" transition:persist>
+  <div class="social-qr-backdrop" id="social-qr-backdrop" tabindex="-1" aria-hidden="true"></div>
+  <div class="social-qr-container" role="document">
+    <button type="button" class="social-qr-close" id="social-qr-close" aria-label="关闭弹窗">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="social-qr-header">
+      <h2 id="qr-modal-title" class="social-qr-title">扫码关注</h2>
+      <p id="qr-modal-platform" class="social-qr-platform">微信公众号</p>
+    </div>
+
+    <div class="social-qr-image-wrap">
+      <img id="social-qr-img" src="" alt="二维码" class="social-qr-image" />
+    </div>
+
+    <div class="social-qr-footer">
+      <span class="social-qr-hint">手机截屏或扫码识别</span>
+      <span id="social-qr-account" class="social-qr-account">祈研所 Or Qi-Lab</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import '../../styles/components/social-qr-modal.css';
+</style>
+
+<script>
+  function initSocialModal() {
+    const modal = document.getElementById('social-qr-modal');
+    const backdrop = document.getElementById('social-qr-backdrop');
+    const closeBtn = document.getElementById('social-qr-close');
+    const qrImg = document.getElementById('social-qr-img') as HTMLImageElement;
+    const platformEl = document.getElementById('qr-modal-platform');
+    const accountEl = document.getElementById('social-qr-account');
+
+    if (!modal || !qrImg || !platformEl || !accountEl) return;
+
+    function openModal(data: { platform: string; qrImage: string; account: string }) {
+      qrImg.src = data.qrImage;
+      platformEl!.textContent = data.platform;
+      accountEl!.textContent = data.account;
+      
+      modal!.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal!.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      // 清空图片以防下次闪烁上一张图
+      setTimeout(() => {
+        if (modal!.getAttribute('aria-hidden') === 'true') {
+          qrImg.src = '';
+        }
+      }, 300);
+    }
+
+    // 监听全局点击事件（委托）
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const trigger = target.closest('[data-qr-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        const platform = trigger.getAttribute('data-platform');
+        const qrImage = trigger.getAttribute('data-qr-image');
+        const account = trigger.getAttribute('data-account');
+        
+        openModal({ 
+          platform: platform || '', 
+          qrImage: qrImage || '', 
+          account: account || '' 
+        });
+      }
+    });
+
+    // 监听显式调用的自定义事件
+    window.addEventListener('open-social-qr', (e: any) => {
+      if (e.detail) {
+        openModal(e.detail);
+      }
+    });
+
+    // 关闭事件
+    backdrop?.addEventListener('click', closeModal);
+    closeBtn?.addEventListener('click', closeModal);
+
+    // Esc 键关闭
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+        closeModal();
+      }
+    });
+  }
+
+  // View Transitions 兼容
+  document.addEventListener('astro:page-load', initSocialModal);
+</script>

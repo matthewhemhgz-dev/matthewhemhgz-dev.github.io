@@ -11,6 +11,8 @@ interface Props {
     url: string;
     icon: string;
     desc: string;
+    qrImage?: string;
+    account?: string;
     comingSoonText?: string;
   }>;
 }
@@ -34,14 +36,20 @@ const { label, title, platforms } = Astro.props;
     <div class="platform-grid">
       {platforms.map((p) => (
         <a
-          href={p.url === '#' ? undefined : p.url}
-          title={p.url === '#' ? '敬请期待' : undefined}
-          class:list={['platform-card tilt-card', { 'platform-card--soon': p.url === '#' }]}
-          {...(p.url !== '#' && { target: '_blank', rel: 'noopener noreferrer' })}
-          aria-label={`${p.name} - ${p.desc}${p.url === '#' ? ' (即将上线)' : ' (opens in new window)'}`}
-          role={p.url === '#' ? 'button' : undefined}
-          tabindex={p.url === '#' ? 0 : undefined}
-          onclick={p.url === '#' ? 'event.preventDefault()' : undefined}
+          href={p.qrImage ? 'javascript:void(0)' : (p.url === '#' ? undefined : p.url)}
+          title={p.url === '#' && !p.qrImage ? '敬请期待' : undefined}
+          class:list={['platform-card tilt-card', { 'platform-card--soon': p.url === '#' && !p.qrImage }]}
+          {...(p.url !== '#' && !p.qrImage && { target: '_blank', rel: 'noopener noreferrer' })}
+          {...(p.qrImage && { 
+            'data-qr-trigger': '', 
+            'data-platform': p.name, 
+            'data-qr-image': p.qrImage, 
+            'data-account': p.handle 
+          })}
+          aria-label={`${p.name} - ${p.desc}${p.url === '#' && !p.qrImage ? ' (即将上线)' : (p.qrImage ? ' (点击查看二维码)' : ' (opens in new window)')}`}
+          role={(p.url === '#' || p.qrImage) ? 'button' : undefined}
+          tabindex={(p.url === '#' || p.qrImage) ? 0 : undefined}
+          onclick={p.url === '#' && !p.qrImage ? 'event.preventDefault()' : undefined}
         >
           <span class="platform-icon" set:html={svgIcons[p.icon]} />
           <div class="platform-info">

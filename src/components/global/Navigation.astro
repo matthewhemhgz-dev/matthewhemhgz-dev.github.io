@@ -55,7 +55,7 @@ const navItems = [
           <button
             class="nav-search-btn"
             id="nav-search-btn"
-            aria-label="搜索文章 (Ctrl+K)"
+            aria-label={isEnglish ? 'Search articles (Ctrl+K)' : '搜索文章 (Ctrl+K)'}
             type="button"
             touch-action="manipulation"
             role="menuitem"
@@ -64,14 +64,14 @@ const navItems = [
               <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" />
               <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
             </svg>
-            <span class="nav-search-label">搜索</span>
+            <span class="nav-search-label">{isEnglish ? 'Search' : '搜索'}</span>
             <kbd class="nav-search-kbd">⌘K</kbd>
           </button>
         </li>
         <li class="nav-close-item" role="none">
           <button
             class="nav-close-btn"
-            aria-label="关闭导航菜单"
+            aria-label={isEnglish ? 'Close navigation menu' : '关闭导航菜单'}
             type="button"
             touch-action="manipulation"
             role="menuitem"

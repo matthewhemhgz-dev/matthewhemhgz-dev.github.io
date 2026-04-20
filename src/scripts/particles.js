@@ -145,13 +145,16 @@ export class MinimalParticles {
 
   resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    this.canvas.width = window.innerWidth * dpr;
-    this.canvas.height = window.innerHeight * dpr;
-    this.canvas.style.width = window.innerWidth + 'px';
-    this.canvas.style.height = window.innerHeight + 'px';
+    const width = document.documentElement.clientWidth;
+    const height = window.innerHeight; // Keep innerHeight for full viewport height
+
+    this.canvas.width = width * dpr;
+    this.canvas.height = height * dpr;
+    this.canvas.style.width = width + 'px';
+    this.canvas.style.height = height + 'px';
     this.ctx.scale(dpr, dpr);
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.width = width;
+    this.height = height;
   }
 
   init() {

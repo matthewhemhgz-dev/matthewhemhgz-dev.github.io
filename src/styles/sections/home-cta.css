@@ -5,8 +5,7 @@
 .cta-section {
   background: var(--qi-ink);
   color: #F0ECE6;
-  margin: 0 calc(-1 * var(--qi-container-padding, 24px));
-  padding: var(--qi-space-5xl) var(--qi-container-padding, 24px) var(--qi-space-3xl);
+  padding: var(--qi-space-5xl) 0 var(--qi-space-3xl);
   text-align: center;
   transition: color 0.3s ease;
   position: relative;
@@ -20,11 +19,9 @@
   left: 0;
   right: 0;
   height: 80px;
-  background: linear-gradient(
-    to bottom,
-    var(--qi-bg-base),
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      var(--qi-bg-base),
+      transparent);
   pointer-events: none;
   z-index: 1;
 }
@@ -37,13 +34,11 @@
   left: 5%;
   right: 5%;
   height: 150px;
-  background: linear-gradient(
-    to bottom,
-    var(--qi-glow-accent),
-    color-mix(in srgb, var(--qi-glow-accent) 50%, transparent) 40%,
-    color-mix(in srgb, var(--qi-glow-accent) 15%, transparent) 70%,
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      var(--qi-glow-accent),
+      color-mix(in srgb, var(--qi-glow-accent) 50%, transparent) 40%,
+      color-mix(in srgb, var(--qi-glow-accent) 15%, transparent) 70%,
+      transparent);
   pointer-events: none;
 }
 
@@ -98,7 +93,7 @@
   .cta-actions {
     flex-direction: column;
   }
-  
+
   .cta-actions .btn {
     width: 100%;
   }
@@ -215,13 +210,11 @@
   left: 15%;
   right: 15%;
   height: 100px;
-  background: linear-gradient(
-    to top,
-    var(--qi-glow-primary),
-    color-mix(in srgb, var(--qi-glow-primary) 50%, transparent) 40%,
-    color-mix(in srgb, var(--qi-glow-primary) 15%, transparent) 70%,
-    transparent
-  );
+  background: linear-gradient(to top,
+      var(--qi-glow-primary),
+      color-mix(in srgb, var(--qi-glow-primary) 50%, transparent) 40%,
+      color-mix(in srgb, var(--qi-glow-primary) 15%, transparent) 70%,
+      transparent);
   pointer-events: none;
 }
 
@@ -242,13 +235,36 @@
   animation: sparkle 4s ease-in-out infinite;
 }
 
-.cta-sparkle--1 { top: 20%; left: 15%; animation-delay: 0s; }
-.cta-sparkle--2 { top: 40%; right: 20%; animation-delay: 1.5s; }
-.cta-sparkle--3 { bottom: 30%; left: 40%; animation-delay: 3s; }
+.cta-sparkle--1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.cta-sparkle--2 {
+  top: 40%;
+  right: 20%;
+  animation-delay: 1.5s;
+}
+
+.cta-sparkle--3 {
+  bottom: 30%;
+  left: 40%;
+  animation-delay: 3s;
+}
 
 @keyframes sparkle {
-  0%, 100% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 0.5; transform: scale(1); }
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

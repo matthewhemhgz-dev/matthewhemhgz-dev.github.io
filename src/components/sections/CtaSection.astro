@@ -10,6 +10,10 @@ interface Props {
 const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
 ---
 
+<style>
+  @import '../../styles/components/cta-section.css';
+</style>
+
 <section class="section cta-section" data-reveal>
   <div class="cta-fade" aria-hidden="true"></div>
   <div class="cta-sparkles" aria-hidden="true">
@@ -30,6 +34,45 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
         <a href={secondaryBtn.href} class="btn btn-secondary" target={secondaryBtn.external ? '_blank' : undefined} rel={secondaryBtn.external ? 'noopener noreferrer' : undefined}>
           {secondaryBtn.text}
         </a>
+      </div>
+
+      <div class="cta-social-fast">
+        <span class="cta-social-label">快速关注:</span>
+        <div class="cta-social-icons">
+          <button 
+            type="button" 
+            class="cta-social-icon" 
+            data-qr-trigger 
+            data-platform="微信公众号" 
+            data-qr-image="/images/social/wechat-oa-qr.jpg" 
+            data-account="祈研所"
+            title="微信公众号"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S18.63 2 12 2z"/><path d="M11 7.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"/></svg>
+          </button>
+          <button 
+            type="button" 
+            class="cta-social-icon" 
+            data-qr-trigger 
+            data-platform="小红书" 
+            data-qr-image="/images/social/xhs-qr.jpg" 
+            data-account="祈研所（Qi_Lab）"
+            title="小红书"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+          </button>
+          <button 
+            type="button" 
+            class="cta-social-icon" 
+            data-qr-trigger 
+            data-platform="抖音" 
+            data-qr-image="/images/social/douyin-qr.jpg" 
+            data-account="祈研所（QiLab）"
+            title="抖音"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="9 12 15 15 15 9 9 12"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>

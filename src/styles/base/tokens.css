@@ -28,6 +28,12 @@
   --qi-on-surface-muted: #A8A29E;
   --qi-on-surface-dim: #9A9590;
 
+  /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
+  --qi-on-dark-primary: #F7F3EE;
+  --qi-on-dark-secondary: #E8E3DD;
+  --qi-on-dark-muted: #C8C3BD;
+  --qi-on-dark-dim: #A8A29E;
+
   /* Border */
   --qi-border-default: rgba(42, 42, 42, 0.06);
   --qi-border-subtle: rgba(42, 42, 42, 0.04);
@@ -119,6 +125,8 @@
 
   /* Inverse alpha */
   --qi-inverse-88: rgba(247, 243, 238, 0.88);
+  --qi-inverse-85: rgba(247, 243, 238, 0.85);
+  /* Missing token */
   --qi-inverse-70: rgba(247, 243, 238, 0.70);
   --qi-inverse-60: rgba(247, 243, 238, 0.60);
   --qi-inverse-55: rgba(247, 243, 238, 0.55);
@@ -233,14 +241,14 @@
 
 /* Shadow */
 :root {
-  --qi-shadow-sm: 0 1px 3px rgba(42,42,42,0.06), 0 1px 2px rgba(42,42,42,0.04);
-  --qi-shadow: 0 4px 16px rgba(42,42,42,0.1);
-  --qi-shadow-md: 0 4px 12px rgba(42,42,42,0.08), 0 2px 4px rgba(42,42,42,0.04);
-  --qi-shadow-lg: 0 10px 24px rgba(42,42,42,0.12), 0 4px 8px rgba(42,42,42,0.06);
-  --qi-shadow-xl: 0 20px 40px rgba(42,42,42,0.15), 0 8px 16px rgba(42,42,42,0.08);
-  --qi-shadow-hover: 0 8px 24px rgba(42,42,42,0.15);
-  --qi-shadow-hover-warm: 0 16px 32px rgba(42,42,42,0.15), 0 4px 8px rgba(229,169,60,0.1);
-  --qi-shadow-inset: inset 2px 2px 5px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(255,255,255,0.05);
+  --qi-shadow-sm: 0 1px 3px rgba(42, 42, 42, 0.06), 0 1px 2px rgba(42, 42, 42, 0.04);
+  --qi-shadow: 0 4px 16px rgba(42, 42, 42, 0.1);
+  --qi-shadow-md: 0 4px 12px rgba(42, 42, 42, 0.08), 0 2px 4px rgba(42, 42, 42, 0.04);
+  --qi-shadow-lg: 0 10px 24px rgba(42, 42, 42, 0.12), 0 4px 8px rgba(42, 42, 42, 0.06);
+  --qi-shadow-xl: 0 20px 40px rgba(42, 42, 42, 0.15), 0 8px 16px rgba(42, 42, 42, 0.08);
+  --qi-shadow-hover: 0 8px 24px rgba(42, 42, 42, 0.15);
+  --qi-shadow-hover-warm: 0 16px 32px rgba(42, 42, 42, 0.15), 0 4px 8px rgba(229, 169, 60, 0.1);
+  --qi-shadow-inset: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
 }
 
 /* Z-Index */
@@ -295,7 +303,9 @@
 
 /* Responsive */
 @media (min-width: 1440px) {
-  :root { --qi-container-max: 1320px; }
+  :root {
+    --qi-container-max: 1320px;
+  }
 }
 
 @media (min-width: 1920px) {

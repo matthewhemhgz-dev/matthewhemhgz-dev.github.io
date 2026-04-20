@@ -33,3 +33,9 @@ pnpm-debug.log*
 # Local
 *.local
 test-results/
+playwright-report/
+blob-report/
+audit_results_utf8.json
+brand_new_audit*.json
+scan_results/
+audit-results/

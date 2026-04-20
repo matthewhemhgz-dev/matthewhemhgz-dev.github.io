@@ -6,7 +6,7 @@
   position: relative;
   z-index: var(--qi-z-content);
   background: var(--qi-ink);
-  color: var(--qi-text-inverse);
+  color: var(--qi-on-dark-primary);
   padding: var(--qi-space-4xl) 0 var(--qi-space-xl);
   border-top: 1px solid var(--qi-border-inverse);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
@@ -29,14 +29,14 @@
   font-family: var(--qi-font-serif);
   font-size: var(--qi-text-2xl);
   font-weight: 600;
-  color: var(--qi-text-inverse);
+  color: var(--qi-on-dark-primary);
   margin-bottom: var(--qi-space-sm);
   letter-spacing: 0.02em;
 }
 
 .footer-tagline {
   font-size: var(--qi-text-sm);
-  color: var(--qi-inverse-60);
+  color: var(--qi-on-dark-secondary);
   max-width: 320px;
   line-height: 1.7;
 }
@@ -67,7 +67,7 @@
 .contact-label {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-60);
+  color: var(--qi-on-dark-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   min-width: 56px;
@@ -75,7 +75,7 @@
 
 .contact-value {
   font-size: var(--qi-text-sm);
-  color: var(--qi-text-inverse);
+  color: var(--qi-on-dark-primary);
   transition: color var(--qi-transition-fast);
 }
 
@@ -106,7 +106,7 @@ a.contact-value:hover {
 .social-icon {
   font-size: 1rem;
   line-height: 1;
-  color: var(--qi-text-inverse);
+  color: var(--qi-on-dark-primary);
   transition: color var(--qi-transition-fast);
 }
 
@@ -114,18 +114,10 @@ a.contact-value:hover {
   color: var(--qi-amber);
 }
 
-:global(.dark) .social-icon {
-  color: var(--qi-text-primary);
-}
-
-:global(.dark) .social-link:hover .social-icon {
-  color: var(--qi-amber);
-}
-
 .social-name {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
-  color: var(--qi-text-inverse);
+  color: var(--qi-on-dark-primary);
 }
 
 /* QR Code */
@@ -139,10 +131,10 @@ a.contact-value:hover {
   flex-direction: column;
   align-items: center;
   gap: var(--qi-space-sm);
-  background: var(--qi-bg-base);
+  background: var(--qi-ink-light);
   padding: var(--qi-space-md);
   border-radius: var(--qi-radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: box-shadow var(--qi-transition-fast);
 }
 
@@ -168,7 +160,7 @@ a.contact-value:hover {
 .qr-text {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-text-primary);
+  color: var(--qi-on-dark-primary);
   text-align: center;
   margin: 0;
   line-height: 1.4;
@@ -178,12 +170,10 @@ a.contact-value:hover {
 .footer-divider {
   grid-column: 1 / -1;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--qi-inverse-12),
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      var(--qi-inverse-12),
+      transparent);
 }
 
 /* Bottom */
@@ -196,25 +186,32 @@ a.contact-value:hover {
 
 .copyright {
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-60);
+  color: var(--qi-on-dark-muted);
   letter-spacing: 0.02em;
 }
 
 .built-with {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-60);
+  color: var(--qi-on-dark-muted);
 }
 
 .heart {
   display: inline-block;
-  color: var(--qi-brand-emerald);
+  color: var(--qi-brand-amber);
   animation: heartbeat 1.8s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
 }
 
 /* Easter egg styling */
@@ -223,7 +220,7 @@ a.contact-value:hover {
   text-align: center;
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-inverse-40);
+  color: var(--qi-on-dark-secondary);
   margin-top: var(--qi-space-xl);
   transition: opacity 0.3s ease, color 0.3s ease;
 }
@@ -308,34 +305,10 @@ a.contact-value:hover {
   }
 }
 
-/* Footer 始终深色背景，暗色模式下文字保持浅色 */
+/* Footer 始终深色背景，不再需要针对 .dark 的颜色覆盖，
+   因为我们统一使用了 --qi-on-dark-* 令牌 */
 :global(.dark) .footer {
-  color: var(--qi-text-primary);
-  border-top-color: var(--qi-border-subtle);
+  border-top-color: var(--qi-border-inverse);
 }
 
-:global(.dark) .footer-heading {
-  color: var(--qi-amber);
-}
-
-:global(.dark) .contact-value,
-:global(.dark) .social-name {
-  color: var(--qi-text-primary);
-}
-
-:global(.dark) .copyright {
-  color: var(--qi-text-muted);
-}
-
-:global(.dark) .built-with {
-  color: var(--qi-text-muted);
-}
-
-:global(.dark) .contact-label {
-  color: var(--qi-text-muted);
-}
-
-:global(.dark) .footer-easter-egg {
-  color: var(--qi-text-muted);
-  opacity: 0.6;
-}
+/* 移除所有冗余的 .dark 覆盖 */

@@ -17,6 +17,12 @@
   --qi-on-surface-muted: #C8C3BD;
   --qi-on-surface-dim: #A8A29E;
 
+  /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
+  --qi-on-dark-primary: #F7F3EE;
+  --qi-on-dark-secondary: #E8E3DD;
+  --qi-on-dark-muted: #C8C3BD;
+  --qi-on-dark-dim: #A8A29E;
+
   /* Border */
   --qi-border-default: rgba(232, 227, 221, 0.12);
   --qi-border-subtle: rgba(232, 227, 221, 0.08);
@@ -104,16 +110,19 @@
   --qi-base-10: rgba(232, 227, 221, 0.18);
   --qi-base-15: rgba(232, 227, 221, 0.25);
 
-  /* Inverse alpha */
-  --qi-inverse-88: rgba(30, 27, 24, 0.88);
-  --qi-inverse-70: rgba(30, 27, 24, 0.70);
-  --qi-inverse-60: rgba(30, 27, 24, 0.60);
-  --qi-inverse-55: rgba(30, 27, 24, 0.55);
-  --qi-inverse-50: rgba(30, 27, 24, 0.50);
-  --qi-inverse-40: rgba(30, 27, 24, 0.40);
-  --qi-inverse-20: rgba(30, 27, 24, 0.20);
-  --qi-inverse-15: rgba(30, 27, 24, 0.15);
-  --qi-inverse-12: rgba(30, 27, 24, 0.12);
+  /* Inverse alpha — Light colors for use on dark surfaces (like Footer) */
+  --qi-inverse-88: rgba(255, 255, 255, 0.90);
+  --qi-inverse-85: rgba(255, 255, 255, 0.85);
+  /* Missing token */
+  --qi-inverse-70: rgba(255, 255, 255, 0.70);
+  --qi-inverse-60: rgba(255, 255, 255, 0.60);
+  --qi-inverse-55: rgba(255, 255, 255, 0.55);
+  --qi-inverse-50: rgba(255, 255, 255, 0.50);
+  --qi-inverse-40: rgba(255, 255, 255, 0.40);
+  --qi-inverse-25: rgba(255, 255, 255, 0.25);
+  --qi-inverse-20: rgba(255, 255, 255, 0.20);
+  --qi-inverse-15: rgba(255, 255, 255, 0.15);
+  --qi-inverse-12: rgba(255, 255, 255, 0.12);
 
   /* Shadow */
   --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);

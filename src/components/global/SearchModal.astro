@@ -12,7 +12,7 @@
   <div class="search-backdrop" id="search-backdrop" tabindex="-1" aria-hidden="true"></div>
   <div class="search-container" role="document">
     <div class="search-input-wrap">
-      <h2 id="search-modal-title" class="sr-only">搜索</h2>
+      <h2 id="search-modal-title" class="sr-only" data-i18n-key="title"></h2>
       <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" />
         <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
@@ -21,16 +21,15 @@
         id="search-input"
         type="search"
         class="search-input"
-        placeholder="搜索文章…"
         autocomplete="off"
-        aria-label="搜索文章"
         aria-describedby="search-hint"
         aria-controls="search-results"
+        data-i18n-key="placeholder"
       />
       <kbd class="search-kbd" aria-hidden="true">ESC</kbd>
     </div>
     <div id="search-results" class="search-results" aria-live="polite" aria-atomic="true">
-      <p id="search-hint" class="search-hint">输入关键词开始搜索</p>
+      <p id="search-hint" class="search-hint" data-i18n-key="hint"></p>
     </div>
   </div>
 </div>
@@ -40,6 +39,55 @@
 </style>
 
 <script>
+  // i18n mapping for SearchModal (runtime locale detection)
+  const i18n: Record<string, Record<string, string>> = {
+    zh: {
+      title: '搜索',
+      placeholder: '搜索文章…',
+      ariaLabel: '搜索文章',
+      hint: '输入关键词开始搜索',
+      searching: '搜索中…',
+      devOnly: '搜索功能仅在生产环境可用',
+      noResults: (q: string) => `未找到与"${q}"相关的结果`,
+      error: '搜索出错，请重试',
+    },
+    en: {
+      title: 'Search',
+      placeholder: 'Search articles…',
+      ariaLabel: 'Search articles',
+      hint: 'Type a keyword to search',
+      searching: 'Searching…',
+      devOnly: 'Search is only available in production',
+      noResults: (q: string) => `No results found for "${q}"`,
+      error: 'Search failed, please try again',
+    },
+  };
+
+  function getLang(): string {
+    return document.documentElement.lang === 'en' ? 'en' : 'zh';
+  }
+
+  function t(key: string): string {
+    return (i18n[getLang()] || i18n.zh)[key] || key;
+  }
+
+  function tNoResults(q: string): string {
+    const fn = (i18n[getLang()] || i18n.zh).noResults;
+    return typeof fn === 'function' ? (fn as (q: string) => string)(q) : String(fn);
+  }
+
+  function applyI18n() {
+    const titleEl = document.querySelector('[data-i18n-key="title"]');
+    const inputEl = document.getElementById('search-input') as HTMLInputElement;
+    const hintEl = document.querySelector('[data-i18n-key="hint"]');
+    if (titleEl) titleEl.textContent = t('title');
+    if (inputEl) {
+      inputEl.placeholder = t('placeholder');
+      inputEl.setAttribute('aria-label', t('ariaLabel'));
+    }
+    if (hintEl) hintEl.textContent = t('hint');
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let pagefind: any = null;
   let searchTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -52,20 +100,17 @@
   async function initPagefind() {
     if (pagefind) return pagefind;
     try {
-      // 尝试导入 pagefind.js
-      // 在开发模式下，这个文件不存在，会抛出错误
       pagefind = await import('/pagefind/pagefind.js');
-      // Pagefind needs to discover its index location
       await pagefind.init();
       return pagefind;
     } catch {
-      // 开发模式下，返回 null 并显示友好提示
       return null;
     }
   }
 
   function openSearch() {
     if (!modal) return;
+    applyI18n(); // refresh labels on open in case locale changed
     modal.setAttribute('aria-hidden', 'false');
     input?.focus();
     document.body.style.overflow = 'hidden';
@@ -75,7 +120,7 @@
     if (!modal) return;
     modal.setAttribute('aria-hidden', 'true');
     input!.value = '';
-    if (results) results.innerHTML = '<p class="search-hint">输入关键词开始搜索</p>';
+    if (results) results.innerHTML = `<p class="search-hint">${t('hint')}</p>`;
     document.body.style.overflow = '';
   }
 
@@ -83,15 +128,15 @@
     if (!results) return;
 
     if (!query.trim()) {
-      results.innerHTML = '<p class="search-hint">输入关键词开始搜索</p>';
+      results.innerHTML = `<p class="search-hint">${t('hint')}</p>`;
       return;
     }
 
-    results.innerHTML = '<p class="search-status">搜索中…</p>';
+    results.innerHTML = `<p class="search-status">${t('searching')}</p>`;
 
     const pf = await initPagefind();
     if (!pf) {
-      results.innerHTML = '<p class="search-status">搜索功能仅在生产环境可用</p>';
+      results.innerHTML = `<p class="search-status">${t('devOnly')}</p>`;
       return;
     }
 
@@ -103,7 +148,7 @@
       );
 
       if (items.length === 0) {
-        results.innerHTML = `<p class="search-status">未找到与"${query}"相关的结果</p>`;
+        results.innerHTML = `<p class="search-status">${tNoResults(query)}</p>`;
         return;
       }
 
@@ -122,9 +167,12 @@
         })
         .join('');
     } catch {
-      results.innerHTML = '<p class="search-status">搜索出错，请重试</p>';
+      results.innerHTML = `<p class="search-status">${t('error')}</p>`;
     }
   }
+
+  // Apply i18n on initial load
+  applyI18n();
 
   // Event listeners
   document.addEventListener('astro:page-load', () => {

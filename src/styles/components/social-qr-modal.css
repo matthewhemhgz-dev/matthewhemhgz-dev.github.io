@@ -1,0 +1,125 @@
+.social-qr-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--qi-z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--qi-transition-base), visibility var(--qi-transition-base);
+}
+
+.social-qr-modal[aria-hidden="false"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.social-qr-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 27, 24, 0.8);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.social-qr-container {
+  position: relative;
+  background: var(--qi-bg-base);
+  padding: var(--qi-space-2xl);
+  border-radius: var(--qi-radius-card);
+  box-shadow: var(--qi-shadow-xl);
+  max-width: 90vw;
+  width: 360px;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform var(--qi-transition-base);
+  border: 1px solid var(--qi-border-strong);
+}
+
+.social-qr-modal[aria-hidden="false"] .social-qr-container {
+  transform: translateY(0);
+}
+
+.social-qr-close {
+  position: absolute;
+  top: var(--qi-space-md);
+  right: var(--qi-space-md);
+  background: transparent;
+  border: none;
+  color: var(--qi-text-secondary);
+  cursor: pointer;
+  padding: var(--qi-space-sm);
+  border-radius: var(--qi-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--qi-transition-fast), color var(--qi-transition-fast);
+}
+
+.social-qr-close:hover {
+  background: var(--qi-base-06);
+  color: var(--qi-brand-emerald);
+}
+
+.social-qr-header {
+  margin-bottom: var(--qi-space-xl);
+}
+
+.social-qr-title {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-xl);
+  color: var(--qi-text-primary);
+  margin-bottom: var(--qi-space-xs);
+}
+
+.social-qr-platform {
+  font-size: var(--qi-text-sm);
+  color: var(--qi-brand-emerald);
+  font-weight: 600;
+  letter-spacing: var(--qi-tracking-wide);
+}
+
+.social-qr-image-wrap {
+  position: relative;
+  margin: 0 auto var(--qi-space-xl);
+  width: 240px;
+  height: 240px;
+  background: white;
+  padding: var(--qi-space-md);
+  border-radius: var(--qi-radius-md);
+  border: 1px solid var(--qi-brand-amber);
+  box-shadow: 0 0 20px var(--qi-brand-amber-08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-qr-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.social-qr-footer {
+  color: var(--qi-text-secondary);
+  font-size: var(--qi-text-sm);
+  line-height: var(--qi-leading-normal);
+}
+
+.social-qr-hint {
+  display: block;
+  font-weight: 500;
+  color: var(--qi-text-primary);
+  margin-bottom: var(--qi-space-xs);
+}
+
+.social-qr-account {
+  opacity: 0.8;
+}
