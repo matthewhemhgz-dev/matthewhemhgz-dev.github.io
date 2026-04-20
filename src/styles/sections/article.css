@@ -2,10 +2,10 @@
    Article Styles — Shared by /blog/[slug]
    ========================================================================== */
 
-@import '../utilities/code-blocks.css';
+@import "../utilities/code-blocks.css";
 
 .article-container {
-  max-width: 720px;
+  max-width: 740px;
   margin: 0 auto;
   padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding) var(--qi-space-5xl);
   scroll-margin-top: var(--qi-nav-total-height);
@@ -18,7 +18,7 @@
   gap: var(--qi-space-sm);
   color: var(--qi-brand-emerald);
   font-family: var(--qi-font-mono);
-  font-size: var(--qi-text-sm);
+  font-size: var(--qi-text-xs);
   text-decoration: none;
   margin-bottom: var(--qi-space-2xl);
   transition: gap var(--qi-transition), color var(--qi-transition);
@@ -73,19 +73,19 @@
 
 .article-title {
   font-family: var(--qi-font-serif);
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
   font-weight: var(--qi-weight-bold);
   color: var(--qi-text-primary);
-  line-height: var(--qi-leading-tight);
-  margin: 0 0 var(--qi-space-lg);
-  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 var(--qi-space-xl);
+  letter-spacing: -0.02em;
 }
 
 .article-description {
-  font-size: var(--qi-text-lg);
-  color: var(--qi-text-muted);
+  font-size: var(--qi-text-xl);
+  color: var(--qi-text-secondary);
   line-height: 1.7;
-  margin: 0 0 var(--qi-space-md);
+  margin: 0 0 var(--qi-space-lg);
 }
 
 .article-tags {
@@ -176,33 +176,378 @@
   color: var(--qi-text-muted);
 }
 
-/* === Prose Styles === */
+/* === Prose Styles — Magazine Grade Reading Experience === */
 .prose {
   font-size: var(--qi-text-lg);
-  line-height: 1.75;
+  line-height: 1.85;
   color: var(--qi-text-primary);
-  padding: var(--qi-space-3xl);
-  background: var(--qi-surface-sub);
-  border-radius: var(--qi-radius-xl);
-  border: 1px solid var(--qi-border-default);
-  box-shadow: var(--qi-shadow-sm);
-  transition: all 0.3s ease;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: none;
   margin-bottom: var(--qi-space-2xl);
   max-width: 100%;
+  letter-spacing: 0.01em;
 }
 
-/* 深色模式样式 */
-:global(.dark) .prose {
+/* = Headings = */
+.prose :global(h2) {
+  font-family: var(--qi-font-serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  margin: 3.5rem 0 1.5rem;
+  padding-bottom: var(--qi-space-md);
+  position: relative;
+  letter-spacing: -0.015em;
+  scroll-margin-top: 100px;
+  line-height: 1.25;
+}
+
+.prose :global(h2)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
+  border-radius: 2px;
+}
+
+.prose :global(h3) {
+  font-family: var(--qi-font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  margin: 2.75rem 0 1.1rem;
+  padding-left: 1.25rem;
+  position: relative;
+  scroll-margin-top: 100px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.prose :global(h3)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: var(--qi-brand-emerald);
+  border-radius: 2px;
+}
+
+.prose :global(h4) {
+  font-family: var(--qi-font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin: 2.25rem 0 0.9rem;
+  scroll-margin-top: 100px;
+  line-height: 1.35;
+}
+
+/* = Paragraphs & Text = */
+.prose :global(p) {
+  margin-bottom: 1.6rem;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.prose :global(strong) {
+  font-weight: 600;
+  color: var(--qi-text-primary);
+}
+
+.prose :global(em) {
+  font-style: italic;
+}
+
+/* = Links = */
+.prose :global(a) {
+  color: var(--qi-brand-emerald);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--qi-transition);
+}
+
+.prose :global(a)::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--qi-brand-emerald-40), var(--qi-brand-emerald-10), transparent);
+  transition: height var(--qi-transition-fast), bottom var(--qi-transition-fast), background var(--qi-transition-fast);
+}
+
+.prose :global(a:hover) {
+  color: var(--qi-brand-amber);
+}
+
+.prose :global(a:hover)::after {
+  height: 2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, var(--qi-brand-amber-50), var(--qi-brand-amber-15), transparent);
+}
+
+/* = Lists = */
+.prose :global(ul),
+.prose :global(ol) {
+  padding-left: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose :global(ul) {
+  list-style: none;
+  position: relative;
+}
+
+.prose :global(ul) > :global(li) {
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.prose :global(ul) > :global(li)::before {
+  content: "";
+  position: absolute;
+  left: -1.25rem;
+  top: 0.85rem;
+  width: 6px;
+  height: 6px;
+  background: var(--qi-brand-emerald);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--qi-brand-emerald-10);
+}
+
+.prose :global(ol) {
+  list-style: none;
+  counter-reset: list-counter;
+}
+
+.prose :global(ol) > :global(li) {
+  counter-increment: list-counter;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.prose :global(ol) > :global(li)::before {
+  content: counter(list-counter);
+  position: absolute;
+  left: -1.75rem;
+  top: 0;
+  font-family: var(--qi-font-mono);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-06);
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.prose :global(li) {
+  margin-bottom: 0.75rem;
+  line-height: 1.9;
+}
+
+.prose :global(li)::marker {
+  color: var(--qi-brand-emerald);
+}
+
+/* = Blockquote = */
+.prose :global(blockquote) {
+  border-left: 4px solid var(--qi-brand-emerald);
+  padding: 1.75rem 1.75rem 1.75rem 2rem;
+  margin: 2.5rem 0;
+  background: var(--qi-brand-emerald-05);
+  border-radius: 0 var(--qi-radius-lg) var(--qi-radius-lg) 0;
+  color: var(--qi-text-primary);
+  font-style: italic;
+  position: relative;
+  transition: transform var(--qi-transition-fast), background var(--qi-transition-fast);
+}
+
+.prose :global(blockquote):hover {
+  transform: translateX(6px);
+  background: var(--qi-brand-emerald-08);
+}
+
+.prose :global(blockquote)::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  font-size: 3.5rem;
+  font-family: var(--qi-font-serif);
+  color: var(--qi-brand-emerald);
+  opacity: 0.12;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.prose :global(blockquote p) {
+  margin-bottom: 0;
+  line-height: 1.8;
+  font-size: 1.05em;
+}
+
+/* = Images = */
+.prose :global(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--qi-radius-lg);
+  margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  display: block;
+}
+
+.prose :global(img):hover {
+  transform: scale(1.015);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.prose :global(img):only-child {
+  margin-inline: auto;
+}
+
+/* Figure with caption */
+.prose :global(figure) {
+  margin: 2.25rem 0;
+  text-align: center;
+}
+
+.prose :global(figcaption) {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+  margin-top: var(--qi-space-md);
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* = Horizontal Rule = */
+.prose :global(hr) {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--qi-base-12), var(--qi-base-12), transparent);
+  margin: 3rem 0;
+  position: relative;
+}
+
+.prose :global(hr)::before {
+  content: "• • •";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--qi-bg-base);
+  color: var(--qi-brand-emerald);
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.5rem;
+}
+
+/* = Tables = */
+.prose :global(table) {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95em;
+  margin: 2rem 0;
+  border-radius: var(--qi-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--qi-border-default);
+  display: block;
+  overflow-x: auto;
+  background: var(--qi-surface-main);
+}
+
+.prose :global(th),
+.prose :global(td) {
+  padding: 0.9rem 1.25rem;
+  border: none;
+  border-bottom: 1px solid var(--qi-border-subtle);
+  text-align: left;
+  transition: background-color var(--qi-transition-fast);
+}
+
+.prose :global(th) {
+  font-family: var(--qi-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--qi-text-primary);
   background: var(--qi-surface-sub);
-  border-color: var(--qi-border-default);
-  box-shadow: var(--qi-shadow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--qi-brand-emerald-20);
+}
+
+.prose :global(tr:last-child) td {
+  border-bottom: none;
+}
+
+.prose :global(tr:nth-child(even)) td {
+  background: var(--qi-brand-emerald-03);
+}
+
+.prose :global(tr:hover) td {
+  background: var(--qi-brand-emerald-08);
+}
+
+.prose :global(tr:nth-child(even)):hover td {
+  background: var(--qi-brand-emerald-10);
+}
+
+/* = Mermaid diagrams = */
+.mermaid-container {
+  background: var(--qi-surface-main);
+  border-radius: var(--qi-radius-lg);
+  padding: var(--qi-space-xl);
+  margin: 2rem 0;
+  text-align: center;
+  overflow-x: auto;
+  border: 1px solid var(--qi-border-default);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* = Dark Mode Specifics = */
+:global(.dark) .prose {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 :global(.dark) .prose :global(h2),
 :global(.dark) .prose :global(h3),
 :global(.dark) .prose :global(h4) {
   color: var(--qi-text-primary);
-  border-bottom-color: var(--qi-border-strong);
+}
+
+:global(.dark) .prose :global(h2)::after {
+  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
+}
+
+:global(.dark) .prose :global(h3)::before {
+  background: var(--qi-brand-emerald);
 }
 
 :global(.dark) .prose :global(strong) {
@@ -211,291 +556,94 @@
 
 :global(.dark) .prose :global(a) {
   color: var(--qi-brand-emerald);
-  text-decoration-color: var(--qi-brand-emerald-30);
+}
+
+:global(.dark) .prose :global(a)::after {
+  background: linear-gradient(90deg, var(--qi-brand-emerald-40), var(--qi-brand-emerald-10), transparent);
 }
 
 :global(.dark) .prose :global(a:hover) {
   color: var(--qi-brand-amber);
-  text-decoration-color: var(--qi-brand-amber-40);
 }
 
-:global(.dark) .prose :global(li)::marker {
+:global(.dark) .prose :global(a:hover)::after {
+  background: linear-gradient(90deg, var(--qi-brand-amber-50), var(--qi-brand-amber-15), transparent);
+}
+
+:global(.dark) .prose :global(ul) > :global(li)::before {
+  background: var(--qi-brand-emerald);
+  box-shadow: 0 0 0 3px var(--qi-brand-emerald-08);
+}
+
+:global(.dark) .prose :global(ol) > :global(li)::before {
   color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-08);
 }
 
 :global(.dark) .prose :global(blockquote) {
   border-left-color: var(--qi-brand-emerald);
-  background: var(--qi-surface-main);
-  color: var(--qi-on-surface-secondary);
-  border-radius: var(--qi-radius-md);
+  background: var(--qi-brand-emerald-06);
+  color: var(--qi-text-primary);
+}
+
+:global(.dark) .prose :global(blockquote):hover {
+  background: var(--qi-brand-emerald-10);
+}
+
+:global(.dark) .prose :global(blockquote)::before {
+  color: var(--qi-brand-emerald);
+  opacity: 0.15;
 }
 
 :global(.dark) .prose :global(img) {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--qi-border-subtle);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+:global(.dark) .prose :global(img):hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+:global(.dark) .prose :global(hr)::before {
+  background: var(--qi-bg-base);
+  color: var(--qi-brand-emerald);
 }
 
 :global(.dark) .prose :global(hr) {
-  background: var(--qi-border-subtle);
-  opacity: 0.5;
+  background: linear-gradient(90deg, transparent, var(--qi-base-16), var(--qi-base-16), transparent);
+}
+
+:global(.dark) .prose :global(table) {
+  border-color: var(--qi-border-default);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
+  background: var(--qi-surface-main);
 }
 
 :global(.dark) .prose :global(th) {
   color: var(--qi-text-primary);
   background: var(--qi-surface-sub);
-}
-
-:global(.dark) .prose :global(tr):hover td {
-  background: var(--qi-brand-emerald-03);
-}
-
-:global(.dark) .mermaid-container {
-  background: var(--qi-surface-main);
-}
-
-.prose :global(h2) {
-  font-family: var(--qi-font-serif);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--qi-text-primary);
-  margin: 3rem 0 1.25rem;
-  padding-bottom: var(--qi-space-sm);
-  border-bottom: 1px solid var(--qi-base-06);
-  letter-spacing: -0.01em;
-  scroll-margin-top: 100px;
-}
-
-.prose :global(h3) {
-  font-family: var(--qi-font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--qi-text-primary);
-  margin: 2.5rem 0 1rem;
-  scroll-margin-top: 100px;
-}
-
-.prose :global(h4) {
-  font-family: var(--qi-font-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--qi-text-primary);
-  margin: 2rem 0 0.75rem;
-  scroll-margin-top: 100px;
-}
-
-.prose :global(p) {
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
-
-.prose :global(strong) {
-  font-weight: 700;
-  color: var(--qi-text-primary);
-}
-
-.prose :global(em) {
-  font-style: italic;
-}
-
-/* Links */
-.prose :global(a) {
-  color: var(--qi-brand-emerald);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--qi-brand-emerald-30);
-  transition: color var(--qi-transition), text-decoration-color var(--qi-transition);
-}
-
-.prose :global(a:hover) {
-  color: var(--qi-brand-amber);
-  text-decoration-color: var(--qi-brand-amber-40);
-}
-
-/* Lists */
-.prose :global(ul),
-.prose :global(ol) {
-  padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.prose :global(ul) {
-  list-style-type: disc;
-}
-
-.prose :global(ol) {
-  list-style-type: decimal;
-}
-
-.prose :global(li) {
-  margin-bottom: 0.625rem;
-  line-height: 1.9;
-}
-
-.prose :global(li)::marker {
-  color: var(--qi-brand-emerald);
-}
-
-/* Inline code and code blocks are in code-blocks.css */
-
-/* Blockquote */
-.prose :global(blockquote) {
-  border-left: 3px solid var(--qi-brand-emerald);
-  padding: var(--qi-space-xl) var(--qi-space-2xl);
-  margin: 2.5rem 0;
-  background: var(--qi-brand-emerald-05);
-  border-radius: 0 var(--qi-radius-md) var(--qi-radius-md) 0;
-  color: var(--qi-text-primary);
-  font-style: italic;
-  position: relative;
-  transition: transform var(--qi-transition);
-}
-
-.prose :global(blockquote):hover {
-  transform: translateX(4px);
-  background: var(--qi-brand-emerald-08);
-}
-
-.prose :global(blockquote)::before {
-  content: '"';
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 3rem;
-  font-family: var(--qi-font-serif);
-  color: var(--qi-brand-emerald);
-  opacity: 0.15;
-  line-height: 1;
-}
-
-.prose :global(blockquote p) {
-  margin-bottom: 0;
-  line-height: 1.7;
-}
-
-/* Images */
-.prose :global(img) {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--qi-radius-lg);
-  margin: 1.5rem 0;
-  box-shadow: var(--qi-shadow-md);
-  transition: transform 0.4s ease;
-}
-
-.prose :global(img):hover {
-  transform: scale(1.01);
-}
-
-.prose :global(img):only-child {
-  display: block;
-  margin-inline: auto;
-}
-
-/* Figure with caption */
-.prose :global(figure) {
-  margin: 2rem 0;
-  text-align: center;
-}
-
-.prose :global(figcaption) {
-  font-family: var(--qi-font-mono);
-  font-size: var(--qi-text-xs);
-  color: var(--qi-text-muted);
-  margin-top: var(--qi-space-sm);
-  line-height: 1.6;
-}
-
-/* Horizontal rule */
-.prose :global(hr) {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--qi-base-10), transparent);
-  margin: 2.5rem 0;
-}
-
-/* Tables */
-/* 为表格创建一个滚动容器 */
-.prose :global(table) {
-  width: 100%;
-  min-width: 800px;
-  /* 设置最小宽度，确保表格在小屏幕上可以滚动 */
-  border-collapse: collapse;
-  font-size: 0.95em;
-  margin: 1.5rem 0;
-  border-radius: var(--qi-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--qi-shadow-sm);
-  border: 1px solid var(--qi-border-default);
-  /* 让表格本身可滚动 */
-  display: block;
-  overflow-x: auto;
-}
-
-.prose :global(th),
-.prose :global(td) {
-  padding: var(--qi-space-md) var(--qi-space-lg);
-  border: 1px solid var(--qi-border-default);
-  text-align: left;
-  transition: background-color var(--qi-transition-fast);
-}
-
-.prose :global(th) {
-  font-family: var(--qi-font-mono);
-  font-size: var(--qi-text-xs);
-  font-weight: 600;
-  color: var(--qi-text-primary);
-  background: var(--qi-surface-main);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-.prose :global(tr):hover td {
-  background: var(--qi-brand-emerald-03);
-}
-
-.prose :global(tr:nth-child(even)) td {
-  background: var(--qi-surface-main);
-}
-
-/* 暗色模式表格样式 */
-:global(.dark) .prose :global(table) {
-  border-color: var(--qi-border-default);
-  box-shadow: var(--qi-shadow);
+  border-bottom-color: var(--qi-brand-emerald-25);
 }
 
 :global(.dark) .prose :global(th),
 :global(.dark) .prose :global(td) {
-  border-color: var(--qi-border-default);
-}
-
-:global(.dark) .prose :global(th) {
-  background: var(--qi-surface-main);
+  border-bottom-color: var(--qi-border-subtle);
 }
 
 :global(.dark) .prose :global(tr:nth-child(even)) td {
+  background: var(--qi-brand-emerald-05);
+}
+
+:global(.dark) .prose :global(tr:hover) td {
+  background: var(--qi-brand-emerald-10);
+}
+
+:global(.dark) .prose :global(tr:nth-child(even)):hover td {
+  background: var(--qi-brand-emerald-12);
+}
+
+:global(.dark) .mermaid-container {
   background: var(--qi-surface-main);
-}
-
-:global(.dark) .prose :global(tr):hover td {
-  background: var(--qi-brand-emerald-03);
-}
-
-/* Mermaid diagrams */
-.mermaid-container {
-  background: var(--qi-surface-main);
-  border-radius: var(--qi-radius-lg);
-  padding: var(--qi-space-xl);
-  margin: 1.5rem 0;
-  text-align: center;
-  overflow-x: auto;
-  border: 1px solid var(--qi-border-default);
-  box-shadow: var(--qi-shadow-sm);
-}
-
-.mermaid-container svg {
-  max-width: 100%;
-  height: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* Article footer */
@@ -532,7 +680,11 @@
   }
 
   .article-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+
+  .article-description {
+    font-size: var(--qi-text-lg);
   }
 
   .prose {
@@ -540,47 +692,59 @@
     line-height: 1.8;
   }
 
-  .prose :global(pre) {
-    padding: var(--qi-space-lg);
-    border-radius: var(--qi-radius-md);
+  .prose :global(h2) {
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.35rem;
+  }
+
+  .prose :global(h4) {
+    font-size: 1.15rem;
+  }
+
+  .prose :global(blockquote) {
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
   }
 }
 
 /* === Desktop: Article === */
 @media (min-width: 1024px) {
   .article-container {
-    max-width: 800px;
+    max-width: 760px;
   }
 }
 
 /* === Large screen: Article === */
 @media (min-width: 1440px) {
   .article-container {
-    max-width: 820px;
+    max-width: 780px;
   }
 
   .prose :global(h2) {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 }
 
 /* === XL screen: Article === */
 @media (min-width: 1920px) {
   .article-container {
-    max-width: 840px;
+    max-width: 820px;
   }
 
   .prose {
     font-size: calc(var(--qi-text-lg) + 0.05rem);
-    line-height: 1.95;
+    line-height: 1.9;
   }
 
   .prose :global(h2) {
-    font-size: 1.9rem;
+    font-size: 2.1rem;
   }
 
   .prose :global(h3) {
-    font-size: 1.4rem;
+    font-size: 1.65rem;
   }
 
   .toc {
@@ -588,30 +752,30 @@
   }
 
   .article-title {
-    font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+    font-size: clamp(2.2rem, 4vw, 3rem);
   }
 }
 
 @media (min-width: 2560px) {
   .article-container {
-    max-width: 960px;
+    max-width: 900px;
   }
 
   .prose {
     font-size: var(--qi-text-xl);
-    line-height: 2;
+    line-height: 1.95;
   }
 
   .prose :global(h2) {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
 
   .prose :global(h3) {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .prose :global(pre) {
-    padding: var(--qi-space-2xl);
+    padding: var(--qi-space-xl);
   }
 
   .toc {
@@ -619,25 +783,25 @@
   }
 
   .article-title {
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(2.5rem, 3.5vw, 3.25rem);
   }
 }
 
 @media (min-width: 3440px) {
   .article-container {
-    max-width: 1080px;
+    max-width: 1000px;
   }
 
   .prose :global(h2) {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .prose :global(h3) {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
 
   .article-title {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-size: clamp(2.75rem, 4vw, 3.5rem);
   }
 }
 
@@ -674,12 +838,13 @@
   border-radius: var(--qi-radius-lg);
   border: 1px solid var(--qi-border-default);
   text-decoration: none;
-  transition: border-color var(--qi-transition), background-color var(--qi-transition);
+  transition: border-color var(--qi-transition), background-color var(--qi-transition), transform var(--qi-transition-fast);
 }
 
 .article-nav-link:hover {
   border-color: var(--qi-brand-emerald);
   background: var(--qi-brand-emerald-04);
+  transform: translateY(-2px);
 }
 
 .article-nav-link--next {
