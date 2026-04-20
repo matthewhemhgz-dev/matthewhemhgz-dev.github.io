@@ -9,8 +9,9 @@
 - **交互**: 原生 JavaScript (View Transitions / Canvas / 3D Tilt / Pagefind)
 - **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，支持中英双语分词
 - **部署**: GitHub Pages
-- **质量保障**: 通过 6 轮深度的高级 UI/UX 审计与 Playwright 自动化回归测试
+- **质量保障**: 历经 7 轮深度的高级 UI/UX 审计（包括高保真资产对齐、国际化 Parity 与工程美学视觉校验）
 - **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Deploy)
+- **品牌内核**: 专注于“思维架构与知识工程”，每一处视觉与文案均经过微观逻辑校准
 
 ## 快速开始
 

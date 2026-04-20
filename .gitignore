@@ -35,7 +35,25 @@ pnpm-debug.log*
 test-results/
 playwright-report/
 blob-report/
-audit_results_utf8.json
-brand_new_audit*.json
 scan_results/
 audit-results/
+
+# Temporary and Log files
+*.log
+*_results.txt
+*_results_utf8.json
+audit_results*.json
+brand_new_audit*.json
+build_error*.txt
+build_log*.txt
+debug_output*.txt
+senior_audit*.txt
+senior_micro_audit*.txt
+wrap_up_en_audit.txt
+test_output.txt
+test_results*.txt
+final_final_results.txt
+final_en_audit_results.txt
+final_audit_results.txt
+en_audit_results.txt
+test_err.log
