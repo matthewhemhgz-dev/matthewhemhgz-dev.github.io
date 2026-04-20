@@ -101,9 +101,9 @@ graph TD
     A[全局令牌 Global Tokens] --> B[别名令牌 Alias Tokens]
     B --> C[组件令牌 Component Tokens]
 
-    A -- "原始设计值 | 如: blue-500: #2563EB" --> A
-    B -- "语义化映射 | 如: color-primary: blue-500" --> B
-    C -- "组件级绑定 | 如: button-bg: color-primary" --> C
+    style A fill:#e3f2fd
+    style B fill:#bbdefb
+    style C fill:#90caf9
 ```
 
 ### 第一层：全局令牌（Global Tokens）

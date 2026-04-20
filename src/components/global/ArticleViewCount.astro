@@ -1,0 +1,76 @@
+---
+interface Props {
+  articleId: string;
+}
+
+const { articleId } = Astro.props;
+---
+
+<span class="article-view-count" id={`view-count-${articleId}`}>
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M8 2C4.5 2 2 5 2 8s2.5 6 6 6 6-3 6-6-2.5-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5z" fill="currentColor"/>
+  </svg>
+  <span class="view-count-text">加载中...</span>
+</span>
+
+<script>
+  const articleId = document.currentScript!.parentElement!.querySelector('.article-view-count')?.id?.replace('view-count-', '') || '';
+  
+  if (articleId) {
+    const STORAGE_KEY = 'blog-view-counts';
+    
+    function getViewCount(): number {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        const counts = data ? JSON.parse(data) : {};
+        return counts[articleId] || 0;
+      } catch {
+        return 0;
+      }
+    }
+    
+    function incrementViewCount(): number {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        const counts = data ? JSON.parse(data) : {};
+        counts[articleId] = (counts[articleId] || 0) + 1;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(counts));
+        return counts[articleId];
+      } catch {
+        return 0;
+      }
+    }
+    
+    function updateDisplay(count: number) {
+      const el = document.querySelector(`#view-count-${articleId} .view-count-text`);
+      if (el) {
+        if (count === 0) {
+          el.textContent = '首次阅读';
+        } else if (count === 1) {
+          el.textContent = `${count} 次阅读`;
+        } else {
+          el.textContent = `${count} 次阅读`;
+        }
+      }
+    }
+    
+    // 先显示当前计数，然后递增
+    const currentCount = getViewCount();
+    updateDisplay(currentCount);
+    const newCount = incrementViewCount();
+    if (newCount !== currentCount) {
+      updateDisplay(newCount);
+    }
+  }
+</script>
+
+<style>
+  .article-view-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    color: var(--qi-text-muted);
+  }
+</style>

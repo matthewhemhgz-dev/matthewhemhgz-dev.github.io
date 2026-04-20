@@ -89,6 +89,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <!-- JSON-LD Structured Data -->
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNGRXTNXF5"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      // eslint-disable-next-line prefer-rest-params
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CNGRXTNXF5');
+      
+      document.addEventListener('astro:page-load', () => {
+        gtag('config', 'G-CNGRXTNXF5', {
+          page_path: window.location.pathname + window.location.search + window.location.hash
+        });
+      });
+    </script>
+
     <!-- Theme init (prevent FOUC) -->
     <script is:inline>
       (function(){const t=localStorage.getItem('qi-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark');document.documentElement.classList.toggle('light',t==='light');const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#121010':'#F7F3EE'})();

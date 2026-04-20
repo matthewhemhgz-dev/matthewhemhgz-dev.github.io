@@ -307,23 +307,23 @@ export default {
 
 ```mermaid
 graph TD
-    subgraph "第 1 层：设计令牌"
+    subgraph "第 1 层：设计令牌
         A[令牌定义 JSON/YAML]
     end
-    subgraph "第 2 层：基础样式"
+    subgraph "第 2 层：基础样式
         B[CSS Reset]
         C[原生标签样式]
         D[排版系统]
     end
-    subgraph "第 3 层：设计模式"
+    subgraph "第 3 层：设计模式
         E[布局模式]
         F[间距模式]
     end
-    subgraph "第 4 层：组件样式"
+    subgraph "第 4 层：组件样式
         G[业务组件]
         H[通用组件]
     end
-    subgraph "第 5 层：工具类"
+    subgraph "第 5 层：工具类
         I[间距/排版工具类]
         J[响应式工具类]
         K[状态工具类]
