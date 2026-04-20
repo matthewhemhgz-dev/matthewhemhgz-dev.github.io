@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandLogo from '../components/global/BrandLogo.astro';
 import '../styles/sections/error.css';
 ---
 
@@ -10,6 +11,9 @@ import '../styles/sections/error.css';
       <div class="error-orb error-orb--2"></div>
     </div>
     <div class="error-content">
+      <div class="error-logo-wrap">
+        <BrandLogo variant="icon" size="lg" />
+      </div>
       <div class="error-badge">// 404</div>
       <span class="error-code">404</span>
       <h1 class="error-title">页面未找到</h1>

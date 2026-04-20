@@ -1,5 +1,6 @@
 ---
 import '../../styles/components/footer.css';
+import BrandLogo from './BrandLogo.astro';
 
 interface Props {
   tagline?: string;
@@ -66,7 +67,7 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
   <div class="footer-inner container">
     <!-- Brand -->
     <div class="footer-brand">
-      <h2 class="footer-title">{labels.title}</h2>
+      <BrandLogo variant="icon" size="md" />
       <p class="footer-tagline">{tagline}</p>
     </div>
 
@@ -135,8 +136,9 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
       <p class="built-with">
         {labels.builtWith}
         <span class="heart" aria-label="love">♥</span>
-        &amp; Astro 构建
+        &amp; {lang === 'en' ? 'Astro' : 'Astro 构建'}
       </p>
+
     </div>
 
     <!-- Easter egg for curious scrollers -->

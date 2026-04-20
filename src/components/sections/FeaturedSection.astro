@@ -39,9 +39,12 @@ const {
   largeCardLayout = false,
 } = Astro.props;
 
-const localeKey = 'zh-CN';
-const blogPrefix = '/blog/';
+const isEn = Astro.url.pathname.startsWith('/en');
+const localeKey = isEn ? 'en-US' : 'zh-CN';
+const blogPrefix = isEn ? '/en/blog/' : '/blog/';
+const replaceKey = isEn ? 'en/' : 'zh/';
 ---
+
 
 <section class="section" data-reveal>
   <div class="featured-corner-deco" aria-hidden="true">
@@ -55,7 +58,8 @@ const blogPrefix = '/blog/';
       <div class="bento-grid">
         {posts.map((post, i) => (
           <a
-            href={`${blogPrefix}${post.id.replace('zh/', '')}/`}
+            href={`${blogPrefix}${post.id.replace(replaceKey, '')}/`}
+
             class:list={['bento-card', 'tilt-card', i === 0 ? 'bento-card--large' : 'bento-card--small']}
           >
             {largeCardLayout && i === 0 && post.data.heroImage ? (

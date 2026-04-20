@@ -64,8 +64,9 @@
   };
 
   function getLang(): string {
-    return document.documentElement.lang === 'en' ? 'en' : 'zh';
+    return document.documentElement.lang.startsWith('en') ? 'en' : 'zh';
   }
+
 
   function t(key: string): string {
     return (i18n[getLang()] || i18n.zh)[key] || key;

@@ -9,7 +9,34 @@ interface Props {
 
 const { label, title } = Astro.props;
 
-const timelineEvents = [
+const isEn = Astro.url.pathname.startsWith('/en');
+
+const timelineEvents = isEn ? [
+  {
+    year: '2026',
+    title: 'QiLab Founded',
+    description: 'Created a personal digital archive to systematically organize knowledge, project management, and IT/AI skills.',
+    icon: '📁'
+  },
+  {
+    year: '2026',
+    title: 'Knowledge Base Setup',
+    description: 'Built a knowledge graph using Obsidian based on Bloom\'s taxonomy, maintaining a single source of truth with Markdown + Git.',
+    icon: '🧠'
+  },
+  {
+    year: '2026',
+    title: 'AI Workflow Integration',
+    description: 'Integrated Superpowers + OpenClaw AI Agents to drive development and content production pipelines.',
+    icon: '🤖'
+  },
+  {
+    year: '2026',
+    title: 'Site Launched',
+    description: 'Built a high-performance static site using Astro with multi-language support and responsive design.',
+    icon: '🚀'
+  }
+] : [
   {
     year: '2026',
     title: '祈研所成立',
@@ -35,6 +62,7 @@ const timelineEvents = [
     icon: '🚀'
   }
 ];
+
 ---
 
 <section class="section" data-reveal>

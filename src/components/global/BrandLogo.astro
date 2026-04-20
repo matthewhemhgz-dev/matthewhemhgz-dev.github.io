@@ -17,24 +17,33 @@ interface Props {
 const { variant = 'icon', size = 'md' } = Astro.props;
 
 const sizeMap = {
-  sm: { icon: 28, text: '0.95rem', gap: '6px' },
-  md: { icon: 36, text: '1.15rem', gap: '8px' },
-  lg: { icon: 48, text: '1.5rem', gap: '12px' },
+  sm: { icon: 32, text: '0.95rem', gap: '8px' },
+  md: { icon: 48, text: '1.15rem', gap: '10px' },
+  lg: { icon: 84, text: '1.75rem', gap: '12px' },
 };
+
+const isEn = Astro.url.pathname.startsWith('/en');
+const homeUrl = isEn ? '/en/' : '/';
+const brandName = isEn ? 'Qi-Lab' : '祈研所';
 
 const s = sizeMap[size];
 ---
 
-<a href="/" class="brand-logo brand-logo--{variant} brand-logo--{size}" aria-label="祈研所">
+<a href={homeUrl} class={`brand-logo brand-logo--${variant} brand-logo--${size}`} aria-label={brandName}>
   <img
-    class="brand-logo__icon"
-    src="/images/logo.svg"
-    alt="祈研所 Logo"
+    class="brand-logo__image"
+    src="/images/logo.webp"
+    alt={`${brandName} Logo`}
     width={s.icon}
     height={s.icon}
+    loading="eager"
+    decoding="async"
   />
 
-  {variant === 'full' && (
-    <span class="brand-logo__text" style={`font-size: ${s.text}`}>祈研所</span>
+  {/* Only show CSS text if specifically requested for old-style layout, 
+      otherwise the new logo image already contains the branding text */}
+  {variant === 'full' && size === 'lg' && (
+     <span class="brand-logo__text sr-only">{brandName}</span>
   )}
 </a>
+
