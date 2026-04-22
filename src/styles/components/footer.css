@@ -45,10 +45,10 @@
 .footer-heading {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--qi-amber);
+  color: var(--qi-brand-amber);
   margin-bottom: var(--qi-space-md);
 }
 

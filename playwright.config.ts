@@ -7,9 +7,15 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 90000,
+  expect: {
+    timeout: 15000,
+  },
   use: {
     baseURL: 'http://localhost:4321',
     trace: 'on-first-retry',
+    navigationTimeout: 45000,
+    actionTimeout: 20000,
   },
   projects: [
     {
@@ -20,7 +26,9 @@ export default defineConfig({
   webServer: {
     command: 'npm run preview',
     url: 'http://localhost:4321',
-    reuseExistingServer: true,
-    timeout: 120 * 1000,
+    reuseExistingServer: !process.env.CI,
+    timeout: 300 * 1000,
+    stderr: 'pipe',
+    stdout: 'pipe',
   },
 });

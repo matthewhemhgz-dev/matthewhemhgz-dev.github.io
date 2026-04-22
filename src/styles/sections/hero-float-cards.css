@@ -56,11 +56,11 @@
 .float-insight-label {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-on-dark-muted);
-  /* Increased from muted */
+  color: var(--qi-on-dark-secondary);
   text-transform: uppercase;
   letter-spacing: var(--qi-tracking-wider);
   margin-bottom: 2px;
+  font-weight: 600;
 }
 
 .float-insight-value {
@@ -74,7 +74,7 @@
 
 .float-insight-bar {
   height: 3px;
-  background: var(--qi-base-04);
+  background: var(--qi-base-08);
   border-radius: var(--qi-radius-full);
   overflow: hidden;
 }
@@ -88,7 +88,7 @@
 }
 
 .float-insight-fill--emerald {
-  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-mint));
+  background: linear-gradient(90deg, var(--qi-brand-emerald-dark), var(--qi-brand-mint));
   box-shadow: 0 0 8px var(--qi-brand-emerald-30);
 }
 

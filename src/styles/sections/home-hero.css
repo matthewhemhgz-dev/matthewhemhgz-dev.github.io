@@ -149,8 +149,8 @@
   align-items: center;
   gap: var(--qi-space-sm);
   padding: var(--qi-space-xs) var(--qi-space-md);
-  background: var(--qi-brand-emerald-06);
-  border: 1px solid var(--qi-brand-emerald-12);
+  background: var(--qi-brand-emerald-12);
+  border: 1px solid var(--qi-brand-emerald-20);
   border-radius: var(--qi-radius-full);
   width: fit-content;
   backdrop-filter: blur(8px);
@@ -160,7 +160,7 @@
   width: 6px;
   height: 6px;
   border-radius: var(--qi-radius-full);
-  background: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-dark);
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
@@ -181,9 +181,9 @@
 .badge-text {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-brand-emerald);
+  color: var(--qi-brand-emerald-dark);
   letter-spacing: 0.06em;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .hero-title {
@@ -279,12 +279,14 @@
 }
 
 .btn-primary:hover {
-  background: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-dark);
   box-shadow: 0 8px 30px var(--qi-brand-emerald-15);
-  color: var(--qi-bg-base);
+  color: var(--qi-text-inverse);
 }
 
 :global(.dark) .btn-primary:hover {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-ink);
   box-shadow: 0 8px 30px rgba(74, 222, 128, 0.25);
 }
 

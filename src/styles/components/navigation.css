@@ -138,8 +138,9 @@
 }
 
 .nav-link.active {
-  color: var(--qi-brand-emerald);
-  background-color: var(--qi-brand-emerald-05);
+  color: var(--qi-brand-emerald-dark);
+  background-color: var(--qi-brand-emerald-10);
+  font-weight: 600;
 }
 
 .nav-link.active::after {
@@ -150,7 +151,7 @@
   transform: translateX(-50%);
   width: 16px;
   height: 2px;
-  background: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-dark);
   border-radius: var(--qi-radius-full);
 }
 
@@ -476,7 +477,12 @@
 
 :global(.dark) .nav-link.active {
   color: var(--qi-brand-emerald);
-  background-color: var(--qi-brand-emerald-06);
+  background-color: var(--qi-brand-emerald-12);
+  font-weight: 600;
+}
+
+:global(.dark) .nav-link.active::after {
+  background: var(--qi-brand-emerald);
 }
 
 :global(.dark) .nav-search-btn {

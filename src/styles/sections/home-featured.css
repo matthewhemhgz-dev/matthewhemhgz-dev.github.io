@@ -70,10 +70,16 @@
 .bento-tag {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
-  color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-08);
+  color: var(--qi-brand-emerald-dark);
+  background: var(--qi-brand-emerald-12);
   padding: 2px 8px;
   border-radius: var(--qi-radius-full);
+  font-weight: 600;
+}
+
+:global(.dark) .bento-tag {
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-12);
 }
 
 .bento-title {
