@@ -63,24 +63,34 @@ const {
   }
 </style>
 
-{type === 'paragraph' ? (
+{type === 'paragraph' && (
   <div class={`skeleton-paragraph ${className}`} style={{ width }}>
     {Array.from({ length: count }).map((_, index) => (
       <div key={index} class="skeleton" style={{ height, width: index === count - 1 ? '80%' : '100%' }}></div>
     ))}
   </div>
-) : type === 'heading' ? (
+)}
+
+{type === 'heading' && (
   <div class={`skeleton skeleton-heading ${className}`} style={{ width, height }}></div>
-) : type === 'image' ? (
+)}
+
+{type === 'image' && (
   <div class={`skeleton skeleton-image ${className}`} style={{ width, height }}></div>
-) : type === 'card' ? (
+)}
+
+{type === 'card' && (
   <div class={`skeleton-card ${className}`} style={{ width }}>
     <div class="skeleton skeleton-heading" style={{ marginBottom: 'var(--qi-space-md)' }}></div>
     <div class="skeleton" style={{ height: '16px', marginBottom: 'var(--qi-space-sm)' }}></div>
     <div class="skeleton" style={{ height: '16px', width: '80%' }}></div>
   </div>
-) : type === 'button' ? (
+)}
+
+{type === 'button' && (
   <div class={`skeleton skeleton-button ${className}`} style={{ width, height }}></div>
-) : (
+)}
+
+{type !== 'paragraph' && type !== 'heading' && type !== 'image' && type !== 'card' && type !== 'button' && (
   <div class={`skeleton ${className}`} style={{ width, height }}></div>
-)
+)}
