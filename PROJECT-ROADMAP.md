@@ -1,6 +1,6 @@
 # 祈研所 Qi-Lab — 项目总结与迭代路线图
 
-> 更新时间：2026-04-19 | 基于最新版本的完整审计状态
+> 更新时间：2026-04-22 | 基于最新版本的完整审计状态
 
 ---
 
@@ -17,7 +17,7 @@
 | **搜索** | Pagefind 静态搜索，38 页索引，中文分词 |
 | **内容管理** | Astro Content Layer (glob loader)，7 篇中文博客 |
 | **CI/CD** | GitHub Actions (Lint + Test + Build + Size Check + Deploy) |
-| **代码质量** | ESLint 9 + Prettier 3 + TypeScript strict + Vitest 15 tests |
+| **代码质量** | ESLint 9 + Prettier 3 + TypeScript strict + Vitest 15 tests + Playwright 94 E2E tests |
 | **分析** | Google Analytics 4 集成 |
 | **图表** | Mermaid 11.14.0 支持 |
 
@@ -32,6 +32,7 @@
 | 博客文章 | 7 篇 (65,000+ 字) |
 | 文章封面图 | 7 张 |
 | 单元测试 | 15 个 |
+| 端到端测试 | 94 个 |
 | 设计令牌 | 338 行 (tokens.css) + 123 行 (dark-tokens.css) |
 
 ### 1.3 已完成的核心能力
@@ -63,7 +64,7 @@
 | 任务 | 状态 | 说明 |
 |------|------|------|
 | Vitest 测试框架 | ✅ | 15 个单元测试 |
-| Playwright E2E 测试 | ✅ | 14 个端到端测试 |
+| Playwright E2E 测试 | ✅ | 94 个端到端测试，覆盖全站功能 |
 | CI Lint 强制执行 | ✅ | ESLint 失败阻止部署 |
 | CI 测试步骤 | ✅ | GitHub Actions test 步骤 |
 | 构建产物大小检查 | ✅ | 6 类别 6MB 预算 |
@@ -132,8 +133,10 @@
 | 静态页面 | 38 个 |
 | 博客文章 | 7 篇 (65,000+ 字) |
 | 单元测试 | 15 passing |
-| 构建时间 | ~6.0s |
+| 端到端测试 | 94 passing |
+| 构建时间 | ~3.8s |
 | 构建产物 | 4.3 MB / 6 MB 预算 |
+| 可访问性 | WCAG 2 AA 标准 |
 | Pagefind 索引 | 38 页 |
 | 设计令牌 | 338 行 (亮色) + 123 行 (暗色) |
 | CSS 文件 | 36 个 (均 ≤500 行) |

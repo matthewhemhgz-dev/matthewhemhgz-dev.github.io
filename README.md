@@ -9,7 +9,7 @@
 - **交互**: 原生 JavaScript (View Transitions / Canvas / 3D Tilt / Pagefind)
 - **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，支持中英双语分词
 - **部署**: GitHub Pages
-- **质量保障**: 历经 7 轮深度的高级 UI/UX 审计（包括高保真资产对齐、国际化 Parity 与工程美学视觉校验）
+- **质量保障**: 历经 7 轮深度的高级 UI/UX 审计 + 端到端测试 (94/94 测试通过) + WCAG 2 AA 可访问性标准
 - **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Deploy)
 - **品牌内核**: 专注于“思维架构与知识工程”，每一处视觉与文案均经过微观逻辑校准
 
@@ -101,11 +101,13 @@ src/
 | 静态页面 | 38 页 |
 | 博客文章 | 7 篇 (65,000+ 字) |
 | 单元测试 | 15 passing |
-| 构建时间 | ~6.0s |
+| 端到端测试 | 94 passing |
+| 构建时间 | ~3.8s |
 | 构建产物 | 4.3 MB / 6 MB 预算 |
 | CSS 文件 | 36 个 (均 ≤500 行) |
 | 组件文件 | 25 个 (均 ≤300 行) |
 | Pagefind 索引 | 38 页 |
+| 可访问性 | WCAG 2 AA 标准 |
 
 ## 许可证
 
