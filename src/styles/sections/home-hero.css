@@ -165,13 +165,10 @@
 }
 
 @keyframes pulse-dot {
-
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
     transform: scale(1);
   }
-
   50% {
     opacity: 0.5;
     transform: scale(1.3);
@@ -340,6 +337,14 @@
   font-variant-numeric: tabular-nums;
 }
 
+.hero-stat-text {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-2xl);
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  line-height: 1;
+}
+
 .hero-stat-label {
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
@@ -351,7 +356,6 @@
 .hero-extra {
   position: absolute;
   top: 15%;
-  /* Anchor to the right of the container instead of viewport edge */
   left: calc(50% + 100px);
   width: 340px;
   display: flex;
@@ -382,9 +386,9 @@
 
 :global(.dark) .hero-stat-divider {
   background: var(--qi-base-20);
-  /* Brighter in dark mode for visibility */
 }
 
+/* Responsive */
 @media (max-width: 1200px) {
   .hero-extra {
     position: relative;
@@ -396,33 +400,25 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-
   .hero-extra-item {
     transform: none !important;
   }
 }
 
-/* === Mobile & Tablet Breakpoints === */
-
-/* === Extra small screen === */
 @media (max-width: 480px) {
   .hero-title {
     font-size: clamp(1.75rem, 8vw, 2.25rem);
   }
-
   .hero-subtitle {
     font-size: var(--qi-text-sm);
   }
-
   .hero-stat-value {
     font-size: var(--qi-text-xl);
   }
-
   .hero-actions {
     flex-direction: column;
     gap: var(--qi-space-sm);
   }
-
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
@@ -431,81 +427,59 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    /* 移动端导航栏 top:0, 无外边距, 总高度 = nav-height */
     padding-top: calc(var(--qi-nav-height) + var(--qi-space-xl));
   }
-
   .hero-container {
-    grid-template-columns: 1fr;
     max-width: 100%;
   }
-
   .hero-content {
     max-width: 100%;
   }
-
   .hero-gradient-orb--1 {
     width: 200px;
     height: 200px;
   }
-
   .hero-gradient-orb--2 {
     width: 150px;
     height: 150px;
   }
-
   .hero-ambient-glow {
     width: 80%;
     height: 50%;
     top: -5%;
     filter: blur(60px);
   }
-
   .hero-vignette {
     opacity: 0;
     pointer-events: none;
   }
-
-  .hero-gradient-orb:first-child {
-    display: block;
-    width: 200px;
-    height: 200px;
-  }
-
   .hero-grid-pattern {
     background-size: 40px 40px;
   }
-
   .hero-rays,
   .hero-beam,
   .hero-dot-pattern {
     opacity: 0;
     pointer-events: none;
   }
-
   .hero-watermark {
     opacity: 0.03;
   }
-
   .hero-title {
     font-size: clamp(2rem, 8vw, 2.75rem);
   }
-
   .hero-subtitle {
     font-size: var(--qi-text-base);
     max-width: 100%;
   }
-
   .hero-actions {
     flex-direction: column;
     gap: var(--qi-space-sm);
   }
-
   .hero-stats {
     flex-wrap: wrap;
     gap: var(--qi-space-md);
   }
-
   .hero-stat-divider {
     opacity: 0;
     pointer-events: none;
@@ -515,32 +489,25 @@
 @media (min-width: 1024px) {
   .hero-container {
     max-width: min(680px, 55%);
-    grid-template-columns: 1fr;
   }
-
   .hero-gradient-orb--1 {
     width: 450px;
     height: 450px;
   }
-
   .hero-gradient-orb--2 {
     width: 350px;
     height: 350px;
   }
 }
 
-/* === Large screen adaptations === */
-
 @media (min-width: 1440px) {
   .hero-container {
     max-width: min(800px, 55%);
   }
-
   .hero-gradient-orb--1 {
     width: 600px;
     height: 600px;
   }
-
   .hero-gradient-orb--2 {
     width: 500px;
     height: 500px;
@@ -551,21 +518,17 @@
   .hero-container {
     max-width: min(960px, 50%);
   }
-
   .hero-title {
     font-size: clamp(3rem, 5vw, 5.5rem);
   }
-
   .hero-gradient-orb--1 {
     width: 800px;
     height: 800px;
   }
-
   .hero-gradient-orb--2 {
     width: 650px;
     height: 650px;
   }
-
   .hero-stats {
     gap: var(--qi-space-2xl);
   }
@@ -575,44 +538,35 @@
   .hero-container {
     max-width: min(1200px, 50%);
   }
-
   .hero-title {
     font-size: clamp(4rem, 4.5vw, 7rem);
   }
-
   .hero-subtitle {
     font-size: var(--qi-font-scaled-2xl);
   }
-
   .hero-gradient-orb--1 {
     width: 1000px;
     height: 1000px;
   }
-
   .hero-gradient-orb--2 {
     width: 800px;
     height: 800px;
   }
-
   .hero-stats {
     gap: var(--qi-space-3xl);
   }
-
   .hero-stat-value {
     font-size: var(--qi-font-scaled-3xl);
   }
-
   .hero-stat-label {
     font-size: var(--qi-font-scaled-sm);
   }
-
   .hero-stat-divider {
     height: 40px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .hero-rays,
   .hero-beam--amber,
   .hero-beam--mint,
@@ -624,7 +578,6 @@
   .hero-float-card {
     animation: none !important;
   }
-
   .hero-beam--amber,
   .hero-beam--mint {
     opacity: 0.6;

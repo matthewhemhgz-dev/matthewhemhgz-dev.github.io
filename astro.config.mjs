@@ -53,9 +53,26 @@ export default defineConfig({
       chunkSizeWarningLimit: 100,
       cssCodeSplit: true,
       dynamicImportVars: true,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
     },
     optimizeDeps: {
       include: [],
+    },
+    ssr: {
+      noExternal: [],
+    },
+    server: {
+      headers: {
+        'X-Frame-Options': 'DENY',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
     },
   },
 });

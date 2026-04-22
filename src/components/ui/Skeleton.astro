@@ -1,10 +1,13 @@
 ---
 interface Props {
-  type: 'text' | 'heading' | 'paragraph' | 'image' | 'card' | 'button';
+  type: 'text' | 'heading' | 'paragraph' | 'image' | 'card' | 'button' | 'list' | 'avatar' | 'badge' | 'input';
   count?: number;
   width?: string;
   height?: string;
   className?: string;
+  animated?: boolean;
+  variant?: 'default' | 'pulse' | 'wave';
+  aspectRatio?: string;
 }
 
 const {
@@ -13,6 +16,9 @@ const {
   width = '100%',
   height = '16px',
   className = '',
+  animated = true,
+  variant = 'default',
+  aspectRatio = '16/9',
 } = Astro.props;
 ---
 
@@ -20,11 +26,40 @@ const {
   .skeleton {
     background: linear-gradient(90deg, var(--qi-base-06) 25%, var(--qi-base-08) 50%, var(--qi-base-06) 75%);
     background-size: 200% 100%;
-    animation: skeleton-loading 1.5s ease-in-out infinite;
     border-radius: var(--qi-radius-sm);
   }
 
+  .skeleton.default {
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  .skeleton.pulse {
+    animation: skeleton-pulse 2s ease-in-out infinite;
+  }
+
+  .skeleton.wave {
+    animation: skeleton-wave 2s ease-in-out infinite;
+  }
+
   @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes skeleton-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes skeleton-wave {
     0% {
       background-position: 200% 0;
     }
@@ -46,7 +81,6 @@ const {
   }
 
   .skeleton-image {
-    aspect-ratio: 16 / 9;
     border-radius: var(--qi-radius-lg);
   }
 
@@ -61,36 +95,107 @@ const {
     height: 44px;
     max-width: 200px;
   }
+
+  .skeleton-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-md);
+  }
+
+  .skeleton-list-item {
+    display: flex;
+    gap: var(--qi-space-md);
+    align-items: center;
+  }
+
+  .skeleton-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
+  .skeleton-badge {
+    height: 24px;
+    max-width: 120px;
+    border-radius: var(--qi-radius-full);
+  }
+
+  .skeleton-input {
+    height: 44px;
+    border-radius: var(--qi-radius-md);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .skeleton-heading {
+      height: 28px;
+    }
+    
+    .skeleton-button {
+      height: 40px;
+    }
+    
+    .skeleton-avatar {
+      width: 40px;
+      height: 40px;
+    }
+  }
 </style>
 
 {type === 'paragraph' && (
   <div class={`skeleton-paragraph ${className}`} style={{ width }}>
     {Array.from({ length: count }).map((_, index) => (
-      <div key={index} class="skeleton" style={{ height, width: index === count - 1 ? '80%' : '100%' }}></div>
+      <div key={index} class={`skeleton ${animated ? variant : ''}`} style={{ height, width: index === count - 1 ? '80%' : '100%' }}></div>
     ))}
   </div>
 )}
 
 {type === 'heading' && (
-  <div class={`skeleton skeleton-heading ${className}`} style={{ width, height }}></div>
+  <div class={`skeleton skeleton-heading ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
 )}
 
 {type === 'image' && (
-  <div class={`skeleton skeleton-image ${className}`} style={{ width, height }}></div>
+  <div class={`skeleton skeleton-image ${animated ? variant : ''} ${className}`} style={{ width, height, aspectRatio }}></div>
 )}
 
 {type === 'card' && (
   <div class={`skeleton-card ${className}`} style={{ width }}>
-    <div class="skeleton skeleton-heading" style={{ marginBottom: 'var(--qi-space-md)' }}></div>
-    <div class="skeleton" style={{ height: '16px', marginBottom: 'var(--qi-space-sm)' }}></div>
-    <div class="skeleton" style={{ height: '16px', width: '80%' }}></div>
+    <div class={`skeleton skeleton-heading ${animated ? variant : ''}`} style={{ marginBottom: 'var(--qi-space-md)' }}></div>
+    <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '16px', marginBottom: 'var(--qi-space-sm)' }}></div>
+    <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '16px', width: '80%' }}></div>
   </div>
 )}
 
 {type === 'button' && (
-  <div class={`skeleton skeleton-button ${className}`} style={{ width, height }}></div>
+  <div class={`skeleton skeleton-button ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
 )}
 
-{type !== 'paragraph' && type !== 'heading' && type !== 'image' && type !== 'card' && type !== 'button' && (
-  <div class={`skeleton ${className}`} style={{ width, height }}></div>
+{type === 'list' && (
+  <div class={`skeleton-list ${className}`} style={{ width }}>
+    {Array.from({ length: count }).map((_, index) => (
+      <div key={index} class="skeleton-list-item">
+        <div class={`skeleton skeleton-avatar ${animated ? variant : ''}`}></div>
+        <div style={{ flex: 1 }}>
+          <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '18px', marginBottom: 'var(--qi-space-xs)' }}></div>
+          <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '14px', width: '70%' }}></div>
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+
+{type === 'avatar' && (
+  <div class={`skeleton skeleton-avatar ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
+)}
+
+{type === 'badge' && (
+  <div class={`skeleton skeleton-badge ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
+)}
+
+{type === 'input' && (
+  <div class={`skeleton skeleton-input ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
+)}
+
+{!['paragraph', 'heading', 'image', 'card', 'button', 'list', 'avatar', 'badge', 'input'].includes(type) && (
+  <div class={`skeleton ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
 )}

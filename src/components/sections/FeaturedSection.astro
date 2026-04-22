@@ -64,7 +64,7 @@ const replaceKey = isEn ? 'en/' : 'zh/';
           >
             {largeCardLayout && i === 0 && post.data.heroImage ? (
               <div class="bento-card--large__bg">
-                <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={800} height={450} />
+                <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={800} height={450} loading="eager" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px" />
                 <div class="bento-card--large__overlay"></div>
               </div>
             ) : largeCardLayout && i === 0 && !post.data.heroImage ? (
@@ -73,7 +73,7 @@ const replaceKey = isEn ? 'en/' : 'zh/';
             <div class="bento-card__content">
               {!largeCardLayout && post.data.heroImage && (
                 <div class="bento-image-wrap">
-                  <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={600} height={340} loading="lazy" />
+                  <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={600} height={340} loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 200px" />
                 </div>
               )}
               <div class="bento-meta">

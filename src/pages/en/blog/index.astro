@@ -18,7 +18,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
           <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="blog-card" data-reveal>
             {post.data.heroImage && (
               <div class="blog-card-image">
-                <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={800} height={450} loading="lazy" />
+                <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={800} height={450} loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px" />
               </div>
             )}
             <div class="blog-card-body">

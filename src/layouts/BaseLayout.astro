@@ -42,12 +42,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#F7F3EE" />
+    <meta name="theme-color" content={isEnglish ? "#F7F3EE" : "#F7F3EE"} />
+    <meta name="dark-theme-color" content="#121010" />
 
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={isEnglish ? "Qi-Lab, technology, design, creativity, development, knowledge management, AI, Astro" : "祈研所, 技术, 设计, 创意, 开发, 知识管理, AI, Astro"} />
+    <meta name="author" content={isEnglish ? "Qi-Lab" : "祈研所"} />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={isEnglish ? "en-US" : "zh-CN"} href={canonicalURL.href} />
+    {isEnglish && <link rel="alternate" hreflang="zh-CN" href={canonicalURL.href.replace('/en', '')} />}
+    {!isEnglish && <link rel="alternate" hreflang="en-US" href={canonicalURL.href.replace(/^\//, '/en/')} />}
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <!-- Favicon (VI Logo) -->
     <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
@@ -88,6 +98,65 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
 
     <!-- JSON-LD Structured Data -->
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {!jsonLd && (
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "${title}",
+          "url": "${canonicalURL}",
+          "description": "${description}",
+          "inLanguage": "${isEnglish ? 'en-US' : 'zh-CN'}",
+          "publisher": {
+            "@type": "Organization",
+            "name": "${isEnglish ? 'Qi-Lab' : '祈研所'}",
+            "url": "${Astro.site?.toString() || 'https://qi-lab.dev'}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "${new URL('/favicon.png', Astro.site).toString()}",
+              "width": 32,
+              "height": 32
+            }
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "${Astro.site?.toString() || 'https://qi-lab.dev'}/{language}/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      </script>
+    )}
+    
+    <!-- Article structured data for blog posts -->
+    {ogType === 'article' && (
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "${title}",
+          "description": "${description}",
+          "image": "${new URL(ogImage, Astro.site).toString()}",
+          "author": {
+            "@type": "Person",
+            "name": "${isEnglish ? 'Qi-Lab' : '祈研所'}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "${isEnglish ? 'Qi-Lab' : '祈研所'}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "${new URL('/favicon.png', Astro.site).toString()}"
+            }
+          },
+          "datePublished": "${new Date().toISOString()}",
+          "dateModified": "${new Date().toISOString()}",
+          "inLanguage": "${isEnglish ? 'en-US' : 'zh-CN'}"
+        }
+      </script>
+    )}
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNGRXTNXF5"></script>
@@ -114,6 +183,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <a href="#main-content" class="skip-link">{isEnglish ? 'Skip to main content' : '跳至主要内容'}</a>
     <ClientRouter />
     <script is:inline>
+      // Theme sync during transitions
       document.addEventListener('astro:before-swap', function(e) {
         if (document.documentElement.classList.contains('dark')) {
           e.newDocument.documentElement.classList.add('dark');
@@ -127,6 +197,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
         const newMeta = e.newDocument.querySelector('meta[name="theme-color"]');
         if (currentMeta && newMeta) {
           newMeta.setAttribute('content', currentMeta.getAttribute('content'));
+        }
+      });
+
+      // Custom transition animations
+      document.addEventListener('astro:after-swap', function() {
+        // Scroll to top for new pages
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Add page load animation to new content
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.style.opacity = '0';
+          mainContent.style.transform = 'translateY(20px)';
+          mainContent.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          
+          setTimeout(() => {
+            mainContent.style.opacity = '1';
+            mainContent.style.transform = 'translateY(0)';
+          }, 50);
         }
       });
     </script>

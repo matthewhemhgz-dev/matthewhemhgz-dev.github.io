@@ -1,15 +1,17 @@
-/* ==========================================================================
-   Responsive Breakpoints
-   ========================================================================== */
+/* ==========================================================================   Responsive Breakpoints   ========================================================================== */
 
+/* --- Mobile (768px) --- */
 @media (max-width: 768px) {
+  /* Hero section */
   .hero-actions {
     flex-direction: column;
+    gap: var(--qi-space-md);
   }
 
   .btn {
     width: 100%;
     text-align: center;
+    min-height: 48px;
   }
 
   .hero-stats {
@@ -22,7 +24,7 @@
     pointer-events: none;
   }
 
-  /* About asymmetric -> single column on mobile */
+  /* About section */
   .about-section {
     padding-top: var(--qi-space-5xl);
   }
@@ -52,8 +54,14 @@
     grid-template-columns: 1fr;
   }
 
+  /* Featured section */
   .bento-grid {
     grid-template-columns: 1fr;
+    gap: var(--qi-space-lg);
+  }
+
+  .bento-card {
+    padding: var(--qi-space-lg);
   }
 
   .bento-card--large {
@@ -65,27 +73,34 @@
     height: 180px;
   }
 
+  .bento-title {
+    font-size: var(--qi-text-lg);
+  }
+
+  /* Toolbox section */
   .toolbox-grid {
     grid-template-columns: 1fr;
+    gap: var(--qi-space-lg);
   }
 
+  /* Platforms section */
   .platform-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--qi-space-md);
   }
 
-  @media (max-width: 480px) {
-    .platform-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--qi-space-sm);
-    }
-
-    .platform-desc {
-      display: none;
-    }
+  .platform-card {
+    padding: var(--qi-space-lg);
   }
 
+  /* Testimonials section */
   .testimonial-grid {
     grid-template-columns: 1fr;
+    gap: var(--qi-space-lg);
+  }
+
+  .testimonial-card {
+    padding: var(--qi-space-lg);
   }
 
   .testimonial-deco-quote {
@@ -93,6 +108,7 @@
     pointer-events: none;
   }
 
+  /* CTA section */
   .cta-section {
     padding-left: 0;
     padding-right: 0;
@@ -101,11 +117,132 @@
   .cta-actions {
     flex-direction: column;
     width: 100%;
+    gap: var(--qi-space-md);
   }
 
   .cta-actions .btn {
     width: 100%;
     text-align: center;
+  }
+
+  /* General section adjustments */
+  .section {
+    padding: var(--qi-space-4xl) 0;
+  }
+
+  .section-title {
+    font-size: var(--qi-text-2xl);
+  }
+
+  .section-label {
+    font-size: var(--qi-text-xs);
+  }
+}
+
+/* --- Small Mobile (480px) --- */
+@media (max-width: 480px) {
+  /* Hero section */
+  .hero-title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  .hero-subtitle {
+    font-size: var(--qi-text-base);
+  }
+
+  .hero-stats {
+    gap: var(--qi-space-md);
+  }
+
+  .hero-stat-value {
+    font-size: var(--qi-text-xl);
+  }
+
+  /* Platforms section */
+  .platform-grid {
+    grid-template-columns: 1fr;
+    gap: var(--qi-space-sm);
+  }
+
+  .platform-desc {
+    display: none;
+  }
+
+  .platform-card {
+    padding: var(--qi-space-md);
+  }
+
+  /* Bento section */
+  .bento-card {
+    padding: var(--qi-space-md);
+  }
+
+  .bento-image-wrap {
+    height: 160px;
+  }
+
+  /* Toolbox section */
+  .toolbox-grid {
+    gap: var(--qi-space-md);
+  }
+
+  .tool-card {
+    padding: var(--qi-space-md);
+  }
+
+  /* Testimonials section */
+  .testimonial-card {
+    padding: var(--qi-space-md);
+  }
+
+  /* General adjustments */
+  .section {
+    padding: var(--qi-space-3xl) 0;
+  }
+
+  .section-title {
+    font-size: var(--qi-text-xl);
+  }
+
+  .container {
+    padding: 0 var(--qi-space-md);
+  }
+}
+
+/* --- Extra Small Mobile (375px) --- */
+@media (max-width: 375px) {
+  /* Hero section */
+  .hero-content {
+    gap: var(--qi-space-lg);
+  }
+
+  .hero-badge {
+    padding: var(--qi-space-xs) var(--qi-space-sm);
+  }
+
+  .hero-actions .btn {
+    padding: var(--qi-space-sm) var(--qi-space-md);
+    min-height: 44px;
+  }
+
+  /* About section */
+  .about-deco {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--qi-space-sm);
+  }
+
+  .about-deco-number {
+    font-size: 3rem;
+  }
+
+  /* General adjustments */
+  .section {
+    padding: var(--qi-space-2xl) 0;
+  }
+
+  .container {
+    padding: 0 var(--qi-space-sm);
   }
 }
 

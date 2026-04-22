@@ -1,4 +1,4 @@
-/* === View Transitions === */
+/* === Enhanced View Transitions === */
 @keyframes qi-fade-out {
   to { opacity: 0; transform: translateY(-8px); }
 }
@@ -8,12 +8,67 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes qi-scale-out {
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+@keyframes qi-scale-in {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Global view transitions */
 ::view-transition-old(root) {
   animation: 200ms ease-out both qi-fade-out;
 }
 
 ::view-transition-new(root) {
   animation: 300ms ease-in both qi-fade-slide-in;
+}
+
+/* Main content transitions */
+::view-transition-old(main-content) {
+  animation: 250ms ease-out both qi-scale-out;
+}
+
+::view-transition-new(main-content) {
+  animation: 350ms ease-in both qi-scale-in;
+}
+
+/* Footer transitions */
+::view-transition-old(site-footer) {
+  animation: 200ms ease-out both qi-fade-out;
+}
+
+::view-transition-new(site-footer) {
+  animation: 300ms ease-in both qi-fade-slide-in;
+  animation-delay: 100ms;
+}
+
+/* Navigation transitions */
+::view-transition-old(main-nav) {
+  animation: 200ms ease-out both qi-fade-out;
+}
+
+::view-transition-new(main-nav) {
+  animation: 300ms ease-in both qi-fade-slide-in;
+}
+
+/* Custom transition timing */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-old(main-content),
+  ::view-transition-old(site-footer),
+  ::view-transition-old(main-nav) {
+    animation-duration: 300ms;
+  }
+  
+  ::view-transition-new(root),
+  ::view-transition-new(main-content),
+  ::view-transition-new(site-footer),
+  ::view-transition-new(main-nav) {
+    animation-duration: 400ms;
+  }
 }
 
 /* === Scroll Reveal === */
@@ -248,6 +303,149 @@
 main {
   animation: qi-page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: 0.05s;
+}
+
+/* === Enhanced Micro Animations === */
+
+/* Button ripple effect */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Card hover lift and glow effect */
+.card-hover-glow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-glow:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(46, 125, 92, 0.15), 0 8px 16px rgba(46, 125, 92, 0.1);
+}
+
+/* Input focus animation */
+.input-focus {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-focus:focus {
+  border-color: var(--qi-brand-emerald);
+  box-shadow: 0 0 0 3px rgba(46, 125, 92, 0.1);
+  outline: none;
+}
+
+/* Smooth color transition */
+.color-transition {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Subtle scale on hover */
+.scale-hover {
+  transition: transform 0.2s ease;
+}
+
+.scale-hover:hover {
+  transform: scale(1.02);
+}
+
+/* Skeleton loading animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--qi-base-04) 25%, var(--qi-base-06) 50%, var(--qi-base-04) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: var(--qi-radius-md);
+}
+
+/* Badge pulse animation */
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(46, 125, 92, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(46, 125, 92, 0);
+  }
+}
+
+.badge-pulse {
+  animation: badge-pulse 2s infinite;
+}
+
+/* Smooth opacity transition */
+.opacity-transition {
+  transition: opacity 0.3s ease;
+}
+
+/* Text highlight on hover */
+.text-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.text-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--qi-brand-emerald);
+  transition: width 0.3s ease;
+}
+
+.text-highlight:hover::after {
+  width: 100%;
+}
+
+/* Icon hover rotation */
+.icon-rotate {
+  transition: transform 0.3s ease;
+}
+
+.icon-rotate:hover {
+  transform: rotate(15deg);
+}
+
+/* Tooltip animation */
+@keyframes tooltip-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip {
+  animation: tooltip-fade 0.3s ease-out forwards;
 }
 
 /* === Reduced motion === */

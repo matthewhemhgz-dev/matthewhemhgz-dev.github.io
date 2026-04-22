@@ -1,7 +1,5 @@
 import 'astro:transitions/client';
-import { CardTilt } from './card-tilt.js';
 import { initScrollReveal, initScrollHandler, initBackToTop, cleanupScrollHandler } from './scroll-handler.js';
-import { initScrollParallax, cleanupScrollParallax } from './scroll-parallax.js';
 
 let initialized = false;
 let cursorGlow = null;
@@ -65,13 +63,17 @@ function initQiLab() {
   }
 
   // 2.5 卡片 3D 倾斜 + 光泽效果
-  const cardTilt = new CardTilt('.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category');
-  cleanupFns.push(() => cardTilt.destroy());
+  import('./card-tilt.js').then(({ CardTilt }) => {
+    const cardTilt = new CardTilt('.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category');
+    cleanupFns.push(() => cardTilt.destroy());
+  });
 
   // 3. 滚动视差光影
   if (!prefersReducedMotion) {
-    initScrollParallax();
-    cleanupFns.push(cleanupScrollParallax);
+    import('./scroll-parallax.js').then(({ initScrollParallax, cleanupScrollParallax }) => {
+      initScrollParallax();
+      cleanupFns.push(cleanupScrollParallax);
+    });
   }
 
   // 4. 滚动显示动画
