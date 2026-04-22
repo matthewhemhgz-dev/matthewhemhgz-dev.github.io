@@ -5,7 +5,6 @@
 @import '../sections/hero-float-cards.css';
 @import '../utilities/utilities.css';
 @import '../utilities/animations.css';
-@import '../sections/article.css';
 
 body {
   font-family: var(--qi-font-sans);

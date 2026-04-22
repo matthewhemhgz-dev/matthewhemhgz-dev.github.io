@@ -5,6 +5,8 @@ import { getReadingTime } from '../../utils/reading-time';
 import OptimizedImage from '../../components/ui/OptimizedImage.astro';
 import MermaidInit from '../../components/global/MermaidInit.astro';
 import ArticleViewCount from '../../components/global/ArticleViewCount.astro';
+import Skeleton from '../../components/ui/Skeleton.astro';
+import '../../styles/sections/article.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
@@ -73,7 +75,14 @@ const articleJsonLd = {
     <header class="article-header">
       {post.data.heroImage && (
         <div class="article-hero-image">
-          <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={1200} height={675} loading="eager" />
+          <OptimizedImage 
+            src={post.data.heroImage} 
+            alt={post.data.title} 
+            width={1200} 
+            height={675} 
+            loading="eager" 
+            sizes="(max-width: 1200px) 100vw, 1200px" 
+          />
         </div>
       )}
       <div class="article-meta-top">
@@ -116,7 +125,15 @@ const articleJsonLd = {
     )}
 
     <div class="prose">
-      <Content />
+      <div id="article-content">
+        <Content />
+      </div>
+      <div id="article-skeleton" class="hidden">
+        <Skeleton type="heading" width="80%" height="32px" />
+        <Skeleton type="paragraph" count="5" />
+        <Skeleton type="image" width="100%" />
+        <Skeleton type="paragraph" count="3" />
+      </div>
     </div>
 
     <footer class="article-footer">
@@ -147,7 +164,7 @@ const articleJsonLd = {
               <span>微信</span>
               <div class="article-share-wechat-qr">
                 <div class="article-share-wechat-qr-code">
-                  <img src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(articleUrl)}`} alt="微信分享二维码" />
+                  <img src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(articleUrl)}`} alt="微信分享二维码" loading="lazy" decoding="async" />
                 </div>
                 <span>扫码分享</span>
               </div>
@@ -180,7 +197,26 @@ const articleJsonLd = {
   </article>
   <MermaidInit />
   <script>
-    import '../../scripts/copy-code.ts';
+    // 动态导入复制代码功能
+    import('../../scripts/copy-code.ts');
+    
+    // 骨架屏逻辑
+    document.addEventListener('DOMContentLoaded', () => {
+      const content = document.getElementById('article-content');
+      const skeleton = document.getElementById('article-skeleton');
+      
+      if (content && skeleton) {
+        // 初始显示骨架屏
+        content.classList.add('hidden');
+        skeleton.classList.remove('hidden');
+        
+        // 模拟内容加载完成
+        setTimeout(() => {
+          skeleton.classList.add('hidden');
+          content.classList.remove('hidden');
+        }, 500);
+      }
+    });
     
     // 分享功能脚本
     document.addEventListener('astro:page-load', () => {

@@ -10,6 +10,7 @@ interface Props {
   fetchpriority?: 'high' | 'low' | 'auto';
   class?: string;
   sizes?: string;
+  aspectRatio?: string;
 }
 
 const {
@@ -20,7 +21,8 @@ const {
   loading = 'lazy',
   fetchpriority,
   class: className,
-  sizes,
+  sizes = '100vw',
+  aspectRatio,
 } = Astro.props;
 
 /**
@@ -42,6 +44,7 @@ const isExternalImage = src.startsWith('http') || src.startsWith('//');
     fetchpriority={fetchpriority}
     class={className}
     sizes={sizes}
+    aspectRatio={aspectRatio}
   />
 ) : (
   <img

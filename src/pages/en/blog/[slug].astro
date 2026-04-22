@@ -4,6 +4,8 @@ import { getCollection, render } from 'astro:content';
 import { getReadingTime } from '../../../utils/reading-time';
 import OptimizedImage from '../../../components/ui/OptimizedImage.astro';
 import MermaidInit from '../../../components/global/MermaidInit.astro';
+import Skeleton from '../../../components/ui/Skeleton.astro';
+import '../../../styles/sections/article.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
@@ -114,7 +116,15 @@ const articleJsonLd = {
     )}
 
     <div class="prose">
-      <Content />
+      <div id="article-content">
+        <Content />
+      </div>
+      <div id="article-skeleton" class="hidden">
+        <Skeleton type="heading" width="80%" height="32px" />
+        <Skeleton type="paragraph" count="5" />
+        <Skeleton type="image" width="100%" />
+        <Skeleton type="paragraph" count="3" />
+      </div>
     </div>
 
     <footer class="article-footer">
@@ -159,7 +169,26 @@ const articleJsonLd = {
   </article>
   <MermaidInit />
   <script>
-    import '../../../scripts/copy-code.ts';
+    // 动态导入复制代码功能
+    import('../../../scripts/copy-code.ts');
+    
+    // 骨架屏逻辑
+    document.addEventListener('DOMContentLoaded', () => {
+      const content = document.getElementById('article-content');
+      const skeleton = document.getElementById('article-skeleton');
+      
+      if (content && skeleton) {
+        // 初始显示骨架屏
+        content.classList.add('hidden');
+        skeleton.classList.remove('hidden');
+        
+        // 模拟内容加载完成
+        setTimeout(() => {
+          skeleton.classList.add('hidden');
+          content.classList.remove('hidden');
+        }, 500);
+      }
+    });
     
     document.addEventListener('astro:page-load', () => {
       const copyBtn = document.querySelector('.article-share-copy');

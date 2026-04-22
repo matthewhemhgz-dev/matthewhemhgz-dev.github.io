@@ -105,6 +105,12 @@ const navItems = [
     navToggleInit.setAttribute('aria-expanded', String(navToggleInit.checked));
   }
 
+  // Add index to nav items for animation delay
+  const navItems = document.querySelectorAll('#nav-links li');
+  navItems.forEach((item, index) => {
+    item.style.setProperty('--nav-item-index', index);
+  });
+
   const navToggle = document.getElementById('nav-toggle');
   const navStatus = document.getElementById('nav-status');
   if (navToggle) {
@@ -123,6 +129,12 @@ const navItems = [
 
   // Close button functionality
   document.addEventListener('astro:page-load', () => {
+    // Add index to nav items for animation delay
+    const navItems = document.querySelectorAll('#nav-links li');
+    navItems.forEach((item, index) => {
+      item.style.setProperty('--nav-item-index', index);
+    });
+
     const isEn = document.documentElement.lang.startsWith('en');
     const closeBtn = document.querySelector('.nav-close-btn');
     closeBtn?.addEventListener('click', () => {

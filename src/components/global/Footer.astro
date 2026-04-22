@@ -127,7 +127,7 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
       <div class="footer-qr">
         <h3 class="footer-heading">{labels.qrTitle}</h3>
         <div class="qr-container">
-          <img src={wechatQrCodeUrl} alt={labels.wechat} class="qr-code" />
+          <img src={wechatQrCodeUrl} alt={labels.wechat} class="qr-code" loading="lazy" decoding="async" />
           <p class="qr-text">{wechat}</p>
         </div>
       </div>
