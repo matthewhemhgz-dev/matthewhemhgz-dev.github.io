@@ -36,7 +36,7 @@ npm install
 
 ```bash
 npm run dev        # 启动开发服务器 (localhost:4321)
-npm run build      # 生产构建 (38 页面, ~6.0s)
+npm run build      # 生产构建 (104 页面, ~7.8s)
 npm run preview    # 预览构建产物
 ```
 
@@ -47,7 +47,7 @@ npm run lint           # ESLint 检查
 npm run format         # Prettier 格式化
 npm run format:check   # Prettier 检查（不修改文件）
 npm test               # Vitest 单元测试 (15 tests)
-npm run size-check     # 构建产物大小检查 (6MB 预算)
+npm run size-check     # 构建产物大小检查 (10MB 预算)
 npm run lighthouse     # Lighthouse 性能审计
 ```
 
