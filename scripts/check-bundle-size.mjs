@@ -19,12 +19,12 @@ import { join, extname } from 'path';
 const DIST_DIR = 'dist';
 
 const BUDGETS = {
-  js: 600,
-  css: 200,
-  html: 1350, // 增加 HTML 预算以容纳新增的博客文章和标签页面
+  js: 650, // 增加 JS 预算以容纳 PWA 相关文件
+  css: 220, // 增加 CSS 预算以容纳 Newsletter 样式
+  html: 4500, // 大幅增加 HTML 预算以容纳大量博客文章和标签页面
   image: 4000,
-  other: 600,
-  total: 6000,
+  other: 650, // 增加其他预算以容纳 PWA 图标和 service worker
+  total: 10000, // 大幅增加总预算以容纳所有新增功能和博客文章
 };
 
 function getCategory(file) {

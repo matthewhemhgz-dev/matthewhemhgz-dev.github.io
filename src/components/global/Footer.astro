@@ -1,6 +1,7 @@
 ---
 import '../../styles/components/footer.css';
 import BrandLogo from './BrandLogo.astro';
+import Newsletter from './Newsletter.astro';
 
 interface Props {
   tagline?: string;
@@ -107,6 +108,11 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
     <div class="footer-brand">
       <BrandLogo variant="icon" size="md" />
       <p class="footer-tagline">{tagline}</p>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <Newsletter lang={lang} />
     </div>
 
     <!-- Contact + Social -->

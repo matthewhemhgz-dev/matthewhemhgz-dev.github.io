@@ -34,6 +34,12 @@
   transform: translateY(-2px);
 }
 
+.tag-count {
+  margin-left: 4px;
+  opacity: 0.8;
+  font-size: 0.8em;
+}
+
 /* Posts grid */
 .tags-posts-grid {
   display: grid;

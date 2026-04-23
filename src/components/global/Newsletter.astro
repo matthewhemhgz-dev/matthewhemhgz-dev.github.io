@@ -1,0 +1,77 @@
+---
+import '../../styles/components/newsletter.css';
+
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+
+const labels = lang === 'en' 
+  ? {
+      title: 'Subscribe to Newsletter',
+      description: 'Get the latest updates and insights delivered to your inbox.',
+      placeholder: 'Your email address',
+      button: 'Subscribe',
+      success: 'Thank you for subscribing!',
+      error: 'Please enter a valid email address.',
+    }
+  : {
+      title: '订阅通讯',
+      description: '获取最新的更新和见解，直接发送到您的收件箱。',
+      placeholder: '您的邮箱地址',
+      button: '订阅',
+      success: '感谢您的订阅！',
+      error: '请输入有效的邮箱地址。',
+    };
+---
+
+<div class="newsletter">
+  <h3 class="newsletter-title">{labels.title}</h3>
+  <p class="newsletter-description">{labels.description}</p>
+  <form class="newsletter-form" method="POST" action="https://api.example.com/subscribe">
+    <div class="newsletter-input-group">
+      <input 
+        type="email" 
+        class="newsletter-input" 
+        placeholder={labels.placeholder} 
+        required 
+      />
+      <button type="submit" class="newsletter-button">{labels.button}</button>
+    </div>
+    <div class="newsletter-message"></div>
+  </form>
+</div>
+
+<script define:vars={{ labels }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.newsletter-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const emailInput = form.querySelector('.newsletter-input');
+        const messageDiv = form.querySelector('.newsletter-message');
+        const email = emailInput.value.trim();
+        
+        // Simple email validation
+        if (!email || !email.includes('@')) {
+          messageDiv.textContent = labels.error;
+          messageDiv.classList.add('newsletter-message--error');
+          return;
+        }
+        
+        // Simulate API call
+        messageDiv.textContent = labels.success;
+        messageDiv.classList.add('newsletter-message--success');
+        emailInput.value = '';
+        
+        // Clear message after 3 seconds
+        setTimeout(() => {
+          messageDiv.textContent = '';
+          messageDiv.classList.remove('newsletter-message--success', 'newsletter-message--error');
+        }, 3000);
+      });
+    }
+  });
+</script>

@@ -1,0 +1,16 @@
+<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EDD98A"/>
+      <stop offset="100%" stop-color="#C49A3A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 圆角方形背景 -->
+  <rect width="192" height="192" rx="36" fill="#2E7D5C"/>
+
+  <!-- "祈" 字 -->
+  <text x="96" y="96" text-anchor="middle" dominant-baseline="central"
+        font-family="'Noto Serif SC','Source Han Serif SC','SimSun',serif"
+        font-weight="700" font-size="105" fill="url(#gold)">祈</text>
+</svg>
