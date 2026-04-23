@@ -7,9 +7,22 @@ interface Props {
   description: string;
   primaryBtn: { text: string; href: string };
   secondaryBtn: { text: string; href: string; external?: boolean };
+  lang?: 'zh' | 'en';
 }
 
-const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
+const { label, title, description, primaryBtn, secondaryBtn, lang = 'zh' } = Astro.props;
+
+const labels = lang === 'en' ? {
+  followFast: 'Follow us:',
+  wechat: 'WeChat',
+  xhs: 'Xiaohongshu',
+  douyin: 'Douyin'
+} : {
+  followFast: '快速关注:',
+  wechat: '微信公众号',
+  xhs: '小红书',
+  douyin: '抖音'
+};
 ---
 
 <style>
@@ -39,16 +52,16 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
       </div>
 
       <div class="cta-social-fast">
-        <span class="cta-social-label">快速关注:</span>
+        <span class="cta-social-label">{labels.followFast}</span>
         <div class="cta-social-icons">
           <button 
             type="button" 
             class="cta-social-icon" 
             data-qr-trigger 
-            data-platform="微信公众号" 
+            data-platform={labels.wechat} 
             data-qr-image="/images/social/wechat-oa-qr.jpg" 
-            data-account="祈研所"
-            title="微信公众号"
+            data-account={lang === 'en' ? 'Qi-Lab' : '祈研所'}
+            title={labels.wechat}
           >
             <Fragment set:html={svgIcons.wechat} />
           </button>
@@ -56,10 +69,10 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
             type="button" 
             class="cta-social-icon" 
             data-qr-trigger 
-            data-platform="小红书" 
+            data-platform={labels.xhs} 
             data-qr-image="/images/social/xhs-qr.jpg" 
-            data-account="祈研所（Qi_Lab）"
-            title="小红书"
+            data-account={lang === 'en' ? 'Qi_Lab' : '祈研所（Qi_Lab）'}
+            title={labels.xhs}
           >
             <Fragment set:html={svgIcons.xhs} />
           </button>
@@ -67,10 +80,10 @@ const { label, title, description, primaryBtn, secondaryBtn } = Astro.props;
             type="button" 
             class="cta-social-icon" 
             data-qr-trigger 
-            data-platform="抖音" 
+            data-platform={labels.douyin} 
             data-qr-image="/images/social/douyin-qr.jpg" 
-            data-account="祈研所（QiLab）"
-            title="抖音"
+            data-account={lang === 'en' ? 'QiLab' : '祈研所（QiLab）'}
+            title={labels.douyin}
           >
             <Fragment set:html={svgIcons.douyin} />
           </button>
