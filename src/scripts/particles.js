@@ -53,23 +53,19 @@ export class MinimalParticles {
     const defaults = {
       count: 60,
       colors: [
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-emerald').trim() ||
-          '#2E7D5C',
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-mint').trim() ||
-          '#78B4A0',
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-amber').trim() ||
-          '#E5A93C',
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-bg-base').trim() ||
-          '#F7F3EE',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
       ],
       maxSize: 3,
       speed: 0.25,
       linkDistance: 120,
       linkOpacity: 0.08,
-      mouseRadius: 150, // 鼠标影响半径
-      mouseForce: 0.02, // 鼠标排斥力度
-      glowSize: 8, // 光晕大小倍数
-      glowOpacity: 0.15, // 光晕透明度
+      mouseRadius: 150,      // 鼠标影响半径
+      mouseForce: 0.02,      // 鼠标排斥力度
+      glowSize: 8,           // 光晕大小倍数
+      glowOpacity: 0.15,     // 光晕透明度
     };
 
     this.options = { ...defaults, ...options };
@@ -163,8 +159,9 @@ export class MinimalParticles {
 
   init() {
     this.particles = [];
-    const count =
-      window.innerWidth < 768 ? Math.floor(this.options.count * 0.5) : this.options.count;
+    const count = window.innerWidth < 768
+      ? Math.floor(this.options.count * 0.5)
+      : this.options.count;
     for (let i = 0; i < count; i++) {
       const isStar = Math.random() < 0.08; // 8% 概率成为明星粒子
       this.particles.push({
@@ -203,20 +200,13 @@ export class MinimalParticles {
     const ctx = this.ctx;
     ctx.clearRect(0, 0, this.width, this.height);
 
-    const { mouseRadius, mouseForce, linkDistance, linkOpacity, glowSize, glowOpacity } =
-      this.options;
+    const { mouseRadius, mouseForce, linkDistance, linkOpacity, glowSize, glowOpacity } = this.options;
 
-    // 预计算鼠标状态
-    const mouseActive = this.mouse.active;
-    const mouseX = this.mouse.x;
-    const mouseY = this.mouse.y;
-
-    // 粒子更新和绘制
     for (const p of this.particles) {
       // 鼠标排斥力
-      if (mouseActive) {
-        const dx = p.x - mouseX;
-        const dy = p.y - mouseY;
+      if (this.mouse.active) {
+        const dx = p.x - this.mouse.x;
+        const dy = p.y - this.mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < mouseRadius && dist > 0) {
           const force = (1 - dist / mouseRadius) * mouseForce;
@@ -234,22 +224,10 @@ export class MinimalParticles {
       p.y += p.vy;
 
       // 边界反弹
-      if (p.x < 0) {
-        p.x = 0;
-        p.vx *= -1;
-      }
-      if (p.x > this.width) {
-        p.x = this.width;
-        p.vx *= -1;
-      }
-      if (p.y < 0) {
-        p.y = 0;
-        p.vy *= -1;
-      }
-      if (p.y > this.height) {
-        p.y = this.height;
-        p.vy *= -1;
-      }
+      if (p.x < 0) { p.x = 0; p.vx *= -1; }
+      if (p.x > this.width) { p.x = this.width; p.vx *= -1; }
+      if (p.y < 0) { p.y = 0; p.vy *= -1; }
+      if (p.y > this.height) { p.y = this.height; p.vy *= -1; }
 
       // 脉冲呼吸效果
       p.pulsePhase += p.pulseSpeed;
@@ -259,9 +237,9 @@ export class MinimalParticles {
 
       // 鼠标附近粒子增亮
       let highlight = 0;
-      if (mouseActive) {
-        const mdx = p.x - mouseX;
-        const mdy = p.y - mouseY;
+      if (this.mouse.active) {
+        const mdx = p.x - this.mouse.x;
+        const mdy = p.y - this.mouse.y;
         const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
         if (mdist < mouseRadius) {
           highlight = (1 - mdist / mouseRadius) * 0.4;
@@ -292,73 +270,60 @@ export class MinimalParticles {
     }
 
     // 绘制连线 — 使用距离平方优化
-    if (this.particles.length > 1) {
-      ctx.lineWidth = 0.5;
-      const linkDistSq = linkDistance * linkDistance;
-      const particles = this.particles;
-      const particleCount = particles.length;
-      
-      // 优化：限制连线计算数量
-      const maxConnections = Math.min(1000, particleCount * particleCount / 2);
-      let connectionCount = 0;
-      
-      for (let i = 0; i < particleCount && connectionCount < maxConnections; i++) {
-        for (let j = i + 1; j < particleCount && connectionCount < maxConnections; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distSq = dx * dx + dy * dy;
+    ctx.lineWidth = 0.5;
+    const linkDistSq = linkDistance * linkDistance;
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const dx = this.particles[i].x - this.particles[j].x;
+        const dy = this.particles[i].y - this.particles[j].y;
+        const distSq = dx * dx + dy * dy;
 
-          if (distSq < linkDistSq) {
-            connectionCount++;
-            const dist = Math.sqrt(distSq);
-            const baseAlpha = linkOpacity * (1 - dist / linkDistance);
+        if (distSq < linkDistSq) {
+          const dist = Math.sqrt(distSq);
+          const baseAlpha = linkOpacity * (1 - dist / linkDistance);
 
-            // 鼠标附近连线高亮
-            let lineHighlight = 0;
-            if (mouseActive) {
-              const midX = (particles[i].x + particles[j].x) / 2;
-              const midY = (particles[i].y + particles[j].y) / 2;
-              const mdx = midX - mouseX;
-              const mdy = midY - mouseY;
-              const mdistSq = mdx * mdx + mdy * mdy;
-              const mouseRadSq = mouseRadius * mouseRadius;
-              if (mdistSq < mouseRadSq) {
-                lineHighlight = (1 - Math.sqrt(mdistSq) / mouseRadius) * 0.15;
-              }
+          // 鼠标附近连线高亮
+          let lineHighlight = 0;
+          if (this.mouse.active) {
+            const midX = (this.particles[i].x + this.particles[j].x) / 2;
+            const midY = (this.particles[i].y + this.particles[j].y) / 2;
+            const mdx = midX - this.mouse.x;
+            const mdy = midY - this.mouse.y;
+            const mdistSq = mdx * mdx + mdy * mdy;
+            const mouseRadSq = mouseRadius * mouseRadius;
+            if (mdistSq < mouseRadSq) {
+              lineHighlight = (1 - Math.sqrt(mdistSq) / mouseRadius) * 0.15;
             }
-
-            ctx.globalAlpha = baseAlpha + lineHighlight;
-            const emeraldRGB = this.colorRGB[this.options.colors[0]] || { r: 46, g: 125, b: 92 };
-            const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
-            ctx.strokeStyle =
-              lineHighlight > 0.03
-                ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
-                : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
           }
+
+          ctx.globalAlpha = baseAlpha + lineHighlight;
+          const emeraldRGB = this.colorRGB[this.options.colors[0]] || { r: 46, g: 125, b: 92 };
+          const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
+          ctx.strokeStyle = lineHighlight > 0.03
+            ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
+            : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
+          ctx.beginPath();
+          ctx.moveTo(this.particles[i].x, this.particles[i].y);
+          ctx.lineTo(this.particles[j].x, this.particles[j].y);
+          ctx.stroke();
         }
       }
     }
 
     // 鼠标与附近粒子的连线
-    if (mouseActive) {
-      ctx.lineWidth = 0.8;
-      const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
-      const mouseRadius80 = mouseRadius * 0.8;
-      
+    if (this.mouse.active) {
       for (const p of this.particles) {
-        const dx = p.x - mouseX;
-        const dy = p.y - mouseY;
+        const dx = p.x - this.mouse.x;
+        const dy = p.y - this.mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouseRadius80) {
-          const alpha = (1 - dist / mouseRadius80) * 0.12;
+        if (dist < mouseRadius * 0.8) {
+          const alpha = (1 - dist / (mouseRadius * 0.8)) * 0.12;
           ctx.globalAlpha = alpha;
+          const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
           ctx.strokeStyle = `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, 1)`;
+          ctx.lineWidth = 0.8;
           ctx.beginPath();
-          ctx.moveTo(mouseX, mouseY);
+          ctx.moveTo(this.mouse.x, this.mouse.y);
           ctx.lineTo(p.x, p.y);
           ctx.stroke();
         }
@@ -390,8 +355,7 @@ export class MinimalParticles {
 
     // 移除所有事件监听器
     if (this._onResize) window.removeEventListener('resize', this._onResize);
-    if (this._onVisibilityChange)
-      document.removeEventListener('visibilitychange', this._onVisibilityChange);
+    if (this._onVisibilityChange) document.removeEventListener('visibilitychange', this._onVisibilityChange);
     if (this._onMouseMove) document.removeEventListener('mousemove', this._onMouseMove);
     if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
     if (this._onTouchStart) window.removeEventListener('touchstart', this._onTouchStart);
