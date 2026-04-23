@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Buffer } from 'buffer';
 import sharp from 'sharp';
 
 // 博客文章目录
