@@ -7,15 +7,27 @@
  * - localStorage 持久化用户偏好
  * - 尊重 prefers-color-scheme 系统偏好
  * - View Transitions 兼容
+ * - 多语言支持
  */
+
+import { Astro } from 'astro';
+
+const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
+
+const getThemeToggleText = (isDark) => {
+  if (currentLocale === 'en') {
+    return isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+  return isDark ? '切换浅色模式' : '切换深色模式';
+};
 ---
 
 <button
   class="theme-toggle-btn"
   id="theme-toggle"
   type="button"
-  aria-label="切换深色模式"
-  title="切换深色模式"
+  aria-label={getThemeToggleText(false)}
+  title={getThemeToggleText(false)}
   aria-pressed="false"
 >
   <!-- Sun icon (shown in dark mode) -->
@@ -120,6 +132,18 @@
   let themeToggleBtn: HTMLElement | null;
   let themeMeta: HTMLMetaElement | null;
 
+  function getCurrentLocale() {
+    return window.location.pathname.startsWith('/en') ? 'en' : 'zh';
+  }
+
+  function getThemeToggleText(isDark: boolean) {
+    const currentLocale = getCurrentLocale();
+    if (currentLocale === 'en') {
+      return isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    return isDark ? '切换浅色模式' : '切换深色模式';
+  }
+
   function getSystemPreference(): 'dark' | 'light' {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
@@ -156,8 +180,8 @@
     // Update aria attributes
     if (themeToggleBtn) {
       themeToggleBtn.setAttribute('aria-pressed', String(theme === 'dark'));
-      themeToggleBtn.setAttribute('aria-label', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
-      themeToggleBtn.setAttribute('title', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
+      themeToggleBtn.setAttribute('aria-label', getThemeToggleText(theme === 'dark'));
+      themeToggleBtn.setAttribute('title', getThemeToggleText(theme === 'dark'));
     }
   }
 
