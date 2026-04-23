@@ -99,63 +99,59 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://qi-lab.d
     <!-- JSON-LD Structured Data -->
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     {!jsonLd && (
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "${title}",
-          "url": "${canonicalURL}",
-          "description": "${description}",
-          "inLanguage": "${isEnglish ? 'en-US' : 'zh-CN'}",
-          "publisher": {
-            "@type": "Organization",
-            "name": "${isEnglish ? 'Qi-Lab' : '祈研所'}",
-            "url": "${Astro.site?.toString() || 'https://qi-lab.dev'}",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "${new URL('/favicon.png', Astro.site).toString()}",
-              "width": 32,
-              "height": 32
-            }
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "${Astro.site?.toString() || 'https://qi-lab.dev'}/{language}/search?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": title,
+        "url": canonicalURL.href,
+        "description": description,
+        "inLanguage": isEnglish ? 'en-US' : 'zh-CN',
+        "publisher": {
+          "@type": "Organization",
+          "name": isEnglish ? 'Qi-Lab' : '祈研所',
+          "url": Astro.site?.toString() || 'https://qi-lab.dev',
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL('/favicon.png', Astro.site).toString(),
+            "width": 32,
+            "height": 32
           }
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${Astro.site?.toString() || 'https://qi-lab.dev'}/{language}/search?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
         }
-      </script>
+      })} />
     )}
     
     <!-- Article structured data for blog posts -->
     {ogType === 'article' && (
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": "${title}",
-          "description": "${description}",
-          "image": "${new URL(ogImage, Astro.site).toString()}",
-          "author": {
-            "@type": "Person",
-            "name": "${isEnglish ? 'Qi-Lab' : '祈研所'}"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "${isEnglish ? 'Qi-Lab' : '祈研所'}",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "${new URL('/favicon.png', Astro.site).toString()}"
-            }
-          },
-          "datePublished": "${new Date().toISOString()}",
-          "dateModified": "${new Date().toISOString()}",
-          "inLanguage": "${isEnglish ? 'en-US' : 'zh-CN'}"
-        }
-      </script>
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "image": new URL(ogImage, Astro.site).toString(),
+        "author": {
+          "@type": "Person",
+          "name": isEnglish ? 'Qi-Lab' : '祈研所'
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": isEnglish ? 'Qi-Lab' : '祈研所',
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL('/favicon.png', Astro.site).toString()
+          }
+        },
+        "datePublished": new Date().toISOString(),
+        "dateModified": new Date().toISOString(),
+        "inLanguage": isEnglish ? 'en-US' : 'zh-CN'
+      })} />
     )}
 
     <!-- Google Analytics 4 -->
