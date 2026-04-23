@@ -42,7 +42,7 @@ async function runLighthouseAudit() {
           env.CHROME_PATH = chromePath;
           console.log(`Using Chrome at: ${chromePath}`);
         }
-      } catch (e) {
+      } catch {
         console.log('No Chrome/Chromium found, using default path');
       }
     }
@@ -76,7 +76,7 @@ async function runLighthouseAudit() {
     console.log('Stopping preview server...');
     try {
       process.kill(-previewProcess.pid);
-    } catch (error) {
+    } catch {
       console.log('Preview server stopped.');
     }
   }

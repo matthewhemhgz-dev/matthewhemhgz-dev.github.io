@@ -53,7 +53,7 @@ export default [
     },
   },
   {
-    ignores: ['dist/', '.astro/', 'node_modules/'],
+    ignores: ['dist/', '.astro/', 'node_modules/', 'playwright-report/', 'public/service-worker.js'],
   },
   {
     files: ['scripts/**/*.mjs'],

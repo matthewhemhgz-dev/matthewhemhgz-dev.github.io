@@ -69,7 +69,6 @@ const labels = lang === 'en'
       
       // Real-time email validation
       emailInput.addEventListener('input', () => {
-        const email = emailInput.value.trim();
         if (messageDiv.classList.contains('newsletter-message--error')) {
           messageDiv.textContent = '';
           messageDiv.classList.remove('newsletter-message--error');
