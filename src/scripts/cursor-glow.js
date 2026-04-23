@@ -40,7 +40,7 @@ export class CursorGlow {
           width: ${this.options.size}px;
           height: ${this.options.size}px;
           pointer-events: none;
-          z-index: var(--qi-z-overlay);
+          z-index: 9999;
           mix-blend-mode: ${this.options.blend};
           transform: translate(-50%, -50%);
           opacity: 0.4;
@@ -144,6 +144,11 @@ export class CursorGlow {
 
     // 初始定位在页面中心
     this.el.style.transform = `translate(${window.innerWidth / 2 - this.options.size / 2}px, ${window.innerHeight / 2 - this.options.size / 2}px)`;
+
+    // 确保 body 有相对定位
+    if (getComputedStyle(document.body).position === 'static') {
+      document.body.style.position = 'relative';
+    }
 
     document.body.appendChild(this.el);
   }
