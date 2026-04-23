@@ -498,7 +498,7 @@
   border: 1px solid var(--qi-border-default);
   display: block;
   overflow-x: auto;
-  background: var(--qi-surface-main);
+  background: var(--qi-bg-base);
 }
 
 .article-container th,
@@ -538,9 +538,31 @@
   background: var(--qi-brand-emerald-10);
 }
 
+:global(.dark) .article-container table {
+  background: var(--qi-surface-main);
+  border-color: var(--qi-border-inverse);
+}
+
+:global(.dark) .article-container th {
+  background: var(--qi-surface-sub);
+  border-bottom-color: var(--qi-brand-emerald-25);
+}
+
+:global(.dark) .article-container tr:nth-child(even) td {
+  background: var(--qi-brand-emerald-05);
+}
+
+:global(.dark) .article-container tr:hover td {
+  background: var(--qi-brand-emerald-10);
+}
+
+:global(.dark) .article-container tr:nth-child(even):hover td {
+  background: var(--qi-brand-emerald-12);
+}
+
 /* = Mermaid diagrams = */
 .article-container .mermaid-container {
-  background: var(--qi-surface-main);
+  background: var(--qi-bg-base);
   border-radius: var(--qi-radius-lg);
   padding: var(--qi-space-xl);
   margin: 2rem 0;
@@ -656,40 +678,12 @@
   );
 }
 
-:global(.dark) .article-container table {
-  border-color: var(--qi-border-default);
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    0 1px 3px rgba(0, 0, 0, 0.15);
-  background: var(--qi-surface-main);
-}
 
-:global(.dark) .article-container th {
-  color: var(--qi-text-primary);
-  background: var(--qi-surface-sub);
-  border-bottom-color: var(--qi-brand-emerald-25);
-}
-
-:global(.dark) .article-container th,
-:global(.dark) .article-container td {
-  border-bottom-color: var(--qi-border-subtle);
-}
-
-:global(.dark) .article-container tr:nth-child(even) td {
-  background: var(--qi-brand-emerald-05);
-}
-
-:global(.dark) .article-container tr:hover td {
-  background: var(--qi-brand-emerald-10);
-}
-
-:global(.dark) .article-container tr:nth-child(even):hover td {
-  background: var(--qi-brand-emerald-12);
-}
 
 :global(.dark) .article-container .mermaid-container {
   background: var(--qi-surface-main);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border-color: var(--qi-border-inverse);
 }
 
 /* Article footer */
