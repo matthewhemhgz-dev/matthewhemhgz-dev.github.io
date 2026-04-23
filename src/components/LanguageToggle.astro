@@ -35,7 +35,7 @@ const getLanguagePath = (locale) => {
     <a
       href={getLanguagePath(locale)}
       class:list={['lang-toggle-item', { active: currentLocale === locale }]}
-      aria-label={`Switch to ${locale === 'zh' ? '中文' : 'English'}`}
+      aria-label={`Switch to ${locale === 'zh' ? 'Chinese' : 'English'}`}
     >
       {locale === 'zh' ? '中文' : 'English'}
     </a>
