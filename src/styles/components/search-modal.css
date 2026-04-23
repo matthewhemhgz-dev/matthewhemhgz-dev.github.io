@@ -16,10 +16,12 @@
   padding-top: 15vh;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 }
 
-.search-modal[aria-hidden="false"] {
+.search-modal[aria-hidden='false'] {
   opacity: 1;
   visibility: visible;
 }
@@ -33,9 +35,9 @@
 
 /* 搜索弹窗始终深色 — 使用独立的 CSS 变量 */
 .search-container {
-  --sm-bg: #1E1B18;
+  --sm-bg: #1e1b18;
   --sm-border: rgba(255, 255, 255, 0.1);
-  --sm-text: #E8E3DD;
+  --sm-text: #e8e3dd;
   --sm-text-muted: rgba(255, 255, 255, 0.45);
   --sm-text-dimmed: rgba(255, 255, 255, 0.3);
   --sm-hover: rgba(255, 255, 255, 0.06);

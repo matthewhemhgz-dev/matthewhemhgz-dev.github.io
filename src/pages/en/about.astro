@@ -5,17 +5,17 @@ import SectionHeader from '../../components/ui/SectionHeader.astro';
 import Divider from '../../components/global/Divider.astro';
 ---
 
-<BaseLayout title="About | Qi-Lab" description="Learn about Qi-Lab's brand story, philosophy, and contact information.">
+<BaseLayout
+  title="About | Qi-Lab"
+  description="Learn about Qi-Lab's brand story, philosophy, and contact information."
+>
   <div class="about-page">
     <div class="container">
-
       <!-- Page Hero -->
       <section class="page-hero" data-reveal>
         <span class="page-label">// ABOUT</span>
         <h1 class="page-title">About Qi-Lab</h1>
-        <p class="page-subtitle">
-          A personal brand focused on technology, design, and creativity
-        </p>
+        <p class="page-subtitle">A personal brand focused on technology, design, and creativity</p>
       </section>
 
       <Divider />
@@ -25,25 +25,28 @@ import Divider from '../../components/global/Divider.astro';
         <SectionHeader label="// STORY" title="Brand Story" />
         <div class="about-prose">
           <p>
-            Qi-Lab is my digital archive. The name "Qi" (祈) represents a persistent pursuit of systematic organization, 
-            while "Yan" (研) — from our original Chinese name — signifies the rigorous exploration of technical depth. 
-            In an era of information overload, I believe that structured knowledge is the true source of power. 
-            Here, we don't trade in anxiety or quick fixes, but instead document real pitfalls and 
-            battle-tested experiences.
+            Qi-Lab is my digital archive. The name "Qi" (祈) represents a persistent pursuit of
+            systematic organization, while "Yan" (研) — from our original Chinese name — signifies
+            the rigorous exploration of technical depth. In an era of information overload, I
+            believe that structured knowledge is the true source of power. Here, we don't trade in
+            anxiety or quick fixes, but instead document real pitfalls and battle-tested
+            experiences.
           </p>
           <p>
-            I focus on four intersecting areas: knowledge management, project management, IT/AI skills, and cutting-edge trends. 
-            In daily practice, I use Obsidian to build knowledge graphs based on Bloom's six-layer cognitive model, 
-            Markdown + Git to maintain a single source of truth documentation system, 
-            and AI Agents (Superpowers + OpenClaw) to drive development and content production pipelines. 
-            Every share is verified through actual use.
+            I focus on four intersecting areas: knowledge management, project management, IT/AI
+            skills, and cutting-edge trends. In daily practice, I use Obsidian to build knowledge
+            graphs based on Bloom's six-layer cognitive model, Markdown + Git to maintain a single
+            source of truth documentation system, and AI Agents (Superpowers + OpenClaw) to drive
+            development and content production pipelines. Every share is verified through actual
+            use.
           </p>
           <p>
-            As a senior information systems project management professional with 7 hard certifications including PMP, ITIL, and CCNP, 
-            I deeply understand that "hoarding is not management, choosing to slow down is itself a form of resistance". 
-            From the zero-new-feature refactoring of SystemPM, to the data pipeline reconstruction of StockAAssist, 
-            to the ground-up construction of the QiLab knowledge base — each time is a practice of the engineering philosophy 
-            of "systematic root cause rather than patching".
+            As a senior information systems project management professional with 7 hard
+            certifications including PMP, ITIL, and CCNP, I deeply understand that "hoarding is not
+            management, choosing to slow down is itself a form of resistance". From the
+            zero-new-feature refactoring of SystemPM, to the data pipeline reconstruction of
+            StockAAssist, to the ground-up construction of the QiLab knowledge base — each time is a
+            practice of the engineering philosophy of "systematic root cause rather than patching".
           </p>
         </div>
       </section>
@@ -58,29 +61,34 @@ import Divider from '../../components/global/Divider.astro';
             <span class="philosophy-number">01</span>
             <h3 class="philosophy-title">Qi-Lab</h3>
             <p class="philosophy-desc">
-              A visual philosophy designed for workers at their desks late at night. The oat gray background is like warm paper, 
-              the emerald cursor flickers with rational light, and the amber gold desk lamp casts warm companionship. 
-              Core metaphor: a study with a desk lamp on late at night. Pursue a clear, comfortable, breathable visual environment, 
-              using low cognitive load design to offset the mental consumption of high-density information.
+              A visual philosophy designed for workers at their desks late at night. The oat gray
+              background is like warm paper, the emerald cursor flickers with rational light, and
+              the amber gold desk lamp casts warm companionship. Core metaphor: a study with a desk
+              lamp on late at night. Pursue a clear, comfortable, breathable visual environment,
+              using low cognitive load design to offset the mental consumption of high-density
+              information.
             </p>
           </div>
           <div class="philosophy-card">
             <span class="philosophy-number">02</span>
             <h3 class="philosophy-title">Engineering Aesthetics & Functional Isolation</h3>
             <p class="philosophy-desc">
-              Code is not just a functional implementation, but also a systematic expression. CSS design tokens build a complete Qi-Lab visual system, 
-              fonts strictly divided into three categories (serif for titles → scholarly feel, sans-serif for body → clarity, monospace for code → geeky feel), 
-              Bento Grid with 24px spacing ensures spatial order. Readability, maintainability, and aesthetics are all essential.
+              Code is not just a functional implementation, but also a systematic expression. CSS
+              design tokens build a complete Qi-Lab visual system, fonts strictly divided into three
+              categories (serif for titles → scholarly feel, sans-serif for body → clarity,
+              monospace for code → geeky feel), Bento Grid with 24px spacing ensures spatial order.
+              Readability, maintainability, and aesthetics are all essential.
             </p>
           </div>
           <div class="philosophy-card">
             <span class="philosophy-number">03</span>
             <h3 class="philosophy-title">Long-termism & Systematic Thinking</h3>
             <p class="philosophy-desc">
-              Rather than chasing viral growth, we embrace the "endurance phase" of building from 0 to 100. 
-              Every tool recommendation is validated through daily use, and every technical viewpoint stems 
-              from real project friction. In an age where AI can generate anything, human judgment and 
-              creativity become even more precious. Every share is a proof of authentic intent.
+              Rather than chasing viral growth, we embrace the "endurance phase" of building from 0
+              to 100. Every tool recommendation is validated through daily use, and every technical
+              viewpoint stems from real project friction. In an age where AI can generate anything,
+              human judgment and creativity become even more precious. Every share is a proof of
+              authentic intent.
             </p>
           </div>
         </div>
@@ -93,8 +101,8 @@ import Divider from '../../components/global/Divider.astro';
         <SectionHeader label="// CONTACT" title="Get in Touch" />
         <div class="contact-cta">
           <p class="cta-text">
-            Whether it's knowledge management exchange, AI workflow discussion, or project cooperation, 
-            feel free to contact us anytime.
+            Whether it's knowledge management exchange, AI workflow discussion, or project
+            cooperation, feel free to contact us anytime.
           </p>
           <div class="cta-links">
             <a href="mailto:matthewhemhgz@gmail.com" class="cta-link">
@@ -105,12 +113,10 @@ import Divider from '../../components/global/Divider.astro';
               <span class="cta-label">WeChat</span>
               <span class="cta-value">Qi-Lab</span>
             </div>
-
           </div>
           <a href="/en#contact" class="cta-btn">View Full Contact Information</a>
         </div>
       </section>
-
     </div>
   </div>
 </BaseLayout>

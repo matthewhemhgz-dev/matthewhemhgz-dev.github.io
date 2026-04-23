@@ -34,27 +34,29 @@ const {
 const isExternalImage = src.startsWith('http') || src.startsWith('//');
 ---
 
-{!isExternalImage ? (
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    loading={loading}
-    fetchpriority={fetchpriority}
-    class={className}
-    sizes={sizes}
-    aspectRatio={aspectRatio}
-  />
-) : (
-  <img
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    loading={loading}
-    fetchpriority={fetchpriority}
-    class={className}
-    decoding="async"
-  />
-)}
+{
+  !isExternalImage ? (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={className}
+      sizes={sizes}
+      aspectRatio={aspectRatio}
+    />
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={className}
+      decoding="async"
+    />
+  )
+}

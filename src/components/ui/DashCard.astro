@@ -6,12 +6,7 @@ interface Props {
   color?: 'emerald' | 'amber' | 'gray';
 }
 
-const {
-  label = 'Metric',
-  value = '0',
-  percentage = 0,
-  color = 'emerald',
-} = Astro.props;
+const { label = 'Metric', value = '0', percentage = 0, color = 'emerald' } = Astro.props;
 
 const clampedPercentage = Math.max(0, Math.min(100, percentage));
 
@@ -36,9 +31,14 @@ const colorMap: Record<string, { bar: string; bg: string; glow: string }> = {
 const colors = colorMap[color] || colorMap.emerald;
 ---
 
-<div class="bg-bg-base border border-[var(--qi-base-06)] rounded-lg p-lg hover:shadow-md hover:-translate-y-0.5 transition-all duration-base tilt-card" data-color={color}>
+<div
+  class="bg-bg-base border border-[var(--qi-base-06)] rounded-lg p-lg hover:shadow-md hover:-translate-y-0.5 transition-all duration-base tilt-card"
+  data-color={color}
+>
   <div class="flex justify-between items-baseline mb-md">
-    <span class="font-mono text-xs font-medium text-text-muted uppercase tracking-[0.08em]">{label}</span>
+    <span class="font-mono text-xs font-medium text-text-muted uppercase tracking-[0.08em]"
+      >{label}</span
+    >
     <span class="font-serif text-2xl font-bold text-text-primary leading-none">{value}</span>
   </div>
   <div class="w-full h-1.5 bg-[var(--qi-base-06)] rounded-full overflow-hidden relative">
@@ -46,7 +46,10 @@ const colors = colorMap[color] || colorMap.emerald;
       class="relative h-full rounded-full transition-all duration-1000 ease-spring animate-fillIn"
       style={`width: ${clampedPercentage}%; background: ${colors.bar}; box-shadow: 0 0 8px ${colors.glow};`}
     >
-      <span class="absolute right-0 -top-5.5 font-mono text-xs font-semibold opacity-0 animate-fadeUp" style="color: ${colors.bar}">{clampedPercentage}%</span>
+      <span
+        class="absolute right-0 -top-5.5 font-mono text-xs font-semibold opacity-0 animate-fadeUp"
+        style="color: ${colors.bar}">{clampedPercentage}%</span
+      >
     </div>
   </div>
 </div>

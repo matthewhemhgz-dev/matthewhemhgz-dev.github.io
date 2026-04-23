@@ -45,68 +45,92 @@ const blogPrefix = isEn ? '/en/blog/' : '/blog/';
 const replaceKey = isEn ? 'en/' : 'zh/';
 ---
 
-
 <section class="section" data-reveal>
   <div class="featured-corner-deco" aria-hidden="true">
     <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-      <path d="M0 0 L30 0 L30 2 L2 2 L2 30 L0 30 Z" fill="currentColor" opacity="0.15" />
+      <path d="M0 0 L30 0 L30 2 L2 2 L2 30 L0 30 Z" fill="currentColor" opacity="0.15"></path>
     </svg>
   </div>
   <div class="container">
     <SectionHeader label={label} title={title} />
-    {posts.length > 0 ? (
-      <div class="bento-grid">
-        {posts.map((post, i) => (
-          <a
-            href={`${blogPrefix}${post.id.replace(replaceKey, '')}/`}
-
-            class:list={['bento-card', 'tilt-card', i === 0 ? 'bento-card--large' : 'bento-card--small']}
-          >
-            {largeCardLayout && i === 0 && post.data.heroImage ? (
-              <div class="bento-card--large__bg">
-                <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={800} height={450} loading="eager" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px" />
-                <div class="bento-card--large__overlay"></div>
-              </div>
-            ) : largeCardLayout && i === 0 && !post.data.heroImage ? (
-              <div class="bento-card--large__bg bento-card--large__bg--gradient"></div>
-            ) : null}
-            <div class="bento-card__content">
-              {!largeCardLayout && post.data.heroImage && (
-                <div class="bento-image-wrap">
-                  <OptimizedImage src={post.data.heroImage} alt={post.data.title} width={600} height={340} loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 200px" />
+    {
+      posts.length > 0 ? (
+        <div class="bento-grid">
+          {posts.map((post, i) => (
+            <a
+              href={`${blogPrefix}${post.id.replace(replaceKey, '')}/`}
+              class:list={[
+                'bento-card',
+                'tilt-card',
+                i === 0 ? 'bento-card--large' : 'bento-card--small',
+              ]}
+            >
+              {largeCardLayout && i === 0 && post.data.heroImage ? (
+                <div class="bento-card--large__bg">
+                  <OptimizedImage
+                    src={post.data.heroImage}
+                    alt={post.data.title}
+                    width={800}
+                    height={450}
+                    loading="eager"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                  />
+                  <div class="bento-card--large__overlay" />
                 </div>
-              )}
-              <div class="bento-meta">
-                <span class="bento-date">{post.data.pubDate.toLocaleDateString(localeKey, { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-                {post.data.tags && post.data.tags.length > 0 && (
-                  <span class="bento-tag">{post.data.tags[0]}</span>
+              ) : largeCardLayout && i === 0 && !post.data.heroImage ? (
+                <div class="bento-card--large__bg bento-card--large__bg--gradient" />
+              ) : null}
+              <div class="bento-card__content">
+                {!largeCardLayout && post.data.heroImage && (
+                  <div class="bento-image-wrap">
+                    <OptimizedImage
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      width={600}
+                      height={340}
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 200px"
+                    />
+                  </div>
                 )}
+                <div class="bento-meta">
+                  <span class="bento-date">
+                    {post.data.pubDate.toLocaleDateString(localeKey, {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </span>
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <span class="bento-tag">{post.data.tags[0]}</span>
+                  )}
+                </div>
+                <h3 class="bento-title">{post.data.title}</h3>
+                {post.data.description && <p class="bento-desc">{post.data.description}</p>}
+                <span class="bento-link">{readMoreText} &rarr;</span>
               </div>
-              <h3 class="bento-title">{post.data.title}</h3>
-              {post.data.description && (
-                <p class="bento-desc">{post.data.description}</p>
-              )}
-              <span class="bento-link">{readMoreText} &rarr;</span>
-            </div>
-          </a>
-        ))}
-      </div>
-    ) : (
-      <div class="empty-state">
-        <div class="empty-icon" aria-hidden="true">
-          {emptyIcon === 'svg' ? <Fragment set:html={svgIcons['edit']} /> : <>&#x1F4DD;</>}
+            </a>
+          ))}
         </div>
-        <p class="empty-text">{emptyText}</p>
-        <a href={browseBlogHref} class="btn btn-secondary">{browseBlogText}</a>
-      </div>
-    )}
+      ) : (
+        <div class="empty-state">
+          <div class="empty-icon" aria-hidden="true">
+            {emptyIcon === 'svg' ? <Fragment set:html={svgIcons['edit']} /> : <>&#x1F4DD;</>}
+          </div>
+          <p class="empty-text">{emptyText}</p>
+          <a href={browseBlogHref} class="btn btn-secondary">
+            {browseBlogText}
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>
 
 <script>
   // Mouse-following light effect for bento cards (View Transitions compatible)
   function initCardEffects() {
-    document.querySelectorAll('.bento-card').forEach(card => {
+    document.querySelectorAll('.bento-card').forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;

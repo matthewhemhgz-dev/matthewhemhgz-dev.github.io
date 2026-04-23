@@ -39,26 +39,100 @@ const websiteJsonLd = {
 };
 
 const toolboxCategories = [
-  { label: '知识管理', icon: 'book', tools: [{ name: 'Obsidian', desc: '本地优先知识图谱与双向链接' }, { name: 'Graphify', desc: 'LLM 驱动的知识库自动构建器' }, { name: 'Markdown', desc: '单点真理的文档格式标准' }] },
-  { label: '开发工具', icon: 'cog', tools: [{ name: 'Trae', desc: 'AI 增强代码编辑器' }, { name: 'Git + GitHub', desc: '版本控制与开源协作' }, { name: 'Docker', desc: '容器化部署与编排' }, { name: 'Astro', desc: '零 JS 静态站点生成' }] },
-  { label: 'AI 工具', icon: 'robot', tools: [{ name: 'OpenClaw', desc: '专属数字孪生外脑（模型路由）' }, { name: 'Trae SOLO', desc: 'AI 编程代理与 Subagent 编排' }, { name: 'Superpowers', desc: 'TDD + 系统化调试的 AI 工作流' }] },
-  { label: '数据与运维', icon: 'database', tools: [{ name: 'n8n', desc: '自动化工作流引擎' }, { name: 'Metabase', desc: '运营数据可视化看板' }, { name: 'PostgreSQL', desc: '结构化数据持久化存储' }] },
+  {
+    label: '知识管理',
+    icon: 'book',
+    tools: [
+      { name: 'Obsidian', desc: '本地优先知识图谱与双向链接' },
+      { name: 'Graphify', desc: 'LLM 驱动的知识库自动构建器' },
+      { name: 'Markdown', desc: '单点真理的文档格式标准' },
+    ],
+  },
+  {
+    label: '开发工具',
+    icon: 'cog',
+    tools: [
+      { name: 'Trae', desc: 'AI 增强代码编辑器' },
+      { name: 'Git + GitHub', desc: '版本控制与开源协作' },
+      { name: 'Docker', desc: '容器化部署与编排' },
+      { name: 'Astro', desc: '零 JS 静态站点生成' },
+    ],
+  },
+  {
+    label: 'AI 工具',
+    icon: 'robot',
+    tools: [
+      { name: 'OpenClaw', desc: '专属数字孪生外脑（模型路由）' },
+      { name: 'Trae SOLO', desc: 'AI 编程代理与 Subagent 编排' },
+      { name: 'Superpowers', desc: 'TDD + 系统化调试的 AI 工作流' },
+    ],
+  },
+  {
+    label: '数据与运维',
+    icon: 'database',
+    tools: [
+      { name: 'n8n', desc: '自动化工作流引擎' },
+      { name: 'Metabase', desc: '运营数据可视化看板' },
+      { name: 'PostgreSQL', desc: '结构化数据持久化存储' },
+    ],
+  },
 ];
 
 const platforms = [
-  { name: 'GitHub', handle: '@matthewhemhgz-dev', url: 'https://github.com/matthewhemhgz-dev', icon: 'laptop', desc: '开源项目与知识库' },
-  { name: '微信公众号', handle: '祈研所', url: '#', icon: 'smartphone', desc: '深度长文与系统化分享', qrImage: '/images/social/wechat-oa-qr.jpg' },
-  { name: '视频号', handle: '祈研所', url: '#', icon: 'film', desc: '短视频', qrImage: '/images/social/wechat-oa-qr.jpg' },
-  { name: '小红书', handle: '祈研所（Qi_Lab）', url: '#', icon: 'book', desc: '干货图文与实用技巧', qrImage: '/images/social/xhs-qr.jpg' },
-  { name: '抖音', handle: '祈研所（QiLab）', url: '#', icon: 'zap', desc: '短视频', qrImage: '/images/social/douyin-qr.jpg' },
-  { name: 'GitHub Pages', handle: 'QiLab', url: 'https://matthewhemhgz-dev.github.io', icon: 'globe', desc: '博客与项目展示' },
+  {
+    name: 'GitHub',
+    handle: '@matthewhemhgz-dev',
+    url: 'https://github.com/matthewhemhgz-dev',
+    icon: 'laptop',
+    desc: '开源项目与知识库',
+  },
+  {
+    name: '微信公众号',
+    handle: '祈研所',
+    url: '#',
+    icon: 'smartphone',
+    desc: '深度长文与系统化分享',
+    qrImage: '/images/social/wechat-oa-qr.jpg',
+  },
+  {
+    name: '视频号',
+    handle: '祈研所',
+    url: '#',
+    icon: 'film',
+    desc: '短视频',
+    qrImage: '/images/social/wechat-oa-qr.jpg',
+  },
+  {
+    name: '小红书',
+    handle: '祈研所（Qi_Lab）',
+    url: '#',
+    icon: 'book',
+    desc: '干货图文与实用技巧',
+    qrImage: '/images/social/xhs-qr.jpg',
+  },
+  {
+    name: '抖音',
+    handle: '祈研所（QiLab）',
+    url: '#',
+    icon: 'zap',
+    desc: '短视频',
+    qrImage: '/images/social/douyin-qr.jpg',
+  },
+  {
+    name: 'GitHub Pages',
+    handle: 'QiLab',
+    url: 'https://matthewhemhgz-dev.github.io',
+    icon: 'globe',
+    desc: '博客与项目展示',
+  },
 ];
-
-
 ---
 
-<BaseLayout title="祈研所 | QiLab" description="一个系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿的地方" jsonLd={websiteJsonLd}>
-
+<BaseLayout
+  title="祈研所 | QiLab"
+  description="一个系统化整理知识管理、项目管理、IT/AI技巧和八卦前沿的地方"
+  jsonLd={websiteJsonLd}
+>
   <HeroSection
     titleLines={['在信息过载的时代', '结构化的知识', '才是真正的力量']}
     accentIndex={1}
@@ -105,22 +179,11 @@ const platforms = [
 
   <SectionDivider variant="diamond" />
 
-  <ToolboxSection
-    label="// TOOLBOX"
-    title="工具箱"
-    categories={toolboxCategories}
-  />
+  <ToolboxSection label="// TOOLBOX" title="工具箱" categories={toolboxCategories} />
 
-  <PlatformsSection
-    label="// PLATFORMS"
-    title="平台矩阵"
-    platforms={platforms}
-  />
+  <PlatformsSection label="// PLATFORMS" title="平台矩阵" platforms={platforms} />
 
-  <ResearchSection
-    label="// METHODOLOGY"
-    title="研究方法论"
-  />
+  <ResearchSection label="// METHODOLOGY" title="研究方法论" />
 
   <SectionDivider variant="arcs" />
 
@@ -131,7 +194,6 @@ const platforms = [
     primaryBtn={{ text: '发送邮件', href: 'mailto:matthewhemhgz@gmail.com' }}
     secondaryBtn={{ text: 'GitHub', href: 'https://github.com/matthewhemhgz-dev', external: true }}
   />
-
 </BaseLayout>
 
 <script>

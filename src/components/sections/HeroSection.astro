@@ -28,7 +28,8 @@ const {
   secondaryBtn,
 } = Astro.props;
 
-const trophyIcon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.09 7.26L18 7.64L13.55 11.42L14.82 17.18L10 14.27L5.18 17.18L6.45 11.42L2 7.64L7.91 7.26L10 2Z" fill="currentColor"/></svg>';
+const trophyIcon =
+  '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.09 7.26L18 7.64L13.55 11.42L14.82 17.18L10 14.27L5.18 17.18L6.45 11.42L2 7.64L7.91 7.26L10 2Z" fill="currentColor"/></svg>';
 ---
 
 <section class="hero-section" data-reveal>
@@ -43,11 +44,35 @@ const trophyIcon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
     <div class="hero-dot-pattern"></div>
     <div class="hero-watermark" aria-hidden="true">{watermark}</div>
     <div class="hero-vignette"></div>
-    <svg class="hero-arcs" width="320" height="320" viewBox="0 0 320 320" fill="none" aria-hidden="true">
-      <circle cx="160" cy="160" r="140" stroke="currentColor" stroke-width="0.75" opacity="0.10" />
-      <circle cx="160" cy="160" r="105" stroke="currentColor" stroke-width="0.75" opacity="0.08" stroke-dasharray="6 8" />
-      <circle cx="160" cy="160" r="70" stroke="currentColor" stroke-width="0.5" opacity="0.06" />
-      <circle cx="160" cy="160" r="150" stroke="currentColor" stroke-width="1" opacity="0.14" stroke-dasharray="100 842" stroke-linecap="round" />
+    <svg
+      class="hero-arcs"
+      width="320"
+      height="320"
+      viewBox="0 0 320 320"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="160" cy="160" r="140" stroke="currentColor" stroke-width="0.75" opacity="0.10"
+      ></circle>
+      <circle
+        cx="160"
+        cy="160"
+        r="105"
+        stroke="currentColor"
+        stroke-width="0.75"
+        opacity="0.08"
+        stroke-dasharray="6 8"></circle>
+      <circle cx="160" cy="160" r="70" stroke="currentColor" stroke-width="0.5" opacity="0.06"
+      ></circle>
+      <circle
+        cx="160"
+        cy="160"
+        r="150"
+        stroke="currentColor"
+        stroke-width="1"
+        opacity="0.14"
+        stroke-dasharray="100 842"
+        stroke-linecap="round"></circle>
     </svg>
   </div>
   <div class="container hero-container">
@@ -57,36 +82,64 @@ const trophyIcon = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <span class="badge-text">{badgeText}</span>
       </div>
       <h1 class="hero-title">
-        {titleLines.map((line, i) => (
-          <span class:list={['title-line', 'hero-stagger', `hero-stagger--${i + 2}`, i === accentIndex && 'title-accent']}>
-            {line}
-          </span>
-        ))}
+        {
+          titleLines.map((line, i) => (
+            <span
+              class:list={[
+                'title-line',
+                'hero-stagger',
+                `hero-stagger--${i + 2}`,
+                i === accentIndex && 'title-accent',
+              ]}
+            >
+              {line}
+            </span>
+          ))
+        }
       </h1>
       <p class="hero-subtitle hero-fade-in">{subtitle}</p>
       <div class="hero-actions hero-fade-in">
-        {primaryBtn && (
-          <a href={primaryBtn.href} class="btn btn-primary">
-            <span>{primaryBtn.text}</span>
-            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        )}
-        {secondaryBtn && (
-          <a href={secondaryBtn.href} class="btn btn-secondary">{secondaryBtn.text}</a>
-        )}
+        {
+          primaryBtn && (
+            <a href={primaryBtn.href} class="btn btn-primary">
+              <span>{primaryBtn.text}</span>
+              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10m0 0L9 4m4 4L9 12"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          )
+        }
+        {
+          secondaryBtn && (
+            <a href={secondaryBtn.href} class="btn btn-secondary">
+              {secondaryBtn.text}
+            </a>
+          )
+        }
       </div>
       <div class="hero-stats hero-fade-in">
-        {stats.map((stat, i) => (
-          <>
-            {i > 0 && <div class="hero-stat-divider"></div>}
-            <div class="hero-stat">
-              <span class:list={['hero-stat-value', stat.isText && 'hero-stat-text']} data-count={stat.dataCount}>
-                {stat.isText ? stat.value : '0'}
-              </span>
-              <span class="hero-stat-label">{stat.label}</span>
-            </div>
-          </>
-        ))}
+        {
+          stats.map((stat, i) => (
+            <>
+              {i > 0 && <div class="hero-stat-divider" />}
+              <div class="hero-stat">
+                <span
+                  class:list={['hero-stat-value', stat.isText && 'hero-stat-text']}
+                  data-count={stat.dataCount}
+                >
+                  {stat.isText ? stat.value : '0'}
+                </span>
+                <span class="hero-stat-label">{stat.label}</span>
+              </div>
+            </>
+          ))
+        }
       </div>
     </div>
 

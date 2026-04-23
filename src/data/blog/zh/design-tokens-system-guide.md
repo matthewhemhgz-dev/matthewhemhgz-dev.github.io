@@ -1,11 +1,11 @@
 ---
-title: "从零构建设计令牌系统"
-description: "设计令牌是设计系统的原子单位。本文从概念到实践，手把手教你构建一套可扩展的设计令牌系统。"
+title: '从零构建设计令牌系统'
+description: '设计令牌是设计系统的原子单位。本文从概念到实践，手把手教你构建一套可扩展的设计令牌系统。'
 pubDate: 2026-04-12
-category: "前端工程"
-tags: ["CSS", "设计系统", "Design Tokens", "最佳实践"]
-heroImage: "/images/blog/design-tokens-system-guide.png"
-author: "祈研所"
+category: '前端工程'
+tags: ['CSS', '设计系统', 'Design Tokens', '最佳实践']
+heroImage: '/images/blog/design-tokens-system-guide.png'
+author: '祈研所'
 draft: false
 lang: zh
 ---
@@ -71,16 +71,16 @@ graph LR
 ```css
 /* 亮色主题 */
 :root {
-  --color-bg: #FFFFFF;
-  --color-text: #1A1A2E;
-  --color-primary: #2563EB;
+  --color-bg: #ffffff;
+  --color-text: #1a1a2e;
+  --color-primary: #2563eb;
 }
 
 /* 暗色主题 */
-[data-theme="dark"] {
-  --color-bg: #0F172A;
-  --color-text: #E2E8F0;
-  --color-primary: #60A5FA;
+[data-theme='dark'] {
+  --color-bg: #0f172a;
+  --color-text: #e2e8f0;
+  --color-primary: #60a5fa;
 }
 ```
 
@@ -114,7 +114,7 @@ graph TD
 {
   "color": {
     "blue": {
-      "50":  { "value": "#EFF6FF" },
+      "50": { "value": "#EFF6FF" },
       "100": { "value": "#DBEAFE" },
       "200": { "value": "#BFDBFE" },
       "300": { "value": "#93C5FD" },
@@ -126,7 +126,7 @@ graph TD
       "900": { "value": "#172554" }
     },
     "gray": {
-      "50":  { "value": "#F9FAFB" },
+      "50": { "value": "#F9FAFB" },
       "100": { "value": "#F3F4F6" },
       "200": { "value": "#E5E7EB" },
       "300": { "value": "#D1D5DB" },
@@ -148,17 +148,17 @@ graph TD
 ```json
 {
   "color": {
-    "primary":    { "value": "{color.blue.500}" },
+    "primary": { "value": "{color.blue.500}" },
     "primary-hover": { "value": "{color.blue.600}" },
-    "secondary":  { "value": "{color.gray.500}" },
+    "secondary": { "value": "{color.gray.500}" },
     "background": { "value": "{color.gray.50}" },
-    "surface":    { "value": "#FFFFFF" },
-    "text":       { "value": "{color.gray.900}" },
+    "surface": { "value": "#FFFFFF" },
+    "text": { "value": "{color.gray.900}" },
     "text-muted": { "value": "{color.gray.500}" },
-    "border":     { "value": "{color.gray.200}" },
-    "error":      { "value": "#DC2626" },
-    "success":    { "value": "#16A34A" },
-    "warning":    { "value": "#D97706" }
+    "border": { "value": "{color.gray.200}" },
+    "error": { "value": "#DC2626" },
+    "success": { "value": "#16A34A" },
+    "warning": { "value": "#D97706" }
   }
 }
 ```
@@ -171,22 +171,22 @@ graph TD
 {
   "button": {
     "primary": {
-      "bg":          { "value": "{color.primary}" },
-      "bg-hover":    { "value": "{color.primary-hover}" },
-      "text":        { "value": "#FFFFFF" },
-      "border":      { "value": "{color.primary}" },
-      "radius":      { "value": "{spacing.radius.md}" },
-      "padding-x":   { "value": "{spacing.md}" },
-      "padding-y":   { "value": "{spacing.sm}" }
+      "bg": { "value": "{color.primary}" },
+      "bg-hover": { "value": "{color.primary-hover}" },
+      "text": { "value": "#FFFFFF" },
+      "border": { "value": "{color.primary}" },
+      "radius": { "value": "{spacing.radius.md}" },
+      "padding-x": { "value": "{spacing.md}" },
+      "padding-y": { "value": "{spacing.sm}" }
     },
     "secondary": {
-      "bg":          { "value": "transparent" },
-      "bg-hover":    { "value": "{color.gray.100}" },
-      "text":        { "value": "{color.primary}" },
-      "border":      { "value": "{color.primary}" },
-      "radius":      { "value": "{spacing.radius.md}" },
-      "padding-x":   { "value": "{spacing.md}" },
-      "padding-y":   { "value": "{spacing.sm}" }
+      "bg": { "value": "transparent" },
+      "bg-hover": { "value": "{color.gray.100}" },
+      "text": { "value": "{color.primary}" },
+      "border": { "value": "{color.primary}" },
+      "radius": { "value": "{spacing.radius.md}" },
+      "padding-x": { "value": "{spacing.md}" },
+      "padding-y": { "value": "{spacing.sm}" }
     }
   }
 }
@@ -201,17 +201,17 @@ graph TD
 ```json
 {
   "color": {
-    "primary":    { "value": "#2563EB", "type": "color" },
+    "primary": { "value": "#2563EB", "type": "color" },
     "primary-hover": { "value": "#1D4ED8", "type": "color" },
-    "secondary":  { "value": "#6B7280", "type": "color" },
+    "secondary": { "value": "#6B7280", "type": "color" },
     "background": { "value": "#F9FAFB", "type": "color" },
-    "surface":    { "value": "#FFFFFF", "type": "color" },
-    "text":       { "value": "#111827", "type": "color" },
+    "surface": { "value": "#FFFFFF", "type": "color" },
+    "text": { "value": "#111827", "type": "color" },
     "text-muted": { "value": "#6B7280", "type": "color" },
-    "border":     { "value": "#E5E7EB", "type": "color" },
-    "error":      { "value": "#DC2626", "type": "color" },
-    "success":    { "value": "#16A34A", "type": "color" },
-    "warning":    { "value": "#D97706", "type": "color" }
+    "border": { "value": "#E5E7EB", "type": "color" },
+    "error": { "value": "#DC2626", "type": "color" },
+    "success": { "value": "#16A34A", "type": "color" },
+    "warning": { "value": "#D97706", "type": "color" }
   },
   "font": {
     "family": {
@@ -219,54 +219,63 @@ graph TD
       "mono": { "value": "'JetBrains Mono', 'Fira Code', monospace", "type": "fontFamily" }
     },
     "size": {
-      "xs":   { "value": "0.75rem",  "type": "dimension" },
-      "sm":   { "value": "0.875rem", "type": "dimension" },
-      "base": { "value": "1rem",     "type": "dimension" },
-      "lg":   { "value": "1.125rem", "type": "dimension" },
-      "xl":   { "value": "1.25rem",  "type": "dimension" },
-      "2xl":  { "value": "1.5rem",   "type": "dimension" },
-      "3xl":  { "value": "1.875rem", "type": "dimension" },
-      "4xl":  { "value": "2.25rem",  "type": "dimension" }
+      "xs": { "value": "0.75rem", "type": "dimension" },
+      "sm": { "value": "0.875rem", "type": "dimension" },
+      "base": { "value": "1rem", "type": "dimension" },
+      "lg": { "value": "1.125rem", "type": "dimension" },
+      "xl": { "value": "1.25rem", "type": "dimension" },
+      "2xl": { "value": "1.5rem", "type": "dimension" },
+      "3xl": { "value": "1.875rem", "type": "dimension" },
+      "4xl": { "value": "2.25rem", "type": "dimension" }
     },
     "weight": {
-      "normal":   { "value": "400", "type": "fontWeight" },
-      "medium":   { "value": "500", "type": "fontWeight" },
+      "normal": { "value": "400", "type": "fontWeight" },
+      "medium": { "value": "500", "type": "fontWeight" },
       "semibold": { "value": "600", "type": "fontWeight" },
-      "bold":     { "value": "700", "type": "fontWeight" }
+      "bold": { "value": "700", "type": "fontWeight" }
     },
     "line-height": {
-      "tight":   { "value": "1.25", "type": "dimension" },
-      "normal":  { "value": "1.5",  "type": "dimension" },
+      "tight": { "value": "1.25", "type": "dimension" },
+      "normal": { "value": "1.5", "type": "dimension" },
       "relaxed": { "value": "1.75", "type": "dimension" }
     }
   },
   "spacing": {
-    "0":  { "value": "0",      "type": "dimension" },
-    "1":  { "value": "0.25rem", "type": "dimension" },
-    "2":  { "value": "0.5rem",  "type": "dimension" },
-    "3":  { "value": "0.75rem", "type": "dimension" },
-    "4":  { "value": "1rem",    "type": "dimension" },
-    "5":  { "value": "1.25rem", "type": "dimension" },
-    "6":  { "value": "1.5rem",  "type": "dimension" },
-    "8":  { "value": "2rem",    "type": "dimension" },
-    "10": { "value": "2.5rem",  "type": "dimension" },
-    "12": { "value": "3rem",    "type": "dimension" },
-    "16": { "value": "4rem",    "type": "dimension" },
-    "20": { "value": "5rem",    "type": "dimension" },
-    "24": { "value": "6rem",    "type": "dimension" },
+    "0": { "value": "0", "type": "dimension" },
+    "1": { "value": "0.25rem", "type": "dimension" },
+    "2": { "value": "0.5rem", "type": "dimension" },
+    "3": { "value": "0.75rem", "type": "dimension" },
+    "4": { "value": "1rem", "type": "dimension" },
+    "5": { "value": "1.25rem", "type": "dimension" },
+    "6": { "value": "1.5rem", "type": "dimension" },
+    "8": { "value": "2rem", "type": "dimension" },
+    "10": { "value": "2.5rem", "type": "dimension" },
+    "12": { "value": "3rem", "type": "dimension" },
+    "16": { "value": "4rem", "type": "dimension" },
+    "20": { "value": "5rem", "type": "dimension" },
+    "24": { "value": "6rem", "type": "dimension" },
     "radius": {
-      "sm":  { "value": "0.25rem", "type": "dimension" },
-      "md":  { "value": "0.5rem",  "type": "dimension" },
-      "lg":  { "value": "0.75rem", "type": "dimension" },
-      "xl":  { "value": "1rem",    "type": "dimension" },
-      "full":{ "value": "9999px",  "type": "dimension" }
+      "sm": { "value": "0.25rem", "type": "dimension" },
+      "md": { "value": "0.5rem", "type": "dimension" },
+      "lg": { "value": "0.75rem", "type": "dimension" },
+      "xl": { "value": "1rem", "type": "dimension" },
+      "full": { "value": "9999px", "type": "dimension" }
     }
   },
   "shadow": {
-    "sm":  { "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "type": "shadow" },
-    "md":  { "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)", "type": "shadow" },
-    "lg":  { "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)", "type": "shadow" },
-    "xl":  { "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)", "type": "shadow" }
+    "sm": { "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "type": "shadow" },
+    "md": {
+      "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+      "type": "shadow"
+    },
+    "lg": {
+      "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+      "type": "shadow"
+    },
+    "xl": {
+      "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+      "type": "shadow"
+    }
   }
 }
 ```
@@ -278,17 +287,17 @@ graph TD
 ```css
 :root {
   /* Colors */
-  --color-primary: #2563EB;
-  --color-primary-hover: #1D4ED8;
-  --color-secondary: #6B7280;
-  --color-background: #F9FAFB;
-  --color-surface: #FFFFFF;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-secondary: #6b7280;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
   --color-text: #111827;
-  --color-text-muted: #6B7280;
-  --color-border: #E5E7EB;
-  --color-error: #DC2626;
-  --color-success: #16A34A;
-  --color-warning: #D97706;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-error: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
 
   /* Font Family */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -350,7 +359,7 @@ graph TD
 
 .btn-primary {
   background-color: var(--color-primary);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
@@ -382,13 +391,13 @@ graph TD
 
 ## 工具链推荐
 
-| 工具 | 用途 | 推荐理由 |
-|------|------|----------|
-| **Style Dictionary** | 令牌转换 | Amazon 开源，支持多平台输出 |
+| 工具                    | 用途           | 推荐理由                       |
+| ----------------------- | -------------- | ------------------------------ |
+| **Style Dictionary**    | 令牌转换       | Amazon 开源，支持多平台输出    |
 | **Figma Tokens Studio** | 设计端令牌管理 | Figma 插件，支持 JSON 导入导出 |
-| **Token Transformer** | 令牌格式转换 | 在不同令牌格式之间转换 |
-| **Diez** | 跨平台令牌分发 | 支持 iOS/Android/Web 统一分发 |
-| **Twingate** | Tailwind 集成 | 将令牌自动同步到 Tailwind 配置 |
+| **Token Transformer**   | 令牌格式转换   | 在不同令牌格式之间转换         |
+| **Diez**                | 跨平台令牌分发 | 支持 iOS/Android/Web 统一分发  |
+| **Twingate**            | Tailwind 集成  | 将令牌自动同步到 Tailwind 配置 |
 
 ## 最佳实践总结
 
@@ -409,4 +418,4 @@ graph TD
 
 ---
 
-*相关阅读：[为什么选择 Astro 作为静态站点生成器](/blog/astro-ssg-why-i-chose) —— 在 Astro 项目中实践设计令牌系统的技术基础*
+_相关阅读：[为什么选择 Astro 作为静态站点生成器](/blog/astro-ssg-why-i-chose) —— 在 Astro 项目中实践设计令牌系统的技术基础_

@@ -6,25 +6,28 @@ import '../styles/sections/error.css';
 const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
 const isEnglish = currentLocale === 'en';
 
-const labels = isEnglish ? {
-  title: '404 - Page Not Found',
-  description: 'The page you are looking for does not exist.',
-  code: '404',
-  heading: 'Page Not Found',
-  message: 'Sorry, the page you are looking for does not exist or has been moved. Please check the URL or return to the home page.',
-  backHome: 'Back to Home',
-  browseBlog: 'Browse Blog',
-  hint: 'Tip: Try selecting a page from the navigation bar'
-} : {
-  title: '404 - 页面未找到',
-  description: '您访问的页面不存在。',
-  code: '404',
-  heading: '页面未找到',
-  message: '抱歉，您访问的页面不存在或已被移除。请检查 URL 是否正确，或返回首页探索更多内容。',
-  backHome: '返回首页',
-  browseBlog: '浏览博客',
-  hint: '提示：试试从导航栏选择一个页面'
-};
+const labels = isEnglish
+  ? {
+      title: '404 - Page Not Found',
+      description: 'The page you are looking for does not exist.',
+      code: '404',
+      heading: 'Page Not Found',
+      message:
+        'Sorry, the page you are looking for does not exist or has been moved. Please check the URL or return to the home page.',
+      backHome: 'Back to Home',
+      browseBlog: 'Browse Blog',
+      hint: 'Tip: Try selecting a page from the navigation bar',
+    }
+  : {
+      title: '404 - 页面未找到',
+      description: '您访问的页面不存在。',
+      code: '404',
+      heading: '页面未找到',
+      message: '抱歉，您访问的页面不存在或已被移除。请检查 URL 是否正确，或返回首页探索更多内容。',
+      backHome: '返回首页',
+      browseBlog: '浏览博客',
+      hint: '提示：试试从导航栏选择一个页面',
+    };
 
 const homeHref = isEnglish ? '/en' : '/';
 const blogHref = isEnglish ? '/en/blog' : '/blog';
@@ -48,19 +51,38 @@ const blogHref = isEnglish ? '/en/blog' : '/blog';
       </p>
       <div class="error-actions">
         <a href={homeHref} class="error-btn error-btn--primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5" />
-            <polyline points="12 19 5 12 12 5" />
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5"></path>
+            <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
           {labels.backHome}
         </a>
         <a href={blogHref} class="error-btn error-btn--secondary">{labels.browseBlog}</a>
       </div>
       <p class="error-hint">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-          <line x1="12" y1="17" x2="12.01" y2="17" />
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="vertical-align: -2px; margin-right: 6px;"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
         </svg>
         {labels.hint}
       </p>

@@ -1,9 +1,10 @@
 # GitHub 部署与视觉审查 - 任务计划
 
 ## [x] 任务 1: 检查 git 状态和配置
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 检查当前 git 分支和状态
   - 确认远程仓库配置正确
   - 确保没有未提交的更改
@@ -14,9 +15,10 @@
 - **Notes**: 确保本地代码与远程仓库同步
 
 ## [x] 任务 2: 推送代码到 GitHub
+
 - **Priority**: P0
 - **Depends On**: 任务 1
-- **Description**: 
+- **Description**:
   - 执行 git push 命令
   - 确认推送成功
   - 验证构建流程被触发
@@ -27,9 +29,10 @@
 - **Notes**: 可能需要输入 GitHub 凭据
 
 ## [x] 任务 3: 监控 GitHub Actions 构建状态
+
 - **Priority**: P0
 - **Depends On**: 任务 2
-- **Description**: 
+- **Description**:
   - 检查 GitHub Actions 构建状态
   - 等待构建完成
   - 验证构建是否成功
@@ -40,9 +43,10 @@
 - **Notes**: 构建可能需要几分钟时间，请耐心等待
 
 ## [x] 任务 4: 访问部署后的网站
+
 - **Priority**: P0
 - **Depends On**: 任务 3
-- **Description**: 
+- **Description**:
   - 访问部署后的网站 URL
   - 验证网站加载正常
   - 检查控制台是否有错误
@@ -53,9 +57,10 @@
 - **Notes**: 部署可能需要一些时间生效，请等待几分钟后再访问
 
 ## [x] 任务 5: 审查导航模块
+
 - **Priority**: P1
 - **Depends On**: 任务 4
-- **Description**: 
+- **Description**:
   - 检查导航栏显示
   - 测试导航链接
   - 测试主题切换功能
@@ -69,9 +74,10 @@
 - **Notes**: 测试移动设备上的汉堡菜单
 
 ## [x] 任务 6: 审查首页模块
+
 - **Priority**: P1
 - **Depends On**: 任务 4
-- **Description**: 
+- **Description**:
   - 检查 Hero 区域显示
   - 检查统计数据模块
   - 检查精选内容模块
@@ -85,9 +91,10 @@
 - **Notes**: 检查图片加载和动画效果
 
 ## [x] 任务 7: 审查博客模块
+
 - **Priority**: P1
 - **Depends On**: 任务 4
-- **Description**: 
+- **Description**:
   - 检查博客列表页
   - 检查文章详情页
   - 测试分享功能
@@ -101,9 +108,10 @@
 - **Notes**: 测试代码块和图片显示
 
 ## [x] 任务 8: 审查关于页面
+
 - **Priority**: P1
 - **Depends On**: 任务 4
-- **Description**: 
+- **Description**:
   - 检查关于页面内容
   - 检查页面布局
   - 测试联系信息
@@ -115,9 +123,10 @@
 - **Notes**: 检查图片和排版
 
 ## [x] 任务 9: 审查标签页面
+
 - **Priority**: P1
 - **Depends On**: 任务 4
-- **Description**: 
+- **Description**:
   - 检查标签列表显示
   - 测试标签筛选功能
   - 检查标签页布局
@@ -129,9 +138,10 @@
 - **Notes**: 测试多个标签的筛选
 
 ## [x] 任务 10: 测试黑白模式和响应式设计
+
 - **Priority**: P1
 - **Depends On**: 任务 4
-- **Description**: 
+- **Description**:
   - 在黑白两种模式下测试所有页面
   - 在不同设备尺寸下测试
   - 检查对比度和可读性

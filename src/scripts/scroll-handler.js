@@ -1,21 +1,26 @@
 let revealObserver = null;
 
 export function initScrollReveal() {
-  if (revealObserver) { revealObserver.disconnect(); }
-  revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const parent = entry.target.parentElement;
-        const siblings = parent ? parent.querySelectorAll('[data-reveal]') : [];
-        const siblingIndex = Array.from(siblings).indexOf(entry.target);
-        const delay = siblingIndex * 80;
-        entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
-        entry.target.classList.add('is-visible');
-        revealObserver?.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('[data-reveal]').forEach(el => {
+  if (revealObserver) {
+    revealObserver.disconnect();
+  }
+  revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const parent = entry.target.parentElement;
+          const siblings = parent ? parent.querySelectorAll('[data-reveal]') : [];
+          const siblingIndex = Array.from(siblings).indexOf(entry.target);
+          const delay = siblingIndex * 80;
+          entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
+          entry.target.classList.add('is-visible');
+          revealObserver?.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
+  );
+  document.querySelectorAll('[data-reveal]').forEach((el) => {
     revealObserver.observe(el);
   });
 }

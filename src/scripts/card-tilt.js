@@ -17,7 +17,7 @@ export class CardTilt {
   }
 
   _bind() {
-    this.elements.forEach(el => {
+    this.elements.forEach((el) => {
       const moveHandler = (e) => this._onMove(e, el);
       const leaveHandler = (e) => this._onLeave(e, el);
       el.addEventListener('mousemove', moveHandler);
@@ -57,7 +57,7 @@ export class CardTilt {
   }
 
   destroy() {
-    this.elements.forEach(el => {
+    this.elements.forEach((el) => {
       const handlers = this._handlers.get(el);
       if (handlers) {
         el.removeEventListener('mousemove', handlers.moveHandler);

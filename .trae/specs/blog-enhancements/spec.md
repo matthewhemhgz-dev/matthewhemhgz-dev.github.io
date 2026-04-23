@@ -46,7 +46,7 @@
 
 ## Constraints
 
-- **Technical**: 
+- **Technical**:
   - 项目使用 Astro 框架，必须遵循其架构模式
   - 网站是静态网站，需要考虑无服务器或第三方服务来存储统计数据
   - 必须使用用户提供的 GA4 ID: G-CNGRXTNXF5
@@ -67,36 +67,42 @@
 ## Acceptance Criteria
 
 ### AC-1: Mermaid 版本统一
+
 - **Given**: 访问任何包含 Mermaid 图表的页面
 - **When**: 检查浏览器开发者工具中的网络请求
 - **Then**: 所有 Mermaid 图表都使用同一版本的 Mermaid 库
 - **Verification**: `programmatic`
 
 ### AC-2: Mermaid 语法错误修复
+
 - **Given**: 访问任何包含 Mermaid 图表的页面
 - **When**: 查看页面上的图表渲染效果
 - **Then**: 所有 Mermaid 图表都能正常渲染，无错误提示
 - **Verification**: `human-judgment`
 
 ### AC-3: Google Analytics 集成
+
 - **Given**: 访问网站任何页面
 - **When**: 查看网络请求和页面源码
 - **Then**: 页面包含 Google Analytics 4 跟踪代码，且能正常发送数据
 - **Verification**: `programmatic`
 
 ### AC-4: 阅读次数显示
+
 - **Given**: 访问博客文章详情页面
 - **When**: 查看文章头部信息区域
 - **Then**: 页面显示该文章的阅读次数
 - **Verification**: `human-judgment`
 
 ### AC-5: SPA 导航支持
+
 - **Given**: 在网站内进行页面切换（使用 Astro 的 View Transitions）
 - **When**: 使用浏览器开发者工具监控网络请求
 - **Then**: 每次页面切换都能向 Google Analytics 发送页面浏览事件
 - **Verification**: `programmatic`
 
 ### AC-6: 构建性能保持
+
 - **Given**: 运行构建命令
 - **When**: 检查构建产物大小和构建时间
 - **Then**: 构建产物大小和构建时间与改造前无显著差异（< 10%）

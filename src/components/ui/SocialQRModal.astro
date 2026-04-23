@@ -7,16 +7,33 @@
  */
 ---
 
-<div id="social-qr-modal" class="social-qr-modal" role="dialog" aria-labelledby="qr-modal-title" aria-hidden="true" aria-modal="true" transition:persist>
+<div
+  id="social-qr-modal"
+  class="social-qr-modal"
+  role="dialog"
+  aria-labelledby="qr-modal-title"
+  aria-hidden="true"
+  aria-modal="true"
+  transition:persist
+>
   <div class="social-qr-backdrop" id="social-qr-backdrop" tabindex="-1" aria-hidden="true"></div>
   <div class="social-qr-container" role="document">
     <button type="button" class="social-qr-close" id="social-qr-close" aria-label="Close">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
-    
+
     <div class="social-qr-header">
       <h2 id="qr-modal-title" class="social-qr-title">Scan to Follow</h2>
       <p id="qr-modal-platform" class="social-qr-platform">Platform</p>
@@ -30,7 +47,6 @@
       <span class="social-qr-hint" id="social-qr-hint">Scan or save image</span>
       <span id="social-qr-account" class="social-qr-account">Account Name</span>
     </div>
-
   </div>
 </div>
 
@@ -51,11 +67,11 @@
 
     function openModal(data: { platform: string; qrImage: string; account: string }) {
       const isEn = document.documentElement.lang.startsWith('en');
-      
+
       qrImg.src = data.qrImage;
       platformEl!.textContent = data.platform;
       accountEl!.textContent = data.account;
-      
+
       // Update persistent labels based on current page language
       const titleEl = document.getElementById('qr-modal-title');
       const hintEl = document.getElementById('social-qr-hint');
@@ -66,7 +82,6 @@
       modal!.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
-
 
     function closeModal() {
       modal!.setAttribute('aria-hidden', 'true');
@@ -88,11 +103,11 @@
         const platform = trigger.getAttribute('data-platform');
         const qrImage = trigger.getAttribute('data-qr-image');
         const account = trigger.getAttribute('data-account');
-        
-        openModal({ 
-          platform: platform || '', 
-          qrImage: qrImage || '', 
-          account: account || '' 
+
+        openModal({
+          platform: platform || '',
+          qrImage: qrImage || '',
+          account: account || '',
         });
       }
     });

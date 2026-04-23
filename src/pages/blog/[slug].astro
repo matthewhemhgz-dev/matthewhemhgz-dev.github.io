@@ -26,9 +26,7 @@ const readingTime = getReadingTime(post.body || '');
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
-const ogImage = post.data.heroImage
-  ? `${siteUrl}${post.data.heroImage}`
-  : '/og-default.png';
+const ogImage = post.data.heroImage ? `${siteUrl}${post.data.heroImage}` : '/og-default.png';
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -68,61 +66,95 @@ const articleJsonLd = {
 >
   <article class="article-container">
     <a href="/blog" class="article-back">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+        ><path
+          d="M10 3L5 8l5 5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path></svg
+      >
       <span>返回列表</span>
     </a>
 
     <header class="article-header">
-      {post.data.heroImage && (
-        <div class="article-hero-image">
-          <OptimizedImage 
-            src={post.data.heroImage} 
-            alt={post.data.title} 
-            width={1200} 
-            height={675} 
-            loading="eager" 
-            sizes="(max-width: 1200px) 100vw, 1200px" 
-          />
-        </div>
-      )}
+      {
+        post.data.heroImage && (
+          <div class="article-hero-image">
+            <OptimizedImage
+              src={post.data.heroImage}
+              alt={post.data.title}
+              width={1200}
+              height={675}
+              loading="eager"
+              sizes="(max-width: 1200px) 100vw, 1200px"
+            />
+          </div>
+        )
+      }
       <div class="article-meta-top">
         <span class="article-category">{post.data.category}</span>
-        <time class="article-date">{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        <time class="article-date"
+          >{
+            post.data.pubDate.toLocaleDateString('zh-CN', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          }</time
+        >
         <span class="article-reading-time">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zM8.25 4.5v3.75l2.5 1.5-.75 1.25-3.25-1.95V4.5h1.5z" fill="currentColor"/></svg>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+            ><path
+              d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zM8.25 4.5v3.75l2.5 1.5-.75 1.25-3.25-1.95V4.5h1.5z"
+              fill="currentColor"></path></svg
+          >
           {readingTime}
         </span>
         <ArticleViewCount articleId={post.id} />
       </div>
       <h1 class="article-title">{post.data.title}</h1>
-      {post.data.description && (
-        <p class="article-description">{post.data.description}</p>
-      )}
-      {post.data.tags && post.data.tags.length > 0 && (
-        <div class="article-tags">
-          {post.data.tags.map(tag => (
-            <a href={`/tags/${tag}/`} class="article-tag" key={tag}>#{tag}</a>
-          ))}
-        </div>
-      )}
+      {post.data.description && <p class="article-description">{post.data.description}</p>}
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class="article-tags">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${tag}/`} class="article-tag" key={tag}>
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
       <div class="article-divider"></div>
     </header>
 
-    {headings.length > 0 && (
-      <nav class="toc">
-        <div class="toc-header">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2h8M4 8h8M4 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>目录</span>
-        </div>
-        <ul class="toc-list">
-          {headings.filter(h => h.depth <= 3).map(h => (
-            <li key={h.slug} class={`toc-item toc-item--depth-${h.depth}`}>
-              <a href={`#${h.slug}`}>{h.text}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    )}
+    {
+      headings.length > 0 && (
+        <nav class="toc">
+          <div class="toc-header">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M4 2h8M4 8h8M4 14h5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>目录</span>
+          </div>
+          <ul class="toc-list">
+            {headings
+              .filter((h) => h.depth <= 3)
+              .map((h) => (
+                <li key={h.slug} class={`toc-item toc-item--depth-${h.depth}`}>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+          </ul>
+        </nav>
+      )
+    }
 
     <div class="prose">
       <div id="article-content">
@@ -144,35 +176,87 @@ const articleJsonLd = {
         <div class="article-share">
           <span class="article-share-label">分享到：</span>
           <div class="article-share-buttons">
-            <a href={`https://x.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(post.data.title)}&via=qilab_dev`} class="article-share-btn" target="_blank" rel="noopener noreferrer" aria-label="分享到 X">
+            <a
+              href={`https://x.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(post.data.title)}&via=qilab_dev`}
+              class="article-share-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="分享到 X"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
               </svg>
               <span>X</span>
             </a>
-            <a href={`https://service.weibo.com/share/share.php?url=${encodeURIComponent(articleUrl)}&title=${encodeURIComponent(post.data.title)}&pic=${encodeURIComponent(ogImage || '')}`} class="article-share-btn" target="_blank" rel="noopener noreferrer" aria-label="分享到微博">
+            <a
+              href={`https://service.weibo.com/share/share.php?url=${encodeURIComponent(articleUrl)}&title=${encodeURIComponent(post.data.title)}&pic=${encodeURIComponent(ogImage || '')}`}
+              class="article-share-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="分享到微博"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
               </svg>
               <span>微博</span>
             </a>
             <button class="article-share-btn article-share-wechat" aria-label="分享到微信">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15 11.5a3.5 3.5 0 1 1-7 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M15 11.5a3.5 3.5 0 1 1-7 0"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
               </svg>
               <span>微信</span>
               <div class="article-share-wechat-qr">
                 <div class="article-share-wechat-qr-code">
-                  <img src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(articleUrl)}`} alt="微信分享二维码" loading="lazy" decoding="async" />
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(articleUrl)}`}
+                    alt="微信分享二维码"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <span>扫码分享</span>
               </div>
             </button>
             <button class="article-share-btn article-share-copy" aria-label="复制链接">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect
+                  x="9"
+                  y="9"
+                  width="13"
+                  height="13"
+                  rx="2"
+                  ry="2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></rect>
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
               </svg>
               <span>复制链接</span>
             </button>
@@ -180,18 +264,28 @@ const articleJsonLd = {
         </div>
       </div>
       <nav class="article-nav">
-        {prevPost && (
-          <a href={`/blog/${prevPost.id.replace('zh/', '')}/`} class="article-nav-link article-nav-link--prev">
-            <span class="article-nav-direction">← 上一篇</span>
-            <span class="article-nav-title">{prevPost.data.title}</span>
-          </a>
-        )}
-        {nextPost && (
-          <a href={`/blog/${nextPost.id.replace('zh/', '')}/`} class="article-nav-link article-nav-link--next">
-            <span class="article-nav-direction">下一篇 →</span>
-            <span class="article-nav-title">{nextPost.data.title}</span>
-          </a>
-        )}
+        {
+          prevPost && (
+            <a
+              href={`/blog/${prevPost.id.replace('zh/', '')}/`}
+              class="article-nav-link article-nav-link--prev"
+            >
+              <span class="article-nav-direction">← 上一篇</span>
+              <span class="article-nav-title">{prevPost.data.title}</span>
+            </a>
+          )
+        }
+        {
+          nextPost && (
+            <a
+              href={`/blog/${nextPost.id.replace('zh/', '')}/`}
+              class="article-nav-link article-nav-link--next"
+            >
+              <span class="article-nav-direction">下一篇 →</span>
+              <span class="article-nav-title">{nextPost.data.title}</span>
+            </a>
+          )
+        }
       </nav>
     </footer>
   </article>
@@ -199,17 +293,17 @@ const articleJsonLd = {
   <script>
     // 动态导入复制代码功能
     import('../../scripts/copy-code.ts');
-    
+
     // 骨架屏逻辑
     document.addEventListener('DOMContentLoaded', () => {
       const content = document.getElementById('article-content');
       const skeleton = document.getElementById('article-skeleton');
-      
+
       if (content && skeleton) {
         // 初始显示骨架屏
         content.classList.add('hidden');
         skeleton.classList.remove('hidden');
-        
+
         // 模拟内容加载完成
         setTimeout(() => {
           skeleton.classList.add('hidden');
@@ -217,7 +311,7 @@ const articleJsonLd = {
         }, 500);
       }
     });
-    
+
     // 分享功能脚本
     document.addEventListener('astro:page-load', () => {
       // 微信分享二维码显示/隐藏
@@ -236,7 +330,7 @@ const articleJsonLd = {
             qrCode.style.display = 'none';
           }
         });
-        
+
         // 触摸事件（移动端）
         let touchTimer;
         wechatBtn.addEventListener('touchstart', () => {
@@ -251,7 +345,7 @@ const articleJsonLd = {
             }, 5000);
           }
         });
-        
+
         // 点击页面其他地方隐藏二维码
         document.addEventListener('click', (e) => {
           if (!wechatBtn.contains(e.target)) {
@@ -262,7 +356,7 @@ const articleJsonLd = {
           }
         });
       }
-      
+
       // 复制链接功能
       const copyBtn = document.querySelector('.article-share-copy');
       if (copyBtn) {

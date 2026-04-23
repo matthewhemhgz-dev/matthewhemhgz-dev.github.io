@@ -1,9 +1,10 @@
 # 祈研所 Qi-Lab 网站修复 - 实施计划
 
 ## [x] Task 1: 修复 Mermaid 图表问题
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 检查 Mermaid 图表的当前实现
   - 修复 Mermaid 语法错误
   - 确保图表在亮色和暗色模式下都能正确显示
@@ -15,9 +16,10 @@
 - **Notes**: 可能需要检查 Mermaid 初始化代码和主题设置
 
 ## [x] Task 2: 优化表格样式
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 检查当前表格样式
   - 设计与网站整体风格一致的表格样式
   - 确保表格在小屏幕设备上可以水平滚动
@@ -29,9 +31,10 @@
 - **Notes**: 重点关注表格的边框、背景色、hover 效果等
 
 ## [x] Task 3: 调整暗色模式对比度
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 检查当前暗色模式下的颜色对比度
   - 调整文本与背景的对比度，确保符合 WCAG AA 标准
   - 优化暗色模式下的元素颜色，提高可读性
@@ -42,9 +45,10 @@
 - **Notes**: 重点检查导航栏、文章内容、按钮等元素的对比度
 
 ## [x] Task 4: 完善响应式设计
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 测试网站在不同设备上的显示效果
   - 修复响应式布局问题
   - 优化移动设备上的用户体验
@@ -55,9 +59,10 @@
 - **Notes**: 重点测试导航栏、Hero 区域、内容布局等在小屏幕上的显示
 
 ## [x] Task 5: 优化 SEO 元数据
+
 - **Priority**: P1
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 检查当前页面的 meta 标签
   - 添加完整的 title、description 元标签
   - 实现 Open Graph 和 Twitter Cards 元数据
@@ -68,9 +73,10 @@
 - **Notes**: 确保所有页面都有适当的元数据
 
 ## [x] Task 6: 运行构建和测试命令
+
 - **Priority**: P0
 - **Depends On**: Task 1, Task 2, Task 3, Task 4, Task 5
-- **Description**: 
+- **Description**:
   - 运行 `npm run build` 确保构建成功
   - 运行 `npm run lint` 确保代码质量
   - 运行 `npm run size-check` 确保构建产物大小在预算范围内

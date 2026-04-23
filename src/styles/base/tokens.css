@@ -3,9 +3,9 @@
   color-scheme: light;
 
   /* Background & Surface */
-  --qi-bg-base: #F7F3EE;
-  --qi-surface-main: #2A2A2A;
-  --qi-surface-sub: #E8E3DD;
+  --qi-bg-base: #f7f3ee;
+  --qi-surface-main: #2a2a2a;
+  --qi-surface-sub: #e8e3dd;
 
   /* Brand */
   --qi-brand-emerald: var(--qi-emerald-500);
@@ -19,20 +19,20 @@
   --qi-emerald-dark: var(--qi-brand-emerald-dark);
 
   /* Text */
-  --qi-text-inverse: #F7F3EE;
-  --qi-text-primary: #1E1B18;
-  --qi-text-secondary: #3D3832;
-  --qi-text-muted: #4A453F;
-  --qi-on-surface: #E8E3DD;
-  --qi-on-surface-secondary: #C8C3BD;
-  --qi-on-surface-muted: #A8A29E;
-  --qi-on-surface-dim: #9A9590;
+  --qi-text-inverse: #f7f3ee;
+  --qi-text-primary: #1e1b18;
+  --qi-text-secondary: #3d3832;
+  --qi-text-muted: #4a453f;
+  --qi-on-surface: #e8e3dd;
+  --qi-on-surface-secondary: #c8c3bd;
+  --qi-on-surface-muted: #a8a29e;
+  --qi-on-surface-dim: #9a9590;
 
   /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
-  --qi-on-dark-primary: #F7F3EE;
-  --qi-on-dark-secondary: #E8E3DD;
-  --qi-on-dark-muted: #C8C3BD;
-  --qi-on-dark-dim: #A8A29E;
+  --qi-on-dark-primary: #f7f3ee;
+  --qi-on-dark-secondary: #e8e3dd;
+  --qi-on-dark-muted: #c8c3bd;
+  --qi-on-dark-dim: #a8a29e;
 
   /* Border */
   --qi-border-default: rgba(42, 42, 42, 0.06);
@@ -48,7 +48,7 @@
   /* Brand — Emerald (light: bright base for visibility on light bg) */
   --qi-brand-emerald-03: rgba(74, 222, 153, 0.06);
   --qi-brand-emerald-04: rgba(74, 222, 153, 0.08);
-  --qi-brand-emerald-05: rgba(74, 222, 153, 0.10);
+  --qi-brand-emerald-05: rgba(74, 222, 153, 0.1);
   --qi-brand-emerald-06: rgba(74, 222, 153, 0.12);
   --qi-brand-emerald-08: rgba(74, 222, 153, 0.15);
   --qi-brand-emerald-10: rgba(74, 222, 153, 0.18);
@@ -93,23 +93,23 @@
   --qi-brand-mint-60: rgba(153, 246, 228, 0.78);
 
   /* Ink */
-  --qi-ink: #1E1B18;
-  --qi-ink-light: #2D2924;
-  --qi-ink-muted: #3D3832;
+  --qi-ink: #1e1b18;
+  --qi-ink-light: #2d2924;
+  --qi-ink-muted: #3d3832;
 
   /* Decoration */
   --qi-deco-subtle: 0.15;
   --qi-deco-visible: 0.25;
   --qi-deco-medium: 0.35;
-  --qi-deco-strong: 0.40;
+  --qi-deco-strong: 0.4;
   --qi-deco-ghost: 0.05;
 
   /* Glow */
   --qi-glow-size: 350px;
   --qi-glow-speed: 0.06;
   --qi-glow-primary: rgba(74, 222, 153, 0.35);
-  --qi-glow-secondary: rgba(153, 246, 228, 0.30);
-  --qi-glow-accent: rgba(251, 191, 36, 0.30);
+  --qi-glow-secondary: rgba(153, 246, 228, 0.3);
+  --qi-glow-accent: rgba(251, 191, 36, 0.3);
   --qi-glow-highlight: rgba(255, 255, 255, 0.15);
   --qi-card-glow-intensity: 0.15;
 
@@ -120,19 +120,19 @@
   --qi-base-05: rgba(42, 42, 42, 0.05);
   --qi-base-06: rgba(42, 42, 42, 0.06);
   --qi-base-08: rgba(42, 42, 42, 0.08);
-  --qi-base-10: rgba(42, 42, 42, 0.10);
+  --qi-base-10: rgba(42, 42, 42, 0.1);
   --qi-base-15: rgba(42, 42, 42, 0.15);
 
   /* Inverse alpha */
   --qi-inverse-88: rgba(247, 243, 238, 0.88);
   --qi-inverse-85: rgba(247, 243, 238, 0.85);
   /* Missing token */
-  --qi-inverse-70: rgba(247, 243, 238, 0.70);
-  --qi-inverse-60: rgba(247, 243, 238, 0.60);
+  --qi-inverse-70: rgba(247, 243, 238, 0.7);
+  --qi-inverse-60: rgba(247, 243, 238, 0.6);
   --qi-inverse-55: rgba(247, 243, 238, 0.55);
-  --qi-inverse-50: rgba(247, 243, 238, 0.50);
-  --qi-inverse-40: rgba(247, 243, 238, 0.40);
-  --qi-inverse-20: rgba(247, 243, 238, 0.20);
+  --qi-inverse-50: rgba(247, 243, 238, 0.5);
+  --qi-inverse-40: rgba(247, 243, 238, 0.4);
+  --qi-inverse-20: rgba(247, 243, 238, 0.2);
   --qi-inverse-15: rgba(247, 243, 238, 0.15);
   --qi-inverse-12: rgba(247, 243, 238, 0.12);
 }
@@ -140,47 +140,49 @@
 /* Color Scale */
 :root {
   /* Emerald */
-  --qi-emerald-50: #EEFAF3;
-  --qi-emerald-100: #D0F0E0;
-  --qi-emerald-200: #A3E0C0;
-  --qi-emerald-300: #6BBF96;
-  --qi-emerald-400: #4DA07A;
-  --qi-emerald-500: #2E7D5C;
-  --qi-emerald-600: #256A4D;
-  --qi-emerald-700: #1B5E40;
-  --qi-emerald-800: #134D33;
-  --qi-emerald-900: #0A3322;
+  --qi-emerald-50: #eefaf3;
+  --qi-emerald-100: #d0f0e0;
+  --qi-emerald-200: #a3e0c0;
+  --qi-emerald-300: #6bbf96;
+  --qi-emerald-400: #4da07a;
+  --qi-emerald-500: #2e7d5c;
+  --qi-emerald-600: #256a4d;
+  --qi-emerald-700: #1b5e40;
+  --qi-emerald-800: #134d33;
+  --qi-emerald-900: #0a3322;
 
   /* Amber */
-  --qi-amber-50: #FFF8E8;
-  --qi-amber-100: #FFEFC0;
-  --qi-amber-200: #FFE08A;
-  --qi-amber-300: #F0C85C;
-  --qi-amber-400: #E5A93C;
-  --qi-amber-500: #D49520;
-  --qi-amber-600: #C78A1E;
-  --qi-amber-700: #A06E15;
-  --qi-amber-800: #7A5410;
-  --qi-amber-900: #543A0A;
+  --qi-amber-50: #fff8e8;
+  --qi-amber-100: #ffefc0;
+  --qi-amber-200: #ffe08a;
+  --qi-amber-300: #f0c85c;
+  --qi-amber-400: #e5a93c;
+  --qi-amber-500: #d49520;
+  --qi-amber-600: #c78a1e;
+  --qi-amber-700: #a06e15;
+  --qi-amber-800: #7a5410;
+  --qi-amber-900: #543a0a;
 
   /* Mint */
-  --qi-mint-50: #F0F8F5;
-  --qi-mint-100: #D8EDE5;
-  --qi-mint-200: #B8DAD0;
-  --qi-mint-300: #98C8BA;
-  --qi-mint-400: #78B4A0;
-  --qi-mint-500: #5A9A82;
-  --qi-mint-600: #4A826C;
-  --qi-mint-700: #3A6A56;
-  --qi-mint-800: #2A5240;
-  --qi-mint-900: #1A3A2A;
+  --qi-mint-50: #f0f8f5;
+  --qi-mint-100: #d8ede5;
+  --qi-mint-200: #b8dad0;
+  --qi-mint-300: #98c8ba;
+  --qi-mint-400: #78b4a0;
+  --qi-mint-500: #5a9a82;
+  --qi-mint-600: #4a826c;
+  --qi-mint-700: #3a6a56;
+  --qi-mint-800: #2a5240;
+  --qi-mint-900: #1a3a2a;
 }
 
 /* Typography */
 :root {
-  --qi-font-serif: "Noto Serif SC", "Noto Serif", "Songti SC", STSong, "Georgia", "Times New Roman", serif;
-  --qi-font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
-  --qi-font-mono: "Fira Code", "SF Mono", "Cascadia Code", "Consolas", monospace;
+  --qi-font-serif:
+    'Noto Serif SC', 'Noto Serif', 'Songti SC', STSong, 'Georgia', 'Times New Roman', serif;
+  --qi-font-sans:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --qi-font-mono: 'Fira Code', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
 }
 
 /* Font Size */
@@ -236,7 +238,9 @@
   --qi-prose-width: 680px;
   --qi-container-max: 1200px;
   --qi-nav-height: 64px;
-  --qi-nav-total-height: calc(12px + var(--qi-space-md) + var(--qi-nav-height) + var(--qi-space-md) + 1px);
+  --qi-nav-total-height: calc(
+    12px + var(--qi-space-md) + var(--qi-nav-height) + var(--qi-space-md) + 1px
+  );
 }
 
 /* Shadow */
@@ -248,7 +252,8 @@
   --qi-shadow-xl: 0 20px 40px rgba(42, 42, 42, 0.15), 0 8px 16px rgba(42, 42, 42, 0.08);
   --qi-shadow-hover: 0 8px 24px rgba(42, 42, 42, 0.15);
   --qi-shadow-hover-warm: 0 16px 32px rgba(42, 42, 42, 0.15), 0 4px 8px rgba(229, 169, 60, 0.1);
-  --qi-shadow-inset: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+  --qi-shadow-inset:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
 }
 
 /* Z-Index */

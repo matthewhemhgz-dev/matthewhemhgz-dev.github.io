@@ -8,17 +8,22 @@ const { articleId } = Astro.props;
 
 <span class="article-view-count" id={`view-count-${articleId}`}>
   <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M8 2C4.5 2 2 5 2 8s2.5 6 6 6 6-3 6-6-2.5-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5z" fill="currentColor"/>
+    <path
+      d="M8 2C4.5 2 2 5 2 8s2.5 6 6 6 6-3 6-6-2.5-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5z"
+      fill="currentColor"></path>
   </svg>
   <span class="view-count-text">加载中...</span>
 </span>
 
 <script>
-  const articleId = document.currentScript!.parentElement!.querySelector('.article-view-count')?.id?.replace('view-count-', '') || '';
-  
+  const articleId =
+    document
+      .currentScript!.parentElement!.querySelector('.article-view-count')
+      ?.id?.replace('view-count-', '') || '';
+
   if (articleId) {
     const STORAGE_KEY = 'blog-view-counts';
-    
+
     function getViewCount(): number {
       try {
         const data = localStorage.getItem(STORAGE_KEY);
@@ -28,7 +33,7 @@ const { articleId } = Astro.props;
         return 0;
       }
     }
-    
+
     function incrementViewCount(): number {
       try {
         const data = localStorage.getItem(STORAGE_KEY);
@@ -40,7 +45,7 @@ const { articleId } = Astro.props;
         return 0;
       }
     }
-    
+
     function updateDisplay(count: number) {
       const el = document.querySelector(`#view-count-${articleId} .view-count-text`);
       if (el) {
@@ -53,7 +58,7 @@ const { articleId } = Astro.props;
         }
       }
     }
-    
+
     // 先显示当前计数，然后递增
     const currentCount = getViewCount();
     updateDisplay(currentCount);

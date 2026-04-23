@@ -12,17 +12,20 @@ interface Props {
 
 const { label, title, description, primaryBtn, secondaryBtn, lang = 'zh' } = Astro.props;
 
-const labels = lang === 'en' ? {
-  followFast: 'Follow us:',
-  wechat: 'WeChat',
-  xhs: 'Xiaohongshu',
-  douyin: 'Douyin'
-} : {
-  followFast: '快速关注:',
-  wechat: '微信公众号',
-  xhs: '小红书',
-  douyin: '抖音'
-};
+const labels =
+  lang === 'en'
+    ? {
+        followFast: 'Follow us:',
+        wechat: 'WeChat',
+        xhs: 'Xiaohongshu',
+        douyin: 'Douyin',
+      }
+    : {
+        followFast: '快速关注:',
+        wechat: '微信公众号',
+        xhs: '小红书',
+        douyin: '抖音',
+      };
 ---
 
 <style>
@@ -44,9 +47,21 @@ const labels = lang === 'en' ? {
       <div class="cta-actions">
         <a href={primaryBtn.href} class="btn btn-primary">
           <span>{primaryBtn.text}</span>
-          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"
+            ><path
+              d="M3 8h10m0 0L9 4m4 4L9 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
         </a>
-        <a href={secondaryBtn.href} class="btn btn-secondary" target={secondaryBtn.external ? '_blank' : undefined} rel={secondaryBtn.external ? 'noopener noreferrer' : undefined}>
+        <a
+          href={secondaryBtn.href}
+          class="btn btn-secondary"
+          target={secondaryBtn.external ? '_blank' : undefined}
+          rel={secondaryBtn.external ? 'noopener noreferrer' : undefined}
+        >
           {secondaryBtn.text}
         </a>
       </div>
@@ -54,34 +69,34 @@ const labels = lang === 'en' ? {
       <div class="cta-social-fast">
         <span class="cta-social-label">{labels.followFast}</span>
         <div class="cta-social-icons">
-          <button 
-            type="button" 
-            class="cta-social-icon" 
-            data-qr-trigger 
-            data-platform={labels.wechat} 
-            data-qr-image="/images/social/wechat-oa-qr.jpg" 
+          <button
+            type="button"
+            class="cta-social-icon"
+            data-qr-trigger
+            data-platform={labels.wechat}
+            data-qr-image="/images/social/wechat-oa-qr.jpg"
             data-account={lang === 'en' ? 'Qi-Lab' : '祈研所'}
             title={labels.wechat}
           >
             <Fragment set:html={svgIcons.wechat} />
           </button>
-          <button 
-            type="button" 
-            class="cta-social-icon" 
-            data-qr-trigger 
-            data-platform={labels.xhs} 
-            data-qr-image="/images/social/xhs-qr.jpg" 
+          <button
+            type="button"
+            class="cta-social-icon"
+            data-qr-trigger
+            data-platform={labels.xhs}
+            data-qr-image="/images/social/xhs-qr.jpg"
             data-account={lang === 'en' ? 'Qi_Lab' : '祈研所（Qi_Lab）'}
             title={labels.xhs}
           >
             <Fragment set:html={svgIcons.xhs} />
           </button>
-          <button 
-            type="button" 
-            class="cta-social-icon" 
-            data-qr-trigger 
-            data-platform={labels.douyin} 
-            data-qr-image="/images/social/douyin-qr.jpg" 
+          <button
+            type="button"
+            class="cta-social-icon"
+            data-qr-trigger
+            data-platform={labels.douyin}
+            data-qr-image="/images/social/douyin-qr.jpg"
             data-account={lang === 'en' ? 'QiLab' : '祈研所（QiLab）'}
             title={labels.douyin}
           >

@@ -29,7 +29,11 @@ const brandName = isEn ? 'Qi-Lab' : '祈研所';
 const s = sizeMap[size];
 ---
 
-<a href={homeUrl} class={`brand-logo brand-logo--${variant} brand-logo--${size}`} aria-label={brandName}>
+<a
+  href={homeUrl}
+  class={`brand-logo brand-logo--${variant} brand-logo--${size}`}
+  aria-label={brandName}
+>
   <img
     class="brand-logo__image"
     src="/images/logo.png"
@@ -40,10 +44,9 @@ const s = sizeMap[size];
     decoding="async"
   />
 
-  {/* Only show CSS text if specifically requested for old-style layout, 
-      otherwise the new logo image already contains the branding text */}
-  {variant === 'full' && size === 'lg' && (
-     <span class="brand-logo__text sr-only">{brandName}</span>
-  )}
+  {
+    /* Only show CSS text if specifically requested for old-style layout, 
+      otherwise the new logo image already contains the branding text */
+  }
+  {variant === 'full' && size === 'lg' && <span class="brand-logo__text sr-only">{brandName}</span>}
 </a>
-

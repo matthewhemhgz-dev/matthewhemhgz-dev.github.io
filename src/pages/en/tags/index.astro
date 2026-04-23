@@ -4,51 +4,61 @@ import SectionHeader from '../../../components/ui/SectionHeader.astro';
 import { getCollection } from 'astro:content';
 import '../../../styles/pages/tags.css';
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+const allPosts = (
+  await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en')
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
 ---
 
-<BaseLayout title="Tags — Qi-Lab" description="Archive of all tags — Explore topics on AI, Knowledge Management, Frontend Development, and more.">
+<BaseLayout
+  title="Tags — Qi-Lab"
+  description="Archive of all tags — Explore topics on AI, Knowledge Management, Frontend Development, and more."
+>
   <div class="container tags-page">
     <h1 class="sr-only">Tags</h1>
     <!-- Tag Cloud Section -->
     <section class="tags-cloud-section" data-reveal>
       <SectionHeader label="// TAGS" title="Tags" />
-      {allTags.length > 0 ? (
-        <div class="tags-cloud">
-          {allTags.map(tag => (
-            <a href={`/en/tags/${tag}/`} class="tag-link">
-              #{tag}
-            </a>
-          ))}
-        </div>
-      ) : (
-        <p class="empty-text">No tags yet, coming soon...</p>
-      )}
+      {
+        allTags.length > 0 ? (
+          <div class="tags-cloud">
+            {allTags.map((tag) => (
+              <a href={`/en/tags/${tag}/`} class="tag-link">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p class="empty-text">No tags yet, coming soon...</p>
+        )
+      }
     </section>
 
     <!-- Recent Posts Section -->
-    {allPosts.length > 0 && (
-      <section class="tags-posts-section" data-reveal>
-        <SectionHeader label="// RECENT" title="Recent Articles" />
-        <div class="tags-posts-grid">
-          {allPosts.map(post => (
-            <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="tags-post-card">
-              <div class="tags-post-meta">
-                <span class="tags-post-category">{post.data.category}</span>
-                <time class="tags-post-date">
-                  {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                </time>
-              </div>
-              <h3 class="tags-post-title">{post.data.title}</h3>
-              {post.data.description && (
-                <p class="tags-post-desc">{post.data.description}</p>
-              )}
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
+    {
+      allPosts.length > 0 && (
+        <section class="tags-posts-section" data-reveal>
+          <SectionHeader label="// RECENT" title="Recent Articles" />
+          <div class="tags-posts-grid">
+            {allPosts.map((post) => (
+              <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="tags-post-card">
+                <div class="tags-post-meta">
+                  <span class="tags-post-category">{post.data.category}</span>
+                  <time class="tags-post-date">
+                    {post.data.pubDate.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </div>
+                <h3 class="tags-post-title">{post.data.title}</h3>
+                {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
   </div>
 </BaseLayout>

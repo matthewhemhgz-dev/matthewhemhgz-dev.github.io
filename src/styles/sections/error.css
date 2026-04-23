@@ -122,7 +122,10 @@
   letter-spacing: 0.04em;
   border-radius: var(--qi-radius-button);
   text-decoration: none;
-  transition: opacity var(--qi-transition-base), transform var(--qi-transition-base), background-color var(--qi-transition-base);
+  transition:
+    opacity var(--qi-transition-base),
+    transform var(--qi-transition-base),
+    background-color var(--qi-transition-base);
 }
 
 .error-btn--primary {

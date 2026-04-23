@@ -25,7 +25,8 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   name: 'QiLab',
   url: siteUrl,
-  description: 'A systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends',
+  description:
+    'A systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends',
   inLanguage: 'en-US',
   publisher: {
     '@type': 'Organization',
@@ -39,26 +40,100 @@ const websiteJsonLd = {
 };
 
 const toolboxCategories = [
-  { label: 'Knowledge Management', icon: 'book', tools: [{ name: 'Obsidian', desc: 'Local-first knowledge graph with bidirectional links' }, { name: 'Graphify', desc: 'LLM-driven knowledge base auto-builder' }, { name: 'Markdown', desc: 'Single source of truth document format standard' }] },
-  { label: 'Development Tools', icon: 'cog', tools: [{ name: 'Trae', desc: 'AI-enhanced code editor' }, { name: 'Git + GitHub', desc: 'Version control & open source collaboration' }, { name: 'Docker', desc: 'Containerized deployment & orchestration' }, { name: 'Astro', desc: 'Zero JS static site generation' }] },
-  { label: 'AI Tools', icon: 'robot', tools: [{ name: 'OpenClaw', desc: 'Exclusive digital twin outer brain (model routing)' }, { name: 'Trae SOLO', desc: 'AI programming agent & Subagent orchestration' }, { name: 'Superpowers', desc: 'TDD + systematic debugging AI workflow' }] },
-  { label: 'Data & DevOps', icon: 'database', tools: [{ name: 'n8n', desc: 'Automated workflow engine' }, { name: 'Metabase', desc: 'Operational data visualization dashboard' }, { name: 'PostgreSQL', desc: 'Structured data persistence storage' }] },
+  {
+    label: 'Knowledge Management',
+    icon: 'book',
+    tools: [
+      { name: 'Obsidian', desc: 'Local-first knowledge graph with bidirectional links' },
+      { name: 'Graphify', desc: 'LLM-driven knowledge base auto-builder' },
+      { name: 'Markdown', desc: 'Single source of truth document format standard' },
+    ],
+  },
+  {
+    label: 'Development Tools',
+    icon: 'cog',
+    tools: [
+      { name: 'Trae', desc: 'AI-enhanced code editor' },
+      { name: 'Git + GitHub', desc: 'Version control & open source collaboration' },
+      { name: 'Docker', desc: 'Containerized deployment & orchestration' },
+      { name: 'Astro', desc: 'Zero JS static site generation' },
+    ],
+  },
+  {
+    label: 'AI Tools',
+    icon: 'robot',
+    tools: [
+      { name: 'OpenClaw', desc: 'Exclusive digital twin outer brain (model routing)' },
+      { name: 'Trae SOLO', desc: 'AI programming agent & Subagent orchestration' },
+      { name: 'Superpowers', desc: 'TDD + systematic debugging AI workflow' },
+    ],
+  },
+  {
+    label: 'Data & DevOps',
+    icon: 'database',
+    tools: [
+      { name: 'n8n', desc: 'Automated workflow engine' },
+      { name: 'Metabase', desc: 'Operational data visualization dashboard' },
+      { name: 'PostgreSQL', desc: 'Structured data persistence storage' },
+    ],
+  },
 ];
 
 const platforms = [
-  { name: 'GitHub', handle: '@matthewhemhgz-dev', url: 'https://github.com/matthewhemhgz-dev', icon: 'laptop', desc: 'Open source projects & knowledge base' },
-  { name: 'WeChat OA', handle: 'Qi-Lab', url: '#', icon: 'smartphone', desc: 'In-depth articles & sharing', qrImage: '/images/social/wechat-oa-qr.jpg' },
-  { name: 'Video Channel', handle: 'Qi-Lab', url: '#', icon: 'film', desc: 'Short videos', qrImage: '/images/social/wechat-oa-qr.jpg' },
-  { name: 'Xiaohongshu', handle: 'Qi_Lab', url: '#', icon: 'book', desc: 'Practical tips & content', qrImage: '/images/social/xhs-qr.jpg' },
-  { name: 'Douyin', handle: 'QiLab', url: '#', icon: 'zap', desc: 'Short videos', qrImage: '/images/social/douyin-qr.jpg' },
-  { name: 'GitHub Pages', handle: 'QiLab', url: 'https://matthewhemhgz-dev.github.io', icon: 'globe', desc: 'Blog & project showcase' },
+  {
+    name: 'GitHub',
+    handle: '@matthewhemhgz-dev',
+    url: 'https://github.com/matthewhemhgz-dev',
+    icon: 'laptop',
+    desc: 'Open source projects & knowledge base',
+  },
+  {
+    name: 'WeChat OA',
+    handle: 'Qi-Lab',
+    url: '#',
+    icon: 'smartphone',
+    desc: 'In-depth articles & sharing',
+    qrImage: '/images/social/wechat-oa-qr.jpg',
+  },
+  {
+    name: 'Video Channel',
+    handle: 'Qi-Lab',
+    url: '#',
+    icon: 'film',
+    desc: 'Short videos',
+    qrImage: '/images/social/wechat-oa-qr.jpg',
+  },
+  {
+    name: 'Xiaohongshu',
+    handle: 'Qi_Lab',
+    url: '#',
+    icon: 'book',
+    desc: 'Practical tips & content',
+    qrImage: '/images/social/xhs-qr.jpg',
+  },
+  {
+    name: 'Douyin',
+    handle: 'QiLab',
+    url: '#',
+    icon: 'zap',
+    desc: 'Short videos',
+    qrImage: '/images/social/douyin-qr.jpg',
+  },
+  {
+    name: 'GitHub Pages',
+    handle: 'QiLab',
+    url: 'https://matthewhemhgz-dev.github.io',
+    icon: 'globe',
+    desc: 'Blog & project showcase',
+  },
 ];
-
-
 ---
 
-<BaseLayout title="QiLab" description="A systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends" jsonLd={websiteJsonLd}>
-
+<BaseLayout
+  title="QiLab"
+  description="A systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends"
+  jsonLd={websiteJsonLd}
+>
   <HeroSection
     titleLines={['In the Age of Information Overload', 'Structured Knowledge', 'Is True Power']}
     accentIndex={1}
@@ -87,7 +162,6 @@ const platforms = [
       { label: 'IT/AI Skills', value: '5+ Tools', percentage: 85, color: 'emerald' },
       { label: 'Trends', value: '10+ Years', percentage: 70, color: 'gray' },
     ]}
-
   />
 
   <SectionDivider variant="line" />
@@ -106,22 +180,11 @@ const platforms = [
 
   <SectionDivider variant="diamond" />
 
-  <ToolboxSection
-    label="// TOOLBOX"
-    title="Toolbox"
-    categories={toolboxCategories}
-  />
+  <ToolboxSection label="// TOOLBOX" title="Toolbox" categories={toolboxCategories} />
 
-  <PlatformsSection
-    label="// PLATFORMS"
-    title="Platform Matrix"
-    platforms={platforms}
-  />
+  <PlatformsSection label="// PLATFORMS" title="Platform Matrix" platforms={platforms} />
 
-  <ResearchSection
-    label="// METHODOLOGY"
-    title="Research Methodology"
-  />
+  <ResearchSection label="// METHODOLOGY" title="Research Methodology" />
 
   <SectionDivider variant="arcs" />
 
@@ -133,7 +196,6 @@ const platforms = [
     secondaryBtn={{ text: 'GitHub', href: 'https://github.com/matthewhemhgz-dev', external: true }}
     lang="en"
   />
-
 </BaseLayout>
 
 <script>

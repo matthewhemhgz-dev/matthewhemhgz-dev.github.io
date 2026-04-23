@@ -1,6 +1,16 @@
 ---
 interface Props {
-  type: 'text' | 'heading' | 'paragraph' | 'image' | 'card' | 'button' | 'list' | 'avatar' | 'badge' | 'input';
+  type:
+    | 'text'
+    | 'heading'
+    | 'paragraph'
+    | 'image'
+    | 'card'
+    | 'button'
+    | 'list'
+    | 'avatar'
+    | 'badge'
+    | 'input';
   count?: number;
   width?: string;
   height?: string;
@@ -24,7 +34,12 @@ const {
 
 <style>
   .skeleton {
-    background: linear-gradient(90deg, var(--qi-base-06) 25%, var(--qi-base-08) 50%, var(--qi-base-06) 75%);
+    background: linear-gradient(
+      90deg,
+      var(--qi-base-06) 25%,
+      var(--qi-base-08) 50%,
+      var(--qi-base-06) 75%
+    );
     background-size: 200% 100%;
     border-radius: var(--qi-radius-sm);
   }
@@ -51,7 +66,8 @@ const {
   }
 
   @keyframes skeleton-pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -130,11 +146,11 @@ const {
     .skeleton-heading {
       height: 28px;
     }
-    
+
     .skeleton-button {
       height: 40px;
     }
-    
+
     .skeleton-avatar {
       width: 40px;
       height: 40px;
@@ -142,60 +158,114 @@ const {
   }
 </style>
 
-{type === 'paragraph' && (
-  <div class={`skeleton-paragraph ${className}`} style={{ width }}>
-    {Array.from({ length: count }).map((_, index) => (
-      <div key={index} class={`skeleton ${animated ? variant : ''}`} style={{ height, width: index === count - 1 ? '80%' : '100%' }}></div>
-    ))}
-  </div>
-)}
+{
+  type === 'paragraph' && (
+    <div class={`skeleton-paragraph ${className}`} style={{ width }}>
+      {Array.from({ length: count }).map((_, index) => (
+        <div
+          key={index}
+          class={`skeleton ${animated ? variant : ''}`}
+          style={{ height, width: index === count - 1 ? '80%' : '100%' }}
+        />
+      ))}
+    </div>
+  )
+}
 
-{type === 'heading' && (
-  <div class={`skeleton skeleton-heading ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
-)}
+{
+  type === 'heading' && (
+    <div
+      class={`skeleton skeleton-heading ${animated ? variant : ''} ${className}`}
+      style={{ width, height }}
+    />
+  )
+}
 
-{type === 'image' && (
-  <div class={`skeleton skeleton-image ${animated ? variant : ''} ${className}`} style={{ width, height, aspectRatio }}></div>
-)}
+{
+  type === 'image' && (
+    <div
+      class={`skeleton skeleton-image ${animated ? variant : ''} ${className}`}
+      style={{ width, height, aspectRatio }}
+    />
+  )
+}
 
-{type === 'card' && (
-  <div class={`skeleton-card ${className}`} style={{ width }}>
-    <div class={`skeleton skeleton-heading ${animated ? variant : ''}`} style={{ marginBottom: 'var(--qi-space-md)' }}></div>
-    <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '16px', marginBottom: 'var(--qi-space-sm)' }}></div>
-    <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '16px', width: '80%' }}></div>
-  </div>
-)}
+{
+  type === 'card' && (
+    <div class={`skeleton-card ${className}`} style={{ width }}>
+      <div
+        class={`skeleton skeleton-heading ${animated ? variant : ''}`}
+        style={{ marginBottom: 'var(--qi-space-md)' }}
+      />
+      <div
+        class={`skeleton ${animated ? variant : ''}`}
+        style={{ height: '16px', marginBottom: 'var(--qi-space-sm)' }}
+      />
+      <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '16px', width: '80%' }} />
+    </div>
+  )
+}
 
-{type === 'button' && (
-  <div class={`skeleton skeleton-button ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
-)}
+{
+  type === 'button' && (
+    <div
+      class={`skeleton skeleton-button ${animated ? variant : ''} ${className}`}
+      style={{ width, height }}
+    />
+  )
+}
 
-{type === 'list' && (
-  <div class={`skeleton-list ${className}`} style={{ width }}>
-    {Array.from({ length: count }).map((_, index) => (
-      <div key={index} class="skeleton-list-item">
-        <div class={`skeleton skeleton-avatar ${animated ? variant : ''}`}></div>
-        <div style={{ flex: 1 }}>
-          <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '18px', marginBottom: 'var(--qi-space-xs)' }}></div>
-          <div class={`skeleton ${animated ? variant : ''}`} style={{ height: '14px', width: '70%' }}></div>
+{
+  type === 'list' && (
+    <div class={`skeleton-list ${className}`} style={{ width }}>
+      {Array.from({ length: count }).map((_, index) => (
+        <div key={index} class="skeleton-list-item">
+          <div class={`skeleton skeleton-avatar ${animated ? variant : ''}`} />
+          <div style={{ flex: 1 }}>
+            <div
+              class={`skeleton ${animated ? variant : ''}`}
+              style={{ height: '18px', marginBottom: 'var(--qi-space-xs)' }}
+            />
+            <div
+              class={`skeleton ${animated ? variant : ''}`}
+              style={{ height: '14px', width: '70%' }}
+            />
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-)}
+      ))}
+    </div>
+  )
+}
 
-{type === 'avatar' && (
-  <div class={`skeleton skeleton-avatar ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
-)}
+{
+  type === 'avatar' && (
+    <div
+      class={`skeleton skeleton-avatar ${animated ? variant : ''} ${className}`}
+      style={{ width, height }}
+    />
+  )
+}
 
-{type === 'badge' && (
-  <div class={`skeleton skeleton-badge ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
-)}
+{
+  type === 'badge' && (
+    <div
+      class={`skeleton skeleton-badge ${animated ? variant : ''} ${className}`}
+      style={{ width, height }}
+    />
+  )
+}
 
-{type === 'input' && (
-  <div class={`skeleton skeleton-input ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
-)}
+{
+  type === 'input' && (
+    <div
+      class={`skeleton skeleton-input ${animated ? variant : ''} ${className}`}
+      style={{ width, height }}
+    />
+  )
+}
 
-{!['paragraph', 'heading', 'image', 'card', 'button', 'list', 'avatar', 'badge', 'input'].includes(type) && (
-  <div class={`skeleton ${animated ? variant : ''} ${className}`} style={{ width, height }}></div>
-)}
+{
+  !['paragraph', 'heading', 'image', 'card', 'button', 'list', 'avatar', 'badge', 'input'].includes(
+    type,
+  ) && <div class={`skeleton ${animated ? variant : ''} ${className}`} style={{ width, height }} />
+}

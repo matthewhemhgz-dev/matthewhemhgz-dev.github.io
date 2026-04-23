@@ -1,5 +1,10 @@
 import 'astro:transitions/client';
-import { initScrollReveal, initScrollHandler, initBackToTop, cleanupScrollHandler } from './scroll-handler.js';
+import {
+  initScrollReveal,
+  initScrollHandler,
+  initBackToTop,
+  cleanupScrollHandler,
+} from './scroll-handler.js';
 
 let initialized = false;
 let cursorGlow = null;
@@ -18,10 +23,8 @@ function initQiLab() {
     import('./particles.js').then(({ MinimalParticles }) => {
       const screenWidth = window.innerWidth;
       const cs = getComputedStyle(document.documentElement);
-      const particleCount = screenWidth < 768 ? 40
-        : screenWidth < 1440 ? 80
-        : screenWidth < 2560 ? 100
-        : 120;
+      const particleCount =
+        screenWidth < 768 ? 40 : screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
       const particleOptions = {
         count: particleCount,
         colors: [
@@ -64,7 +67,9 @@ function initQiLab() {
 
   // 2.5 卡片 3D 倾斜 + 光泽效果
   import('./card-tilt.js').then(({ CardTilt }) => {
-    const cardTilt = new CardTilt('.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category');
+    const cardTilt = new CardTilt(
+      '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
+    );
     cleanupFns.push(() => cardTilt.destroy());
   });
 
@@ -89,7 +94,7 @@ function initQiLab() {
 
 document.addEventListener('astro:page-load', () => {
   // 清理所有旧的事件监听器和资源
-  cleanupFns.forEach(fn => fn());
+  cleanupFns.forEach((fn) => fn());
   cleanupFns.length = 0;
 
   // 重置状态，重新初始化

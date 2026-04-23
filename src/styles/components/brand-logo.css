@@ -4,7 +4,9 @@
   gap: var(--logo-gap, 8px);
   text-decoration: none;
   color: var(--qi-text-primary);
-  transition: color var(--qi-transition-fast), opacity var(--qi-transition-fast);
+  transition:
+    color var(--qi-transition-fast),
+    opacity var(--qi-transition-fast);
 }
 
 .brand-logo:hover {

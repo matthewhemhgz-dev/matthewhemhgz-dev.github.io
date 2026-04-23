@@ -68,7 +68,11 @@
   background: var(--qi-base-02);
   border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-lg);
-  transition: opacity var(--qi-transition-base), transform var(--qi-transition-base), border-color var(--qi-transition-base), box-shadow var(--qi-transition-base);
+  transition:
+    opacity var(--qi-transition-base),
+    transform var(--qi-transition-base),
+    border-color var(--qi-transition-base),
+    box-shadow var(--qi-transition-base);
 }
 
 .philosophy-card:hover {
@@ -163,7 +167,10 @@ a.cta-link:hover .cta-value {
   border-radius: var(--qi-radius-md);
   text-decoration: none;
   box-shadow: var(--qi-shadow-md);
-  transition: opacity var(--qi-transition-base), transform var(--qi-transition-base), box-shadow var(--qi-transition-base);
+  transition:
+    opacity var(--qi-transition-base),
+    transform var(--qi-transition-base),
+    box-shadow var(--qi-transition-base);
 }
 
 .cta-btn:hover {
@@ -186,28 +193,69 @@ a.cta-link:hover .cta-value {
 
 /* === Large screen: About === */
 @media (min-width: 1440px) {
-  .page-hero h1 { font-size: var(--qi-text-3xl); }
-  .philosophy-card { padding: var(--qi-space-2xl); }
-  .philosophy-title { font-size: var(--qi-text-2xl); }
-  .philosophy-desc { font-size: var(--qi-text-base); }
-  .cta-text { font-size: var(--qi-text-xl); }
+  .page-hero h1 {
+    font-size: var(--qi-text-3xl);
+  }
+  .philosophy-card {
+    padding: var(--qi-space-2xl);
+  }
+  .philosophy-title {
+    font-size: var(--qi-text-2xl);
+  }
+  .philosophy-desc {
+    font-size: var(--qi-text-base);
+  }
+  .cta-text {
+    font-size: var(--qi-text-xl);
+  }
 }
 
 @media (min-width: 2560px) {
-  .page-hero h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); }
-  .about-section { padding: var(--qi-space-5xl) 0; }
-  .philosophy-card { padding: var(--qi-space-3xl); gap: var(--qi-space-lg); }
-  .philosophy-title { font-size: var(--qi-text-3xl); }
-  .philosophy-desc { font-size: var(--qi-text-lg); line-height: 2; }
-  .cta-text { font-size: var(--qi-text-2xl); line-height: 2; }
-  .cta-value { font-size: var(--qi-text-xl); }
-  .cta-btn { padding: var(--qi-space-lg) 2.25rem; font-size: var(--qi-text-base); }
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+  .about-section {
+    padding: var(--qi-space-5xl) 0;
+  }
+  .philosophy-card {
+    padding: var(--qi-space-3xl);
+    gap: var(--qi-space-lg);
+  }
+  .philosophy-title {
+    font-size: var(--qi-text-3xl);
+  }
+  .philosophy-desc {
+    font-size: var(--qi-text-lg);
+    line-height: 2;
+  }
+  .cta-text {
+    font-size: var(--qi-text-2xl);
+    line-height: 2;
+  }
+  .cta-value {
+    font-size: var(--qi-text-xl);
+  }
+  .cta-btn {
+    padding: var(--qi-space-lg) 2.25rem;
+    font-size: var(--qi-text-base);
+  }
 }
 
 @media (min-width: 3440px) {
-  .page-hero h1 { font-size: clamp(3rem, 5vw, 4rem); }
-  .philosophy-card { padding: var(--qi-space-4xl); }
-  .philosophy-title { font-size: var(--qi-text-3xl); }
-  .cta-text { font-size: var(--qi-text-2xl); }
-  .cta-btn { padding: var(--qi-space-xl) 2.75rem; font-size: var(--qi-text-lg); }
+  .page-hero h1 {
+    font-size: clamp(3rem, 5vw, 4rem);
+  }
+  .philosophy-card {
+    padding: var(--qi-space-4xl);
+  }
+  .philosophy-title {
+    font-size: var(--qi-text-3xl);
+  }
+  .cta-text {
+    font-size: var(--qi-text-2xl);
+  }
+  .cta-btn {
+    padding: var(--qi-space-xl) 2.75rem;
+    font-size: var(--qi-text-lg);
+  }
 }

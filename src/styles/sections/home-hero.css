@@ -47,22 +47,25 @@
   top: -120px;
   right: -120px;
   animation: orb-color-shift-1 25s ease-in-out infinite;
-  transition: width 0.4s ease, height 0.4s ease;
+  transition:
+    width 0.4s ease,
+    height 0.4s ease;
 }
 
 .hero-gradient-orb--2 {
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, hsla(var(--orb-hue-2), 65%, 50%, 0.30), transparent 70%);
+  background: radial-gradient(circle, hsla(var(--orb-hue-2), 65%, 50%, 0.3), transparent 70%);
   bottom: -60px;
   left: -60px;
   animation: orb-color-shift-2 30s ease-in-out infinite;
-  transition: width 0.4s ease, height 0.4s ease;
+  transition:
+    width 0.4s ease,
+    height 0.4s ease;
 }
 
 /* 颜色过渡关键帧 — 翡翠 ↔ 薄荷 ↔ 琥珀 缓慢循环 */
 @keyframes orb-color-shift-1 {
-
   0%,
   100% {
     --orb-hue-1: 155;
@@ -82,7 +85,6 @@
 }
 
 @keyframes orb-color-shift-2 {
-
   0%,
   100% {
     --orb-hue-2: 35;
@@ -108,10 +110,12 @@
   right: -5%;
   width: 65%;
   height: 75%;
-  background: radial-gradient(ellipse at center,
-      var(--qi-brand-emerald-30) 0%,
-      var(--qi-brand-mint-18) 40%,
-      transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    var(--qi-brand-emerald-30) 0%,
+    var(--qi-brand-mint-18) 40%,
+    transparent 70%
+  );
   filter: blur(60px);
   pointer-events: none;
   z-index: 1;
@@ -121,9 +125,11 @@
 .hero-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 45%,
-      transparent 40%,
-      rgba(30, 27, 24, 0.06) 100%);
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 45%,
+    transparent 40%,
+    rgba(30, 27, 24, 0.06) 100%
+  );
   pointer-events: none;
   z-index: 0;
   transition: opacity 0.5s ease;
@@ -165,7 +171,8 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -240,7 +247,8 @@
   font-weight: var(--qi-weight-semibold);
   letter-spacing: 0.04em;
   border-radius: var(--qi-radius-md);
-  transition: transform 0.2s var(--qi-spring),
+  transition:
+    transform 0.2s var(--qi-spring),
     box-shadow 0.3s ease,
     background-color 0.3s ease,
     border-color 0.3s ease,
@@ -365,7 +373,7 @@
   z-index: 10;
 }
 
-.hero-extra>* {
+.hero-extra > * {
   pointer-events: auto;
 }
 

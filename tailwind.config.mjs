@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-  ],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
@@ -128,20 +126,21 @@ export default {
         '7xl': 'var(--qi-text-7xl)',
       },
       transitionProperty: {
-        DEFAULT: 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+        DEFAULT:
+          'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
       },
       transitionTimingFunction: {
         DEFAULT: 'ease',
-        'spring': 'var(--qi-spring)',
+        spring: 'var(--qi-spring)',
         'spring-soft': 'var(--qi-spring-soft)',
         'spring-snappy': 'var(--qi-spring-snappy)',
       },
       transitionDuration: {
         DEFAULT: 'var(--qi-transition-base)',
-        'fast': 'var(--qi-transition-fast)',
-        'normal': 'var(--qi-transition)',
+        fast: 'var(--qi-transition-fast)',
+        normal: 'var(--qi-transition)',
       },
     },
   },
   plugins: [],
-}
+};

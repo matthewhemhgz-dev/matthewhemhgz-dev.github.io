@@ -1,20 +1,38 @@
 /* === Enhanced View Transitions === */
 @keyframes qi-fade-out {
-  to { opacity: 0; transform: translateY(-8px); }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes qi-fade-slide-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes qi-scale-out {
-  to { opacity: 0; transform: scale(0.95); }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
 
 @keyframes qi-scale-in {
-  from { opacity: 0; transform: scale(1.05); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Global view transitions */
@@ -62,7 +80,7 @@
   ::view-transition-old(main-nav) {
     animation-duration: 300ms;
   }
-  
+
   ::view-transition-new(root),
   ::view-transition-new(main-content),
   ::view-transition-new(site-footer),
@@ -73,8 +91,14 @@
 
 /* === Scroll Reveal === */
 @keyframes qi-fade-up {
-  from { opacity: 0; transform: translateY(var(--qi-anim-offset)); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(var(--qi-anim-offset));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 [data-reveal] {
@@ -92,7 +116,12 @@
 .btn-secondary,
 .btn--primary,
 .btn--secondary {
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition), background-color var(--qi-transition), border-color var(--qi-transition), color var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition),
+    background-color var(--qi-transition),
+    border-color var(--qi-transition),
+    color var(--qi-transition);
 }
 
 .btn-primary:active,
@@ -107,7 +136,9 @@
 
 /* Card hover effect */
 .card-hover {
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition);
 }
 
 .card-hover:hover {
@@ -117,7 +148,9 @@
 
 /* Button hover lift effect */
 .btn-lift {
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition);
 }
 
 .btn-lift:hover {
@@ -164,7 +197,8 @@
 
 /* Pulse animation */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -178,7 +212,11 @@
 
 /* Bounce animation */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   40% {
@@ -209,13 +247,21 @@
 
 /* Shake animation */
 @keyframes shake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     transform: translateX(-5px);
   }
-  20%, 40%, 60%, 80% {
+  20%,
+  40%,
+  60%,
+  80% {
     transform: translateX(5px);
   }
 }
@@ -323,7 +369,9 @@ main {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
 }
 
 .btn-ripple:active::after {
@@ -333,17 +381,23 @@ main {
 
 /* Card hover lift and glow effect */
 .card-hover-glow {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .card-hover-glow:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(46, 125, 92, 0.15), 0 8px 16px rgba(46, 125, 92, 0.1);
+  box-shadow:
+    0 20px 40px rgba(46, 125, 92, 0.15),
+    0 8px 16px rgba(46, 125, 92, 0.1);
 }
 
 /* Input focus animation */
 .input-focus {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .input-focus:focus {
@@ -354,7 +408,10 @@ main {
 
 /* Smooth color transition */
 .color-transition {
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Subtle scale on hover */
@@ -377,7 +434,12 @@ main {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, var(--qi-base-04) 25%, var(--qi-base-06) 50%, var(--qi-base-04) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--qi-base-04) 25%,
+    var(--qi-base-06) 50%,
+    var(--qi-base-04) 75%
+  );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s ease-in-out infinite;
   border-radius: var(--qi-radius-md);
@@ -385,7 +447,8 @@ main {
 
 /* Badge pulse animation */
 @keyframes badge-pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(46, 125, 92, 0.4);
   }
   50% {

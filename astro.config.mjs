@@ -33,16 +33,21 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [sitemap({
-    filter: (page) => !page.includes('/404'),
-    i18n: {
-      defaultLocale: 'zh',
-      locales: {
-        zh: 'zh-CN',
-        en: 'en-US',
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/404'),
+      i18n: {
+        defaultLocale: 'zh',
+        locales: {
+          zh: 'zh-CN',
+          en: 'en-US',
+        },
       },
-    },
-  }), pagefind(), tailwind(), mdx()],
+    }),
+    pagefind(),
+    tailwind(),
+    mdx(),
+  ],
   vite: {
     build: {
       cssMinify: true,

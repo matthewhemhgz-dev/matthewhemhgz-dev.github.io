@@ -1,6 +1,7 @@
 # 祈研所 Qi-Lab 第二轮优化 - 实施计划
 
 ## [x] Task 1: 实现图片延迟加载
+
 - **Priority**: P0
 - **Depends On**: None
 - **Description**:
@@ -15,6 +16,7 @@
 - **Notes**: 可使用 Astro 的内置图片处理功能或配置 Vite 插件
 
 ## [x] Task 2: 提升网站可访问性
+
 - **Priority**: P0
 - **Depends On**: None
 - **Description**:
@@ -29,6 +31,7 @@
 - **Notes**: 可使用可访问性测试工具验证
 
 ## [x] Task 3: 优化构建配置
+
 - **Priority**: P1
 - **Depends On**: None
 - **Description**:
@@ -43,6 +46,7 @@
 - **Notes**: 可通过调整 Vite 配置文件实现
 
 ## [x] Task 4: 优化移动端布局
+
 - **Priority**: P1
 - **Depends On**: None
 - **Description**:
@@ -57,6 +61,7 @@
 - **Notes**: 可使用 Tailwind CSS 的响应式工具类
 
 ## [x] Task 5: 技术栈优化
+
 - **Priority**: P2
 - **Depends On**: None
 - **Description**:

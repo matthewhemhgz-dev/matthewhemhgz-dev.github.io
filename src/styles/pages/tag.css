@@ -27,7 +27,9 @@
   color: var(--qi-on-surface);
   border-radius: var(--qi-radius-card);
   text-decoration: none;
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition);
   border: 1px solid var(--qi-border-subtle);
 }
 

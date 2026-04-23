@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -43,6 +43,9 @@ jobs:
 
       - name: Bundle size check
         run: npm run size-check
+
+      - name: Performance test (Lighthouse)
+        run: npm run lighthouse || true
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'

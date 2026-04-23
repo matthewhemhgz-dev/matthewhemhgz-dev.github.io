@@ -54,7 +54,11 @@
   border-radius: 6px;
   cursor: pointer;
   color: var(--qi-text-muted);
-  transition: color var(--qi-transition-fast), background-color var(--qi-transition-fast), border-color var(--qi-transition-fast), transform var(--qi-transition-fast);
+  transition:
+    color var(--qi-transition-fast),
+    background-color var(--qi-transition-fast),
+    border-color var(--qi-transition-fast),
+    transform var(--qi-transition-fast);
   opacity: 0;
   z-index: 10;
 }

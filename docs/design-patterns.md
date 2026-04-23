@@ -69,6 +69,7 @@
 ## 10. 新增 Section 检查清单
 
 添加新的首页 Section 时，确保：
+
 - [ ] 组件文件在 `src/components/sections/` 下
 - [ ] 样式文件在 `src/styles/home-{name}.css` 下
 - [ ] 在 `home.css` 中添加 `@import`

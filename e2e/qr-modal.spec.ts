@@ -31,7 +31,10 @@ test.describe('社交媒体二维码弹窗', () => {
     const modal = page.locator('#social-qr-modal');
     await expect(modal).toBeVisible();
     await expect(page.locator('#qr-modal-platform')).toHaveText('小红书');
-    await expect(page.locator('#social-qr-img')).toHaveAttribute('src', '/images/social/xhs-qr.jpg');
+    await expect(page.locator('#social-qr-img')).toHaveAttribute(
+      'src',
+      '/images/social/xhs-qr.jpg',
+    );
   });
 
   test('在页脚区域点击抖音应唤起弹窗', async ({ page }) => {
@@ -43,7 +46,10 @@ test.describe('社交媒体二维码弹窗', () => {
     const modal = page.locator('#social-qr-modal');
     await expect(modal).toBeVisible();
     await expect(page.locator('#qr-modal-platform')).toHaveText('抖音');
-    await expect(page.locator('#social-qr-img')).toHaveAttribute('src', '/images/social/douyin-qr.jpg');
+    await expect(page.locator('#social-qr-img')).toHaveAttribute(
+      'src',
+      '/images/social/douyin-qr.jpg',
+    );
   });
 
   test('在 CTA 区域点击图标应唤起弹窗', async ({ page }) => {

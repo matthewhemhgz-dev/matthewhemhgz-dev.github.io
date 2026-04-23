@@ -1,11 +1,11 @@
 ---
-title: "为何我选择 Astro 作为 Qi-Lab 的工程基石？"
-description: "拒绝过度工程，拥抱内容优先。深入分析 Astro 如何通过群岛架构实现极致的性能表现与开发体验的平衡。"
+title: '为何我选择 Astro 作为 Qi-Lab 的工程基石？'
+description: '拒绝过度工程，拥抱内容优先。深入分析 Astro 如何通过群岛架构实现极致的性能表现与开发体验的平衡。'
 pubDate: 2025-05-15
-category: "技术洞察"
-tags: ["Astro", "前端架构", "SSG", "性能优化"]
-heroImage: "/images/blog/astro-ssg-why-i-chose.png"
-author: "祈研所"
+category: '技术洞察'
+tags: ['Astro', '前端架构', 'SSG', '性能优化']
+heroImage: '/images/blog/astro-ssg-why-i-chose.png'
+author: '祈研所'
 draft: false
 lang: zh
 ---
@@ -63,6 +63,7 @@ graph TB
 **核心思想：** 页面默认是纯静态 HTML，只有需要交互的部分（"岛屿"）才会加载 JavaScript。每个岛屿可以独立选择使用 React、Vue、Svelte 或原生 Web Components。
 
 这意味着：
+
 - 博客文章页面：**零 JavaScript**（纯 HTML + CSS）
 - 首页的搜索组件：只加载搜索相关的 JS
 - 文章详情页的目录导航：只加载目录组件的 JS
@@ -113,6 +114,7 @@ export const collections = { blog };
 ```
 
 这给了我们：
+
 - **类型安全**：在模板中使用 `entry.data.title` 时，TypeScript 能自动推断类型
 - **前端校验**：构建时自动验证所有 frontmatter 数据
 - **查询 API**：内置的 `getCollection()` 和 `getEntry()` 方法
@@ -123,16 +125,16 @@ export const collections = { blog };
 
 ### 核心指标对比
 
-| 指标 | Next.js (旧站) | Astro (新站) | 提升 |
-|------|----------------|--------------|------|
-| **Lighthouse Performance** | 78 | 100 | +22 |
-| **First Contentful Paint (FCP)** | 1.8s | 0.6s | 3x 更快 |
-| **Largest Contentful Paint (LCP)** | 3.2s | 1.1s | 3x 更快 |
-| **Total Blocking Time (TBT)** | 380ms | 0ms | 完全消除 |
-| **Cumulative Layout Shift (CLS)** | 0.12 | 0.01 | 12x 更好 |
-| **JavaScript 体积 (首页)** | 142KB | 0KB | 100% 减少 |
-| **JavaScript 体积 (文章页)** | 89KB | 0KB | 100% 减少 |
-| **构建时间** | 48s | 12s | 4x 更快 |
+| 指标                               | Next.js (旧站) | Astro (新站) | 提升      |
+| ---------------------------------- | -------------- | ------------ | --------- |
+| **Lighthouse Performance**         | 78             | 100          | +22       |
+| **First Contentful Paint (FCP)**   | 1.8s           | 0.6s         | 3x 更快   |
+| **Largest Contentful Paint (LCP)** | 3.2s           | 1.1s         | 3x 更快   |
+| **Total Blocking Time (TBT)**      | 380ms          | 0ms          | 完全消除  |
+| **Cumulative Layout Shift (CLS)**  | 0.12           | 0.01         | 12x 更好  |
+| **JavaScript 体积 (首页)**         | 142KB          | 0KB          | 100% 减少 |
+| **JavaScript 体积 (文章页)**       | 89KB           | 0KB          | 100% 减少 |
+| **构建时间**                       | 48s            | 12s          | 4x 更快   |
 
 ### 真实用户体验改善
 
@@ -203,4 +205,4 @@ import ThemeToggle from '../components/ThemeToggle.svelte';
 
 ---
 
-*相关阅读：[从零构建设计令牌系统](/blog/design-tokens-system-guide) —— 在 Astro 项目中实践设计系统化的最佳方式*
+_相关阅读：[从零构建设计令牌系统](/blog/design-tokens-system-guide) —— 在 Astro 项目中实践设计系统化的最佳方式_

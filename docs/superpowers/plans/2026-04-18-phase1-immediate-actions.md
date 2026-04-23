@@ -35,6 +35,7 @@
 ### Task 1: 安装 Vitest 及测试依赖
 
 **Files:**
+
 - Modify: `package.json`
 
 - [ ] **Step 1: 安装依赖**
@@ -70,6 +71,7 @@ git commit -m "chore: add vitest and test dependencies"
 ### Task 2: 配置 Vitest
 
 **Files:**
+
 - Create: `vitest.config.ts`
 
 - [ ] **Step 1: 创建 vitest.config.ts**
@@ -115,6 +117,7 @@ git commit -m "chore: configure vitest with jsdom environment"
 ### Task 3: BrandLogo 组件测试
 
 **Files:**
+
 - Create: `src/test/BrandLogo.test.ts`
 
 - [ ] **Step 1: 编写测试**
@@ -181,6 +184,7 @@ git commit -m "test: add BrandLogo component tests"
 ### Task 4: SectionHeader 组件测试
 
 **Files:**
+
 - Create: `src/test/SectionHeader.test.ts`
 
 - [ ] **Step 1: 编写测试**
@@ -247,6 +251,7 @@ git commit -m "test: add SectionHeader component tests"
 ### Task 5: DashCard 组件测试
 
 **Files:**
+
 - Create: `src/test/DashCard.test.ts`
 
 - [ ] **Step 1: 编写测试**
@@ -318,6 +323,7 @@ git commit -m "test: add DashCard component tests"
 ### Task 6: Navigation 组件测试
 
 **Files:**
+
 - Create: `src/test/Navigation.test.ts`
 
 - [ ] **Step 1: 编写测试**
@@ -392,6 +398,7 @@ git commit -m "test: add Navigation component tests"
 ### Task 7: CardTilt 工具函数测试
 
 **Files:**
+
 - Create: `src/test/card-tilt.test.ts`
 
 - [ ] **Step 1: 编写测试**
@@ -517,6 +524,7 @@ git commit -m "test: add CardTilt unit tests"
 ### Task 8: 运行全部测试 + CI 集成
 
 **Files:**
+
 - Modify: `.github/workflows/deploy.yml`
 
 - [ ] **Step 1: 运行全部测试**
@@ -529,14 +537,14 @@ Expected: 30 tests PASS (6 + 6 + 6 + 7 + 5)
 修改 `.github/workflows/deploy.yml`，将 Lint 步骤的 `continue-on-error: true` 删除，并在 Lint 和 Build 之间添加 Test 步骤：
 
 ```yaml
-      - name: Lint
-        run: npm run lint
+- name: Lint
+  run: npm run lint
 
-      - name: Test
-        run: npm run test
+- name: Test
+  run: npm run test
 
-      - name: Build
-        run: npm run build
+- name: Build
+  run: npm run build
 ```
 
 - [ ] **Step 3: 提交**
@@ -551,6 +559,7 @@ git commit -m "ci: enforce lint gate and add test step to CI pipeline"
 ### Task 9: 清理 tsconfig.json
 
 **Files:**
+
 - Modify: `tsconfig.json`
 
 - [ ] **Step 1: 移除无用的 React JSX 配置**
@@ -560,13 +569,8 @@ git commit -m "ci: enforce lint gate and add test step to CI pipeline"
 ```json
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [
-    ".astro/types.d.ts",
-    "**/*"
-  ],
-  "exclude": [
-    "dist"
-  ]
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }
 ```
 
@@ -592,11 +596,12 @@ git commit -m "chore: remove unused React JSX config from tsconfig"
 ### Task 10: 创建 README.md
 
 **Files:**
+
 - Create: `README.md`
 
 - [ ] **Step 1: 创建 README.md**
 
-```markdown
+````markdown
 # 祈研所 Qi-Lab
 
 > 探索技术、设计与创意的交汇之处 — 一个用代码构建、用设计表达的创意实验室。
@@ -623,6 +628,7 @@ git clone https://github.com/matthewhemhgz-dev/matthewhemhgz-dev.github.io.git
 cd matthewhemhgz-dev.github.io
 npm install
 ```
+````
 
 ### 开发
 
@@ -676,14 +682,15 @@ src/
 ## 许可证
 
 [MIT](./LICENSE)
-```
+
+````
 
 - [ ] **Step 2: 提交**
 
 ```bash
 git add README.md
 git commit -m "docs: add project README"
-```
+````
 
 ---
 
@@ -691,19 +698,19 @@ git commit -m "docs: add project README"
 
 ### Spec 覆盖检查
 
-| 路线图任务 | 对应 Plan Task | 状态 |
-|-----------|---------------|------|
-| 引入 Vitest | Task 1 | ✅ |
-| 配置 Vitest | Task 2 | ✅ |
-| BrandLogo 测试 | Task 3 | ✅ |
-| SectionHeader 测试 | Task 4 | ✅ |
-| DashCard 测试 | Task 5 | ✅ |
-| Navigation 测试 | Task 6 | ✅ |
-| card-tilt 测试 | Task 7 | ✅ |
-| CI 集成测试 | Task 8 | ✅ |
-| CI Lint 强制执行 | Task 8 | ✅ |
-| 创建 README.md | Task 10 | ✅ |
-| tsconfig 清理（额外） | Task 9 | ✅ |
+| 路线图任务            | 对应 Plan Task | 状态 |
+| --------------------- | -------------- | ---- |
+| 引入 Vitest           | Task 1         | ✅   |
+| 配置 Vitest           | Task 2         | ✅   |
+| BrandLogo 测试        | Task 3         | ✅   |
+| SectionHeader 测试    | Task 4         | ✅   |
+| DashCard 测试         | Task 5         | ✅   |
+| Navigation 测试       | Task 6         | ✅   |
+| card-tilt 测试        | Task 7         | ✅   |
+| CI 集成测试           | Task 8         | ✅   |
+| CI Lint 强制执行      | Task 8         | ✅   |
+| 创建 README.md        | Task 10        | ✅   |
+| tsconfig 清理（额外） | Task 9         | ✅   |
 
 ### 占位符扫描
 

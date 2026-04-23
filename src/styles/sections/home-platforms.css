@@ -28,7 +28,10 @@
   background: var(--qi-bg-base);
   border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-card);
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition), border-color var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition),
+    border-color var(--qi-transition);
   text-decoration: none;
   color: inherit;
   min-height: 80px;
@@ -96,7 +99,9 @@
   font-size: var(--qi-text-lg);
   color: var(--qi-text-muted);
   flex-shrink: 0;
-  transition: transform var(--qi-transition), color var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    color var(--qi-transition);
 }
 
 .platform-card--soon {
@@ -195,9 +200,16 @@
 }
 
 @keyframes node-float {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(5px, -8px); }
-  66% { transform: translate(-3px, 5px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(5px, -8px);
+  }
+  66% {
+    transform: translate(-3px, 5px);
+  }
 }
 
 @media (max-width: 768px) {

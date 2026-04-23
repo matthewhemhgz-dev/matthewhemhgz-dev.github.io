@@ -19,13 +19,36 @@
   aria-pressed="false"
 >
   <!-- Sun icon (shown in dark mode) -->
-  <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
-    <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+  <svg
+    class="theme-icon-sun"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    aria-hidden="true"
+  >
+    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"></circle>
+    <path
+      d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"></path>
   </svg>
   <!-- Moon icon (shown in light mode) -->
-  <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M14 8.5A6.5 6.5 0 017.5 2 6.5 6.5 0 1014 8.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  <svg
+    class="theme-icon-moon"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M14 8.5A6.5 6.5 0 017.5 2 6.5 6.5 0 1014 8.5z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
   </svg>
 </button>
 
@@ -61,15 +84,29 @@
   .theme-icon-sun,
   .theme-icon-moon {
     position: absolute;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease;
   }
 
   /* Logic handled by script classes, but we can set defaults */
-  :global(.light) .theme-icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
-  :global(.light) .theme-icon-moon { opacity: 1; transform: rotate(0) scale(1); }
-  
-  :global(.dark) .theme-icon-sun { opacity: 1; transform: rotate(0) scale(1); }
-  :global(.dark) .theme-icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  :global(.light) .theme-icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+  :global(.light) .theme-icon-moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+
+  :global(.dark) .theme-icon-sun {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+  :global(.dark) .theme-icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
 
   :global(.dark) .theme-toggle-btn {
     background: var(--qi-surface-sub);
@@ -128,7 +165,7 @@
     const isDark = document.documentElement.classList.contains('dark');
     const newTheme = isDark ? 'light' : 'dark';
     applyTheme(newTheme);
-    
+
     // Optimize localStorage write
     try {
       localStorage.setItem(STORAGE_KEY, newTheme);

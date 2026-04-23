@@ -7,22 +7,18 @@ const { variant = 'dot' } = Astro.props;
 ---
 
 <div class:list={['divider', `divider--${variant}`]} role="separator">
-  {variant === 'dot' && (
-    <>
-      <span class="divider-line"></span>
-      <span class="divider-dot"></span>
-      <span class="divider-line"></span>
-    </>
-  )}
-  {variant === 'dash' && (
-    <span class="divider-dash"></span>
-  )}
-  {variant === 'gradient' && (
-    <span class="divider-gradient"></span>
-  )}
-  {variant === 'minimal' && (
-    <span class="divider-minimal"></span>
-  )}
+  {
+    variant === 'dot' && (
+      <>
+        <span class="divider-line" />
+        <span class="divider-dot" />
+        <span class="divider-line" />
+      </>
+    )
+  }
+  {variant === 'dash' && <span class="divider-dash" />}
+  {variant === 'gradient' && <span class="divider-gradient" />}
+  {variant === 'minimal' && <span class="divider-minimal" />}
 </div>
 
 <style>
@@ -40,12 +36,7 @@ const { variant = 'dot' } = Astro.props;
     flex: 1;
     max-width: 120px;
     height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      var(--qi-base-15),
-      transparent
-    );
+    background: linear-gradient(to right, transparent, var(--qi-base-15), transparent);
   }
 
   .divider--dot .divider-dot {

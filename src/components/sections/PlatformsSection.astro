@@ -23,43 +23,70 @@ const { label, title, platforms } = Astro.props;
 <section class="section" data-reveal>
   <div class="platforms-node-deco" aria-hidden="true">
     <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
-      <circle cx="40" cy="100" r="4" fill="currentColor" opacity="0.12" />
-      <circle cx="160" cy="60" r="3" fill="currentColor" opacity="0.10" />
-      <circle cx="120" cy="160" r="5" fill="currentColor" opacity="0.08" />
-      <line x1="40" y1="100" x2="160" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.06" />
-      <line x1="160" y1="60" x2="120" y2="160" stroke="currentColor" stroke-width="0.5" opacity="0.06" stroke-dasharray="4 6" />
-      <line x1="40" y1="100" x2="120" y2="160" stroke="currentColor" stroke-width="0.5" opacity="0.04" />
+      <circle cx="40" cy="100" r="4" fill="currentColor" opacity="0.12"></circle>
+      <circle cx="160" cy="60" r="3" fill="currentColor" opacity="0.10"></circle>
+      <circle cx="120" cy="160" r="5" fill="currentColor" opacity="0.08"></circle>
+      <line
+        x1="40"
+        y1="100"
+        x2="160"
+        y2="60"
+        stroke="currentColor"
+        stroke-width="0.5"
+        opacity="0.06"></line>
+      <line
+        x1="160"
+        y1="60"
+        x2="120"
+        y2="160"
+        stroke="currentColor"
+        stroke-width="0.5"
+        opacity="0.06"
+        stroke-dasharray="4 6"></line>
+      <line
+        x1="40"
+        y1="100"
+        x2="120"
+        y2="160"
+        stroke="currentColor"
+        stroke-width="0.5"
+        opacity="0.04"></line>
     </svg>
   </div>
   <div class="container">
     <SectionHeader label={label} title={title} />
     <div class="platform-grid">
-      {platforms.map((p) => (
-        <a
-          href={p.qrImage ? 'javascript:void(0)' : (p.url === '#' ? undefined : p.url)}
-          title={p.url === '#' && !p.qrImage ? '敬请期待' : undefined}
-          class:list={['platform-card tilt-card', { 'platform-card--soon': p.url === '#' && !p.qrImage }]}
-          {...(p.url !== '#' && !p.qrImage && { target: '_blank', rel: 'noopener noreferrer' })}
-          {...(p.qrImage && { 
-            'data-qr-trigger': '', 
-            'data-platform': p.name, 
-            'data-qr-image': p.qrImage, 
-            'data-account': p.handle 
-          })}
-          aria-label={`${p.name} - ${p.desc}${p.url === '#' && !p.qrImage ? ' (即将上线)' : (p.qrImage ? ' (点击查看二维码)' : ' (opens in new window)')}`}
-          role={(p.url === '#' || p.qrImage) ? 'button' : undefined}
-          tabindex={(p.url === '#' || p.qrImage) ? 0 : undefined}
-          onclick={p.url === '#' && !p.qrImage ? 'event.preventDefault()' : undefined}
-        >
-          <span class="platform-icon" set:html={svgIcons[p.icon]} />
-          <div class="platform-info">
-            <h3 class="platform-name">{p.name}</h3>
-            <span class="platform-handle">{p.handle}</span>
-            <span class="platform-desc">{p.desc}</span>
-          </div>
-          <span class="platform-arrow">&nearr;</span>
-        </a>
-      ))}
+      {
+        platforms.map((p) => (
+          <a
+            href={p.qrImage ? 'javascript:void(0)' : p.url === '#' ? undefined : p.url}
+            title={p.url === '#' && !p.qrImage ? '敬请期待' : undefined}
+            class:list={[
+              'platform-card tilt-card',
+              { 'platform-card--soon': p.url === '#' && !p.qrImage },
+            ]}
+            {...(p.url !== '#' && !p.qrImage && { target: '_blank', rel: 'noopener noreferrer' })}
+            {...(p.qrImage && {
+              'data-qr-trigger': '',
+              'data-platform': p.name,
+              'data-qr-image': p.qrImage,
+              'data-account': p.handle,
+            })}
+            aria-label={`${p.name} - ${p.desc}${p.url === '#' && !p.qrImage ? ' (即将上线)' : p.qrImage ? ' (点击查看二维码)' : ' (opens in new window)'}`}
+            role={p.url === '#' || p.qrImage ? 'button' : undefined}
+            tabindex={p.url === '#' || p.qrImage ? 0 : undefined}
+            onclick={p.url === '#' && !p.qrImage ? 'event.preventDefault()' : undefined}
+          >
+            <span class="platform-icon" set:html={svgIcons[p.icon]} />
+            <div class="platform-info">
+              <h3 class="platform-name">{p.name}</h3>
+              <span class="platform-handle">{p.handle}</span>
+              <span class="platform-desc">{p.desc}</span>
+            </div>
+            <span class="platform-arrow">&nearr;</span>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

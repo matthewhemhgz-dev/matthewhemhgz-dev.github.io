@@ -11,83 +11,95 @@ const { label, title } = Astro.props;
 const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
 const isEnglish = currentLocale === 'en';
 
-const methodologies = isEnglish ? [
-  {
-    step: '01',
-    title: 'Seamless Capture',
-    description: 'Filtering informational noise and instantly capturing fleeting inspirations, raw materials, and cross-domain information via a Digital Twin.',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
-    color: 'emerald'
-  },
-  {
-    step: '02',
-    title: 'Deep Refinement',
-    description: 'Applying Feynman learning and Atomic principles to restructure redundant info into highly internalized, structural knowledge units.',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-    color: 'amber'
-  },
-  {
-    step: '03',
-    title: 'Networked Connection',
-    description: 'Breaking hierarchical constraints with bidirectional links in Obsidian, allowing new insights to emerge through cross-referencing.',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
-    color: 'mint'
-  },
-  {
-    step: '04',
-    title: 'Value Manifestation',
-    description: 'Adhering to "Output-Driven Input" to complete the loop from info accumulation to wisdom generation via practice and sharing.',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    color: 'emerald'
-  }
-] : [
-  {
-    step: '01',
-    title: '全量捕获 (Capture)',
-    description: '通过数字孪生外脑与分身，过滤信息噪音，即时捕捉碎片化的灵感、原始素材与跨领域信息。',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
-    color: 'emerald'
-  },
-  {
-    step: '02',
-    title: '深度提炼 (Refine)',
-    description: '采用「费曼学习法」与「原子化原则」，将冗余信息重构为高度内化、可理解的结构化知识单元。',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-    color: 'amber'
-  },
-  {
-    step: '03',
-    title: '网状关联 (Connect)',
-    description: '在 Obsidian 中通过双向链接，打破文件夹的层级束缚，让知识在交叉引用中自然生发新的洞察。',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
-    color: 'mint'
-  },
-  {
-    step: '04',
-    title: '价值显现 (Manifest)',
-    description: '坚持「以输出驱动输入」，在实践、开源与系统化分享中，完成从信息积累到智慧生成的闭环。',
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    color: 'emerald'
-  }
-];
+const methodologies = isEnglish
+  ? [
+      {
+        step: '01',
+        title: 'Seamless Capture',
+        description:
+          'Filtering informational noise and instantly capturing fleeting inspirations, raw materials, and cross-domain information via a Digital Twin.',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
+        color: 'emerald',
+      },
+      {
+        step: '02',
+        title: 'Deep Refinement',
+        description:
+          'Applying Feynman learning and Atomic principles to restructure redundant info into highly internalized, structural knowledge units.',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+        color: 'amber',
+      },
+      {
+        step: '03',
+        title: 'Networked Connection',
+        description:
+          'Breaking hierarchical constraints with bidirectional links in Obsidian, allowing new insights to emerge through cross-referencing.',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+        color: 'mint',
+      },
+      {
+        step: '04',
+        title: 'Value Manifestation',
+        description:
+          'Adhering to "Output-Driven Input" to complete the loop from info accumulation to wisdom generation via practice and sharing.',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+        color: 'emerald',
+      },
+    ]
+  : [
+      {
+        step: '01',
+        title: '全量捕获 (Capture)',
+        description:
+          '通过数字孪生外脑与分身，过滤信息噪音，即时捕捉碎片化的灵感、原始素材与跨领域信息。',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
+        color: 'emerald',
+      },
+      {
+        step: '02',
+        title: '深度提炼 (Refine)',
+        description:
+          '采用「费曼学习法」与「原子化原则」，将冗余信息重构为高度内化、可理解的结构化知识单元。',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+        color: 'amber',
+      },
+      {
+        step: '03',
+        title: '网状关联 (Connect)',
+        description:
+          '在 Obsidian 中通过双向链接，打破文件夹的层级束缚，让知识在交叉引用中自然生发新的洞察。',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+        color: 'mint',
+      },
+      {
+        step: '04',
+        title: '价值显现 (Manifest)',
+        description:
+          '坚持「以输出驱动输入」，在实践、开源与系统化分享中，完成从信息积累到智慧生成的闭环。',
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+        color: 'emerald',
+      },
+    ];
 ---
 
 <section class="research-section" data-reveal>
   <div class="container">
     <SectionHeader label={label} title={title} />
-    
+
     <div class="research-grid">
-      {methodologies.map((item) => (
-        <div class:list={['research-card', `research-card--${item.color}`]}>
-          <div class="research-card-header">
-            <span class="research-step">{item.step}</span>
-            <div class="research-icon" set:html={item.icon}></div>
+      {
+        methodologies.map((item) => (
+          <div class:list={['research-card', `research-card--${item.color}`]}>
+            <div class="research-card-header">
+              <span class="research-step">{item.step}</span>
+              <div class="research-icon" set:html={item.icon} />
+            </div>
+            <h3 class="research-title">{item.title}</h3>
+            <p class="research-desc">{item.description}</p>
+            <div class="research-deco-line" />
           </div>
-          <h3 class="research-title">{item.title}</h3>
-          <p class="research-desc">{item.description}</p>
-          <div class="research-deco-line"></div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
@@ -147,9 +159,18 @@ const methodologies = isEnglish ? [
     border-color: var(--qi-base-15);
   }
 
-  .research-card--emerald:hover::before { background: var(--qi-brand-emerald); opacity: 1; }
-  .research-card--amber:hover::before { background: var(--qi-brand-amber); opacity: 1; }
-  .research-card--mint:hover::before { background: var(--qi-brand-mint); opacity: 1; }
+  .research-card--emerald:hover::before {
+    background: var(--qi-brand-emerald);
+    opacity: 1;
+  }
+  .research-card--amber:hover::before {
+    background: var(--qi-brand-amber);
+    opacity: 1;
+  }
+  .research-card--mint:hover::before {
+    background: var(--qi-brand-mint);
+    opacity: 1;
+  }
 
   .research-card-header {
     display: flex;
@@ -214,7 +235,9 @@ const methodologies = isEnglish ? [
     background: var(--qi-brand-emerald);
   }
 
-  .research-card--amber:hover .research-deco-line { background: var(--qi-brand-amber); }
+  .research-card--amber:hover .research-deco-line {
+    background: var(--qi-brand-amber);
+  }
 
   :global(.dark) .research-card {
     background: var(--qi-ink-light);

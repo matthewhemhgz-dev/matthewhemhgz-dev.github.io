@@ -18,7 +18,9 @@
   background: var(--qi-bg-base);
   border: 1px solid var(--qi-base-06);
   border-radius: var(--qi-radius-card);
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition);
   text-decoration: none;
   color: inherit;
   overflow: hidden;

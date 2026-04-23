@@ -18,7 +18,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   font-weight: var(--qi-weight-normal);
   background-color: var(--qi-bg-base);
   color: var(--qi-text-primary);

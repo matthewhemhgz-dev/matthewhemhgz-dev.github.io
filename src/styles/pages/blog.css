@@ -22,7 +22,9 @@
   color: var(--qi-on-surface);
   border-radius: var(--qi-radius-card);
   overflow: hidden;
-  transition: transform var(--qi-transition), box-shadow var(--qi-transition);
+  transition:
+    transform var(--qi-transition),
+    box-shadow var(--qi-transition);
   text-decoration: none;
   border: 1px solid var(--qi-border-subtle);
 }
@@ -67,7 +69,6 @@
   margin-bottom: var(--qi-space-sm);
   font-weight: 600;
 }
-
 
 .blog-card-title {
   font-family: var(--qi-font-serif);

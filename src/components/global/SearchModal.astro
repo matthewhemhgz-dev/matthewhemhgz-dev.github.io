@@ -8,14 +8,30 @@
  */
 ---
 
-<div id="search-modal" class="search-modal" role="dialog" aria-labelledby="search-modal-title" aria-hidden="true" aria-modal="true" transition:persist>
+<div
+  id="search-modal"
+  class="search-modal"
+  role="dialog"
+  aria-labelledby="search-modal-title"
+  aria-hidden="true"
+  aria-modal="true"
+  transition:persist
+>
   <div class="search-backdrop" id="search-backdrop" tabindex="-1" aria-hidden="true"></div>
   <div class="search-container" role="document">
     <div class="search-input-wrap">
       <h2 id="search-modal-title" class="sr-only" data-i18n-key="title"></h2>
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-        <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" />
-        <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      <svg
+        class="search-icon"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"></circle>
+        <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+        ></path>
       </svg>
       <input
         id="search-input"
@@ -49,7 +65,7 @@
       searching: '正在为您寻觅内容…',
       devOnly: '搜索功能仅在生产环境（Build 后）可用',
       noResults: (q: string) => `未找到与 “${q}” 匹配的内容。换个关键词试试？`,
-      error: '深感抱歉，搜索过程中出现了一点小意外'
+      error: '深感抱歉，搜索过程中出现了一点小意外',
     },
     en: {
       title: 'Search',
@@ -66,7 +82,6 @@
   function getLang(): string {
     return document.documentElement.lang.startsWith('en') ? 'en' : 'zh';
   }
-
 
   function t(key: string): string {
     return (i18n[getLang()] || i18n.zh)[key] || key;
@@ -146,7 +161,7 @@
       const search = await pf.search(query);
       const items = await Promise.all(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        search.results.slice(0, 8).map((r: any) => r.data())
+        search.results.slice(0, 8).map((r: any) => r.data()),
       );
 
       if (items.length === 0) {
@@ -183,7 +198,8 @@
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         const isHidden = modal?.getAttribute('aria-hidden') === 'true';
-        if (isHidden) openSearch(); else closeSearch();
+        if (isHidden) openSearch();
+        else closeSearch();
       }
       if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') {
         closeSearch();
@@ -206,7 +222,7 @@
           const focusableElements = modal.querySelectorAll('input, button, a');
           const firstElement = focusableElements[0];
           const lastElement = focusableElements[focusableElements.length - 1];
-          
+
           if (e.shiftKey) {
             // Shift + Tab
             if (document.activeElement === firstElement) {

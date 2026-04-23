@@ -4,23 +4,29 @@ import SectionHeader from '../../components/ui/SectionHeader.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/pages/tags.css';
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
+const allPosts = (
+  await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh')
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
 ---
 
-<BaseLayout title="标签 — 祈研所 Qi-Lab" description="祈研所所有内容标签 — 探索 AI、知识管理、前端开发等主题的深度文章">
+<BaseLayout
+  title="标签 — 祈研所 Qi-Lab"
+  description="祈研所所有内容标签 — 探索 AI、知识管理、前端开发等主题的深度文章"
+>
   <div class="container tags-page">
     <h1 class="sr-only">标签</h1>
     <!-- Tag Cloud Section -->
     <section class="tags-cloud-section" data-reveal>
       <SectionHeader label="// TAGS" title="标签" />
       <div class="tags-cloud">
-        {allTags.map(tag => (
-          <a href={`/tags/${tag}/`} class="tag-link">
-            #{tag}
-          </a>
-        ))}
+        {
+          allTags.map((tag) => (
+            <a href={`/tags/${tag}/`} class="tag-link">
+              #{tag}
+            </a>
+          ))
+        }
       </div>
     </section>
 
@@ -28,27 +34,31 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
     <section class="tags-posts-section" data-reveal>
       <SectionHeader label="// RECENT" title="最新文章" />
       <div class="tags-posts-grid">
-        {allPosts.map(post => (
-          <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tags-post-card">
-            <div class="tags-post-meta">
-              <span class="tags-post-category">{post.data.category}</span>
-              <time class="tags-post-date">
-                {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </time>
-            </div>
-            <h3 class="tags-post-title">{post.data.title}</h3>
-            {post.data.description && (
-              <p class="tags-post-desc">{post.data.description}</p>
-            )}
-            {post.data.tags && post.data.tags.length > 0 && (
-              <div class="tags-post-tags">
-                {post.data.tags.slice(0, 3).map(tag => (
-                  <span class="tags-post-tag">#{tag}</span>
-                ))}
+        {
+          allPosts.map((post) => (
+            <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tags-post-card">
+              <div class="tags-post-meta">
+                <span class="tags-post-category">{post.data.category}</span>
+                <time class="tags-post-date">
+                  {post.data.pubDate.toLocaleDateString('zh-CN', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
               </div>
-            )}
-          </a>
-        ))}
+              <h3 class="tags-post-title">{post.data.title}</h3>
+              {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="tags-post-tags">
+                  {post.data.tags.slice(0, 3).map((tag) => (
+                    <span class="tags-post-tag">#{tag}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))
+        }
       </div>
     </section>
   </div>

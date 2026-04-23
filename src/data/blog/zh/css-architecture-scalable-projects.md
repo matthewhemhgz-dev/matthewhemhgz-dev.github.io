@@ -1,11 +1,11 @@
 ---
-title: "可扩展的 CSS 架构：Token 驱动的视觉系统实践"
-description: "如何通过 Design Tokens 构建一套在深色模式下依然具备视觉深度与一致性的组件体系？分享 Qi-Lab 的工程实践。"
+title: '可扩展的 CSS 架构：Token 驱动的视觉系统实践'
+description: '如何通过 Design Tokens 构建一套在深色模式下依然具备视觉深度与一致性的组件体系？分享 Qi-Lab 的工程实践。'
 pubDate: 2025-06-20
-category: "设计系统"
-tags: ["CSS", "Design Tokens", "UI-UX", "设计系统"]
-heroImage: "/images/blog/css-architecture-scalable-projects.png"
-author: "祈研所"
+category: '设计系统'
+tags: ['CSS', 'Design Tokens', 'UI-UX', '设计系统']
+heroImage: '/images/blog/css-architecture-scalable-projects.png'
+author: '祈研所'
 draft: false
 lang: zh
 ---
@@ -51,12 +51,10 @@ BEM（Block Element Modifier）由 Yandex 团队提出，是最经典的 CSS 命
 ```html
 <!-- BEM 命名的 HTML 结构 -->
 <div class="card card--featured">
-  <img class="card__image" src="cover.jpg" alt="封面">
+  <img class="card__image" src="cover.jpg" alt="封面" />
   <div class="card__body">
     <h3 class="card__title">文章标题</h3>
-    <p class="card__description card__description--truncated">
-      文章摘要内容...
-    </p>
+    <p class="card__description card__description--truncated">文章摘要内容...</p>
     <div class="card__actions">
       <button class="card__btn card__btn--primary">阅读全文</button>
     </div>
@@ -95,12 +93,12 @@ BEM（Block Element Modifier）由 Yandex 团队提出，是最经典的 CSS 命
 
 ### BEM 的优势与局限
 
-| 优势 | 局限 |
-|------|------|
-| 命名自解释，降低沟通成本 | 类名较长，HTML 冗余 |
+| 优势                             | 局限                       |
+| -------------------------------- | -------------------------- |
+| 命名自解释，降低沟通成本         | 类名较长，HTML 冗余        |
 | 天然扁平化选择器，避免优先级问题 | 对复杂嵌套组件的表达力有限 |
-| 团队协作友好，命名规则明确 | 缺乏对主题切换的原生支持 |
-| 与预处理器（Sass/Less）配合良好 | 不解决跨项目样式复用问题 |
+| 团队协作友好，命名规则明确       | 缺乏对主题切换的原生支持   |
+| 与预处理器（Sass/Less）配合良好  | 不解决跨项目样式复用问题   |
 
 > **实践建议**：BEM 的核心价值在于"扁平化选择器"。即使你不严格遵循 BEM 的命名格式，也应坚持"类名一层深"的原则，避免 `.card .body .title` 这种嵌套选择器。
 
@@ -136,39 +134,74 @@ graph TD
 
 ```scss
 // 1. Settings —— 设计变量（不输出 CSS）
-$color-primary: #2563EB;
+$color-primary: #2563eb;
 $color-text: #111827;
 $spacing-base: 1rem;
 
 // 2. Tools —— Sass 混入和函数（不输出 CSS）
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == "md" {
-    @media (min-width: 768px) { @content; }
+  @if $breakpoint == 'md' {
+    @media (min-width: 768px) {
+      @content;
+    }
   }
 }
 
 // 3. Generic —— 重置和标准化
-@import "normalize";
-*, *::before, *::after { box-sizing: border-box; }
+@import 'normalize';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 // 4. Elements —— 原生 HTML 标签样式
-h1, h2, h3 { line-height: 1.25; }
-a { color: $color-primary; text-decoration: none; }
-img { max-width: 100%; display: block; }
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+}
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
 
 // 5. Objects —— 无视觉修饰的设计模式（如网格、容器）
-.grid { display: grid; gap: $spacing-base; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 $spacing-base; }
+.grid {
+  display: grid;
+  gap: $spacing-base;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-base;
+}
 
 // 6. Components —— 完整的 UI 组件
-.card { /* ... */ }
-.button { /* ... */ }
-.nav { /* ... */ }
+.card {
+  /* ... */
+}
+.button {
+  /* ... */
+}
+.nav {
+  /* ... */
+}
 
 // 7. Utilities —— 高优先级的工具类
-.u-hidden { display: none !important; }
-.u-text-center { text-align: center !important; }
-.u-mt-4 { margin-top: $spacing-base !important; }
+.u-hidden {
+  display: none !important;
+}
+.u-text-center {
+  text-align: center !important;
+}
+.u-mt-4 {
+  margin-top: $spacing-base !important;
+}
 ```
 
 ### ITCSS 的价值
@@ -191,7 +224,9 @@ Utility-First（以 Tailwind CSS 为代表）彻底改变了 CSS 的编写方式
 </div>
 
 <!-- Utility-First 方式 -->
-<div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+<div
+  class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+>
   <h2 class="text-xl font-bold text-gray-900 mb-2">标题</h2>
   <p class="text-gray-600 text-sm leading-relaxed">内容</p>
 </div>
@@ -201,16 +236,16 @@ Utility-First（以 Tailwind CSS 为代表）彻底改变了 CSS 的编写方式
 
 这是近年来前端社区争论最激烈的话题之一。让我们客观地对比：
 
-| 维度 | Utility-First | 语义化 CSS（BEM 等） |
-|------|---------------|---------------------|
-| **开发速度** | 快，无需切换文件 | 较慢，需要编写和引用 CSS |
-| **HTML 可读性** | 类名冗长，结构不直观 | 类名语义清晰，结构一目了然 |
-| **设计一致性** | 天然一致（共用同一套工具类） | 需要自觉遵守设计规范 |
-| **学习曲线** | 需要记忆大量工具类名 | 命名规范简单直观 |
-| **CSS 体积** | 构建后按需裁剪，体积可控 | 取决于编写质量，容易冗余 |
-| **重构成本** | 低，直接修改 HTML 类名 | 高，可能需要同步修改 CSS |
-| **设计系统适配** | 通过配置文件统一管理 | 通过变量和混入统一管理 |
-| **团队协作** | 设计稿还原度高 | 需要设计与开发对齐命名 |
+| 维度             | Utility-First                | 语义化 CSS（BEM 等）       |
+| ---------------- | ---------------------------- | -------------------------- |
+| **开发速度**     | 快，无需切换文件             | 较慢，需要编写和引用 CSS   |
+| **HTML 可读性**  | 类名冗长，结构不直观         | 类名语义清晰，结构一目了然 |
+| **设计一致性**   | 天然一致（共用同一套工具类） | 需要自觉遵守设计规范       |
+| **学习曲线**     | 需要记忆大量工具类名         | 命名规范简单直观           |
+| **CSS 体积**     | 构建后按需裁剪，体积可控     | 取决于编写质量，容易冗余   |
+| **重构成本**     | 低，直接修改 HTML 类名       | 高，可能需要同步修改 CSS   |
+| **设计系统适配** | 通过配置文件统一管理         | 通过变量和混入统一管理     |
+| **团队协作**     | 设计稿还原度高               | 需要设计与开发对齐命名     |
 
 ### Utility-First 的隐忧
 
@@ -222,9 +257,11 @@ Utility-First 并非银弹。在实际项目中，它有几个需要注意的问
 
 ```html
 <!-- 过度使用工具类的例子 -->
-<div class="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4
+<div
+  class="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4
             bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700
-            sticky top-0 z-50 backdrop-blur-sm bg-white/80 dark:bg-gray-900/80">
+            sticky top-0 z-50 backdrop-blur-sm bg-white/80 dark:bg-gray-900/80"
+>
   <!-- 这段 HTML 很难快速理解其语义 -->
 </div>
 ```
@@ -284,17 +321,17 @@ export default {
       },
       spacing: {
         // 使用设计令牌定义间距
-        '4': 'var(--spacing-4)',
-        '6': 'var(--spacing-6)',
-        '8': 'var(--spacing-8)',
+        4: 'var(--spacing-4)',
+        6: 'var(--spacing-6)',
+        8: 'var(--spacing-8)',
       },
       borderRadius: {
-        'md': 'var(--radius-md)',
-        'lg': 'var(--radius-lg)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
       },
     },
   },
-}
+};
 ```
 
 这样，无论是使用语义化的组件类还是工具类，底层都引用同一套设计令牌。修改主题时，只需要更新令牌值，所有消费方自动生效。
@@ -366,12 +403,12 @@ src/styles/
 
 ## 方法论演进总结
 
-| 方法论 | 解决的核心问题 | 适用场景 | 局限性 |
-|--------|---------------|----------|--------|
-| **BEM** | 命名冲突与优先级 | 需要语义化类名的项目 | 类名冗长，缺乏主题支持 |
-| **ITCSS** | 样式加载顺序与组织 | 中大型项目的文件组织 | 层级划分较重，学习成本高 |
-| **Utility-First** | 开发效率与设计一致性 | 快速迭代的项目 | HTML 膨胀，抽象泄漏 |
-| **设计令牌** | 设计决策的统一管理 | 需要多主题/跨平台的项目 | 需要工具链支持 |
+| 方法论            | 解决的核心问题       | 适用场景                | 局限性                   |
+| ----------------- | -------------------- | ----------------------- | ------------------------ |
+| **BEM**           | 命名冲突与优先级     | 需要语义化类名的项目    | 类名冗长，缺乏主题支持   |
+| **ITCSS**         | 样式加载顺序与组织   | 中大型项目的文件组织    | 层级划分较重，学习成本高 |
+| **Utility-First** | 开发效率与设计一致性 | 快速迭代的项目          | HTML 膨胀，抽象泄漏      |
+| **设计令牌**      | 设计决策的统一管理   | 需要多主题/跨平台的项目 | 需要工具链支持           |
 
 ```mermaid
 timeline
@@ -395,4 +432,4 @@ CSS 架构没有银弹。BEM 解决了命名问题，ITCSS 解决了组织问题
 
 ---
 
-*相关阅读：[从零构建设计令牌系统](/blog/design-tokens-system-guide) —— 设计令牌的完整构建指南*
+_相关阅读：[从零构建设计令牌系统](/blog/design-tokens-system-guide) —— 设计令牌的完整构建指南_

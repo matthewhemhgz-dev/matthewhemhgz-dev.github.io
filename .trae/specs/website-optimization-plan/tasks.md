@@ -1,9 +1,10 @@
 # 祈研所网站优化 - 实施计划
 
 ## [x] 任务 1: 修复社交媒体链接
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 修复 Footer 组件中的社交媒体链接，确保它们指向真实的平台页面
   - 更新微信公众号、视频号、小红书和抖音的链接
 - **Acceptance Criteria Addressed**: AC-1
@@ -13,9 +14,10 @@
 - **Notes**: 需要确保链接格式正确，并且在新窗口中打开
 
 ## [x] 任务 2: 模块化 hero-float-card 组件
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 将 hero-float-card 从 HeroSection 中提取为独立组件
   - 创建 HeroFloatCard.astro 组件，支持不同类型的卡片
   - 更新 HeroSection 以使用新的组件
@@ -27,9 +29,10 @@
 - **Notes**: 组件应该支持不同类型的卡片，如 insight、feature 等
 
 ## [x] 任务 3: 移除内联 CSS
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 移除 BaseLayout.astro 中的内联 CSS
   - 将样式迁移到 Tailwind 或单独的 CSS 文件
 - **Acceptance Criteria Addressed**: AC-3
@@ -39,9 +42,10 @@
 - **Notes**: 特别关注 BaseLayout.astro 文件中的 <style is:global> 块
 
 ## [x] 任务 4: 更新 Twitter 分享功能
+
 - **Priority**: P1
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 将博客文章页面中的 Twitter 分享功能更新为 X 分享
   - 更新图标和文本
 - **Acceptance Criteria Addressed**: AC-4
@@ -51,9 +55,10 @@
 - **Notes**: 需要更新分享链接的 URL 结构
 
 ## [x] 任务 5: 改进微信分享功能
+
 - **Priority**: P1
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 改进微信分享功能，确保在移动端正常显示
   - 为移动端添加适合的分享方式
 - **Acceptance Criteria Addressed**: AC-5
@@ -63,9 +68,10 @@
 - **Notes**: 可以考虑添加触摸事件支持
 
 ## [x] 任务 6: 确保多语言内容一致性
+
 - **Priority**: P1
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 检查并确保所有页面的中英文内容一致
   - 特别检查首页、关于页面和博客列表页面
 - **Acceptance Criteria Addressed**: AC-6
@@ -75,9 +81,10 @@
 - **Notes**: 需要对比中英文页面的内容
 
 ## [x] 任务 7: 性能优化
+
 - **Priority**: P0
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 优化图片资源，减少加载时间
   - 优化 JavaScript 代码分割
   - 优化缓存策略
@@ -88,9 +95,10 @@
 - **Notes**: 使用性能分析工具进行测量
 
 ## [ ] 任务 8: 视觉设计优化
+
 - **Priority**: P1
 - **Depends On**: None
-- **Description**: 
+- **Description**:
   - 统一社交媒体图标，保持一致性
   - 优化动画效果，提高用户体验
   - 确保响应式设计在所有设备上表现优秀

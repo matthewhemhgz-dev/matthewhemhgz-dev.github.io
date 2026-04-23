@@ -22,81 +22,109 @@ const navItems = [
 ---
 
 <header class="nav-wrapper" transition:name="main-nav">
-    <nav class="nav" aria-label={isEnglish ? "Main Navigation" : "主导航"}>
+  <nav class="nav" aria-label={isEnglish ? 'Main Navigation' : '主导航'}>
+    <div class="nav-left">
+      <BrandLogo variant="icon" size="sm" />
+    </div>
 
-      <div class="nav-left">
-        <BrandLogo variant="icon" size="sm" />
-      </div>
+    <!-- Mobile checkbox hack -->
+    <input
+      type="checkbox"
+      id="nav-toggle"
+      class="nav-toggle-input"
+      aria-label={isEnglish ? 'Toggle navigation menu' : '切换导航菜单'}
+      aria-expanded="false"
+      aria-controls="nav-links"
+    />
 
-      <!-- Mobile checkbox hack -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-label={isEnglish ? "Toggle navigation menu" : "切换导航菜单"} aria-expanded="false" aria-controls="nav-links" />
+    <label
+      for="nav-toggle"
+      class="nav-toggle-label"
+      aria-hidden="true"
+      touch-action="manipulation"
+      tabindex="-1"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </label>
+    <div id="nav-status" class="sr-only" aria-live="polite"></div>
 
-      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true" touch-action="manipulation" tabindex="-1">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </label>
-      <div id="nav-status" class="sr-only" aria-live="polite"></div>
-
-      <ul id="nav-links" class="nav-links" role="menubar">
-        {navItems.map((item) => (
+    <ul id="nav-links" class="nav-links" role="menubar">
+      {
+        navItems.map((item) => (
           <li role="none">
             <a
               href={item.href}
-              class:list={['nav-link', { active: currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) }]}
+              class:list={[
+                'nav-link',
+                {
+                  active:
+                    currentPath === item.href ||
+                    (item.href !== '/' && currentPath.startsWith(item.href)),
+                },
+              ]}
               touch-action="manipulation"
               role="menuitem"
-              aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}
+              aria-current={
+                currentPath === item.href ||
+                (item.href !== '/' && currentPath.startsWith(item.href))
+                  ? 'page'
+                  : undefined
+              }
             >
               {item.label}
             </a>
           </li>
-        ))}
-        <li role="none">
-          <button
-            class="nav-search-btn"
-            id="nav-search-btn"
-            aria-label={isEnglish ? 'Search articles (Ctrl+K)' : '搜索文章 (Ctrl+K)'}
-            type="button"
-            touch-action="manipulation"
-            role="menuitem"
-          >
-            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" />
-              <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-            <span class="nav-search-label">{isEnglish ? 'Search' : '搜索'}</span>
-            <kbd class="nav-search-kbd">⌘K</kbd>
-          </button>
-        </li>
-        <li class="nav-close-item" role="none">
-          <button
-            class="nav-close-btn"
-            aria-label={isEnglish ? 'Close navigation menu' : '关闭导航菜单'}
-            type="button"
-            touch-action="manipulation"
-            role="menuitem"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            </svg>
-            <span>{isEnglish ? 'Close' : '关闭'}</span>
-          </button>
+        ))
+      }
+      <li role="none">
+        <button
+          class="nav-search-btn"
+          id="nav-search-btn"
+          aria-label={isEnglish ? 'Search articles (Ctrl+K)' : '搜索文章 (Ctrl+K)'}
+          type="button"
+          touch-action="manipulation"
+          role="menuitem"
+        >
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            ></path>
+          </svg>
+          <span class="nav-search-label">{isEnglish ? 'Search' : '搜索'}</span>
+          <kbd class="nav-search-kbd">⌘K</kbd>
+        </button>
+      </li>
+      <li class="nav-close-item" role="none">
+        <button
+          class="nav-close-btn"
+          aria-label={isEnglish ? 'Close navigation menu' : '关闭导航菜单'}
+          type="button"
+          touch-action="manipulation"
+          role="menuitem"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            ></path>
+            <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            ></path>
+          </svg>
+          <span>{isEnglish ? 'Close' : '关闭'}</span>
+        </button>
+      </li>
+    </ul>
 
-        </li>
-      </ul>
+    <div class="nav-right">
+      <!-- Theme toggle -->
+      <ThemeToggle />
 
-      <div class="nav-right">
-        <!-- Theme toggle -->
-        <ThemeToggle />
-
-        <!-- Language toggle -->
-        <LanguageToggle />
-      </div>
-      <label for="nav-toggle" class="nav-backdrop" aria-hidden="true" tabindex="-1"></label>
-    </nav>
-  </header>
+      <!-- Language toggle -->
+      <LanguageToggle />
+    </div>
+    <label for="nav-toggle" class="nav-backdrop" aria-hidden="true" tabindex="-1"></label>
+  </nav>
+</header>
 
 <script>
   // Sync aria-expanded on page load
@@ -120,10 +148,13 @@ const navItems = [
       navToggle.setAttribute('aria-expanded', String(isOpen));
       if (navStatus) {
         navStatus.textContent = isOpen
-          ? (isEn ? 'Navigation menu opened' : '导航菜单已打开')
-          : (isEn ? 'Navigation menu closed' : '导航菜单已关闭');
+          ? isEn
+            ? 'Navigation menu opened'
+            : '导航菜单已打开'
+          : isEn
+            ? 'Navigation menu closed'
+            : '导航菜单已关闭';
       }
-
     });
   }
 
@@ -145,7 +176,6 @@ const navItems = [
         if (navStatus) {
           navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
         }
-
       }
     });
 
@@ -172,7 +202,6 @@ const navItems = [
             if (navStatus) {
               navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
             }
-
           }
         }
       });

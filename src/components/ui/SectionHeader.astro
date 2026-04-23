@@ -8,11 +8,16 @@ interface Props {
   variant?: 'default' | 'minimal';
 }
 
-const { label = '// SECTION', title = 'Section Title', align = 'left', variant = 'default' } = Astro.props;
+const {
+  label = '// SECTION',
+  title = 'Section Title',
+  align = 'left',
+  variant = 'default',
+} = Astro.props;
 ---
 
 <div class:list={['section-header', `section-header--${align}`, `section-header--${variant}`]}>
   {label && <span class="section-label">{label}</span>}
   {title && <h2 class="section-title">{title}</h2>}
-  {variant === 'default' && <span class="section-accent" aria-hidden="true"></span>}
+  {variant === 'default' && <span class="section-accent" aria-hidden="true" />}
 </div>

@@ -12,53 +12,91 @@ interface Props {
 
 const {
   lang = 'zh',
-  tagline = lang === 'en' ? 'Knowledge Management · Project Management · IT/AI Skills · Trends' : '知识管理 · 项目管理 · IT/AI 技巧 · 八卦前沿',
+  tagline = lang === 'en'
+    ? 'Knowledge Management · Project Management · IT/AI Skills · Trends'
+    : '知识管理 · 项目管理 · IT/AI 技巧 · 八卦前沿',
   email = 'matthewhemhgz@gmail.com',
   wechat = lang === 'en' ? 'Qi-Lab' : '祈研所或 Qi-Lab',
   copyrightYear = new Date().getFullYear(),
 } = Astro.props;
 
-
-const labels = lang === 'en' ? {
-  contact: 'Contact',
-  email: 'Email',
-  wechat: 'WeChat',
-  social: 'Social Links',
-  qrTitle: 'Scan to Add WeChat',
-  qrHint: 'Mobile screenshot or scan to identify',
-  copyright: 'Qi-Lab. All rights reserved.',
-  builtWith: 'Built with',
-  title: 'Qi-Lab',
-  easterEgg: 'Thanks for scrolling all the way down ✨',
-  qrAria: ' (Click to view QR code)',
-  externalAria: ' (Opens in new window)'
-} : {
-  contact: '联系方式',
-  email: '邮箱',
-  wechat: '微信',
-  social: '社交链接',
-  qrTitle: '扫码添加微信',
-  qrHint: '手机截屏或扫码识别',
-  copyright: '祈研所. 保留所有权利.',
-  builtWith: '使用',
-  title: '祈研所',
-  easterEgg: '感谢你滚动到这里 ✨',
-  qrAria: ' (点击查看二维码)',
-  externalAria: ' (在新窗口打开)'
-};
-
+const labels =
+  lang === 'en'
+    ? {
+        contact: 'Contact',
+        email: 'Email',
+        wechat: 'WeChat',
+        social: 'Social Links',
+        qrTitle: 'Scan to Add WeChat',
+        qrHint: 'Mobile screenshot or scan to identify',
+        copyright: 'Qi-Lab. All rights reserved.',
+        builtWith: 'Built with',
+        title: 'Qi-Lab',
+        easterEgg: 'Thanks for scrolling all the way down ✨',
+        qrAria: ' (Click to view QR code)',
+        externalAria: ' (Opens in new window)',
+      }
+    : {
+        contact: '联系方式',
+        email: '邮箱',
+        wechat: '微信',
+        social: '社交链接',
+        qrTitle: '扫码添加微信',
+        qrHint: '手机截屏或扫码识别',
+        copyright: '祈研所. 保留所有权利.',
+        builtWith: '使用',
+        title: '祈研所',
+        easterEgg: '感谢你滚动到这里 ✨',
+        qrAria: ' (点击查看二维码)',
+        externalAria: ' (在新窗口打开)',
+      };
 
 // 社交媒体链接 - 根据语言选择
-const socialLinks = lang === 'en' ? [
-  { name: 'GitHub', url: 'https://github.com/matthewhemhgz-dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
-  { name: 'Twitter (X)', url: 'https://x.com/', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>' },
-] : [
-  { name: 'GitHub', url: 'https://github.com/matthewhemhgz-dev', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>' },
-  { name: '微信公众号', handle: '祈研所', qrImage: '/images/social/wechat-oa-qr.jpg', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S18.63 2 12 2z"/><path d="M11 7.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"/></svg>' },
-  { name: '视频号', handle: '祈研所', qrImage: '/images/social/wechat-oa-qr.jpg', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="10 8 16 12 10 16 10 8"/></svg>' },
-  { name: '小红书', handle: '祈研所（Qi_Lab）', qrImage: '/images/social/xhs-qr.jpg', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>' },
-  { name: '抖音', handle: '祈研所（QiLab）', qrImage: '/images/social/douyin-qr.jpg', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="9 12 15 15 15 9 9 12"/></svg>' },
-];
+const socialLinks =
+  lang === 'en'
+    ? [
+        {
+          name: 'GitHub',
+          url: 'https://github.com/matthewhemhgz-dev',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>',
+        },
+        {
+          name: 'Twitter (X)',
+          url: 'https://x.com/',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>',
+        },
+      ]
+    : [
+        {
+          name: 'GitHub',
+          url: 'https://github.com/matthewhemhgz-dev',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>',
+        },
+        {
+          name: '微信公众号',
+          handle: '祈研所',
+          qrImage: '/images/social/wechat-oa-qr.jpg',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S18.63 2 12 2z"/><path d="M11 7.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"/></svg>',
+        },
+        {
+          name: '视频号',
+          handle: '祈研所',
+          qrImage: '/images/social/wechat-oa-qr.jpg',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="10 8 16 12 10 16 10 8"/></svg>',
+        },
+        {
+          name: '小红书',
+          handle: '祈研所（Qi_Lab）',
+          qrImage: '/images/social/xhs-qr.jpg',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
+        },
+        {
+          name: '抖音',
+          handle: '祈研所（QiLab）',
+          qrImage: '/images/social/douyin-qr.jpg',
+          icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2z"/><polygon points="9 12 15 15 15 9 9 12"/></svg>',
+        },
+      ];
 
 const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
 ---
@@ -91,47 +129,54 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
         <h3 class="footer-heading">{labels.social}</h3>
 
         <div class="social-grid">
-          {socialLinks.map((s) => (
-            <div class="social-item">
-              {s.qrImage ? (
-                <button
-                  class="social-link social-link--btn"
-                  data-qr-trigger
-                  data-platform={s.name}
-                  data-qr-image={s.qrImage}
-                  data-account={s.handle}
-                  title={s.name}
-                  aria-label={`${s.name}${labels.qrAria}`}
-                >
-                  <span class="social-icon" set:html={s.icon} />
-                  <span class="social-name">{s.name}</span>
-                </button>
-              ) : (
-                <a 
-                  href={s.url} 
-                  class="social-link" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  title={s.name} 
-                  aria-label={`${s.name}${labels.externalAria}`}
-                >
-                  <span class="social-icon" set:html={s.icon} />
-                  <span class="social-name">{s.name}</span>
-                </a>
-              )}
-            </div>
-          ))}
+          {
+            socialLinks.map((s) => (
+              <div class="social-item">
+                {s.qrImage ? (
+                  <button
+                    class="social-link social-link--btn"
+                    data-qr-trigger
+                    data-platform={s.name}
+                    data-qr-image={s.qrImage}
+                    data-account={s.handle}
+                    title={s.name}
+                    aria-label={`${s.name}${labels.qrAria}`}
+                  >
+                    <span class="social-icon" set:html={s.icon} />
+                    <span class="social-name">{s.name}</span>
+                  </button>
+                ) : (
+                  <a
+                    href={s.url}
+                    class="social-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={s.name}
+                    aria-label={`${s.name}${labels.externalAria}`}
+                  >
+                    <span class="social-icon" set:html={s.icon} />
+                    <span class="social-name">{s.name}</span>
+                  </a>
+                )}
+              </div>
+            ))
+          }
         </div>
       </div>
 
       <div class="footer-qr">
         <h3 class="footer-heading">{labels.qrTitle}</h3>
         <div class="qr-container">
-          <img src={wechatQrCodeUrl} alt={labels.wechat} class="qr-code" loading="lazy" decoding="async" />
+          <img
+            src={wechatQrCodeUrl}
+            alt={labels.wechat}
+            class="qr-code"
+            loading="lazy"
+            decoding="async"
+          />
           <p class="qr-text">{wechat}</p>
         </div>
       </div>
-
     </div>
 
     <!-- Divider -->
@@ -140,18 +185,17 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
     <!-- Copyright -->
     <div class="footer-bottom">
       <p class="copyright">
-        &copy; {copyrightYear} {labels.copyright}
+        &copy; {copyrightYear}
+        {labels.copyright}
       </p>
       <p class="built-with">
         {labels.builtWith}
         <span class="heart" aria-label="love">♥</span>
         &amp; {lang === 'en' ? 'Astro' : 'Astro 构建'}
       </p>
-
     </div>
 
     <!-- Easter egg for curious scrollers -->
     <p class="footer-easter-egg">{labels.easterEgg}</p>
-
   </div>
 </footer>

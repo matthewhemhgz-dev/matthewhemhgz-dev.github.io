@@ -26,16 +26,8 @@
       var(--qi-brand-emerald-12) 40%,
       transparent 70%
     ),
-    radial-gradient(
-      ellipse 40% 40% at 80% 70%,
-      var(--qi-brand-amber-18) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 80% 30% at 50% 10%,
-      var(--qi-brand-mint-12) 0%,
-      transparent 70%
-    );
+    radial-gradient(ellipse 40% 40% at 80% 70%, var(--qi-brand-amber-18) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 30% at 50% 10%, var(--qi-brand-mint-12) 0%, transparent 70%);
   mask-image: radial-gradient(
     ellipse 100% 90% at 45% 50%,
     rgba(0, 0, 0, 0.9) 0%,
@@ -56,8 +48,13 @@
 }
 
 @keyframes spotlight-breathe {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* === Volumetric light beams === */
@@ -102,35 +99,35 @@
 }
 
 @keyframes beam-breathe-amber {
-  0%   { opacity: 0.5; transform: scaleX(1) translateX(0); }
-  100% { opacity: 0.8; transform: scaleX(1.05) translateX(10px); }
+  0% {
+    opacity: 0.5;
+    transform: scaleX(1) translateX(0);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scaleX(1.05) translateX(10px);
+  }
 }
 
 @keyframes beam-breathe-mint {
-  0%   { opacity: 0.4; transform: scaleX(1) translateX(0); }
-  100% { opacity: 0.7; transform: scaleX(1.03) translateX(-8px); }
+  0% {
+    opacity: 0.4;
+    transform: scaleX(1) translateX(0);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scaleX(1.03) translateX(-8px);
+  }
 }
 
 /* === Dot pattern === */
 .hero-dot-pattern {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
-    circle,
-    var(--qi-brand-emerald-25) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle, var(--qi-brand-emerald-25) 1px, transparent 1px);
   background-size: 32px 32px;
-  mask-image: radial-gradient(
-    ellipse 70% 55% at 50% 45%,
-    black 15%,
-    transparent 75%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 70% 55% at 50% 45%,
-    black 15%,
-    transparent 75%
-  );
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, black 15%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, black 15%, transparent 75%);
   pointer-events: none;
   transition: opacity 0.5s ease;
 }
@@ -154,6 +151,11 @@
 }
 
 @keyframes watermark-breathe {
-  0%, 100% { opacity: var(--qi-deco-ghost); }
-  50% { opacity: 0.08; }
+  0%,
+  100% {
+    opacity: var(--qi-deco-ghost);
+  }
+  50% {
+    opacity: 0.08;
+  }
 }

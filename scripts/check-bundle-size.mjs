@@ -32,7 +32,8 @@ function getCategory(file) {
   if (ext === '.js' || ext === '.mjs') return 'js';
   if (ext === '.css') return 'css';
   if (ext === '.html' || ext === '.xml') return 'html';
-  if (['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.ico'].includes(ext)) return 'image';
+  if (['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.ico'].includes(ext))
+    return 'image';
   return 'other';
 }
 
@@ -80,7 +81,9 @@ function main() {
   const totalBudget = BUDGETS.total;
   const totalStatus = sizes.total > totalBudget * 1024 ? '❌ FAIL' : '✅ PASS';
   if (sizes.total > totalBudget * 1024) hasError = true;
-  console.log(`  ${'total'.padEnd(8)} ${formatKB(sizes.total).padStart(10)} / ${totalBudget} KB  ${totalStatus}`);
+  console.log(
+    `  ${'total'.padEnd(8)} ${formatKB(sizes.total).padStart(10)} / ${totalBudget} KB  ${totalStatus}`,
+  );
   console.log('');
 
   if (hasError) {

@@ -2,12 +2,13 @@
    Article Styles — Shared by /blog/[slug]
    ========================================================================== */
 
-@import "../utilities/code-blocks.css";
+@import '../utilities/code-blocks.css';
 
 .article-container {
   max-width: 740px;
   margin: 0 auto;
-  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding) var(--qi-space-5xl);
+  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding)
+    var(--qi-space-5xl);
   scroll-margin-top: var(--qi-nav-total-height);
   font-size: var(--qi-text-lg);
   line-height: 1.85;
@@ -29,7 +30,9 @@
   font-size: var(--qi-text-xs);
   text-decoration: none;
   margin-bottom: var(--qi-space-2xl);
-  transition: gap var(--qi-transition), color var(--qi-transition);
+  transition:
+    gap var(--qi-transition),
+    color var(--qi-transition);
 }
 
 .article-back:hover {
@@ -110,7 +113,9 @@
   padding: 2px 10px;
   border-radius: var(--qi-radius-full);
   text-decoration: none;
-  transition: background-color var(--qi-transition-fast), color var(--qi-transition-fast);
+  transition:
+    background-color var(--qi-transition-fast),
+    color var(--qi-transition-fast);
 }
 
 .article-tag:hover {
@@ -166,7 +171,9 @@
   text-decoration: none;
   padding: 4px 0;
   border-radius: var(--qi-radius-sm);
-  transition: color var(--qi-transition-fast), background var(--qi-transition-fast);
+  transition:
+    color var(--qi-transition-fast),
+    background var(--qi-transition-fast);
 }
 
 .toc-item a:hover {
@@ -201,7 +208,7 @@
 }
 
 .article-container h2::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -225,7 +232,7 @@
 }
 
 .article-container h3::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;
@@ -271,14 +278,22 @@
 }
 
 .article-container a::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -1px;
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, var(--qi-brand-emerald-40), var(--qi-brand-emerald-10), transparent);
-  transition: height var(--qi-transition-fast), bottom var(--qi-transition-fast), background var(--qi-transition-fast);
+  background: linear-gradient(
+    90deg,
+    var(--qi-brand-emerald-40),
+    var(--qi-brand-emerald-10),
+    transparent
+  );
+  transition:
+    height var(--qi-transition-fast),
+    bottom var(--qi-transition-fast),
+    background var(--qi-transition-fast);
 }
 
 .article-container a:hover {
@@ -288,7 +303,12 @@
 .article-container a:hover::after {
   height: 2px;
   bottom: -2px;
-  background: linear-gradient(90deg, var(--qi-brand-amber-50), var(--qi-brand-amber-15), transparent);
+  background: linear-gradient(
+    90deg,
+    var(--qi-brand-amber-50),
+    var(--qi-brand-amber-15),
+    transparent
+  );
 }
 
 /* = Lists = */
@@ -309,7 +329,7 @@
 }
 
 .article-container ul > li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: -1.25rem;
   top: 0.85rem;
@@ -364,7 +384,9 @@
   color: var(--qi-text-primary);
   font-style: italic;
   position: relative;
-  transition: transform var(--qi-transition-fast), background var(--qi-transition-fast);
+  transition:
+    transform var(--qi-transition-fast),
+    background var(--qi-transition-fast);
 }
 
 .article-container blockquote:hover {
@@ -397,14 +419,20 @@
   height: auto;
   border-radius: var(--qi-radius-lg);
   margin: 2rem 0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease;
   display: block;
 }
 
 .article-container img:hover {
   transform: scale(1.015);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .article-container img:only-child {
@@ -430,13 +458,19 @@
 .article-container hr {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--qi-base-12), var(--qi-base-12), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--qi-base-12),
+    var(--qi-base-12),
+    transparent
+  );
   margin: 3rem 0;
   position: relative;
 }
 
 .article-container hr::before {
-  content: "• • •";
+  content: '• • •';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -458,7 +492,9 @@
   margin: 2rem 0;
   border-radius: var(--qi-radius-lg);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
   border: 1px solid var(--qi-border-default);
   display: block;
   overflow-x: auto;
@@ -547,7 +583,12 @@
 }
 
 :global(.dark) .article-container a::after {
-  background: linear-gradient(90deg, var(--qi-brand-emerald-40), var(--qi-brand-emerald-10), transparent);
+  background: linear-gradient(
+    90deg,
+    var(--qi-brand-emerald-40),
+    var(--qi-brand-emerald-10),
+    transparent
+  );
 }
 
 :global(.dark) .article-container a:hover {
@@ -555,7 +596,12 @@
 }
 
 :global(.dark) .article-container a:hover::after {
-  background: linear-gradient(90deg, var(--qi-brand-amber-50), var(--qi-brand-amber-15), transparent);
+  background: linear-gradient(
+    90deg,
+    var(--qi-brand-amber-50),
+    var(--qi-brand-amber-15),
+    transparent
+  );
 }
 
 :global(.dark) .article-container ul > li::before {
@@ -584,11 +630,15 @@
 }
 
 :global(.dark) .article-container img {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 :global(.dark) .article-container img:hover {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 :global(.dark) .article-container hr::before {
@@ -597,12 +647,20 @@
 }
 
 :global(.dark) .article-container hr {
-  background: linear-gradient(90deg, transparent, var(--qi-base-16), var(--qi-base-16), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--qi-base-16),
+    var(--qi-base-16),
+    transparent
+  );
 }
 
 :global(.dark) .article-container table {
   border-color: var(--qi-border-default);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.15);
   background: var(--qi-surface-main);
 }
 
@@ -826,7 +884,10 @@
   border-radius: var(--qi-radius-lg);
   border: 1px solid var(--qi-border-default);
   text-decoration: none;
-  transition: border-color var(--qi-transition), background-color var(--qi-transition), transform var(--qi-transition-fast);
+  transition:
+    border-color var(--qi-transition),
+    background-color var(--qi-transition),
+    transform var(--qi-transition-fast);
 }
 
 .article-nav-link:hover {
