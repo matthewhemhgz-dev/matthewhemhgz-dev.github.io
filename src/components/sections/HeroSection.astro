@@ -15,6 +15,7 @@ interface Props {
   }>;
   primaryBtn?: { text: string; href: string };
   secondaryBtn?: { text: string; href: string };
+  lang?: 'zh' | 'en';
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   stats,
   primaryBtn,
   secondaryBtn,
+  lang = 'zh',
 } = Astro.props;
 
 const trophyIcon =
@@ -148,19 +150,9 @@ const trophyIcon =
         <HeroFloatCard
           type="insight"
           icon={trophyIcon}
-          label="Digital Archive"
-          value="Single Source of Truth"
+          label={lang === 'zh' ? '知识体系' : 'Knowledge System'}
+          value={lang === 'zh' ? '结构化的知识才是真正的力量' : 'Structured Knowledge is Power'}
           color="emerald"
-          ariaHidden={true}
-        />
-      </div>
-      <div class="hero-extra-item hero-extra-item--2">
-        <HeroFloatCard
-          type="insight"
-          icon='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.7 7.3"/><path d="M12 12l9.3 4.7"/></svg>'
-          label="AI Workflow"
-          value="Superpowers Integration"
-          color="amber"
           ariaHidden={true}
         />
       </div>
