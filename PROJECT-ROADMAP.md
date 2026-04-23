@@ -1,6 +1,6 @@
 # 祈研所 Qi-Lab — 项目总结与迭代路线图
 
-> 更新时间：2026-04-22 | 基于最新版本的完整审计状态
+> 更新时间：2026-04-23 | 基于最新版本的完整审计状态
 
 ---
 
@@ -16,8 +16,9 @@
 | **交互脚本** | 原生 JS/TS，7 个文件，`astro:page-load` 事件驱动                                      |
 | **搜索**     | Pagefind 静态搜索，38 页索引，中文分词                                                |
 | **内容管理** | Astro Content Layer (glob loader)，7 篇中文博客                                       |
-| **CI/CD**    | GitHub Actions (Lint + Test + Build + Size Check + Deploy)                            |
+| **CI/CD**    | GitHub Actions (Lint + Test + Build + Size Check + Performance Test + Deploy)         |
 | **代码质量** | ESLint 9 + Prettier 3 + TypeScript strict + Vitest 15 tests + Playwright 94 E2E tests |
+| **性能监控** | Lighthouse 审计集成，提供关键性能指标分析                                             |
 | **分析**     | Google Analytics 4 集成                                                               |
 | **图表**     | Mermaid 11.14.0 支持                                                                  |
 
@@ -51,8 +52,9 @@
 | **代码质量**         | ✅ 成熟 | 15 单元测试 + CI 质量门禁 + 构建产物预算检查                      |
 | **内容质量**         | ✅ 良好 | 7 篇深度文章，Mermaid 图表，知识图谱网络                          |
 | **视觉设计**         | ✅ 良好 | 聚光灯 Hero，浮动装饰卡片，杂志风格封面图，Testimonials 墙        |
-| **多语言支持**       | ✅ 基础 | 中文/英文路由结构                                                 |
+| **多语言支持**       | ✅ 良好 | 中文/英文路由结构 + 2 篇英文博客文章                              |
 | **阅读统计**         | ✅ 完成 | 基于 localStorage 的阅读次数统计                                  |
+| **性能监控**         | ✅ 集成 | Lighthouse 审计 + CI/CD 性能测试                                  |
 | **Google Analytics** | ✅ 集成 | GA4 跟踪代码，支持 SPA 导航                                       |
 
 ---
@@ -111,8 +113,8 @@
 | JSON-LD 结构化数据 | ✅   | WebSite + Article 完整 schema          |
 | 站点地图优化       | ✅   | sitemap-index.xml + robots.txt         |
 | 内部链接优化       | ✅   | 合理的内部链接结构                     |
-| 英文版本           | ✅   | 基础路由与核心页面 (Home/About) 已就绪 |
-| 性能监控           | ⏭️   | 待集成 Umami/Plausible                 |
+| **英文版本**           | ✅   | 基础路由 + 核心页面 + 2 篇英文博客文章  |
+| **性能监控**           | ✅   | Lighthouse 审计集成 + CI/CD 性能测试    |
 | PWA 支持           | ⏭️   | 待添加 manifest + Service Worker       |
 | Newsletter         | ⏭️   | 待定 (Buttondown/Revue)                |
 

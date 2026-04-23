@@ -10,7 +10,8 @@
 - **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，支持中英双语分词
 - **部署**: GitHub Pages
 - **质量保障**: 历经 7 轮深度的高级 UI/UX 审计 + 端到端测试 (94/94 测试通过) + WCAG 2 AA 可访问性标准
-- **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Deploy)
+- **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Performance Test + Deploy)
+- **性能监控**: Lighthouse 审计集成，提供关键性能指标分析
 - **品牌内核**: 专注于“思维架构与知识工程”，每一处视觉与文案均经过微观逻辑校准
 
 ## 快速开始
@@ -44,6 +45,7 @@ npm run format         # Prettier 格式化
 npm run format:check   # Prettier 检查（不修改文件）
 npm test               # Vitest 单元测试 (15 tests)
 npm run size-check     # 构建产物大小检查 (6MB 预算)
+npm run lighthouse     # Lighthouse 性能审计
 ```
 
 ## 项目结构
@@ -55,7 +57,9 @@ src/
 │   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, BackToTop...)
 │   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms, Testimonials...)
 │   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
-├── data/blog/zh/      # 博客文章 (7 篇 Markdown, 65,000+ 字)
+├── data/blog/         # 博客文章
+│   ├── zh/            # 中文文章 (7 篇 Markdown, 65,000+ 字)
+│   └── en/            # 英文文章 (2 篇 Markdown, 翻译中)
 ├── layouts/           # 页面布局 (BaseLayout)
 ├── pages/             # 路由页面
 │   ├── [zh]/          # 中文主站 (首页/博客/标签/关于)
@@ -93,6 +97,7 @@ src/
 
 - **路由**: `/` (中文) 和 `/en/` (英文)
 - **内容同步**: 博客文章与标签系统在不同语境下保持功能对等。
+- **英文内容**: 已完成 2 篇博客文章的英文翻译，包括 AI 时代知识工作者生存指南和 Astro 技术选型文章。
 - **SEO**: 自动注入对应的 `hreflang` 与各语种 JSON-LD 结构化数据。
 
 ## 质量基线
