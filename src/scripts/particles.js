@@ -53,19 +53,23 @@ export class MinimalParticles {
     const defaults = {
       count: 60,
       colors: [
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
-        getComputedStyle(document.documentElement).getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-emerald').trim() ||
+          '#2E7D5C',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-mint').trim() ||
+          '#78B4A0',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-brand-amber').trim() ||
+          '#E5A93C',
+        getComputedStyle(document.documentElement).getPropertyValue('--qi-bg-base').trim() ||
+          '#F7F3EE',
       ],
       maxSize: 3,
       speed: 0.25,
       linkDistance: 120,
       linkOpacity: 0.08,
-      mouseRadius: 150,      // 鼠标影响半径
-      mouseForce: 0.02,      // 鼠标排斥力度
-      glowSize: 8,           // 光晕大小倍数
-      glowOpacity: 0.15,     // 光晕透明度
+      mouseRadius: 150, // 鼠标影响半径
+      mouseForce: 0.02, // 鼠标排斥力度
+      glowSize: 8, // 光晕大小倍数
+      glowOpacity: 0.15, // 光晕透明度
     };
 
     this.options = { ...defaults, ...options };
@@ -159,9 +163,8 @@ export class MinimalParticles {
 
   init() {
     this.particles = [];
-    const count = window.innerWidth < 768
-      ? Math.floor(this.options.count * 0.5)
-      : this.options.count;
+    const count =
+      window.innerWidth < 768 ? Math.floor(this.options.count * 0.5) : this.options.count;
     for (let i = 0; i < count; i++) {
       const isStar = Math.random() < 0.08; // 8% 概率成为明星粒子
       this.particles.push({
@@ -200,7 +203,8 @@ export class MinimalParticles {
     const ctx = this.ctx;
     ctx.clearRect(0, 0, this.width, this.height);
 
-    const { mouseRadius, mouseForce, linkDistance, linkOpacity, glowSize, glowOpacity } = this.options;
+    const { mouseRadius, mouseForce, linkDistance, linkOpacity, glowSize, glowOpacity } =
+      this.options;
 
     for (const p of this.particles) {
       // 鼠标排斥力
@@ -224,10 +228,22 @@ export class MinimalParticles {
       p.y += p.vy;
 
       // 边界反弹
-      if (p.x < 0) { p.x = 0; p.vx *= -1; }
-      if (p.x > this.width) { p.x = this.width; p.vx *= -1; }
-      if (p.y < 0) { p.y = 0; p.vy *= -1; }
-      if (p.y > this.height) { p.y = this.height; p.vy *= -1; }
+      if (p.x < 0) {
+        p.x = 0;
+        p.vx *= -1;
+      }
+      if (p.x > this.width) {
+        p.x = this.width;
+        p.vx *= -1;
+      }
+      if (p.y < 0) {
+        p.y = 0;
+        p.vy *= -1;
+      }
+      if (p.y > this.height) {
+        p.y = this.height;
+        p.vy *= -1;
+      }
 
       // 脉冲呼吸效果
       p.pulsePhase += p.pulseSpeed;
@@ -299,9 +315,10 @@ export class MinimalParticles {
           ctx.globalAlpha = baseAlpha + lineHighlight;
           const emeraldRGB = this.colorRGB[this.options.colors[0]] || { r: 46, g: 125, b: 92 };
           const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
-          ctx.strokeStyle = lineHighlight > 0.03
-            ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
-            : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
+          ctx.strokeStyle =
+            lineHighlight > 0.03
+              ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
+              : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
           ctx.beginPath();
           ctx.moveTo(this.particles[i].x, this.particles[i].y);
           ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -355,7 +372,8 @@ export class MinimalParticles {
 
     // 移除所有事件监听器
     if (this._onResize) window.removeEventListener('resize', this._onResize);
-    if (this._onVisibilityChange) document.removeEventListener('visibilitychange', this._onVisibilityChange);
+    if (this._onVisibilityChange)
+      document.removeEventListener('visibilitychange', this._onVisibilityChange);
     if (this._onMouseMove) document.removeEventListener('mousemove', this._onMouseMove);
     if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
     if (this._onTouchStart) window.removeEventListener('touchstart', this._onTouchStart);

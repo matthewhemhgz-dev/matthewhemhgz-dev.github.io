@@ -1,18 +1,5 @@
 # 祈研所 Qi-Lab 项目 Wiki
 
-## 最新更新
-
-> 更新时间：2026-04-23
-
-**本次更新内容**：
-- ✅ ESLint 配置优化：更新配置，忽略生成文件和服务工作线程文件
-- ✅ 代码质量提升：修复所有源代码中的 ESLint 警告
-- ✅ 代码风格统一：使用 Prettier 格式化所有代码文件
-- ✅ 项目全面审计：完成项目的全面分析和优化计划
-- ✅ 构建流程验证：确保项目能正常构建和部署
-
----
-
 ## 1. 项目概览
 
 **祈研所（Qi-Lab）** 是一个个人品牌网站，探索技术、设计与创意的交汇之处，是一个用代码构建、用设计表达的创意实验室。
@@ -22,31 +9,22 @@
 - **交互**: 原生 JavaScript (View Transitions / Canvas / 3D Tilt / Pagefind)
 - **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，中文分词
 - **部署**: GitHub Pages
-- **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Performance Test + Deploy)
-- **性能监控**: Lighthouse 审计集成
-- **分析**: Google Analytics 4
-- **PWA**: 离线访问、安装到主屏幕
-- **Newsletter**: 邮件订阅功能
-- **多语言**: 中文/英文双语支持
+- **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Deploy)
 
 ## 2. 目录结构
 
 ```
 /src
-├── components/        # Astro 组件 (26 个)
+├── components/        # Astro 组件 (25 个)
 │   ├── decorations/   # 装饰性组件 (SectionDivider)
 │   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, BackToTop, ScrollProgress...)
 │   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms, Testimonials...)
 │   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
-├── data/blog/         # 博客文章
-│   ├── zh/            # 中文文章 (15 篇 Markdown, 120,000+ 字)
-│   └── en/            # 英文文章 (15 篇 Markdown)
+├── data/blog/zh/      # 博客文章 (7 篇 Markdown, 65,000+ 字)
 ├── layouts/           # 页面布局 (BaseLayout)
-├── pages/             # 路由页面
-│   ├── zh/            # 中文主站 (首页/博客/标签/关于/404)
-│   └── en/            # 英文分站 (全量 Feature Parity)
+├── pages/             # 路由页面 (首页/博客/标签/关于/404)
 ├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code...)
-├── styles/            # CSS 样式 (38 个文件, 设计令牌驱动)
+├── styles/            # CSS 样式 (36 个文件, 设计令牌驱动)
 │   ├── base/               # 基础样式 (tokens, dark-tokens, reset, global)
 │   ├── components/         # 组件样式
 │   ├── sections/           # 区块样式
@@ -93,14 +71,13 @@
 
 ### 4.1 内容管理模块
 
-**功能**：管理博客文章内容，支持 Markdown 格式和丰富的 frontmatter 字段，支持中文/英文双语。
+**功能**：管理博客文章内容，支持 Markdown 格式和丰富的 frontmatter 字段。
 
 **实现**：
 
 - 使用 Astro Content Layer，配置文件为 [content.config.ts](file:///workspace/src/content.config.ts)
-- 博客文章存储在 `src/data/blog/zh/` 和 `src/data/blog/en/` 目录
+- 博客文章存储在 `src/data/blog/zh/` 目录
 - 支持的 frontmatter 字段：`title` / `description` / `pubDate` / `updatedDate` / `heroImage` / `tags` / `category` / `author` / `draft` / `lang`
-- 支持多语言切换，自动路由到对应的语言版本
 
 **使用示例**：
 
@@ -138,24 +115,18 @@ heroImage: '/images/blog/ai-era-knowledge-worker.jpg'
 
 ### 4.3 页面模块
 
-**功能**：实现网站的各个页面，包括首页、博客列表、博客详情、标签页、关于页面等，支持中文/英文双语。
+**功能**：实现网站的各个页面，包括首页、博客列表、博客详情、标签页、关于页面等。
 
 **实现**：
 
 - 基于 Astro 的文件系统路由
-- 主要页面（中文）：
+- 主要页面：
   - [index.astro](file:///workspace/src/pages/index.astro)：首页
   - [blog/index.astro](file:///workspace/src/pages/blog/index.astro)：博客列表页
   - [blog/[slug].astro](file:///workspace/src/pages/blog/[slug].astro)：博客详情页
   - [tags/[tag].astro](file:///workspace/src/pages/tags/[tag].astro)：标签页
   - [about.astro](file:///workspace/src/pages/about.astro)：关于页面
   - [404.astro](file:///workspace/src/pages/404.astro)：404 页面
-- 主要页面（英文）：
-  - [en/index.astro](file:///workspace/src/pages/en/index.astro)：英文首页
-  - [en/blog/index.astro](file:///workspace/src/pages/en/blog/index.astro)：英文博客列表页
-  - [en/blog/[slug].astro](file:///workspace/src/pages/en/blog/[slug].astro)：英文博客详情页
-  - [en/tags/[tag].astro](file:///workspace/src/pages/en/tags/[tag].astro)：英文标签页
-  - [en/about.astro](file:///workspace/src/pages/en/about.astro)：英文关于页面
 
 ### 4.4 样式模块
 
@@ -282,15 +253,12 @@ const blog = defineCollection({
 
 | 依赖                  | 版本    | 用途                | 来源                                           |
 | --------------------- | ------- | ------------------- | ---------------------------------------------- |
-| @astrojs/tailwind     | ^6.0.2  | Tailwind CSS 集成   | [package.json](file:///workspace/package.json) |
-| @vite-pwa/astro       | ^1.2.0  | PWA 功能集成        | [package.json](file:///workspace/package.json) |
 | @eslint/js            | ^9.0.0  | ESLint 核心         | [package.json](file:///workspace/package.json) |
 | @playwright/test      | ^1.59.1 | 端到端测试          | [package.json](file:///workspace/package.json) |
 | eslint                | ^9.0.0  | 代码质量检查        | [package.json](file:///workspace/package.json) |
 | eslint-plugin-astro   | ^1.0.0  | Astro 代码检查      | [package.json](file:///workspace/package.json) |
 | happy-dom             | ^20.9.0 | DOM 模拟（测试用）  | [package.json](file:///workspace/package.json) |
 | jsdom                 | ^29.0.2 | DOM 模拟（测试用）  | [package.json](file:///workspace/package.json) |
-| lighthouse            | ^13.1.0 | 性能审计工具        | [package.json](file:///workspace/package.json) |
 | prettier              | ^3.0.0  | 代码格式化          | [package.json](file:///workspace/package.json) |
 | prettier-plugin-astro | ^0.14.0 | Astro 文件格式化    | [package.json](file:///workspace/package.json) |
 | typescript-eslint     | ^8.0.0  | TypeScript 代码检查 | [package.json](file:///workspace/package.json) |
@@ -326,8 +294,7 @@ const blog = defineCollection({
    npm run format         # Prettier 格式化
    npm run format:check   # Prettier 检查（不修改文件）
    npm test               # Vitest 单元测试 (15 tests)
-   npm run size-check     # 构建产物大小检查 (10MB 预算)
-   npm run lighthouse     # Lighthouse 性能审计
+   npm run size-check     # 构建产物大小检查 (6MB 预算)
    ```
 
 ### 7.2 部署流程
@@ -357,14 +324,6 @@ export default defineConfig({
   build: {
     assets: '_astro',
   },
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp',
-    },
-    formats: ['avif', 'webp', 'jpeg'],
-    quality: 80,
-    placeholder: 'blur',
-  },
   markdown: {
     syntaxHighlight: {
       excludeLangs: ['mermaid'],
@@ -372,7 +331,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale: 'zh',
-    locales: ['zh', 'en'],
+    locales: ['zh'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -384,59 +343,10 @@ export default defineConfig({
         defaultLocale: 'zh',
         locales: {
           zh: 'zh-CN',
-          en: 'en-US',
         },
       },
     }),
     pagefind(),
-    tailwind(),
-    mdx(),
-    astroPWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'auto',
-      workbox: {
-        globPatterns: ['**/*.{css,js,html,ico,png,svg}'],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
-      },
-      includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.svg'],
-      manifest: {
-        name: '祈研所 (Qi-Lab)',
-        short_name: 'Qi-Lab',
-        description: '祈研所（Qi-Lab）— 个人品牌网站，分享前端技术、知识管理和设计系统相关内容',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
-        display: 'standalone',
-        icons: [
-          {
-            src: 'icons/pwa-192x192.svg',
-            sizes: '192x192',
-            type: 'image/svg+xml',
-            purpose: 'any maskable',
-          },
-          {
-            src: 'icons/pwa-512x512.svg',
-            sizes: '512x512',
-            type: 'image/svg+xml',
-            purpose: 'any maskable',
-          },
-        ],
-      },
-    }),
   ],
   vite: {
     build: {
@@ -444,29 +354,6 @@ export default defineConfig({
       assetsInlineLimit: 0,
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
-      },
-      chunkSizeWarningLimit: 100,
-      cssCodeSplit: true,
-      dynamicImportVars: true,
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          dropConsole: true,
-          dropDebugger: true,
-        },
-      },
-    },
-    optimizeDeps: {
-      include: [],
-    },
-    ssr: {
-      noExternal: [],
-    },
-    server: {
-      headers: {
-        'X-Frame-Options': 'DENY',
-        'X-Content-Type-Options': 'nosniff',
-        'Referrer-Policy': 'strict-origin-when-cross-origin',
       },
     },
   },
@@ -489,22 +376,20 @@ export default defineConfig({
 
 **文件**: [scripts/check-bundle-size.mjs](file:///workspace/scripts/check-bundle-size.mjs)
 
-- 检查构建产物大小，确保不超过 10MB 预算
+- 检查构建产物大小，确保不超过 6MB 预算
 
 ### 9.2 性能指标
 
 | 指标          | 值                 | 来源                                     |
 | ------------- | ------------------ | ---------------------------------------- |
-| 静态页面      | 104 页             | [README.md](file:///workspace/README.md) |
-| 博客文章      | 15 篇 (120,000+ 字)| [README.md](file:///workspace/README.md) |
+| 静态页面      | 38 页              | [README.md](file:///workspace/README.md) |
+| 博客文章      | 7 篇 (65,000+ 字)  | [README.md](file:///workspace/README.md) |
 | 单元测试      | 15 passing         | [README.md](file:///workspace/README.md) |
-| 端到端测试    | 94 passing         | [README.md](file:///workspace/README.md) |
-| 构建时间      | ~8.0s              | [README.md](file:///workspace/README.md) |
-| 构建产物      | 7.8 MB / 10 MB 预算 | [README.md](file:///workspace/README.md) |
-| CSS 文件      | 38 个 (均 ≤500 行) | [README.md](file:///workspace/README.md) |
-| 组件文件      | 26 个 (均 ≤300 行) | [README.md](file:///workspace/README.md) |
-| Pagefind 索引 | 104 页             | [README.md](file:///workspace/README.md) |
-| 可访问性      | WCAG 2 AA 标准     | [README.md](file:///workspace/README.md) |
+| 构建时间      | ~6.0s              | [README.md](file:///workspace/README.md) |
+| 构建产物      | 4.3 MB / 6 MB 预算 | [README.md](file:///workspace/README.md) |
+| CSS 文件      | 36 个 (均 ≤500 行) | [README.md](file:///workspace/README.md) |
+| 组件文件      | 25 个 (均 ≤300 行) | [README.md](file:///workspace/README.md) |
+| Pagefind 索引 | 38 页              | [README.md](file:///workspace/README.md) |
 
 ## 10. 总结与亮点回顾
 
@@ -526,36 +411,20 @@ export default defineConfig({
 
 8. **性能优化**：通过压缩 HTML、CSS 最小化、资源内联限制等配置，优化网站性能。
 
-9. **多语言支持**：实现完整的中文/英文双语支持，包括路由、内容、搜索等功能。
-
-10. **PWA 功能**：集成 PWA 支持，实现离线访问、安装到主屏幕等功能。
-
-11. **Newsletter 订阅**：添加邮件订阅功能，支持用户订阅网站更新。
-
-12. **相关文章推荐**：实现基于标签相似度、类别匹配和日期接近度的智能推荐算法。
-
-13. **性能监控**：集成 Lighthouse 审计，提供关键性能指标分析。
-
-14. **分析功能**：集成 Google Analytics 4，支持 SPA 导航跟踪。
-
 ### 10.2 适用场景
 
 - **个人品牌网站**：展示个人作品、博客文章和专业技能
 - **技术博客**：分享技术文章、教程和思考
 - **创意实验室**：探索技术与设计的结合
 - **作品集**：展示项目案例和创意作品
-- **多语言内容平台**：支持多语言内容展示和用户访问
 
 ### 10.3 未来发展方向
 
-- **内容扩展**：持续新增高质量文章，覆盖更多技术和思维主题
-- **依赖更新**：定期升级 Astro 和相关依赖
-- **性能监控增强**：集成 Umami/Plausible 分析，提供更详细的用户行为数据
-- **SEO 优化**：进一步优化网站的搜索引擎优化，提高搜索排名
-- **功能扩展**：考虑添加更多交互功能，如评论系统（如果需要）
-- **多语言支持**：考虑添加其他语言版本，如日语、韩语等
-- **API 集成**：考虑集成外部 API，如天气、新闻等，丰富网站内容
-- **持续优化**：定期运行 Lighthouse 审计，监控性能指标，收集并响应用户建议，确保网站安全
+- **内容扩展**：增加更多博客文章和项目案例
+- **功能增强**：添加更多交互功能和用户体验优化
+- **多语言支持**：扩展多语言能力，支持英文内容
+- **社区互动**：添加评论系统，增强与读者的互动
+- **性能优化**：进一步优化网站性能和加载速度
 
 ## 11. 附录
 

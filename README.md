@@ -5,9 +5,9 @@
 ## 技术栈
 
 - **框架**: [Astro 6](https://astro.build) — 静态站点生成 (SSG)，Islands Architecture
-- **样式**: 原生 CSS + 设计令牌系统 (`--qi-*` variables, 338 行 tokens)
-- **交互**: 原生 JavaScript (View Transitions / Canvas / 3D Tilt / Pagefind)
-- **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，支持中英双语分词
+- **样式**: 原生 CSS + 设计令牌系统 (`--qi-*` variables, 338 行 tokens)，支持玻璃态设计
+- **交互**: 原生 JavaScript (View Transitions / Canvas / 3D Tilt / Pagefind / 微动画)
+- **搜索**: [Pagefind](https://pagefind.app) — 静态全文搜索，支持中英双语分词，搜索建议和历史
 - **部署**: GitHub Pages
 - **质量保障**: 历经 7 轮深度的高级 UI/UX 审计 + 端到端测试 (94/94 测试通过) + WCAG 2 AA 可访问性标准
 - **CI/CD**: GitHub Actions (Lint + Test + Build + Size Check + Performance Test + Deploy)
@@ -16,6 +16,7 @@
 - **Newsletter**: 邮件订阅功能，支持用户订阅网站更新
 - **相关文章推荐**: 基于标签相似度、类别匹配和日期接近度的智能推荐算法
 - **品牌内核**: 专注于“思维架构与知识工程”，每一处视觉与文案均经过微观逻辑校准
+- **设计趋势**: Bento 网格布局、玻璃态设计、微动画和交互效果
 
 ## 快速开始
 
@@ -55,25 +56,25 @@ npm run lighthouse     # Lighthouse 性能审计
 
 ```
 src/
-├── components/        # Astro 组件 (25 个)
+├── components/        # Astro 组件 (26 个)
 │   ├── decorations/   # 装饰性组件 (SectionDivider)
 │   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, BackToTop...)
 │   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms, Testimonials...)
 │   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
 ├── data/blog/         # 博客文章
-│   ├── zh/            # 中文文章 (15 篇 Markdown, 120,000+ 字)
-│   └── en/            # 英文文章 (15 篇 Markdown, 全量翻译完成)
+│   ├── zh/            # 中文文章 (17 篇 Markdown, 140,000+ 字)
+│   └── en/            # 英文文章 (17 篇 Markdown, 全量翻译完成)
 ├── layouts/           # 页面布局 (BaseLayout)
 ├── pages/             # 路由页面
 │   ├── [zh]/          # 中文主站 (首页/博客/标签/关于)
 │   └── en/            # 英文分站 (全量 Feature Parity)
 ├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code...)
-├── styles/            # CSS 样式 (38 个文件, 设计令牌驱动)
+├── styles/            # CSS 样式 (40 个文件, 设计令牌驱动)
 │   ├── base/               # 基础样式 (tokens, dark-tokens, reset, global)
 │   ├── components/         # 组件样式
 │   ├── sections/           # 区块样式
 │   ├── pages/              # 页面样式
-│   └── utilities/          # 工具类样式
+│   └── utilities/          # 工具类样式 (animations, glass)
 └── test/              # 测试文件 (Vitest, 15 tests)
 ```
 
@@ -90,9 +91,17 @@ src/
 
 ## 内容管理
 
-博客文章使用 Astro Content Layer，Markdown 文件位于 `src/data/blog/zh/`。
+博客文章使用 Astro Content Layer，Markdown 文件位于 `src/data/blog/zh/` 和 `src/data/blog/en/`。
 
 支持的 frontmatter 字段：`title` / `description` / `pubDate` / `updatedDate` / `heroImage` / `tags` / `category` / `author` / `draft` / `lang`。
+
+### 内容体系
+
+项目已建立完整的技术内容体系，包括：
+
+- **知识管理体系系列**：深入探讨知识管理的核心概念、工具和实践方法
+  - 《知识管理体系基础：构建你的第二大脑》
+  - 《知识管理工具与实践：从理论到落地》
 
 ## 国际化 (i18n)
 
@@ -100,23 +109,60 @@ src/
 
 - **路由**: `/` (中文) 和 `/en/` (英文)
 - **内容同步**: 博客文章与标签系统在不同语境下保持功能对等。
-- **英文内容**: 全量完成 15 篇博客文章的英文翻译，包括知识管理、技术架构和设计系统相关内容。
+- **英文内容**: 全量完成 17 篇博客文章的英文翻译，包括知识管理、技术架构和设计系统相关内容。
 - **SEO**: 自动注入对应的 `hreflang` 与各语种 JSON-LD 结构化数据。
+
+## GitHub Pages 项目调研
+
+基于对同类 GitHub Pages 项目的调研，我们识别了以下改进机会：
+
+### 优秀项目参考
+- **Astrofy**: 个人作品集模板，包含博客、CV、项目展示等功能
+- **Astrowind**: 高性能博客模板，支持响应式设计
+- **astro-erudite**: 技术博客模板，注重内容可读性
+- **ensribe.dev**: 信息安全博客，设计现代简洁
+- **astro-bento-portfolio**: 极简风格的单页作品集，采用 bento 布局
+
+### 迭代计划
+
+#### 短期计划（1-2 个月）
+- 扩展内容体系，继续创建技术系列文章
+- 优化用户体验，增强微动画效果
+- 确保技术稳定性，定期更新依赖
+- 进一步优化性能，提升加载速度
+- 完善 SEO，添加更多结构化数据
+
+#### 中期计划（3-6 个月）
+- 集成 GitHub API，自动拉取项目数据
+- 扩充内容，覆盖更多技术主题
+- 完善设计系统，确保品牌一致性
+- 增强 PWA 功能，提升用户体验
+- 优化国际化支持，添加更多语言
+
+#### 长期计划（6-12 个月）
+- 实现 AI 辅助功能，生成内容摘要和推荐
+- 开发交互式代码示例，提升技术内容质量
+- 实现个性化内容推荐，基于用户行为
+- 探索社区功能，增强用户互动
+- 升级技术栈，保持网站技术的先进性
 
 ## 质量基线
 
 | 指标          | 值                  |
 | ------------- | ------------------- |
 | 静态页面      | 104 页              |
-| 博客文章      | 15 篇 (120,000+ 字) |
+| 博客文章      | 34 篇 (140,000+ 字) |
 | 单元测试      | 15 passing          |
 | 端到端测试    | 94 passing          |
 | 构建时间      | ~7.8s               |
 | 构建产物      | 7.8 MB / 10 MB 预算 |
-| CSS 文件      | 38 个 (均 ≤500 行)  |
+| CSS 文件      | 40 个 (均 ≤500 行)  |
 | 组件文件      | 26 个 (均 ≤300 行)  |
 | Pagefind 索引 | 104 页              |
 | 可访问性      | WCAG 2 AA 标准      |
+| 微动画效果    | 12+ 种              |
+| 设计趋势      | Bento 网格布局、玻璃态设计 |
+| 内容系列      | 1 个 (知识管理体系)  |
 
 ## 许可证
 

@@ -1,0 +1,73 @@
+# 祈研所 Qi-Lab - CDN 加速和缓存配置
+
+# 启用压缩
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml+rss
+    DeflateCompressionLevel 9
+</IfModule>
+
+# 浏览器缓存策略
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/avif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+</IfModule>
+
+# 缓存控制
+<IfModule mod_headers.c>
+    # 静态资源缓存
+    <FilesMatch "\.(css|js|jpg|jpeg|png|webp|avif|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # HTML 页面缓存
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+    
+    # 禁用 ETag 以减少 304 请求
+    Header unset ETag
+    FileETag None
+    
+    # 启用 CORS 支持
+    Header set Access-Control-Allow-Origin "*"
+    
+    # 安全头部
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:;"
+</IfModule>
+
+# 重写规则
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 强制 HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # 移除 .html 后缀
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# 目录索引
+DirectoryIndex index.html
+
+# 禁用目录浏览
+Options -Indexes
+
+# 错误页面
+ErrorDocument 404 /404.html

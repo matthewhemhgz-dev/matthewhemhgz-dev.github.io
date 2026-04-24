@@ -268,6 +268,18 @@
   --qi-z-progress: 10001;
 }
 
+/* Glass Morphism */
+:root {
+  --qi-glass-bg: rgba(255, 255, 255, 0.7);
+  --qi-glass-bg-dark: rgba(30, 27, 24, 0.7);
+  --qi-glass-border: rgba(255, 255, 255, 0.2);
+  --qi-glass-border-dark: rgba(255, 255, 255, 0.1);
+  --qi-glass-backdrop: blur(10px);
+  --qi-glass-backdrop-heavy: blur(20px);
+  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 /* Dual-Logic Typography (Weights adjust per theme) */
 :root {
   --qi-weight-normal: 400;

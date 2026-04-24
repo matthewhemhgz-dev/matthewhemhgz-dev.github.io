@@ -6,6 +6,9 @@ import mdx from '@astrojs/mdx';
 import astroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
+  content: {
+    cache: true,
+  },
   site: 'https://matthewhemhgz-dev.github.io',
   base: '/',
   output: 'static',
@@ -13,6 +16,9 @@ export default defineConfig({
   compressHTML: true,
   build: {
     assets: '_astro',
+    cache: true,
+    format: 'directory',
+    inlineStylesheets: 'auto',
   },
   image: {
     service: {
@@ -52,7 +58,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       workbox: {
-        globPatterns: ['**/*.{css,js,html,ico,png,svg}'],
+        globPatterns: ['**/*.{css,js,html,ico,png,svg,webp,avif,jpeg}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\//i,
@@ -67,10 +73,41 @@ export default defineConfig({
                 statuses: [0, 200]
               }
             }
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\//i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-static-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            urlPattern: /^https:\/\/api\.qrserver\.com\//i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'qr-code-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7 // <== 7 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
           }
-        ]
+        ],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true
       },
-      includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.svg'],
+      includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.svg', 'images/logo.png', 'images/logo.svg'],
       manifest: {
         name: '祈研所 (Qi-Lab)',
         short_name: 'Qi-Lab',
@@ -102,19 +139,16 @@ export default defineConfig({
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
       },
-      chunkSizeWarningLimit: 100,
+      chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
       dynamicImportVars: true,
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
-      },
+      minify: 'esbuild',
+      target: 'es2015',
+      sourcemap: false,
     },
     optimizeDeps: {
       include: [],
+      exclude: [],
     },
     ssr: {
       noExternal: [],

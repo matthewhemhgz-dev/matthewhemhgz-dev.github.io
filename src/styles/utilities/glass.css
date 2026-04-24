@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Glass Morphism Utilities
+   ==========================================================================
+   玻璃态设计效果，支持亮色和暗色模式
+   ========================================================================== */
+
+/* 基础玻璃态效果 */
+.qi-glass {
+  background: var(--qi-glass-bg);
+  border: 1px solid var(--qi-glass-border);
+  backdrop-filter: var(--qi-glass-backdrop);
+  box-shadow: var(--qi-glass-shadow);
+  transition: all var(--qi-transition);
+}
+
+/* 深色玻璃态效果 */
+.qi-glass-dark {
+  background: var(--qi-glass-bg-dark);
+  border: 1px solid var(--qi-glass-border-dark);
+  backdrop-filter: var(--qi-glass-backdrop);
+  box-shadow: var(--qi-glass-shadow-dark);
+  transition: all var(--qi-transition);
+}
+
+/* 重模糊玻璃态效果 */
+.qi-glass-heavy {
+  background: var(--qi-glass-bg);
+  border: 1px solid var(--qi-glass-border);
+  backdrop-filter: var(--qi-glass-backdrop-heavy);
+  box-shadow: var(--qi-glass-shadow);
+  transition: all var(--qi-transition);
+}
+
+/* 玻璃态悬停效果 */
+.qi-glass:hover,
+.qi-glass-dark:hover,
+.qi-glass-heavy:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 玻璃态卡片 */
+.qi-glass-card {
+  background: var(--qi-glass-bg);
+  border: 1px solid var(--qi-glass-border);
+  backdrop-filter: var(--qi-glass-backdrop);
+  box-shadow: var(--qi-glass-shadow);
+  transition: all var(--qi-transition);
+  border-radius: var(--qi-radius-card);
+  padding: var(--qi-space-xl);
+}
+
+/* 玻璃态导航 */
+.qi-glass-nav {
+  background: var(--qi-glass-bg);
+  border: 1px solid var(--qi-glass-border);
+  backdrop-filter: var(--qi-glass-backdrop);
+  box-shadow: var(--qi-glass-shadow);
+  transition: all var(--qi-transition);
+  border-radius: var(--qi-radius-lg);
+  padding: var(--qi-space-md) var(--qi-space-lg);
+}
+
+/* 玻璃态按钮 */
+.qi-glass-button {
+  background: var(--qi-glass-bg);
+  border: 1px solid var(--qi-glass-border);
+  backdrop-filter: var(--qi-glass-backdrop);
+  box-shadow: var(--qi-glass-shadow);
+  transition: all var(--qi-transition);
+  border-radius: var(--qi-radius-button);
+  padding: var(--qi-space-sm) var(--qi-space-lg);
+  font-weight: var(--qi-weight-medium);
+  color: var(--qi-text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  cursor: pointer;
+}
+
+.qi-glass-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .qi-glass,
+  .qi-glass-dark,
+  .qi-glass-heavy {
+    backdrop-filter: blur(6px);
+  }
+}
+
+@media (min-width: 2560px) {
+  .qi-glass,
+  .qi-glass-dark,
+  .qi-glass-heavy {
+    backdrop-filter: blur(12px);
+  }
+  
+  .qi-glass-heavy {
+    backdrop-filter: blur(24px);
+  }
+}

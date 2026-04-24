@@ -15,7 +15,7 @@ interface Props {
   }>;
   primaryBtn?: { text: string; href: string };
   secondaryBtn?: { text: string; href: string };
-  lang?: 'zh' | 'en';
+  lang?: string;
 }
 
 const {
@@ -150,8 +150,8 @@ const trophyIcon =
         <HeroFloatCard
           type="insight"
           icon={trophyIcon}
-          label={lang === 'zh' ? '知识体系' : 'Knowledge System'}
-          value={lang === 'zh' ? '结构化的知识才是真正的力量' : 'Structured Knowledge is Power'}
+          label={lang === 'zh' ? '祈研所' : 'QiLab'}
+          value={lang === 'zh' ? '知识管理与技术实践' : 'Knowledge Management & Tech Practice'}
           color="emerald"
           ariaHidden={true}
         />

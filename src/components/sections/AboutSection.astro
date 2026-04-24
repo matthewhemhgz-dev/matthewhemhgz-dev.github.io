@@ -14,12 +14,13 @@ interface Props {
     percentage: number;
     color: string;
   }>;
+  classList?: string;
 }
 
-const { label, title, text, decoNumber = '01', decoSlogan, dashItems } = Astro.props;
+const { label, title, text, decoNumber = '01', decoSlogan, dashItems, classList = '' } = Astro.props;
 ---
 
-<section class="section about-section" data-reveal>
+<section class="section about-section ${classList}" data-reveal>
   <div class="container">
     <div class="about-layout">
       <div class="about-deco" aria-hidden="true">

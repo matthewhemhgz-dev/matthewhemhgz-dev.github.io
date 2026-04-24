@@ -4,7 +4,7 @@ description: 'Guide to Static Site Generation (SSG) best practices, from technol
 pubDate: 2026-04-28
 category: 'Technical Architecture'
 tags: ['SSG', 'Static Sites', 'Performance Optimization']
-heroImage: '/images/logo.png'
+heroImage: '/images/blog/ssg-best-practices.png'
 author: '祈研所'
 draft: false
 lang: en

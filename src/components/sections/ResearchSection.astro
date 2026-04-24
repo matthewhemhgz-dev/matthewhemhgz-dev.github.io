@@ -4,9 +4,10 @@ import SectionHeader from '../ui/SectionHeader.astro';
 interface Props {
   label: string;
   title: string;
+  classList?: string;
 }
 
-const { label, title } = Astro.props;
+const { label, title, classList = '' } = Astro.props;
 
 const currentLocale = Astro.url.pathname.startsWith('/en') ? 'en' : 'zh';
 const isEnglish = currentLocale === 'en';
@@ -82,7 +83,7 @@ const methodologies = isEnglish
     ];
 ---
 
-<section class="research-section" data-reveal>
+<section class="research-section ${classList}" data-reveal>
   <div class="container">
     <SectionHeader label={label} title={title} />
 

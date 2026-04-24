@@ -25,6 +25,7 @@ interface Props {
   browseBlogText: string;
   /** If true, use the large magazine-style card layout */
   largeCardLayout?: boolean;
+  classList?: string;
 }
 
 const {
@@ -37,6 +38,7 @@ const {
   browseBlogHref,
   browseBlogText,
   largeCardLayout = false,
+  classList = '',
 } = Astro.props;
 
 const isEn = Astro.url.pathname.startsWith('/en');
@@ -45,7 +47,7 @@ const blogPrefix = isEn ? '/en/blog/' : '/blog/';
 const replaceKey = isEn ? 'en/' : 'zh/';
 ---
 
-<section class="section" data-reveal>
+<section class="section ${classList}" data-reveal>
   <div class="featured-corner-deco" aria-hidden="true">
     <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
       <path d="M0 0 L30 0 L30 2 L2 2 L2 30 L0 30 Z" fill="currentColor" opacity="0.15"></path>

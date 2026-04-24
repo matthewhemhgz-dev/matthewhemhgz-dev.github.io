@@ -3,6 +3,7 @@ import BrandLogo from './BrandLogo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageToggle from '../LanguageToggle.astro';
 import '../../styles/components/navigation.css';
+import '../../styles/utilities/glass.css';
 
 interface Props {
   currentPath: string;
@@ -22,7 +23,7 @@ const navItems = [
 ---
 
 <header class="nav-wrapper" transition:name="main-nav">
-  <nav class="nav" aria-label={isEnglish ? 'Main Navigation' : '主导航'}>
+  <nav class="nav qi-glass-nav" aria-label={isEnglish ? 'Main Navigation' : '主导航'}>
     <div class="nav-left">
       <BrandLogo variant="icon" size="sm" />
     </div>
@@ -206,5 +207,34 @@ const navItems = [
         }
       });
     }
+
+    // Scroll animation for navigation
+    const navWrapper = document.querySelector('.nav-wrapper');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateNav() {
+      const scrollY = window.scrollY;
+      
+      if (scrollY > 100) {
+        navWrapper?.classList.add('nav-collapsed');
+        navWrapper?.classList.add('scrolled');
+      } else {
+        navWrapper?.classList.remove('nav-collapsed');
+        navWrapper?.classList.remove('scrolled');
+      }
+      
+      lastScrollY = scrollY;
+      ticking = false;
+    }
+
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', requestTick);
   });
 </script>

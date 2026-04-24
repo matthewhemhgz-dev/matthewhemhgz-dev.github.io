@@ -32,22 +32,37 @@ async function runLighthouseAudit() {
   // 运行 Lighthouse 审计
   console.log('Running Lighthouse audit...');
   try {
-    // 尝试使用 npm exec 方式运行 Lighthouse
+    // 设置 CHROME_PATH 环境变量（如果未设置）
+    const env = { ...process.env };
+    if (!env.CHROME_PATH) {
+      // 尝试找到 Chrome 或 Chromium
+      try {
+        const chromePath = execSync('which google-chrome || which chromium || which chrome', { stdio: 'pipe' }).toString().trim();
+        if (chromePath) {
+          env.CHROME_PATH = chromePath;
+          console.log(`Using Chrome at: ${chromePath}`);
+        }
+      } catch {
+        console.log('No Chrome/Chromium found, using default path');
+      }
+    }
+
+    // 运行 Lighthouse 审计，添加更多选项
     const lighthouseCommand = [
-      'npm', 'exec', '--',
-      'lighthouse',
+      'npx', 'lighthouse',
       'http://localhost:3000',
       '--output=html',
       '--output=json',
       '--output-path=./reports/lighthouse-report.html',
       '--quiet',
-      '--chrome-flags=--headless --disable-gpu --no-sandbox --disable-dev-shm-usage',
+      '--chrome-flags=--headless --disable-gpu --no-sandbox',
       '--emulated-form-factor=mobile',
       '--throttling-method=devtools'
     ];
 
     execSync(lighthouseCommand.join(' '), {
-      stdio: 'inherit'
+      stdio: 'inherit',
+      env
     });
     
     console.log('Lighthouse audit completed successfully!');
@@ -56,28 +71,6 @@ async function runLighthouseAudit() {
   } catch (error) {
     console.error('Error running Lighthouse audit:', error.message);
     console.log('Continuing with CI process...');
-    // 创建一个占位符报告文件
-    const placeholderReport = `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lighthouse Audit Report</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
-        p { color: #666; }
-    </style>
-</head>
-<body>
-    <h1>Lighthouse Audit Report</h1>
-    <p>Audit completed with errors due to browser availability.</p>
-    <p>Environment: CI/CD pipeline</p>
-    <p>Date: ${new Date().toISOString()}</p>
-</body>
-</html>
-`;
-    fs.writeFileSync(path.join(reportsDir, 'lighthouse-report.html'), placeholderReport);
-    console.log('Created placeholder report file.');
   } finally {
     // 停止预览服务器
     console.log('Stopping preview server...');
