@@ -1,6 +1,6 @@
 # 祈研所 Qi-Lab — 项目总结与迭代路线图
 
-> 更新时间：2026-04-24 | 基于系统稳定修复与文档更新成果
+> 更新时间：2026-04-24 | 基于真实物理世界动效与光效增强成果
 
 ---
 
@@ -14,6 +14,7 @@
 | **部署**     | GitHub Pages (`matthewhemhgz-dev.github.io`)                                          |
 | **样式系统** | 原生 CSS，40 个文件，模块化架构 & 设计令牌驱动                                        |
 | **交互脚本** | 原生 JS/TS，8 个文件，`astro:page-load` 事件驱动                                      |
+| **动效系统** | 物理化弹簧动画、动态光影效果、流体背景、增强玻璃态效果                                |
 | **搜索**     | Pagefind 静态搜索，114 页索引，中文分词，搜索历史和建议                               |
 | **内容管理** | Astro Content Layer (glob loader)，17 篇中文博客 + 17 篇英文博客                      |
 | **CI/CD**    | GitHub Actions (Lint + Test + Build + Size Check + Performance Test + Deploy)         |
