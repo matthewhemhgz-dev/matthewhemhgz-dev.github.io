@@ -35,7 +35,7 @@ export function initScrollHandler(particles) {
   const backToTopBtn = document.getElementById('back-to-top');
   let lastScrollY = window.scrollY;
   let scrollTicking = false;
-  let scrollTimeout;
+  let localScrollTimeout;
 
   function handleScroll() {
     if (!nav) return;
@@ -75,8 +75,8 @@ export function initScrollHandler(particles) {
     }
     if (particles) {
       particles.pause();
-      clearTimeout(scrollTimeout);
-      _scrollTimeout = scrollTimeout = setTimeout(() => particles.resume(), 150);
+      clearTimeout(localScrollTimeout);
+      _scrollTimeout = localScrollTimeout = setTimeout(() => particles.resume(), 150);
     }
   };
   window.addEventListener('scroll', _scrollHandler, { passive: true });

@@ -135,7 +135,7 @@ export default defineConfig({
   vite: {
     build: {
       cssMinify: true,
-      assetsInlineLimit: 0,
+      assetsInlineLimit: 4096,
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
       },
