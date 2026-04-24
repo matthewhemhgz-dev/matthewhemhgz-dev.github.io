@@ -5,6 +5,7 @@ import { getReadingTime } from '../../../utils/reading-time';
 import OptimizedImage from '../../../components/ui/OptimizedImage.astro';
 import MermaidInit from '../../../components/global/MermaidInit.astro';
 import Skeleton from '../../../components/ui/Skeleton.astro';
+import GenerativeArt from '../../../components/ui/GenerativeArt.astro';
 import '../../../styles/sections/article.css';
 
 export async function getStaticPaths() {
@@ -127,6 +128,9 @@ const articleJsonLd = {
       }
       <div class="article-divider"></div>
     </header>
+
+    <!-- Generative Art Component -->
+    <GenerativeArt />
 
     {
       headings.length > 0 && (

@@ -10,6 +10,7 @@ import { InteractionEnhancements } from './interaction-enhancements.js';
 let initialized = false;
 let cursorGlow = null;
 let particles = null;
+let backgroundArt = null;
 let interactionEnhancements = null;
 const cleanupFns = [];
 
@@ -67,6 +68,29 @@ function initQiLab() {
     });
   }
 
+  // 3. 背景艺术系统（非首页启用）
+  if (!isHomePage && !prefersReducedMotion) {
+    import('./background-art.js').then(({ BackgroundArt }) => {
+      const cs = getComputedStyle(document.documentElement);
+      const screenWidth = window.innerWidth;
+      const artType = screenWidth < 768 ? 'generative' : 'fluid';
+      
+      backgroundArt = new BackgroundArt('background-art-canvas', {
+        type: artType,
+        particleCount: screenWidth < 768 ? 50 : 100,
+        speed: 0.3,
+        colors: {
+          emerald: cs.getPropertyValue('--qi-brand-emerald').trim(),
+          amber: cs.getPropertyValue('--qi-brand-amber').trim(),
+          mint: cs.getPropertyValue('--qi-brand-mint').trim()
+        }
+      });
+      
+      backgroundArt.init();
+      cleanupFns.push(() => backgroundArt.destroy());
+    });
+  }
+
   // 2.5 卡片 3D 倾斜 + 光泽效果
   import('./card-tilt.js').then(({ CardTilt }) => {
     const cardTilt = new CardTilt(
@@ -111,6 +135,7 @@ document.addEventListener('astro:page-load', () => {
   // 重置状态，重新初始化
   initialized = false;
   cursorGlow = null;
+  backgroundArt = null;
   // 注意：不将 particles 设为 null，复用已有实例调用 rebuild()
   initQiLab();
 });

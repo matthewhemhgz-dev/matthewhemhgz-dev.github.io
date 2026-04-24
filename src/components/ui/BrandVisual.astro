@@ -1,0 +1,53 @@
+---
+// 品牌视觉元素组件
+interface Props {
+  type?: 'logo' | 'pattern' | 'abstract';
+  size?: number;
+  className?: string;
+}
+
+const { type = 'logo', size = 200, className = '' } = Astro.props;
+const canvasId = `brand-visual-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`brand-visual-container ${className}`}>
+  <canvas id={canvasId} class="brand-visual-canvas"></canvas>
+</div>
+
+<script is:inline>
+  (function() {
+    const canvasId = '${canvasId}';
+    const type = '${type}';
+    const size = ${size};
+
+    function initBrandVisual() {
+      import('https://cdn.skypack.dev/p5@1.9.0').then((p5Module) => {
+        const p5 = p5Module.default;
+        import('../../scripts/brand-visuals.js').then(({ BrandVisuals }) => {
+          const brandVisual = new BrandVisuals(canvasId, {
+            type: type,
+            size: size
+          });
+          brandVisual.init();
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBrandVisual);
+    } else {
+      initBrandVisual();
+    }
+  })();
+</script>
+
+<style>
+  .brand-visual-container {
+    display: inline-block;
+    margin: 1rem;
+  }
+
+  .brand-visual-canvas {
+    display: block;
+  }
+</style>

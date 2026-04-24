@@ -1,0 +1,79 @@
+---
+// 文档封面模板组件
+interface Props {
+  title: string;
+  subtitle?: string;
+  author?: string;
+  date?: string;
+  style?: 'modern' | 'minimal' | 'artistic';
+  width?: number;
+  height?: number;
+  className?: string;
+}
+
+const { 
+  title, 
+  subtitle = '', 
+  author = 'Qi-Lab', 
+  date = new Date().toLocaleDateString('zh-CN'), 
+  style = 'modern', 
+  width = 800, 
+  height = 1000, 
+  className = '' 
+} = Astro.props;
+const canvasId = `document-cover-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`document-cover-container ${className}`}>
+  <canvas id={canvasId} class="document-cover-canvas"></canvas>
+</div>
+
+<script is:inline>
+  (function() {
+    const canvasId = '${canvasId}';
+    const title = '${title}';
+    const subtitle = '${subtitle}';
+    const author = '${author}';
+    const date = '${date}';
+    const style = '${style}';
+    const width = ${width};
+    const height = ${height};
+
+    function initDocumentCover() {
+      import('https://cdn.skypack.dev/p5@1.9.0').then((p5Module) => {
+        const p5 = p5Module.default;
+        import('../../scripts/document-cover.js').then(({ DocumentCover }) => {
+          const documentCover = new DocumentCover(canvasId, {
+            title: title,
+            subtitle: subtitle,
+            author: author,
+            date: date,
+            style: style,
+            size: { width: width, height: height }
+          });
+          documentCover.init();
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDocumentCover);
+    } else {
+      initDocumentCover();
+    }
+  })();
+</script>
+
+<style>
+  .document-cover-container {
+    display: inline-block;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .document-cover-canvas {
+    display: block;
+  }
+</style>
