@@ -155,11 +155,45 @@ heroImage: '/images/blog/ai-era-knowledge-worker.jpg'
 - 模块化 JavaScript 脚本，存储在 `src/scripts/` 目录
 - 主要脚本：
   - [init.js](file:///workspace/src/scripts/init.js)：初始化所有交互功能
-  - [particles.js](file:///workspace/src/scripts/particles.js)：粒子背景效果
+  - [particles.js](file:///workspace/src/scripts/particles.js)：粒子背景效果（v3 性能优化版）
   - [card-tilt.js](file:///workspace/src/scripts/card-tilt.js)：卡片 3D 倾斜效果
-  - [cursor-glow.js](file:///workspace/src/scripts/cursor-glow.js)：光标发光效果
+  - [cursor-glow.js](file:///workspace/src/scripts/cursor-glow.js)：光标发光效果（v3 CSS 优化版）
+  - [fluid-background.js](file:///workspace/src/scripts/fluid-background.js)：流体背景效果
   - [scroll-parallax.js](file:///workspace/src/scripts/scroll-parallax.js)：滚动视差效果
+  - [scroll-reveal.js](file:///workspace/src/scripts/scroll-reveal.js)：滚动揭示效果
+  - [interaction-enhancements.js](file:///workspace/src/scripts/interaction-enhancements.js)：交互增强效果
   - [copy-code.ts](file:///workspace/src/scripts/copy-code.ts)：代码块复制功能
+
+**核心动效系统**：
+
+1. **光标光效系统** (`cursor-glow.js`)
+   - 三层渐变光晕：外层环境光（薄荷蓝）→ 中层品牌光（翡翠绿）→ 内层聚焦点（琥珀金）
+   - CSS transition 平滑过渡，降低 CPU 占用
+   - 呼吸动画效果，增强视觉层次感
+   - 移动端自动禁用，支持 `prefers-reduced-motion` 媒体查询
+
+2. **粒子系统** (`particles.js`)
+   - 鼠标交互：粒子被鼠标排斥/吸引
+   - 光晕效果：预渲染离屏纹理，避免每帧创建渐变
+   - 鼠标附近粒子连线高亮
+   - DPR 适配、FPS 自动降级，确保性能
+   - 网格分区优化连线计算，提升渲染效率
+
+3. **流体背景** (`fluid-background.js`)
+   - 基于 Canvas 的粒子流动效果
+   - 鼠标交互：粒子跟随鼠标移动
+   - 粒子间连线效果，增强视觉连贯性
+   - 自适应容器尺寸，响应式设计
+
+4. **滚动效果**
+   - 视差滚动：元素随滚动产生深度感
+   - 滚动揭示：元素进入视口时的动画效果
+   - 平滑滚动：提升页面导航体验
+
+5. **卡片交互**
+   - 3D 倾斜效果：随鼠标位置产生立体感
+   - 悬停动画：增强用户交互反馈
+   - 响应式设计：适配不同屏幕尺寸
 
 ## 5. 核心 API/类/函数
 
@@ -236,6 +270,95 @@ const blog = defineCollection({
 **文件**: [tags/[tag].astro](file:///workspace/src/pages/tags/[tag].astro)
 
 **功能**：实现标签页面，显示包含指定标签的所有博客文章。
+
+### 5.9 光标光效类
+
+**文件**: [cursor-glow.js](file:///workspace/src/scripts/cursor-glow.js)
+
+**类**: `CursorGlow`
+
+**功能**：实现鼠标跟随的三层渐变光晕效果，增强用户交互体验。
+
+**主要方法**：
+- `constructor(options)`：初始化光标光效，可配置尺寸和混合模式
+- `_create()`：创建光效 DOM 元素和样式
+- `_bindEvents()`：绑定鼠标和触摸事件
+- `destroy()`：销毁光效实例，清理事件监听器
+- `_hexToRGB(hex)`：将十六进制颜色转换为 RGB 对象
+
+**使用示例**：
+```javascript
+import { CursorGlow } from './cursor-glow.js';
+
+const cursorGlow = new CursorGlow({
+  size: 350,
+  blend: 'screen'
+});
+
+// 销毁时
+// cursorGlow.destroy();
+```
+
+### 5.10 粒子系统类
+
+**文件**: [particles.js](file:///workspace/src/scripts/particles.js)
+
+**类**: `MinimalParticles`
+
+**功能**：实现高性能的粒子背景效果，支持鼠标交互和光晕效果。
+
+**主要方法**：
+- `constructor(canvasId, options)`：初始化粒子系统
+- `resize()`：调整画布尺寸，适配窗口大小
+- `init()`：初始化粒子数据
+- `animate()`：动画循环，更新和渲染粒子
+- `pause()`：暂停动画
+- `resume()`：恢复动画
+- `destroy()`：销毁粒子系统
+- `rebuild(newOptions)`：重建粒子系统，支持动态更新配置
+
+**使用示例**：
+```javascript
+import { MinimalParticles } from './particles.js';
+
+const particles = new MinimalParticles('particles-canvas', {
+  count: 60,
+  colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
+  maxSize: 3,
+  speed: 0.25,
+  linkDistance: 120
+});
+
+// 销毁时
+// particles.destroy();
+```
+
+### 5.11 流体背景类
+
+**文件**: [fluid-background.js](file:///workspace/src/scripts/fluid-background.js)
+
+**类**: `FluidBackground`
+
+**功能**：实现基于 Canvas 的流体粒子背景效果，支持鼠标交互。
+
+**主要方法**：
+- `constructor(container)`：初始化流体背景，指定容器元素
+- `init()`：初始化 Canvas 和粒子
+- `resize()`：调整画布尺寸
+- `createParticles()`：创建粒子数据
+- `updateMouse(e)`：更新鼠标位置
+- `animate()`：动画循环，更新和渲染粒子
+- `destroy()`：销毁流体背景实例
+
+**使用示例**：
+```javascript
+import FluidBackground from './fluid-background.js';
+
+const heroSection = document.querySelector('.hero-section');
+if (heroSection) {
+  new FluidBackground(heroSection);
+}
+```
 
 ## 6. 技术栈与依赖
 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态光影效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 1200px;
+            height: 600px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .card {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            margin: 1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .light-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+            transition: all 0.1s ease;
+            z-index: 1;
+        }
+
+        .shadow-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: var(--shadow-x, 0px) var(--shadow-y, 0px) 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>动态光影效果</h1>
+            <div class="card">
+                <div class="shadow-effect"></div>
+                <div class="light-effect"></div>
+                <div class="card-content">
+                    <h2>卡片 1</h2>
+                    <p>鼠标悬停时观察光影变化</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="shadow-effect"></div>
+                <div class="light-effect"></div>
+                <div class="card-content">
+                    <h2>卡片 2</h2>
+                    <p>光影会跟随鼠标移动</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="shadow-effect"></div>
+                <div class="light-effect"></div>
+                <div class="card-content">
+                    <h2>卡片 3</h2>
+                    <p>创造沉浸式交互体验</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取所有卡片元素
+        const cards = document.querySelectorAll('.card');
+
+        // 为每个卡片添加鼠标移动事件监听器
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                // 获取卡片的位置和尺寸
+                const rect = card.getBoundingClientRect();
+                
+                // 计算鼠标在卡片内的相对位置（百分比）
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                // 计算阴影偏移量
+                const shadowX = (x - 50) / 5;
+                const shadowY = (y - 50) / 5;
+                
+                // 获取卡片内的光影效果元素
+                const lightEffect = card.querySelector('.light-effect');
+                const shadowEffect = card.querySelector('.shadow-effect');
+                
+                // 更新光影效果的位置
+                if (lightEffect) {
+                    lightEffect.style.setProperty('--x', `${x}%`);
+                    lightEffect.style.setProperty('--y', `${y}%`);
+                }
+                
+                // 更新阴影效果
+                if (shadowEffect) {
+                    shadowEffect.style.setProperty('--shadow-x', `${shadowX}px`);
+                    shadowEffect.style.setProperty('--shadow-y', `${shadowY}px`);
+                }
+            });
+
+            // 鼠标离开卡片时重置效果
+            card.addEventListener('mouseleave', () => {
+                const lightEffect = card.querySelector('.light-effect');
+                const shadowEffect = card.querySelector('.shadow-effect');
+                
+                if (lightEffect) {
+                    lightEffect.style.setProperty('--x', '50%');
+                    lightEffect.style.setProperty('--y', '50%');
+                }
+                
+                if (shadowEffect) {
+                    shadowEffect.style.setProperty('--shadow-x', '0px');
+                    shadowEffect.style.setProperty('--shadow-y', '0px');
+                }
+            });
+        });
+
+        // 为整个容器添加鼠标移动事件，实现背景光影效果
+        const container = document.querySelector('.container');
+        
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            // 创建动态渐变背景
+            container.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 50%, #f0f0f0 100%)`;
+        });
+    </script>
+</body>
+</html>

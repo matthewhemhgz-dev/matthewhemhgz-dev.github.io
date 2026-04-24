@@ -5,10 +5,12 @@ import {
   initBackToTop,
   cleanupScrollHandler,
 } from './scroll-handler.js';
+import { InteractionEnhancements } from './interaction-enhancements.js';
 
 let initialized = false;
 let cursorGlow = null;
 let particles = null;
+let interactionEnhancements = null;
 const cleanupFns = [];
 
 function initQiLab() {
@@ -90,6 +92,15 @@ function initQiLab() {
 
   // 6. 回到顶部
   initBackToTop();
+
+  // 7. 交互增强效果
+  if (!prefersReducedMotion) {
+    interactionEnhancements = new InteractionEnhancements();
+    cleanupFns.push(() => {
+      // 清理交互增强效果的相关资源
+      interactionEnhancements = null;
+    });
+  }
 }
 
 document.addEventListener('astro:page-load', () => {
