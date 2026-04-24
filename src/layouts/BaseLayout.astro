@@ -17,6 +17,10 @@ interface Props {
   ogImage?: string;
   tagline?: string;
   ogType?: string;
+  /** 文章发布日期（用于JSON-LD） */
+  pubDate?: string;
+  /** 文章修改日期（用于JSON-LD） */
+  modDate?: string;
   /** JSON-LD 结构化数据（自动注入 <script type="application/ld+json">） */
   jsonLd?: Record<string, unknown>;
 }
@@ -178,8 +182,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
                 url: new URL('/favicon.png', Astro.site).toString(),
               },
             },
-            datePublished: new Date().toISOString(),
-            dateModified: new Date().toISOString(),
+            datePublished: Astro.props.pubDate || new Date().toISOString(),
+            dateModified: Astro.props.modDate || new Date().toISOString(),
             inLanguage: isEnglish ? 'en-US' : 'zh-CN',
           })}
         />
