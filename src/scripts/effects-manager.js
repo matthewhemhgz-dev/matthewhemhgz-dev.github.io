@@ -5,8 +5,10 @@
 export class EffectsManager {
   constructor() {
     this.effects = {};
+    this.effectGroups = {};
     this.isInitialized = false;
     this.isMobile = window.innerWidth < 768;
+    this.activeEffects = new Set();
   }
 
   /**
@@ -25,9 +27,35 @@ export class EffectsManager {
    * 注册动效
    * @param {string} name - 动效名称
    * @param {Object} effect - 动效实例
+   * @param {Object} options - 配置选项
+   * @param {string} options.group - 动效分组
+   * @param {number} options.priority - 优先级，数值越大优先级越高
+   * @param {boolean} options.active - 是否默认激活
    */
-  registerEffect(name, effect) {
-    this.effects[name] = effect;
+  registerEffect(name, effect, options = {}) {
+    const defaultOptions = {
+      group: 'default',
+      priority: 0,
+      active: true
+    };
+    
+    const config = { ...defaultOptions, ...options };
+    
+    this.effects[name] = {
+      instance: effect,
+      config
+    };
+    
+    // 添加到分组
+    if (!this.effectGroups[config.group]) {
+      this.effectGroups[config.group] = new Set();
+    }
+    this.effectGroups[config.group].add(name);
+    
+    // 激活动效
+    if (config.active) {
+      this.activeEffects.add(name);
+    }
   }
 
   /**
@@ -36,7 +64,7 @@ export class EffectsManager {
    * @returns {Object} 动效实例
    */
   getEffect(name) {
-    return this.effects[name];
+    return this.effects[name]?.instance;
   }
 
   /**
@@ -45,11 +73,63 @@ export class EffectsManager {
    */
   removeEffect(name) {
     if (this.effects[name]) {
-      // 销毁动效
-      if (this.effects[name].destroy) {
-        this.effects[name].destroy();
+      // 从分组中移除
+      const group = this.effects[name].config.group;
+      if (this.effectGroups[group]) {
+        this.effectGroups[group].delete(name);
       }
+      
+      // 从激活集合中移除
+      this.activeEffects.delete(name);
+      
+      // 销毁动效
+      if (this.effects[name].instance.destroy) {
+        this.effects[name].instance.destroy();
+      }
+      
       delete this.effects[name];
+    }
+  }
+
+  /**
+   * 激活动效
+   * @param {string} name - 动效名称
+   */
+  activateEffect(name) {
+    if (this.effects[name]) {
+      this.activeEffects.add(name);
+    }
+  }
+
+  /**
+   * 停用动效
+   * @param {string} name - 动效名称
+   */
+  deactivateEffect(name) {
+    this.activeEffects.delete(name);
+  }
+
+  /**
+   * 激活分组
+   * @param {string} group - 分组名称
+   */
+  activateGroup(group) {
+    if (this.effectGroups[group]) {
+      this.effectGroups[group].forEach(name => {
+        this.activeEffects.add(name);
+      });
+    }
+  }
+
+  /**
+   * 停用分组
+   * @param {string} group - 分组名称
+   */
+  deactivateGroup(group) {
+    if (this.effectGroups[group]) {
+      this.effectGroups[group].forEach(name => {
+        this.activeEffects.delete(name);
+      });
     }
   }
 
@@ -57,9 +137,14 @@ export class EffectsManager {
    * 更新所有动效
    */
   update() {
-    Object.values(this.effects).forEach(effect => {
-      if (effect.update) {
-        effect.update();
+    // 按优先级排序动效
+    const sortedEffects = Object.entries(this.effects)
+      .filter(([name]) => this.activeEffects.has(name))
+      .sort(([,a], [,b]) => b.config.priority - a.config.priority);
+    
+    sortedEffects.forEach(([name, { instance }]) => {
+      if (instance.update) {
+        instance.update();
       }
     });
   }
@@ -68,9 +153,14 @@ export class EffectsManager {
    * 绘制所有动效
    */
   draw() {
-    Object.values(this.effects).forEach(effect => {
-      if (effect.draw) {
-        effect.draw();
+    // 按优先级排序动效
+    const sortedEffects = Object.entries(this.effects)
+      .filter(([name]) => this.activeEffects.has(name))
+      .sort(([,a], [,b]) => b.config.priority - a.config.priority);
+    
+    sortedEffects.forEach(([name, { instance }]) => {
+      if (instance.draw) {
+        instance.draw();
       }
     });
   }
@@ -81,9 +171,9 @@ export class EffectsManager {
    * @param {number} y - 鼠标Y坐标
    */
   setMousePosition(x, y) {
-    Object.values(this.effects).forEach(effect => {
-      if (effect.setMousePosition) {
-        effect.setMousePosition(x, y);
+    Object.entries(this.effects).forEach(([name, { instance }]) => {
+      if (this.activeEffects.has(name) && instance.setMousePosition) {
+        instance.setMousePosition(x, y);
       }
     });
   }
@@ -93,9 +183,9 @@ export class EffectsManager {
    * @param {number} seed - 随机种子
    */
   setSeed(seed) {
-    Object.values(this.effects).forEach(effect => {
-      if (effect.setSeed) {
-        effect.setSeed(seed);
+    Object.entries(this.effects).forEach(([name, { instance }]) => {
+      if (this.activeEffects.has(name) && instance.setSeed) {
+        instance.setSeed(seed);
       }
     });
   }
@@ -108,9 +198,9 @@ export class EffectsManager {
   resize(width, height) {
     this.isMobile = width < 768;
     
-    Object.values(this.effects).forEach(effect => {
-      if (effect.setSize) {
-        effect.setSize(width, height);
+    Object.entries(this.effects).forEach(([name, { instance }]) => {
+      if (instance.setSize) {
+        instance.setSize(width, height);
       }
     });
   }
@@ -125,6 +215,8 @@ export class EffectsManager {
     
     window.removeEventListener('resize', this._onResize.bind(this));
     this.isInitialized = false;
+    this.effectGroups = {};
+    this.activeEffects.clear();
   }
 
   /**

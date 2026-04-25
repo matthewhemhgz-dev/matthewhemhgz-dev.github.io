@@ -52,7 +52,11 @@ function initQiLab() {
       } else {
         particles = new MinimalParticles('particles-canvas', particleOptions);
         // 注册粒子系统到动效管理器
-        effectsManager.registerEffect('particles', particles);
+        effectsManager.registerEffect('particles', particles, {
+          group: 'background',
+          priority: 10,
+          active: true
+        });
       }
       cleanupFns.push(() => particles.destroy());
     });
@@ -68,7 +72,11 @@ function initQiLab() {
         blend: 'screen',
       });
       // 注册鼠标光效到动效管理器
-      effectsManager.registerEffect('cursor-glow', cursorGlow);
+      effectsManager.registerEffect('cursor-glow', cursorGlow, {
+        group: 'cursor',
+        priority: 20,
+        active: true
+      });
       cleanupFns.push(() => cursorGlow.destroy());
     });
   }
@@ -103,7 +111,11 @@ function initQiLab() {
       '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
     );
     // 注册卡片倾斜效果到动效管理器
-    effectsManager.registerEffect('card-tilt', cardTilt);
+    effectsManager.registerEffect('card-tilt', cardTilt, {
+      group: 'interaction',
+      priority: 15,
+      active: true
+    });
     cleanupFns.push(() => cardTilt.destroy());
   });
 
@@ -129,7 +141,11 @@ function initQiLab() {
   if (!prefersReducedMotion) {
     const interactionEnhancements = new InteractionEnhancements();
     // 注册交互增强效果到动效管理器
-    effectsManager.registerEffect('interaction-enhancements', interactionEnhancements);
+    effectsManager.registerEffect('interaction-enhancements', interactionEnhancements, {
+      group: 'interaction',
+      priority: 5,
+      active: true
+    });
     cleanupFns.push(() => {
       // 清理交互增强效果的相关资源
     });

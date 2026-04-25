@@ -45,7 +45,11 @@ class BackgroundArt {
         effectsManager.initialize();
 
         // 注册动效
-        effectsManager.registerEffect('background-art', this.artInstance);
+        effectsManager.registerEffect('background-art', this.artInstance, {
+          group: 'background',
+          priority: 5,
+          active: true
+        });
 
         // 添加鼠标移动事件监听器
         canvas.mouseMoved(() => {
@@ -99,7 +103,11 @@ class BackgroundArt {
       // 初始化新的艺术实例
       this._initArtInstance(this.p5Instance);
       // 注册新的动效
-      effectsManager.registerEffect('background-art', this.artInstance);
+      effectsManager.registerEffect('background-art', this.artInstance, {
+        group: 'background',
+        priority: 5,
+        active: true
+      });
     }
   }
 

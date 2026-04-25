@@ -48,10 +48,10 @@ const getLanguagePath = (locale) => {
   .lang-toggle-wrapper {
     display: flex;
     gap: 4px;
-    background: var(--qi-base-04);
+    background: var(--qi-neutral-100);
     padding: 3px; /* Slightly more padding for breathability */
     border-radius: var(--qi-radius-md);
-    border: 1px solid var(--qi-base-06);
+    border: 1px solid var(--qi-border-light);
     flex-shrink: 0;
     width: fit-content;
   }
@@ -61,8 +61,8 @@ const getLanguagePath = (locale) => {
     border-radius: var(--qi-radius-sm);
     font-family: var(--qi-font-mono);
     font-size: 11px;
-    font-weight: var(--qi-weight-medium);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: var(--qi-font-medium);
+    transition: all var(--qi-transition-fast);
     text-decoration: none;
     min-height: 28px; /* Slightly reduced height to fit better in small bars */
     display: flex;
@@ -76,24 +76,33 @@ const getLanguagePath = (locale) => {
 
   .lang-toggle-item:hover {
     color: var(--qi-text-primary);
-    background: var(--qi-base-03);
+    background: var(--qi-neutral-200);
     opacity: 1;
   }
 
   .lang-toggle-item.active {
-    background: var(--qi-brand-emerald-25);
-    color: var(--qi-emerald-800);
+    background: var(--qi-brand-emerald-light);
+    color: var(--qi-brand-emerald-dark);
     box-shadow: var(--qi-shadow-sm);
     opacity: 1;
   }
 
   :global(.dark) .lang-toggle-wrapper {
-    background: var(--qi-surface-sub);
-    border-color: var(--qi-border-strong);
+    background: var(--qi-neutral-800);
+    border-color: var(--qi-border-dark);
+  }
+
+  :global(.dark) .lang-toggle-item {
+    color: var(--qi-text-secondary);
+  }
+
+  :global(.dark) .lang-toggle-item:hover {
+    color: var(--qi-text-primary);
+    background: var(--qi-neutral-700);
   }
 
   :global(.dark) .lang-toggle-item.active {
-    background: var(--qi-brand-emerald-25);
-    color: var(--qi-on-dark-primary);
+    background: var(--qi-brand-emerald-dark);
+    color: var(--qi-text-inverse);
   }
 </style>
