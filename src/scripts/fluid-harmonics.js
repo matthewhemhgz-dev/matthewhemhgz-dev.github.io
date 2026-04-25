@@ -11,6 +11,14 @@ class FluidHarmonics {
     this.trailLength = 0.05; // 减少拖尾长度以提高性能
     this.collisionRadius = 8; // 碰撞检测半径
     this.collisionStrength = 0.5; // 碰撞强度
+    this.fluidType = 'default'; // default, wave, vortex, fountain
+    this.waveAmplitude = 50; // 波浪振幅
+    this.waveFrequency = 0.02; // 波浪频率
+    this.waveSpeed = 0.02; // 波浪速度
+    this.vortexStrength = 0.5; // 漩涡强度
+    this.vortexCenter = { x: width / 2, y: height / 2 }; // 漩涡中心
+    this.fountainHeight = 200; // 喷泉高度
+    this.fountainWidth = 100; // 喷泉宽度
     this.colors = {
       emerald: '#4ade80',
       amber: '#fbbf24',
@@ -22,6 +30,7 @@ class FluidHarmonics {
     this.mouseY = height / 2;
     this.mouseRadius = 100;
     this.mouseStrength = 0.1;
+    this.canvas = null; // 画布引用
     
     // 根据设备性能调整参数
     if (this.isMobile) {
@@ -31,6 +40,10 @@ class FluidHarmonics {
       this.mouseStrength = 0.08;
       this.collisionRadius = 6;
       this.collisionStrength = 0.4;
+      this.waveAmplitude = 30;
+      this.vortexStrength = 0.3;
+      this.fountainHeight = 150;
+      this.fountainWidth = 80;
     }
     
     this.initializeParticles();
@@ -59,16 +72,68 @@ class FluidHarmonics {
       const index = (this.frameCount * 3 + i) % this.numParticles;
       const particle = this.particles[index];
       
-      // Calculate noise-based force
-      let noiseValue = noise(
-        particle.x * this.noiseScale,
-        particle.y * this.noiseScale,
-        this.frameCount * 0.001
-      );
+      // 根据流体类型计算力
+      let forceX = 0;
+      let forceY = 0;
+      let angle;
       
-      let angle = noiseValue * TWO_PI * 4;
-      let forceX = cos(angle) * this.noiseStrength;
-      let forceY = sin(angle) * this.noiseStrength;
+      switch (this.fluidType) {
+        case 'wave':
+          // 波浪效果
+          let waveOffset = sin(particle.x * this.waveFrequency + this.frameCount * this.waveSpeed) * this.waveAmplitude;
+          let targetY = this.height / 2 + waveOffset;
+          forceY = (targetY - particle.y) * 0.01;
+          forceX = 0.1;
+          break;
+          
+        case 'vortex':
+          // 漩涡效果
+          let dx = particle.x - this.vortexCenter.x;
+          let dy = particle.y - this.vortexCenter.y;
+          let distance = sqrt(dx * dx + dy * dy);
+          angle = atan2(dy, dx);
+          forceX = (-sin(angle) * this.vortexStrength) / (distance * 0.1 + 1);
+          forceY = (cos(angle) * this.vortexStrength) / (distance * 0.1 + 1);
+          // 向中心的吸引力
+          forceX -= dx * 0.001;
+          forceY -= dy * 0.001;
+          break;
+          
+        case 'fountain':
+          // 喷泉效果
+          let fountainCenterX = this.width / 2;
+          let fountainBottomY = this.height - 50;
+          
+          // 粒子从底部向上喷射
+          if (particle.y > fountainBottomY - this.fountainHeight) {
+            // 上升阶段
+            forceY = -0.3;
+            // 水平扩散
+            forceX = (particle.x - fountainCenterX) * 0.005;
+          } else {
+            // 下落阶段
+            forceY = 0.2;
+          }
+          
+          // 限制在喷泉宽度内
+          if (abs(particle.x - fountainCenterX) > this.fountainWidth) {
+            forceX = (fountainCenterX - particle.x) * 0.01;
+          }
+          break;
+          
+        default:
+          // 默认噪声效果
+          let noiseValue = noise(
+            particle.x * this.noiseScale,
+            particle.y * this.noiseScale,
+            this.frameCount * 0.001
+          );
+          
+          angle = noiseValue * TWO_PI * 4;
+          forceX = cos(angle) * this.noiseStrength;
+          forceY = sin(angle) * this.noiseStrength;
+          break;
+      }
       
       // 添加鼠标交互力
       let dx = this.mouseX - particle.x;
@@ -202,6 +267,14 @@ class FluidHarmonics {
     if (params.trailLength) this.trailLength = params.trailLength;
     if (params.collisionRadius) this.collisionRadius = params.collisionRadius;
     if (params.collisionStrength) this.collisionStrength = params.collisionStrength;
+    if (params.fluidType) this.fluidType = params.fluidType;
+    if (params.waveAmplitude) this.waveAmplitude = params.waveAmplitude;
+    if (params.waveFrequency) this.waveFrequency = params.waveFrequency;
+    if (params.waveSpeed) this.waveSpeed = params.waveSpeed;
+    if (params.vortexStrength) this.vortexStrength = params.vortexStrength;
+    if (params.vortexCenter) this.vortexCenter = params.vortexCenter;
+    if (params.fountainHeight) this.fountainHeight = params.fountainHeight;
+    if (params.fountainWidth) this.fountainWidth = params.fountainWidth;
     this.initializeParticles();
   }
 
@@ -211,6 +284,9 @@ class FluidHarmonics {
     this.height = height;
     this.isMobile = width < 768;
     
+    // 更新漩涡中心位置
+    this.vortexCenter = { x: width / 2, y: height / 2 };
+    
     // 根据屏幕尺寸调整参数
     if (this.isMobile) {
       this.numParticles = 300;
@@ -219,6 +295,10 @@ class FluidHarmonics {
       this.mouseStrength = 0.08;
       this.collisionRadius = 6;
       this.collisionStrength = 0.4;
+      this.waveAmplitude = 30;
+      this.vortexStrength = 0.3;
+      this.fountainHeight = 150;
+      this.fountainWidth = 80;
     } else {
       this.numParticles = 500;
       this.trailLength = 0.05;
@@ -226,6 +306,10 @@ class FluidHarmonics {
       this.mouseStrength = 0.1;
       this.collisionRadius = 8;
       this.collisionStrength = 0.5;
+      this.waveAmplitude = 50;
+      this.vortexStrength = 0.5;
+      this.fountainHeight = 200;
+      this.fountainWidth = 100;
     }
     
     this.initializeParticles();
@@ -235,6 +319,11 @@ class FluidHarmonics {
   setMousePosition(x, y) {
     this.mouseX = x;
     this.mouseY = y;
+  }
+
+  // 设置画布引用
+  setCanvas(canvas) {
+    this.canvas = canvas;
   }
 }
 
