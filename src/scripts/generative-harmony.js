@@ -189,6 +189,8 @@ class GenerativeHarmony {
   }
 }
 
+export { GenerativeHarmony };
+
 // Usage example:
 // let generative = new GenerativeHarmony(windowWidth, windowHeight);
 // 

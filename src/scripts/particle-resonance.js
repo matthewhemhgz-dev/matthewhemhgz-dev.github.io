@@ -264,6 +264,8 @@ class ParticleResonance {
   }
 }
 
+export { ParticleResonance };
+
 // Usage example:
 // let particles = new ParticleResonance(windowWidth, windowHeight);
 // 

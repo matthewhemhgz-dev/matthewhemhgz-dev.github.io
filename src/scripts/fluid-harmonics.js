@@ -202,6 +202,8 @@ class FluidHarmonics {
   }
 }
 
+export { FluidHarmonics };
+
 // Usage example:
 // let fluid = new FluidHarmonics(windowWidth, windowHeight);
 // 

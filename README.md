@@ -19,8 +19,13 @@
 - **动态光影效果**: 基于鼠标位置的动态光影变化，提升视觉深度和真实感
 - **增强的玻璃态效果**: 具有反光特性和折射效果的玻璃态设计，支持亮色和暗色模式
 - **流体背景效果**: 动态流体背景，响应鼠标交互，提升沉浸感
-- **品牌内核**: 专注于“思维架构与知识工程”，每一处视觉与文案均经过微观逻辑校准
-- **设计趋势**: Bento 网格布局、玻璃态设计、微动画和交互效果
+- **生成式艺术系统**: 基于数学模式的生成式艺术，实现几何形状的和谐运动和色彩映射
+- **粒子共振系统**: 优化的粒子系统，支持鼠标交互和响应式参数调整
+- **品牌视觉元素**: 基于品牌色彩的视觉组件，支持 logo、pattern 和 abstract 三种类型
+- **文档封面模板**: 统一的文档封面设计，支持 modern、minimal 和 artistic 三种风格
+- **算法艺术交互**: 所有算法艺术元素都支持鼠标交互，粒子和形状会跟随鼠标互动
+- **品牌内核**: 专注于"思维架构与知识工程"，每一处视觉与文案均经过微观逻辑校准
+- **设计趋势**: Bento 网格布局、玻璃态设计、微动画和交互效果、算法艺术
 
 ## 快速开始
 
@@ -60,11 +65,11 @@ npm run lighthouse     # Lighthouse 性能审计
 
 ```
 src/
-├── components/        # Astro 组件 (26 个)
+├── components/        # Astro 组件 (30 个)
 │   ├── decorations/   # 装饰性组件 (SectionDivider)
 │   ├── global/        # 全局组件 (Navigation, Footer, SearchModal, BackToTop...)
 │   ├── sections/      # 首页区块组件 (Hero, About, Featured, Toolbox, Platforms, Testimonials...)
-│   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage)
+│   └── ui/            # 通用 UI 组件 (DashCard, SectionHeader, OptimizedImage, GenerativeArt, BrandVisual, DocumentCover)
 ├── data/blog/         # 博客文章
 │   ├── zh/            # 中文文章 (17 篇 Markdown, 140,000+ 字)
 │   └── en/            # 英文文章 (17 篇 Markdown, 全量翻译完成)
@@ -72,7 +77,7 @@ src/
 ├── pages/             # 路由页面
 │   ├── [zh]/          # 中文主站 (首页/博客/标签/关于)
 │   └── en/            # 英文分站 (全量 Feature Parity)
-├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code...)
+├── scripts/           # 交互脚本 (card-tilt, particles, cursor-glow, copy-code, generative-harmony, background-art, brand-visuals, document-cover, fluid-harmonics, particle-resonance...)
 ├── styles/            # CSS 样式 (40 个文件, 设计令牌驱动)
 │   ├── base/               # 基础样式 (tokens, dark-tokens, reset, global)
 │   ├── components/         # 组件样式
@@ -161,12 +166,14 @@ src/
 | 构建时间      | ~8.5s               |
 | 构建产物      | 7.8 MB / 10 MB 预算 |
 | CSS 文件      | 40 个 (均 ≤500 行)  |
-| 组件文件      | 26 个 (均 ≤300 行)  |
+| 组件文件      | 30 个 (均 ≤300 行)  |
+| JS 脚本文件   | 13 个               |
 | Pagefind 索引 | 114 页              |
 | 可访问性      | WCAG 2 AA 标准      |
-| 微动画效果    | 12+ 种              |
-| 设计趋势      | Bento 网格布局、玻璃态设计 |
+| 微动画效果    | 16+ 种              |
+| 设计趋势      | Bento 网格布局、玻璃态设计、算法艺术 |
 | 内容系列      | 1 个 (知识管理体系)  |
+| 算法艺术系统  | 5 个 (生成式、粒子、流体、品牌视觉、文档封面) |
 
 ## 许可证
 
