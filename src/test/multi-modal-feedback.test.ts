@@ -3,9 +3,9 @@ import { MultiModalFeedback } from '../scripts/multi-modal-feedback';
 
 describe('MultiModalFeedback', () => {
   let feedback: MultiModalFeedback;
-  let originalAudioContext: any;
-  let originalVibrate: any;
-  let originalHID: any;
+  let originalAudioContext: unknown;
+  let originalVibrate: unknown;
+  let originalHID: unknown;
 
   beforeEach(() => {
     originalAudioContext = window.AudioContext || window.webkitAudioContext;
@@ -20,37 +20,31 @@ describe('MultiModalFeedback', () => {
           frequency: { value: 0 },
           connect: vi.fn(),
           start: vi.fn(),
-          stop: vi.fn(),
+          stop: vi.fn()
         };
       }
       createGain() {
         return {
           gain: { value: 0 },
-          connect: vi.fn(),
+          connect: vi.fn()
         };
       }
-      resume() {
-        return Promise.resolve();
-      }
-      close() {
-        return Promise.resolve();
-      }
+      resume() { return Promise.resolve(); }
+      close() { return Promise.resolve(); }
       state = 'running';
       destination = {};
     };
-
+    
     // 模拟振动功能
     navigator.vibrate = vi.fn();
-
+    
     // 模拟HID
     navigator.hid = {
-      requestDevice: vi.fn().mockResolvedValue([
-        {
-          open: vi.fn().mockResolvedValue(undefined),
-          close: vi.fn().mockResolvedValue(undefined),
-        },
-      ]),
-    } as any;
+      requestDevice: vi.fn().mockResolvedValue([{
+        open: vi.fn().mockResolvedValue(undefined),
+        close: vi.fn().mockResolvedValue(undefined)
+      }])
+    };
 
     feedback = new MultiModalFeedback();
   });
@@ -119,11 +113,10 @@ describe('MultiModalFeedback', () => {
 
   it('addFeedbackToElement() 为元素添加反馈事件', () => {
     const element = document.createElement('button');
-    const originalAddEventListener = element.addEventListener;
     const addEventListenerSpy = vi.spyOn(element, 'addEventListener');
-
+    
     feedback.addFeedbackToElement(element);
-
+    
     expect(addEventListenerSpy).toHaveBeenCalledWith('mouseenter', expect.any(Function));
     expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
     expect(addEventListenerSpy).toHaveBeenCalledWith('focus', expect.any(Function));
@@ -156,10 +149,10 @@ describe('MultiModalFeedback', () => {
   });
 
   it('_getKeyFrequency() 返回正确的频率', () => {
-    const frequency = (feedback as any)._getKeyFrequency('a');
+    const frequency = (feedback as unknown as { _getKeyFrequency: (key: string) => number })._getKeyFrequency('a');
     expect(frequency).toBe(440);
-
-    const defaultFrequency = (feedback as any)._getKeyFrequency('1');
+    
+    const defaultFrequency = (feedback as unknown as { _getKeyFrequency: (key: string) => number })._getKeyFrequency('1');
     expect(defaultFrequency).toBe(440);
   });
 
@@ -167,11 +160,11 @@ describe('MultiModalFeedback', () => {
     const event = {
       target: { tagName: 'BUTTON' },
       clientX: 100,
-      clientY: 100,
-    } as any;
-
-    (feedback as any)._recordUserAction('click', event);
-
+      clientY: 100
+    } as Event;
+    
+    (feedback as unknown as { _recordUserAction: (type: string, event: Event) => void })._recordUserAction('click', event);
+    
     // 这里可以添加更多断言，检查动作是否被正确记录
   });
 
@@ -180,14 +173,14 @@ describe('MultiModalFeedback', () => {
     const event = {
       target: { tagName: 'BUTTON' },
       clientX: 100,
-      clientY: 100,
-    } as any;
-
+      clientY: 100
+    } as Event;
+    
     // 添加足够的动作以触发预测
     for (let i = 0; i < 5; i++) {
-      (feedback as any)._recordUserAction('click', event);
+      (feedback as unknown as { _recordUserAction: (type: string, event: Event) => void })._recordUserAction('click', event);
     }
-
+    
     // 这里可以添加更多断言，检查预测功能
   });
 });

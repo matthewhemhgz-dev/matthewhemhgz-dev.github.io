@@ -33,13 +33,13 @@ describe('EnvironmentAware', () => {
 
   function mockDate(fixedDate: Date) {
     global.Date = class extends originalDate {
-      constructor(...args: any[]) {
+      constructor(...args: unknown[]) {
         if (args.length === 0) {
           return fixedDate;
         }
         return super(...args);
       }
-    } as any;
+    } as typeof Date;
   }
 
   it('构造函数正确初始化环境数据', () => {
@@ -128,16 +128,16 @@ describe('EnvironmentAware', () => {
 
   it('onUpdate() 添加回调函数', () => {
     let called = false;
-    let receivedEnv: any = null;
-
+    let receivedEnv: unknown = null;
+    
     environmentAware.onUpdate((env) => {
       called = true;
       receivedEnv = env;
     });
-
+    
     // 触发更新（通过设置天气）
     environmentAware.setWeather({ type: 'sunny' });
-
+    
     expect(called).toBe(true);
     expect(receivedEnv).not.toBeNull();
   });
