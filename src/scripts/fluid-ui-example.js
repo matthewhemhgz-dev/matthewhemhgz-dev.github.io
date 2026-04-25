@@ -9,49 +9,49 @@ function initFluidUI() {
   // 创建流体实例
   const canvas = document.getElementById('fluid-canvas');
   if (!canvas) return;
-  
+
   // 设置画布尺寸
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-  
+
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
-  
+
   // 初始化流体
   const fluid = new FluidHarmonics(window.innerWidth, window.innerHeight);
   fluid.setCanvas(canvas);
-  
+
   // 初始化流体-UI交互
   const fluidUI = new FluidUIInteraction(fluid);
-  
+
   // 监听窗口大小变化
   window.addEventListener('resize', () => {
     fluid.setSize(window.innerWidth, window.innerHeight);
     fluidUI.handleResize();
   });
-  
+
   // 动画循环
   function animate() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    
+
     // 更新流体
     fluid.update();
-    
+
     // 绘制流体
     fluid.draw();
-    
+
     // 绘制UI交互涟漪
     fluidUI.drawRipples();
-    
+
     requestAnimationFrame(animate);
   }
-  
+
   // 开始动画
   animate();
-  
+
   // 示例：切换流体类型
   window.addEventListener('keydown', (e) => {
     switch (e.key) {
@@ -69,7 +69,7 @@ function initFluidUI() {
         break;
     }
   });
-  
+
   console.log('Fluid UI interaction initialized!');
   console.log('Press 1-4 to switch fluid types:');
   console.log('1: Default noise');

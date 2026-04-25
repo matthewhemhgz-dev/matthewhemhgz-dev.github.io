@@ -95,7 +95,13 @@ export default [
     },
   },
   {
-    ignores: ['dist/', '.astro/', 'node_modules/', 'playwright-report/', 'public/service-worker.js'],
+    ignores: [
+      'dist/',
+      '.astro/',
+      'node_modules/',
+      'playwright-report/',
+      'public/service-worker.js',
+    ],
   },
   {
     files: ['scripts/**/*.mjs'],

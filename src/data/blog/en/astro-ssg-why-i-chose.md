@@ -34,6 +34,7 @@ These aren't "problems" with Next.js — it's an excellent full-stack framework,
 Astro's most core innovation is **Islands Architecture**. This concept was proposed by Preact author Jason Miller in 2020, and Astro was the first framework to natively implement it.
 
 Traditional SPA (Single Page Application) approach:
+
 - The entire page is a JavaScript application
 - All content is rendered by client-side JavaScript
 - Users must download, parse, and execute the entire application's JavaScript before seeing any content
@@ -66,6 +67,7 @@ graph TB
 **Core idea**: Pages are pure static HTML by default, and only interactive parts ("islands") load JavaScript. Each island can independently choose to use React, Vue, Svelte, or native Web Components.
 
 This means:
+
 - Blog post pages: **Zero JavaScript** (pure HTML + CSS)
 - Search component on the homepage: Only loads search-related JS
 - Table of contents navigation on article pages: Only loads table of contents component JS
@@ -116,6 +118,7 @@ export const collections = { blog };
 ```
 
 This gives us:
+
 - **Type safety**: TypeScript automatically infers types when using `entry.data.title` in templates
 - **Frontend validation**: Automatic validation of all frontmatter data during build
 - **Query API**: Built-in `getCollection()` and `getEntry()` methods
@@ -126,16 +129,16 @@ After migration, I used WebPageTest and Lighthouse to conduct a comprehensive co
 
 ### Core Metrics Comparison
 
-| Metric                               | Next.js (Old Site) | Astro (New Site) | Improvement    |
-| ---------------------------------- | -------------- | ------------ | --------- |
-| **Lighthouse Performance**         | 78             | 100          | +22       |
-| **First Contentful Paint (FCP)**   | 1.8s           | 0.6s         | 3x Faster |
-| **Largest Contentful Paint (LCP)** | 3.2s           | 1.1s         | 3x Faster |
-| **Total Blocking Time (TBT)**      | 380ms          | 0ms          | Completely Eliminated |
-| **Cumulative Layout Shift (CLS)**  | 0.12           | 0.01         | 12x Better |
-| **JavaScript Size (Homepage)**     | 142KB          | 0KB          | 100% Reduction |
-| **JavaScript Size (Article Page)** | 89KB           | 0KB          | 100% Reduction |
-| **Build Time**                     | 48s            | 12s          | 4x Faster |
+| Metric                             | Next.js (Old Site) | Astro (New Site) | Improvement           |
+| ---------------------------------- | ------------------ | ---------------- | --------------------- |
+| **Lighthouse Performance**         | 78                 | 100              | +22                   |
+| **First Contentful Paint (FCP)**   | 1.8s               | 0.6s             | 3x Faster             |
+| **Largest Contentful Paint (LCP)** | 3.2s               | 1.1s             | 3x Faster             |
+| **Total Blocking Time (TBT)**      | 380ms              | 0ms              | Completely Eliminated |
+| **Cumulative Layout Shift (CLS)**  | 0.12               | 0.01             | 12x Better            |
+| **JavaScript Size (Homepage)**     | 142KB              | 0KB              | 100% Reduction        |
+| **JavaScript Size (Article Page)** | 89KB               | 0KB              | 100% Reduction        |
+| **Build Time**                     | 48s                | 12s              | 4x Faster             |
 
 ### Real User Experience Improvements
 

@@ -43,7 +43,8 @@
   --light-intensity: 1;
   --light-blur: 20px;
   --light-shadow-opacity: 0.2;
-  --light-transition: transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --light-transition:
+    transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* 光源容器样式 */
@@ -135,7 +136,7 @@
     --light-intensity: 0.8;
     --light-blur: 15px;
   }
-  
+
   .light-card {
     padding: var(--qi-space-3xl);
   }
@@ -149,7 +150,7 @@
     --light-intensity: 0.6;
     --light-blur: 10px;
   }
-  
+
   .light-card {
     padding: var(--qi-space-2xl);
   }

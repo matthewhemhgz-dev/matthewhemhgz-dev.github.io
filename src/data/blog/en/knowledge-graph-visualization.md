@@ -79,6 +79,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 ### 1. Obsidian
 
 **Features**:
+
 - Native support for bidirectional links and knowledge graphs
 - Local storage, data security
 - Rich plugin ecosystem
@@ -89,6 +90,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 ### 2. Neo4j Bloom
 
 **Features**:
+
 - Professional graph database visualization tool
 - Powerful query and analysis capabilities
 - Support for large-scale knowledge graphs
@@ -99,6 +101,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 ### 3. Gephi
 
 **Features**:
+
 - Open-source network analysis and visualization tool
 - Rich layout algorithms
 - Support for large-scale networks
@@ -109,6 +112,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 ### 4. Cytoscape
 
 **Features**:
+
 - Visualization tool focused on biological networks
 - Highly customizable
 - Plugin extension support
@@ -119,6 +123,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 ### 5. Graphviz
 
 **Features**:
+
 - Command-line tool, generates graphs through code
 - Highly customizable
 - Suitable for automated generation
@@ -239,6 +244,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 **Problem**: The quality of knowledge graphs depends on the quality of input data
 
 **Solutions**:
+
 - Establish standard processes for data collection and verification
 - Use tools to automatically check and clean data
 - Regularly review and update data
@@ -248,6 +254,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 **Problem**: As knowledge grows, graphs may become too complex
 
 **Solutions**:
+
 - Adopt hierarchical design, from macro to micro
 - Use filtering and search functions to manage complexity
 - Regularly organize and optimize graph structure
@@ -257,6 +264,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 **Problem**: There are multiple knowledge graph tools on the market, making selection difficult
 
 **Solutions**:
+
 - Choose tools based on specific needs and usage scenarios
 - Start small and gradually expand
 - Consider tool scalability and ecosystem
@@ -266,6 +274,7 @@ Knowledge graph visualization is a technology that displays relationships betwee
 **Problem**: Knowledge graphs require continuous maintenance and updates
 
 **Solutions**:
+
 - Establish regular maintenance habits
 - Use version control to track changes
 - Encourage team members to jointly maintain

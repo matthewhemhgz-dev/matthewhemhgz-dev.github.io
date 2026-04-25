@@ -17,10 +17,10 @@
       const canvas = p.createCanvas(window.innerWidth, 400);
       canvas.parent('generative-art-canvas');
       p.noFill();
-      
+
       // 初始化生成式艺术
       generativeArt = new GenerativeHarmony(p.width, p.height, Math.floor(Math.random() * 100000));
-      
+
       // 添加鼠标移动事件监听器
       canvas.mouseMoved(() => {
         if (generativeArt && generativeArt.setMousePosition) {

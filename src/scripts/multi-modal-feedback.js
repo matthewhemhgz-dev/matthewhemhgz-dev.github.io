@@ -1,15 +1,53 @@
+/**
+ * 多模态反馈系统
+ * 支持视觉、听觉和触觉反馈
+ * @class MultiModalFeedback
+ */
 class MultiModalFeedback {
+  /**
+   * @typedef {Object} FeedbackOptions
+   * @property {number} [intensity=0.5] - 反馈强度
+   * @property {number} [duration=50] - 反馈持续时间（毫秒）
+   * @property {number} [frequency=440] - 音频频率（Hz）
+   * @property {number[]} [pattern] - 触觉反馈模式
+   */
+
+  /**
+   * @typedef {Object} UserAction
+   * @property {string} type - 动作类型
+   * @property {number} timestamp - 时间戳
+   * @property {string} target - 目标元素
+   * @property {Object|null} coordinates - 坐标
+   * @property {string|null} key - 按键
+   */
+
+  /**
+   * @typedef {Object} ElementFeedbackOptions
+   * @property {boolean} [hover=true] - 悬停反馈
+   * @property {boolean} [click=true] - 点击反馈
+   * @property {boolean} [focus=true] - 焦点反馈
+   */
+
   constructor() {
+    /** @type {AudioContext|null} */
     this.audioContext = null;
+    /** @type {boolean} */
     this.audioEnabled = false;
+    /** @type {boolean} */
     this.hapticEnabled = false;
+    /** @type {HID|null} */
     this.hapticDevice = null;
+    /** @type {UserAction[]} */
     this.userActions = [];
+    /** @type {number} */
     this.actionThreshold = 5; // 收集多少个动作后开始预测
-    
+
     this.initialize();
   }
 
+  /**
+   * 初始化多模态反馈系统
+   */
   initialize() {
     // 初始化音频上下文
     this._initializeAudio();
@@ -19,6 +57,10 @@ class MultiModalFeedback {
     this._listenToUserActions();
   }
 
+  /**
+   * 初始化音频上下文
+   * @private
+   */
   _initializeAudio() {
     // 尝试初始化音频上下文
     try {
@@ -30,6 +72,10 @@ class MultiModalFeedback {
     }
   }
 
+  /**
+   * 初始化触觉反馈
+   * @private
+   */
   _initializeHaptic() {
     // 检查是否支持触觉反馈
     if ('vibrate' in navigator) {
@@ -43,10 +89,14 @@ class MultiModalFeedback {
     }
   }
 
+  /**
+   * 请求HID设备访问
+   * @private
+   */
   async _requestHIDAccess() {
     try {
       const devices = await navigator.hid.requestDevice({
-        filters: [{ usagePage: 0x01, usage: 0x05 }] // 通用输入设备
+        filters: [{ usagePage: 0x01, usage: 0x05 }], // 通用输入设备
       });
       if (devices.length > 0) {
         this.hapticDevice = devices[0];
@@ -59,10 +109,14 @@ class MultiModalFeedback {
     }
   }
 
+  /**
+   * 监听用户交互动作
+   * @private
+   */
   _listenToUserActions() {
     // 监听用户交互动作
     const actionTypes = ['click', 'touchstart', 'keydown', 'scroll', 'mouseover'];
-    
+
     actionTypes.forEach((type) => {
       document.addEventListener(type, (e) => {
         this._recordUserAction(type, e);
@@ -70,35 +124,50 @@ class MultiModalFeedback {
     });
   }
 
+  /**
+   * 记录用户动作
+   * @param {string} type - 动作类型
+   * @param {Event} event - 事件对象
+   * @private
+   */
   _recordUserAction(type, event) {
     // 记录用户动作
     const action = {
       type,
       timestamp: Date.now(),
       target: event.target.tagName,
-      coordinates: type === 'click' || type === 'touchstart' ? {
-        x: event.clientX || event.touches[0]?.clientX,
-        y: event.clientY || event.touches[0]?.clientY
-      } : null,
-      key: type === 'keydown' ? event.key : null
+      coordinates:
+        type === 'click' || type === 'touchstart'
+          ? {
+              x: event.clientX || event.touches[0]?.clientX,
+              y: event.clientY || event.touches[0]?.clientY,
+            }
+          : null,
+      key: type === 'keydown' ? event.key : null,
     };
-    
+
     this.userActions.push(action);
-    
+
     // 限制动作记录数量
     if (this.userActions.length > 100) {
       this.userActions.shift();
     }
-    
+
     // 触发反馈
     this._triggerFeedback(type, event);
-    
+
     // 预测用户行为
     if (this.userActions.length >= this.actionThreshold) {
       this._predictUserBehavior();
     }
   }
 
+  /**
+   * 根据动作类型触发不同的反馈
+   * @param {string} type - 动作类型
+   * @param {Event} event - 事件对象
+   * @private
+   */
   _triggerFeedback(type, event) {
     // 根据动作类型触发不同的反馈
     switch (type) {
@@ -106,14 +175,14 @@ class MultiModalFeedback {
       case 'touchstart':
         this.triggerFeedback('success', {
           intensity: 0.7,
-          duration: 50
+          duration: 50,
         });
         break;
       case 'keydown':
         this.triggerFeedback('key', {
           intensity: 0.3,
           duration: 30,
-          frequency: this._getKeyFrequency(event.key)
+          frequency: this._getKeyFrequency(event.key),
         });
         break;
       case 'scroll':
@@ -122,59 +191,92 @@ class MultiModalFeedback {
       case 'mouseover':
         this.triggerFeedback('hover', {
           intensity: 0.2,
-          duration: 20
+          duration: 20,
         });
         break;
     }
   }
 
+  /**
+   * 根据按键生成不同的频率
+   * @param {string} key - 按键
+   * @returns {number} 频率（Hz）
+   * @private
+   */
   _getKeyFrequency(key) {
     // 根据按键生成不同的频率
     const keyFrequencies = {
-      'a': 440, 'b': 494, 'c': 523, 'd': 587, 'e': 659, 'f': 698, 'g': 784,
-      'h': 880, 'i': 988, 'j': 1047, 'k': 1175, 'l': 1319, 'm': 1397, 'n': 1568,
-      'o': 1760, 'p': 1976, 'q': 2217, 'r': 2489, 's': 2637, 't': 2960, 'u': 3136,
-      'v': 3520, 'w': 3951, 'x': 4435, 'y': 4978, 'z': 5274
+      a: 440,
+      b: 494,
+      c: 523,
+      d: 587,
+      e: 659,
+      f: 698,
+      g: 784,
+      h: 880,
+      i: 988,
+      j: 1047,
+      k: 1175,
+      l: 1319,
+      m: 1397,
+      n: 1568,
+      o: 1760,
+      p: 1976,
+      q: 2217,
+      r: 2489,
+      s: 2637,
+      t: 2960,
+      u: 3136,
+      v: 3520,
+      w: 3951,
+      x: 4435,
+      y: 4978,
+      z: 5274,
     };
-    
+
     return keyFrequencies[key.toLowerCase()] || 440;
   }
 
-  // 触发多模态反馈
+  /**
+   * 触发多模态反馈
+   * @param {string} type - 反馈类型
+   * @param {FeedbackOptions} options - 反馈选项
+   */
   triggerFeedback(type, options = {}) {
-    const {
-      intensity = 0.5,
-      duration = 50,
-      frequency = 440,
-      pattern = [duration]
-    } = options;
-    
+    const { intensity = 0.5, duration = 50, frequency = 440, pattern = [duration] } = options;
+
     // 触发视觉反馈
     this._triggerVisualFeedback(type, options);
-    
+
     // 触发听觉反馈
     if (this.audioEnabled) {
       this._triggerAudioFeedback(type, {
         intensity,
         frequency,
-        duration
+        duration,
       });
     }
-    
+
     // 触发触觉反馈
     if (this.hapticEnabled) {
       this._triggerHapticFeedback(type, {
         intensity,
-        pattern
+        pattern,
       });
     }
   }
 
+  /**
+   * 触发视觉反馈
+   * @param {string} type - 反馈类型
+   * @param {FeedbackOptions} options - 反馈选项
+   * @private
+   */
   _triggerVisualFeedback(type, options) {
     // 视觉反馈已经在前面的任务中实现
     // 这里可以添加额外的视觉反馈效果
     const { intensity, duration } = options;
-    
+
     // 创建临时的视觉反馈元素
     const feedbackElement = document.createElement('div');
     feedbackElement.className = `feedback visual-feedback ${type}`;
@@ -187,45 +289,51 @@ class MultiModalFeedback {
       transform: scale(0);
       animation: feedback-pulse ${duration * 2}ms ease-out;
     `;
-    
+
     // 添加到文档
     document.body.appendChild(feedbackElement);
-    
+
     // 移除元素
     setTimeout(() => {
       feedbackElement.remove();
     }, duration * 2);
   }
 
+  /**
+   * 触发听觉反馈
+   * @param {string} type - 反馈类型
+   * @param {Object} options - 音频选项
+   * @private
+   */
   _triggerAudioFeedback(type, options) {
     const { intensity, frequency, duration } = options;
-    
+
     try {
       // 创建音频上下文
       if (!this.audioContext) {
         this._initializeAudio();
       }
-      
+
       if (!this.audioContext) return;
-      
+
       // 恢复音频上下文（如果被暂停）
       if (this.audioContext.state === 'suspended') {
         this.audioContext.resume();
       }
-      
+
       // 创建振荡器
       const oscillator = this.audioContext.createOscillator();
       const gainNode = this.audioContext.createGain();
-      
+
       // 设置参数
       oscillator.type = 'sine';
       oscillator.frequency.value = frequency;
       gainNode.gain.value = intensity * 0.3;
-      
+
       // 连接节点
       oscillator.connect(gainNode);
       gainNode.connect(this.audioContext.destination);
-      
+
       // 启动和停止
       oscillator.start();
       setTimeout(() => {
@@ -236,9 +344,15 @@ class MultiModalFeedback {
     }
   }
 
+  /**
+   * 触发触觉反馈
+   * @param {string} type - 反馈类型
+   * @param {Object} options - 触觉选项
+   * @private
+   */
   _triggerHapticFeedback(type, options) {
-    const { intensity, pattern } = options;
-    
+    const { pattern } = options;
+
     try {
       if ('vibrate' in navigator) {
         // 使用 navigator.vibrate
@@ -253,79 +367,94 @@ class MultiModalFeedback {
     }
   }
 
+  /**
+   * 预测用户行为
+   * @private
+   */
   _predictUserBehavior() {
     // 简单的用户行为预测
     // 分析最近的用户动作
     const recentActions = this.userActions.slice(-this.actionThreshold);
-    
+
     // 统计动作类型
     const actionCounts = recentActions.reduce((acc, action) => {
       acc[action.type] = (acc[action.type] || 0) + 1;
       return acc;
     }, {});
-    
+
     // 预测用户可能的下一步动作
-    const mostFrequentAction = Object.entries(actionCounts)
-      .sort((a, b) => b[1] - a[1])[0]?.[0];
-    
+    const mostFrequentAction = Object.entries(actionCounts).sort((a, b) => b[1] - a[1])[0]?.[0];
+
     if (mostFrequentAction) {
       this._providePredictiveFeedback(mostFrequentAction);
     }
   }
 
+  /**
+   * 根据预测的动作提供提前反馈
+   * @param {string} predictedAction - 预测的动作
+   * @private
+   */
   _providePredictiveFeedback(predictedAction) {
     // 根据预测的动作提供提前反馈
     console.log('Predicted action:', predictedAction);
-    
+
     // 这里可以根据预测的动作提供相应的反馈
     // 例如，如果预测用户会点击某个按钮，可以提前高亮该按钮
   }
 
-  // 为特定UI元素添加反馈
+  /**
+   * 为特定UI元素添加反馈
+   * @param {HTMLElement} element - 目标元素
+   * @param {ElementFeedbackOptions} options - 反馈选项
+   */
   addFeedbackToElement(element, options = {}) {
-    const {
-      hover = true,
-      click = true,
-      focus = true,
-      feedbackType = 'default'
-    } = options;
-    
+    const { hover = true, click = true, focus = true } = options;
+
     if (hover) {
       element.addEventListener('mouseenter', () => {
         this.triggerFeedback('hover', {
           intensity: 0.2,
-          duration: 20
+          duration: 20,
         });
       });
     }
-    
+
     if (click) {
       element.addEventListener('click', () => {
         this.triggerFeedback('success', {
           intensity: 0.7,
-          duration: 50
+          duration: 50,
         });
       });
     }
-    
+
     if (focus) {
       element.addEventListener('focus', () => {
         this.triggerFeedback('focus', {
           intensity: 0.3,
-          duration: 30
+          duration: 30,
         });
       });
     }
   }
 
-  // 批量为多个元素添加反馈
+  /**
+   * 批量为多个元素添加反馈
+   * @param {HTMLElement[]} elements - 元素数组
+   * @param {ElementFeedbackOptions} options - 反馈选项
+   */
   addFeedbackToElements(elements, options = {}) {
     elements.forEach((element) => {
       this.addFeedbackToElement(element, options);
     });
   }
 
-  // 启用/禁用反馈类型
+  /**
+   * 启用/禁用反馈类型
+   * @param {string|string[]} types - 反馈类型
+   * @param {boolean} enabled - 是否启用
+   */
   setEnabled(types, enabled) {
     if (Array.isArray(types)) {
       types.forEach((type) => {
@@ -336,6 +465,12 @@ class MultiModalFeedback {
     }
   }
 
+  /**
+   * 设置反馈类型的启用状态
+   * @param {string} type - 反馈类型
+   * @param {boolean} enabled - 是否启用
+   * @private
+   */
   _setFeedbackEnabled(type, enabled) {
     switch (type) {
       case 'audio':
@@ -350,18 +485,20 @@ class MultiModalFeedback {
     }
   }
 
-  // 清理
+  /**
+   * 清理资源
+   */
   destroy() {
     // 清理音频上下文
     if (this.audioContext) {
       this.audioContext.close();
     }
-    
+
     // 清理HID设备
     if (this.hapticDevice) {
       this.hapticDevice.close();
     }
-    
+
     this.userActions = [];
   }
 }

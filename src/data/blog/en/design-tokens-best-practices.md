@@ -70,16 +70,19 @@ Design tokens are the atomic units of design decisions. They are variables that 
 ### 3. Specific Naming Examples
 
 **Colors**:
+
 - `color-primary-500`: Primary color
 - `color-text-primary`: Primary text color
 - `color-bg-surface`: Surface background color
 
 **Spacing**:
+
 - `spacing-xs`: Extra small spacing
 - `spacing-md`: Medium spacing
 - `spacing-xl`: Extra large spacing
 
 **Typography**:
+
 - `font-size-heading-1`: Heading 1 font size
 - `font-weight-bold`: Bold font weight
 - `line-height-tight`: Tight line height
@@ -89,6 +92,7 @@ Design tokens are the atomic units of design decisions. They are variables that 
 ### 1. CSS Variables
 
 **Advantages**:
+
 - Native support
 - Runtime modifiable
 - Support theme switching
@@ -102,12 +106,12 @@ Design tokens are the atomic units of design decisions. They are variables that 
   --color-primary-500: #10b981;
   --color-text-primary: #1f2937;
   --color-bg-surface: #ffffff;
-  
+
   /* Spacing tokens */
   --spacing-xs: 0.25rem;
   --spacing-md: 1rem;
   --spacing-xl: 2rem;
-  
+
   /* Typography tokens */
   --font-size-heading-1: 2.5rem;
   --font-weight-bold: 700;
@@ -124,6 +128,7 @@ Design tokens are the atomic units of design decisions. They are variables that 
 ### 2. SCSS Variables
 
 **Advantages**:
+
 - Compile-time processing
 - Support nesting and calculations
 - Backward compatibility
@@ -146,7 +151,7 @@ $spacing-xl: 2rem;
   --color-primary-500: #{$color-primary-500};
   --color-text-primary: #{$color-text-primary};
   --color-bg-surface: #{$color-bg-surface};
-  
+
   --spacing-xs: #{$spacing-xs};
   --spacing-md: #{$spacing-md};
   --spacing-xl: #{$spacing-xl};
@@ -156,6 +161,7 @@ $spacing-xl: 2rem;
 ### 3. Style Dictionary
 
 **Advantages**:
+
 - Multi-platform support
 - Automatic code generation
 - Version control
@@ -185,6 +191,7 @@ $spacing-xl: 2rem;
 ### 4. JavaScript/TypeScript
 
 **Advantages**:
+
 - Type safety
 - Support complex logic
 - Framework integration
@@ -196,17 +203,17 @@ $spacing-xl: 2rem;
 export const tokens = {
   color: {
     primary: {
-      500: '#10b981'
+      500: '#10b981',
     },
     text: {
-      primary: '#1f2937'
-    }
+      primary: '#1f2937',
+    },
   },
   spacing: {
     xs: '0.25rem',
     md: '1rem',
-    xl: '2rem'
-  }
+    xl: '2rem',
+  },
 };
 
 // Generate CSS variables
@@ -281,17 +288,20 @@ export function generateCSSVariables() {
 ### Case Study 1: Enterprise Design System
 
 **Challenges**:
+
 - Multi-product, multi-team collaboration
 - Need to support multiple themes
 - Design and development need a unified language
 
 **Solutions**:
+
 - Use Style Dictionary to manage tokens
 - Establish a three-layer token structure (raw, semantic, component)
 - Automatically generate multi-platform code
 - Provide detailed token documentation
 
 **Results**:
+
 - Centralized management of design decisions
 - 40% improvement in development efficiency
 - Significant improvement in product visual consistency
@@ -299,17 +309,20 @@ export function generateCSSVariables() {
 ### Case Study 2: Dark Mode Implementation
 
 **Challenges**:
+
 - Need to support light and dark modes
 - Ensure all components adapt correctly
 - Provide a smooth theme switching experience
 
 **Solutions**:
+
 - Implement tokens using CSS variables
 - Define independent token values for each theme
 - Use media queries and class names to switch themes
 - Test theme adaptation for all components
 
 **Results**:
+
 - Seamless theme switching
 - Consistent visual experience
 - Easy-to-maintain theme system
@@ -347,6 +360,7 @@ export function generateCSSVariables() {
 **Problem**: Creating too many tokens or overly complex token structures
 
 **Solutions**:
+
 - Keep token structures simple
 - Only create necessary tokens
 - Regularly clean up unused tokens
@@ -356,6 +370,7 @@ export function generateCSSVariables() {
 **Problem**: Lack of consistency in token naming
 
 **Solutions**:
+
 - Establish clear naming conventions
 - Use automated tools to check naming
 - Regularly review token names
@@ -365,6 +380,7 @@ export function generateCSSVariables() {
 **Problem**: Insufficient documentation for tokens
 
 **Solutions**:
+
 - Add detailed documentation for each token
 - Provide usage examples
 - Record the rationale behind design decisions
@@ -374,6 +390,7 @@ export function generateCSSVariables() {
 **Problem**: Tokens coupled with specific implementation technologies
 
 **Solutions**:
+
 - Keep tokens platform-agnostic
 - Use abstraction layers to isolate implementation details
 - Support multiple implementation technologies

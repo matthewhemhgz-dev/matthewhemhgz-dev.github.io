@@ -38,6 +38,7 @@ This article will provide you with a complete framework to help you build an eff
 **Principle**: Not all information is worth entering your system
 
 **Practical Methods**:
+
 - **Set Information Sources**: Choose high-quality, goal-relevant information sources
 - **Establish Filtering Criteria**: Ask yourself: "Is this information helpful for my goals?"
 - **Use Tools**:
@@ -47,11 +48,11 @@ This article will provide you with a complete framework to help you build an eff
 
 **Filtering Matrix**:
 
-| Information Type | Processing Method | Example |
-|------------------|-------------------|---------|
-| High value and relevant | Deep processing | Professional books, industry reports |
-| Medium value and relevant | Shallow processing | News, blog articles |
-| Low value or irrelevant | Directly ignore | Meaningless social media information |
+| Information Type          | Processing Method  | Example                              |
+| ------------------------- | ------------------ | ------------------------------------ |
+| High value and relevant   | Deep processing    | Professional books, industry reports |
+| Medium value and relevant | Shallow processing | News, blog articles                  |
+| Low value or irrelevant   | Directly ignore    | Meaningless social media information |
 
 ### 2. Processing Layer: Transforming Information into Knowledge
 
@@ -65,6 +66,7 @@ This article will provide you with a complete framework to help you build an eff
 4. **Store**: Put into knowledge management system
 
 **Recommended Tools**:
+
 - **Obsidian**: Bidirectional links, knowledge graph
 - **Notion**: Structured databases, collaboration features
 - **Logseq**: Outline-based notes, journal features
@@ -74,12 +76,14 @@ This article will provide you with a complete framework to help you build an eff
 **Principle**: Knowledge only has value when applied and shared
 
 **Output Forms**:
+
 - **Personal Application**: Solving problems, making decisions
 - **Content Creation**: Writing articles, giving presentations
 - **Teaching and Sharing**: Tutoring others, online courses
 - **Project Practice**: Applying knowledge to actual projects
 
 **Output Tools**:
+
 - Writing: Markdown editors
 - Sharing: Blog platforms, social media
 - Presentations: Slide tools
@@ -140,6 +144,7 @@ This article will provide you with a complete framework to help you build an eff
 **Problem**: Spending大量 time finding and configuring tools, but neglecting content itself
 
 **Solution**:
+
 - Choose one tool and stick with it for 3 months, then adjust based on actual needs
 
 ### Mistake 2: Collecting Without Processing
@@ -147,6 +152,7 @@ This article will provide you with a complete framework to help you build an eff
 **Problem**: Only collecting information, not conducting deep processing
 
 **Solution**:
+
 - Establish a mandatory "collect → process" flow, set processing deadlines
 
 ### Mistake 3: Lack of Output
@@ -154,6 +160,7 @@ This article will provide you with a complete framework to help you build an eff
 **Problem**: Knowledge only comes in, not going out, unable to generate value
 
 **Solution**:
+
 - Set regular output goals, such as writing one article per week
 
 ### Mistake 4: Overly Complex System
@@ -161,6 +168,7 @@ This article will provide you with a complete framework to help you build an eff
 **Problem**: Classification system is too cumbersome, difficult to maintain
 
 **Solution**:
+
 - Keep it simple, adjust as needed, prioritize practicality
 
 ## Advanced Techniques for Personal Knowledge Management Systems
@@ -173,16 +181,19 @@ Create topic index pages as navigation centers for knowledge domains:
 # Knowledge Management - MOC
 
 ## Core Concepts
+
 - [[Knowledge Management Basics]]
 - [[Zettelkasten Method]]
 - [[Personal Knowledge Graph]]
 
 ## Tools and Practice
+
 - [[Obsidian Usage Guide]]
 - [[Notion Template Sharing]]
 - [[Knowledge Management Workflow]]
 
 ## Case Studies
+
 - [[My Knowledge Management System Practice]]
 - [[How to Improve Learning Efficiency with PKM]]
 ```

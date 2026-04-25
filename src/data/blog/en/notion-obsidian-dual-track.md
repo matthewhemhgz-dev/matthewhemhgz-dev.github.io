@@ -90,16 +90,16 @@ Create a page in Notion for each project with this standard structure:
 
 Use Notion Database with Board View and Timeline View:
 
-| Field           | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| Task Name       | Title        | Brief description                             |
-| Status          | Select       | Todo / In Progress / Reviewing / Completed    |
-| Priority        | Select       | P0 Urgent / P1 Important / P2 Normal          |
-| Assignee        | Person       | Designated executor                           |
-| Due Date        | Date         | Includes reminders                            |
-| Parent Project  | Relation     | Link to project page                          |
-| Estimated Hours | Number       | For scheduling reference                      |
-| Tags            | Multi-select | Categorization tags                           |
+| Field           | Type         | Description                                |
+| --------------- | ------------ | ------------------------------------------ |
+| Task Name       | Title        | Brief description                          |
+| Status          | Select       | Todo / In Progress / Reviewing / Completed |
+| Priority        | Select       | P0 Urgent / P1 Important / P2 Normal       |
+| Assignee        | Person       | Designated executor                        |
+| Due Date        | Date         | Includes reminders                         |
+| Parent Project  | Relation     | Link to project page                       |
+| Estimated Hours | Number       | For scheduling reference                   |
+| Tags            | Multi-select | Categorization tags                        |
 
 **3. Automated Workflows**
 
@@ -141,7 +141,7 @@ graph TD
 ```markdown
 ---
 type: evergreen
-created: {{date}}
+created: { { date } }
 tags: []
 related: []
 status: seedling
@@ -167,7 +167,7 @@ status: seedling
 type: review
 project: ''
 notion_link: ''
-created: {{date}}
+created: { { date } }
 tags: [Retrospective, Project]
 ---
 
@@ -198,7 +198,7 @@ tags: [Retrospective, Project]
 type: literature
 source: ''
 author: ''
-created: {{date}}
+created: { { date } }
 tags: [Reading Notes]
 ---
 
@@ -225,14 +225,14 @@ tags: [Reading Notes]
 
 ### Essential Plugin Recommendations
 
-| Plugin            | Functionality | Why You Need It                                  |
-| ----------------- | ------------- | ------------------------------------------------ |
-| Dataview          | Query Notes   | SQL-like syntax to query notes, dynamic views    |
-| Templater         | Advanced Templates | More flexible than Core Templates, supports variables and scripts |
-| Excalidraw        | Hand-Drawn Diagrams | Embed whiteboards in notes, visualize thinking |
-| Kanban            | Kanban View   | Manage personal task boards in Obsidian          |
-| Calendar          | Calendar View | Review daily notes by date                       |
-| Readwise Official | Reading Sync  | Auto-sync highlights from Kindle, WeRead, etc.   |
+| Plugin            | Functionality       | Why You Need It                                                   |
+| ----------------- | ------------------- | ----------------------------------------------------------------- |
+| Dataview          | Query Notes         | SQL-like syntax to query notes, dynamic views                     |
+| Templater         | Advanced Templates  | More flexible than Core Templates, supports variables and scripts |
+| Excalidraw        | Hand-Drawn Diagrams | Embed whiteboards in notes, visualize thinking                    |
+| Kanban            | Kanban View         | Manage personal task boards in Obsidian                           |
+| Calendar          | Calendar View       | Review daily notes by date                                        |
+| Readwise Official | Reading Sync        | Auto-sync highlights from Kindle, WeRead, etc.                    |
 
 ## Dual-Track Collaboration Strategy
 
@@ -282,29 +282,29 @@ graph TD
 
 ### Sync Tool Recommendations
 
-| Tool                | Direction    | Use Case                                        |
-| ------------------- | ------------ | ----------------------------------------------- |
-| Manual copy + links | Bidirectional | Simplest and most reliable, for light usage   |
-| Notion API + Obsidian Plugin | Notion → Obsidian | Auto-sync specific databases to Obsidian        |
-| Zapier / Make       | Bidirectional | Automated triggers, for complex workflows      |
-| MarkDownload        | Web → Obsidian | Save web content as Markdown to Obsidian      |
+| Tool                         | Direction         | Use Case                                    |
+| ---------------------------- | ----------------- | ------------------------------------------- |
+| Manual copy + links          | Bidirectional     | Simplest and most reliable, for light usage |
+| Notion API + Obsidian Plugin | Notion → Obsidian | Auto-sync specific databases to Obsidian    |
+| Zapier / Make                | Bidirectional     | Automated triggers, for complex workflows   |
+| MarkDownload                 | Web → Obsidian    | Save web content as Markdown to Obsidian    |
 
 ## Notion vs Obsidian: Full Comparison
 
-| Dimension      | Notion                          | Obsidian                         |
-| -------------- | ------------------------------- | -------------------------------- |
-| **Data Storage** | Cloud (vendor-locked)          | Local Markdown (data sovereign) |
-| **Collaboration** | Strong (real-time multi-user) | Weak (needs third-party sync)   |
-| **Structure** | High (databases, rich views)  | Low (free text focus)            |
-| **Knowledge Graph** | No native support | Core feature (bidirectional links + graph visualization) |
-| **Offline Use** | Limited support | Full support |
-| **Plugin Ecosystem** | Limited (integrations focus) | Rich (community-driven, 1500+ plugins) |
-| **Learning Curve** | Low (WYSIWYG) | Medium-High (needs understanding of PKM concepts) |
-| **Mobile Experience** | Excellent | Good (Obsidian Mobile) |
-| **Automation** | Native support | Depends on plugins and scripts |
-| **Best For** | Team collaboration, project management, structured data | Personal knowledge management, deep thinking, writing |
-| **Data Security** | Dependent on vendor | Full control (local + Git) |
-| **Long-Term Availability** | Dependent on company survival | Markdown is open standard, never goes obsolete |
+| Dimension                  | Notion                                                  | Obsidian                                                 |
+| -------------------------- | ------------------------------------------------------- | -------------------------------------------------------- |
+| **Data Storage**           | Cloud (vendor-locked)                                   | Local Markdown (data sovereign)                          |
+| **Collaboration**          | Strong (real-time multi-user)                           | Weak (needs third-party sync)                            |
+| **Structure**              | High (databases, rich views)                            | Low (free text focus)                                    |
+| **Knowledge Graph**        | No native support                                       | Core feature (bidirectional links + graph visualization) |
+| **Offline Use**            | Limited support                                         | Full support                                             |
+| **Plugin Ecosystem**       | Limited (integrations focus)                            | Rich (community-driven, 1500+ plugins)                   |
+| **Learning Curve**         | Low (WYSIWYG)                                           | Medium-High (needs understanding of PKM concepts)        |
+| **Mobile Experience**      | Excellent                                               | Good (Obsidian Mobile)                                   |
+| **Automation**             | Native support                                          | Depends on plugins and scripts                           |
+| **Best For**               | Team collaboration, project management, structured data | Personal knowledge management, deep thinking, writing    |
+| **Data Security**          | Dependent on vendor                                     | Full control (local + Git)                               |
+| **Long-Term Availability** | Dependent on company survival                           | Markdown is open standard, never goes obsolete           |
 
 ## Implementation Suggestions
 

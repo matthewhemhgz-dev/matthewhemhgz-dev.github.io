@@ -28,8 +28,6 @@ export class MultiLightSystem {
     // 从 CSS 变量读取品牌色
     const cs = getComputedStyle(document.documentElement);
     const mintRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-mint').trim());
-    const emeraldRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-emerald').trim());
-    const amberRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-amber').trim());
 
     // 避免重复创建样式
     if (!document.getElementById('multi-light-style')) {
@@ -129,9 +127,9 @@ export class MultiLightSystem {
       size: 200,
       color: '#ffffff',
       intensity: 1,
-      type: 'point'
+      type: 'point',
     });
-    
+
     // 创建方向光（固定位置）
     const directionalLight = this._createLight('directional-light', {
       size: 400,
@@ -139,9 +137,9 @@ export class MultiLightSystem {
       intensity: 0.6,
       type: 'directional',
       x: window.innerWidth * 0.8,
-      y: window.innerHeight * 0.2
+      y: window.innerHeight * 0.2,
     });
-    
+
     // 创建环境光（全屏）
     const ambientLight = this._createLight('ambient-light', {
       size: window.innerWidth * 2,
@@ -149,9 +147,9 @@ export class MultiLightSystem {
       intensity: 0.3,
       type: 'ambient',
       x: window.innerWidth / 2,
-      y: window.innerHeight / 2
+      y: window.innerHeight / 2,
     });
-    
+
     this.lights = [pointLight, directionalLight, ambientLight];
   }
 
@@ -160,16 +158,16 @@ export class MultiLightSystem {
       type: type,
       options: options,
       el: null,
-      shadowEl: null
+      shadowEl: null,
     };
-    
+
     // 创建光源元素
     light.el = document.createElement('div');
     light.el.className = `light-source ${type}`;
     light.el.setAttribute('aria-hidden', 'true');
     light.el.style.width = `${options.size}px`;
     light.el.style.height = `${options.size}px`;
-    
+
     // 设置初始位置
     if (options.x && options.y) {
       light.el.style.transform = `translate(${options.x - options.size / 2}px, ${options.y - options.size / 2}px)`;
@@ -177,7 +175,7 @@ export class MultiLightSystem {
       // 初始定位在页面中心
       light.el.style.transform = `translate(${window.innerWidth / 2 - options.size / 2}px, ${window.innerHeight / 2 - options.size / 2}px)`;
     }
-    
+
     // 创建阴影元素
     if (type === 'point-light') {
       light.shadowEl = document.createElement('div');
@@ -185,22 +183,23 @@ export class MultiLightSystem {
       light.shadowEl.style.width = `${options.size * 2}px`;
       light.shadowEl.style.height = `${options.size * 2}px`;
       light.shadowEl.style.borderRadius = '50%';
-      light.shadowEl.style.background = 'radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.1) 100%)';
+      light.shadowEl.style.background =
+        'radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.1) 100%)';
       light.shadowEl.style.transform = `translate(${window.innerWidth / 2 - options.size}px, ${window.innerHeight / 2 - options.size}px)`;
       document.body.appendChild(light.shadowEl);
     }
-    
+
     document.body.appendChild(light.el);
     this.els.push(light.el);
     if (light.shadowEl) this.els.push(light.shadowEl);
-    
+
     return light;
   }
 
   _bindEvents() {
     this._onTouchStart = () => {
       this.isTouchDevice = true;
-      this.els.forEach(el => {
+      this.els.forEach((el) => {
         if (el) el.style.display = 'none';
       });
     };
@@ -212,17 +211,17 @@ export class MultiLightSystem {
 
       if (!this.hasInteracted) {
         this.hasInteracted = true;
-        this.els.forEach(el => {
+        this.els.forEach((el) => {
           if (el) el.classList.add('is-active');
         });
       }
 
       // 更新点光源位置
-      const pointLight = this.lights.find(light => light.type === 'point-light');
+      const pointLight = this.lights.find((light) => light.type === 'point-light');
       if (pointLight && pointLight.el) {
         pointLight.el.style.transform = `translate(${e.clientX - pointLight.options.size / 2}px, ${e.clientY - pointLight.options.size / 2}px)`;
       }
-      
+
       // 更新点光源阴影位置
       if (pointLight && pointLight.shadowEl) {
         pointLight.shadowEl.style.transform = `translate(${e.clientX - pointLight.options.size}px, ${e.clientY - pointLight.options.size}px)`;
@@ -231,7 +230,7 @@ export class MultiLightSystem {
     document.addEventListener('mousemove', this._onMouseMove, { passive: true });
 
     this._onMouseLeave = () => {
-      this.els.forEach(el => {
+      this.els.forEach((el) => {
         if (el) el.classList.add('is-leaving');
       });
     };
@@ -239,7 +238,7 @@ export class MultiLightSystem {
 
     this._onMouseEnter = () => {
       if (this.hasInteracted) {
-        this.els.forEach(el => {
+        this.els.forEach((el) => {
           if (el) el.classList.remove('is-leaving');
         });
       }
@@ -298,9 +297,9 @@ export class MultiLightSystem {
     if (this._onMouseMove) document.removeEventListener('mousemove', this._onMouseMove);
     if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
     if (this._onMouseEnter) document.removeEventListener('mouseenter', this._onMouseEnter);
-    
+
     // 移除 DOM 元素
-    this.els.forEach(el => {
+    this.els.forEach((el) => {
       if (el) el.remove();
     });
     this.els = [];

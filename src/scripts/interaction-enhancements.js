@@ -15,7 +15,7 @@ class InteractionEnhancements {
   // 初始化按钮点击效果
   initButtonEffects() {
     const buttons = document.querySelectorAll('button, a');
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       // 避免为已有特殊效果的元素添加重复效果
       if (!button.classList.contains('no-interaction-effect')) {
         button.addEventListener('click', this.handleButtonClick.bind(this));
@@ -115,7 +115,10 @@ class InteractionEnhancements {
       position += velocity * 16; // 假设 60fps，每帧 16ms
 
       // 限制滚动范围
-      position = Math.max(0, Math.min(position, document.documentElement.scrollHeight - window.innerHeight));
+      position = Math.max(
+        0,
+        Math.min(position, document.documentElement.scrollHeight - window.innerHeight),
+      );
 
       window.scrollTo(0, position);
 
@@ -135,7 +138,8 @@ class InteractionEnhancements {
     let startX, startY, startScrollX, startScrollY;
     let lastMoveTime = 0;
     let lastX, lastY;
-    let velocityX = 0, velocityY = 0;
+    let velocityX = 0,
+      velocityY = 0;
 
     const handleMouseDown = (e) => {
       isDragging = true;
@@ -186,7 +190,7 @@ class InteractionEnhancements {
 
     // 为可拖拽元素添加事件监听
     const draggableElements = document.querySelectorAll('.draggable, .scrollable');
-    draggableElements.forEach(element => {
+    draggableElements.forEach((element) => {
       element.addEventListener('mousedown', handleMouseDown);
     });
 
@@ -219,8 +223,14 @@ class InteractionEnhancements {
       positionY += velocityY * 16;
 
       // 限制滚动范围
-      positionX = Math.max(0, Math.min(positionX, document.documentElement.scrollWidth - window.innerWidth));
-      positionY = Math.max(0, Math.min(positionY, document.documentElement.scrollHeight - window.innerHeight));
+      positionX = Math.max(
+        0,
+        Math.min(positionX, document.documentElement.scrollWidth - window.innerWidth),
+      );
+      positionY = Math.max(
+        0,
+        Math.min(positionY, document.documentElement.scrollHeight - window.innerHeight),
+      );
 
       window.scrollTo(positionX, positionY);
 

@@ -307,7 +307,7 @@ export class MinimalParticles {
     // 绘制连线 — 使用网格分区优化
     ctx.lineWidth = 0.5;
     const linkDistSq = linkDistance * linkDistance;
-    const { grid, cellSize, cols, rows } = this._createGrid();
+    const { grid, cols, rows } = this._createGrid();
 
     // 遍历所有网格细胞
     for (let col = 0; col < cols; col++) {
@@ -357,8 +357,16 @@ export class MinimalParticles {
                   }
 
                   ctx.globalAlpha = baseAlpha + lineHighlight;
-                  const emeraldRGB = this.colorRGB[this.options.colors[0]] || { r: 46, g: 125, b: 92 };
-                  const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
+                  const emeraldRGB = this.colorRGB[this.options.colors[0]] || {
+                    r: 46,
+                    g: 125,
+                    b: 92,
+                  };
+                  const amberRGB = this.colorRGB[this.options.colors[2]] || {
+                    r: 229,
+                    g: 169,
+                    b: 60,
+                  };
                   ctx.strokeStyle =
                     lineHighlight > 0.03
                       ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`

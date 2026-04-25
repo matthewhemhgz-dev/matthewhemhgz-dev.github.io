@@ -9,14 +9,14 @@ class BrandVisuals {
       colors: {
         emerald: '#4ade80',
         amber: '#fbbf24',
-        mint: '#a7f3d0'
+        mint: '#a7f3d0',
       },
       material: 'metal', // metal, wood, fabric, leather, glass
       materialState: 'default', // default, hover, active, disabled
       microTexture: false, // 微质感效果
-      ...options
+      ...options,
     };
-    
+
     this.p5Instance = null;
   }
 
@@ -35,7 +35,7 @@ class BrandVisuals {
 
   _drawVisual(p) {
     p.background(255);
-    
+
     switch (this.options.type) {
       case 'pattern':
         this._drawPattern(p);
@@ -58,17 +58,17 @@ class BrandVisuals {
     const centerX = size / 2;
     const centerY = size / 2;
     const radius = size * 0.4;
-    
+
     // 绘制外圆
     p.noFill();
     p.stroke(this.options.colors.emerald);
     p.strokeWeight(size * 0.05);
     p.ellipse(centerX, centerY, radius * 2);
-    
+
     // 绘制内圆
     p.stroke(this.options.colors.amber);
     p.ellipse(centerX, centerY, radius * 1.2);
-    
+
     // 绘制中心图案
     p.fill(this.options.colors.mint);
     p.noStroke();
@@ -78,7 +78,7 @@ class BrandVisuals {
     p.rectMode(p.CENTER);
     p.rect(0, 0, radius * 0.6, radius * 0.6);
     p.pop();
-    
+
     // 绘制交叉线条
     p.stroke(this.options.colors.emerald);
     p.strokeWeight(size * 0.03);
@@ -89,12 +89,12 @@ class BrandVisuals {
   _drawPattern(p) {
     const size = this.options.size;
     const gridSize = size / 5;
-    
+
     for (let x = 0; x < size; x += gridSize) {
       for (let y = 0; y < size; y += gridSize) {
         const colorIndex = (x + y) % 3;
         let color;
-        
+
         switch (colorIndex) {
           case 0:
             color = this.options.colors.emerald;
@@ -106,10 +106,10 @@ class BrandVisuals {
             color = this.options.colors.mint;
             break;
         }
-        
+
         p.fill(color);
         p.noStroke();
-        
+
         // 绘制不同形状
         if ((x / gridSize + y / gridSize) % 2 === 0) {
           p.ellipse(x + gridSize / 2, y + gridSize / 2, gridSize * 0.8);
@@ -123,8 +123,12 @@ class BrandVisuals {
 
   _drawAbstract(p) {
     const size = this.options.size;
-    const colors = [this.options.colors.emerald, this.options.colors.amber, this.options.colors.mint];
-    
+    const colors = [
+      this.options.colors.emerald,
+      this.options.colors.amber,
+      this.options.colors.mint,
+    ];
+
     // 绘制背景渐变
     for (let y = 0; y < size; y++) {
       const gradient = p.map(y, 0, size, 0, 1);
@@ -134,11 +138,11 @@ class BrandVisuals {
       p.stroke(color);
       p.line(0, y, size, y);
     }
-    
+
     // 绘制抽象形状
     p.noFill();
     p.strokeWeight(2);
-    
+
     for (let i = 0; i < 5; i++) {
       p.stroke(colors[i % colors.length]);
       p.beginShape();
@@ -154,8 +158,6 @@ class BrandVisuals {
   }
 
   _drawMaterial(p) {
-    const size = this.options.size;
-    
     switch (this.options.material) {
       case 'wood':
         this._drawWoodMaterial(p);
@@ -174,19 +176,19 @@ class BrandVisuals {
         this._drawMetalMaterial(p);
         break;
     }
-    
+
     // 应用微质感效果
     if (this.options.microTexture) {
       this._applyMicroTexture(p);
     }
-    
+
     // 应用材质状态效果
     this._applyMaterialState(p);
   }
 
   _drawMetalMaterial(p) {
     const size = this.options.size;
-    
+
     // 绘制金属渐变背景
     for (let y = 0; y < size; y++) {
       const gradient = p.map(y, 0, size, 0, 1);
@@ -196,7 +198,7 @@ class BrandVisuals {
       p.stroke(color);
       p.line(0, y, size, y);
     }
-    
+
     // 绘制金属高光
     p.noFill();
     p.stroke(255, 255, 255, 150);
@@ -208,7 +210,7 @@ class BrandVisuals {
       p.vertex(x, y);
     }
     p.endShape();
-    
+
     // 绘制品牌颜色点缀
     p.fill(this.options.colors.emerald);
     p.noStroke();
@@ -219,16 +221,20 @@ class BrandVisuals {
 
   _drawWoodMaterial(p) {
     const size = this.options.size;
-    
+
     // 绘制木纹背景
     for (let y = 0; y < size; y++) {
       const baseColor = p.color(180, 120, 60);
       const variation = p.random(-20, 20);
-      const color = p.color(p.red(baseColor) + variation, p.green(baseColor) + variation, p.blue(baseColor) + variation);
+      const color = p.color(
+        p.red(baseColor) + variation,
+        p.green(baseColor) + variation,
+        p.blue(baseColor) + variation,
+      );
       p.stroke(color);
       p.line(0, y, size, y);
     }
-    
+
     // 绘制木纹纹理
     p.stroke(120, 80, 40, 100);
     p.strokeWeight(1);
@@ -245,12 +251,16 @@ class BrandVisuals {
 
   _drawFabricMaterial(p) {
     const size = this.options.size;
-    const colors = [this.options.colors.emerald, this.options.colors.amber, this.options.colors.mint];
-    
+    const colors = [
+      this.options.colors.emerald,
+      this.options.colors.amber,
+      this.options.colors.mint,
+    ];
+
     // 绘制布料纹理
     p.noFill();
     p.strokeWeight(1);
-    
+
     for (let i = 0; i < size; i += 5) {
       p.stroke(colors[i % colors.length]);
       for (let j = 0; j < size; j += 5) {
@@ -265,16 +275,20 @@ class BrandVisuals {
 
   _drawLeatherMaterial(p) {
     const size = this.options.size;
-    
+
     // 绘制皮革背景
     for (let y = 0; y < size; y++) {
       const baseColor = p.color(150, 80, 50);
       const variation = p.random(-10, 10);
-      const color = p.color(p.red(baseColor) + variation, p.green(baseColor) + variation, p.blue(baseColor) + variation);
+      const color = p.color(
+        p.red(baseColor) + variation,
+        p.green(baseColor) + variation,
+        p.blue(baseColor) + variation,
+      );
       p.stroke(color);
       p.line(0, y, size, y);
     }
-    
+
     // 绘制皮革纹理
     p.stroke(100, 60, 40, 80);
     p.strokeWeight(1);
@@ -288,16 +302,16 @@ class BrandVisuals {
 
   _drawGlassMaterial(p) {
     const size = this.options.size;
-    
+
     // 绘制玻璃背景（半透明）
     p.background(240, 240, 240);
-    
+
     // 绘制玻璃反光
     p.noFill();
     p.stroke(255, 255, 255, 100);
     p.strokeWeight(3);
     p.arc(size * 0.2, size * 0.2, size * 0.6, size * 0.6, 0, p.HALF_PI);
-    
+
     // 绘制品牌颜色的折射效果
     p.fill(this.options.colors.emerald, 50);
     p.noStroke();
@@ -308,12 +322,12 @@ class BrandVisuals {
 
   _applyMicroTexture(p) {
     const size = this.options.size;
-    
+
     // 绘制微质感纹理
     p.noFill();
     p.stroke(0, 0, 0, 10);
     p.strokeWeight(0.5);
-    
+
     for (let i = 0; i < size * 2; i++) {
       const x1 = p.random(size);
       const y1 = p.random(size);
@@ -325,7 +339,7 @@ class BrandVisuals {
 
   _applyMaterialState(p) {
     const size = this.options.size;
-    
+
     switch (this.options.materialState) {
       case 'hover':
         // 悬停状态 - 增加亮度

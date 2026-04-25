@@ -25,6 +25,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 #### Obsidian
 
 **Features**:
+
 - **Bidirectional links**: Create connections between knowledge, forming a knowledge network
 - **Knowledge graph**: Visualize the connection relationships between knowledge
 - **Local storage**: Data is stored locally, ensuring data security
@@ -32,6 +33,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 - **Markdown support**: Uses Markdown format, easy to edit and read
 
 **Applicable scenarios**:
+
 - Building personal knowledge graphs
 - Establishing interconnected note systems
 - Users who value data security and privacy
@@ -40,6 +42,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 #### Notion
 
 **Features**:
+
 - **Structured databases**: Supports tables, kanban, calendar and other views
 - **Template system**: Provides rich templates for quickly creating various types of content
 - **Collaboration features**: Supports team collaboration and sharing
@@ -47,6 +50,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 - **Block-level editing**: Flexible content organization
 
 **Applicable scenarios**:
+
 - Projects and tasks that require structured management
 - Team collaboration and knowledge sharing
 - Users who like to use templates to quickly create content
@@ -55,6 +59,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 #### Logseq
 
 **Features**:
+
 - **Outline notes**: Based on outline structure, easy for hierarchical organization
 - **Bidirectional links**: Supports connections between knowledge
 - **Journal function**: Built-in journal function to record daily thoughts
@@ -62,6 +67,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 - **Local storage**: Data is stored locally
 
 **Applicable scenarios**:
+
 - Users who like outline-style content organization
 - Users who focus on daily recording and thinking
 - Scenarios that require quick capture and organization of ideas
@@ -69,6 +75,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 #### Roam Research
 
 **Features**:
+
 - **Bidirectional links**: Powerful bidirectional link functionality
 - **Block references**: Supports referencing and reusing content blocks
 - **Graph view**: Visualize knowledge networks
@@ -76,6 +83,7 @@ Note-taking tools are the core of knowledge management, used to capture, organiz
 - **Collaboration features**: Supports team collaboration
 
 **Applicable scenarios**:
+
 - Building complex knowledge networks
 - Scenarios that require frequent referencing and associating content
 - Team knowledge management and collaboration
@@ -89,12 +97,14 @@ Information acquisition tools help you collect valuable information from various
 **Recommended tools**: Feedly, Inoreader, NewsBlur
 
 **Features**:
+
 - Subscribe to websites, blogs, and news
 - Centralized management of information sources
 - Filter and categorize content
 - Offline reading
 
 **Applicable scenarios**:
+
 - Regularly reading specific websites and blogs
 - Avoiding information scattered across multiple platforms
 - Building personalized information sources
@@ -104,12 +114,14 @@ Information acquisition tools help you collect valuable information from various
 **Recommended tools**: Omnivore, Raindrop, Pocket
 
 **Features**:
+
 - Save webpages and articles for later reading
 - Tag and categorize content
 - Cross-device synchronization
 - Offline reading
 
 **Applicable scenarios**:
+
 - Encountering valuable content but not having time to read it immediately
 - Collecting and organizing information from different sources
 - Building a personal reading library
@@ -119,12 +131,14 @@ Information acquisition tools help you collect valuable information from various
 **Recommended tools**: Twitter, LinkedIn, Medium
 
 **Features**:
+
 - Discover the latest industry trends
 - Follow domain experts
 - Participate in community discussions
 - Share valuable content
 
 **Applicable scenarios**:
+
 - Expanding information sources
 - Understanding industry trends
 - Building professional networks
@@ -138,12 +152,14 @@ Knowledge output tools help you transform knowledge into valuable outputs:
 **Recommended tools**: VS Code, Typora, iA Writer
 
 **Features**:
+
 - Markdown editing
 - Syntax highlighting
 - Real-time preview
 - Version control
 
 **Applicable scenarios**:
+
 - Writing blog articles
 - Creating technical documentation
 - Writing personal notes and summaries
@@ -153,12 +169,14 @@ Knowledge output tools help you transform knowledge into valuable outputs:
 **Recommended tools**: MindNode, XMind, Mermaid
 
 **Features**:
+
 - Create mind maps
 - Visualize knowledge structure
 - Display relationships and processes
 - Export multiple formats
 
 **Applicable scenarios**:
+
 - Organizing thoughts and concepts
 - Planning projects and tasks
 - Showing relationships between knowledge
@@ -168,12 +186,14 @@ Knowledge output tools help you transform knowledge into valuable outputs:
 **Recommended platforms**: Personal blog, GitHub, Medium
 
 **Features**:
+
 - Publish and share content
 - Interact with readers
 - Build personal brand
 - Get feedback
 
 **Applicable scenarios**:
+
 - Sharing professional knowledge
 - Building personal brand
 - Communicating and learning with others
@@ -203,15 +223,15 @@ Rarely does a single tool meet all needs, so multiple tools are usually needed i
 
 When selecting tools, you can evaluate from the following dimensions:
 
-| Evaluation Dimension | Importance | Evaluation Points |
-|---------------------|------------|-------------------|
-| **Functionality** | ★★★★★ | Whether it meets core needs |
-| **Ease of use** | ★★★★☆ | Learning curve and convenience |
-| **Reliability** | ★★★★★ | Stability and data security |
-| **Scalability** | ★★★☆☆ | Plugin and integration capabilities |
-| **Performance** | ★★★★☆ | Response speed and resource usage |
-| **Cost** | ★★★☆☆ | Price and return on investment |
-| **Community support** | ★★★☆☆ | Community activity and resources |
+| Evaluation Dimension  | Importance | Evaluation Points                   |
+| --------------------- | ---------- | ----------------------------------- |
+| **Functionality**     | ★★★★★      | Whether it meets core needs         |
+| **Ease of use**       | ★★★★☆      | Learning curve and convenience      |
+| **Reliability**       | ★★★★★      | Stability and data security         |
+| **Scalability**       | ★★★☆☆      | Plugin and integration capabilities |
+| **Performance**       | ★★★★☆      | Response speed and resource usage   |
+| **Cost**              | ★★★☆☆      | Price and return on investment      |
+| **Community support** | ★★★☆☆      | Community activity and resources    |
 
 ## Knowledge Management Practice Process
 
@@ -239,12 +259,12 @@ When selecting tools, you can evaluate from the following dimensions:
 
 ### 2. Weekly Practice Process
 
-| Time | Activity | Goal |
-|------|----------|------|
-| **Monday** | Plan weekly learning goals, browse new information | Set learning and knowledge management goals for the week |
-| **Tuesday-Thursday** | Deep reading and processing information, creating and organizing notes | Transform information into knowledge, establish knowledge connections |
-| **Friday** | Weekly review and organization, prepare output content | Organize knowledge acquired this week, prepare output |
-| **Weekend** | Reflection and planning, create output content | Reflect on the effectiveness of the knowledge management system, create valuable output |
+| Time                 | Activity                                                               | Goal                                                                                    |
+| -------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Monday**           | Plan weekly learning goals, browse new information                     | Set learning and knowledge management goals for the week                                |
+| **Tuesday-Thursday** | Deep reading and processing information, creating and organizing notes | Transform information into knowledge, establish knowledge connections                   |
+| **Friday**           | Weekly review and organization, prepare output content                 | Organize knowledge acquired this week, prepare output                                   |
+| **Weekend**          | Reflection and planning, create output content                         | Reflect on the effectiveness of the knowledge management system, create valuable output |
 
 ### 3. Monthly Practice Process
 
@@ -260,11 +280,13 @@ When selecting tools, you can evaluate from the following dimensions:
 **Suitable for**: Knowledge workers, researchers, students
 
 **Tool combination**:
+
 - **Feedly**: Subscribe to industry blogs and news
 - **Omnivore**: Save and organize valuable articles
 - **Obsidian**: Deeply process and organize knowledge, build knowledge networks
 
 **Practice process**:
+
 1. Discover and subscribe to valuable information sources through Feedly
 2. Save interesting articles and webpages using Omnivore
 3. Regularly process this content in Obsidian, creating structured notes
@@ -276,11 +298,13 @@ When selecting tools, you can evaluate from the following dimensions:
 **Suitable for**: Project managers, content creators, team collaboration
 
 **Tool combination**:
+
 - **Twitter**: Discover industry trends and developments
 - **Notion**: Structured management of projects and knowledge
 - **VS Code**: Write and edit content
 
 **Practice process**:
+
 1. Discover the latest industry trends and valuable content through Twitter
 2. Create project and knowledge databases in Notion
 3. Use Notion's templates to quickly create various types of content
@@ -292,11 +316,13 @@ When selecting tools, you can evaluate from the following dimensions:
 **Suitable for**: Thinkers, writers, lifelong learners
 
 **Tool combination**:
+
 - **RSS Reader**: Subscribe to high-quality content sources
 - **Logseq**: Capture and organize daily thoughts and notes
 - **Personal blog**: Share knowledge and insights
 
 **Practice process**:
+
 1. Get high-quality content through RSS readers
 2. Record daily thoughts and notes in Logseq
 3. Use Logseq's outline structure to organize knowledge
@@ -352,6 +378,7 @@ When selecting tools, you can evaluate from the following dimensions:
 **Symptoms**: Over-reliance on tools, ignoring the content itself
 
 **Solutions**:
+
 - Remember that tools are just means, not ends
 - Choose tools that suit you, not the latest and coolest ones
 - Focus on content quality and knowledge accumulation
@@ -361,6 +388,7 @@ When selecting tools, you can evaluate from the following dimensions:
 **Symptoms**: Using too many tools, leading to information dispersion and management confusion
 
 **Solutions**:
+
 - Streamline the number of tools, choose 1-2 core tools
 - Clearly define the purpose and boundaries of each tool
 - Establish data flow mechanisms between tools
@@ -370,6 +398,7 @@ When selecting tools, you can evaluate from the following dimensions:
 **Symptoms**: Spending too much time configuring tools instead of using them
 
 **Solutions**:
+
 - Start with default configurations
 - Adjust as needed rather than pursuing perfect configuration from the beginning
 - Focus on core functions of tools rather than fancy features
@@ -379,6 +408,7 @@ When selecting tools, you can evaluate from the following dimensions:
 **Symptoms**: Data in different tools cannot effectively flow and associate
 
 **Solutions**:
+
 - Choose tools that support data export and import
 - Establish data synchronization mechanisms between tools
 - Use unified naming and classification standards

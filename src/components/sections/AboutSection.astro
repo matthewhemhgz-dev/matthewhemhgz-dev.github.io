@@ -17,7 +17,15 @@ interface Props {
   classList?: string;
 }
 
-const { label, title, text, decoNumber = '01', decoSlogan, dashItems, classList = '' } = Astro.props;
+const {
+  label,
+  title,
+  text,
+  decoNumber = '01',
+  decoSlogan,
+  dashItems,
+  classList = '',
+} = Astro.props;
 ---
 
 <section class="section about-section ${classList}" data-reveal>

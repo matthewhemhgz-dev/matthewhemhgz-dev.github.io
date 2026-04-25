@@ -32,12 +32,12 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 
 ### Comparison with Other Rendering Methods
 
-| Rendering Method | Advantages | Disadvantages | Suitable Scenarios |
-|-----------------|------------|---------------|-------------------|
-| **SSG** | Excellent performance, secure, simple deployment | Longer build time | Websites with infrequent content changes |
-| **SSR** | Real-time data, fast first screen | High server load, high cost | Websites with frequent content changes |
-| **CSR** | Good development experience, rich interactions | Slow first screen load, poor SEO | Interaction-intensive applications |
-| **ISR** | Combines advantages of SSG and SSR | Complex implementation, complex caching strategy | Static websites that need real-time data |
+| Rendering Method | Advantages                                       | Disadvantages                                    | Suitable Scenarios                       |
+| ---------------- | ------------------------------------------------ | ------------------------------------------------ | ---------------------------------------- |
+| **SSG**          | Excellent performance, secure, simple deployment | Longer build time                                | Websites with infrequent content changes |
+| **SSR**          | Real-time data, fast first screen                | High server load, high cost                      | Websites with frequent content changes   |
+| **CSR**          | Good development experience, rich interactions   | Slow first screen load, poor SEO                 | Interaction-intensive applications       |
+| **ISR**          | Combines advantages of SSG and SSR               | Complex implementation, complex caching strategy | Static websites that need real-time data |
 
 ## Technology Selection
 
@@ -46,6 +46,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 #### 1. Astro
 
 **Features**:
+
 - Component Islands architecture
 - Supports multiple frontend frameworks (React, Vue, Svelte, etc.)
 - Excellent performance optimization
@@ -56,6 +57,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 #### 2. Next.js
 
 **Features**:
+
 - Mature ecosystem
 - Supports SSG, SSR, ISR
 - Powerful routing system
@@ -66,6 +68,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 #### 3. Gatsby
 
 **Features**:
+
 - Based on React
 - Powerful GraphQL data layer
 - Rich plugin ecosystem
@@ -76,6 +79,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 #### 4. Hugo
 
 **Features**:
+
 - Based on Go language, extremely fast build speed
 - Built-in template system
 - Flexible configuration
@@ -256,6 +260,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 ### Issue 1: Long Build Time
 
 **Solutions**:
+
 - Optimize data fetching
 - Reduce build-time calculations
 - Use incremental builds
@@ -264,6 +269,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 ### Issue 2: Dynamic Data Handling
 
 **Solutions**:
+
 - Use ISR (Incremental Static Regeneration)
 - Client-side dynamic data fetching
 - Regular rebuilds
@@ -272,6 +278,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 ### Issue 3: SEO Optimization
 
 **Solutions**:
+
 - Generate complete HTML content
 - Reasonable meta tags
 - Structured data (JSON-LD)
@@ -281,6 +288,7 @@ Static Site Generation is a technology that pre-renders pages at build time, gen
 ### Issue 4: Development Experience
 
 **Solutions**:
+
 - Local development server
 - Hot reloading
 - Content preview

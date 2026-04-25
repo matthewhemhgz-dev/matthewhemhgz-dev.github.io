@@ -9,10 +9,12 @@ const allPosts = (
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // Calculate tag counts
-const tagCounts = allPosts.flatMap(post => post.data.tags).reduce((acc, tag) => {
-  acc[tag] = (acc[tag] || 0) + 1;
-  return acc;
-}, {});
+const tagCounts = allPosts
+  .flatMap((post) => post.data.tags)
+  .reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+  }, {});
 
 // Sort tags by count (descending) and then alphabetically
 const sortedTags = Object.entries(tagCounts)
@@ -23,14 +25,14 @@ const sortedTags = Object.entries(tagCounts)
   .map(([tag, count]) => ({ tag, count }));
 
 // Calculate min/max counts for size scaling
-const counts = sortedTags.map(item => item.count);
+const counts = sortedTags.map((item) => item.count);
 const minCount = Math.min(...counts);
 const maxCount = Math.max(...counts);
 
 // Function to calculate font size based on count
 function getFontSize(count) {
   if (maxCount === minCount) return 1;
-  return 0.8 + (count - minCount) / (maxCount - minCount) * 0.6; // Range from 0.8 to 1.4
+  return 0.8 + ((count - minCount) / (maxCount - minCount)) * 0.6; // Range from 0.8 to 1.4
 }
 ---
 
@@ -46,8 +48,8 @@ function getFontSize(count) {
       <div class="tags-cloud">
         {
           sortedTags.map(({ tag, count }) => (
-            <a 
-              href={`/tags/${tag}/`} 
+            <a
+              href={`/tags/${tag}/`}
               class="tag-link"
               style={`font-size: ${getFontSize(count)}em;`}
               title={`${count} 篇文章`}

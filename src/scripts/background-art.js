@@ -13,11 +13,11 @@ class BackgroundArt {
       colors: {
         emerald: '#4ade80',
         amber: '#fbbf24',
-        mint: '#a7f3d0'
+        mint: '#a7f3d0',
       },
-      ...options
+      ...options,
     };
-    
+
     this.p5Instance = null;
     this.artInstance = null;
     this.isRunning = false;
@@ -33,13 +33,13 @@ class BackgroundArt {
         canvas.style('left', '0');
         canvas.style('z-index', '-1');
         canvas.style('opacity', '0.3');
-        
+
         p.noFill();
-        
+
         // 初始化艺术实例
         this._initArtInstance(p);
         this.isRunning = true;
-        
+
         // 添加鼠标移动事件监听器
         canvas.mouseMoved(() => {
           if (this.artInstance && this.artInstance.setMousePosition) {
@@ -50,7 +50,7 @@ class BackgroundArt {
 
       p.draw = () => {
         if (!this.isRunning || !this.artInstance) return;
-        
+
         p.background(255);
         this.artInstance.update();
         this.artInstance.draw();
@@ -75,7 +75,7 @@ class BackgroundArt {
 
   _initArtInstance(p) {
     const seed = Math.floor(Math.random() * 100000);
-    
+
     switch (this.options.type) {
       case 'particles':
         this.artInstance = new ParticleResonance(p.width, p.height, seed);

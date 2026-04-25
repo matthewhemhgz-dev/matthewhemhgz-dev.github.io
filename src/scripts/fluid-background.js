@@ -13,7 +13,7 @@ export class FluidBackground {
     this.mouse = { x: 0, y: 0, radius: 150 };
     this.isInitialized = false;
     this.animationId = null;
-    
+
     this.init();
   }
 
@@ -66,7 +66,10 @@ export class FluidBackground {
   createParticles() {
     this.particles = [];
     // 根据容器面积计算粒子数量，最多150个
-    const particleCount = Math.min(Math.floor(this.canvas.width * this.canvas.height / 15000), 150);
+    const particleCount = Math.min(
+      Math.floor((this.canvas.width * this.canvas.height) / 15000),
+      150,
+    );
 
     for (let i = 0; i < particleCount; i++) {
       const size = Math.random() * 3 + 1;
@@ -76,7 +79,7 @@ export class FluidBackground {
         size,
         speedX: Math.random() * 1 - 0.5,
         speedY: Math.random() * 1 - 0.5,
-        color: this.getParticleColor()
+        color: this.getParticleColor(),
       });
     }
   }
@@ -89,8 +92,8 @@ export class FluidBackground {
     const colors = [
       'rgba(74, 222, 128, 0.15)', // 翡翠绿
       'rgba(16, 185, 129, 0.15)', // 深翡翠绿
-      'rgba(132, 204, 22, 0.15)',  // 薄荷绿
-      'rgba(245, 158, 11, 0.15)'   // 琥珀色
+      'rgba(132, 204, 22, 0.15)', // 薄荷绿
+      'rgba(245, 158, 11, 0.15)', // 琥珀色
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   }
@@ -182,12 +185,12 @@ export class FluidBackground {
       cancelAnimationFrame(this.animationId);
       this.animationId = null;
     }
-    
+
     // 移除 Canvas 元素
     if (this.canvas && this.canvas.parentNode) {
       this.canvas.parentNode.removeChild(this.canvas);
     }
-    
+
     // 重置状态
     this.isInitialized = false;
     this.particles = [];

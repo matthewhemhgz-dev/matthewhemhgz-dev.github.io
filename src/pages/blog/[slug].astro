@@ -26,30 +26,34 @@ const { Content, headings } = await render(post);
 const readingTime = getReadingTime(post.body || '');
 
 // Get related posts
-const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh' && data.id !== post.id);
+const allPosts = await getCollection(
+  'blog',
+  ({ data }) => !data.draft && data.lang === 'zh' && data.id !== post.id,
+);
 
 // Calculate relatedness score
-const relatedPosts = allPosts.map(otherPost => {
-  let score = 0;
-  
-  // Score based on common tags
-  const commonTags = otherPost.data.tags?.filter(tag => post.data.tags?.includes(tag)) || [];
-  score += commonTags.length * 3;
-  
-  // Score based on same category
-  if (otherPost.data.category === post.data.category) {
-    score += 2;
-  }
-  
-  // Score based on publish date proximity
-  const dateDiff = Math.abs(otherPost.data.pubDate - post.data.pubDate);
-  const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
-  score += Math.max(0, 1 - daysDiff / 365);
-  
-  return { post: otherPost, score };
-})
-.sort((a, b) => b.score - a.score)
-.slice(0, 3);
+const relatedPosts = allPosts
+  .map((otherPost) => {
+    let score = 0;
+
+    // Score based on common tags
+    const commonTags = otherPost.data.tags?.filter((tag) => post.data.tags?.includes(tag)) || [];
+    score += commonTags.length * 3;
+
+    // Score based on same category
+    if (otherPost.data.category === post.data.category) {
+      score += 2;
+    }
+
+    // Score based on publish date proximity
+    const dateDiff = Math.abs(otherPost.data.pubDate - post.data.pubDate);
+    const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 1 - daysDiff / 365);
+
+    return { post: otherPost, score };
+  })
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3);
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
@@ -295,33 +299,35 @@ const articleJsonLd = {
           </div>
         </div>
       </div>
-      
+
       <!-- Related Posts Section -->
-      {relatedPosts.length > 0 && (
-        <section class="article-related">
-          <div class="article-divider"></div>
-          <h3 class="article-related-title">相关文章</h3>
-          <div class="article-related-grid">
-            {relatedPosts.map(({ post }) => (
-              <a href={`/blog/${post.id.replace('zh/', '')}/`} class="article-related-card">
-                <h4 class="article-related-card-title">{post.data.title}</h4>
-                <p class="article-related-card-desc">{post.data.description}</p>
-                <div class="article-related-card-meta">
-                  <span class="article-related-card-category">{post.data.category}</span>
-                  <time class="article-related-card-date">
-                    {post.data.pubDate.toLocaleDateString('zh-CN', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-      
+      {
+        relatedPosts.length > 0 && (
+          <section class="article-related">
+            <div class="article-divider" />
+            <h3 class="article-related-title">相关文章</h3>
+            <div class="article-related-grid">
+              {relatedPosts.map(({ post }) => (
+                <a href={`/blog/${post.id.replace('zh/', '')}/`} class="article-related-card">
+                  <h4 class="article-related-card-title">{post.data.title}</h4>
+                  <p class="article-related-card-desc">{post.data.description}</p>
+                  <div class="article-related-card-meta">
+                    <span class="article-related-card-category">{post.data.category}</span>
+                    <time class="article-related-card-date">
+                      {post.data.pubDate.toLocaleDateString('zh-CN', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
       <nav class="article-nav">
         {
           prevPost && (

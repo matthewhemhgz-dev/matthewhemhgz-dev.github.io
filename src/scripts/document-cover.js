@@ -14,12 +14,12 @@ class DocumentCover {
         amber: '#fbbf24',
         mint: '#a7f3d0',
         background: '#ffffff',
-        text: '#000000'
+        text: '#000000',
       },
       style: 'modern', // modern, minimal, artistic
-      ...options
+      ...options,
     };
-    
+
     this.p5Instance = null;
   }
 
@@ -38,25 +38,25 @@ class DocumentCover {
 
   _drawCover(p) {
     const { width, height } = this.options.size;
-    
+
     // 绘制背景
     this._drawBackground(p, width, height);
-    
+
     // 绘制标题
     this._drawTitle(p, width, height);
-    
+
     // 绘制副标题
     if (this.options.subtitle) {
       this._drawSubtitle(p, width, height);
     }
-    
+
     // 绘制作者和日期
     this._drawFooter(p, width, height);
   }
 
   _drawBackground(p, width, height) {
     p.background(this.options.colors.background);
-    
+
     switch (this.options.style) {
       case 'artistic':
         this._drawArtisticBackground(p, width, height);
@@ -81,16 +81,16 @@ class DocumentCover {
       p.stroke(color);
       p.line(0, y, width, y);
     }
-    
+
     // 绘制几何形状
     p.noFill();
     p.stroke(this.options.colors.amber);
     p.strokeWeight(5);
-    
+
     // 绘制圆形
     p.ellipse(width * 0.2, height * 0.2, width * 0.3);
     p.ellipse(width * 0.8, height * 0.8, width * 0.4);
-    
+
     // 绘制矩形
     p.rectMode(p.CENTER);
     p.rect(width * 0.7, height * 0.3, width * 0.2, width * 0.2);
@@ -99,15 +99,15 @@ class DocumentCover {
 
   _drawMinimalBackground(p, width, height) {
     p.background(this.options.colors.background);
-    
+
     // 绘制简单的线条
     p.stroke(this.options.colors.emerald);
     p.strokeWeight(2);
-    
+
     // 水平线
     p.line(0, height * 0.2, width, height * 0.2);
     p.line(0, height * 0.8, width, height * 0.8);
-    
+
     // 垂直线
     p.line(width * 0.2, 0, width * 0.2, height);
     p.line(width * 0.8, 0, width * 0.8, height);
@@ -117,12 +117,9 @@ class DocumentCover {
     // 绘制抽象背景
     for (let i = 0; i < 20; i++) {
       p.noFill();
-      p.stroke(p.color(
-        this.options.colors.emerald,
-        p.random(50, 150)
-      ));
+      p.stroke(p.color(this.options.colors.emerald, p.random(50, 150)));
       p.strokeWeight(p.random(1, 5));
-      
+
       p.beginShape();
       for (let j = 0; j < 10; j++) {
         const x = p.random(width);
@@ -131,22 +128,18 @@ class DocumentCover {
       }
       p.endShape(p.CLOSE);
     }
-    
+
     // 绘制品牌色彩的圆点
     const colors = [
       this.options.colors.emerald,
       this.options.colors.amber,
-      this.options.colors.mint
+      this.options.colors.mint,
     ];
-    
+
     for (let i = 0; i < 50; i++) {
       p.fill(colors[p.floor(p.random(colors.length))]);
       p.noStroke();
-      p.ellipse(
-        p.random(width),
-        p.random(height),
-        p.random(5, 20)
-      );
+      p.ellipse(p.random(width), p.random(height), p.random(5, 20));
     }
   }
 
@@ -174,7 +167,7 @@ class DocumentCover {
     p.textAlign(p.CENTER, p.CENTER);
     p.textSize(16);
     p.font('Noto Serif SC', 'regular');
-    
+
     p.text(`${this.options.author} · ${this.options.date}`, width / 2, height - 50);
   }
 

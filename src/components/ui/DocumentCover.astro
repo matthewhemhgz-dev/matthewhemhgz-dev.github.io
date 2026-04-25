@@ -11,45 +11,55 @@ interface Props {
   className?: string;
 }
 
-const { 
-  title, 
-  subtitle = '', 
-  author = 'Qi-Lab', 
-  date = new Date().toLocaleDateString('zh-CN'), 
-  style = 'modern', 
-  width = 800, 
-  height = 1000, 
-  className = '' 
+const {
+  title,
+  subtitle = '',
+  author = 'Qi-Lab',
+  date = new Date().toLocaleDateString('zh-CN'),
+  style = 'modern',
+  width = 800,
+  height = 1000,
+  className = '',
 } = Astro.props;
 const canvasId = `document-cover-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <div class={`document-cover-container ${className}`}>
-  <canvas id={canvasId} class="document-cover-canvas"></canvas>
+  <canvas
+    id={canvasId}
+    class="document-cover-canvas"
+    data-title={title}
+    data-subtitle={subtitle}
+    data-author={author}
+    data-date={date}
+    data-style={style}
+    data-width={width}
+    data-height={height}></canvas>
 </div>
 
 <script is:inline>
-  (function() {
-    const canvasId = '${canvasId}';
-    const title = '${title}';
-    const subtitle = '${subtitle}';
-    const author = '${author}';
-    const date = '${date}';
-    const style = '${style}';
-    const width = ${width};
-    const height = ${height};
+  (function () {
+    const canvas = document.getElementById('${canvasId}');
+    if (!canvas) return;
+
+    const title = canvas.getAttribute('data-title') || '';
+    const subtitle = canvas.getAttribute('data-subtitle') || '';
+    const author = canvas.getAttribute('data-author') || 'Qi-Lab';
+    const date = canvas.getAttribute('data-date') || new Date().toLocaleDateString('zh-CN');
+    const style = canvas.getAttribute('data-style') || 'modern';
+    const width = parseInt(canvas.getAttribute('data-width') || '800', 10);
+    const height = parseInt(canvas.getAttribute('data-height') || '1000', 10);
 
     function initDocumentCover() {
-      import('https://cdn.skypack.dev/p5@1.9.0').then((p5Module) => {
-        const p5 = p5Module.default;
+      import('https://cdn.skypack.dev/p5@1.9.0').then(() => {
         import('../../scripts/document-cover.js').then(({ DocumentCover }) => {
-          const documentCover = new DocumentCover(canvasId, {
+          const documentCover = new DocumentCover('${canvasId}', {
             title: title,
             subtitle: subtitle,
             author: author,
             date: date,
             style: style,
-            size: { width: width, height: height }
+            size: { width: width, height: height },
           });
           documentCover.init();
         });

@@ -71,16 +71,16 @@ class GenerativeHarmony {
     this.colors = {
       emerald: '#4ade80',
       amber: '#fbbf24',
-      mint: '#a7f3d0'
+      mint: '#a7f3d0',
     };
-    
+
     this.initializeShapes();
   }
 
   initializeShapes() {
     this.shapes = [];
     randomSeed(this.seed);
-    
+
     for (let i = 0; i < this.numShapes; i++) {
       this.shapes.push({
         x: random(this.width),
@@ -89,7 +89,7 @@ class GenerativeHarmony {
         rotation: random(TWO_PI),
         color: this.getRandomColor(),
         speed: random(0.1, 0.5),
-        phase: random(TWO_PI)
+        phase: random(TWO_PI),
       });
     }
   }
@@ -101,7 +101,7 @@ class GenerativeHarmony {
       shape.y += cos(shape.phase) * shape.speed;
       shape.rotation += 0.01;
       shape.phase += 0.05;
-      
+
       // Wrap around boundaries
       if (shape.x < -shape.size) shape.x = this.width + shape.size;
       if (shape.x > this.width + shape.size) shape.x = -shape.size;
@@ -115,12 +115,12 @@ class GenerativeHarmony {
       push();
       translate(shape.x, shape.y);
       rotate(shape.rotation);
-      
+
       // Draw geometric shape
       noFill();
       stroke(shape.color);
       strokeWeight(2);
-      
+
       // Draw a polygon with varying sides based on seed
       let sides = 3 + floor((this.seed + shape.x + shape.y) % 5);
       beginShape();
@@ -130,7 +130,7 @@ class GenerativeHarmony {
         vertex(cos(angle) * radius, sin(angle) * radius);
       }
       endShape(CLOSE);
-      
+
       // Draw inner details
       strokeWeight(1);
       for (let i = 0; i < sides; i++) {
@@ -138,12 +138,17 @@ class GenerativeHarmony {
         let angle2 = (TWO_PI / sides) * ((i + 2) % sides);
         let radius1 = shape.size * 0.2;
         let radius2 = shape.size * 0.4;
-        line(cos(angle1) * radius1, sin(angle1) * radius1, cos(angle2) * radius2, sin(angle2) * radius2);
+        line(
+          cos(angle1) * radius1,
+          sin(angle1) * radius1,
+          cos(angle2) * radius2,
+          sin(angle2) * radius2,
+        );
       }
-      
+
       pop();
     }
-    
+
     // Draw connecting lines between shapes
     this.drawConnections();
   }
@@ -160,12 +165,12 @@ class GenerativeHarmony {
 
 ### 3.3 技术挑战与解决方案
 
-| 挑战 | 解决方案 |
-|------|----------|
-| 性能优化 | 使用requestAnimationFrame，限制绘制复杂度 |
-| 随机性控制 | 使用种子系统确保可复现性 |
-| 视觉一致性 | 基于品牌色彩系统和设计规范 |
-| 浏览器兼容性 | 提供降级方案，使用特性检测 |
+| 挑战         | 解决方案                                  |
+| ------------ | ----------------------------------------- |
+| 性能优化     | 使用requestAnimationFrame，限制绘制复杂度 |
+| 随机性控制   | 使用种子系统确保可复现性                  |
+| 视觉一致性   | 基于品牌色彩系统和设计规范                |
+| 浏览器兼容性 | 提供降级方案，使用特性检测                |
 
 ---
 
@@ -255,4 +260,4 @@ class GenerativeHarmony {
 ---
 
 **文档作者**: Qi-Lab 算法艺术团队  
-**最后更新**: 2026-04-25  
+**最后更新**: 2026-04-25

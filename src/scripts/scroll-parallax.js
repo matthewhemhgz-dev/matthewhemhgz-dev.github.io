@@ -44,7 +44,7 @@ export function initScrollParallax() {
         }
       });
     },
-    { threshold: 0.1, rootMargin: '50px' }
+    { threshold: 0.1, rootMargin: '50px' },
   );
 
   // 存储 observer 到 window 对象，以便后续清理

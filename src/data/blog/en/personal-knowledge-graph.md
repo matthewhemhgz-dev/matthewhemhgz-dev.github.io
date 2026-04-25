@@ -184,11 +184,11 @@ graph TD
 
 ### Three Knowledge Graph Structures
 
-| Structure Type | Description | Value |
-| -------------- | ----------- | ----- |
-| **Hierarchical** | Parent-child relationships, e.g., "Frontend → CSS → Architecture" | Provides macro framework |
-| **Associative** | Horizontal connections between topics | Generates cross-domain insights |
-| **Sequential** | Timeline or process of knowledge | Shows knowledge evolution path |
+| Structure Type   | Description                                                       | Value                           |
+| ---------------- | ----------------------------------------------------------------- | ------------------------------- |
+| **Hierarchical** | Parent-child relationships, e.g., "Frontend → CSS → Architecture" | Provides macro framework        |
+| **Associative**  | Horizontal connections between topics                             | Generates cross-domain insights |
+| **Sequential**   | Timeline or process of knowledge                                  | Shows knowledge evolution path  |
 
 A mature knowledge graph should contain all three structures. Hierarchical structures let you quickly locate knowledge, associative structures help you discover hidden connections, sequential structures let you trace knowledge's origins.
 
@@ -228,22 +228,22 @@ tags: [Index, Knowledge Management]
 
 ### Core Tools
 
-| Tool           | Type         | Core Advantage                                | Best For              |
-| -------------- | ------------ | --------------------------------------------- | --------------------- |
-| **Obsidian**   | Local Notes  | Bidirectional links, graph visualization, rich plugin ecosystem | Those who value knowledge network building |
-| **Logseq**     | Local Notes  | Outline-based notes, bidirectional links, open source free | Those who like outline structures |
-| **Notion**     | Cloud Collaboration | Databases, team collaboration, rich templates | Those needing team collaboration |
-| **Heptabase**  | Visual Notes | Whiteboard knowledge organization, spatial thinking | Visual thinkers |
-| **Readwise**   | Reading Sync | Auto-sync highlights from various platforms to note tools | Heavy readers |
+| Tool          | Type                | Core Advantage                                                  | Best For                                   |
+| ------------- | ------------------- | --------------------------------------------------------------- | ------------------------------------------ |
+| **Obsidian**  | Local Notes         | Bidirectional links, graph visualization, rich plugin ecosystem | Those who value knowledge network building |
+| **Logseq**    | Local Notes         | Outline-based notes, bidirectional links, open source free      | Those who like outline structures          |
+| **Notion**    | Cloud Collaboration | Databases, team collaboration, rich templates                   | Those needing team collaboration           |
+| **Heptabase** | Visual Notes        | Whiteboard knowledge organization, spatial thinking             | Visual thinkers                            |
+| **Readwise**  | Reading Sync        | Auto-sync highlights from various platforms to note tools       | Heavy readers                              |
 
 ### Supporting Tools
 
-| Tool             | Purpose      | Notes                                              |
-| ---------------- | ------------ | -------------------------------------------------- |
-| **Omnivore**     | Read It Later | Open source free read-it-later tool, supports highlighting |
-| **MarkDownload** | Web Saving   | Save web content as Markdown format                |
-| **Dataview**     | Note Query   | Obsidian plugin, query notes with SQL-like syntax  |
-| **Excalidraw**   | Visual Thinking | Obsidian plugin, hand-drawn diagrams and mind maps |
+| Tool             | Purpose         | Notes                                                      |
+| ---------------- | --------------- | ---------------------------------------------------------- |
+| **Omnivore**     | Read It Later   | Open source free read-it-later tool, supports highlighting |
+| **MarkDownload** | Web Saving      | Save web content as Markdown format                        |
+| **Dataview**     | Note Query      | Obsidian plugin, query notes with SQL-like syntax          |
+| **Excalidraw**   | Visual Thinking | Obsidian plugin, hand-drawn diagrams and mind maps         |
 
 > **Tool Selection Advice**: Don't fall into "tool anxiety." Tools are just carriers—the core is your thinking style. I recommend sticking with one tool (Obsidian recommended) for three months first, then deciding if you need to add other tools based on actual needs. For specific tool pairing solutions, refer to [Notion + Obsidian Dual-Track Knowledge Management System](/blog/notion-obsidian-dual-track).
 

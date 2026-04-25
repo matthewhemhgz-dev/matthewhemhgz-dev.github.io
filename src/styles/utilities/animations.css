@@ -95,8 +95,9 @@
 }
 
 .qi-anim-hover-lift {
-  transition: transform var(--qi-transition) var(--qi-spring-soft),
-              box-shadow var(--qi-transition) var(--qi-spring-soft);
+  transition:
+    transform var(--qi-transition) var(--qi-spring-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-soft);
 }
 
 .qi-anim-hover-lift:hover {
@@ -105,8 +106,9 @@
 }
 
 .qi-anim-hover-lift-physical {
-  transition: transform var(--qi-transition) var(--qi-spring-physical-soft),
-              box-shadow var(--qi-transition) var(--qi-spring-physical-soft);
+  transition:
+    transform var(--qi-transition) var(--qi-spring-physical-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-physical-soft);
 }
 
 .qi-anim-hover-lift-physical:hover {
@@ -119,7 +121,7 @@
 }
 
 .qi-anim-hover-glow:hover {
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(74, 222, 153, 0.2),
     0 4px 16px rgba(74, 222, 153, 0.15);
 }
@@ -165,8 +167,9 @@
 }
 
 .qi-anim-hover-bg {
-  transition: background-color var(--qi-transition) var(--qi-spring-soft),
-              color var(--qi-transition) var(--qi-spring-soft);
+  transition:
+    background-color var(--qi-transition) var(--qi-spring-soft),
+    color var(--qi-transition) var(--qi-spring-soft);
 }
 
 .qi-anim-hover-bg:hover {
@@ -175,8 +178,9 @@
 }
 
 .qi-anim-hover-bg-physical {
-  transition: background-color var(--qi-transition) var(--qi-spring-physical-soft),
-              color var(--qi-transition) var(--qi-spring-physical-soft);
+  transition:
+    background-color var(--qi-transition) var(--qi-spring-physical-soft),
+    color var(--qi-transition) var(--qi-spring-physical-soft);
 }
 
 .qi-anim-hover-bg-physical:hover {
@@ -188,8 +192,9 @@
 .qi-anim-button {
   position: relative;
   overflow: hidden;
-  transition: transform var(--qi-transition) var(--qi-spring-soft),
-              box-shadow var(--qi-transition) var(--qi-spring-soft);
+  transition:
+    transform var(--qi-transition) var(--qi-spring-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-soft);
 }
 
 .qi-anim-button::before {
@@ -202,7 +207,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width var(--qi-transition-base), height var(--qi-transition-base);
+  transition:
+    width var(--qi-transition-base),
+    height var(--qi-transition-base);
 }
 
 .qi-anim-button:active::before {
@@ -218,8 +225,9 @@
 .qi-anim-button-physical {
   position: relative;
   overflow: hidden;
-  transition: transform var(--qi-transition) var(--qi-spring-physical-soft),
-              box-shadow var(--qi-transition) var(--qi-spring-physical-soft);
+  transition:
+    transform var(--qi-transition) var(--qi-spring-physical-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-physical-soft);
 }
 
 .qi-anim-button-physical::before {
@@ -232,7 +240,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width var(--qi-transition-base), height var(--qi-transition-base);
+  transition:
+    width var(--qi-transition-base),
+    height var(--qi-transition-base);
 }
 
 .qi-anim-button-physical:active::before {
@@ -249,8 +259,9 @@
 .qi-anim-scroll-reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--qi-anim-duration) var(--qi-spring),
-              transform var(--qi-anim-duration) var(--qi-spring);
+  transition:
+    opacity var(--qi-anim-duration) var(--qi-spring),
+    transform var(--qi-anim-duration) var(--qi-spring);
 }
 
 .qi-anim-scroll-reveal.visible {
@@ -261,8 +272,9 @@
 .qi-anim-scroll-reveal-physical {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--qi-anim-duration) var(--qi-spring-physical),
-              transform var(--qi-anim-duration) var(--qi-spring-physical);
+  transition:
+    opacity var(--qi-anim-duration) var(--qi-spring-physical),
+    transform var(--qi-anim-duration) var(--qi-spring-physical);
 }
 
 .qi-anim-scroll-reveal-physical.visible {
@@ -276,8 +288,9 @@
   border-right: 0.15em solid var(--qi-brand-emerald);
   white-space: nowrap;
   margin: 0 auto;
-  animation: typing 3.5s steps(40, end),
-             blink-caret 0.75s step-end infinite;
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
 }
 
 /* 脉冲动画 */
@@ -450,16 +463,17 @@
 
 @keyframes typing {
   from {
-    width: 0
+    width: 0;
   }
   to {
-    width: 100%
+    width: 100%;
   }
 }
 
 @keyframes blink-caret {
-  from, to {
-    border-color: transparent
+  from,
+  to {
+    border-color: transparent;
   }
   50% {
     border-color: var(--qi-brand-emerald);
@@ -467,7 +481,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -476,7 +491,8 @@
 }
 
 @keyframes wiggle {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(-3deg);
   }
   50% {
@@ -494,7 +510,8 @@
 }
 
 @keyframes breath {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {

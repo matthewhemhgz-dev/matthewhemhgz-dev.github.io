@@ -70,16 +70,19 @@ lang: zh
 ### 3. 具体命名示例
 
 **颜色**：
+
 - `color-primary-500`：主色调
 - `color-text-primary`：主要文本颜色
 - `color-bg-surface`：表面背景色
 
 **间距**：
+
 - `spacing-xs`：超小间距
 - `spacing-md`：中等间距
 - `spacing-xl`：超大间距
 
 **排版**：
+
 - `font-size-heading-1`：一级标题字体大小
 - `font-weight-bold`：粗体字重
 - `line-height-tight`：紧凑行高
@@ -89,6 +92,7 @@ lang: zh
 ### 1. CSS 变量
 
 **优势**：
+
 - 原生支持
 - 运行时可修改
 - 支持主题切换
@@ -102,12 +106,12 @@ lang: zh
   --color-primary-500: #10b981;
   --color-text-primary: #1f2937;
   --color-bg-surface: #ffffff;
-  
+
   /* 间距令牌 */
   --spacing-xs: 0.25rem;
   --spacing-md: 1rem;
   --spacing-xl: 2rem;
-  
+
   /* 排版令牌 */
   --font-size-heading-1: 2.5rem;
   --font-weight-bold: 700;
@@ -124,6 +128,7 @@ lang: zh
 ### 2. SCSS 变量
 
 **优势**：
+
 - 编译时处理
 - 支持嵌套和计算
 - 向后兼容
@@ -146,7 +151,7 @@ $spacing-xl: 2rem;
   --color-primary-500: #{$color-primary-500};
   --color-text-primary: #{$color-text-primary};
   --color-bg-surface: #{$color-bg-surface};
-  
+
   --spacing-xs: #{$spacing-xs};
   --spacing-md: #{$spacing-md};
   --spacing-xl: #{$spacing-xl};
@@ -156,6 +161,7 @@ $spacing-xl: 2rem;
 ### 3. Style Dictionary
 
 **优势**：
+
 - 多平台支持
 - 自动生成代码
 - 版本控制
@@ -185,6 +191,7 @@ $spacing-xl: 2rem;
 ### 4. JavaScript/TypeScript
 
 **优势**：
+
 - 类型安全
 - 支持复杂逻辑
 - 可与框架集成
@@ -196,17 +203,17 @@ $spacing-xl: 2rem;
 export const tokens = {
   color: {
     primary: {
-      500: '#10b981'
+      500: '#10b981',
     },
     text: {
-      primary: '#1f2937'
-    }
+      primary: '#1f2937',
+    },
   },
   spacing: {
     xs: '0.25rem',
     md: '1rem',
-    xl: '2rem'
-  }
+    xl: '2rem',
+  },
 };
 
 // 生成 CSS 变量
@@ -281,17 +288,20 @@ export function generateCSSVariables() {
 ### 案例 1：企业设计系统
 
 **挑战**：
+
 - 多产品、多团队协作
 - 需要支持多种主题
 - 设计和开发需要统一语言
 
 **解决方案**：
+
 - 使用 Style Dictionary 管理令牌
 - 建立三层令牌结构（原始、语义、组件）
 - 自动生成多平台代码
 - 提供详细的令牌文档
 
 **成果**：
+
 - 设计决策集中管理
 - 开发效率提高 40%
 - 产品视觉一致性显著提升
@@ -299,17 +309,20 @@ export function generateCSSVariables() {
 ### 案例 2：深色模式实现
 
 **挑战**：
+
 - 需要支持浅色和深色模式
 - 确保所有组件正确适配
 - 提供平滑的主题切换体验
 
 **解决方案**：
+
 - 使用 CSS 变量实现令牌
 - 为每个主题定义独立的令牌值
 - 利用媒体查询和类名切换主题
 - 测试所有组件的主题适配
 
 **成果**：
+
 - 无缝的主题切换
 - 一致的视觉体验
 - 易于维护的主题系统
@@ -347,6 +360,7 @@ export function generateCSSVariables() {
 **问题**：创建过多令牌或过于复杂的令牌结构
 
 **解决方案**：
+
 - 保持令牌结构简单
 - 只创建必要的令牌
 - 定期清理未使用的令牌
@@ -356,6 +370,7 @@ export function generateCSSVariables() {
 **问题**：令牌命名缺乏一致性
 
 **解决方案**：
+
 - 建立明确的命名规范
 - 使用自动化工具检查命名
 - 定期审核令牌名称
@@ -365,6 +380,7 @@ export function generateCSSVariables() {
 **问题**：令牌缺乏足够的文档
 
 **解决方案**：
+
 - 为每个令牌添加详细文档
 - 提供使用示例
 - 记录设计决策的理由
@@ -374,6 +390,7 @@ export function generateCSSVariables() {
 **问题**：令牌与特定的实现技术耦合
 
 **解决方案**：
+
 - 保持令牌的平台无关性
 - 使用抽象层隔离实现细节
 - 支持多种实现技术

@@ -55,11 +55,11 @@ graph TD
 
 The biggest enemy of refactoring is the temptation of "complete rewrite." After analyzing the project, I discovered three main issues:
 
-| Issue                          | Risk | Why Can't Be Solved At Once          |
-| ------------------------------ | ---- | ------------------------------------ |
-| Homepage has 170+ lines of inline `<style>` | High | Directly removing inline styles would cause large-scale style breakage |
-| Multiple components have their own inline styles | Medium | Migrating one by one takes time but risk is controllable |
-| CSS files are loosely organized, lacking clear structure | Low | Moving files is relatively safe but requires updating all references |
+| Issue                                                    | Risk   | Why Can't Be Solved At Once                                            |
+| -------------------------------------------------------- | ------ | ---------------------------------------------------------------------- |
+| Homepage has 170+ lines of inline `<style>`              | High   | Directly removing inline styles would cause large-scale style breakage |
+| Multiple components have their own inline styles         | Medium | Migrating one by one takes time but risk is controllable               |
+| CSS files are loosely organized, lacking clear structure | Low    | Moving files is relatively safe but requires updating all references   |
 
 **Core Advantages of Progressive Refactoring**:
 
@@ -120,9 +120,7 @@ Modify component files, remove inline `<style>`, change to importing external CS
   /* 100+ lines of inline styles */
 </style>
 
---- // After
-import "../styles/component-name.css";
----
+--- // After import "../styles/component-name.css"; ---
 <!-- Component content -->
 <!-- No more <style> tags -->
 ```
@@ -330,12 +328,12 @@ Tailwind's dark mode works through `dark:` prefix, but need to ensure:
 
 I discovered an effective migration strategy:
 
-| Component Type   | Migration Strategy             | Example                              |
-| ---------------- | ------------------------------ | ------------------------------------ |
-| **Simple Buttons** | Fully use Tailwind          | `ThemeToggle`, `LanguageToggle` |
-| **Complex Animation Components** | Tailwind + custom component classes | `DashCard` |
-| **Layout Components** | Keep existing CSS (don't touch for now) | `Navigation`, `Footer` |
-| **Page Sections** | Keep existing CSS (don't touch for now) | `HeroSection`, `AboutSection` |
+| Component Type                   | Migration Strategy                      | Example                         |
+| -------------------------------- | --------------------------------------- | ------------------------------- |
+| **Simple Buttons**               | Fully use Tailwind                      | `ThemeToggle`, `LanguageToggle` |
+| **Complex Animation Components** | Tailwind + custom component classes     | `DashCard`                      |
+| **Layout Components**            | Keep existing CSS (don't touch for now) | `Navigation`, `Footer`          |
+| **Page Sections**                | Keep existing CSS (don't touch for now) | `HeroSection`, `AboutSection`   |
 
 **Core Principle**: Migrate simple, independent components first; complex page-level styles can be handled later.
 
@@ -403,10 +401,10 @@ This is the most tedious step! I needed to update all import statements:
 
 ```javascript
 // Before
-import "../styles/global.css";
+import '../styles/global.css';
 
 // After
-import "../styles/base/global.css";
+import '../styles/base/global.css';
 ```
 
 **In other components**:
@@ -475,13 +473,13 @@ VS Code's path autocompletion sometimes gives wrong suggestions, especially when
 
 ### Tools We Used
 
-| Tool                  | Purpose                      | Assessment                           |
-| --------------------- | ---------------------------- | ------------------------------------ |
-| **Git**               | Version control, commit after each iteration | ⭐⭐⭐⭐⭐ Essential |
-| **npm run build**     | Quick verify refactoring correctness | ⭐⭐⭐⭐⭐ Must run after every change |
-| **Astro Dev Server**  | Local preview, check visual effects | ⭐⭐⭐⭐ Rapid feedback |
-| **Design Token System** | Maintain design consistency | ⭐⭐⭐⭐⭐ Foundation of this refactoring |
-| **Tailwind CSS**      | Utility-First styling solution | ⭐⭐⭐⭐ Core of component migration |
+| Tool                    | Purpose                                      | Assessment                                |
+| ----------------------- | -------------------------------------------- | ----------------------------------------- |
+| **Git**                 | Version control, commit after each iteration | ⭐⭐⭐⭐⭐ Essential                      |
+| **npm run build**       | Quick verify refactoring correctness         | ⭐⭐⭐⭐⭐ Must run after every change    |
+| **Astro Dev Server**    | Local preview, check visual effects          | ⭐⭐⭐⭐ Rapid feedback                   |
+| **Design Token System** | Maintain design consistency                  | ⭐⭐⭐⭐⭐ Foundation of this refactoring |
+| **Tailwind CSS**        | Utility-First styling solution               | ⭐⭐⭐⭐ Core of component migration      |
 
 ### Three Iteration Acceptance Checklist
 

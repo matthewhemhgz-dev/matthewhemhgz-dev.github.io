@@ -11,7 +11,6 @@ let initialized = false;
 let cursorGlow = null;
 let particles = null;
 let backgroundArt = null;
-let interactionEnhancements = null;
 const cleanupFns = [];
 
 function initQiLab() {
@@ -74,7 +73,7 @@ function initQiLab() {
       const cs = getComputedStyle(document.documentElement);
       const screenWidth = window.innerWidth;
       const artType = screenWidth < 768 ? 'generative' : 'fluid';
-      
+
       backgroundArt = new BackgroundArt('background-art-canvas', {
         type: artType,
         particleCount: screenWidth < 768 ? 50 : 100,
@@ -82,10 +81,10 @@ function initQiLab() {
         colors: {
           emerald: cs.getPropertyValue('--qi-brand-emerald').trim(),
           amber: cs.getPropertyValue('--qi-brand-amber').trim(),
-          mint: cs.getPropertyValue('--qi-brand-mint').trim()
-        }
+          mint: cs.getPropertyValue('--qi-brand-mint').trim(),
+        },
       });
-      
+
       backgroundArt.init();
       cleanupFns.push(() => backgroundArt.destroy());
     });
@@ -119,10 +118,9 @@ function initQiLab() {
 
   // 7. 交互增强效果
   if (!prefersReducedMotion) {
-    interactionEnhancements = new InteractionEnhancements();
+    new InteractionEnhancements();
     cleanupFns.push(() => {
       // 清理交互增强效果的相关资源
-      interactionEnhancements = null;
     });
   }
 }

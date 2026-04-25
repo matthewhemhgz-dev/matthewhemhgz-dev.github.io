@@ -280,6 +280,7 @@ const blog = defineCollection({
 **功能**：实现鼠标跟随的三层渐变光晕效果，增强用户交互体验。
 
 **主要方法**：
+
 - `constructor(options)`：初始化光标光效，可配置尺寸和混合模式
 - `_create()`：创建光效 DOM 元素和样式
 - `_bindEvents()`：绑定鼠标和触摸事件
@@ -287,12 +288,13 @@ const blog = defineCollection({
 - `_hexToRGB(hex)`：将十六进制颜色转换为 RGB 对象
 
 **使用示例**：
+
 ```javascript
 import { CursorGlow } from './cursor-glow.js';
 
 const cursorGlow = new CursorGlow({
   size: 350,
-  blend: 'screen'
+  blend: 'screen',
 });
 
 // 销毁时
@@ -308,6 +310,7 @@ const cursorGlow = new CursorGlow({
 **功能**：实现高性能的粒子背景效果，支持鼠标交互和光晕效果。
 
 **主要方法**：
+
 - `constructor(canvasId, options)`：初始化粒子系统
 - `resize()`：调整画布尺寸，适配窗口大小
 - `init()`：初始化粒子数据
@@ -318,6 +321,7 @@ const cursorGlow = new CursorGlow({
 - `rebuild(newOptions)`：重建粒子系统，支持动态更新配置
 
 **使用示例**：
+
 ```javascript
 import { MinimalParticles } from './particles.js';
 
@@ -326,7 +330,7 @@ const particles = new MinimalParticles('particles-canvas', {
   colors: ['#2E7D5C', '#78B4A0', '#E5A93C', '#F7F3EE'],
   maxSize: 3,
   speed: 0.25,
-  linkDistance: 120
+  linkDistance: 120,
 });
 
 // 销毁时
@@ -342,6 +346,7 @@ const particles = new MinimalParticles('particles-canvas', {
 **功能**：实现基于 Canvas 的流体粒子背景效果，支持鼠标交互。
 
 **主要方法**：
+
 - `constructor(container)`：初始化流体背景，指定容器元素
 - `init()`：初始化 Canvas 和粒子
 - `resize()`：调整画布尺寸
@@ -351,6 +356,7 @@ const particles = new MinimalParticles('particles-canvas', {
 - `destroy()`：销毁流体背景实例
 
 **使用示例**：
+
 ```javascript
 import FluidBackground from './fluid-background.js';
 

@@ -45,10 +45,10 @@
       />
       <kbd class="search-kbd" aria-hidden="true">ESC</kbd>
     </div>
-    
+
     <!-- 搜索建议 -->
     <div id="search-suggestions" class="search-suggestions" aria-hidden="true"></div>
-    
+
     <!-- 高级搜索选项 -->
     <div class="search-filters">
       <div class="search-filter-group">
@@ -66,15 +66,11 @@
         <button id="sort-relevance" class="search-filter-btn active" data-sort="relevance">
           相关性
         </button>
-        <button id="sort-date-desc" class="search-filter-btn" data-sort="date-desc">
-          最新
-        </button>
-        <button id="sort-date-asc" class="search-filter-btn" data-sort="date-asc">
-          最早
-        </button>
+        <button id="sort-date-desc" class="search-filter-btn" data-sort="date-desc"> 最新 </button>
+        <button id="sort-date-asc" class="search-filter-btn" data-sort="date-asc"> 最早 </button>
       </div>
     </div>
-    
+
     <!-- 搜索历史 -->
     <div id="search-history" class="search-history">
       <h3 class="search-history-title" data-i18n-key="search-history">搜索历史</h3>
@@ -83,7 +79,7 @@
         清除历史
       </button>
     </div>
-    
+
     <div id="search-results" class="search-results" aria-live="polite" aria-atomic="true">
       <p id="search-hint" class="search-hint" data-i18n-key="hint"></p>
     </div>
@@ -155,7 +151,7 @@
     const filterTagsEl = document.querySelector('[data-i18n-key="filter-tags"]');
     const historyTitleEl = document.querySelector('[data-i18n-key="search-history"]');
     const clearHistoryEl = document.querySelector('[data-i18n-key="clear-history"]');
-    
+
     if (titleEl) titleEl.textContent = t('title');
     if (inputEl) {
       inputEl.placeholder = t('placeholder');
@@ -178,7 +174,7 @@
   function addToSearchHistory(query: string) {
     if (!query.trim()) return;
     let history = getSearchHistory();
-    history = history.filter(item => item !== query);
+    history = history.filter((item) => item !== query);
     history.unshift(query);
     history = history.slice(0, 5); // 只保留最近5条
     localStorage.setItem('searchHistory', JSON.stringify(history));
@@ -193,24 +189,26 @@
   function renderSearchHistory() {
     const historyItems = document.querySelector('.search-history-items');
     const history = getSearchHistory();
-    
+
     if (historyItems) {
       if (history.length === 0) {
         historyItems.innerHTML = `<p class="search-history-empty">${t('no-history')}</p>`;
       } else {
         historyItems.innerHTML = history
-          .map(item => `
+          .map(
+            (item) => `
             <button class="search-history-item" data-query="${item}">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M6.5 1.5v11M1.5 6.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
               ${item}
             </button>
-          `)
+          `,
+          )
           .join('');
-        
+
         // 添加历史项点击事件
-        document.querySelectorAll('.search-history-item').forEach(item => {
+        document.querySelectorAll('.search-history-item').forEach((item) => {
           item.addEventListener('click', () => {
             const query = item.getAttribute('data-query');
             if (query) {
@@ -239,38 +237,42 @@
     'PWA',
     'SEO',
     '响应式设计',
-    '可访问性'
+    '可访问性',
   ];
 
   function showSearchSuggestions(query: string) {
     const suggestionsEl = document.getElementById('search-suggestions');
     if (!suggestionsEl) return;
-    
+
     if (!query.trim()) {
       suggestionsEl.setAttribute('aria-hidden', 'true');
       suggestionsEl.innerHTML = '';
       return;
     }
-    
-    const filteredSuggestions = searchSuggestions.filter(suggestion => 
-      suggestion.toLowerCase().includes(query.toLowerCase())
+
+    const filteredSuggestions = searchSuggestions.filter((suggestion) =>
+      suggestion.toLowerCase().includes(query.toLowerCase()),
     );
-    
+
     if (filteredSuggestions.length > 0) {
       suggestionsEl.setAttribute('aria-hidden', 'false');
       suggestionsEl.innerHTML = `
         <h3 class="search-suggestions-title">${t('search-suggestions')}</h3>
         <div class="search-suggestions-list">
-          ${filteredSuggestions.map(suggestion => `
+          ${filteredSuggestions
+            .map(
+              (suggestion) => `
             <button class="search-suggestion-item" data-suggestion="${suggestion}">
               ${suggestion}
             </button>
-          `).join('')}
+          `,
+            )
+            .join('')}
         </div>
       `;
-      
+
       // 添加建议点击事件
-      document.querySelectorAll('.search-suggestion-item').forEach(item => {
+      document.querySelectorAll('.search-suggestion-item').forEach((item) => {
         item.addEventListener('click', () => {
           const suggestion = item.getAttribute('data-suggestion');
           if (suggestion) {
@@ -341,7 +343,7 @@
 
     // 添加到搜索历史
     addToSearchHistory(query);
-    
+
     // 隐藏搜索建议
     if (suggestions) {
       suggestions.setAttribute('aria-hidden', 'true');
@@ -371,9 +373,9 @@
       // 根据过滤器筛选结果
       let filteredItems = items;
       if (currentFilter === 'articles') {
-        filteredItems = items.filter(item => item.url.includes('/blog/'));
+        filteredItems = items.filter((item) => item.url.includes('/blog/'));
       } else if (currentFilter === 'tags') {
-        filteredItems = items.filter(item => item.url.includes('/tags/'));
+        filteredItems = items.filter((item) => item.url.includes('/tags/'));
       }
 
       // 根据排序方式排序结果
@@ -415,8 +417,7 @@
               </a>
             `;
           })
-          .join('')
-        }
+          .join('')}
       `;
     } catch {
       results.innerHTML = `<p class="search-status">${t('error')}</p>`;
@@ -444,10 +445,10 @@
     // Input debounce for search and suggestions
     input?.addEventListener('input', () => {
       if (searchTimeout) clearTimeout(searchTimeout);
-      
+
       // 显示搜索建议
       showSearchSuggestions(input.value);
-      
+
       // 延迟执行搜索
       searchTimeout = setTimeout(() => performSearch(input.value), 300);
     });
@@ -481,29 +482,35 @@
     }
 
     // 过滤器和排序按钮点击事件
-    document.querySelectorAll('.search-filter-btn').forEach(btn => {
+    document.querySelectorAll('.search-filter-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const filter = btn.getAttribute('data-filter');
         const sort = btn.getAttribute('data-sort');
-        
+
         if (filter) {
           // 移除同组所有激活状态
-          btn.closest('.search-filter-group')?.querySelectorAll('.search-filter-btn').forEach(b => b.classList.remove('active'));
+          btn
+            .closest('.search-filter-group')
+            ?.querySelectorAll('.search-filter-btn')
+            .forEach((b) => b.classList.remove('active'));
           // 添加当前激活状态
           btn.classList.add('active');
           // 更新当前过滤器
           currentFilter = filter;
         }
-        
+
         if (sort) {
           // 移除同组所有激活状态
-          btn.closest('.search-filter-group')?.querySelectorAll('.search-filter-btn').forEach(b => b.classList.remove('active'));
+          btn
+            .closest('.search-filter-group')
+            ?.querySelectorAll('.search-filter-btn')
+            .forEach((b) => b.classList.remove('active'));
           // 添加当前激活状态
           btn.classList.add('active');
           // 更新当前排序
           currentSort = sort;
         }
-        
+
         // 重新执行搜索
         if (input.value.trim()) {
           performSearch(input.value);

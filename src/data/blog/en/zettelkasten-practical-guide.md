@@ -1,11 +1,11 @@
 ---
-title: "Zettelkasten Practical Guide: Seamless Transformation from Notes to Articles"
+title: 'Zettelkasten Practical Guide: Seamless Transformation from Notes to Articles'
 description: "Guide to Luhmann's Zettelkasten method: make your creative process more efficient through atomic notes, bidirectional links, and progressive writing."
 pubDate: 2026-04-25
-category: "Knowledge Management"
-tags: ["Zettelkasten", "Writing", "Knowledge Management"]
-heroImage: "/images/blog/zettelkasten-practical.png"
-author: "祈研所"
+category: 'Knowledge Management'
+tags: ['Zettelkasten', 'Writing', 'Knowledge Management']
+heroImage: '/images/blog/zettelkasten-practical.png'
+author: '祈研所'
 draft: false
 lang: en
 ---
@@ -13,6 +13,7 @@ lang: en
 ## Introduction
 
 Have you ever encountered these problems:
+
 - Want to write an article but don't know where to start
 - Accumulated a lot of notes but can't effectively use them
 - Confused thoughts when writing, often getting stuck
@@ -41,18 +42,21 @@ Luhmann's slip box system contained over 90,000 cards. These cards were not simp
 ### 1. Three Types of Notes
 
 #### Fleeting Notes
+
 - **Purpose**: Capture momentary thoughts and inspiration
 - **Characteristics**: Short, rough, temporary
 - **Tools**: Sticky notes, phone memos, voice recordings
 - **Processing Time**: Process or discard within 1-2 days
 
 #### Literature Notes
+
 - **Purpose**: Record important information from reading
 - **Characteristics**: Restated in your own words, includes sources
 - **Tools**: Obsidian, Notion, and other note-taking software
 - **Processing Time**: Process immediately after reading
 
 #### Permanent Notes
+
 - **Purpose**: Core of building knowledge system
 - **Characteristics**: Complete, independent, linkable
 - **Tools**: Note-taking software that supports bidirectional links
@@ -123,16 +127,19 @@ MOC is the navigation center for knowledge domains, helping you quickly locate r
 # Writing - MOC
 
 ## Writing Methods
+
 - [[Zettelkasten Method]]
 - [[Free Writing]]
 - [[Outline Writing]]
 
 ## Writing Techniques
+
 - [[How to Write a Good Opening]]
 - [[How to Build an Argument]]
 - [[How to Revise Articles]]
 
 ## Case Studies
+
 - [[My Writing Process]]
 - [[Transformation from Notes to Articles]]
 ```
@@ -148,10 +155,11 @@ MOC is the navigation center for knowledge domains, helping you quickly locate r
 Create standardized note templates to improve writing efficiency:
 
 **Permanent Note Template**:
+
 ```markdown
 ---
 type: permanent
-created: {{date}}
+created: { { date } }
 tags: []
 related: []
 ---
@@ -168,12 +176,13 @@ related: []
 ```
 
 **Literature Note Template**:
+
 ```markdown
 ---
 type: literature
 source: '{{source}}'
 author: '{{author}}'
-created: {{date}}
+created: { { date } }
 tags: [Literature Note]
 ---
 
@@ -195,6 +204,7 @@ tags: [Literature Note]
 **Problem**: Over-collecting notes, neglecting quality and connections
 
 **Solutions**:
+
 - Focus on creating high-quality permanent notes
 - Prioritize establishing links between notes
 - Regularly clean up low-value notes
@@ -204,6 +214,7 @@ tags: [Literature Note]
 **Problem**: Setting up overly complex classification systems and rules
 
 **Solutions**:
+
 - Keep it simple, start with basic folder structure
 - Let links rather than classifications be the main way to organize knowledge
 - Adjust the system as needed rather than pursuing perfection from the start
@@ -213,6 +224,7 @@ tags: [Literature Note]
 **Problem**: Only collecting and organizing notes without writing output
 
 **Solutions**:
+
 - Set regular writing goals
 - Start with short articles and gradually transition to longer ones
 - Treat writing as a natural extension of knowledge organization
@@ -222,6 +234,7 @@ tags: [Literature Note]
 **Problem**: Over-reliance on specific tool features
 
 **Solutions**:
+
 - Understand the core principles of the method, not just specific tool functions
 - Choose tools that suit you rather than blindly following trends
 - Maintain system portability to avoid tool lock-in
@@ -229,21 +242,25 @@ tags: [Literature Note]
 ## Application Scenarios of the Zettelkasten Method
 
 ### Academic Writing
+
 - Organize research materials
 - Build literature reviews
 - Write papers and books
 
 ### Creative Writing
+
 - Collect inspiration and materials
 - Build story outlines
 - Develop characters and plots
 
 ### Career Development
+
 - Record work experiences and lessons
 - Organize industry knowledge
 - Prepare speeches and reports
 
 ### Personal Growth
+
 - Record learning insights
 - Track personal goals
 - Cultivate critical thinking
@@ -257,6 +274,7 @@ By browsing the knowledge graph, I found that there were many connections betwee
 ### Step 2: Material Collection
 
 Collect relevant permanent notes:
+
 - [[Common Causes of Writer's Block]]
 - [[Methods to Overcome Writer's Block]]
 - [[Practice of Free Writing]]
@@ -265,6 +283,7 @@ Collect relevant permanent notes:
 ### Step 3: Structure Organization
 
 Organize the notes into the following structure:
+
 1. Manifestations and causes of writer's block
 2. Limitations of traditional methods
 3. Advantages of the Zettelkasten method
