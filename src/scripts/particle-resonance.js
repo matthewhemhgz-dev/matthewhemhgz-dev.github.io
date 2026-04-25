@@ -11,6 +11,8 @@ class ParticleResonance {
     this.attractionRadius = 120; // 调整吸引半径
     this.particleSpeed = 1.5; // 调整粒子速度
     this.trailLength = 0.05; // 减少拖尾长度以提高性能
+    this.friction = 0.02; // 摩擦力系数
+    this.airResistance = 0.01; // 空气阻力系数
     this.colors = {
       emerald: '#4ade80',
       amber: '#fbbf24',
@@ -30,6 +32,8 @@ class ParticleResonance {
       this.attractionRadius = 100;
       this.mouseRadius = 120;
       this.mouseStrength = 0.04;
+      this.friction = 0.03;
+      this.airResistance = 0.015;
     }
     
     this.initializeParticles();
@@ -117,8 +121,24 @@ class ParticleResonance {
       particle.vx *= 0.92;
       particle.vy *= 0.92;
       
-      // Limit speed
+      // 添加摩擦力和空气阻力
       let speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+      if (speed > 0) {
+        // 计算摩擦力
+        let frictionForceX = -particle.vx * this.friction;
+        let frictionForceY = -particle.vy * this.friction;
+        
+        // 计算空气阻力（与速度平方成正比）
+        let airResistanceForceX = -particle.vx * speed * this.airResistance;
+        let airResistanceForceY = -particle.vy * speed * this.airResistance;
+        
+        // 应用力
+        particle.vx += frictionForceX + airResistanceForceX;
+        particle.vy += frictionForceY + airResistanceForceY;
+      }
+      
+      // Limit speed
+      speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
       if (speed > this.particleSpeed) {
         particle.vx = (particle.vx / speed) * this.particleSpeed;
         particle.vy = (particle.vy / speed) * this.particleSpeed;
@@ -230,6 +250,8 @@ class ParticleResonance {
     if (params.attractionRadius) this.attractionRadius = params.attractionRadius;
     if (params.particleSpeed) this.particleSpeed = params.particleSpeed;
     if (params.trailLength) this.trailLength = params.trailLength;
+    if (params.friction) this.friction = params.friction;
+    if (params.airResistance) this.airResistance = params.airResistance;
     this.initializeParticles();
   }
 
@@ -246,12 +268,16 @@ class ParticleResonance {
       this.attractionRadius = 100;
       this.mouseRadius = 120;
       this.mouseStrength = 0.04;
+      this.friction = 0.03;
+      this.airResistance = 0.015;
     } else {
       this.numParticles = 300;
       this.trailLength = 0.05;
       this.attractionRadius = 120;
       this.mouseRadius = 150;
       this.mouseStrength = 0.05;
+      this.friction = 0.02;
+      this.airResistance = 0.01;
     }
     
     this.initializeParticles();

@@ -9,6 +9,8 @@ class FluidHarmonics {
     this.noiseStrength = 0.8; // 调整噪声强度
     this.particleSpeed = 1;
     this.trailLength = 0.05; // 减少拖尾长度以提高性能
+    this.collisionRadius = 8; // 碰撞检测半径
+    this.collisionStrength = 0.5; // 碰撞强度
     this.colors = {
       emerald: '#4ade80',
       amber: '#fbbf24',
@@ -27,6 +29,8 @@ class FluidHarmonics {
       this.trailLength = 0.03;
       this.mouseRadius = 80;
       this.mouseStrength = 0.08;
+      this.collisionRadius = 6;
+      this.collisionStrength = 0.4;
     }
     
     this.initializeParticles();
@@ -76,6 +80,32 @@ class FluidHarmonics {
         force *= this.mouseStrength;
         forceX += (dx / distance) * force;
         forceY += (dy / distance) * force;
+      }
+      
+      // 添加碰撞检测
+      for (let j = 0; j < this.particles.length; j++) {
+        if (i === j) continue;
+        
+        let otherParticle = this.particles[j];
+        let dx = otherParticle.x - particle.x;
+        let dy = otherParticle.y - particle.y;
+        let distance = sqrt(dx * dx + dy * dy);
+        
+        if (distance < this.collisionRadius) {
+          // 计算碰撞力
+          let force = (this.collisionRadius - distance) / this.collisionRadius;
+          force *= this.collisionStrength;
+          
+          // 应用碰撞力
+          let forceXCollision = (dx / distance) * force;
+          let forceYCollision = (dy / distance) * force;
+          
+          // 双向力
+          particle.vx -= forceXCollision * 0.5;
+          particle.vy -= forceYCollision * 0.5;
+          otherParticle.vx += forceXCollision * 0.5;
+          otherParticle.vy += forceYCollision * 0.5;
+        }
       }
       
       // Update velocity
@@ -170,6 +200,8 @@ class FluidHarmonics {
     if (params.noiseStrength) this.noiseStrength = params.noiseStrength;
     if (params.particleSpeed) this.particleSpeed = params.particleSpeed;
     if (params.trailLength) this.trailLength = params.trailLength;
+    if (params.collisionRadius) this.collisionRadius = params.collisionRadius;
+    if (params.collisionStrength) this.collisionStrength = params.collisionStrength;
     this.initializeParticles();
   }
 
@@ -185,11 +217,15 @@ class FluidHarmonics {
       this.trailLength = 0.03;
       this.mouseRadius = 80;
       this.mouseStrength = 0.08;
+      this.collisionRadius = 6;
+      this.collisionStrength = 0.4;
     } else {
       this.numParticles = 500;
       this.trailLength = 0.05;
       this.mouseRadius = 100;
       this.mouseStrength = 0.1;
+      this.collisionRadius = 8;
+      this.collisionStrength = 0.5;
     }
     
     this.initializeParticles();

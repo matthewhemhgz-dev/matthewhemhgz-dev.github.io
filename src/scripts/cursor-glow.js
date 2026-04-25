@@ -1,13 +1,15 @@
 /**
- * CursorGlow — 鼠标追踪光效 (v3 CSS 优化版)
- * 三层渐变光晕：外层环境光 → 中层品牌光 → 内层聚焦点
+ * MultiLightSystem — 多光源系统 (v1.0)
+ * 支持点光源、方向光、环境光
+ * 支持光源位置和强度调整
+ * 支持光源阴影效果
  * 使用 CSS transition 替代 rAF 循环，降低 CPU 占用
- * 页面加载即半透明可见，首次鼠标移动增强到满亮度
  * 支持呼吸动画、移动端自动禁用、reduced-motion 媒体查询
  */
-export class CursorGlow {
+export class MultiLightSystem {
   constructor(options = {}) {
-    this.el = null;
+    this.els = [];
+    this.lights = [];
     this.isTouchDevice = false;
     this.hasInteracted = false;
 
@@ -17,11 +19,12 @@ export class CursorGlow {
     };
     this.options = { ...defaults, ...options };
 
-    this._create();
+    this._createStyle();
+    this._createLights();
     this._bindEvents();
   }
 
-  _create() {
+  _createStyle() {
     // 从 CSS 变量读取品牌色
     const cs = getComputedStyle(document.documentElement);
     const mintRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-mint').trim());
@@ -29,157 +32,264 @@ export class CursorGlow {
     const amberRGB = this._hexToRGB(cs.getPropertyValue('--qi-brand-amber').trim());
 
     // 避免重复创建样式
-    if (!document.getElementById('cursor-glow-style')) {
+    if (!document.getElementById('multi-light-style')) {
       const style = document.createElement('style');
-      style.id = 'cursor-glow-style';
+      style.id = 'multi-light-style';
       style.textContent = `
-        .cursor-glow {
+        .light-source {
           position: fixed;
           top: 0;
           left: 0;
-          width: ${this.options.size}px;
-          height: ${this.options.size}px;
           pointer-events: none;
           z-index: var(--qi-z-overlay);
-          mix-blend-mode: ${this.options.blend};
-          transform: translate(-50%, -50%);
-          opacity: 0.4;
+          mix-blend-mode: screen;
+          opacity: 0.6;
           will-change: transform, opacity;
-          /* CSS transition 替代 rAF 循环 — 平滑跟随鼠标 */
           transition:
             transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
             opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
-        .cursor-glow.is-active {
+        .light-source.is-active {
           opacity: 1;
         }
-        .cursor-glow.is-leaving {
+        .light-source.is-leaving {
           opacity: 0;
           transition: opacity 0.6s ease, transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
 
-        /* 外层：大范围柔和环境光 — 薄荷蓝 */
-        .cursor-glow__outer {
-          position: absolute;
-          inset: -35%;
+        /* 点光源 */
+        .light-source.point-light {
           border-radius: 50%;
           background: radial-gradient(
             circle,
-            rgba(${mintRGB.r}, ${mintRGB.g}, ${mintRGB.b}, 0.05) 0%,
-            rgba(${mintRGB.r}, ${mintRGB.g}, ${mintRGB.b}, 0.02) 40%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0.4) 20%,
+            rgba(255, 255, 255, 0.1) 40%,
             transparent 70%
           );
-          filter: blur(30px);
-          animation: glow-breathe-outer 6s ease-in-out infinite;
+          filter: blur(20px);
         }
 
-        /* 中层：翡翠绿主光 — 柔和扩散 */
-        .cursor-glow__main {
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          background: radial-gradient(
-            circle,
-            rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, 0.14) 0%,
-            rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, 0.04) 35%,
-            transparent 65%
-          );
-          filter: blur(2px);
-          animation: glow-breathe-main 4s ease-in-out infinite;
-        }
-
-        /* 内层：琥珀金聚焦点 — 小而精致 */
-        .cursor-glow__accent {
-          position: absolute;
-          top: 28%;
-          left: 28%;
-          width: 44%;
-          height: 44%;
-          border-radius: 50%;
-          background: radial-gradient(
-            circle,
-            rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, 0.10) 0%,
-            rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, 0.03) 45%,
+        /* 方向光 */
+        .light-source.directional-light {
+          background: linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 255, 255, 0.3) 30%,
             transparent 60%
           );
-          transform: translate(12%, 12%);
-          filter: blur(1px);
-          animation: glow-breathe-accent 5s ease-in-out infinite;
+          filter: blur(15px);
         }
 
-        @keyframes glow-breathe-outer {
+        /* 环境光 */
+        .light-source.ambient-light {
+          background: radial-gradient(
+            circle at center,
+            rgba(${mintRGB.r}, ${mintRGB.g}, ${mintRGB.b}, 0.1) 0%,
+            rgba(${mintRGB.r}, ${mintRGB.g}, ${mintRGB.b}, 0.05) 30%,
+            transparent 70%
+          );
+          filter: blur(40px);
+        }
+
+        /* 光源阴影效果 */
+        .light-shadow {
+          position: fixed;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          z-index: var(--qi-z-overlay);
+          mix-blend-mode: multiply;
+          opacity: 0.2;
+          will-change: transform, opacity;
+          transition:
+            transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
+            opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        @keyframes light-breathe {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.7; transform: scale(1.05); }
         }
-        @keyframes glow-breathe-main {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.85; transform: scale(1.03); }
-        }
-        @keyframes glow-breathe-accent {
-          0%, 100% { opacity: 1; transform: translate(12%, 12%) scale(1); }
-          50% { opacity: 0.75; transform: translate(14%, 14%) scale(1.08); }
-        }
 
         @media (max-width: 1024px) {
-          .cursor-glow { display: none; }
+          .light-source, .light-shadow { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .cursor-glow { display: none; }
-          .cursor-glow__outer,
-          .cursor-glow__main,
-          .cursor-glow__accent { animation: none; }
+          .light-source, .light-shadow { display: none; }
         }
       `;
       document.head.appendChild(style);
     }
+  }
 
-    this.el = document.createElement('div');
-    this.el.className = 'cursor-glow';
-    this.el.setAttribute('aria-hidden', 'true');
-    this.el.innerHTML = `
-      <div class="cursor-glow__outer"></div>
-      <div class="cursor-glow__main"></div>
-      <div class="cursor-glow__accent"></div>
-    `;
+  _createLights() {
+    // 创建点光源（鼠标跟随）
+    const pointLight = this._createLight('point-light', {
+      size: 200,
+      color: '#ffffff',
+      intensity: 1,
+      type: 'point'
+    });
+    
+    // 创建方向光（固定位置）
+    const directionalLight = this._createLight('directional-light', {
+      size: 400,
+      color: '#fbbf24',
+      intensity: 0.6,
+      type: 'directional',
+      x: window.innerWidth * 0.8,
+      y: window.innerHeight * 0.2
+    });
+    
+    // 创建环境光（全屏）
+    const ambientLight = this._createLight('ambient-light', {
+      size: window.innerWidth * 2,
+      color: '#4ade80',
+      intensity: 0.3,
+      type: 'ambient',
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2
+    });
+    
+    this.lights = [pointLight, directionalLight, ambientLight];
+  }
 
-    // 初始定位在页面中心
-    this.el.style.transform = `translate(${window.innerWidth / 2 - this.options.size / 2}px, ${window.innerHeight / 2 - this.options.size / 2}px)`;
-
-    document.body.appendChild(this.el);
+  _createLight(type, options) {
+    const light = {
+      type: type,
+      options: options,
+      el: null,
+      shadowEl: null
+    };
+    
+    // 创建光源元素
+    light.el = document.createElement('div');
+    light.el.className = `light-source ${type}`;
+    light.el.setAttribute('aria-hidden', 'true');
+    light.el.style.width = `${options.size}px`;
+    light.el.style.height = `${options.size}px`;
+    
+    // 设置初始位置
+    if (options.x && options.y) {
+      light.el.style.transform = `translate(${options.x - options.size / 2}px, ${options.y - options.size / 2}px)`;
+    } else {
+      // 初始定位在页面中心
+      light.el.style.transform = `translate(${window.innerWidth / 2 - options.size / 2}px, ${window.innerHeight / 2 - options.size / 2}px)`;
+    }
+    
+    // 创建阴影元素
+    if (type === 'point-light') {
+      light.shadowEl = document.createElement('div');
+      light.shadowEl.className = 'light-shadow';
+      light.shadowEl.style.width = `${options.size * 2}px`;
+      light.shadowEl.style.height = `${options.size * 2}px`;
+      light.shadowEl.style.borderRadius = '50%';
+      light.shadowEl.style.background = 'radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.1) 100%)';
+      light.shadowEl.style.transform = `translate(${window.innerWidth / 2 - options.size}px, ${window.innerHeight / 2 - options.size}px)`;
+      document.body.appendChild(light.shadowEl);
+    }
+    
+    document.body.appendChild(light.el);
+    this.els.push(light.el);
+    if (light.shadowEl) this.els.push(light.shadowEl);
+    
+    return light;
   }
 
   _bindEvents() {
     this._onTouchStart = () => {
       this.isTouchDevice = true;
-      if (this.el) this.el.style.display = 'none';
+      this.els.forEach(el => {
+        if (el) el.style.display = 'none';
+      });
     };
     window.addEventListener('touchstart', this._onTouchStart, { once: true, passive: true });
 
     // 鼠标移动 — 直接更新 CSS transform，由 CSS transition 处理平滑过渡
     this._onMouseMove = (e) => {
-      if (this.isTouchDevice || !this.el) return;
+      if (this.isTouchDevice) return;
 
       if (!this.hasInteracted) {
         this.hasInteracted = true;
-        this.el.classList.add('is-active');
+        this.els.forEach(el => {
+          if (el) el.classList.add('is-active');
+        });
       }
 
-      // 使用 translate(-50%, -50%) 保持居中
-      this.el.style.transform = `translate(${e.clientX - this.options.size / 2}px, ${e.clientY - this.options.size / 2}px)`;
+      // 更新点光源位置
+      const pointLight = this.lights.find(light => light.type === 'point-light');
+      if (pointLight && pointLight.el) {
+        pointLight.el.style.transform = `translate(${e.clientX - pointLight.options.size / 2}px, ${e.clientY - pointLight.options.size / 2}px)`;
+      }
+      
+      // 更新点光源阴影位置
+      if (pointLight && pointLight.shadowEl) {
+        pointLight.shadowEl.style.transform = `translate(${e.clientX - pointLight.options.size}px, ${e.clientY - pointLight.options.size}px)`;
+      }
     };
     document.addEventListener('mousemove', this._onMouseMove, { passive: true });
 
     this._onMouseLeave = () => {
-      if (this.el) this.el.classList.add('is-leaving');
+      this.els.forEach(el => {
+        if (el) el.classList.add('is-leaving');
+      });
     };
     document.addEventListener('mouseleave', this._onMouseLeave);
 
     this._onMouseEnter = () => {
-      if (this.el && this.hasInteracted) {
-        this.el.classList.remove('is-leaving');
+      if (this.hasInteracted) {
+        this.els.forEach(el => {
+          if (el) el.classList.remove('is-leaving');
+        });
       }
     };
     document.addEventListener('mouseenter', this._onMouseEnter);
+  }
+
+  // 添加光源
+  addLight(type, options) {
+    const light = this._createLight(type, options);
+    this.lights.push(light);
+    return light;
+  }
+
+  // 更新光源参数
+  updateLight(index, options) {
+    const light = this.lights[index];
+    if (light) {
+      light.options = { ...light.options, ...options };
+      if (light.el) {
+        if (options.size) {
+          light.el.style.width = `${options.size}px`;
+          light.el.style.height = `${options.size}px`;
+        }
+        if (options.x && options.y) {
+          light.el.style.transform = `translate(${options.x - light.options.size / 2}px, ${options.y - light.options.size / 2}px)`;
+        }
+        if (options.intensity) {
+          light.el.style.opacity = options.intensity;
+        }
+      }
+    }
+  }
+
+  // 移除光源
+  removeLight(index) {
+    const light = this.lights[index];
+    if (light) {
+      if (light.el) {
+        light.el.remove();
+        const elIndex = this.els.indexOf(light.el);
+        if (elIndex > -1) this.els.splice(elIndex, 1);
+      }
+      if (light.shadowEl) {
+        light.shadowEl.remove();
+        const shadowIndex = this.els.indexOf(light.shadowEl);
+        if (shadowIndex > -1) this.els.splice(shadowIndex, 1);
+      }
+      this.lights.splice(index, 1);
+    }
   }
 
   destroy() {
@@ -188,11 +298,13 @@ export class CursorGlow {
     if (this._onMouseMove) document.removeEventListener('mousemove', this._onMouseMove);
     if (this._onMouseLeave) document.removeEventListener('mouseleave', this._onMouseLeave);
     if (this._onMouseEnter) document.removeEventListener('mouseenter', this._onMouseEnter);
-    // 移除 DOM 元素（样式保留，下次重建可复用）
-    if (this.el) {
-      this.el.remove();
-      this.el = null;
-    }
+    
+    // 移除 DOM 元素
+    this.els.forEach(el => {
+      if (el) el.remove();
+    });
+    this.els = [];
+    this.lights = [];
   }
 
   _hexToRGB(hex) {
@@ -207,5 +319,12 @@ export class CursorGlow {
       g: (num >> 8) & 255,
       b: num & 255,
     };
+  }
+}
+
+// 保持向后兼容
+export class CursorGlow extends MultiLightSystem {
+  constructor(options = {}) {
+    super(options);
   }
 }
