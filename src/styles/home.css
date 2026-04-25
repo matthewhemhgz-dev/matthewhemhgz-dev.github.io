@@ -33,3 +33,125 @@
 .hero-section + .section {
   border-top: none;
 }
+
+/* 光源系统样式 */
+:root {
+  /* 光源相关变量 */
+  --light-point-size: 200px;
+  --light-directional-size: 400px;
+  --light-ambient-size: 1200px;
+  --light-intensity: 1;
+  --light-blur: 20px;
+  --light-shadow-opacity: 0.2;
+  --light-transition:
+    transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 光源容器样式 */
+.light-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 光源效果增强 */
+.light-enhanced {
+  position: relative;
+  transition: var(--light-transition);
+}
+
+/* 光源交互效果 */
+.light-enhanced:hover {
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 光源卡片效果 */
+.light-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: var(--qi-radius-lg);
+  padding: var(--qi-space-4xl);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: var(--light-transition);
+}
+
+.light-card:hover {
+  box-shadow: 0 15px 40px rgba(74, 222, 128, 0.2);
+  transform: translateY(-5px);
+}
+
+/* 光源按钮效果 */
+.light-button {
+  position: relative;
+  overflow: hidden;
+  transition: var(--light-transition);
+}
+
+.light-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.light-button:hover::before {
+  left: 100%;
+}
+
+/* 光源文本效果 */
+.light-text {
+  position: relative;
+  display: inline-block;
+}
+
+.light-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-amber));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.light-text:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 响应式光源调整 */
+@media (max-width: 768px) {
+  :root {
+    --light-point-size: 150px;
+    --light-directional-size: 300px;
+    --light-ambient-size: 800px;
+    --light-intensity: 0.8;
+    --light-blur: 15px;
+  }
+
+  .light-card {
+    padding: var(--qi-space-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --light-point-size: 100px;
+    --light-directional-size: 200px;
+    --light-ambient-size: 600px;
+    --light-intensity: 0.6;
+    --light-blur: 10px;
+  }
+
+  .light-card {
+    padding: var(--qi-space-2xl);
+  }
+}

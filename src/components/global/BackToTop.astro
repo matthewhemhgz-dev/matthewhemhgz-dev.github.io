@@ -6,6 +6,7 @@
   class="back-to-top"
   id="back-to-top"
   aria-label="回到顶部"
+  data-en-label="Back to top"
   title="回到顶部"
   type="button"
   aria-hidden="true"
@@ -80,3 +81,23 @@
     }
   }
 </style>
+
+<script>
+  // Update aria-label based on language
+  document.addEventListener('astro:page-load', () => {
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+      const isEnglish = document.documentElement.lang.startsWith('en');
+      const enLabel = backToTopBtn.getAttribute('data-en-label');
+      const zhLabel = backToTopBtn.getAttribute('aria-label');
+
+      if (isEnglish && enLabel) {
+        backToTopBtn.setAttribute('aria-label', enLabel);
+        backToTopBtn.setAttribute('title', enLabel);
+      } else if (zhLabel) {
+        backToTopBtn.setAttribute('aria-label', zhLabel);
+        backToTopBtn.setAttribute('title', zhLabel);
+      }
+    }
+  });
+</script>

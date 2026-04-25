@@ -184,6 +184,25 @@ export class MinimalParticles {
     }
   }
 
+  /**
+   * 使用网格分区优化连线计算
+   */
+  _createGrid() {
+    const { linkDistance } = this.options;
+    const cellSize = linkDistance;
+    const cols = Math.ceil(this.width / cellSize);
+    const rows = Math.ceil(this.height / cellSize);
+    const grid = new Array(cols).fill(null).map(() => new Array(rows).fill(null).map(() => []));
+
+    for (const particle of this.particles) {
+      const col = Math.min(Math.floor(particle.x / cellSize), cols - 1);
+      const row = Math.min(Math.floor(particle.y / cellSize), rows - 1);
+      grid[col][row].push(particle);
+    }
+
+    return { grid, cellSize, cols, rows };
+  }
+
   animate() {
     if (!this.isRunning) return;
 
@@ -285,44 +304,81 @@ export class MinimalParticles {
       ctx.fill();
     }
 
-    // 绘制连线 — 使用距离平方优化
+    // 绘制连线 — 使用网格分区优化
     ctx.lineWidth = 0.5;
     const linkDistSq = linkDistance * linkDistance;
-    for (let i = 0; i < this.particles.length; i++) {
-      for (let j = i + 1; j < this.particles.length; j++) {
-        const dx = this.particles[i].x - this.particles[j].x;
-        const dy = this.particles[i].y - this.particles[j].y;
-        const distSq = dx * dx + dy * dy;
+    const { grid, cols, rows } = this._createGrid();
 
-        if (distSq < linkDistSq) {
-          const dist = Math.sqrt(distSq);
-          const baseAlpha = linkOpacity * (1 - dist / linkDistance);
+    // 遍历所有网格细胞
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        const particlesInCell = grid[col][row];
+        if (particlesInCell.length === 0) continue;
 
-          // 鼠标附近连线高亮
-          let lineHighlight = 0;
-          if (this.mouse.active) {
-            const midX = (this.particles[i].x + this.particles[j].x) / 2;
-            const midY = (this.particles[i].y + this.particles[j].y) / 2;
-            const mdx = midX - this.mouse.x;
-            const mdy = midY - this.mouse.y;
-            const mdistSq = mdx * mdx + mdy * mdy;
-            const mouseRadSq = mouseRadius * mouseRadius;
-            if (mdistSq < mouseRadSq) {
-              lineHighlight = (1 - Math.sqrt(mdistSq) / mouseRadius) * 0.15;
+        // 检查当前细胞和相邻细胞的粒子
+        for (let dCol = -1; dCol <= 1; dCol++) {
+          for (let dRow = -1; dRow <= 1; dRow++) {
+            const neighborCol = col + dCol;
+            const neighborRow = row + dRow;
+
+            // 检查边界
+            if (neighborCol < 0 || neighborCol >= cols || neighborRow < 0 || neighborRow >= rows) {
+              continue;
+            }
+
+            const neighborParticles = grid[neighborCol][neighborRow];
+
+            // 计算当前细胞和相邻细胞之间的粒子连线
+            for (let i = 0; i < particlesInCell.length; i++) {
+              for (let j = 0; j < neighborParticles.length; j++) {
+                // 避免重复计算
+                if (particlesInCell[i] === neighborParticles[j]) continue;
+
+                const dx = particlesInCell[i].x - neighborParticles[j].x;
+                const dy = particlesInCell[i].y - neighborParticles[j].y;
+                const distSq = dx * dx + dy * dy;
+
+                if (distSq < linkDistSq) {
+                  const dist = Math.sqrt(distSq);
+                  const baseAlpha = linkOpacity * (1 - dist / linkDistance);
+
+                  // 鼠标附近连线高亮
+                  let lineHighlight = 0;
+                  if (this.mouse.active) {
+                    const midX = (particlesInCell[i].x + neighborParticles[j].x) / 2;
+                    const midY = (particlesInCell[i].y + neighborParticles[j].y) / 2;
+                    const mdx = midX - this.mouse.x;
+                    const mdy = midY - this.mouse.y;
+                    const mdistSq = mdx * mdx + mdy * mdy;
+                    const mouseRadSq = mouseRadius * mouseRadius;
+                    if (mdistSq < mouseRadSq) {
+                      lineHighlight = (1 - Math.sqrt(mdistSq) / mouseRadius) * 0.15;
+                    }
+                  }
+
+                  ctx.globalAlpha = baseAlpha + lineHighlight;
+                  const emeraldRGB = this.colorRGB[this.options.colors[0]] || {
+                    r: 46,
+                    g: 125,
+                    b: 92,
+                  };
+                  const amberRGB = this.colorRGB[this.options.colors[2]] || {
+                    r: 229,
+                    g: 169,
+                    b: 60,
+                  };
+                  ctx.strokeStyle =
+                    lineHighlight > 0.03
+                      ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
+                      : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
+                  ctx.beginPath();
+                  ctx.moveTo(particlesInCell[i].x, particlesInCell[i].y);
+                  ctx.lineTo(neighborParticles[j].x, neighborParticles[j].y);
+                  ctx.stroke();
+                }
+              }
             }
           }
-
-          ctx.globalAlpha = baseAlpha + lineHighlight;
-          const emeraldRGB = this.colorRGB[this.options.colors[0]] || { r: 46, g: 125, b: 92 };
-          const amberRGB = this.colorRGB[this.options.colors[2]] || { r: 229, g: 169, b: 60 };
-          ctx.strokeStyle =
-            lineHighlight > 0.03
-              ? `rgba(${amberRGB.r}, ${amberRGB.g}, ${amberRGB.b}, ${baseAlpha + lineHighlight})`
-              : `rgba(${emeraldRGB.r}, ${emeraldRGB.g}, ${emeraldRGB.b}, ${baseAlpha})`;
-          ctx.beginPath();
-          ctx.moveTo(this.particles[i].x, this.particles[i].y);
-          ctx.lineTo(this.particles[j].x, this.particles[j].y);
-          ctx.stroke();
         }
       }
     }

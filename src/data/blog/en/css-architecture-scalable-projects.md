@@ -1,6 +1,6 @@
 ---
 title: 'Scalable CSS Architecture: Design Token-Driven Visual System Practice'
-description: 'How to build a component system that maintains visual depth and consistency in dark mode through Design Tokens? Sharing Qi-Lab''s engineering practices.'
+description: "How to build a component system that maintains visual depth and consistency in dark mode through Design Tokens? Sharing Qi-Lab's engineering practices."
 pubDate: 2025-06-20
 category: 'Design System'
 tags: ['CSS', 'Design Tokens', 'UI-UX', 'Design System']
@@ -93,12 +93,12 @@ BEM (Block Element Modifier) was proposed by the Yandex team and is the most cla
 
 ### Advantages and Limitations of BEM
 
-| Advantages                           | Limitations                   |
-| ----------------------------------- | ----------------------------- |
-| Self-explanatory names, reduce communication costs | Longer class names, HTML redundancy |
-| Flat selectors naturally, avoids priority issues | Limited expressiveness for complex nested components |
-| Team-friendly, clear naming rules | Lacks native support for theme switching |
-| Works well with preprocessors (Sass/Less) | Doesn't solve cross-project style reuse issues |
+| Advantages                                         | Limitations                                          |
+| -------------------------------------------------- | ---------------------------------------------------- |
+| Self-explanatory names, reduce communication costs | Longer class names, HTML redundancy                  |
+| Flat selectors naturally, avoids priority issues   | Limited expressiveness for complex nested components |
+| Team-friendly, clear naming rules                  | Lacks native support for theme switching             |
+| Works well with preprocessors (Sass/Less)          | Doesn't solve cross-project style reuse issues       |
 
 > **Practice Recommendation**: BEM's core value lies in "flat selectors". Even if you don't strictly follow BEM's naming format, you should adhere to the "one-level-deep class name" principle, avoiding nested selectors like `.card .body .title`.
 
@@ -236,16 +236,16 @@ Utility-First (represented by Tailwind CSS) completely changes how CSS is writte
 
 This is one of the most debated topics in the frontend community in recent years. Let's compare objectively:
 
-| Dimension             | Utility-First               | Semantic CSS (BEM etc.)      |
-| --------------------- | ---------------------------- | --------------------------- |
-| **Development Speed** | Fast, no need to switch files | Slower, need to write and reference CSS |
-| **HTML Readability**  | Long class names, structure not intuitive | Semantic class names, structure clear at a glance |
-| **Design Consistency**| Naturally consistent (share same utility set) | Requires consciously following design specifications |
-| **Learning Curve**    | Need to remember many utility names | Naming conventions simple and intuitive |
-| **CSS Bundle Size**   | Pruned on demand, size controllable | Depends on writing quality, prone to redundancy |
-| **Refactoring Cost**  | Low, directly modify HTML class names | High, may need to synchronously modify CSS |
-| **Design System Fit** | Unified management through config files | Unified management through variables and mixins |
-| **Team Collaboration**| High fidelity to design drafts | Requires alignment between design and development |
+| Dimension              | Utility-First                                 | Semantic CSS (BEM etc.)                              |
+| ---------------------- | --------------------------------------------- | ---------------------------------------------------- |
+| **Development Speed**  | Fast, no need to switch files                 | Slower, need to write and reference CSS              |
+| **HTML Readability**   | Long class names, structure not intuitive     | Semantic class names, structure clear at a glance    |
+| **Design Consistency** | Naturally consistent (share same utility set) | Requires consciously following design specifications |
+| **Learning Curve**     | Need to remember many utility names           | Naming conventions simple and intuitive              |
+| **CSS Bundle Size**    | Pruned on demand, size controllable           | Depends on writing quality, prone to redundancy      |
+| **Refactoring Cost**   | Low, directly modify HTML class names         | High, may need to synchronously modify CSS           |
+| **Design System Fit**  | Unified management through config files       | Unified management through variables and mixins      |
+| **Team Collaboration** | High fidelity to design drafts                | Requires alignment between design and development    |
 
 ### Concerns About Utility-First
 
@@ -403,12 +403,12 @@ src/styles/
 
 ## Methodology Evolution Summary
 
-| Methodology        | Core Issues Solved         | Scenarios              | Limitations               |
-| ------------------ | -------------------------- | --------------------- | ------------------------- |
-| **BEM**           | Naming conflicts and priority | Projects needing semantic class names | Long class names, lacks theme support |
-| **ITCSS**         | Style loading order and organization | File organization for medium-to-large projects | Heavy layering, high learning cost |
-| **Utility-First** | Development efficiency and design consistency | Rapidly iterating projects | HTML bloat, abstraction leakage |
-| **Design Tokens** | Unified design decision management | Projects needing multiple themes/cross-platform | Requires toolchain support |
+| Methodology       | Core Issues Solved                            | Scenarios                                       | Limitations                           |
+| ----------------- | --------------------------------------------- | ----------------------------------------------- | ------------------------------------- |
+| **BEM**           | Naming conflicts and priority                 | Projects needing semantic class names           | Long class names, lacks theme support |
+| **ITCSS**         | Style loading order and organization          | File organization for medium-to-large projects  | Heavy layering, high learning cost    |
+| **Utility-First** | Development efficiency and design consistency | Rapidly iterating projects                      | HTML bloat, abstraction leakage       |
+| **Design Tokens** | Unified design decision management            | Projects needing multiple themes/cross-platform | Requires toolchain support            |
 
 ```mermaid
 timeline

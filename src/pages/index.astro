@@ -182,24 +182,24 @@ const platforms = [
 
   <SectionDivider variant="diamond" />
 
-  <ToolboxSection 
+  <ToolboxSection
     classList="qi-anim-scroll-reveal qi-anim-delay-300"
-    label="// TOOLBOX" 
-    title="工具箱" 
-    categories={toolboxCategories} 
+    label="// TOOLBOX"
+    title="工具箱"
+    categories={toolboxCategories}
   />
 
-  <PlatformsSection 
+  <PlatformsSection
     classList="qi-anim-scroll-reveal qi-anim-delay-400"
-    label="// PLATFORMS" 
-    title="平台矩阵" 
-    platforms={platforms} 
+    label="// PLATFORMS"
+    title="平台矩阵"
+    platforms={platforms}
   />
 
-  <ResearchSection 
+  <ResearchSection
     classList="qi-anim-scroll-reveal qi-anim-delay-500"
-    label="// METHODOLOGY" 
-    title="研究方法论" 
+    label="// METHODOLOGY"
+    title="研究方法论"
   />
 
   <SectionDivider variant="arcs" />
@@ -239,6 +239,4 @@ const platforms = [
   document.addEventListener('astro:page-load', animateStats);
 </script>
 
-<script type="module">
-  import ScrollReveal from '../scripts/scroll-reveal.js';
-</script>
+<script type="module" src="/src/scripts/fluid-background.js"></script>

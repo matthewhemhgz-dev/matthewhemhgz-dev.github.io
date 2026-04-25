@@ -1,0 +1,55 @@
+---
+// 品牌视觉元素组件
+interface Props {
+  type?: 'logo' | 'pattern' | 'abstract';
+  size?: number;
+  className?: string;
+}
+
+const { type = 'logo', size = 200, className = '' } = Astro.props;
+const canvasId = `brand-visual-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`brand-visual-container ${className}`}>
+  <canvas id={canvasId} class="brand-visual-canvas" data-type={type} data-size={size}></canvas>
+</div>
+
+<script is:inline>
+  (function () {
+    const canvas = document.getElementById('${canvasId}');
+    if (!canvas) return;
+
+    const canvasId = '${canvasId}';
+    const type = canvas.getAttribute('data-type') || 'logo';
+    const size = parseInt(canvas.getAttribute('data-size') || '200', 10);
+
+    function initBrandVisual() {
+      import('https://cdn.skypack.dev/p5@1.9.0').then(() => {
+        import('../../scripts/brand-visuals.js').then(({ BrandVisuals }) => {
+          const brandVisual = new BrandVisuals(canvasId, {
+            type: type,
+            size: size,
+          });
+          brandVisual.init();
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBrandVisual);
+    } else {
+      initBrandVisual();
+    }
+  })();
+</script>
+
+<style>
+  .brand-visual-container {
+    display: inline-block;
+    margin: 1rem;
+  }
+
+  .brand-visual-canvas {
+    display: block;
+  }
+</style>

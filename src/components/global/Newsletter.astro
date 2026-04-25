@@ -7,27 +7,28 @@ interface Props {
 
 const { lang = 'zh' } = Astro.props;
 
-const labels = lang === 'en' 
-  ? {
-      title: 'Subscribe to Newsletter',
-      description: 'Get the latest updates and insights delivered to your inbox.',
-      placeholder: 'Your email address',
-      button: 'Subscribe',
-      success: 'Thank you for subscribing!',
-      error: 'Please enter a valid email address.',
-      privacy: 'We respect your privacy and will never share your email.',
-      processing: 'Processing...',
-    }
-  : {
-      title: '订阅通讯',
-      description: '获取最新的更新和见解，直接发送到您的收件箱。',
-      placeholder: '您的邮箱地址',
-      button: '订阅',
-      success: '感谢您的订阅！',
-      error: '请输入有效的邮箱地址。',
-      privacy: '我们尊重您的隐私，绝不会分享您的邮箱。',
-      processing: '处理中...',
-    };
+const labels =
+  lang === 'en'
+    ? {
+        title: 'Subscribe to Newsletter',
+        description: 'Get the latest updates and insights delivered to your inbox.',
+        placeholder: 'Your email address',
+        button: 'Subscribe',
+        success: 'Thank you for subscribing!',
+        error: 'Please enter a valid email address.',
+        privacy: 'We respect your privacy and will never share your email.',
+        processing: 'Processing...',
+      }
+    : {
+        title: '订阅通讯',
+        description: '获取最新的更新和见解，直接发送到您的收件箱。',
+        placeholder: '您的邮箱地址',
+        button: '订阅',
+        success: '感谢您的订阅！',
+        error: '请输入有效的邮箱地址。',
+        privacy: '我们尊重您的隐私，绝不会分享您的邮箱。',
+        processing: '处理中...',
+      };
 ---
 
 <div class="newsletter">
@@ -35,17 +36,26 @@ const labels = lang === 'en'
   <p class="newsletter-description">{labels.description}</p>
   <form class="newsletter-form" method="POST" action="https://api.example.com/subscribe">
     <div class="newsletter-input-group">
-      <input 
-        type="email" 
-        class="newsletter-input" 
-        placeholder={labels.placeholder} 
-        required 
+      <input
+        type="email"
+        class="newsletter-input"
+        placeholder={labels.placeholder}
+        required
         aria-label={labels.placeholder}
       />
       <button type="submit" class="newsletter-button" aria-label={labels.button}>
         <span class="newsletter-button-text">{labels.button}</span>
         <span class="newsletter-button-loading" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M12 6v6l4 2"></path>
           </svg>
@@ -66,7 +76,7 @@ const labels = lang === 'en'
       const button = form.querySelector('.newsletter-button');
       const buttonText = form.querySelector('.newsletter-button-text');
       const buttonLoading = form.querySelector('.newsletter-button-loading');
-      
+
       // Real-time email validation
       emailInput.addEventListener('input', () => {
         if (messageDiv.classList.contains('newsletter-message--error')) {
@@ -74,12 +84,12 @@ const labels = lang === 'en'
           messageDiv.classList.remove('newsletter-message--error');
         }
       });
-      
+
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         const email = emailInput.value.trim();
-        
+
         // Email validation regex
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || !emailRegex.test(email)) {
@@ -88,26 +98,26 @@ const labels = lang === 'en'
           emailInput.focus();
           return;
         }
-        
+
         // Show loading state
         button.disabled = true;
         buttonText.textContent = labels.processing;
         buttonLoading.classList.add('active');
         messageDiv.textContent = '';
         messageDiv.classList.remove('newsletter-message--success', 'newsletter-message--error');
-        
+
         // Simulate API call with delay
         setTimeout(() => {
           // Hide loading state
           button.disabled = false;
           buttonText.textContent = labels.button;
           buttonLoading.classList.remove('active');
-          
+
           // Show success message
           messageDiv.textContent = labels.success;
           messageDiv.classList.add('newsletter-message--success');
           emailInput.value = '';
-          
+
           // Clear message after 5 seconds
           setTimeout(() => {
             messageDiv.textContent = '';

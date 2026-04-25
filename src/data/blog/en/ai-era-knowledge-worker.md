@@ -31,7 +31,7 @@ AI excels at retrieving and reorganizing existing knowledge. Given a clear quest
 
 In the AI era, breadth of knowledge is more valuable than depth. It is recommended to adopt a T-shaped knowledge structure:
 
-- **Horizontal (breadth):** Each quarter, deeply understand at least one field unrelated to your main business. You don't need to be an expert, but you need to understand its core thinking models. Recommended reading: the "Multiple Mental Models" chapter in *Poor Charlie's Almanack*.
+- **Horizontal (breadth):** Each quarter, deeply understand at least one field unrelated to your main business. You don't need to be an expert, but you need to understand its core thinking models. Recommended reading: the "Multiple Mental Models" chapter in _Poor Charlie's Almanack_.
 - **Vertical (depth):** Maintain 2-3 specialized skills in your core field that are difficult for AI to replace, such as complex system architecture design, high-difficulty negotiations, and creative problem definition.
 
 **Actionable suggestions:**
@@ -63,17 +63,17 @@ Not everything needs to be done faster. Some things are worth spending more time
 
 Classify your work according to two dimensions: "AI replaceability" and "value impact":
 
-| Quadrant              | Characteristics                | Strategy                     | Examples                             |
-| --------------------- | ------------------------------ | ---------------------------- | ----------------------------------- |
-| High value / Low replaceability | Requires human judgment and creativity | Invest more time, polish deeply | Strategic planning, key decisions, creative concepting |
-| High value / High replaceability | AI can assist but needs human oversight | Use AI to accelerate, human review | Data analysis drafts, code generation, copywriting drafts |
-| Low value / Low replaceability | Tedious but AI can't do well yet | Find automation solutions, gradually replace | Format conversion, data cleaning |
-| Low value / High replaceability | AI can already do well | Immediately hand over to AI | Meeting minutes, email replies, information retrieval |
+| Quadrant                         | Characteristics                         | Strategy                                     | Examples                                                  |
+| -------------------------------- | --------------------------------------- | -------------------------------------------- | --------------------------------------------------------- |
+| High value / Low replaceability  | Requires human judgment and creativity  | Invest more time, polish deeply              | Strategic planning, key decisions, creative concepting    |
+| High value / High replaceability | AI can assist but needs human oversight | Use AI to accelerate, human review           | Data analysis drafts, code generation, copywriting drafts |
+| Low value / Low replaceability   | Tedious but AI can't do well yet        | Find automation solutions, gradually replace | Format conversion, data cleaning                          |
+| Low value / High replaceability  | AI can already do well                  | Immediately hand over to AI                  | Meeting minutes, email replies, information retrieval     |
 
 **Actionable suggestions:**
 
 1. **Do a "time audit" every week:** Record where you spend your time each day, marking which tasks can be handed over to AI and which must be done personally.
-2. **Establish "deep work periods" for high-value tasks:** Reserve at least 2 hours of uninterrupted time each day for work that requires deep thinking. Reference Cal Newport's *Deep Work*.
+2. **Establish "deep work periods" for high-value tasks:** Reserve at least 2 hours of uninterrupted time each day for work that requires deep thinking. Reference Cal Newport's _Deep Work_.
 3. **Establish an "AI first" principle:** When receiving any new task, first ask yourself "Can AI complete 80% of it?" If yes, let AI do the first draft, and you do the final 20% refinement.
 
 ### 3. From "Individual Hero" to "Human-AI Collaboration"
@@ -119,13 +119,13 @@ This is the step that reflects your core value. When reviewing AI output, focus 
 
 **Tool recommendations:**
 
-| Tool                    | Purpose               | Recommendation reason                       |
-| ----------------------- | --------------------- | ------------------------------------------ |
-| Claude / GPT-4o         | General text generation and reasoning | Strong long text understanding ability, suitable for complex tasks |
-| Perplexity              | Real-time information retrieval and integration | Automatically comes with source references, reducing hallucinations |
-| GitHub Copilot / Cursor | Code generation and assisted programming | Deep integration with development environment, significant efficiency improvement |
-| Midjourney / DALL-E     | Image generation and design assistance | Quickly produce visual prototypes, lowering design threshold |
-| Notion AI               | Document collaboration and knowledge management | Seamless integration with existing workflows |
+| Tool                    | Purpose                                         | Recommendation reason                                                             |
+| ----------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------- |
+| Claude / GPT-4o         | General text generation and reasoning           | Strong long text understanding ability, suitable for complex tasks                |
+| Perplexity              | Real-time information retrieval and integration | Automatically comes with source references, reducing hallucinations               |
+| GitHub Copilot / Cursor | Code generation and assisted programming        | Deep integration with development environment, significant efficiency improvement |
+| Midjourney / DALL-E     | Image generation and design assistance          | Quickly produce visual prototypes, lowering design threshold                      |
+| Notion AI               | Document collaboration and knowledge management | Seamless integration with existing workflows                                      |
 
 ## New Capability Model for Knowledge Workers
 

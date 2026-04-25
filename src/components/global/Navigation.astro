@@ -210,12 +210,11 @@ const navItems = [
 
     // Scroll animation for navigation
     const navWrapper = document.querySelector('.nav-wrapper');
-    let lastScrollY = window.scrollY;
     let ticking = false;
 
     function updateNav() {
       const scrollY = window.scrollY;
-      
+
       if (scrollY > 100) {
         navWrapper?.classList.add('nav-collapsed');
         navWrapper?.classList.add('scrolled');
@@ -223,8 +222,7 @@ const navItems = [
         navWrapper?.classList.remove('nav-collapsed');
         navWrapper?.classList.remove('scrolled');
       }
-      
-      lastScrollY = scrollY;
+
       ticking = false;
     }
 

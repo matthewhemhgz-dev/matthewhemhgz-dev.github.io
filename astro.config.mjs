@@ -67,12 +67,12 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\//i,
@@ -81,12 +81,12 @@ export default defineConfig({
               cacheName: 'google-fonts-static-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/api\.qrserver\.com\//i,
@@ -95,19 +95,25 @@ export default defineConfig({
               cacheName: 'qr-code-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 7 // <== 7 days
+                maxAgeSeconds: 60 * 60 * 24 * 7, // <== 7 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          }
+                statuses: [0, 200],
+              },
+            },
+          },
         ],
         cleanupOutdatedCaches: true,
         skipWaiting: true,
-        clientsClaim: true
+        clientsClaim: true,
       },
-      includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.svg', 'images/logo.png', 'images/logo.svg'],
+      includeAssets: [
+        'favicon.ico',
+        'robots.txt',
+        'icons/*.svg',
+        'images/logo.png',
+        'images/logo.svg',
+      ],
       manifest: {
         name: '祈研所 (Qi-Lab)',
         short_name: 'Qi-Lab',
@@ -120,22 +126,22 @@ export default defineConfig({
             src: 'icons/pwa-192x192.svg',
             sizes: '192x192',
             type: 'image/svg+xml',
-            purpose: 'any maskable'
+            purpose: 'any maskable',
           },
           {
             src: 'icons/pwa-512x512.svg',
             sizes: '512x512',
             type: 'image/svg+xml',
-            purpose: 'any maskable'
-          }
-        ]
-      }
+            purpose: 'any maskable',
+          },
+        ],
+      },
     }),
   ],
   vite: {
     build: {
       cssMinify: true,
-      assetsInlineLimit: 0,
+      assetsInlineLimit: 4096,
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
       },

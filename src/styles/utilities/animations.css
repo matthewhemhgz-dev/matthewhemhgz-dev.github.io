@@ -46,6 +46,37 @@
   transform: scale(0.8);
 }
 
+/* 物理弹簧动画类 */
+.qi-anim-physical-slide-up {
+  animation: physicalSlideUp var(--qi-anim-duration) var(--qi-spring-physical) forwards;
+  opacity: 0;
+  transform: translateY(var(--qi-anim-offset));
+}
+
+.qi-anim-physical-slide-down {
+  animation: physicalSlideDown var(--qi-anim-duration) var(--qi-spring-physical) forwards;
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--qi-anim-offset)));
+}
+
+.qi-anim-physical-bounce-in {
+  animation: physicalBounceIn var(--qi-anim-duration) var(--qi-spring-physical) forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.qi-anim-physical-bounce-in-soft {
+  animation: physicalBounceIn var(--qi-anim-duration) var(--qi-spring-physical-soft) forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.qi-anim-physical-bounce-in-heavy {
+  animation: physicalBounceIn var(--qi-anim-duration) var(--qi-spring-physical-heavy) forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
 /* 悬停动画类 */
 .qi-anim-hover-scale {
   transition: transform var(--qi-transition) var(--qi-spring-soft);
@@ -55,12 +86,32 @@
   transform: scale(1.03);
 }
 
+.qi-anim-hover-scale-physical {
+  transition: transform var(--qi-transition) var(--qi-spring-physical-soft);
+}
+
+.qi-anim-hover-scale-physical:hover {
+  transform: scale(1.03);
+}
+
 .qi-anim-hover-lift {
-  transition: transform var(--qi-transition) var(--qi-spring-soft),
-              box-shadow var(--qi-transition) var(--qi-spring-soft);
+  transition:
+    transform var(--qi-transition) var(--qi-spring-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-soft);
 }
 
 .qi-anim-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--qi-shadow-hover-warm);
+}
+
+.qi-anim-hover-lift-physical {
+  transition:
+    transform var(--qi-transition) var(--qi-spring-physical-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-physical-soft);
+}
+
+.qi-anim-hover-lift-physical:hover {
   transform: translateY(-4px);
   box-shadow: var(--qi-shadow-hover-warm);
 }
@@ -70,7 +121,7 @@
 }
 
 .qi-anim-hover-glow:hover {
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(74, 222, 153, 0.2),
     0 4px 16px rgba(74, 222, 153, 0.15);
 }
@@ -95,12 +146,44 @@
   width: 100%;
 }
 
+.qi-anim-hover-underline-physical {
+  position: relative;
+  transition: color var(--qi-transition);
+}
+
+.qi-anim-hover-underline-physical::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-amber));
+  transition: width var(--qi-transition) var(--qi-spring-physical-soft);
+}
+
+.qi-anim-hover-underline-physical:hover::after {
+  width: 100%;
+}
+
 .qi-anim-hover-bg {
-  transition: background-color var(--qi-transition) var(--qi-spring-soft),
-              color var(--qi-transition) var(--qi-spring-soft);
+  transition:
+    background-color var(--qi-transition) var(--qi-spring-soft),
+    color var(--qi-transition) var(--qi-spring-soft);
 }
 
 .qi-anim-hover-bg:hover {
+  background-color: var(--qi-brand-emerald-05);
+  color: var(--qi-brand-emerald-dark);
+}
+
+.qi-anim-hover-bg-physical {
+  transition:
+    background-color var(--qi-transition) var(--qi-spring-physical-soft),
+    color var(--qi-transition) var(--qi-spring-physical-soft);
+}
+
+.qi-anim-hover-bg-physical:hover {
   background-color: var(--qi-brand-emerald-05);
   color: var(--qi-brand-emerald-dark);
 }
@@ -109,8 +192,9 @@
 .qi-anim-button {
   position: relative;
   overflow: hidden;
-  transition: transform var(--qi-transition) var(--qi-spring-soft),
-              box-shadow var(--qi-transition) var(--qi-spring-soft);
+  transition:
+    transform var(--qi-transition) var(--qi-spring-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-soft);
 }
 
 .qi-anim-button::before {
@@ -123,7 +207,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width var(--qi-transition-base), height var(--qi-transition-base);
+  transition:
+    width var(--qi-transition-base),
+    height var(--qi-transition-base);
 }
 
 .qi-anim-button:active::before {
@@ -136,15 +222,62 @@
   box-shadow: var(--qi-shadow-hover-warm);
 }
 
+.qi-anim-button-physical {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--qi-transition) var(--qi-spring-physical-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-physical-soft);
+}
+
+.qi-anim-button-physical::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width var(--qi-transition-base),
+    height var(--qi-transition-base);
+}
+
+.qi-anim-button-physical:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.qi-anim-button-physical:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--qi-shadow-hover-warm);
+}
+
 /* 滚动动画 */
 .qi-anim-scroll-reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity var(--qi-anim-duration) var(--qi-spring),
-              transform var(--qi-anim-duration) var(--qi-spring);
+  transition:
+    opacity var(--qi-anim-duration) var(--qi-spring),
+    transform var(--qi-anim-duration) var(--qi-spring);
 }
 
 .qi-anim-scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.qi-anim-scroll-reveal-physical {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--qi-anim-duration) var(--qi-spring-physical),
+    transform var(--qi-anim-duration) var(--qi-spring-physical);
+}
+
+.qi-anim-scroll-reveal-physical.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -155,8 +288,9 @@
   border-right: 0.15em solid var(--qi-brand-emerald);
   white-space: nowrap;
   margin: 0 auto;
-  animation: typing 3.5s steps(40, end),
-             blink-caret 0.75s step-end infinite;
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
 }
 
 /* 脉冲动画 */
@@ -263,18 +397,83 @@
   }
 }
 
+/* 物理弹簧动画关键帧 */
+@keyframes physicalSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--qi-anim-offset));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  80% {
+    transform: translateY(4px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes physicalSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--qi-anim-offset)));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+  80% {
+    transform: translateY(-4px);
+  }
+  90% {
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes physicalBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  85% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes typing {
   from {
-    width: 0
+    width: 0;
   }
   to {
-    width: 100%
+    width: 100%;
   }
 }
 
 @keyframes blink-caret {
-  from, to {
-    border-color: transparent
+  from,
+  to {
+    border-color: transparent;
   }
   50% {
     border-color: var(--qi-brand-emerald);
@@ -282,7 +481,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -291,7 +491,8 @@
 }
 
 @keyframes wiggle {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(-3deg);
   }
   50% {
@@ -309,7 +510,8 @@
 }
 
 @keyframes breath {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {

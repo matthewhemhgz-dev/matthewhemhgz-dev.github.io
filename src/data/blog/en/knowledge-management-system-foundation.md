@@ -32,11 +32,11 @@ Knowledge Management (KM) refers to the process of acquiring, storing, organizin
 
 Before building a knowledge management system, we need to clarify the differences between three important concepts:
 
-| Concept | Definition | Characteristics | Example |
-|---------|------------|-----------------|---------|
-| **Data** | Raw, unprocessed facts and numbers | Meaningless, requires context | 123, "Qi-Lab" |
-| **Information** | Organized and processed data | Has context, meaningful | "Qi-Lab was founded in 2026" |
-| **Knowledge** | Internalized and understood information | Applicable, valuable | "How to build a personal knowledge management system" |
+| Concept         | Definition                              | Characteristics               | Example                                               |
+| --------------- | --------------------------------------- | ----------------------------- | ----------------------------------------------------- |
+| **Data**        | Raw, unprocessed facts and numbers      | Meaningless, requires context | 123, "Qi-Lab"                                         |
+| **Information** | Organized and processed data            | Has context, meaningful       | "Qi-Lab was founded in 2026"                          |
+| **Knowledge**   | Internalized and understood information | Applicable, valuable          | "How to build a personal knowledge management system" |
 
 The core goal of knowledge management is to transform data into information, and then transform information into applicable knowledge.
 
@@ -60,18 +60,21 @@ A complete knowledge management system consists of the following four core layer
 **Core task**: Identify and acquire valuable content from massive information
 
 **Key principles**:
+
 - **Quality first**: Choose high-quality information sources
 - **Relevance**: Related to personal goals and interests
 - **Diversity**: Cover different perspectives and fields
 - **Proactivity**: Actively search and discover, rather than passively receive
 
 **Practical tools**:
+
 - **Information aggregation**: RSS readers (Feedly, Inoreader)
 - **Read later**: Omnivore, Raindrop, Pocket
 - **Note capture**: Obsidian, Logseq, Notion
 - **Content discovery**: Twitter, LinkedIn, industry blogs
 
 **Filtering strategies**:
+
 - **5W1H evaluation method**: What (content), Who (source), When (timeliness), Where (platform), Why (purpose), How (quality)
 - **Value judgment matrix**: Classify based on the value and relevance of information
 - **Time return on investment**: Evaluate the time cost and expected benefits of acquiring and processing information
@@ -81,6 +84,7 @@ A complete knowledge management system consists of the following four core layer
 **Core task**: Transform raw information into structured, reusable knowledge
 
 **Processing flow**:
+
 1. **Extraction**: Extract core viewpoints and key information
 2. **Understanding**: Restate in your own words to ensure true understanding
 3. **Classification**: Categorize knowledge into appropriate topics
@@ -88,12 +92,14 @@ A complete knowledge management system consists of the following four core layer
 5. **Storage**: Put into the knowledge management system
 
 **Processing techniques**:
+
 - **Feynman Learning Method**: Deepen understanding by teaching others
 - **Cornell Note-Taking Method**: Divide notes into cues, notes, and summary
 - **Mind Mapping**: Organize knowledge in a graphical way
 - **Zettelkasten Method**: Create atomic notes and establish links
 
 **Recommended tools**:
+
 - **Obsidian**: Bidirectional links, knowledge graph
 - **Notion**: Structured databases, template system
 - **Logseq**: Outline notes, journal function
@@ -104,18 +110,21 @@ A complete knowledge management system consists of the following four core layer
 **Core task**: Establish a structured system for convenient storage and retrieval of knowledge
 
 **Organization principles**:
+
 - **Simplicity**: Avoid overly complex classification systems
 - **Flexibility**: Able to adjust with changing needs
 - **Consistency**: Maintain uniformity in classification and naming
 - **Scalability**: Able to accommodate growing knowledge
 
 **Organization methods**:
+
 - **Hierarchical classification**: Topic → Subtopic → Specific content
 - **Tag system**: Use keyword tags for multi-dimensional classification
 - **Link network**: Establish connections between knowledge through bidirectional links
 - **Map navigation**: Create topic index pages (MOC - Map of Content)
 
 **Storage strategies**:
+
 - **Local first**: Ensure data security and offline access
 - **Backup mechanism**: Regular backup to prevent data loss
 - **Version control**: Track the evolution of knowledge
@@ -126,18 +135,21 @@ A complete knowledge management system consists of the following four core layer
 **Core task**: Transform knowledge into valuable outputs to maximize the value of knowledge
 
 **Output forms**:
+
 - **Personal application**: Solving problems, making decisions, learning new skills
 - **Content creation**: Writing blogs, giving presentations, recording videos
 - **Teaching and guidance**: Tutoring others, conducting workshops, online courses
 - **Project practice**: Applying knowledge to actual projects
 
 **Output tools**:
+
 - **Writing**: Markdown editors, blog platforms
 - **Speaking**: Presentation tools, video recording software
 - **Visualization**: Mind mapping tools, chart making software
 - **Collaboration**: Project management tools, team collaboration platforms
 
 **Output strategies**:
+
 - **Regular output**: Establish a fixed output rhythm
 - **Goal-oriented**: Choose appropriate output forms based on goals
 - **Quality first**: Focus on the quality rather than quantity of output content
@@ -217,6 +229,7 @@ A complete knowledge management system consists of the following four core layer
 **Symptoms**: Feeling overwhelmed by too much information
 
 **Solutions**:
+
 - Set time limits for information acquisition
 - Establish strict information filtering criteria
 - Regularly clean and archive old information
@@ -227,6 +240,7 @@ A complete knowledge management system consists of the following four core layer
 **Symptoms**: Not having enough time to maintain the knowledge management system
 
 **Solutions**:
+
 - Use fragmented time for information capture
 - Establish efficient processing流程
 - Set fixed maintenance time
@@ -237,6 +251,7 @@ A complete knowledge management system consists of the following four core layer
 **Symptoms**: Cumbersome classification system that is difficult to maintain
 
 **Solutions**:
+
 - Keep the classification system simple
 - Use tags instead of complex folder structures
 - Adjust as needed rather than pursuing perfection
@@ -247,6 +262,7 @@ A complete knowledge management system consists of the following four core layer
 **Symptoms**: Difficulty in坚持 maintaining the knowledge management system
 
 **Solutions**:
+
 - Set clear goals and reward mechanisms
 - Start small and build habits
 - Regularly see the value brought by the system

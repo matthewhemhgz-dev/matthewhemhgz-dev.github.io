@@ -391,13 +391,13 @@ Using [Style Dictionary](https://amzn.github.io/style-dictionary/), you can conv
 
 ## Toolchain Recommendations
 
-| Tool                   | Purpose            | Reason for Recommendation          |
-| ---------------------- | ------------------ | ---------------------------------- |
-| **Style Dictionary**   | Token conversion   | Amazon open source, multi-platform output |
-| **Figma Tokens Studio**| Design-side token management | Figma plugin, JSON import/export support |
-| **Token Transformer**  | Token format conversion | Convert between different token formats |
-| **Diez**              | Cross-platform token distribution | Supports iOS/Android/Web unified distribution |
-| **Twingate**          | Tailwind integration | Auto-sync tokens to Tailwind config |
+| Tool                    | Purpose                           | Reason for Recommendation                     |
+| ----------------------- | --------------------------------- | --------------------------------------------- |
+| **Style Dictionary**    | Token conversion                  | Amazon open source, multi-platform output     |
+| **Figma Tokens Studio** | Design-side token management      | Figma plugin, JSON import/export support      |
+| **Token Transformer**   | Token format conversion           | Convert between different token formats       |
+| **Diez**                | Cross-platform token distribution | Supports iOS/Android/Web unified distribution |
+| **Twingate**            | Tailwind integration              | Auto-sync tokens to Tailwind config           |
 
 ## Best Practice Summary
 

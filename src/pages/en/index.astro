@@ -152,6 +152,7 @@ const platforms = [
   <SectionDivider variant="dots" />
 
   <AboutSection
+    classList="qi-anim-scroll-reveal"
     label="// ABOUT"
     title="About QiLab"
     text="QiLab is my digital archive — a systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends. Through personal experience, practical thinking, and systematic notes, I explore how to make technology truly serve human needs. Adhering to human ontological value, long-termism."
@@ -168,6 +169,7 @@ const platforms = [
   <SectionDivider variant="line" />
 
   <FeaturedSection
+    classList="qi-anim-scroll-reveal qi-anim-delay-200"
     label="// FEATURED"
     title="Featured Content"
     posts={recentPosts}
@@ -181,15 +183,30 @@ const platforms = [
 
   <SectionDivider variant="diamond" />
 
-  <ToolboxSection label="// TOOLBOX" title="Toolbox" categories={toolboxCategories} />
+  <ToolboxSection
+    classList="qi-anim-scroll-reveal qi-anim-delay-300"
+    label="// TOOLBOX"
+    title="Toolbox"
+    categories={toolboxCategories}
+  />
 
-  <PlatformsSection label="// PLATFORMS" title="Platform Matrix" platforms={platforms} />
+  <PlatformsSection
+    classList="qi-anim-scroll-reveal qi-anim-delay-400"
+    label="// PLATFORMS"
+    title="Platform Matrix"
+    platforms={platforms}
+  />
 
-  <ResearchSection label="// METHODOLOGY" title="Research Methodology" />
+  <ResearchSection
+    classList="qi-anim-scroll-reveal qi-anim-delay-500"
+    label="// METHODOLOGY"
+    title="Research Methodology"
+  />
 
   <SectionDivider variant="arcs" />
 
   <CtaSection
+    classList="qi-anim-scroll-reveal qi-anim-delay-600"
     label="// LET'S CONNECT"
     title="Let's Make Knowledge Truly Useful"
     description="Whether it's knowledge management exchange, AI workflows or project cooperation, feel free to contact us."
