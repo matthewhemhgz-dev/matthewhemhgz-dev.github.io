@@ -7,14 +7,10 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // 资源目录
-const RESOURCES_DIR = path.join(process.cwd(), '.trae', 'resources');
+const RESOURCES_DIR = path.join('.', '.trae', 'resources');
 
 /**
  * 执行命令并返回输出

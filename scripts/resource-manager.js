@@ -7,10 +7,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // 资源索引文件路径
 const INDEX_PATH = path.join(process.cwd(), '.trae', 'resources', 'index.json');
@@ -57,7 +53,7 @@ function saveTags(tags) {
  */
 function searchResources(query, options = {}) {
   const index = loadIndex();
-  const { type, tags } = options;
+  const { type } = options;
   
   let results = [];
   

@@ -1,15 +1,17 @@
 {
-  "generatedAt": "2026-04-25T05:44:51.553Z",
-  "totalFiles": 378,
+  "generatedAt": "2026-04-25T06:05:08.660Z",
+  "totalFiles": 381,
   "resources": {
     "config": {
       "type": "config",
       "description": "配置文件",
-      "count": 9,
+      "count": 11,
       "files": [
         ".astro/collections/blog.schema.json",
         ".trae/resources/index.json",
+        ".trae/resources/integration-report.json",
         ".trae/resources/status.json",
+        ".trae/resources/tags.json",
         ".vscode/extensions.json",
         ".vscode/launch.json",
         "package-lock.json",
@@ -196,7 +198,7 @@
     "documentation": {
       "type": "documentation",
       "description": "文档文件",
-      "count": 143,
+      "count": 144,
       "files": [
         ".trae/documents/algorithmic-art-implementation-plan.md",
         ".trae/documents/algorithmic-art-integration-plan.md",
@@ -235,6 +237,7 @@
         ".trae/documents/qi_lab_tech_analysis_framework.md",
         ".trae/documents/qi_lab_tech_analysis_report.md",
         ".trae/documents/resource-management-best-practices.md",
+        ".trae/documents/resource-management-training.md",
         ".trae/documents/site-quality-fix-plan-v2.md",
         ".trae/documents/site-quality-fix-plan.md",
         ".trae/documents/site_analysis_plan.md",

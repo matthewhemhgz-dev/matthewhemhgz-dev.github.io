@@ -7,10 +7,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // 忽略的目录和文件
 const ignorePatterns = [
@@ -74,8 +70,6 @@ function shouldIgnore(filePath) {
  * 确定文件类型
  */
 function getFileType(filePath) {
-  const extension = path.extname(filePath);
-  
   for (const [type, config] of Object.entries(resourceTypes)) {
     if (config.extensions.some(ext => filePath.endsWith(ext))) {
       return type;

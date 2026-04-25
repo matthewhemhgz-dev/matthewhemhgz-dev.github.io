@@ -7,10 +7,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // 资源状态文件路径
 const STATUS_PATH = path.join(process.cwd(), '.trae', 'resources', 'status.json');
@@ -103,7 +99,7 @@ function listStatus() {
  */
 function filterByStatus(status) {
   const statusData = loadStatus();
-  const filtered = Object.entries(statusData).filter(([_, data]) => data.status === status);
+  const filtered = Object.entries(statusData).filter(([, data]) => data.status === status);
   
   if (filtered.length === 0) {
     console.log(`没有状态为 "${status}" 的资源`);
