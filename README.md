@@ -189,6 +189,39 @@ src/
 - **粒子共振系统**：优化的粒子系统，支持鼠标交互和响应式参数调整
 - **文档封面模板**：统一的文档封面设计，支持 modern、minimal 和 artistic 三种风格
 - **环境感知交互组件**：根据用户设备和偏好自动调整界面行为
+- **资源管理系统**：自动化的资源识别、分类、索引和管理系统，包括资源扫描、标签管理和状态跟踪
+
+### 资源管理系统
+
+项目新增了完整的资源管理系统，用于管理和组织项目资源：
+
+**核心工具**：
+- `scripts/resource-scanner.js` - 扫描项目资源并生成索引
+- `scripts/resource-manager.js` - 管理资源标签、搜索资源、生成报告
+- `scripts/resource-status.js` - 跟踪和管理资源的开发状态
+- `scripts/resource-integration.js` - 集成和测试资源管理系统
+
+**使用方法**：
+```bash
+# 扫描项目资源
+node scripts/resource-scanner.js
+
+# 生成资源报告
+node scripts/resource-manager.js report
+
+# 搜索资源
+node scripts/resource-manager.js search <关键词>
+
+# 设置资源状态
+node scripts/resource-status.js set <文件路径> <状态> [描述]
+
+# 集成和测试资源管理系统
+node scripts/resource-integration.js
+```
+
+**文档**：
+- `.trae/documents/resource-management-best-practices.md` - 资源管理最佳实践
+- `.trae/documents/resource-management-training.md` - 资源管理系统培训指南
 
 ### 代码质量改进
 
