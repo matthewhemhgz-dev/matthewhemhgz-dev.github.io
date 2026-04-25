@@ -31,17 +31,6 @@ describe('EnvironmentAware', () => {
     });
   }
 
-  function mockDate(fixedDate: Date) {
-    global.Date = class extends originalDate {
-      constructor(...args: unknown[]) {
-        if (args.length === 0) {
-          return fixedDate;
-        }
-        return super(...args);
-      }
-    } as typeof Date;
-  }
-
   it('构造函数正确初始化环境数据', () => {
     const env = environmentAware.getEnvironment();
     expect(env).toHaveProperty('time');

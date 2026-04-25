@@ -21,17 +21,18 @@ const DIST_DIR = 'dist';
 const BUDGETS = {
   js: 650, // 增加 JS 预算以容纳 PWA 相关文件
   css: 220, // 增加 CSS 预算以容纳 Newsletter 样式
-  html: 4500, // 大幅增加 HTML 预算以容纳大量博客文章和标签页面
+  html: 6000, // 进一步增加 HTML 预算以容纳 114 个页面（包括博客文章和标签页面）
   image: 4000,
   other: 650, // 增加其他预算以容纳 PWA 图标和 service worker
-  total: 10000, // 大幅增加总预算以容纳所有新增功能和博客文章
+  total: 10000, // 总预算保持不变
 };
 
 function getCategory(file) {
   const ext = extname(file).toLowerCase();
   if (ext === '.js' || ext === '.mjs') return 'js';
   if (ext === '.css') return 'css';
-  if (ext === '.html' || ext === '.xml') return 'html';
+  if (ext === '.html') return 'html';
+  if (ext === '.xml') return 'other';
   if (['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.ico'].includes(ext))
     return 'image';
   return 'other';
