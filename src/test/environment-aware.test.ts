@@ -129,15 +129,15 @@ describe('EnvironmentAware', () => {
   it('onUpdate() 添加回调函数', () => {
     let called = false;
     let receivedEnv: unknown = null;
-    
+
     environmentAware.onUpdate((env) => {
       called = true;
       receivedEnv = env;
     });
-    
+
     // 触发更新（通过设置天气）
     environmentAware.setWeather({ type: 'sunny' });
-    
+
     expect(called).toBe(true);
     expect(receivedEnv).not.toBeNull();
   });
