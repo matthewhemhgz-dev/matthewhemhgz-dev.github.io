@@ -6,11 +6,13 @@
 class FluidHarmonics {
   /**
    * 构造函数
+   * @param {Object} p - p5.js 实例
    * @param {number} width - 画布宽度
    * @param {number} height - 画布高度
    * @param {number} [seed=12345] - 随机种子
    */
-  constructor(width, height, seed = 12345) {
+  constructor(p, width, height, seed = 12345) {
+    this.p = p;
     this.width = width;
     this.height = height;
     this.seed = seed;
@@ -67,8 +69,8 @@ class FluidHarmonics {
     this.particles = [];
     for (let i = 0; i < this.numParticles; i++) {
       this.particles.push({
-        x: random(this.width),
-        y: random(this.height),
+        x: this.p.random(this.width),
+        y: this.p.random(this.height),
         vx: 0,
         vy: 0,
         history: [],
@@ -80,7 +82,7 @@ class FluidHarmonics {
    * 更新粒子状态
    */
   update() {
-    noiseSeed(this.seed);
+    this.p.noiseSeed(this.seed);
     this.frameCount++;
 
     // 每帧只更新部分粒子，提高性能
@@ -98,7 +100,7 @@ class FluidHarmonics {
         case 'wave':
           // 波浪效果
           let waveOffset =
-            sin(particle.x * this.waveFrequency + this.frameCount * this.waveSpeed) *
+            this.p.sin(particle.x * this.waveFrequency + this.frameCount * this.waveSpeed) *
             this.waveAmplitude;
           let targetY = this.height / 2 + waveOffset;
           forceY = (targetY - particle.y) * 0.01;
@@ -109,10 +111,10 @@ class FluidHarmonics {
           // 漩涡效果
           let dx = particle.x - this.vortexCenter.x;
           let dy = particle.y - this.vortexCenter.y;
-          let distance = sqrt(dx * dx + dy * dy);
-          angle = atan2(dy, dx);
-          forceX = (-sin(angle) * this.vortexStrength) / (distance * 0.1 + 1);
-          forceY = (cos(angle) * this.vortexStrength) / (distance * 0.1 + 1);
+          let distance = this.p.sqrt(dx * dx + dy * dy);
+          angle = this.p.atan2(dy, dx);
+          forceX = (-this.p.sin(angle) * this.vortexStrength) / (distance * 0.1 + 1);
+          forceY = (this.p.cos(angle) * this.vortexStrength) / (distance * 0.1 + 1);
           // 向中心的吸引力
           forceX -= dx * 0.001;
           forceY -= dy * 0.001;
@@ -135,29 +137,29 @@ class FluidHarmonics {
           }
 
           // 限制在喷泉宽度内
-          if (abs(particle.x - fountainCenterX) > this.fountainWidth) {
+          if (this.p.abs(particle.x - fountainCenterX) > this.fountainWidth) {
             forceX = (fountainCenterX - particle.x) * 0.01;
           }
           break;
 
         default:
           // 默认噪声效果
-          let noiseValue = noise(
+          let noiseValue = this.p.noise(
             particle.x * this.noiseScale,
             particle.y * this.noiseScale,
             this.frameCount * 0.001,
           );
 
-          angle = noiseValue * TWO_PI * 4;
-          forceX = cos(angle) * this.noiseStrength;
-          forceY = sin(angle) * this.noiseStrength;
+          angle = noiseValue * this.p.TWO_PI * 4;
+          forceX = this.p.cos(angle) * this.noiseStrength;
+          forceY = this.p.sin(angle) * this.noiseStrength;
           break;
       }
 
       // 添加鼠标交互力
       let dx = this.mouseX - particle.x;
       let dy = this.mouseY - particle.y;
-      let distance = sqrt(dx * dx + dy * dy);
+      let distance = this.p.sqrt(dx * dx + dy * dy);
 
       if (distance < this.mouseRadius) {
         let force = (this.mouseRadius - distance) / this.mouseRadius;
@@ -173,7 +175,7 @@ class FluidHarmonics {
         let otherParticle = this.particles[j];
         let dx = otherParticle.x - particle.x;
         let dy = otherParticle.y - particle.y;
-        let distance = sqrt(dx * dx + dy * dy);
+        let distance = this.p.sqrt(dx * dx + dy * dy);
 
         if (distance < this.collisionRadius) {
           // 计算碰撞力
@@ -201,7 +203,7 @@ class FluidHarmonics {
       particle.vy *= 0.95;
 
       // Limit speed
-      let speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+      let speed = this.p.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
       if (speed > this.particleSpeed) {
         particle.vx = (particle.vx / speed) * this.particleSpeed;
         particle.vy = (particle.vy / speed) * this.particleSpeed;
@@ -232,39 +234,39 @@ class FluidHarmonics {
    */
   draw() {
     // Semi-transparent background for trail effect
-    fill(255, 255, 255, this.trailLength * 255);
-    noStroke();
-    rect(0, 0, this.width, this.height);
+    this.p.fill(255, 255, 255, this.trailLength * 255);
+    this.p.noStroke();
+    this.p.rect(0, 0, this.width, this.height);
 
     // 批量绘制粒子
     for (let particle of this.particles) {
       // Calculate color based on speed
-      let speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
-      let colorIndex = map(speed, 0, this.particleSpeed, 0, 2);
+      let speed = this.p.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+      let colorIndex = this.p.map(speed, 0, this.particleSpeed, 0, 2);
 
       let color;
       if (colorIndex < 1) {
-        color = lerpColor(color(this.colors.mint), color(this.colors.emerald), colorIndex);
+        color = this.p.lerpColor(this.p.color(this.colors.mint), this.p.color(this.colors.emerald), colorIndex);
       } else {
-        color = lerpColor(color(this.colors.emerald), color(this.colors.amber), colorIndex - 1);
+        color = this.p.lerpColor(this.p.color(this.colors.emerald), this.p.color(this.colors.amber), colorIndex - 1);
       }
 
       // Draw particle trail
-      stroke(color);
-      strokeWeight(this.isMobile ? 0.5 : 1);
-      noFill();
-      beginShape();
+      this.p.stroke(color);
+      this.p.strokeWeight(this.isMobile ? 0.5 : 1);
+      this.p.noFill();
+      this.p.beginShape();
       for (let point of particle.history) {
-        vertex(point.x, point.y);
+        this.p.vertex(point.x, point.y);
       }
-      endShape();
+      this.p.endShape();
 
       // Draw particle head
       if (!this.isMobile) {
         // 移动端不绘制粒子头部以提高性能
-        fill(color);
-        noStroke();
-        ellipse(particle.x, particle.y, 2, 2);
+        this.p.fill(color);
+        this.p.noStroke();
+        this.p.ellipse(particle.x, particle.y, 2, 2);
       }
     }
   }

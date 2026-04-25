@@ -4,7 +4,7 @@ description: 'Deep dive into core concepts and foundational framework of knowled
 pubDate: 2026-05-01
 category: 'Knowledge Management'
 tags: ['Knowledge Management', 'Personal System', 'Second Brain', 'Knowledge System']
-heroImage: '/images/blog/knowledge-management-foundation.png'
+heroImage: '/images/blog/knowledge-management-foundation.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

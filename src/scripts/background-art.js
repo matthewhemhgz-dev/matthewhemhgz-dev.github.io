@@ -78,16 +78,16 @@ class BackgroundArt {
 
     switch (this.options.type) {
       case 'particles':
-        this.artInstance = new ParticleResonance(p.width, p.height, seed);
+        this.artInstance = new ParticleResonance(p, p.width, p.height, seed);
         this.artInstance.numParticles = this.options.particleCount;
         this.artInstance.particleSpeed = this.options.speed;
         break;
       case 'generative':
-        this.artInstance = new GenerativeHarmony(p.width, p.height, seed);
+        this.artInstance = new GenerativeHarmony(p, p.width, p.height, seed);
         break;
       case 'fluid':
       default:
-        this.artInstance = new FluidHarmonics(p.width, p.height, seed);
+        this.artInstance = new FluidHarmonics(p, p.width, p.height, seed);
         this.artInstance.numParticles = this.options.particleCount;
         this.artInstance.particleSpeed = this.options.speed;
         break;

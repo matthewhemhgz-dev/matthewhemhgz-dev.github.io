@@ -1,5 +1,6 @@
 class GenerativeHarmony {
-  constructor(width, height, seed = 12345) {
+  constructor(p, width, height, seed = 12345) {
+    this.p = p;
     this.width = width;
     this.height = height;
     this.seed = seed;
@@ -30,41 +31,41 @@ class GenerativeHarmony {
 
   initializeShapes() {
     this.shapes = [];
-    randomSeed(this.seed);
+    this.p.randomSeed(this.seed);
 
     for (let i = 0; i < this.numShapes; i++) {
       this.shapes.push({
-        x: random(this.width),
-        y: random(this.height),
-        size: random(this.shapeSize * 0.5, this.shapeSize * 1.5),
-        rotation: random(TWO_PI),
+        x: this.p.random(this.width),
+        y: this.p.random(this.height),
+        size: this.p.random(this.shapeSize * 0.5, this.shapeSize * 1.5),
+        rotation: this.p.random(this.p.TWO_PI),
         color: this.getRandomColor(),
-        speed: random(0.1, 0.3), // 减少速度以提高性能
-        phase: random(TWO_PI),
+        speed: this.p.random(0.1, 0.3), // 减少速度以提高性能
+        phase: this.p.random(this.p.TWO_PI),
       });
     }
   }
 
   getRandomColor() {
     const colorKeys = Object.keys(this.colors);
-    return this.colors[colorKeys[floor(random(colorKeys.length))]];
+    return this.colors[colorKeys[this.p.floor(this.p.random(colorKeys.length))]];
   }
 
   update() {
     // 每帧只更新部分形状，提高性能
     const updateCount = Math.min(20, this.numShapes);
     for (let i = 0; i < updateCount; i++) {
-      const index = (frameCount * 7 + i) % this.numShapes;
+      const index = (this.p.frameCount * 7 + i) % this.numShapes;
       const shape = this.shapes[index];
 
       // Update position with harmonic motion
-      shape.x += sin(shape.phase) * shape.speed;
-      shape.y += cos(shape.phase) * shape.speed;
+      shape.x += this.p.sin(shape.phase) * shape.speed;
+      shape.y += this.p.cos(shape.phase) * shape.speed;
 
       // 添加鼠标交互力
       let dx = this.mouseX - shape.x;
       let dy = this.mouseY - shape.y;
-      let distance = sqrt(dx * dx + dy * dy);
+      let distance = this.p.sqrt(dx * dx + dy * dy);
 
       if (distance < this.mouseRadius) {
         let force = (this.mouseRadius - distance) / this.mouseRadius;
@@ -86,44 +87,44 @@ class GenerativeHarmony {
 
   draw() {
     for (let shape of this.shapes) {
-      push();
-      translate(shape.x, shape.y);
-      rotate(shape.rotation);
+      this.p.push();
+      this.p.translate(shape.x, shape.y);
+      this.p.rotate(shape.rotation);
 
       // Draw geometric shape
-      noFill();
-      stroke(shape.color);
-      strokeWeight(this.isMobile ? 1 : 2);
+      this.p.noFill();
+      this.p.stroke(shape.color);
+      this.p.strokeWeight(this.isMobile ? 1 : 2);
 
       // Draw a polygon with varying sides based on seed
-      let sides = 3 + floor((this.seed + shape.x + shape.y) % 5);
-      beginShape();
+      let sides = 3 + this.p.floor((this.seed + shape.x + shape.y) % 5);
+      this.p.beginShape();
       for (let i = 0; i < sides; i++) {
-        let angle = (TWO_PI / sides) * i;
+        let angle = (this.p.TWO_PI / sides) * i;
         let radius = shape.size * 0.5;
-        vertex(cos(angle) * radius, sin(angle) * radius);
+        this.p.vertex(this.p.cos(angle) * radius, this.p.sin(angle) * radius);
       }
-      endShape(CLOSE);
+      this.p.endShape(this.p.CLOSE);
 
       // Draw inner details
       if (!this.isMobile) {
         // 移动端不绘制内部细节以提高性能
-        strokeWeight(1);
+        this.p.strokeWeight(1);
         for (let i = 0; i < sides; i++) {
-          let angle1 = (TWO_PI / sides) * i;
-          let angle2 = (TWO_PI / sides) * ((i + 2) % sides);
+          let angle1 = (this.p.TWO_PI / sides) * i;
+          let angle2 = (this.p.TWO_PI / sides) * ((i + 2) % sides);
           let radius1 = shape.size * 0.2;
           let radius2 = shape.size * 0.4;
-          line(
-            cos(angle1) * radius1,
-            sin(angle1) * radius1,
-            cos(angle2) * radius2,
-            sin(angle2) * radius2,
+          this.p.line(
+            this.p.cos(angle1) * radius1,
+            this.p.sin(angle1) * radius1,
+            this.p.cos(angle2) * radius2,
+            this.p.sin(angle2) * radius2,
           );
         }
       }
 
-      pop();
+      this.p.pop();
     }
 
     // 只在非移动端绘制形状间的连接，提高性能
@@ -143,13 +144,13 @@ class GenerativeHarmony {
 
         let dx = shape2.x - shape1.x;
         let dy = shape2.y - shape1.y;
-        let distance = sqrt(dx * dx + dy * dy);
+        let distance = this.p.sqrt(dx * dx + dy * dy);
 
         if (distance < 100) {
-          let alpha = map(distance, 0, 100, 255, 0);
-          stroke(255, alpha);
-          strokeWeight(0.3);
-          line(shape1.x, shape1.y, shape2.x, shape2.y);
+          let alpha = this.p.map(distance, 0, 100, 255, 0);
+          this.p.stroke(255, alpha);
+          this.p.strokeWeight(0.3);
+          this.p.line(shape1.x, shape1.y, shape2.x, shape2.y);
         }
       }
     }

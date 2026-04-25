@@ -1,5 +1,6 @@
 class ParticleResonance {
-  constructor(width, height, seed = 12345) {
+  constructor(p, width, height, seed = 12345) {
+    this.p = p;
     this.width = width;
     this.height = height;
     this.seed = seed;
@@ -43,17 +44,17 @@ class ParticleResonance {
     this.particles = [];
     for (let i = 0; i < this.numParticles; i++) {
       this.particles.push({
-        x: random(this.width),
-        y: random(this.height),
-        vx: random(-1, 1) * 0.5, // 减少初始速度
-        vy: random(-1, 1) * 0.5,
+        x: this.p.random(this.width),
+        y: this.p.random(this.height),
+        vx: this.p.random(-1, 1) * 0.5, // 减少初始速度
+        vy: this.p.random(-1, 1) * 0.5,
         history: [],
       });
     }
   }
 
   update() {
-    randomSeed(this.seed);
+    this.p.randomSeed(this.seed);
     this.frameCount++;
 
     // 每帧只更新部分粒子，提高性能
@@ -74,7 +75,7 @@ class ParticleResonance {
         let otherParticle = this.particles[j];
         let dx = otherParticle.x - particle.x;
         let dy = otherParticle.y - particle.y;
-        let distance = sqrt(dx * dx + dy * dy);
+        let distance = this.p.sqrt(dx * dx + dy * dy);
 
         // 只处理一定范围内的粒子
         if (distance < this.attractionRadius) {
@@ -105,7 +106,7 @@ class ParticleResonance {
       // 添加鼠标交互力
       let dx = this.mouseX - particle.x;
       let dy = this.mouseY - particle.y;
-      let distance = sqrt(dx * dx + dy * dy);
+      let distance = this.p.sqrt(dx * dx + dy * dy);
 
       if (distance < this.mouseRadius) {
         let force = (this.mouseRadius - distance) / this.mouseRadius;
@@ -123,7 +124,7 @@ class ParticleResonance {
       particle.vy *= 0.92;
 
       // 添加摩擦力和空气阻力
-      let speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+      let speed = this.p.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
       if (speed > 0) {
         // 计算摩擦力
         let frictionForceX = -particle.vx * this.friction;
@@ -139,7 +140,7 @@ class ParticleResonance {
       }
 
       // Limit speed
-      speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+      speed = this.p.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
       if (speed > this.particleSpeed) {
         particle.vx = (particle.vx / speed) * this.particleSpeed;
         particle.vy = (particle.vy / speed) * this.particleSpeed;
@@ -167,9 +168,9 @@ class ParticleResonance {
 
   draw() {
     // Semi-transparent background for trail effect
-    fill(255, 255, 255, this.trailLength * 255);
-    noStroke();
-    rect(0, 0, this.width, this.height);
+    this.p.fill(255, 255, 255, this.trailLength * 255);
+    this.p.noStroke();
+    this.p.rect(0, 0, this.width, this.height);
 
     // 只在非移动端绘制粒子间的连接，提高性能
     if (!this.isMobile) {
@@ -184,14 +185,14 @@ class ParticleResonance {
           let otherParticle = this.particles[j];
           let dx = otherParticle.x - particle.x;
           let dy = otherParticle.y - particle.y;
-          let distance = sqrt(dx * dx + dy * dy);
+          let distance = this.p.sqrt(dx * dx + dy * dy);
 
           if (distance < this.attractionRadius) {
             let color = this.colors.emerald;
 
-            stroke(color);
-            strokeWeight(0.3);
-            line(particle.x, particle.y, otherParticle.x, otherParticle.y);
+            this.p.stroke(color);
+            this.p.strokeWeight(0.3);
+            this.p.line(particle.x, particle.y, otherParticle.x, otherParticle.y);
           }
         }
       }
@@ -200,32 +201,32 @@ class ParticleResonance {
     // Draw particles
     for (let particle of this.particles) {
       // Calculate color based on speed
-      let speed = sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
-      let colorIndex = map(speed, 0, this.particleSpeed, 0, 2);
+      let speed = this.p.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+      let colorIndex = this.p.map(speed, 0, this.particleSpeed, 0, 2);
 
       let color;
       if (colorIndex < 1) {
-        color = lerpColor(color(this.colors.mint), color(this.colors.emerald), colorIndex);
+        color = this.p.lerpColor(this.p.color(this.colors.mint), this.p.color(this.colors.emerald), colorIndex);
       } else {
-        color = lerpColor(color(this.colors.emerald), color(this.colors.amber), colorIndex - 1);
+        color = this.p.lerpColor(this.p.color(this.colors.emerald), this.p.color(this.colors.amber), colorIndex - 1);
       }
 
       // Draw particle trail
-      stroke(color);
-      strokeWeight(this.isMobile ? 0.5 : 1);
-      noFill();
-      beginShape();
+      this.p.stroke(color);
+      this.p.strokeWeight(this.isMobile ? 0.5 : 1);
+      this.p.noFill();
+      this.p.beginShape();
       for (let point of particle.history) {
-        vertex(point.x, point.y);
+        this.p.vertex(point.x, point.y);
       }
-      endShape();
+      this.p.endShape();
 
       // Draw particle head
       if (!this.isMobile) {
         // 移动端不绘制粒子头部以提高性能
-        fill(color);
-        noStroke();
-        ellipse(particle.x, particle.y, 2, 2);
+        this.p.fill(color);
+        this.p.noStroke();
+        this.p.ellipse(particle.x, particle.y, 2, 2);
       }
     }
   }
