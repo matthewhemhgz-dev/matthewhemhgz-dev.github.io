@@ -6,11 +6,10 @@ import {
   cleanupScrollHandler,
 } from './scroll-handler.js';
 import { InteractionEnhancements } from './interaction-enhancements.js';
+import { effectsManager } from './effects-manager.js';
 
 let initialized = false;
-let cursorGlow = null;
 let particles = null;
-let backgroundArt = null;
 const cleanupFns = [];
 
 function initQiLab() {
@@ -20,12 +19,15 @@ function initQiLab() {
   const isHomePage = location.pathname === '/' || location.pathname === '';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // 初始化动效管理器
+  effectsManager.initialize();
+
   // 1. 粒子系统（仅首页启用）
   if (isHomePage && !prefersReducedMotion) {
     import('./particles.js').then(({ MinimalParticles }) => {
       const screenWidth = window.innerWidth;
       const cs = getComputedStyle(document.documentElement);
-      const particleCount =
+      const particleCount = 
         screenWidth < 768 ? 40 : screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
       const particleOptions = {
         count: particleCount,
@@ -49,8 +51,10 @@ function initQiLab() {
         particles.rebuild(particleOptions);
       } else {
         particles = new MinimalParticles('particles-canvas', particleOptions);
+        // 注册粒子系统到动效管理器
+        effectsManager.registerEffect('particles', particles);
       }
-      if (particles) cleanupFns.push(() => particles.destroy());
+      cleanupFns.push(() => particles.destroy());
     });
   }
 
@@ -58,11 +62,13 @@ function initQiLab() {
   if (isHomePage && !prefersReducedMotion) {
     import('./cursor-glow.js').then(({ CursorGlow }) => {
       const cs = getComputedStyle(document.documentElement);
-      cursorGlow = new CursorGlow({
+      const cursorGlow = new CursorGlow({
         size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 350,
         speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.06,
         blend: 'screen',
       });
+      // 注册鼠标光效到动效管理器
+      effectsManager.registerEffect('cursor-glow', cursorGlow);
       cleanupFns.push(() => cursorGlow.destroy());
     });
   }
@@ -74,7 +80,7 @@ function initQiLab() {
       const screenWidth = window.innerWidth;
       const artType = screenWidth < 768 ? 'generative' : 'fluid';
 
-      backgroundArt = new BackgroundArt('background-art-canvas', {
+      const backgroundArt = new BackgroundArt('background-art-canvas', {
         type: artType,
         particleCount: screenWidth < 768 ? 50 : 100,
         speed: 0.3,
@@ -86,6 +92,7 @@ function initQiLab() {
       });
 
       backgroundArt.init();
+      // 背景艺术系统内部已经使用了动效管理器
       cleanupFns.push(() => backgroundArt.destroy());
     });
   }
@@ -95,6 +102,8 @@ function initQiLab() {
     const cardTilt = new CardTilt(
       '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
     );
+    // 注册卡片倾斜效果到动效管理器
+    effectsManager.registerEffect('card-tilt', cardTilt);
     cleanupFns.push(() => cardTilt.destroy());
   });
 
@@ -118,7 +127,9 @@ function initQiLab() {
 
   // 7. 交互增强效果
   if (!prefersReducedMotion) {
-    new InteractionEnhancements();
+    const interactionEnhancements = new InteractionEnhancements();
+    // 注册交互增强效果到动效管理器
+    effectsManager.registerEffect('interaction-enhancements', interactionEnhancements);
     cleanupFns.push(() => {
       // 清理交互增强效果的相关资源
     });
@@ -130,10 +141,11 @@ document.addEventListener('astro:page-load', () => {
   cleanupFns.forEach((fn) => fn());
   cleanupFns.length = 0;
 
+  // 销毁所有动效
+  effectsManager.destroy();
+
   // 重置状态，重新初始化
   initialized = false;
-  cursorGlow = null;
-  backgroundArt = null;
-  // 注意：不将 particles 设为 null，复用已有实例调用 rebuild()
+  particles = null;
   initQiLab();
 });
