@@ -2,6 +2,7 @@ import p5 from 'https://cdn.skypack.dev/p5@1.9.0';
 import { FluidHarmonics } from './fluid-harmonics.js';
 import { ParticleResonance } from './particle-resonance.js';
 import { GenerativeHarmony } from './generative-harmony.js';
+import { effectsManager } from './effects-manager.js';
 
 class BackgroundArt {
   constructor(canvasId, options = {}) {
@@ -40,11 +41,15 @@ class BackgroundArt {
         this._initArtInstance(p);
         this.isRunning = true;
 
+        // 初始化动效管理器
+        effectsManager.initialize();
+
+        // 注册动效
+        effectsManager.registerEffect('background-art', this.artInstance);
+
         // 添加鼠标移动事件监听器
         canvas.mouseMoved(() => {
-          if (this.artInstance && this.artInstance.setMousePosition) {
-            this.artInstance.setMousePosition(p.mouseX, p.mouseY);
-          }
+          effectsManager.setMousePosition(p.mouseX, p.mouseY);
         });
       };
 
@@ -52,21 +57,13 @@ class BackgroundArt {
         if (!this.isRunning || !this.artInstance) return;
 
         p.background(255);
-        this.artInstance.update();
-        this.artInstance.draw();
+        effectsManager.update();
+        effectsManager.draw();
       };
 
       p.windowResized = () => {
         p.resizeCanvas(window.innerWidth, window.innerHeight);
-        if (this.artInstance) {
-          // 调用setSize方法进行响应式调整
-          if (this.artInstance.setSize) {
-            this.artInstance.setSize(p.width, p.height);
-          } else {
-            this.artInstance.width = p.width;
-            this.artInstance.height = p.height;
-          }
-        }
+        effectsManager.resize(p.width, p.height);
       };
     };
 
@@ -97,7 +94,12 @@ class BackgroundArt {
   setType(type) {
     this.options.type = type;
     if (this.p5Instance) {
+      // 移除旧的动效
+      effectsManager.removeEffect('background-art');
+      // 初始化新的艺术实例
       this._initArtInstance(this.p5Instance);
+      // 注册新的动效
+      effectsManager.registerEffect('background-art', this.artInstance);
     }
   }
 
@@ -119,6 +121,9 @@ class BackgroundArt {
   }
 
   destroy() {
+    // 移除动效
+    effectsManager.removeEffect('background-art');
+    
     if (this.p5Instance) {
       this.p5Instance.remove();
       this.p5Instance = null;

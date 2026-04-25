@@ -96,8 +96,8 @@ class GenerativeHarmony {
       this.p.stroke(shape.color);
       this.p.strokeWeight(this.isMobile ? 1 : 2);
 
-      // Draw a polygon with varying sides based on seed
-      let sides = 3 + this.p.floor((this.seed + shape.x + shape.y) % 5);
+      // Draw a polygon with varying sides based on seed (4-8 sides, no triangles)
+      let sides = 4 + this.p.floor((this.seed + shape.x + shape.y) % 5);
       this.p.beginShape();
       for (let i = 0; i < sides; i++) {
         let angle = (this.p.TWO_PI / sides) * i;
