@@ -3,6 +3,7 @@ title: '卡片笔记写作法实践：从笔记到文章的无缝转化'
 description: '卢曼的卡片盒笔记法实战指南。学习如何通过原子化笔记、双向链接和渐进式写作，让你的创作过程更高效、更有创意。'
 pubDate: 2026-04-25
 category: '知识管理'
+image: /images/blog/zettelkasten-practical-guide-zh.svg
 tags: ['卡片盒笔记法', '写作', '知识管理']
 heroImage: '/images/blog/zettelkasten-practical.png'
 author: '祈研所'

@@ -16,10 +16,10 @@ export class EffectsManager {
    */
   initialize() {
     if (this.isInitialized) return;
-    
+
     // 监听窗口大小变化
     window.addEventListener('resize', this._onResize.bind(this));
-    
+
     this.isInitialized = true;
   }
 
@@ -36,22 +36,22 @@ export class EffectsManager {
     const defaultOptions = {
       group: 'default',
       priority: 0,
-      active: true
+      active: true,
     };
-    
+
     const config = { ...defaultOptions, ...options };
-    
+
     this.effects[name] = {
       instance: effect,
-      config
+      config,
     };
-    
+
     // 添加到分组
     if (!this.effectGroups[config.group]) {
       this.effectGroups[config.group] = new Set();
     }
     this.effectGroups[config.group].add(name);
-    
+
     // 激活动效
     if (config.active) {
       this.activeEffects.add(name);
@@ -78,15 +78,15 @@ export class EffectsManager {
       if (this.effectGroups[group]) {
         this.effectGroups[group].delete(name);
       }
-      
+
       // 从激活集合中移除
       this.activeEffects.delete(name);
-      
+
       // 销毁动效
       if (this.effects[name].instance.destroy) {
         this.effects[name].instance.destroy();
       }
-      
+
       delete this.effects[name];
     }
   }
@@ -115,7 +115,7 @@ export class EffectsManager {
    */
   activateGroup(group) {
     if (this.effectGroups[group]) {
-      this.effectGroups[group].forEach(name => {
+      this.effectGroups[group].forEach((name) => {
         this.activeEffects.add(name);
       });
     }
@@ -127,7 +127,7 @@ export class EffectsManager {
    */
   deactivateGroup(group) {
     if (this.effectGroups[group]) {
-      this.effectGroups[group].forEach(name => {
+      this.effectGroups[group].forEach((name) => {
         this.activeEffects.delete(name);
       });
     }
@@ -140,8 +140,8 @@ export class EffectsManager {
     // 按优先级排序动效
     const sortedEffects = Object.entries(this.effects)
       .filter(([name]) => this.activeEffects.has(name))
-      .sort(([,a], [,b]) => b.config.priority - a.config.priority);
-    
+      .sort(([, a], [, b]) => b.config.priority - a.config.priority);
+
     sortedEffects.forEach(([name, { instance }]) => {
       if (instance.update) {
         instance.update();
@@ -156,8 +156,8 @@ export class EffectsManager {
     // 按优先级排序动效
     const sortedEffects = Object.entries(this.effects)
       .filter(([name]) => this.activeEffects.has(name))
-      .sort(([,a], [,b]) => b.config.priority - a.config.priority);
-    
+      .sort(([, a], [, b]) => b.config.priority - a.config.priority);
+
     sortedEffects.forEach(([name, { instance }]) => {
       if (instance.draw) {
         instance.draw();
@@ -197,7 +197,7 @@ export class EffectsManager {
    */
   resize(width, height) {
     this.isMobile = width < 768;
-    
+
     Object.entries(this.effects).forEach(([name, { instance }]) => {
       if (instance.setSize) {
         instance.setSize(width, height);
@@ -209,10 +209,10 @@ export class EffectsManager {
    * 销毁所有动效
    */
   destroy() {
-    Object.keys(this.effects).forEach(name => {
+    Object.keys(this.effects).forEach((name) => {
       this.removeEffect(name);
     });
-    
+
     window.removeEventListener('resize', this._onResize.bind(this));
     this.isInitialized = false;
     this.effectGroups = {};

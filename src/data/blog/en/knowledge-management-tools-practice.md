@@ -3,6 +3,7 @@ title: 'Knowledge Management Tools and Practice: From Theory to Implementation'
 description: 'Explore specific knowledge management tools and practical methods to transform theory into actionable practices.'
 pubDate: 2026-05-08
 category: 'Knowledge Management'
+image: /images/blog/knowledge-management-tools-practice-en.svg
 tags: ['Knowledge Management', 'Tools', 'Practice', 'Second Brain']
 heroImage: '/images/blog/knowledge-management-tools.svg'
 author: 'Qi-Lab'

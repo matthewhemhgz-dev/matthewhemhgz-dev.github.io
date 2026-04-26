@@ -92,7 +92,7 @@
 
 <script>
   // i18n mapping for SearchModal (runtime locale detection)
-  const i18n: Record<string, Record<string, string>> = {
+  const i18n: Record<string, Record<string, string | ((q: string) => string)>> = {
     zh: {
       title: '搜索',
       placeholder: '搜索文章、标签或主题…',
@@ -134,7 +134,7 @@
   }
 
   function t(key: string): string {
-    return (i18n[getLang()] || i18n.zh)[key] || key;
+    return ((i18n[getLang()] || i18n.zh)[key] as string) || key;
   }
 
   function tNoResults(q: string): string {
@@ -303,8 +303,11 @@
   async function initPagefind() {
     if (pagefind) return pagefind;
     try {
-      // 使用动态导入并添加 @vite-ignore 注释，避免 Vite 在开发模式下解析
-      pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+      if (import.meta.env.DEV) return null;
+      // Use Function constructor to completely hide the dynamic import from Vite
+      const importPath = '/pagefind/pagefind.js';
+      const importFn = new Function('path', 'return import(path)');
+      pagefind = await importFn(importPath);
       await pagefind.init();
       return pagefind;
     } catch {
@@ -468,13 +471,13 @@
             // Shift + Tab
             if (document.activeElement === firstElement) {
               e.preventDefault();
-              lastElement?.focus();
+              (lastElement as HTMLElement)?.focus();
             }
           } else {
             // Tab
             if (document.activeElement === lastElement) {
               e.preventDefault();
-              firstElement?.focus();
+              (firstElement as HTMLElement)?.focus();
             }
           }
         }

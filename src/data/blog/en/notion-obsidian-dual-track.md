@@ -3,6 +3,7 @@ title: 'Notion + Obsidian: A Dual-Track Knowledge Management System'
 description: 'Avoid tool fatigue. Build a "second brain" with bidirectional links and structured data, focusing on data sovereignty and collaboration efficiency.'
 pubDate: 2025-08-12
 category: 'Systems'
+image: /images/blog/notion-obsidian-dual-track-en.svg
 tags: ['Notion', 'Obsidian', 'Knowledge Management', 'Bidirectional Links']
 heroImage: '/images/blog/notion-obsidian-dual-track.png'
 author: 'Qi-Lab'

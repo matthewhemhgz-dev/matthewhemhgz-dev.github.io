@@ -3,6 +3,7 @@ title: '可扩展的 CSS 架构：Token 驱动的视觉系统实践'
 description: '如何通过 Design Tokens 构建一套在深色模式下依然具备视觉深度与一致性的组件体系？分享 Qi-Lab 的工程实践。'
 pubDate: 2025-06-20
 category: '设计系统'
+image: /images/blog/css-architecture-scalable-projects-zh.svg
 tags: ['CSS', 'Design Tokens', 'UI-UX', '设计系统']
 heroImage: '/images/blog/css-architecture-scalable-projects.png'
 author: '祈研所'

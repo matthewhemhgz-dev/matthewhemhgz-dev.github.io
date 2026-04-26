@@ -7,9 +7,13 @@ import {
 } from './scroll-handler.js';
 import { InteractionEnhancements } from './interaction-enhancements.js';
 import { effectsManager } from './effects-manager.js';
+import { EnvironmentAware } from './environment-aware.js';
+import { MultiModalFeedback } from './multi-modal-feedback.js';
 
 let initialized = false;
 let particles = null;
+let envAware = null;
+let mmFeedback = null;
 const cleanupFns = [];
 
 function initQiLab() {
@@ -27,7 +31,7 @@ function initQiLab() {
     import('./particles.js').then(({ MinimalParticles }) => {
       const screenWidth = window.innerWidth;
       const cs = getComputedStyle(document.documentElement);
-      const particleCount = 
+      const particleCount =
         screenWidth < 768 ? 40 : screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
       const particleOptions = {
         count: particleCount,
@@ -55,7 +59,7 @@ function initQiLab() {
         effectsManager.registerEffect('particles', particles, {
           group: 'background',
           priority: 10,
-          active: true
+          active: true,
         });
       }
       cleanupFns.push(() => particles.destroy());
@@ -75,7 +79,7 @@ function initQiLab() {
       effectsManager.registerEffect('cursor-glow', cursorGlow, {
         group: 'cursor',
         priority: 20,
-        active: true
+        active: true,
       });
       cleanupFns.push(() => cursorGlow.destroy());
     });
@@ -114,7 +118,7 @@ function initQiLab() {
     effectsManager.registerEffect('card-tilt', cardTilt, {
       group: 'interaction',
       priority: 15,
-      active: true
+      active: true,
     });
     cleanupFns.push(() => cardTilt.destroy());
   });
@@ -144,10 +148,65 @@ function initQiLab() {
     effectsManager.registerEffect('interaction-enhancements', interactionEnhancements, {
       group: 'interaction',
       priority: 5,
-      active: true
+      active: true,
     });
     cleanupFns.push(() => {
       // 清理交互增强效果的相关资源
+    });
+  }
+
+  // 8. 物理环境与多模态感知系统 (V2 Iteration)
+  if (!envAware) {
+    envAware = new EnvironmentAware();
+    envAware.startUpdates();
+    cleanupFns.push(() => {
+      envAware.stopUpdates();
+      envAware = null;
+    });
+  }
+
+  if (!mmFeedback && !prefersReducedMotion) {
+    mmFeedback = new MultiModalFeedback();
+
+    // 初始化时开启音频和震动反馈 (需用户交互后生效)
+    mmFeedback.setEnabled(['audio', 'haptic'], true);
+    document.addEventListener(
+      'click',
+      () => {
+        // Browsers require a gesture to start AudioContext
+        if (mmFeedback.audioContext && mmFeedback.audioContext.state === 'suspended') {
+          mmFeedback.audioContext.resume();
+        }
+      },
+      { once: true },
+    );
+
+    // 绑定所有的可交互元素，进行物理与声学映射
+    const targetSelector = 'a, button, .bento-card, .float-card, .testimonial-card, .platform-card, .toolbox-category, h1, h2, h3, .article-tag, .search-result-item';
+
+    const interactiveElements = document.querySelectorAll(targetSelector);
+    mmFeedback.addFeedbackToElements(Array.from(interactiveElements));
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.addedNodes.length) {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              const elements = node.querySelectorAll(targetSelector);
+              if (node.matches && node.matches(targetSelector)) mmFeedback.addFeedbackToElement(node);
+              elements.forEach(el => mmFeedback.addFeedbackToElement(el));
+            }
+          });
+        }
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    cleanupFns.push(() => {
+      observer.disconnect();
+      mmFeedback.destroy();
+      mmFeedback = null;
     });
   }
 }

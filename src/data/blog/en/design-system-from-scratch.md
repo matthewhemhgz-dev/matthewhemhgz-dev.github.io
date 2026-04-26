@@ -3,6 +3,7 @@ title: 'Building a Design System from Scratch: Creating Consistent, Scalable Pro
 description: 'A detailed guide to building a design system from design tokens to component libraries, helping you establish a complete, maintainable design system.'
 pubDate: 2026-04-30
 category: 'Design System'
+image: /images/blog/design-system-from-scratch-en.svg
 tags: ['Design System', 'Design Tokens', 'Component Library']
 heroImage: '/images/blog/design-system-from-scratch.png'
 author: '祈研所'

@@ -3,6 +3,7 @@ title: '从零构建设计令牌系统'
 description: '设计令牌是设计系统的原子单位。本文从概念到实践，手把手教你构建一套可扩展的设计令牌系统。'
 pubDate: 2026-04-12
 category: '前端工程'
+image: /images/blog/design-tokens-system-guide-zh.svg
 tags: ['CSS', '设计系统', 'Design Tokens', '最佳实践']
 heroImage: '/images/blog/design-tokens-system-guide.png'
 author: '祈研所'

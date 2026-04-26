@@ -1,6 +1,8 @@
+import { kinematics } from './kinematics-engine.js';
+
 /**
- * 多模态反馈系统
- * 支持视觉、听觉和触觉反馈
+ * 多模态反馈系统 (V2: ADSR Acoustics & Kinematics)
+ * 基于质量映射动态生成声音包络，且融合物理学阻尼引擎
  * @class MultiModalFeedback
  */
 class MultiModalFeedback {
@@ -300,45 +302,43 @@ class MultiModalFeedback {
   }
 
   /**
-   * 触发听觉反馈
+   * 触发听觉反馈 (ADSR 包络合成器)
    * @param {string} type - 反馈类型
    * @param {Object} options - 音频选项
    * @private
    */
   _triggerAudioFeedback(type, options) {
-    const { intensity, frequency, duration } = options;
+    const { intensity, duration, mass = 1.0 } = options;
 
     try {
-      // 创建音频上下文
-      if (!this.audioContext) {
-        this._initializeAudio();
-      }
-
+      if (!this.audioContext) this._initializeAudio();
       if (!this.audioContext) return;
+      if (this.audioContext.state === 'suspended') this.audioContext.resume();
 
-      // 恢复音频上下文（如果被暂停）
-      if (this.audioContext.state === 'suspended') {
-        this.audioContext.resume();
-      }
+      // 基于质量映射频率与衰减
+      // 质量越大，频率越低，持音时间越长
+      const baseFreq = Math.max(100, Math.min(2000, 2000 / mass));
 
-      // 创建振荡器
       const oscillator = this.audioContext.createOscillator();
       const gainNode = this.audioContext.createGain();
 
-      // 设置参数
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      gainNode.gain.value = intensity * 0.3;
+      oscillator.type = type === 'click' ? 'triangle' : 'sine';
+      oscillator.frequency.setValueAtTime(baseFreq, this.audioContext.currentTime);
 
-      // 连接节点
+      // ADSR 包络控制
+      const now = this.audioContext.currentTime;
+      const attack = type === 'click' ? 0.01 : 0.05;
+      const decay = type === 'click' ? 0.1 * mass : 0.05;
+
+      gainNode.gain.setValueAtTime(0, now);
+      gainNode.gain.linearRampToValueAtTime(intensity * 0.3, now + attack);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + attack + decay);
+
       oscillator.connect(gainNode);
       gainNode.connect(this.audioContext.destination);
 
-      // 启动和停止
-      oscillator.start();
-      setTimeout(() => {
-        oscillator.stop();
-      }, duration);
+      oscillator.start(now);
+      oscillator.stop(now + attack + decay + 0.1);
     } catch (error) {
       console.warn('Audio feedback error:', error);
     }
@@ -404,27 +404,36 @@ class MultiModalFeedback {
   }
 
   /**
-   * 为特定UI元素添加反馈
+   * 为特定UI元素添加反馈 (与阻尼物理引擎打通)
    * @param {HTMLElement} element - 目标元素
    * @param {ElementFeedbackOptions} options - 反馈选项
    */
   addFeedbackToElement(element, options = {}) {
     const { hover = true, click = true, focus = true } = options;
 
+    // 获取并注册该元素的物理质量
+    let mass = 1.0;
+    try {
+      const rect = element.getBoundingClientRect();
+      const area = rect.width * rect.height;
+      mass = Math.max(0.5, Math.min(Math.log10(area || 1000) * 0.5, 5.0));
+      kinematics.register(element, { mass: mass });
+    } catch (e) {}
+
     if (hover) {
       element.addEventListener('mouseenter', () => {
         this.triggerFeedback('hover', {
-          intensity: 0.2,
-          duration: 20,
+          intensity: 0.15,
+          mass: mass * 0.5, // Hover lighter sound
         });
       });
     }
 
     if (click) {
-      element.addEventListener('click', () => {
-        this.triggerFeedback('success', {
-          intensity: 0.7,
-          duration: 50,
+      element.addEventListener('mousedown', () => {
+        this.triggerFeedback('click', {
+          intensity: 0.6,
+          mass: mass,
         });
       });
     }
@@ -432,8 +441,8 @@ class MultiModalFeedback {
     if (focus) {
       element.addEventListener('focus', () => {
         this.triggerFeedback('focus', {
-          intensity: 0.3,
-          duration: 30,
+          intensity: 0.2,
+          mass: mass * 0.8,
         });
       });
     }

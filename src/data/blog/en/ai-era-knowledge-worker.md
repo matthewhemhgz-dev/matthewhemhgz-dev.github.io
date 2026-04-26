@@ -4,6 +4,7 @@ description: 'How should knowledge workers reconstruct their "value anchor" in t
 pubDate: 2025-04-10
 updatedDate: 2026-04-18
 category: 'Deep Analysis'
+image: /images/blog/ai-era-knowledge-worker-en.svg
 tags: ['AI', 'Knowledge Management', 'Productivity Tools', 'Long-termism']
 heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: 'Qi-Lab'

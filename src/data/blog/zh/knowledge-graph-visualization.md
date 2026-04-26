@@ -3,6 +3,7 @@ title: '知识图谱可视化实践：让你的知识网络清晰可见'
 description: '探索知识图谱可视化的方法和工具，学习如何将抽象的知识连接转化为直观的视觉图谱，提升知识管理的效率和洞察力。'
 pubDate: 2026-04-26
 category: '知识管理'
+image: /images/blog/knowledge-graph-visualization-zh.svg
 tags: ['知识图谱', '可视化', '知识管理']
 heroImage: '/images/blog/knowledge-graph-visualization.png'
 author: '祈研所'

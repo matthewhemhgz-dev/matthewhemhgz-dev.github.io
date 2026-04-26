@@ -3,6 +3,7 @@ title: 'Zettelkasten Practical Guide: Seamless Transformation from Notes to Arti
 description: "Guide to Luhmann's Zettelkasten method: make your creative process more efficient through atomic notes, bidirectional links, and progressive writing."
 pubDate: 2026-04-25
 category: 'Knowledge Management'
+image: /images/blog/zettelkasten-practical-guide-en.svg
 tags: ['Zettelkasten', 'Writing', 'Knowledge Management']
 heroImage: '/images/blog/zettelkasten-practical.png'
 author: '祈研所'

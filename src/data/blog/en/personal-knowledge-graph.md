@@ -3,6 +3,7 @@ title: 'Building a Personal Knowledge Graph: Breaking Free from Linear Folders'
 description: 'Knowledge is not files in folders—it is connections like neurons. Discover how bidirectional links let insights emerge naturally through cross-referencing.'
 pubDate: 2025-09-01
 category: 'Mental Models'
+image: /images/blog/personal-knowledge-graph-en.svg
 tags: ['Knowledge Graph', 'Mental Models', 'Learning']
 heroImage: '/images/blog/personal-knowledge-graph.png'
 author: 'Qi-Lab'

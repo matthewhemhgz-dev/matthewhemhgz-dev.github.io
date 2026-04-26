@@ -3,6 +3,7 @@ title: 'How to Build a Personal Knowledge Management System: From Information Fr
 description: 'Guide to building a second brain: transform information into reusable knowledge through scientific methods to make learning and work more efficient.'
 pubDate: 2026-04-24
 category: 'Knowledge Management'
+image: /images/blog/how-to-build-personal-knowledge-system-en.svg
 tags: ['Knowledge Management', 'Personal System', 'Second Brain']
 heroImage: '/images/blog/personal-knowledge-system.png'
 author: 'Qi-Lab'

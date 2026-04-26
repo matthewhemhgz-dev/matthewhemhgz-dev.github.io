@@ -11,38 +11,43 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--qi-space-md);
+  padding: var(--qi-space-xl);
+  background: var(--qi-bg-surface);
+  border: 1px solid var(--qi-border-subtle);
+  border-radius: var(--qi-radius-card);
+  box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.02);
 }
 
 .tag-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: baseline;
   padding: var(--qi-space-sm) var(--qi-space-lg);
-  background: var(--qi-surface-sub);
-  border-radius: var(--qi-radius-button);
+  background: var(--qi-surface-main);
+  border-radius: 99px;
+  /* Pill shape */
   color: var(--qi-text-primary);
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-sm);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  border: 1px solid var(--qi-border-subtle);
-  box-shadow: var(--qi-shadow-sm);
+  border: 1px solid rgba(74, 222, 128, 0.1);
+  /* Subtle emerald hint */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(8px);
 }
 
 .tag-link:hover {
   background: var(--qi-brand-emerald-10);
   color: var(--qi-brand-emerald-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--qi-shadow-md);
-  border-color: var(--qi-brand-emerald-15);
+  box-shadow: 0 4px 16px rgba(74, 222, 128, 0.15);
+  border-color: var(--qi-brand-emerald-30);
 }
 
 .tag-count {
-  margin-left: 4px;
-  opacity: 0.8;
-  font-size: 0.8em;
+  margin-left: 6px;
+  font-size: 0.75em;
+  font-weight: normal;
+  opacity: 0.6;
 }
 
 /* Posts grid */
@@ -240,13 +245,16 @@
   .tags-cloud {
     gap: var(--qi-space-md);
   }
+
   .tag-link {
     font-size: var(--qi-text-base);
     padding: 8px 18px;
   }
+
   .tags-posts-grid {
     gap: 28px;
   }
+
   .tags-post-title {
     font-size: var(--qi-text-2xl);
   }
@@ -256,21 +264,26 @@
   .tags-cloud {
     gap: var(--qi-space-lg);
   }
+
   .tag-link {
     font-size: var(--qi-text-lg);
     padding: 10px 22px;
   }
+
   .tags-posts-grid {
     gap: 36px;
     max-width: 1600px;
     margin-inline: auto;
   }
+
   .tags-post-card {
     padding: var(--qi-space-2xl);
   }
+
   .tags-post-title {
     font-size: var(--qi-text-2xl);
   }
+
   .tags-post-desc {
     font-size: var(--qi-text-base);
   }
@@ -281,9 +294,11 @@
     gap: 44px;
     max-width: 1920px;
   }
+
   .tags-post-card {
     padding: var(--qi-space-3xl);
   }
+
   .tags-post-title {
     font-size: var(--qi-text-3xl);
   }

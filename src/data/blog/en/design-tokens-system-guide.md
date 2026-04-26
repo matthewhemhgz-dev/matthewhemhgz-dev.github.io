@@ -3,6 +3,7 @@ title: 'Building a Design Token System from Scratch'
 description: 'Design tokens are the atomic units of a design system. From concept to practice, this guide teaches you to build a scalable design token system.'
 pubDate: 2026-04-12
 category: 'Frontend Engineering'
+image: /images/blog/design-tokens-system-guide-en.svg
 tags: ['CSS', 'Design System', 'Design Tokens', 'Best Practices']
 heroImage: '/images/blog/design-tokens-system-guide.png'
 author: 'QiLab'

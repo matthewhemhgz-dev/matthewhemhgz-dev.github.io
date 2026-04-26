@@ -246,9 +246,17 @@ class FluidHarmonics {
 
       let color;
       if (colorIndex < 1) {
-        color = this.p.lerpColor(this.p.color(this.colors.mint), this.p.color(this.colors.emerald), colorIndex);
+        color = this.p.lerpColor(
+          this.p.color(this.colors.mint),
+          this.p.color(this.colors.emerald),
+          colorIndex,
+        );
       } else {
-        color = this.p.lerpColor(this.p.color(this.colors.emerald), this.p.color(this.colors.amber), colorIndex - 1);
+        color = this.p.lerpColor(
+          this.p.color(this.colors.emerald),
+          this.p.color(this.colors.amber),
+          colorIndex - 1,
+        );
       }
 
       // Draw particle trail

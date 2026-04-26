@@ -102,6 +102,9 @@ class EnvironmentAware {
     /** @type {number|null} */
     this.updateInterval = null;
 
+    /** @type {number} */
+    this.globalEnergy = 0.5; // E(t) \in [0.0, 1.0]
+
     this.initialize();
   }
 
@@ -217,6 +220,7 @@ class EnvironmentAware {
    * 开始定期更新环境数据
    */
   startUpdates() {
+    this._calculateEnergyState(); // initial calc
     // 每分钟更新一次时间
     this.updateInterval = setInterval(() => {
       this.environment.time = {
@@ -227,8 +231,30 @@ class EnvironmentAware {
         month: new Date().getMonth(),
         season: this._getSeason(),
       };
+      this._calculateEnergyState();
       this._notifyCallbacks();
     }, 60000);
+  }
+
+  /**
+   * 计算全局热力学能量场 (Thermodynamic Energy Field E)
+   * E(t) = 0.5 + 0.5 * sin(pi * (t - 6) / 12)
+   * 结果: 12:00PM = 1.0 星高能量; 0:00AM = 0.0 最低能量
+   */
+  _calculateEnergyState() {
+    const t = this.environment.time.hour + this.environment.time.minute / 60;
+    // 映射到正弦曲线参数
+    const energy = 0.5 + 0.5 * Math.sin((Math.PI * (t - 6)) / 12);
+
+    // 叠加天气因子 (云阻挡能量)
+    const weatherFactor = { sunny: 1.0, cloudy: 0.7, rainy: 0.5, snowy: 0.4 };
+    const w = weatherFactor[this.environment.weather.type] || 1.0;
+
+    // 平滑处理并存储
+    this.globalEnergy = Math.max(0.1, Math.min(1.0, energy * w));
+
+    // 允许通过全局 document 反射给 CSS Variables (如果需要)
+    document.documentElement.style.setProperty('--env-energy', this.globalEnergy.toFixed(3));
   }
 
   /**
@@ -377,81 +403,16 @@ class EnvironmentAware {
 
   /**
    * 获取基于环境的颜色方案
-   * @returns {ColorScheme} 颜色方案
+   * 不再硬编码 HEX，而是基于真实 CSS Token 提供参数指导，并在需要时混入偏离值
    */
   getColorScheme() {
-    const { time, weather, user } = this.environment;
-
-    // 基础颜色方案
-    let scheme = {
-      primary: '#4ade80',
-      secondary: '#fbbf24',
-      accent: '#a7f3d0',
-      background: '#ffffff',
-      text: '#1e1b18',
+    // 提供给 GenerativeArt 或其他需要的组件计算参考，实际颜色读取 DOM 计算样式
+    return {
+      energy: this.globalEnergy,
+      // We let external scripts read computed properties natively where possible
+      isLowEnergy: this.globalEnergy < 0.35,
+      isHighEnergy: this.globalEnergy > 0.8,
     };
-
-    // 根据时间调整
-    if (time.hour >= 22 || time.hour < 6) {
-      // 夜间模式
-      scheme.background = '#1e1b18';
-      scheme.text = '#e8e3dd';
-      scheme.primary = '#34d399';
-      scheme.secondary = '#f59e0b';
-      scheme.accent = '#6ee7b7';
-    } else if (time.hour >= 6 && time.hour < 9) {
-      // 早晨模式
-      scheme.background = '#fefce8';
-      scheme.text = '#1e1b18';
-      scheme.primary = '#4ade80';
-      scheme.secondary = '#fbbf24';
-      scheme.accent = '#a7f3d0';
-    } else if (time.hour >= 9 && time.hour < 18) {
-      // 白天模式
-      scheme.background = '#ffffff';
-      scheme.text = '#1e1b18';
-      scheme.primary = '#4ade80';
-      scheme.secondary = '#fbbf24';
-      scheme.accent = '#a7f3d0';
-    } else {
-      // 傍晚模式
-      scheme.background = '#fef3c7';
-      scheme.text = '#78350f';
-      scheme.primary = '#34d399';
-      scheme.secondary = '#d97706';
-      scheme.accent = '#6ee7b7';
-    }
-
-    // 根据天气调整
-    switch (weather.type) {
-      case 'sunny':
-        scheme.primary = '#4ade80';
-        scheme.secondary = '#fbbf24';
-        break;
-      case 'cloudy':
-        scheme.primary = '#94a3b8';
-        scheme.secondary = '#cbd5e1';
-        break;
-      case 'rainy':
-        scheme.primary = '#64748b';
-        scheme.secondary = '#94a3b8';
-        break;
-      case 'snowy':
-        scheme.primary = '#e2e8f0';
-        scheme.secondary = '#cbd5e1';
-        break;
-    }
-
-    // 根据用户偏好调整
-    if (user.prefersDarkMode && time.hour < 22 && time.hour >= 6) {
-      scheme.background = '#1e1b18';
-      scheme.text = '#e8e3dd';
-      scheme.primary = '#34d399';
-      scheme.secondary = '#f59e0b';
-      scheme.accent = '#6ee7b7';
-    }
-
-    return scheme;
   }
 
   /**

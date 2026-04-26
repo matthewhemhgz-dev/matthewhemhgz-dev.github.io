@@ -3,6 +3,7 @@ title: 'Knowledge Graph Visualization Practice: Making Your Knowledge Network Vi
 description: 'Knowledge graph visualization guide: transforming abstract knowledge connections into intuitive visual graphs to enhance knowledge management.'
 pubDate: 2026-04-26
 category: 'Knowledge Management'
+image: /images/blog/knowledge-graph-visualization-en.svg
 tags: ['Knowledge Graph', 'Visualization', 'Knowledge Management']
 heroImage: '/images/blog/knowledge-graph-visualization.png'
 author: '祈研所'

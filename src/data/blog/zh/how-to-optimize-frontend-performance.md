@@ -3,6 +3,7 @@ title: '如何优化前端性能：从理论到实践的完整指南'
 description: '深入探讨前端性能优化的核心原理和实践方法，帮助你构建快速、流畅的现代Web应用。'
 pubDate: 2026-04-29
 category: '技术架构'
+image: /images/blog/how-to-optimize-frontend-performance-zh.svg
 tags: ['性能优化', '前端开发', 'Web性能']
 heroImage: '/images/blog/frontend-performance-optimization.png'
 author: '祈研所'

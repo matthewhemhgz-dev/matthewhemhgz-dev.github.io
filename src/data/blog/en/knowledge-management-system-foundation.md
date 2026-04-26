@@ -3,6 +3,7 @@ title: 'Knowledge Management System Foundation: Building Your Second Brain'
 description: 'Deep dive into core concepts and foundational framework of knowledge management, laying a solid foundation for your personal knowledge system.'
 pubDate: 2026-05-01
 category: 'Knowledge Management'
+image: /images/blog/knowledge-management-system-foundation-en.svg
 tags: ['Knowledge Management', 'Personal System', 'Second Brain', 'Knowledge System']
 heroImage: '/images/blog/knowledge-management-foundation.svg'
 author: 'Qi-Lab'

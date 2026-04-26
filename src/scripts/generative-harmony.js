@@ -7,10 +7,12 @@ class GenerativeHarmony {
     this.shapes = [];
     this.numShapes = 50;
     this.shapeSize = 50;
+    const cs =
+      typeof window !== 'undefined' ? window.getComputedStyle(document.documentElement) : null;
     this.colors = {
-      emerald: '#4ade80',
-      amber: '#fbbf24',
-      mint: '#a7f3d0',
+      emerald: cs ? cs.getPropertyValue('--qi-brand-emerald').trim() || '#4ade80' : '#4ade80',
+      amber: cs ? cs.getPropertyValue('--qi-brand-amber').trim() || '#fbbf24' : '#fbbf24',
+      mint: cs ? cs.getPropertyValue('--qi-brand-mint').trim() || '#a7f3d0' : '#a7f3d0',
     };
     this.isMobile = window.innerWidth < 768;
     this.mouseX = width / 2;

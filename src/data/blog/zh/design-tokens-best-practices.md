@@ -3,6 +3,7 @@ title: '设计令牌的最佳实践：构建可维护、可扩展的设计系统
 description: '深入探讨设计令牌的最佳实践，从命名规范到实现方法，帮助你建立一套高效、一致的设计令牌系统。'
 pubDate: 2026-05-01
 category: '设计系统'
+image: /images/blog/design-tokens-best-practices-zh.svg
 tags: ['设计令牌', '设计系统', '最佳实践']
 heroImage: '/images/blog/design-tokens-best-practices.png'
 author: '祈研所'

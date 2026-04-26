@@ -7,8 +7,7 @@
 .article-container {
   max-width: 740px;
   margin: 0 auto;
-  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding)
-    var(--qi-space-5xl);
+  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding) var(--qi-space-5xl);
   scroll-margin-top: var(--qi-nav-total-height);
   font-size: var(--qi-text-lg);
   line-height: 1.85;
@@ -284,12 +283,10 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-emerald-40),
-    var(--qi-brand-emerald-10),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-emerald-40),
+      var(--qi-brand-emerald-10),
+      transparent);
   transition:
     height var(--qi-transition-fast),
     bottom var(--qi-transition-fast),
@@ -303,12 +300,10 @@
 .article-container a:hover::after {
   height: 2px;
   bottom: -2px;
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-amber-50),
-    var(--qi-brand-amber-15),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-amber-50),
+      var(--qi-brand-amber-15),
+      transparent);
 }
 
 /* = Lists = */
@@ -323,12 +318,12 @@
   position: relative;
 }
 
-.article-container ul > li {
+.article-container ul>li {
   position: relative;
   padding-left: 0.5rem;
 }
 
-.article-container ul > li::before {
+.article-container ul>li::before {
   content: '';
   position: absolute;
   left: -1.25rem;
@@ -345,13 +340,13 @@
   counter-reset: list-counter;
 }
 
-.article-container ol > li {
+.article-container ol>li {
   counter-increment: list-counter;
   position: relative;
   padding-left: 0.5rem;
 }
 
-.article-container ol > li::before {
+.article-container ol>li::before {
   content: counter(list-counter);
   position: absolute;
   left: -1.75rem;
@@ -458,13 +453,11 @@
 .article-container hr {
   border: none;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--qi-base-12),
-    var(--qi-base-12),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      var(--qi-base-12),
+      var(--qi-base-12),
+      transparent);
   margin: 3rem 0;
   position: relative;
 }
@@ -489,16 +482,23 @@
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.95em;
-  margin: 2rem 0;
-  border-radius: var(--qi-radius-lg);
+  margin: 2.5rem 0;
+  border-radius: var(--qi-radius-card);
   overflow: hidden;
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.06),
-    0 1px 3px rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--qi-border-default);
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(74, 222, 128, 0.15);
   display: block;
   overflow-x: auto;
   background: var(--qi-surface-main);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-container table:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(74, 222, 128, 0.08);
 }
 
 .article-container th,
@@ -512,14 +512,14 @@
 
 .article-container th {
   font-family: var(--qi-font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--qi-text-primary);
-  background: var(--qi-surface-sub);
+  background: var(--qi-brand-emerald-05);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   white-space: nowrap;
-  border-bottom: 2px solid var(--qi-brand-emerald-20);
+  border-bottom: 2px solid var(--qi-brand-emerald-30);
 }
 
 .article-container tr:last-child td {
@@ -540,14 +540,38 @@
 
 /* = Mermaid diagrams = */
 .article-container .mermaid-container {
-  background: var(--qi-surface-main);
-  border-radius: var(--qi-radius-lg);
-  padding: var(--qi-space-xl);
-  margin: 2rem 0;
+  background: var(--qi-surface-sub);
+  border-radius: var(--qi-radius-card);
+  padding: var(--qi-space-3xl) var(--qi-space-xl);
+  margin: 3rem 0;
   text-align: center;
   overflow-x: auto;
-  border: 1px solid var(--qi-border-default);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(74, 222, 128, 0.1);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.03),
+    inset 0 2px 20px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(8px);
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-container .mermaid-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.article-container .mermaid-container::before {
+  content: 'DIAGRAM (MERMAID)';
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  font-family: var(--qi-font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--qi-text-muted);
+  opacity: 0.7;
 }
 
 .article-container .mermaid-container svg {
@@ -583,12 +607,10 @@
 }
 
 :global(.dark) .article-container a::after {
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-emerald-40),
-    var(--qi-brand-emerald-10),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-emerald-40),
+      var(--qi-brand-emerald-10),
+      transparent);
 }
 
 :global(.dark) .article-container a:hover {
@@ -596,20 +618,18 @@
 }
 
 :global(.dark) .article-container a:hover::after {
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-amber-50),
-    var(--qi-brand-amber-15),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-amber-50),
+      var(--qi-brand-amber-15),
+      transparent);
 }
 
-:global(.dark) .article-container ul > li::before {
+:global(.dark) .article-container ul>li::before {
   background: var(--qi-brand-emerald);
   box-shadow: 0 0 0 3px var(--qi-brand-emerald-08);
 }
 
-:global(.dark) .article-container ol > li::before {
+:global(.dark) .article-container ol>li::before {
   color: var(--qi-brand-emerald);
   background: var(--qi-brand-emerald-08);
 }
@@ -647,21 +667,24 @@
 }
 
 :global(.dark) .article-container hr {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--qi-base-16),
-    var(--qi-base-16),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      var(--qi-base-16),
+      var(--qi-base-16),
+      transparent);
 }
 
 :global(.dark) .article-container table {
-  border-color: var(--qi-border-default);
+  border-color: rgba(74, 222, 128, 0.2);
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    0 1px 3px rgba(0, 0, 0, 0.15);
-  background: var(--qi-surface-main);
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(20, 22, 20, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+:global(.dark) .article-container table:hover {
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.15);
 }
 
 :global(.dark) .article-container th {
@@ -688,8 +711,17 @@
 }
 
 :global(.dark) .article-container .mermaid-container {
-  background: var(--qi-surface-main);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: rgba(15, 17, 16, 0.6);
+  backdrop-filter: blur(12px);
+  border-color: rgba(74, 222, 128, 0.15);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    inset 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+:global(.dark) .article-container .mermaid-container:hover {
+  border-color: rgba(74, 222, 128, 0.3);
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.2);
 }
 
 /* Article footer */
@@ -1116,9 +1148,11 @@
   .article-related-grid {
     gap: var(--qi-space-xl);
   }
+
   .article-related-card {
     padding: var(--qi-space-2xl);
   }
+
   .article-related-card-title {
     font-size: var(--qi-text-lg);
   }

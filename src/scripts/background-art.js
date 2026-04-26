@@ -48,7 +48,7 @@ class BackgroundArt {
         effectsManager.registerEffect('background-art', this.artInstance, {
           group: 'background',
           priority: 5,
-          active: true
+          active: true,
         });
 
         // 添加鼠标移动事件监听器
@@ -106,7 +106,7 @@ class BackgroundArt {
       effectsManager.registerEffect('background-art', this.artInstance, {
         group: 'background',
         priority: 5,
-        active: true
+        active: true,
       });
     }
   }
@@ -131,7 +131,7 @@ class BackgroundArt {
   destroy() {
     // 移除动效
     effectsManager.removeEffect('background-art');
-    
+
     if (this.p5Instance) {
       this.p5Instance.remove();
       this.p5Instance = null;
