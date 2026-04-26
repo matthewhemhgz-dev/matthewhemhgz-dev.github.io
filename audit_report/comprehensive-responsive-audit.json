@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-04-26T17:10:17.651Z",
+  "viewports": [
+    {
+      "name": "Mobile (375x812)",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "name": "Tablet Portrait (768x1024)",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "Tablet Landscape (1024x768)",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "name": "Desktop (1440x900)",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "Large Desktop (1920x1080)",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "name": "首页"
+    },
+    {
+      "path": "/about",
+      "name": "关于"
+    },
+    {
+      "path": "/blog",
+      "name": "博客"
+    },
+    {
+      "path": "/tags",
+      "name": "标签"
+    },
+    {
+      "path": "/404",
+      "name": "404"
+    }
+  ],
+  "issues": [],
+  "summary": {
+    "totalIssues": 0,
+    "highSeverity": 0,
+    "mediumSeverity": 0,
+    "lowSeverity": 0,
+    "issuesByPage": {
+      "404": 0,
+      "首页": 0,
+      "关于": 0,
+      "博客": 0,
+      "标签": 0
+    },
+    "issuesByViewport": {
+      "Mobile (375x812)": 0,
+      "Tablet Portrait (768x1024)": 0,
+      "Tablet Landscape (1024x768)": 0,
+      "Desktop (1440x900)": 0,
+      "Large Desktop (1920x1080)": 0
+    }
+  }
+}
