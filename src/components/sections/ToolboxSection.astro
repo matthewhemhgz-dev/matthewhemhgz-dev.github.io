@@ -19,7 +19,7 @@ interface Props {
 const { label, title, categories, classList = '' } = Astro.props;
 ---
 
-<section class="section ${classList}" data-reveal>
+<section class:list={['section', classList]} data-reveal>
   <div class="toolbox-float-tags" aria-hidden="true">
     <span class="float-tag float-tag--1">PKM</span>
     <span class="float-tag float-tag--2">AI</span>

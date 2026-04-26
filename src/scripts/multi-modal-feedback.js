@@ -141,9 +141,9 @@ class MultiModalFeedback {
       coordinates:
         type === 'click' || type === 'touchstart'
           ? {
-              x: event.clientX || event.touches[0]?.clientX,
-              y: event.clientY || event.touches[0]?.clientY,
-            }
+            x: event.clientX || event.touches[0]?.clientX,
+            y: event.clientY || event.touches[0]?.clientY,
+          }
           : null,
       key: type === 'keydown' ? event.key : null,
     };
@@ -308,7 +308,7 @@ class MultiModalFeedback {
    * @private
    */
   _triggerAudioFeedback(type, options) {
-    const { intensity, duration, mass = 1.0 } = options;
+    const { intensity, mass = 1.0 } = options;
 
     try {
       if (!this.audioContext) this._initializeAudio();
@@ -418,7 +418,9 @@ class MultiModalFeedback {
       const area = rect.width * rect.height;
       mass = Math.max(0.5, Math.min(Math.log10(area || 1000) * 0.5, 5.0));
       kinematics.register(element, { mass: mass });
-    } catch (e) {}
+    } catch (e) {
+      // Ignore geometry parsing errors
+    }
 
     if (hover) {
       element.addEventListener('mouseenter', () => {

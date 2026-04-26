@@ -28,7 +28,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="section about-section ${classList}" data-reveal>
+<section class:list={['section', 'about-section', classList]} data-reveal>
   <div class="container">
     <div class="about-layout">
       <div class="about-deco" aria-hidden="true">
