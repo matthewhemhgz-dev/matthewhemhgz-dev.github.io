@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-import { spawn, execSync } from 'child_process';
+import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
+import { spawn } from 'child_process';
 
 async function runLighthouseAudit() {
   // 确保 dist 目录存在
@@ -32,12 +33,15 @@ async function runLighthouseAudit() {
   // 运行 Lighthouse 审计
   console.log('Running Lighthouse audit...');
   try {
-    // 设置 CHROME_PATH 环境变量为 Playwright 的 Chrome
+    // 直接使用 Playwright 的 Chromium 路径
+    const browserPath = '/root/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome';
+    console.log(`Using Chrome at: ${browserPath}`);
+    
+    // 设置 CHROME_PATH 环境变量
     const env = { ...process.env };
-    env.CHROME_PATH = '/root/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome';
-    console.log('Using Playwright Chrome at: /root/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome');
-
-    // 运行 Lighthouse 审计，添加更多选项
+    env.CHROME_PATH = browserPath;
+    
+    // 运行 Lighthouse 审计
     const lighthouseCommand = [
       'npx',
       'lighthouse',
@@ -51,6 +55,7 @@ async function runLighthouseAudit() {
       '--throttling-method=devtools',
     ];
 
+    const { execSync } = await import('child_process');
     execSync(lighthouseCommand.join(' '), {
       stdio: 'inherit',
       env,

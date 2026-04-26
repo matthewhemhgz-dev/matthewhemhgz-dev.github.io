@@ -1,17 +1,40 @@
 version: 2
 updates:
+  # npm 依赖更新配置
   - package-ecosystem: 'npm'
     directory: '/'
+    # 每周检查更新
     schedule:
       interval: 'weekly'
+      # 选择周一进行更新，便于一周内处理
+      day: 'monday'
+    # 最多同时打开 5 个 PR
     open-pull-requests-limit: 5
+    # 提交信息前缀
+    commit-message:
+      prefix: 'deps'
+    # 标签
+    labels:
+      - 'dependencies'
+    # 忽略的依赖（如果有特殊需求）
+    ignore:
+      # 示例：忽略特定版本的依赖
+      # - dependency-name: 'some-package'
+      #   versions: ['1.x']
+
+  # GitHub Actions 更新配置
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    # 每周检查更新
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    # 最多同时打开 3 个 PR
+    open-pull-requests-limit: 3
     commit-message:
       prefix: 'deps'
     labels:
       - 'dependencies'
 
-  - package-ecosystem: 'github-actions'
-    directory: '/'
-    schedule:
-      interval: 'weekly'
-    open-pull-requests-limit: 3
+  # 安全补丁配置（自动创建 PR）
+  # 注意：Dependabot 会自动处理安全补丁，无需额外配置

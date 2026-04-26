@@ -1,4 +1,16 @@
+/**
+ * 粒子共振系统
+ * 优化的粒子系统，支持粒子间的吸引和排斥，响应鼠标交互
+ * @class ParticleResonance
+ */
 class ParticleResonance {
+  /**
+   * 构造函数
+   * @param {Object} p - p5.js 实例
+   * @param {number} width - 画布宽度
+   * @param {number} height - 画布高度
+   * @param {number} [seed=12345] - 随机种子
+   */
   constructor(p, width, height, seed = 12345) {
     this.p = p;
     this.width = width;
@@ -40,6 +52,9 @@ class ParticleResonance {
     this.initializeParticles();
   }
 
+  /**
+   * 初始化粒子系统
+   */
   initializeParticles() {
     this.particles = [];
     for (let i = 0; i < this.numParticles; i++) {
@@ -53,6 +68,9 @@ class ParticleResonance {
     }
   }
 
+  /**
+   * 更新粒子状态
+   */
   update() {
     this.p.randomSeed(this.seed);
     this.frameCount++;
@@ -166,6 +184,9 @@ class ParticleResonance {
     }
   }
 
+  /**
+   * 绘制粒子系统
+   */
   draw() {
     // Semi-transparent background for trail effect
     this.p.fill(255, 255, 255, this.trailLength * 255);
@@ -239,11 +260,19 @@ class ParticleResonance {
     }
   }
 
+  /**
+   * 设置随机种子
+   * @param {number} seed - 随机种子
+   */
   setSeed(seed) {
     this.seed = seed;
     this.initializeParticles();
   }
 
+  /**
+   * 设置系统参数
+   * @param {Object} params - 参数字典
+   */
   setParams(params) {
     if (params.numParticles) this.numParticles = params.numParticles;
     if (params.attractionStrength) this.attractionStrength = params.attractionStrength;
@@ -257,7 +286,11 @@ class ParticleResonance {
     this.initializeParticles();
   }
 
-  // 响应式调整
+  /**
+   * 响应式调整尺寸
+   * @param {number} width - 新的宽度
+   * @param {number} height - 新的高度
+   */
   setSize(width, height) {
     this.width = width;
     this.height = height;
@@ -285,7 +318,11 @@ class ParticleResonance {
     this.initializeParticles();
   }
 
-  // 设置鼠标位置
+  /**
+   * 设置鼠标位置
+   * @param {number} x - 鼠标X坐标
+   * @param {number} y - 鼠标Y坐标
+   */
   setMousePosition(x, y) {
     this.mouseX = x;
     this.mouseY = y;

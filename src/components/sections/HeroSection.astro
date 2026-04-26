@@ -87,13 +87,13 @@ const trophyIcon =
         {
           titleLines.map((line, i) => (
             <span
-              class:list={[
-                'title-line',
-                'hero-stagger',
-                `hero-stagger--${i + 2}`,
-                i === accentIndex && 'title-accent',
-              ]}
-            >
+                class:list={[
+                  'title-line',
+                  'hero-stagger',
+                  `hero-stagger--${i + 2}`,
+                  i === accentIndex && 'title-accent',
+                ]}
+              >
               {line}
             </span>
           ))

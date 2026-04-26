@@ -36,8 +36,10 @@ const labels =
   <p class="newsletter-description">{labels.description}</p>
   <form class="newsletter-form" method="POST" action="https://api.example.com/subscribe">
     <div class="newsletter-input-group">
+      <label for="newsletter-email" class="sr-only">{labels.placeholder}</label>
       <input
         type="email"
+        id="newsletter-email"
         class="newsletter-input"
         placeholder={labels.placeholder}
         required

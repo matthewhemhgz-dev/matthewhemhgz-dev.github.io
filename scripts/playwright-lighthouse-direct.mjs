@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-import { spawn, execSync } from 'child_process';
+import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
+import { spawn } from 'child_process';
 
 async function runLighthouseAudit() {
   // 确保 dist 目录存在
@@ -32,33 +33,46 @@ async function runLighthouseAudit() {
   // 运行 Lighthouse 审计
   console.log('Running Lighthouse audit...');
   try {
-    // 设置 CHROME_PATH 环境变量为 Playwright 的 Chrome
-    const env = { ...process.env };
-    env.CHROME_PATH = '/root/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome';
-    console.log('Using Playwright Chrome at: /root/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome');
-
-    // 运行 Lighthouse 审计，添加更多选项
-    const lighthouseCommand = [
-      'npx',
-      'lighthouse',
-      'http://localhost:3000',
-      '--output=html',
-      '--output=json',
-      '--output-path=./reports/lighthouse-report.html',
-      '--quiet',
-      '--chrome-flags=--headless --disable-gpu --no-sandbox',
-      '--emulated-form-factor=mobile',
-      '--throttling-method=devtools',
-    ];
-
-    execSync(lighthouseCommand.join(' '), {
-      stdio: 'inherit',
-      env,
+    // 使用 Playwright 运行 Lighthouse
+    const lighthouse = require('lighthouse');
+    const browser = await chromium.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-gpu']
     });
-
+    const page = await browser.newPage();
+    
+    // 导航到本地服务器
+    await page.goto('http://localhost:3000');
+    
+    // 获取浏览器会话
+    const session = await page.context().newCDPSession(page);
+    
+    // 运行 Lighthouse 审计
+    const report = await lighthouse('http://localhost:3000', {
+      port: (new URL(browser.wsEndpoint())).port,
+      output: ['html', 'json'],
+      emulatedFormFactor: 'mobile',
+      throttlingMethod: 'devtools',
+      disableStorageReset: true,
+      logLevel: 'error'
+    });
+    
+    // 保存报告
+    fs.writeFileSync(
+      path.join(reportsDir, 'lighthouse-report.html'),
+      report.report.html
+    );
+    fs.writeFileSync(
+      path.join(reportsDir, 'lighthouse-report.json'),
+      JSON.stringify(report.report.json, null, 2)
+    );
+    
     console.log('Lighthouse audit completed successfully!');
     console.log('HTML Report generated at: ./reports/lighthouse-report.html');
     console.log('JSON Report generated at: ./reports/lighthouse-report.json');
+    
+    // 关闭浏览器
+    await browser.close();
   } catch (error) {
     console.error('Error running Lighthouse audit:', error.message);
     console.log('Continuing with CI process...');
