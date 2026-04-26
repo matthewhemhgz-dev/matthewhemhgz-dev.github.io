@@ -159,6 +159,15 @@ function initQiLab() {
   if (!envAware) {
     envAware = new EnvironmentAware();
     envAware.startUpdates();
+
+    // 热力学闭环: 将能量场持续注入运动学引擎
+    import('./kinematics-engine.js').then(({ kinematics }) => {
+      kinematics.setGlobalEnergy(envAware.globalEnergy);
+      envAware.onUpdate(() => {
+        kinematics.setGlobalEnergy(envAware.globalEnergy);
+      });
+    });
+
     cleanupFns.push(() => {
       envAware.stopUpdates();
       envAware = null;

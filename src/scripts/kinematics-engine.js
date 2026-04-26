@@ -7,6 +7,16 @@ class KinematicsEngine {
     this.elements = new Map();
     this.rafId = null;
     this.isRunning = false;
+    this.energyMultiplier = 1.0; // Driven by EnvironmentAware
+  }
+
+  /**
+   * 设置全局能量乘数 (来自 EnvironmentAware)
+   * 高能量 = 更快的弹簧响应; 低能量 = 更沉重的阻尼
+   * @param {number} energy - [0.0, 1.0]
+   */
+  setGlobalEnergy(energy) {
+    this.energyMultiplier = 0.6 + energy * 0.4; // [0.6, 1.0]
   }
 
   /**
@@ -96,9 +106,9 @@ class KinematicsEngine {
         const target = state.target[prop];
 
         // 弹力: F = -k(x - target)
-        const springForce = -state.stiffness * (x - target);
-        // 阻尼力: F = -c*v
-        const dampingForce = -state.damping * v;
+        const springForce = -state.stiffness * this.energyMultiplier * (x - target);
+        // 阻尼力: F = -c*v (低能量时阻尼增强)
+        const dampingForce = -state.damping * (2.0 - this.energyMultiplier) * v;
 
         // a = F / m
         const acceleration = (springForce + dampingForce) / state.mass;

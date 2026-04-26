@@ -253,8 +253,14 @@ class EnvironmentAware {
     // 平滑处理并存储
     this.globalEnergy = Math.max(0.1, Math.min(1.0, energy * w));
 
-    // 允许通过全局 document 反射给 CSS Variables (如果需要)
-    document.documentElement.style.setProperty('--env-energy', this.globalEnergy.toFixed(3));
+    // 反射全局能量场到 CSS Variables
+    const root = document.documentElement;
+    root.style.setProperty('--env-energy', this.globalEnergy.toFixed(3));
+    // 粒子/流体参数映射
+    root.style.setProperty('--env-particle-speed', (0.3 + this.globalEnergy * 0.7).toFixed(3));
+    root.style.setProperty('--env-fluid-viscosity', (1.0 - this.globalEnergy * 0.6).toFixed(3));
+    root.style.setProperty('--env-saturation-boost', (0.8 + this.globalEnergy * 0.4).toFixed(2));
+    root.style.setProperty('--env-glow-intensity', (0.2 + this.globalEnergy * 0.8).toFixed(3));
   }
 
   /**
@@ -298,100 +304,41 @@ class EnvironmentAware {
    * @returns {MotionParams} 动效参数
    */
   getMotionParams() {
-    const { time, device, user, weather } = this.environment;
+    const { device, user } = this.environment;
+    const E = this.globalEnergy;
 
-    // 基础参数
+    // 基于连续能量场的动效参数计算
     let params = {
-      speed: 1,
-      intensity: 1,
-      complexity: 1,
+      speed: 0.4 + E * 0.6, // [0.4, 1.0]
+      intensity: 0.3 + E * 0.7, // [0.3, 1.0]
+      complexity: 0.5 + E * 0.5, // [0.5, 1.0]
     };
 
-    // 根据时间调整
-    if (time.hour >= 22 || time.hour < 6) {
-      // 夜间 - 减少动效
-      params.speed *= 0.7;
-      params.intensity *= 0.5;
-    } else if (time.hour >= 6 && time.hour < 9) {
-      // 早晨 - 中等动效
-      params.speed *= 0.8;
+    // 设备性能约束
+    const perfMultiplier = { high: 1.0, medium: 0.85, low: 0.6 };
+    const pf = perfMultiplier[device.performance] || 0.85;
+    params.complexity *= pf;
+    if (pf < 0.7) {
+      params.speed *= 0.85;
       params.intensity *= 0.8;
-    } else if (time.hour >= 9 && time.hour < 18) {
-      // 白天 - 正常动效
-      params.speed *= 1;
-      params.intensity *= 1;
-    } else {
-      // 傍晚 - 稍微减少动效
-      params.speed *= 0.9;
-      params.intensity *= 0.9;
     }
 
-    // 根据季节调整
-    switch (time.season) {
-      case 'spring':
-        params.intensity *= 1.1;
-        break;
-      case 'summer':
-        params.intensity *= 1.2;
-        break;
-      case 'autumn':
-        params.intensity *= 0.9;
-        break;
-      case 'winter':
-        params.intensity *= 0.8;
-        break;
-    }
-
-    // 根据天气调整
-    switch (weather.type) {
-      case 'sunny':
-        params.intensity *= 1.1;
-        break;
-      case 'cloudy':
-        params.intensity *= 0.9;
-        break;
-      case 'rainy':
-        params.intensity *= 0.7;
-        params.speed *= 0.8;
-        break;
-      case 'snowy':
-        params.intensity *= 0.6;
-        params.speed *= 0.7;
-        break;
-    }
-
-    // 根据设备性能调整
-    switch (device.performance) {
-      case 'high':
-        params.complexity *= 1.2;
-        break;
-      case 'medium':
-        params.complexity *= 1;
-        break;
-      case 'low':
-        params.complexity *= 0.7;
-        params.speed *= 0.8;
-        params.intensity *= 0.8;
-        break;
-    }
-
-    // 根据设备类型调整
+    // 移动设备约束
     if (device.isMobile) {
       params.complexity *= 0.6;
       params.speed *= 0.8;
     } else if (device.isTablet) {
       params.complexity *= 0.8;
-      params.speed *= 0.9;
     }
 
-    // 根据电池状态调整
+    // 电池状态约束
     if (device.battery && device.battery.level < 0.2 && !device.battery.charging) {
       params.complexity *= 0.5;
       params.intensity *= 0.5;
       params.speed *= 0.7;
     }
 
-    // 根据用户偏好调整
+    // 用户偏好约束 (prefersReducedMotion)
     if (user.prefersReducedMotion) {
       params.complexity *= 0.3;
       params.intensity *= 0.3;
