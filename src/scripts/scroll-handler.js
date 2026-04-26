@@ -13,7 +13,7 @@ export function initScrollReveal() {
           const siblingIndex = Array.from(siblings).indexOf(entry.target);
           const delay = siblingIndex * 80;
           entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('visible');
           revealObserver?.unobserve(entry.target);
         }
       });

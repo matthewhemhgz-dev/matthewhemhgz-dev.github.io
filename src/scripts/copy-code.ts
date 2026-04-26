@@ -73,3 +73,5 @@ function showSuccess(btn: HTMLElement) {
 }
 
 document.addEventListener('astro:page-load', initCopyButtons);
+
+export { };

@@ -26,7 +26,10 @@ const readingTime = getReadingTime(post.body || '');
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/en/blog/${post.id.replace('en/', '')}/`;
-const ogImage = post.data.heroImage ? `${siteUrl}${post.data.heroImage}` : '/og-default.png';
+const ogImageSrc =
+  post.data.heroImage ||
+  (typeof post.data.image === 'string' ? post.data.image : post.data.image?.src);
+const ogImage = ogImageSrc ? `${siteUrl}${ogImageSrc}` : '/og-default.png';
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -81,10 +84,13 @@ const articleJsonLd = {
 
     <header class="article-header">
       {
-        post.data.heroImage && (
+        (post.data.heroImage || post.data.image) && (
           <div class="article-hero-image">
             <OptimizedImage
-              src={post.data.heroImage}
+              src={
+                (post.data.heroImage ||
+                  (typeof post.data.image === 'string' ? post.data.image : post.data.image?.src))!
+              }
               alt={post.data.title}
               width={1200}
               height={675}
@@ -164,10 +170,10 @@ const articleJsonLd = {
         <Content />
       </div>
       <div id="article-skeleton" class="hidden">
-        <Skeleton type="heading" width="80%" height="32px" />
-        <Skeleton type="paragraph" count="5" />
-        <Skeleton type="image" width="100%" />
-        <Skeleton type="paragraph" count="3" />
+        <Skeleton type="heading" />
+        <Skeleton type="paragraph" count={5} />
+        <Skeleton type="image" />
+        <Skeleton type="paragraph" count={3} />
       </div>
     </div>
 
@@ -304,22 +310,22 @@ const articleJsonLd = {
       if (wechatBtn) {
         // Mouse hover events (desktop)
         wechatBtn.addEventListener('mouseenter', () => {
-          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
           if (qrCode) {
             qrCode.style.display = 'block';
           }
         });
         wechatBtn.addEventListener('mouseleave', () => {
-          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
           if (qrCode) {
             qrCode.style.display = 'none';
           }
         });
 
         // Touch events (mobile)
-        let touchTimer;
+        let touchTimer: ReturnType<typeof setTimeout> | undefined;
         wechatBtn.addEventListener('touchstart', () => {
-          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
           if (qrCode) {
             qrCode.style.display = 'block';
             // Clear previous timer
@@ -333,8 +339,8 @@ const articleJsonLd = {
 
         // Click outside to hide QR code
         document.addEventListener('click', (e) => {
-          if (!wechatBtn.contains(e.target)) {
-            const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          if (e.target instanceof Node && !wechatBtn.contains(e.target)) {
+            const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
             if (qrCode) {
               qrCode.style.display = 'none';
             }
@@ -348,11 +354,14 @@ const articleJsonLd = {
         copyBtn.addEventListener('click', async () => {
           try {
             await navigator.clipboard.writeText(window.location.href);
-            const originalText = copyBtn.querySelector('span').textContent;
-            copyBtn.querySelector('span').textContent = 'Copied';
-            setTimeout(() => {
-              copyBtn.querySelector('span').textContent = originalText;
-            }, 2000);
+            const span = copyBtn.querySelector('span');
+            if (span) {
+              const originalText = span.textContent;
+              span.textContent = 'Copied';
+              setTimeout(() => {
+                span.textContent = originalText;
+              }, 2000);
+            }
           } catch (err) {
             console.error('Failed to copy:', err);
           }

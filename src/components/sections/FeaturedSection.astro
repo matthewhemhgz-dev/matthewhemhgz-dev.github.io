@@ -10,6 +10,7 @@ interface PostItem {
     pubDate: Date;
     description?: string;
     heroImage?: string;
+    image?: string | { src: string; alt: string };
     tags?: string[];
   };
 }
@@ -45,6 +46,14 @@ const isEn = Astro.url.pathname.startsWith('/en');
 const localeKey = isEn ? 'en-US' : 'zh-CN';
 const blogPrefix = isEn ? '/en/blog/' : '/blog/';
 const replaceKey = isEn ? 'en/' : 'zh/';
+
+const getPostImage = (post: PostItem) => {
+  const img = post.data.image;
+  if (img) {
+    return typeof img === 'string' ? img : img.src;
+  }
+  return post.data.heroImage;
+};
 ---
 
 <section class:list={['section', classList]} data-reveal>
@@ -58,61 +67,64 @@ const replaceKey = isEn ? 'en/' : 'zh/';
     {
       posts.length > 0 ? (
         <div class="bento-grid">
-          {posts.map((post, i) => (
-            <a
-              href={`${blogPrefix}${post.id.replace(replaceKey, '')}/`}
-              class:list={[
-                'bento-card',
-                'tilt-card',
-                i === 0 ? 'bento-card--large' : 'bento-card--small',
-              ]}
-            >
-              {largeCardLayout && i === 0 && post.data.heroImage ? (
-                <div class="bento-card--large__bg">
-                  <OptimizedImage
-                    src={post.data.heroImage}
-                    alt={post.data.title}
-                    width={800}
-                    height={450}
-                    loading="eager"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                  />
-                  <div class="bento-card--large__overlay" />
-                </div>
-              ) : largeCardLayout && i === 0 && !post.data.heroImage ? (
-                <div class="bento-card--large__bg bento-card--large__bg--gradient" />
-              ) : null}
-              <div class="bento-card__content">
-                {!largeCardLayout && post.data.heroImage && (
-                  <div class="bento-image-wrap">
+          {posts.map((post, i) => {
+            const displayImage = getPostImage(post);
+            return (
+              <a
+                href={`${blogPrefix}${post.id.replace(replaceKey, '')}/`}
+                class:list={[
+                  'bento-card',
+                  'tilt-card',
+                  i === 0 ? 'bento-card--large' : 'bento-card--small',
+                ]}
+              >
+                {largeCardLayout && i === 0 && displayImage ? (
+                  <div class="bento-card--large__bg">
                     <OptimizedImage
-                      src={post.data.heroImage}
+                      src={displayImage}
                       alt={post.data.title}
-                      width={600}
-                      height={340}
-                      loading="lazy"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 200px"
+                      width={800}
+                      height={450}
+                      loading="eager"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     />
+                    <div class="bento-card--large__overlay" />
                   </div>
-                )}
-                <div class="bento-meta">
-                  <span class="bento-date">
-                    {post.data.pubDate.toLocaleDateString(localeKey, {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </span>
-                  {post.data.tags && post.data.tags.length > 0 && (
-                    <span class="bento-tag">{post.data.tags[0]}</span>
+                ) : largeCardLayout && i === 0 && !displayImage ? (
+                  <div class="bento-card--large__bg bento-card--large__bg--gradient" />
+                ) : null}
+                <div class="bento-card__content">
+                  {!largeCardLayout && displayImage && (
+                    <div class="bento-image-wrap">
+                      <OptimizedImage
+                        src={displayImage}
+                        alt={post.data.title}
+                        width={600}
+                        height={340}
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 200px"
+                      />
+                    </div>
                   )}
+                  <div class="bento-meta">
+                    <span class="bento-date">
+                      {post.data.pubDate.toLocaleDateString(localeKey, {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <span class="bento-tag">{post.data.tags[0]}</span>
+                    )}
+                  </div>
+                  <h3 class="bento-title">{post.data.title}</h3>
+                  {post.data.description && <p class="bento-desc">{post.data.description}</p>}
+                  <span class="bento-link">{readMoreText} &rarr;</span>
                 </div>
-                <h3 class="bento-title">{post.data.title}</h3>
-                {post.data.description && <p class="bento-desc">{post.data.description}</p>}
-                <span class="bento-link">{readMoreText} &rarr;</span>
-              </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
       ) : (
         <div class="empty-state">

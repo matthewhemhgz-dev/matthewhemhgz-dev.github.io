@@ -30,10 +30,15 @@ const allPosts = (
         {
           allPosts.map((post) => (
             <a href={`/blog/${post.id.replace('zh/', '')}/`} class="blog-card" data-reveal>
-              {post.data.heroImage && (
+              {(post.data.heroImage || post.data.image) && (
                 <div class="blog-card-image">
                   <OptimizedImage
-                    src={post.data.heroImage}
+                    src={
+                      (post.data.heroImage ||
+                        (typeof post.data.image === 'string'
+                          ? post.data.image
+                          : post.data.image?.src))!
+                    }
                     alt={post.data.title}
                     width={800}
                     height={450}

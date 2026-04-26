@@ -28,7 +28,7 @@ const readingTime = getReadingTime(post.body || '');
 // Get related posts
 const allPosts = await getCollection(
   'blog',
-  ({ data }) => !data.draft && data.lang === 'zh' && data.id !== post.id,
+  ({ data }) => !data.draft && data.lang === 'zh' && data.title !== post.data.title,
 );
 
 // Calculate relatedness score
@@ -46,7 +46,7 @@ const relatedPosts = allPosts
     }
 
     // Score based on publish date proximity
-    const dateDiff = Math.abs(otherPost.data.pubDate - post.data.pubDate);
+    const dateDiff = Math.abs(otherPost.data.pubDate.valueOf() - post.data.pubDate.valueOf());
     const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
     score += Math.max(0, 1 - daysDiff / 365);
 
@@ -57,7 +57,10 @@ const relatedPosts = allPosts
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
-const ogImage = post.data.heroImage ? `${siteUrl}${post.data.heroImage}` : '/og-default.png';
+const ogImageSrc =
+  post.data.heroImage ||
+  (typeof post.data.image === 'string' ? post.data.image : post.data.image?.src);
+const ogImage = ogImageSrc ? `${siteUrl}${ogImageSrc}` : '/og-default.png';
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -112,10 +115,13 @@ const articleJsonLd = {
 
     <header class="article-header">
       {
-        post.data.heroImage && (
+        (post.data.heroImage || post.data.image) && (
           <div class="article-hero-image">
             <OptimizedImage
-              src={post.data.heroImage}
+              src={
+                (post.data.heroImage ||
+                  (typeof post.data.image === 'string' ? post.data.image : post.data.image?.src))!
+              }
               alt={post.data.title}
               width={1200}
               height={675}
@@ -152,7 +158,7 @@ const articleJsonLd = {
         post.data.tags && post.data.tags.length > 0 && (
           <div class="article-tags">
             {post.data.tags.map((tag) => (
-              <a href={`/tags/${tag}/`} class="article-tag" key={tag}>
+              <a href={`/tags/${tag}/`} class="article-tag">
                 #{tag}
               </a>
             ))}
@@ -183,7 +189,7 @@ const articleJsonLd = {
             {headings
               .filter((h) => h.depth <= 3)
               .map((h) => (
-                <li key={h.slug} class={`toc-item toc-item--depth-${h.depth}`}>
+                <li class={`toc-item toc-item--depth-${h.depth}`}>
                   <a href={`#${h.slug}`}>{h.text}</a>
                 </li>
               ))}
@@ -197,10 +203,10 @@ const articleJsonLd = {
         <Content />
       </div>
       <div id="article-skeleton" class="hidden">
-        <Skeleton type="heading" width="80%" height="32px" />
-        <Skeleton type="paragraph" count="5" />
-        <Skeleton type="image" width="100%" />
-        <Skeleton type="paragraph" count="3" />
+        <Skeleton type="heading" />
+        <Skeleton type="paragraph" count={5} />
+        <Skeleton type="image" />
+        <Skeleton type="paragraph" count={3} />
       </div>
     </div>
 
@@ -384,22 +390,22 @@ const articleJsonLd = {
       if (wechatBtn) {
         // 鼠标悬停事件（桌面端）
         wechatBtn.addEventListener('mouseenter', () => {
-          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
           if (qrCode) {
             qrCode.style.display = 'block';
           }
         });
         wechatBtn.addEventListener('mouseleave', () => {
-          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
           if (qrCode) {
             qrCode.style.display = 'none';
           }
         });
 
         // 触摸事件（移动端）
-        let touchTimer;
+        let touchTimer: ReturnType<typeof setTimeout> | undefined;
         wechatBtn.addEventListener('touchstart', () => {
-          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
           if (qrCode) {
             qrCode.style.display = 'block';
             // 清除之前的定时器
@@ -413,8 +419,8 @@ const articleJsonLd = {
 
         // 点击页面其他地方隐藏二维码
         document.addEventListener('click', (e) => {
-          if (!wechatBtn.contains(e.target)) {
-            const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          if (e.target instanceof Node && !wechatBtn.contains(e.target)) {
+            const qrCode = wechatBtn.querySelector('.article-share-wechat-qr') as HTMLElement;
             if (qrCode) {
               qrCode.style.display = 'none';
             }
@@ -429,11 +435,14 @@ const articleJsonLd = {
           try {
             const articleUrl = window.location.href;
             await navigator.clipboard.writeText(articleUrl);
-            const originalText = copyBtn.querySelector('span').textContent;
-            copyBtn.querySelector('span').textContent = '已复制';
-            setTimeout(() => {
-              copyBtn.querySelector('span').textContent = originalText;
-            }, 2000);
+            const span = copyBtn.querySelector('span');
+            if (span) {
+              const originalText = span.textContent;
+              span.textContent = '已复制';
+              setTimeout(() => {
+                span.textContent = originalText;
+              }, 2000);
+            }
           } catch (err) {
             console.error('复制失败:', err);
           }
