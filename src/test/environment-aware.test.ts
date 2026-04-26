@@ -115,7 +115,7 @@ describe('EnvironmentAware', () => {
     let called = false;
     let receivedEnv: unknown = null;
 
-    environmentAware.onUpdate((env: any) => {
+    environmentAware.onUpdate((env: unknown) => {
       called = true;
       receivedEnv = env;
     });

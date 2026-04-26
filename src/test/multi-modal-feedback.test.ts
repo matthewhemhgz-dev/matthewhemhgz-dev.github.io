@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { MultiModalFeedback } from '../scripts/multi-modal-feedback';
 
@@ -9,14 +9,14 @@ describe('MultiModalFeedback', () => {
   let originalHID: unknown;
 
   beforeEach(() => {
-    // @ts-ignore
+    // @ts-expect-error
     originalAudioContext = window.AudioContext || window.webkitAudioContext;
     originalVibrate = navigator.vibrate;
-    // @ts-ignore
+    // @ts-expect-error
     originalHID = navigator.hid;
 
     // 模拟音频上下文
-    // @ts-ignore
+    // @ts-expect-error
     window.AudioContext = class MockAudioContext {
       currentTime = 0;
       createOscillator() {
@@ -47,7 +47,7 @@ describe('MultiModalFeedback', () => {
       }
       state = 'running';
       destination = {};
-    } as any;
+    };
 
     // 模拟振动功能
     navigator.vibrate = vi.fn();
@@ -67,17 +67,18 @@ describe('MultiModalFeedback', () => {
 
   afterEach(() => {
     if (window.AudioContext) {
-      // @ts-ignore
+      // @ts-expect-error
       window.AudioContext = originalAudioContext;
     }
     // @ts-ignore
     if (window.webkitAudioContext) {
-      // @ts-ignore
+      // @ts-expect-error
       window.webkitAudioContext = originalAudioContext;
     }
-    navigator.vibrate = originalVibrate as any;
-    // @ts-ignore
-    navigator.hid = originalHID as any;
+    // @ts-expect-error
+    navigator.vibrate = originalVibrate;
+    // @ts-expect-error
+    navigator.hid = originalHID;
     feedback.destroy();
   });
 
