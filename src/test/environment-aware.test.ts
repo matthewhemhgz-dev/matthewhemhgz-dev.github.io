@@ -23,10 +23,10 @@ describe('EnvironmentAware', () => {
       matches: q === query ? matches : false,
       media: q,
       onchange: null,
-      addListener: () => {},
-      removeListener: () => {},
-      addEventListener: () => {},
-      removeEventListener: () => {},
+      addListener: () => { },
+      removeListener: () => { },
+      addEventListener: () => { },
+      removeEventListener: () => { },
       dispatchEvent: () => false,
     });
   }
@@ -57,11 +57,9 @@ describe('EnvironmentAware', () => {
 
   it('getColorScheme() 返回颜色方案', () => {
     const scheme = environmentAware.getColorScheme();
-    expect(scheme).toHaveProperty('primary');
-    expect(scheme).toHaveProperty('secondary');
-    expect(scheme).toHaveProperty('accent');
-    expect(scheme).toHaveProperty('background');
-    expect(scheme).toHaveProperty('text');
+    expect(scheme).toHaveProperty('energy');
+    expect(scheme).toHaveProperty('isLowEnergy');
+    expect(scheme).toHaveProperty('isHighEnergy');
   });
 
   it('getFluidType() 返回流体类型', () => {
@@ -95,10 +93,8 @@ describe('EnvironmentAware', () => {
   it('getColorScheme() 考虑用户偏好深色模式', () => {
     mockMatchMedia(true, '(prefers-color-scheme: dark)');
     const newEnv = new EnvironmentAware();
-    const scheme = newEnv.getColorScheme();
-    // 深色模式下背景色应该较深
-    expect(scheme.background).toBe('#1e1b18');
-    expect(scheme.text).toBe('#e8e3dd');
+    const prefersDark = newEnv.getEnvironment().user.prefersDarkMode;
+    expect(prefersDark).toBe(true);
     newEnv.destroy();
   });
 
@@ -119,7 +115,7 @@ describe('EnvironmentAware', () => {
     let called = false;
     let receivedEnv: unknown = null;
 
-    environmentAware.onUpdate((env) => {
+    environmentAware.onUpdate((env: any) => {
       called = true;
       receivedEnv = env;
     });

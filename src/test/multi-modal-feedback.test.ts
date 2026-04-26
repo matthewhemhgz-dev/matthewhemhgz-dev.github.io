@@ -9,16 +9,20 @@ describe('MultiModalFeedback', () => {
   let originalHID: unknown;
 
   beforeEach(() => {
+    // @ts-ignore
     originalAudioContext = window.AudioContext || window.webkitAudioContext;
     originalVibrate = navigator.vibrate;
+    // @ts-ignore
     originalHID = navigator.hid;
 
     // 模拟音频上下文
+    // @ts-ignore
     window.AudioContext = class MockAudioContext {
+      currentTime = 0;
       createOscillator() {
         return {
           type: 'sine',
-          frequency: { value: 0 },
+          frequency: { value: 0, setValueAtTime: vi.fn() },
           connect: vi.fn(),
           start: vi.fn(),
           stop: vi.fn(),
@@ -26,7 +30,12 @@ describe('MultiModalFeedback', () => {
       }
       createGain() {
         return {
-          gain: { value: 0 },
+          gain: {
+            value: 0,
+            setValueAtTime: vi.fn(),
+            linearRampToValueAtTime: vi.fn(),
+            exponentialRampToValueAtTime: vi.fn()
+          },
           connect: vi.fn(),
         };
       }
@@ -38,7 +47,7 @@ describe('MultiModalFeedback', () => {
       }
       state = 'running';
       destination = {};
-    };
+    } as any;
 
     // 模拟振动功能
     navigator.vibrate = vi.fn();
@@ -58,13 +67,17 @@ describe('MultiModalFeedback', () => {
 
   afterEach(() => {
     if (window.AudioContext) {
+      // @ts-ignore
       window.AudioContext = originalAudioContext;
     }
+    // @ts-ignore
     if (window.webkitAudioContext) {
+      // @ts-ignore
       window.webkitAudioContext = originalAudioContext;
     }
-    navigator.vibrate = originalVibrate;
-    navigator.hid = originalHID;
+    navigator.vibrate = originalVibrate as any;
+    // @ts-ignore
+    navigator.hid = originalHID as any;
     feedback.destroy();
   });
 
@@ -125,7 +138,7 @@ describe('MultiModalFeedback', () => {
     feedback.addFeedbackToElement(element);
 
     expect(addEventListenerSpy).toHaveBeenCalledWith('mouseenter', expect.any(Function));
-    expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
+    expect(addEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
     expect(addEventListenerSpy).toHaveBeenCalledWith('focus', expect.any(Function));
   });
 
