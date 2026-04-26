@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Divider from '../../components/global/Divider.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/pages/tags.css';
 
@@ -41,10 +42,18 @@ function getFontSize(count) {
   description="祈研所所有内容标签 — 探索 AI、知识管理、前端开发等主题的深度文章"
 >
   <div class="container tags-page">
-    <h1 class="sr-only">标签</h1>
+    <!-- Page Hero -->
+    <section class="page-hero" data-reveal>
+      <span class="page-label">// TAGS</span>
+      <h1 class="page-title">标签</h1>
+      <p class="page-subtitle">探索 AI、知识管理、前端开发等主题的深度文章</p>
+    </section>
+
+    <Divider />
+
     <!-- Tag Cloud Section -->
-    <section class="tags-cloud-section" data-reveal>
-      <SectionHeader label="// TAGS" title="标签" />
+    <section class="about-section" data-reveal>
+      <SectionHeader label="// TAG CLOUD" title="标签云" />
       <div class="tags-cloud">
         {
           sortedTags.map(({ tag, count }) => (
@@ -61,8 +70,10 @@ function getFontSize(count) {
       </div>
     </section>
 
+    <Divider />
+
     <!-- Recent Posts Section -->
-    <section class="tags-posts-section" data-reveal>
+    <section class="about-section" data-reveal>
       <SectionHeader label="// RECENT" title="最新文章" />
       <div class="tags-posts-grid">
         {

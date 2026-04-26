@@ -1,6 +1,50 @@
-/* ==========================================================================
-   Page Home - 首页专用样式
-   ========================================================================== */
+/* ==========================================================================  Page Home - 首页专用样式   ========================================================================== */
+
+/* Home layout grid */
+.home-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--qi-space-3xl);
+  max-width: var(--qi-container-xl);
+  margin: 0 auto;
+  padding: 0 var(--qi-space-xl);
+}
+
+.home-layout-main {
+  grid-column: 1;
+}
+
+.home-layout-sidebar {
+  grid-column: 2;
+  position: sticky;
+  top: var(--qi-space-2xl);
+  height: fit-content;
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+  .home-layout-grid {
+    grid-template-columns: 1fr;
+    gap: var(--qi-space-2xl);
+  }
+  
+  .home-layout-main,
+  .home-layout-sidebar {
+    grid-column: 1;
+  }
+  
+  .home-layout-sidebar {
+    position: static;
+    top: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-layout-grid {
+    padding: 0 var(--qi-space-md);
+    gap: var(--qi-space-xl);
+  }
+}
 
 /* Hero stagger animation */
 .hero-stagger {

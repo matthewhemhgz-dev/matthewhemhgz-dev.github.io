@@ -244,6 +244,16 @@ const canonicalURL = new URL(
         if (currentMeta && newMeta) {
           newMeta.setAttribute('content', currentMeta.getAttribute('content'));
         }
+
+        // Add exit animation to current content
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.style.opacity = '1';
+          mainContent.style.transform = 'translateY(0)';
+          mainContent.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          mainContent.style.opacity = '0';
+          mainContent.style.transform = 'translateY(-10px)';
+        }
       });
 
       // Custom transition animations
@@ -262,6 +272,11 @@ const canonicalURL = new URL(
             mainContent.style.opacity = '1';
             mainContent.style.transform = 'translateY(0)';
           }, 50);
+        }
+
+        // Reinitialize scroll reveal animations
+        if (window.scrollReveal) {
+          window.scrollReveal.reveal();
         }
       });
     </script>

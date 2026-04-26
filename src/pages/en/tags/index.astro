@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import SectionHeader from '../../../components/ui/SectionHeader.astro';
+import Divider from '../../../components/global/Divider.astro';
 import { getCollection } from 'astro:content';
 import '../../../styles/pages/tags.css';
 
@@ -41,10 +42,18 @@ function getFontSize(count) {
   description="Archive of all tags — Explore topics on AI, Knowledge Management, Frontend Development, and more."
 >
   <div class="container tags-page">
-    <h1 class="sr-only">Tags</h1>
+    <!-- Page Hero -->
+    <section class="page-hero" data-reveal>
+      <span class="page-label">// TAGS</span>
+      <h1 class="page-title">Tags</h1>
+      <p class="page-subtitle">Explore topics on AI, Knowledge Management, Frontend Development, and more</p>
+    </section>
+
+    <Divider />
+
     <!-- Tag Cloud Section -->
-    <section class="tags-cloud-section" data-reveal>
-      <SectionHeader label="// TAGS" title="Tags" />
+    <section class="about-section" data-reveal>
+      <SectionHeader label="// TAG CLOUD" title="Tag Cloud" />
       {
         sortedTags.length > 0 ? (
           <div class="tags-cloud">
@@ -65,10 +74,12 @@ function getFontSize(count) {
       }
     </section>
 
+    <Divider />
+
     <!-- Recent Posts Section -->
     {
       allPosts.length > 0 && (
-        <section class="tags-posts-section" data-reveal>
+        <section class="about-section" data-reveal>
           <SectionHeader label="// RECENT" title="Recent Articles" />
           <div class="tags-posts-grid">
             {allPosts.map((post) => (
