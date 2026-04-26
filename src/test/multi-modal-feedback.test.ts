@@ -9,14 +9,14 @@ describe('MultiModalFeedback', () => {
   let originalHID: unknown;
 
   beforeEach(() => {
-    // @ts-expect-error
+    // @ts-expect-error: AudioContext is mocked for testing
     originalAudioContext = window.AudioContext || window.webkitAudioContext;
     originalVibrate = navigator.vibrate;
-    // @ts-expect-error
+    // @ts-expect-error: HID is an experimental feature not in lib dom
     originalHID = navigator.hid;
 
     // 模拟音频上下文
-    // @ts-expect-error
+    // @ts-expect-error: Mocking AudioContext structure completely
     window.AudioContext = class MockAudioContext {
       currentTime = 0;
       createOscillator() {
@@ -67,17 +67,17 @@ describe('MultiModalFeedback', () => {
 
   afterEach(() => {
     if (window.AudioContext) {
-      // @ts-expect-error
+      // @ts-expect-error: Restoring mock correctly
       window.AudioContext = originalAudioContext;
     }
-    // @ts-ignore
+    // @ts-expect-error: Restoring mock correctly
     if (window.webkitAudioContext) {
-      // @ts-expect-error
+      // @ts-expect-error: Restoring mock correctly
       window.webkitAudioContext = originalAudioContext;
     }
-    // @ts-expect-error
+    // @ts-expect-error: Restoring mock correctly
     navigator.vibrate = originalVibrate;
-    // @ts-expect-error
+    // @ts-expect-error: Restoring mock correctly
     navigator.hid = originalHID;
     feedback.destroy();
   });
