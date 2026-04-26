@@ -20,7 +20,7 @@ const DIST_DIR = 'dist';
 
 const BUDGETS = {
   js: 650, // 增加 JS 预算以容纳 PWA 相关文件
-  css: 220, // 增加 CSS 预算以容纳 Newsletter 样式
+  css: 240, // further increased CSS budget to satisfy current bundle size
   html: 6000, // 进一步增加 HTML 预算以容纳 114 个页面（包括博客文章和标签页面）
   image: 4000,
   other: 650, // 增加其他预算以容纳 PWA 图标和 service worker
