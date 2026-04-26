@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { MultiModalFeedback } from '../scripts/multi-modal-feedback';
 
@@ -156,12 +157,12 @@ describe('MultiModalFeedback', () => {
 
   it('_getKeyFrequency() 返回正确的频率', () => {
     const frequency = (
-      feedback as unknown as { _getKeyFrequency: (key: string) => number }
+      feedback as unknown as { _getKeyFrequency: (_key: string) => number }
     )._getKeyFrequency('a');
     expect(frequency).toBe(440);
 
     const defaultFrequency = (
-      feedback as unknown as { _getKeyFrequency: (key: string) => number }
+      feedback as unknown as { _getKeyFrequency: (_key: string) => number }
     )._getKeyFrequency('1');
     expect(defaultFrequency).toBe(440);
   });
@@ -174,7 +175,7 @@ describe('MultiModalFeedback', () => {
     } as Event;
 
     (
-      feedback as unknown as { _recordUserAction: (type: string, event: Event) => void }
+      feedback as unknown as { _recordUserAction: (_type: string, _event: Event) => void }
     )._recordUserAction('click', event);
 
     // 这里可以添加更多断言，检查动作是否被正确记录
@@ -191,7 +192,7 @@ describe('MultiModalFeedback', () => {
     // 添加足够的动作以触发预测
     for (let i = 0; i < 5; i++) {
       (
-        feedback as unknown as { _recordUserAction: (type: string, event: Event) => void }
+        feedback as unknown as { _recordUserAction: (_type: string, _event: Event) => void }
       )._recordUserAction('click', event);
     }
 

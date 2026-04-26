@@ -139,10 +139,10 @@ export class EffectsManager {
   update() {
     // 按优先级排序动效
     const sortedEffects = Object.entries(this.effects)
-      .filter(([_name]) => this.activeEffects.has(_name))
+      .filter(([name]) => this.activeEffects.has(name))
       .sort(([, a], [, b]) => b.config.priority - a.config.priority);
 
-    sortedEffects.forEach(([_name, { instance }]) => {
+    sortedEffects.forEach(([, { instance }]) => {
       if (instance.update) {
         instance.update();
       }
@@ -155,10 +155,10 @@ export class EffectsManager {
   draw() {
     // 按优先级排序动效
     const sortedEffects = Object.entries(this.effects)
-      .filter(([_name]) => this.activeEffects.has(_name))
+      .filter(([name]) => this.activeEffects.has(name))
       .sort(([, a], [, b]) => b.config.priority - a.config.priority);
 
-    sortedEffects.forEach(([_name, { instance }]) => {
+    sortedEffects.forEach(([, { instance }]) => {
       if (instance.draw) {
         instance.draw();
       }
@@ -171,8 +171,8 @@ export class EffectsManager {
    * @param {number} y - 鼠标Y坐标
    */
   setMousePosition(x, y) {
-    Object.entries(this.effects).forEach(([_name, { instance }]) => {
-      if (this.activeEffects.has(_name) && instance.setMousePosition) {
+    Object.entries(this.effects).forEach(([name, { instance }]) => {
+      if (this.activeEffects.has(name) && instance.setMousePosition) {
         instance.setMousePosition(x, y);
       }
     });
@@ -183,8 +183,8 @@ export class EffectsManager {
    * @param {number} seed - 随机种子
    */
   setSeed(seed) {
-    Object.entries(this.effects).forEach(([_name, { instance }]) => {
-      if (this.activeEffects.has(_name) && instance.setSeed) {
+    Object.entries(this.effects).forEach(([name, { instance }]) => {
+      if (this.activeEffects.has(name) && instance.setSeed) {
         instance.setSeed(seed);
       }
     });
@@ -198,7 +198,7 @@ export class EffectsManager {
   resize(width, height) {
     this.isMobile = width < 768;
 
-    Object.entries(this.effects).forEach(([_name, { instance }]) => {
+    Object.entries(this.effects).forEach(([, { instance }]) => {
       if (instance.setSize) {
         instance.setSize(width, height);
       }

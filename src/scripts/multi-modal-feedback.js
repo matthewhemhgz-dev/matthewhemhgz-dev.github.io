@@ -418,7 +418,7 @@ class MultiModalFeedback {
       const area = rect.width * rect.height;
       mass = Math.max(0.5, Math.min(Math.log10(area || 1000) * 0.5, 5.0));
       kinematics.register(element, { mass: mass });
-    } catch (e) {
+    } catch {
       // Ignore geometry parsing errors
     }
 

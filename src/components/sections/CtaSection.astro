@@ -8,9 +8,18 @@ interface Props {
   primaryBtn: { text: string; href: string };
   secondaryBtn: { text: string; href: string; external?: boolean };
   lang?: 'zh' | 'en';
+  classList?: string;
 }
 
-const { label, title, description, primaryBtn, secondaryBtn, lang = 'zh' } = Astro.props;
+const {
+  label,
+  title,
+  description,
+  primaryBtn,
+  secondaryBtn,
+  lang = 'zh',
+  classList = '',
+} = Astro.props;
 
 const labels =
   lang === 'en'
@@ -32,7 +41,7 @@ const labels =
   @import '../../styles/components/cta-section.css';
 </style>
 
-<section class="section cta-section" data-reveal>
+<section class:list={['section', 'cta-section', classList]} data-reveal>
   <div class="cta-fade" aria-hidden="true"></div>
   <div class="cta-sparkles" aria-hidden="true">
     <span class="cta-sparkle cta-sparkle--1"></span>
