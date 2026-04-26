@@ -8,7 +8,7 @@ interface Props {
   primaryBtn: { text: string; href: string };
   secondaryBtn: { text: string; href: string; external?: boolean };
   lang?: 'zh' | 'en';
-  classList?: string;
+  class?: string;
 }
 
 const {
@@ -18,7 +18,7 @@ const {
   primaryBtn,
   secondaryBtn,
   lang = 'zh',
-  classList = '',
+  class: className = '',
 } = Astro.props;
 
 const labels =
@@ -41,7 +41,7 @@ const labels =
   @import '../../styles/components/cta-section.css';
 </style>
 
-<section class:list={['section', 'cta-section', classList]} data-reveal>
+<section class:list={['section', 'cta-section', className]} data-reveal>
   <div class="cta-fade" aria-hidden="true"></div>
   <div class="cta-sparkles" aria-hidden="true">
     <span class="cta-sparkle cta-sparkle--1"></span>

@@ -210,12 +210,16 @@ const platforms = [
   <SectionDivider variant="arcs" />
 
   <CtaSection
-    classList="qi-anim-scroll-reveal qi-anim-delay-600"
+    class="qi-anim-scroll-reveal qi-anim-delay-600"
     label="// LET'S CONNECT"
     title="与我们共建知识生态"
     description="无论您是寻求知识管理解决方案、AI 工作流优化建议，还是希望开展项目合作，我们都期待与您深入交流。"
     primaryBtn={{ text: '发送邮件', href: 'mailto:matthewhemhgz@gmail.com' }}
-    secondaryBtn={{ text: '访问 GitHub', href: 'https://github.com/matthewhemhgz-dev', external: true }}
+    secondaryBtn={{
+      text: '访问 GitHub',
+      href: 'https://github.com/matthewhemhgz-dev',
+      external: true,
+    }}
   />
 </BaseLayout>
 
@@ -243,5 +247,3 @@ const platforms = [
   }
   document.addEventListener('astro:page-load', animateStats);
 </script>
-
-
