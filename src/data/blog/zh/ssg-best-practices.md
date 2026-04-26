@@ -3,9 +3,9 @@ title: '静态站点生成的最佳实践：构建高性能、可维护的现代
 description: '深入探讨静态站点生成（SSG）的最佳实践，从技术选型到性能优化，帮助你构建既快速又可维护的现代网站。'
 pubDate: 2026-04-28
 category: '技术架构'
-image: /images/blog/ssg-best-practices-zh.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['SSG', '静态站点', '性能优化']
-heroImage: '/images/blog/ssg-best-practices.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: zh

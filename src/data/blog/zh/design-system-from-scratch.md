@@ -3,7 +3,7 @@ title: '从 0 到 1 构建设计系统：打造一致、可扩展的产品界面
 description: '详细介绍设计系统的构建过程，从设计令牌到组件库，帮助你建立一套完整、可维护的设计系统。'
 pubDate: 2026-04-30
 category: '设计系统'
-image: /images/blog/design-system-from-scratch-zh.svg
+image: /images/blog/design-system-from-scratch.png
 tags: ['设计系统', '设计令牌', '组件库']
 heroImage: '/images/blog/design-system-from-scratch.png'
 author: '祈研所'

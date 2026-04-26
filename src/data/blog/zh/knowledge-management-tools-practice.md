@@ -3,9 +3,9 @@ title: '知识管理工具与实践：从理论到落地'
 description: '深入探讨知识管理的具体工具和实践方法，帮助你将知识管理理论转化为实际行动。'
 pubDate: 2026-05-08
 category: '知识管理'
-image: /images/blog/knowledge-management-tools-practice-zh.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['知识管理', '工具', '实践', '第二大脑']
-heroImage: '/images/blog/knowledge-management-tools.svg'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: zh

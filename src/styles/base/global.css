@@ -6,14 +6,22 @@
 @import '../utilities/utilities.css';
 @import '../utilities/animations.css';
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: var(--qi-font-sans);
   font-size: calc(1rem * var(--qi-font-scale, 1));
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.25) 0%, transparent 70%),
-    var(--qi-bg-base);
+  background: var(--qi-bg-base);
   color: var(--qi-text-primary);
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;

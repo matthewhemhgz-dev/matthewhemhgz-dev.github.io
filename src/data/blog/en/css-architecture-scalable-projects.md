@@ -3,7 +3,7 @@ title: 'Scalable CSS Architecture: Design Token-Driven Visual System Practice'
 description: "How to build a component system that maintains visual depth and consistency in dark mode through Design Tokens? Sharing Qi-Lab's engineering practices."
 pubDate: 2025-06-20
 category: 'Design System'
-image: /images/blog/css-architecture-scalable-projects-en.svg
+image: /images/blog/css-architecture-scalable-projects.png
 tags: ['CSS', 'Design Tokens', 'UI-UX', 'Design System']
 heroImage: '/images/blog/css-architecture-scalable-projects.png'
 author: 'Qi-Lab'

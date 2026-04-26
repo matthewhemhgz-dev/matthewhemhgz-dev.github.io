@@ -3,9 +3,9 @@ title: 'Static Site Generation Best Practices: Building High-Performance, Mainta
 description: 'Guide to Static Site Generation (SSG) best practices, from technology selection to performance optimization, helping build fast, maintainable modern websites.'
 pubDate: 2026-04-28
 category: 'Technical Architecture'
-image: /images/blog/ssg-best-practices-en.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['SSG', 'Static Sites', 'Performance Optimization']
-heroImage: '/images/blog/ssg-best-practices.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: en

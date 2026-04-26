@@ -3,7 +3,7 @@ title: 'Design Tokens Best Practices: Building Maintainable, Scalable Design Sys
 description: 'A guide to design token best practices, from naming conventions to implementation methods, helping you establish an efficient, consistent design token system.'
 pubDate: 2026-05-01
 category: 'Design System'
-image: /images/blog/design-tokens-best-practices-en.svg
+image: /images/blog/design-tokens-best-practices.png
 tags: ['Design Tokens', 'Design System', 'Best Practices']
 heroImage: '/images/blog/design-tokens-best-practices.png'
 author: '祈研所'

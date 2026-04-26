@@ -3,9 +3,9 @@ title: 'Notion + Obsidian：双轨制知识资产管理方案'
 description: '拒绝工具内耗。基于数据主权与协作效率，构建『双向链接』与『强结构化数据』并行的个人第二大脑。'
 pubDate: 2025-08-12
 category: '系统方案'
-image: /images/blog/notion-obsidian-dual-track-zh.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['Notion', 'Obsidian', '知识管理', '双向链接']
-heroImage: '/images/blog/notion-obsidian-dual-track.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: zh

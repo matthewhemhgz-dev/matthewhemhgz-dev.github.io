@@ -3,9 +3,9 @@ title: 'Progressive Refactoring in Practice: Achieving Engineering Aesthetics wi
 description: 'A transformation from legacy to modern. Learn how Qi-Lab evolved step-by-step to a premium visual system without interrupting publishing.'
 pubDate: 2026-04-19
 category: 'Refactoring'
-image: /images/blog/progressive-refactor-astro-tailwind-en.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['Refactoring', 'TailwindCSS', 'Engineering Practice']
-heroImage: '/images/blog/progressive-refactor-astro-tailwind.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

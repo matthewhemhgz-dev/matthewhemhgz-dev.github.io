@@ -3,7 +3,7 @@ title: 'Why I Chose Astro as the Engineering Foundation for Qi-Lab?'
 description: 'Rejecting over-engineering, embracing content-first. How Astro achieves balance between performance and developer experience through its Islands Architecture.'
 pubDate: 2025-05-15
 category: 'Technical Insights'
-image: /images/blog/astro-ssg-why-i-chose-en.svg
+image: /images/blog/astro-ssg-why-i-chose.png
 tags: ['Astro', 'Frontend Architecture', 'SSG', 'Performance Optimization']
 heroImage: '/images/blog/astro-ssg-why-i-chose.png'
 author: 'QiLab'

@@ -3,9 +3,9 @@ title: 'How to Optimize Frontend Performance: A Complete Guide from Theory to Pr
 description: 'A deep dive into the core principles and practical methods of frontend performance optimization, helping you build fast, smooth modern web applications.'
 pubDate: 2026-04-29
 category: 'Technical Architecture'
-image: /images/blog/how-to-optimize-frontend-performance-en.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['Performance Optimization', 'Frontend Development', 'Web Performance']
-heroImage: '/images/blog/frontend-performance-optimization.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: en

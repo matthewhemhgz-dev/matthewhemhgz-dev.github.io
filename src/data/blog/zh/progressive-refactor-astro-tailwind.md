@@ -3,9 +3,9 @@ title: '渐进式重构实战：在 Astro + Tailwind 下实现工程美学'
 description: '一场从 legacy 到 modern 的蜕变。分享 Qi-Lab 在不中断发布的前提下，如何逐步进化至高级感视觉系统的全过程。'
 pubDate: 2026-04-19
 category: '重构实战'
-image: /images/blog/progressive-refactor-astro-tailwind-zh.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['Refactoring', 'TailwindCSS', '工程实践']
-heroImage: '/images/blog/progressive-refactor-astro-tailwind.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: zh

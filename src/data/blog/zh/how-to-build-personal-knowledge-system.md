@@ -3,9 +3,9 @@ title: '如何建立个人知识管理系统：从信息碎片到智慧资产'
 description: '系统化构建第二大脑的完整指南。通过科学的方法将信息转化为可复用的知识，让你的学习和工作更高效。'
 pubDate: 2026-04-24
 category: '知识管理'
-image: /images/blog/how-to-build-personal-knowledge-system-zh.svg
+image: /images/blog/ai-era-knowledge-worker.png
 tags: ['知识管理', '个人系统', '第二大脑']
-heroImage: '/images/blog/personal-knowledge-system.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.png'
 author: '祈研所'
 draft: false
 lang: zh

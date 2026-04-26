@@ -3,9 +3,9 @@ title: '知识管理体系基础：构建你的第二大脑'
 description: '深入探讨知识管理的核心概念和基础框架，为建立个人知识管理系统奠定坚实基础。'
 pubDate: 2026-05-01
 category: '知识管理'
-image: /images/blog/knowledge-management-system-foundation-zh.svg
+image: /images/blog/knowledge-management-foundation.png
 tags: ['知识管理', '个人系统', '第二大脑', '知识体系']
-heroImage: '/images/blog/knowledge-management-foundation.svg'
+heroImage: '/images/blog/knowledge-management-foundation.png'
 author: '祈研所'
 draft: false
 lang: zh
