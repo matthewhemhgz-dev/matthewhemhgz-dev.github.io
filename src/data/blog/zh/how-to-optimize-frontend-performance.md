@@ -4,7 +4,7 @@ description: '深入探讨前端性能优化的核心原理和实践方法，帮
 pubDate: 2026-04-29
 category: '技术架构'
 tags: ['性能优化', '前端开发', 'Web性能']
-heroImage: '/images/blog/frontend-performance-optimization.png'
+heroImage: 'public\blog\how-to-optimize-frontend-performance.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -4,7 +4,7 @@ description: '深入探讨知识管理的核心概念和基础框架，为建立
 pubDate: 2026-05-01
 category: '知识管理'
 tags: ['知识管理', '个人系统', '第二大脑', '知识体系']
-heroImage: '/images/blog/knowledge-management-foundation.png'
+heroImage: 'public\blog\knowledge-management-system-foundation.png'
 author: '祈研所'
 draft: false
 lang: zh

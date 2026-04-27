@@ -4,7 +4,7 @@ description: 'Knowledge graph visualization guide: transforming abstract knowled
 pubDate: 2026-04-26
 category: 'Knowledge Management'
 tags: ['Knowledge Graph', 'Visualization', 'Knowledge Management']
-heroImage: '/images/blog/knowledge-graph-visualization.png'
+heroImage: 'public\blog\knowledge-graph-visualization.png'
 author: '祈研所'
 draft: false
 lang: en

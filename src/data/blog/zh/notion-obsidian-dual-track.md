@@ -4,7 +4,7 @@ description: '拒绝工具内耗。基于数据主权与协作效率，构建『
 pubDate: 2025-08-12
 category: '系统方案'
 tags: ['Notion', 'Obsidian', '知识管理', '双向链接']
-heroImage: '/images/blog/notion-obsidian-dual-track.png'
+heroImage: 'public\blog\notion-obsidian-dual-track.png'
 author: '祈研所'
 draft: false
 lang: zh

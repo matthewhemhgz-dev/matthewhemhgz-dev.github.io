@@ -4,7 +4,7 @@ description: '如何通过 Design Tokens 构建一套在深色模式下依然具
 pubDate: 2025-06-20
 category: '设计系统'
 tags: ['CSS', 'Design Tokens', 'UI-UX', '设计系统']
-heroImage: '/images/blog/css-architecture-scalable-projects.png'
+heroImage: 'public\blog\css-architecture-scalable-projects.png'
 author: '祈研所'
 draft: false
 lang: zh

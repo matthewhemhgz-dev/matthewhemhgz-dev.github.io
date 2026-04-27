@@ -4,7 +4,7 @@ description: 'How to build a component system that maintains visual depth and co
 pubDate: 2025-06-20
 category: 'Design System'
 tags: ['CSS', 'Design Tokens', 'UI-UX', 'Design System']
-heroImage: '/images/blog/css-architecture-scalable-projects.png'
+heroImage: 'public\blog\css-architecture-scalable-projects.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

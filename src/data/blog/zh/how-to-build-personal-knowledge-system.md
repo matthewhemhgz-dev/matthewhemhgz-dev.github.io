@@ -4,7 +4,7 @@ description: '系统化构建第二大脑的完整指南。通过科学的方法
 pubDate: 2026-04-24
 category: '知识管理'
 tags: ['知识管理', '个人系统', '第二大脑']
-heroImage: '/images/blog/personal-knowledge-system.png'
+heroImage: 'public\blog\how-to-build-personal-knowledge-system.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -4,7 +4,7 @@ description: 'Explore specific knowledge management tools and practical methods 
 pubDate: 2026-05-08
 category: 'Knowledge Management'
 tags: ['Knowledge Management', 'Tools', 'Practice', 'Second Brain']
-heroImage: '/images/blog/knowledge-management-tools.png'
+heroImage: 'public\blog\knowledge-management-tools-practice.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

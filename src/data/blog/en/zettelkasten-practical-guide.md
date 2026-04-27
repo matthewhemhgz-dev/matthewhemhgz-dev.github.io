@@ -4,7 +4,7 @@ description: "Guide to Luhmann's Zettelkasten method: make your creative process
 pubDate: 2026-04-25
 category: "Knowledge Management"
 tags: ["Zettelkasten", "Writing", "Knowledge Management"]
-heroImage: "/images/blog/zettelkasten-practical.png"
+heroImage: 'public\blog\zettelkasten-practical-guide.png'
 author: "祈研所"
 draft: false
 lang: en

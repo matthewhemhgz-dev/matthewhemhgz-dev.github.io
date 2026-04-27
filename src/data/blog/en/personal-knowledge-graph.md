@@ -4,7 +4,7 @@ description: 'Knowledge is not files in folders—it is connections like neurons
 pubDate: 2025-09-01
 category: 'Mental Models'
 tags: ['Knowledge Graph', 'Mental Models', 'Learning']
-heroImage: '/images/blog/personal-knowledge-graph.png'
+heroImage: 'public\blog\personal-knowledge-graph.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

@@ -4,7 +4,7 @@ description: 'Guide to building a second brain: transform information into reusa
 pubDate: 2026-04-24
 category: 'Knowledge Management'
 tags: ['Knowledge Management', 'Personal System', 'Second Brain']
-heroImage: '/images/blog/personal-knowledge-system.png'
+heroImage: 'public\blog\how-to-build-personal-knowledge-system.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

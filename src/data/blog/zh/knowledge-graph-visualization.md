@@ -4,7 +4,7 @@ description: '探索知识图谱可视化的方法和工具，学习如何将抽
 pubDate: 2026-04-26
 category: '知识管理'
 tags: ['知识图谱', '可视化', '知识管理']
-heroImage: '/images/blog/knowledge-graph-visualization.png'
+heroImage: 'public\blog\knowledge-graph-visualization.png'
 author: '祈研所'
 draft: false
 lang: zh

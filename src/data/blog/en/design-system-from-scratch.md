@@ -4,7 +4,7 @@ description: 'A detailed guide to building a design system from design tokens to
 pubDate: 2026-04-30
 category: 'Design System'
 tags: ['Design System', 'Design Tokens', 'Component Library']
-heroImage: '/images/blog/design-system-from-scratch.png'
+heroImage: 'public\blog\design-system-from-scratch.png'
 author: '祈研所'
 draft: false
 lang: en

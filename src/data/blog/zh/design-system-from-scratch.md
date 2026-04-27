@@ -4,7 +4,7 @@ description: '详细介绍设计系统的构建过程，从设计令牌到组件
 pubDate: 2026-04-30
 category: '设计系统'
 tags: ['设计系统', '设计令牌', '组件库']
-heroImage: '/images/blog/design-system-from-scratch.png'
+heroImage: 'public\blog\design-system-from-scratch.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -4,7 +4,7 @@ description: '深入探讨设计令牌的最佳实践，从命名规范到实现
 pubDate: 2026-05-01
 category: '设计系统'
 tags: ['设计令牌', '设计系统', '最佳实践']
-heroImage: '/images/blog/design-tokens-best-practices.png'
+heroImage: 'public\blog\design-tokens-best-practices.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -4,7 +4,7 @@ description: '知识不是文件夹里的文件，而是神经元般的关联。
 pubDate: 2025-09-01
 category: '思维模型'
 tags: ['知识图谱', '思维模型', '学习法']
-heroImage: '/images/blog/personal-knowledge-graph.png'
+heroImage: 'public\blog\personal-knowledge-graph.png'
 author: '祈研所'
 draft: false
 lang: zh

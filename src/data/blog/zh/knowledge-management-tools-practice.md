@@ -4,7 +4,7 @@ description: '深入探讨知识管理的具体工具和实践方法，帮助你
 pubDate: 2026-05-08
 category: '知识管理'
 tags: ['知识管理', '工具', '实践', '第二大脑']
-heroImage: '/images/blog/knowledge-management-tools.png'
+heroImage: 'public\blog\knowledge-management-tools-practice.png'
 author: '祈研所'
 draft: false
 lang: zh

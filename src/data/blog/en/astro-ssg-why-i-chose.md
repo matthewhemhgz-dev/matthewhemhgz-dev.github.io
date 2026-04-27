@@ -4,7 +4,7 @@ description: 'Rejecting over-engineering, embracing content-first. How Astro ach
 pubDate: 2025-05-15
 category: 'Technical Insights'
 tags: ['Astro', 'Frontend Architecture', 'SSG', 'Performance Optimization']
-heroImage: '/images/blog/astro-ssg-why-i-chose.png'
+heroImage: 'public\blog\astro-ssg-why-i-chose.png'
 author: 'QiLab'
 draft: false
 lang: en

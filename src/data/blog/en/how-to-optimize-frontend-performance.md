@@ -4,7 +4,7 @@ description: 'A deep dive into the core principles and practical methods of fron
 pubDate: 2026-04-29
 category: 'Technical Architecture'
 tags: ['Performance Optimization', 'Frontend Development', 'Web Performance']
-heroImage: '/images/blog/frontend-performance-optimization.png'
+heroImage: 'public\blog\how-to-optimize-frontend-performance.png'
 author: '祈研所'
 draft: false
 lang: en

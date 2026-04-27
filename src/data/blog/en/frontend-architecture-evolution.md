@@ -4,7 +4,7 @@ description: 'Frontend architecture evolution review: from static pages to moder
 pubDate: 2026-04-27
 category: 'Technical Architecture'
 tags: ['Frontend Architecture', 'Technical Evolution', 'Frontend Development']
-heroImage: '/images/blog/frontend-architecture-evolution.png'
+heroImage: 'public\blog\frontend-architecture-evolution.png'
 author: '祈研所'
 draft: false
 lang: en

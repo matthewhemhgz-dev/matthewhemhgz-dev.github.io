@@ -4,7 +4,7 @@ description: '深入探讨静态站点生成（SSG）的最佳实践，从技术
 pubDate: 2026-04-28
 category: '技术架构'
 tags: ['SSG', '静态站点', '性能优化']
-heroImage: '/images/blog/ssg-best-practices.png'
+heroImage: 'public\blog\ssg-best-practices.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -4,7 +4,7 @@ description: 'A guide to design token best practices, from naming conventions to
 pubDate: 2026-05-01
 category: 'Design System'
 tags: ['Design Tokens', 'Design System', 'Best Practices']
-heroImage: '/images/blog/design-tokens-best-practices.png'
+heroImage: 'public\blog\design-tokens-best-practices.png'
 author: '祈研所'
 draft: false
 lang: en

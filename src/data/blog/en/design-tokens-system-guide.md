@@ -4,7 +4,7 @@ description: 'Design tokens are the atomic units of a design system. From concep
 pubDate: 2026-04-12
 category: 'Frontend Engineering'
 tags: ['CSS', 'Design System', 'Design Tokens', 'Best Practices']
-heroImage: '/images/blog/design-tokens-system-guide.png'
+heroImage: 'public\blog\design-tokens-system-guide.png'
 author: 'QiLab'
 draft: false
 lang: en

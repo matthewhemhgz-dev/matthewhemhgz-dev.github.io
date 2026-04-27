@@ -4,7 +4,7 @@ description: 'Avoid tool fatigue. Build a "second brain" with bidirectional link
 pubDate: 2025-08-12
 category: 'Systems'
 tags: ['Notion', 'Obsidian', 'Knowledge Management', 'Bidirectional Links']
-heroImage: '/images/blog/notion-obsidian-dual-track.png'
+heroImage: 'public\blog\notion-obsidian-dual-track.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

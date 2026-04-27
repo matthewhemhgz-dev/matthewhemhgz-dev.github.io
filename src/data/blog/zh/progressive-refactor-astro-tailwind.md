@@ -4,7 +4,7 @@ description: '一场从 legacy 到 modern 的蜕变。分享 Qi-Lab 在不中断
 pubDate: 2026-04-19
 category: '重构实战'
 tags: ['Refactoring', 'TailwindCSS', '工程实践']
-heroImage: '/images/blog/progressive-refactor-astro-tailwind.png'
+heroImage: 'public\blog\progressive-refactor-astro-tailwind.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -4,7 +4,7 @@ description: 'A transformation from legacy to modern. Learn how Qi-Lab evolved s
 pubDate: 2026-04-19
 category: 'Refactoring'
 tags: ['Refactoring', 'TailwindCSS', 'Engineering Practice']
-heroImage: '/images/blog/progressive-refactor-astro-tailwind.png'
+heroImage: 'public\blog\progressive-refactor-astro-tailwind.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

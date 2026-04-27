@@ -4,7 +4,7 @@ description: '回顾前端架构的发展历程，从早期的静态页面到现
 pubDate: 2026-04-27
 category: '技术架构'
 tags: ['前端架构', '技术演进', '前端开发']
-heroImage: '/images/blog/frontend-architecture-evolution.png'
+heroImage: 'public\blog\frontend-architecture-evolution.png'
 author: '祈研所'
 draft: false
 lang: zh
