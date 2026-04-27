@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { spawn } from 'child_process';

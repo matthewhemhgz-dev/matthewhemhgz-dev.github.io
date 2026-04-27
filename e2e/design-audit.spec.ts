@@ -26,7 +26,34 @@ if (!existsSync(SCREENSHOT_DIR)) {
   mkdirSync(SCREENSHOT_DIR, { recursive: true });
 }
 
-const auditResults: any[] = [];
+interface DesignAuditResult {
+  page: string;
+  viewport: string;
+  colors: string[];
+  fonts: string[];
+  images: Array<{
+    index: number;
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    naturalWidth: number;
+    naturalHeight: number;
+  }>;
+  links: Array<{
+    index: number;
+    href: string;
+    text: string;
+  }>;
+  visualHierarchy: Array<{
+    tag: string;
+    text: string;
+    fontSize: string;
+  }>;
+  screenshotPath: string;
+}
+
+const auditResults: DesignAuditResult[] = [];
 
 test.describe('设计评估与内容检查', () => {
   for (const pageInfo of PAGES) {
@@ -40,13 +67,35 @@ test.describe('设计评估与内容检查', () => {
           // 截图
           const screenshotPath = join(
             SCREENSHOT_DIR,
-            `${pageInfo.name.replace(/[\/\s]/g, '-')}-${viewport.name}.png`,
+            `${pageInfo.name.replace(/[/\s]/g, '-')}-${viewport.name}.png`,
           );
           await page.screenshot({ path: screenshotPath, fullPage: true });
 
           // 收集设计信息
           const designData = await page.evaluate(() => {
-            const results: any = {
+            const results: {
+              colors: string[];
+              fonts: string[];
+              images: Array<{
+                index: number;
+                src: string;
+                alt: string;
+                width: number;
+                height: number;
+                naturalWidth: number;
+                naturalHeight: number;
+              }>;
+              links: Array<{
+                index: number;
+                href: string;
+                text: string;
+              }>;
+              visualHierarchy: Array<{
+                tag: string;
+                text: string;
+                fontSize: string;
+              }>;
+            } = {
               colors: [],
               fonts: [],
               images: [],
@@ -159,8 +208,8 @@ test.describe('设计评估与内容检查', () => {
 
       // 图片分析
       report += '#### 图片检查\n';
-      const imagesWithoutAlt = result.images.filter((img: any) => !img.alt);
-      const brokenImages = result.images.filter((img: any) => img.naturalWidth === 0);
+      const imagesWithoutAlt = result.images.filter((img) => !img.alt);
+      const brokenImages = result.images.filter((img) => img.naturalWidth === 0);
       if (imagesWithoutAlt.length > 0) {
         report += `⚠️ **警告**: ${imagesWithoutAlt.length} 张图片缺少 alt 属性\n\n`;
       }
@@ -171,13 +220,13 @@ test.describe('设计评估与内容检查', () => {
 
       // 链接分析
       report += '#### 链接检查\n';
-      const externalLinks = result.links.filter((link: any) =>
+      const externalLinks = result.links.filter((link) =>
         link.href.startsWith('http'),
       );
-      const internalLinks = result.links.filter((link: any) =>
+      const internalLinks = result.links.filter((link) =>
         !link.href.startsWith('http') && link.href,
       );
-      const emptyLinks = result.links.filter((link: any) => !link.href || link.href === '#');
+      const emptyLinks = result.links.filter((link) => !link.href || link.href === '#');
       report += `- 外部链接: ${externalLinks.length}\n`;
       report += `- 内部链接: ${internalLinks.length}\n`;
       if (emptyLinks.length > 0) {
@@ -187,13 +236,13 @@ test.describe('设计评估与内容检查', () => {
 
       // 视觉层次
       report += '#### 视觉层次\n';
-      const h1Count = result.visualHierarchy.filter((h: any) => h.tag === 'H1').length;
+      const h1Count = result.visualHierarchy.filter((h) => h.tag === 'H1').length;
       if (h1Count > 1) {
         report += `⚠️ **警告**: 页面有 ${h1Count} 个 H1 标签（建议 1 个）\n\n`;
       }
       const headingTags = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
       headingTags.forEach((tag) => {
-        const count = result.visualHierarchy.filter((h: any) => h.tag === tag).length;
+        const count = result.visualHierarchy.filter((h) => h.tag === tag).length;
         if (count > 0) {
           report += `- ${tag}: ${count} 个\n`;
         }

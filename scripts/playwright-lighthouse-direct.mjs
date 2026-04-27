@@ -4,6 +4,7 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { spawn } from 'child_process';
+import lighthouse from 'lighthouse';
 
 async function runLighthouseAudit() {
   // 确保 dist 目录存在
@@ -34,7 +35,6 @@ async function runLighthouseAudit() {
   console.log('Running Lighthouse audit...');
   try {
     // 使用 Playwright 运行 Lighthouse
-    const lighthouse = require('lighthouse');
     const browser = await chromium.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-gpu']
@@ -43,9 +43,6 @@ async function runLighthouseAudit() {
     
     // 导航到本地服务器
     await page.goto('http://localhost:3000');
-    
-    // 获取浏览器会话
-    const session = await page.context().newCDPSession(page);
     
     // 运行 Lighthouse 审计
     const report = await lighthouse('http://localhost:3000', {

@@ -36,7 +36,7 @@ interface LayoutIssue {
   severity: 'low' | 'medium' | 'high';
   rootCause?: string;
   screenshotPath?: string;
-  elementInfo?: any;
+  elementInfo?: Record<string, unknown>;
 }
 
 let allIssues: LayoutIssue[] = [];
@@ -58,7 +58,7 @@ test.describe('全面响应式布局审计', () => {
 
             const screenshotPath = path.join(
               SCREENSHOTS_DIR,
-              `${pageInfo.name.toLowerCase().replace(/[\/\s]/g, '-')}-${viewport.name.toLowerCase().replace(/[() ]/g, '-')}-fullpage.png`,
+              `${pageInfo.name.toLowerCase().replace(/[/\s]/g, '-')}-${viewport.name.toLowerCase().replace(/[() ]/g, '-')}-fullpage.png`,
             );
             await page.screenshot({ path: screenshotPath, fullPage: true });
 
@@ -75,11 +75,37 @@ test.describe('全面响应式布局审计', () => {
   });
 });
 
-async function checkPageLayout(page: any, pageName: string, viewportName: string, screenshotPath: string): Promise<LayoutIssue[]> {
+async function checkPageLayout(page: import('@playwright/test').Page, pageName: string, viewportName: string, screenshotPath: string): Promise<LayoutIssue[]> {
   const issues: LayoutIssue[] = [];
 
   const pageData = await page.evaluate((vp) => {
-    const results: any = {
+    const results: {
+      hasHorizontalScroll: boolean;
+      scrollWidth: number;
+      clientWidth: number;
+      elements: Array<{
+        tag: string;
+        className: string;
+        id: string;
+        left: number;
+        right: number;
+        top: number;
+        bottom: number;
+        width: number;
+        height: number;
+        overflow: string;
+        overflowX: string;
+        overflowY: string;
+        position: string;
+        display: string;
+        visibility: string;
+        opacity: string;
+        zIndex: string;
+        fontSize: string;
+        lineHeight: string;
+      }>;
+      viewport: string;
+    } = {
       hasHorizontalScroll: document.documentElement.scrollWidth > document.documentElement.clientWidth,
       scrollWidth: document.documentElement.scrollWidth,
       clientWidth: document.documentElement.clientWidth,
@@ -130,7 +156,7 @@ async function checkPageLayout(page: any, pageName: string, viewportName: string
     });
   }
 
-  const overflowingElements = pageData.elements.filter((el: any) => {
+  const overflowingElements = pageData.elements.filter((el) => {
     return el.right > pageData.clientWidth + 1 && el.visibility !== 'hidden' && el.opacity !== '0' && el.display !== 'none';
   });
 
@@ -147,7 +173,7 @@ async function checkPageLayout(page: any, pageName: string, viewportName: string
     });
   }
 
-  const tinyText = pageData.elements.filter((el: any) => {
+  const tinyText = pageData.elements.filter((el) => {
     const fontSize = parseFloat(el.fontSize);
     return fontSize > 0 && fontSize < 12 && el.tagName !== 'SCRIPT' && el.tagName !== 'STYLE';
   });
@@ -165,7 +191,7 @@ async function checkPageLayout(page: any, pageName: string, viewportName: string
     });
   }
 
-  const negativePosition = pageData.elements.filter((el: any) => {
+  const negativePosition = pageData.elements.filter((el) => {
     return el.left < -10 && el.position === 'absolute';
   });
 
@@ -199,11 +225,11 @@ async function generateReport() {
       issuesByPage: PAGES.reduce((acc, page) => {
         acc[page.name] = allIssues.filter(i => i.page === page.name).length;
         return acc;
-      }, {} as any),
+      }, {} as Record<string, number>),
       issuesByViewport: VIEWPORTS.reduce((acc, vp) => {
         acc[vp.name] = allIssues.filter(i => i.viewport === vp.name).length;
         return acc;
-      }, {} as any),
+      }, {} as Record<string, number>),
     },
   };
 
