@@ -313,6 +313,17 @@ async function processBlogPosts() {
       
       const slug = path.basename(file, '.md');
       
+      // 提取 heroImage 字段
+      const heroImageMatch = content.match(/^heroImage:\s*["'](.*?)["']/m);
+      let imageName = slug;
+      
+      if (heroImageMatch) {
+        // 从 heroImage 字段中提取文件名
+        const heroImagePath = heroImageMatch[1];
+        const heroImageFileName = path.basename(heroImagePath, '.png');
+        imageName = heroImageFileName;
+      }
+      
       // 确定主题
       let theme = 'design';
       for (const [key, value] of Object.entries(articleThemes)) {
@@ -323,7 +334,7 @@ async function processBlogPosts() {
       }
       
       // 生成封面图
-      await generateCoverImage(title, slug, theme);
+      await generateCoverImage(title, imageName, theme);
     }
   }
   

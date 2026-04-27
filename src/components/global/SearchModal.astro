@@ -301,8 +301,14 @@
   async function initPagefind() {
     if (pagefind) return pagefind;
     try {
+      // 检查是否在开发模式下
+      if (import.meta.env.DEV) {
+        return null;
+      }
       // 使用动态导入并添加 @vite-ignore 注释，避免 Vite 在开发模式下解析
-      pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+      // 使用字符串模板来避免 Vite 静态分析
+      const pagefindPath = '/pagefind/pagefind.js';
+      pagefind = await import(/* @vite-ignore */ pagefindPath);
       await pagefind.init();
       return pagefind;
     } catch {
