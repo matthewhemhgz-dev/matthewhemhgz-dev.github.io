@@ -145,7 +145,7 @@
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
   font-weight: 600;
-  color: var(--qi-text-muted);
+  color: var(--qi-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--qi-space-md);
@@ -376,8 +376,8 @@
 
 /* = Blockquote = */
 .article-container blockquote {
-  border-left: 4px solid var(--qi-brand-emerald);
-  padding: 1.75rem 1.75rem 1.75rem 2rem;
+  border-left: 6px solid var(--qi-brand-emerald);
+  padding: 2rem 2rem 2rem 2.5rem;
   margin: 2.5rem 0;
   background: var(--qi-brand-emerald-05);
   border-radius: 0 var(--qi-radius-lg) var(--qi-radius-lg) 0;
@@ -387,6 +387,7 @@
   transition:
     transform var(--qi-transition-fast),
     background var(--qi-transition-fast);
+  box-shadow: var(--qi-shadow-sm);
 }
 
 .article-container blockquote:hover {
@@ -676,7 +677,7 @@
 }
 
 :global(.dark) .article-container tr:nth-child(even) td {
-  background: var(--qi-brand-emerald-05);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 :global(.dark) .article-container tr:hover td {

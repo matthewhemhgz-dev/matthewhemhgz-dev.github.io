@@ -102,10 +102,12 @@
 }
 
 :global(.dark) .prose :global(pre) {
-  background: var(--qi-surface-main);
+  background: #2a2621;
   border-color: var(--qi-border-default);
   color: var(--qi-text-primary);
   box-shadow: var(--qi-shadow-md);
+  border-width: 1px;
+  border-style: solid;
 }
 
 :global(.dark) .copy-btn {
