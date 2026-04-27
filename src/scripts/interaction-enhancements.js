@@ -14,26 +14,30 @@ class InteractionEnhancements {
 
   // 初始化按钮点击效果
   initButtonEffects() {
-    const buttons = document.querySelectorAll('button, a');
-    buttons.forEach((button) => {
-      // 避免为已有特殊效果的元素添加重复效果
-      if (!button.classList.contains('no-interaction-effect')) {
-        button.addEventListener('click', this.handleButtonClick.bind(this));
-        button.addEventListener('touchstart', this.handleButtonTouch.bind(this));
+    // 使用事件委托代替单个元素监听
+    document.addEventListener('click', (e) => {
+      const button = e.target.closest('button, a');
+      if (button && !button.classList.contains('no-interaction-effect')) {
+        this.handleButtonClick(e, button);
+      }
+    });
+
+    document.addEventListener('touchstart', (e) => {
+      const button = e.target.closest('button, a');
+      if (button && !button.classList.contains('no-interaction-effect')) {
+        this.handleButtonTouch(e, button);
       }
     });
   }
 
   // 处理按钮点击
-  handleButtonClick(e) {
-    const button = e.currentTarget;
+  handleButtonClick(e, button) {
     this.createButtonRipple(e, button);
     this.createButtonPressEffect(button);
   }
 
   // 处理按钮触摸
-  handleButtonTouch(e) {
-    const button = e.currentTarget;
+  handleButtonTouch(e, button) {
     this.createButtonRipple(e.touches[0], button);
   }
 
@@ -51,6 +55,11 @@ class InteractionEnhancements {
     ripple.style.top = `${y}px`;
 
     button.appendChild(ripple);
+
+    // 使用 requestAnimationFrame 优化动画
+    requestAnimationFrame(() => {
+      ripple.style.opacity = '1';
+    });
 
     // 动画结束后移除涟漪
     setTimeout(() => {
@@ -76,7 +85,8 @@ class InteractionEnhancements {
     let velocity = 0;
     let isScrolling = false;
 
-    const handleScroll = () => {
+    // 使用节流函数优化滚动事件
+    const handleScroll = this.throttle(() => {
       const currentTime = performance.now();
       const currentScrollY = window.scrollY;
       const deltaTime = currentTime - lastScrollTime;
@@ -94,13 +104,16 @@ class InteractionEnhancements {
         isScrolling = true;
         requestAnimationFrame(() => this.applyScrollInertia(velocity));
       }
-    };
+    }, 16);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
   }
 
   // 应用滚动惯性
   applyScrollInertia(initialVelocity) {
+    // 只在速度足够大时应用惯性
+    if (Math.abs(initialVelocity) <= 1) return;
+
     let velocity = initialVelocity * 0.8;
     let position = window.scrollY;
     let isActive = true;
@@ -127,9 +140,7 @@ class InteractionEnhancements {
       }
     };
 
-    if (Math.abs(initialVelocity) > 1) {
-      inertiaLoop();
-    }
+    inertiaLoop();
   }
 
   // 初始化拖拽惯性
@@ -142,6 +153,9 @@ class InteractionEnhancements {
       velocityY = 0;
 
     const handleMouseDown = (e) => {
+      // 避免在按钮和输入元素上触发拖拽
+      if (e.target.closest('button, input, textarea, select, a')) return;
+
       isDragging = true;
       startX = e.clientX;
       startY = e.clientY;
@@ -188,19 +202,8 @@ class InteractionEnhancements {
       }
     };
 
-    // 为可拖拽元素添加事件监听
-    const draggableElements = document.querySelectorAll('.draggable, .scrollable');
-    draggableElements.forEach((element) => {
-      element.addEventListener('mousedown', handleMouseDown);
-    });
-
     // 为整个文档添加拖拽支持
-    document.addEventListener('mousedown', (e) => {
-      // 避免在按钮和输入元素上触发拖拽
-      if (!e.target.closest('button, input, textarea, select, a')) {
-        handleMouseDown(e);
-      }
-    });
+    document.addEventListener('mousedown', handleMouseDown);
   }
 
   // 应用拖拽惯性
@@ -240,6 +243,20 @@ class InteractionEnhancements {
     };
 
     inertiaLoop();
+  }
+
+  // 节流函数
+  throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    }
   }
 }
 

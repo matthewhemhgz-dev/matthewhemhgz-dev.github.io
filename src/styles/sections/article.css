@@ -180,6 +180,14 @@
   background: var(--qi-brand-emerald-04);
 }
 
+.toc-item a.active {
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-06);
+  font-weight: 600;
+  padding-left: var(--qi-space-sm);
+  border-left: 3px solid var(--qi-brand-emerald);
+}
+
 .toc-item--depth-2 a {
   padding-left: 0;
 }
@@ -188,6 +196,14 @@
   padding-left: 16px;
   font-size: var(--qi-text-xs);
   color: var(--qi-text-muted);
+}
+
+.toc-item--depth-3 a.active {
+  padding-left: calc(16px + var(--qi-space-sm));
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-06);
+  font-weight: 600;
+  border-left: 3px solid var(--qi-brand-emerald);
 }
 
 /* === Article Content Styles — Magazine Grade Reading Experience ===

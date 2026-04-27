@@ -51,7 +51,7 @@ const navItems = [
     </label>
     <div id="nav-status" class="sr-only" aria-live="polite"></div>
 
-    <ul id="nav-links" class="nav-links" role="menubar">
+    <ul id="nav-links" class="nav-links" role="menubar" aria-labelledby="nav-toggle" aria-hidden="true">
       {
         navItems.map((item) => (
           <li role="none">
@@ -142,11 +142,15 @@ const navItems = [
 
   const navToggle = document.getElementById('nav-toggle');
   const navStatus = document.getElementById('nav-status');
+  const navLinks = document.getElementById('nav-links');
   if (navToggle) {
     navToggle.addEventListener('change', () => {
       const isOpen = navToggle.checked;
       const isEn = document.documentElement.lang.startsWith('en');
       navToggle.setAttribute('aria-expanded', String(isOpen));
+      if (navLinks) {
+        navLinks.setAttribute('aria-hidden', String(!isOpen));
+      }
       if (navStatus) {
         navStatus.textContent = isOpen
           ? isEn
@@ -171,9 +175,13 @@ const navItems = [
     const closeBtn = document.querySelector('.nav-close-btn');
     closeBtn?.addEventListener('click', () => {
       const navToggle = document.getElementById('nav-toggle');
+      const navLinks = document.getElementById('nav-links');
       if (navToggle) {
         navToggle.checked = false;
         navToggle.setAttribute('aria-expanded', 'false');
+        if (navLinks) {
+          navLinks.setAttribute('aria-hidden', 'true');
+        }
         if (navStatus) {
           navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
         }
@@ -200,6 +208,7 @@ const navItems = [
           if (navToggle) {
             navToggle.checked = false;
             navToggle.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
             if (navStatus) {
               navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
             }

@@ -153,6 +153,39 @@ a.cta-link:hover .cta-value {
   color: var(--qi-brand-emerald-dark);
 }
 
+.cta-subtitle {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-xl);
+  font-weight: 700;
+  color: var(--qi-text-primary);
+  margin-top: var(--qi-space-lg);
+  margin-bottom: var(--qi-space-md);
+}
+
+.cta-cooperation {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--qi-space-xl) 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--qi-space-md);
+}
+
+.cta-cooperation li {
+  padding: var(--qi-space-md);
+  background: var(--qi-base-02);
+  border: 1px solid var(--qi-base-06);
+  border-radius: var(--qi-radius-md);
+  font-size: var(--qi-text-sm);
+  line-height: 1.5;
+  color: var(--qi-text-secondary);
+}
+
+.dark .cta-cooperation li {
+  background: var(--qi-ink-light);
+  border-color: var(--qi-border-strong);
+}
+
 .cta-btn {
   display: inline-flex;
   align-items: center;
@@ -230,6 +263,14 @@ a.cta-link:hover .cta-value {
   .cta-btn {
     padding: var(--qi-space-sm) var(--qi-space-xl);
     font-size: var(--qi-text-xs);
+  }
+
+  .cta-cooperation {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-subtitle {
+    font-size: var(--qi-text-lg);
   }
 
   .about-prose p {

@@ -3,6 +3,83 @@
   padding-bottom: var(--qi-space-xl);
 }
 
+/* === Filter Section === */
+.filter-section {
+  padding: var(--qi-space-2xl) 0;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-xl);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-md);
+}
+
+.filter-title {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-lg);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin: 0;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qi-space-sm);
+}
+
+.filter-btn {
+  display: inline-block;
+  padding: var(--qi-space-sm) var(--qi-space-md);
+  background: var(--qi-base-04);
+  color: var(--qi-text-secondary);
+  border-radius: var(--qi-radius-md);
+  font-size: var(--qi-text-sm);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--qi-base-06);
+}
+
+.filter-btn:hover {
+  background: var(--qi-base-06);
+  color: var(--qi-text-primary);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-bg-base);
+  border-color: var(--qi-brand-emerald);
+}
+
+/* === Dark Mode === */
+:global(.dark) .filter-btn {
+  background: var(--qi-ink-light);
+  color: var(--qi-on-surface-secondary);
+  border-color: var(--qi-border-strong);
+}
+
+:global(.dark) .filter-btn:hover {
+  background: var(--qi-ink);
+  color: var(--qi-on-surface);
+}
+
+:global(.dark) .filter-btn.active {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-bg-base);
+  border-color: var(--qi-brand-emerald);
+}
+
+:global(.dark) .filter-title {
+  color: var(--qi-on-surface);
+}
+
 .blog-list-title {
   font-family: var(--qi-font-serif);
   font-size: var(--qi-text-xl);
@@ -132,6 +209,23 @@
 
 /* === Responsive === */
 @media (max-width: 768px) {
+  .filter-section {
+    padding: var(--qi-space-xl) 0;
+  }
+
+  .filter-buttons {
+    gap: var(--qi-space-xs);
+  }
+
+  .filter-btn {
+    padding: var(--qi-space-xs) var(--qi-space-sm);
+    font-size: var(--qi-text-xs);
+  }
+
+  .filter-title {
+    font-size: var(--qi-text-base);
+  }
+
   .blog-grid {
     grid-template-columns: 1fr;
     gap: var(--qi-space-lg);

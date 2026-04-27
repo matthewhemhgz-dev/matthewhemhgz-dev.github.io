@@ -377,8 +377,57 @@ const articleJsonLd = {
       }
     });
 
-    // 分享功能脚本
+    // 目录导航功能
     document.addEventListener('astro:page-load', () => {
+      const toc = document.querySelector('.toc');
+      const tocLinks = document.querySelectorAll('.toc-item a');
+      const headings = document.querySelectorAll('h2, h3');
+
+      if (toc && tocLinks.length > 0) {
+        // 滚动时高亮当前章节
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                tocLinks.forEach((link) => {
+                  link.classList.remove('active');
+                  if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                  }
+                });
+              }
+            });
+          },
+          {
+            rootMargin: '-100px 0px -70% 0px',
+            threshold: 0.1
+          }
+        );
+
+        headings.forEach((heading) => {
+          observer.observe(heading);
+        });
+
+        // 平滑滚动到锚点
+        tocLinks.forEach((link) => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href')?.substring(1);
+            if (targetId) {
+              const target = document.getElementById(targetId);
+              if (target) {
+                window.scrollTo({
+                  top: target.offsetTop - 100,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          });
+        });
+      }
+
+      // 分享功能脚本
       // 微信分享二维码显示/隐藏
       const wechatBtn = document.querySelector('.article-share-wechat');
       if (wechatBtn) {

@@ -20,24 +20,54 @@ const tagCounts: Record<string, number> = allPosts
     {} as Record<string, number>,
   );
 
-// Sort tags by count (descending) and then alphabetically
-const sortedTags = Object.entries(tagCounts)
-  .sort(([tagA, countA], [tagB, countB]) => {
-    if (countB !== countA) return countB - countA;
-    return tagA.localeCompare(tagB);
-  })
-  .map(([tag, count]) => ({ tag, count }));
+// Tag categories
+const tagCategories = {
+  '知识管理': ['知识管理', 'PKM', 'Obsidian', 'Zettelkasten', '笔记方法', '知识图谱', '信息管理'],
+  'AI 技术': ['AI', '大模型', 'LLM', 'Agent', '人工智能', '机器学习', '深度学习'],
+  '前端开发': ['前端', 'JavaScript', 'CSS', 'Astro', 'React', 'TypeScript', 'Web开发'],
+  '项目管理': ['项目管理', 'PMP', '敏捷', 'Scrum', '看板', '时间管理', '团队协作'],
+  '工具推荐': ['工具', '效率工具', '生产力', '软件推荐', '工作流', '自动化'],
+  '其他': []
+};
+
+// Organize tags into categories
+const organizedTags = Object.entries(tagCategories).reduce((acc, [category, categoryTags]) => {
+  const tags = Object.entries(tagCounts)
+    .filter(([tag]) => categoryTags.includes(tag))
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+  
+  if (tags.length > 0) {
+    acc[category] = tags;
+  }
+  return acc;
+}, {} as Record<string, Array<{ tag: string; count: number }>>);
+
+// Add remaining tags to '其他' category
+const categorizedTags = new Set(Object.values(tagCategories).flat());
+const remainingTags = Object.entries(tagCounts)
+  .filter(([tag]) => !categorizedTags.has(tag))
+  .map(([tag, count]) => ({ tag, count }))
+  .sort((a, b) => b.count - a.count);
+
+if (remainingTags.length > 0) {
+  organizedTags['其他'] = remainingTags;
+}
 
 // Calculate min/max counts for size scaling
-const counts = sortedTags.map((item) => item.count);
-const minCount = Math.min(...counts);
-const maxCount = Math.max(...counts);
+const allCounts = Object.values(organizedTags).flat().map(item => item.count);
+const minCount = Math.min(...allCounts);
+const maxCount = Math.max(...allCounts);
 
 // Function to calculate font size based on count
 function getFontSize(count: number) {
   if (maxCount === minCount) return 1;
   return 0.8 + ((count - minCount) / (maxCount - minCount)) * 0.6; // Range from 0.8 to 1.4
 }
+
+// Get current filter from URL
+const url = new URL(Astro.request.url);
+const selectedCategory = url.searchParams.get('category') || '';
 ---
 
 <BaseLayout
@@ -54,23 +84,51 @@ function getFontSize(count: number) {
 
     <Divider />
 
+    <!-- Category Filter -->
+    <section class="filter-section" data-reveal>
+      <div class="filter-container">
+        <h3 class="filter-title">标签分类</h3>
+        <div class="filter-buttons">
+          <a href="/tags/" class={`filter-btn ${!selectedCategory ? 'active' : ''}`}>全部</a>
+          {Object.keys(organizedTags).map(category => (
+            <a 
+              key={category} 
+              href={`/tags/?category=${encodeURIComponent(category)}`} 
+              class={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
+            >
+              {category}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Tag Cloud Section -->
     <section class="about-section" data-reveal>
-      <SectionHeader label="TAG CLOUD" title="标签云" />
-      <div class="tags-cloud">
-        {
-          sortedTags.map(({ tag, count }) => (
-            <a
-              href={`/tags/${tag}/`}
-              class="tag-link"
-              style={`font-size: ${getFontSize(count)}em;`}
-              title={`${count} 篇文章`}
-            >
-              #{tag} <span class="tag-count">({count})</span>
-            </a>
-          ))
-        }
-      </div>
+      <SectionHeader label="TAG CLOUD" title={selectedCategory ? `${selectedCategory}标签` : "标签云"} />
+      {Object.entries(organizedTags).map(([category, tags]) => {
+        if (selectedCategory && selectedCategory !== category) return null;
+        return (
+          <div key={category} class="tag-category">
+            <h3 class="tag-category-title">{category}</h3>
+            <div class="tags-cloud">
+              {
+                tags.map(({ tag, count }) => (
+                  <a
+                    key={tag}
+                    href={`/tags/${tag}/`}
+                    class="tag-link"
+                    style={`font-size: ${getFontSize(count)}em;`}
+                    title={`${count} 篇文章`}
+                  >
+                    #{tag} <span class="tag-count">({count})</span>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        );
+      })}
     </section>
 
     <Divider />

@@ -102,10 +102,11 @@ const socialLinks =
 const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
 ---
 
-<footer id="contact" class="footer">
+<footer id="contact" class="footer" aria-labelledby="footer-heading">
   <div class="footer-inner container">
     <!-- Brand -->
     <div class="footer-brand">
+      <h2 id="footer-heading" class="sr-only">{labels.title}</h2>
       <BrandLogo variant="icon" size="md" />
       <p class="footer-tagline">{tagline}</p>
     </div>
@@ -119,12 +120,12 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
     <div class="footer-links">
       <div class="footer-contact">
         <h3 class="footer-heading">{labels.contact}</h3>
-        <ul class="contact-list">
-          <li class="contact-item">
+        <ul class="contact-list" role="list">
+          <li class="contact-item" role="listitem">
             <span class="contact-label">{labels.email}</span>
             <a href={`mailto:${email}`} class="contact-value">{email}</a>
           </li>
-          <li class="contact-item">
+          <li class="contact-item" role="listitem">
             <span class="contact-label">{labels.wechat}</span>
             <span class="contact-value">{wechat}</span>
           </li>
@@ -148,7 +149,7 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
                     title={s.name}
                     aria-label={`${s.name}${labels.qrAria}`}
                   >
-                    <span class="social-icon" set:html={s.icon} />
+                    <span class="social-icon" set:html={s.icon} aria-hidden="true" />
                     <span class="social-name">{s.name}</span>
                   </button>
                 ) : (
@@ -160,7 +161,7 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
                     title={s.name}
                     aria-label={`${s.name}${labels.externalAria}`}
                   >
-                    <span class="social-icon" set:html={s.icon} />
+                    <span class="social-icon" set:html={s.icon} aria-hidden="true" />
                     <span class="social-name">{s.name}</span>
                   </a>
                 )}

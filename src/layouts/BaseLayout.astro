@@ -58,12 +58,6 @@ const canonicalURL = new URL(
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta
-      name="keywords"
-      content={isEnglish
-        ? 'Qi-Lab, technology, design, creativity, development, knowledge management, AI, Astro'
-        : '祈研所, 技术, 设计, 创意, 开发, 知识管理, AI, Astro'}
-    />
     <meta name="author" content={isEnglish ? 'Qi-Lab' : '祈研所'} />
     <meta name="robots" content="index, follow" />
     <meta
@@ -71,6 +65,8 @@ const canonicalURL = new URL(
       content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     />
     <meta name="bingbot" content="index, follow" />
+    <meta name="google-site-verification" content="YOUR_GOOGLE_SITE_VERIFICATION_CODE" />
+    <meta name="msvalidate.01" content="YOUR_BING_SITE_VERIFICATION_CODE" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={isEnglish ? 'en-US' : 'zh-CN'} href={canonicalURL.href} />
     {
@@ -84,6 +80,7 @@ const canonicalURL = new URL(
       )
     }
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="rss" type="application/rss+xml" href="/rss.xml" title={title} />
 
     <!-- Favicon (VI Logo) -->
     <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
@@ -187,10 +184,39 @@ const canonicalURL = new URL(
             datePublished: Astro.props.pubDate || new Date().toISOString(),
             dateModified: Astro.props.modDate || new Date().toISOString(),
             inLanguage: isEnglish ? 'en-US' : 'zh-CN',
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': canonicalURL.href,
+            },
           })}
         />
       )
     }
+
+    <!-- Breadcrumb List structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: isEnglish ? 'Home' : '首页',
+            item: Astro.site?.toString() || 'https://matthewhemhgz-dev.github.io',
+          },
+          ...(Astro.url.pathname !== '/' && Astro.url.pathname !== '/en' ? [
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: isEnglish ? 'Blog' : '博客',
+              item: new URL(isEnglish ? '/en/blog' : '/blog', Astro.site).toString(),
+            },
+          ] : []),
+        ],
+      })}
+    />
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNGRXTNXF5"></script>

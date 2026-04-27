@@ -10,6 +10,24 @@ import '../../styles/pages/blog.css';
 const allPosts = (
   await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh')
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get all categories
+const categories = [...new Set(allPosts.map(post => post.data.category))];
+
+// Get all tags
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+
+// Get current filter from URL
+const url = new URL(Astro.request.url);
+const selectedCategory = url.searchParams.get('category') || '';
+const selectedTag = url.searchParams.get('tag') || '';
+
+// Filter posts
+const filteredPosts = allPosts.filter(post => {
+  const matchesCategory = !selectedCategory || post.data.category === selectedCategory;
+  const matchesTag = !selectedTag || (post.data.tags && post.data.tags.includes(selectedTag));
+  return matchesCategory && matchesTag;
+});
 ---
 
 <BaseLayout title="博客 — 祈研所 Qi-Lab" description="知识管理 × 项目管理 × IT/AI 技巧 × 八卦前沿">
@@ -23,12 +41,51 @@ const allPosts = (
 
     <Divider />
 
+    <!-- Filter Section -->
+    <section class="filter-section" data-reveal>
+      <div class="filter-container">
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <h3 class="filter-title">分类</h3>
+          <div class="filter-buttons">
+            <a href="/blog/" class={`filter-btn ${!selectedCategory ? 'active' : ''}`}>全部</a>
+            {categories.map(category => (
+              <a 
+                key={category} 
+                href={`/blog/?category=${encodeURIComponent(category)}${selectedTag ? `&tag=${encodeURIComponent(selectedTag)}` : ''}`} 
+                class={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
+              >
+                {category}
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Tag Filter -->
+        <div class="filter-group">
+          <h3 class="filter-title">标签</h3>
+          <div class="filter-buttons">
+            <a href="/blog/" class={`filter-btn ${!selectedTag ? 'active' : ''}`}>全部</a>
+            {allTags.map(tag => (
+              <a 
+                key={tag} 
+                href={`/blog/?tag=${encodeURIComponent(tag)}${selectedCategory ? `&category=${encodeURIComponent(selectedCategory)}` : ''}`} 
+                class={`filter-btn ${selectedTag === tag ? 'active' : ''}`}
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Blog List -->
     <section class="about-section" data-reveal>
-      <SectionHeader label="// ARTICLES" title="所有文章" />
+      <SectionHeader label="// ARTICLES" title={selectedCategory || selectedTag ? `筛选结果` : `所有文章`} />
       <section class="blog-grid" aria-labelledby="blog-title">
         {
-          allPosts.map((post) => (
+          filteredPosts.map((post) => (
             <a href={`/blog/${post.id.replace('zh/', '')}/`} class="blog-card" data-reveal>
               {post.data.heroImage && (
                 <div class="blog-card-image">

@@ -13,21 +13,29 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: var(--qi-radius-full);
   transition:
-    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color var(--qi-transition) var(--qi-spring-soft),
+    border-color var(--qi-transition) var(--qi-spring-soft),
+    border-radius var(--qi-transition) var(--qi-spring-soft),
+    top var(--qi-transition) var(--qi-spring-soft),
+    padding var(--qi-transition) var(--qi-spring-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-soft),
+    transform var(--qi-transition) var(--qi-spring-soft);
   padding: var(--qi-space-md) var(--qi-space-xl);
   border: 1px solid var(--qi-base-06);
   box-shadow: 0 4px 24px var(--qi-base-06);
   max-width: calc(100% - 32px);
+  transform-origin: center top;
 }
 
 .nav-wrapper.scrolled {
+  top: 8px;
+  padding: var(--qi-space-sm) var(--qi-space-lg);
   border-color: var(--qi-base-08);
-  box-shadow: var(--qi-shadow-sm);
+  box-shadow: var(--qi-shadow-md);
+  transform: translateX(-50%) scale(0.98);
+  background: color-mix(in srgb, var(--qi-bg-base) 92%, transparent);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
 }
 
 .nav {
@@ -86,15 +94,33 @@
   text-decoration: none;
   border-radius: var(--qi-radius-md);
   transition:
-    color var(--qi-transition-fast),
-    background-color var(--qi-transition-fast);
+    color var(--qi-transition) var(--qi-spring-soft),
+    background-color var(--qi-transition) var(--qi-spring-soft),
+    transform var(--qi-transition) var(--qi-spring-soft);
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 153, 0.1), transparent);
+  transition: left var(--qi-transition-base) var(--qi-spring-soft);
 }
 
 .nav-link:hover {
   color: var(--qi-text-primary);
   background-color: var(--qi-base-04);
+  transform: translateY(-2px);
+}
+
+.nav-link:hover::before {
+  left: 100%;
 }
 
 .nav-link:focus-visible {
@@ -102,12 +128,15 @@
   background-color: var(--qi-base-04);
   outline: 2px solid var(--qi-brand-emerald);
   outline-offset: 2px;
+  transform: translateY(-2px);
 }
 
 .nav-link.active {
   color: var(--qi-brand-emerald-dark);
   background-color: var(--qi-brand-emerald-10);
   font-weight: 600;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px var(--qi-brand-emerald-08);
 }
 
 .nav-link.active::after {
@@ -120,6 +149,11 @@
   height: 2px;
   background: var(--qi-brand-emerald-dark);
   border-radius: var(--qi-radius-full);
+  transition: width var(--qi-transition) var(--qi-spring-soft);
+}
+
+.nav-link.active:hover::after {
+  width: 24px;
 }
 
 /* Search button in nav */
@@ -137,22 +171,48 @@
   border-radius: var(--qi-radius-md);
   cursor: pointer;
   transition:
-    color var(--qi-transition-fast),
-    background-color var(--qi-transition-fast),
-    border-color var(--qi-transition-fast);
+    color var(--qi-transition) var(--qi-spring-soft),
+    background-color var(--qi-transition) var(--qi-spring-soft),
+    border-color var(--qi-transition) var(--qi-spring-soft),
+    transform var(--qi-transition) var(--qi-spring-soft),
+    box-shadow var(--qi-transition) var(--qi-spring-soft);
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-search-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(74, 222, 153, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--qi-transition-base), height var(--qi-transition-base);
 }
 
 .nav-search-btn:hover {
   color: var(--qi-text-primary);
   background-color: var(--qi-base-04);
   border-color: var(--qi-base-08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--qi-base-08);
+}
+
+.nav-search-btn:active::before {
+  width: 100px;
+  height: 100px;
 }
 
 .nav-search-btn:focus-visible {
   outline: 2px solid var(--qi-brand-emerald);
   outline-offset: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--qi-brand-emerald-08);
 }
 
 .nav-search-label {

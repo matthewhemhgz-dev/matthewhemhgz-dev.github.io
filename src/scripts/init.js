@@ -5,16 +5,39 @@ import {
   initBackToTop,
   cleanupScrollHandler,
 } from './scroll-handler.js';
-import { InteractionEnhancements } from './interaction-enhancements.js';
 import { effectsManager } from './effects-manager.js';
-import { EnvironmentAware } from './environment-aware.js';
-import { MultiModalFeedback } from './multi-modal-feedback.js';
 
 let initialized = false;
 let particles = null;
 let envAware = null;
 let mmFeedback = null;
+let interactionEnhancements = null;
 const cleanupFns = [];
+
+// 节流函数
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
+
+// 防抖函数
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+    const args = arguments;
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  }
+}
 
 function initQiLab() {
   if (initialized) return;
@@ -22,17 +45,18 @@ function initQiLab() {
 
   const isHomePage = location.pathname === '/' || location.pathname === '';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth < 768;
 
   // 初始化动效管理器
   effectsManager.initialize();
 
-  // 1. 粒子系统（仅首页启用）
-  if (isHomePage && !prefersReducedMotion) {
+  // 1. 粒子系统（仅首页启用，非移动设备）
+  if (isHomePage && !prefersReducedMotion && !isMobile) {
     import('./particles.js').then(({ MinimalParticles }) => {
       const screenWidth = window.innerWidth;
       const cs = getComputedStyle(document.documentElement);
-      const particleCount =
-        screenWidth < 768 ? 40 : screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
+      const particleCount = 
+        screenWidth < 1440 ? 60 : screenWidth < 2560 ? 80 : 100;
       const particleOptions = {
         count: particleCount,
         colors: [
@@ -42,13 +66,13 @@ function initQiLab() {
           cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
         ],
         maxSize: 4,
-        speed: 0.4,
-        linkDistance: 160,
-        linkOpacity: 0.12,
-        mouseRadius: 200,
-        mouseForce: 0.04,
-        glowSize: 12,
-        glowOpacity: 0.25,
+        speed: 0.3,
+        linkDistance: 140,
+        linkOpacity: 0.1,
+        mouseRadius: 150,
+        mouseForce: 0.03,
+        glowSize: 10,
+        glowOpacity: 0.2,
       };
 
       if (particles && particles.canvas) {
@@ -79,13 +103,13 @@ function initQiLab() {
     });
   }
 
-  // 2. 鼠标追踪光效（仅首页启用）
-  if (isHomePage && !prefersReducedMotion) {
+  // 2. 鼠标追踪光效（仅首页启用，非移动设备）
+  if (isHomePage && !prefersReducedMotion && !isMobile) {
     import('./cursor-glow.js').then(({ CursorGlow }) => {
       const cs = getComputedStyle(document.documentElement);
       const cursorGlow = new CursorGlow({
-        size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 350,
-        speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.06,
+        size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 300,
+        speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.05,
         blend: 'screen',
       });
       // 注册鼠标光效到动效管理器
@@ -98,17 +122,17 @@ function initQiLab() {
     });
   }
 
-  // 3. 背景艺术系统（非首页启用）
-  if (!isHomePage && !prefersReducedMotion) {
+  // 3. 背景艺术系统（非首页启用，非移动设备）
+  if (!isHomePage && !prefersReducedMotion && !isMobile) {
     import('./background-art.js').then(({ BackgroundArt }) => {
       const cs = getComputedStyle(document.documentElement);
       const screenWidth = window.innerWidth;
-      const artType = screenWidth < 768 ? 'generative' : 'fluid';
+      const artType = screenWidth < 1440 ? 'generative' : 'fluid';
 
       const backgroundArt = new BackgroundArt('background-art-canvas', {
         type: artType,
-        particleCount: screenWidth < 768 ? 50 : 100,
-        speed: 0.3,
+        particleCount: screenWidth < 1440 ? 40 : 80,
+        speed: 0.2,
         colors: {
           emerald: cs.getPropertyValue('--qi-brand-emerald').trim(),
           amber: cs.getPropertyValue('--qi-brand-amber').trim(),
@@ -122,116 +146,129 @@ function initQiLab() {
     });
   }
 
-  // 2.5 卡片 3D 倾斜 + 光泽效果
-  import('./card-tilt.js').then(({ CardTilt }) => {
-    const cardTilt = new CardTilt(
-      '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
-    );
-    // 注册卡片倾斜效果到动效管理器
-    effectsManager.registerEffect('card-tilt', cardTilt, {
-      group: 'interaction',
-      priority: 15,
-      active: true,
+  // 4. 卡片 3D 倾斜 + 光泽效果（非移动设备）
+  if (!isMobile) {
+    import('./card-tilt.js').then(({ CardTilt }) => {
+      const cardTilt = new CardTilt(
+        '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
+      );
+      // 注册卡片倾斜效果到动效管理器
+      effectsManager.registerEffect('card-tilt', cardTilt, {
+        group: 'interaction',
+        priority: 15,
+        active: true,
+      });
+      cleanupFns.push(() => cardTilt.destroy());
     });
-    cleanupFns.push(() => cardTilt.destroy());
-  });
+  }
 
-  // 3. 滚动视差光影
-  if (!prefersReducedMotion) {
+  // 5. 滚动视差光影（非移动设备）
+  if (!prefersReducedMotion && !isMobile) {
     import('./scroll-parallax.js').then(({ initScrollParallax, cleanupScrollParallax }) => {
       initScrollParallax();
       cleanupFns.push(cleanupScrollParallax);
     });
   }
 
-  // 4. 滚动显示动画
+  // 6. 滚动显示动画
   initScrollReveal();
 
-  // 5. 滚动处理（导航、粒子暂停）
+  // 7. 滚动处理（导航、粒子暂停）
   initScrollHandler(particles);
   cleanupFns.push(cleanupScrollHandler);
 
-  // 6. 回到顶部
+  // 8. 回到顶部
   initBackToTop();
 
-  // 7. 交互增强效果
-  if (!prefersReducedMotion) {
-    const interactionEnhancements = new InteractionEnhancements();
-    // 注册交互增强效果到动效管理器
-    effectsManager.registerEffect('interaction-enhancements', interactionEnhancements, {
-      group: 'interaction',
-      priority: 5,
-      active: true,
-    });
-    cleanupFns.push(() => {
-      // 清理交互增强效果的相关资源
-    });
-  }
-
-  // 8. 物理环境与多模态感知系统 (V2 Iteration)
-  if (!envAware) {
-    envAware = new EnvironmentAware();
-    envAware.startUpdates();
-
-    // 热力学闭环: 将能量场持续注入运动学引擎
-    import('./kinematics-engine.js').then(({ kinematics }) => {
-      kinematics.setGlobalEnergy(envAware.globalEnergy);
-      envAware.onUpdate(() => {
-        kinematics.setGlobalEnergy(envAware.globalEnergy);
+  // 9. 交互增强效果（非移动设备）
+  if (!prefersReducedMotion && !isMobile) {
+    import('./interaction-enhancements.js').then(({ InteractionEnhancements }) => {
+      interactionEnhancements = new InteractionEnhancements();
+      // 注册交互增强效果到动效管理器
+      effectsManager.registerEffect('interaction-enhancements', interactionEnhancements, {
+        group: 'interaction',
+        priority: 5,
+        active: true,
+      });
+      cleanupFns.push(() => {
+        // 清理交互增强效果的相关资源
       });
     });
-
-    cleanupFns.push(() => {
-      envAware.stopUpdates();
-      envAware = null;
-    });
   }
 
-  if (!mmFeedback && !prefersReducedMotion) {
-    mmFeedback = new MultiModalFeedback();
+  // 10. 物理环境与多模态感知系统 (仅非移动设备)
+  if (!isMobile) {
+    import('./environment-aware.js').then(({ EnvironmentAware }) => {
+      if (!envAware) {
+        envAware = new EnvironmentAware();
+        envAware.startUpdates();
 
-    // 初始化时开启音频和震动反馈 (需用户交互后生效)
-    mmFeedback.setEnabled(['audio', 'haptic'], true);
-    document.addEventListener(
-      'click',
-      () => {
-        // Browsers require a gesture to start AudioContext
-        if (mmFeedback.audioContext && mmFeedback.audioContext.state === 'suspended') {
-          mmFeedback.audioContext.resume();
-        }
-      },
-      { once: true },
-    );
-
-    // 绑定所有的可交互元素，进行物理与声学映射
-    const targetSelector = 'a, button, .bento-card, .float-card, .testimonial-card, .platform-card, .toolbox-category, h1, h2, h3, .article-tag, .search-result-item';
-
-    const interactiveElements = document.querySelectorAll(targetSelector);
-    mmFeedback.addFeedbackToElements(Array.from(interactiveElements));
-
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (mutation.addedNodes.length) {
-          mutation.addedNodes.forEach(node => {
-            if (node.nodeType === Node.ELEMENT_NODE) {
-              const elements = node.querySelectorAll(targetSelector);
-              if (node.matches && node.matches(targetSelector)) mmFeedback.addFeedbackToElement(node);
-              elements.forEach(el => mmFeedback.addFeedbackToElement(el));
-            }
+        // 热力学闭环: 将能量场持续注入运动学引擎
+        import('./kinematics-engine.js').then(({ kinematics }) => {
+          kinematics.setGlobalEnergy(envAware.globalEnergy);
+          envAware.onUpdate(() => {
+            kinematics.setGlobalEnergy(envAware.globalEnergy);
           });
-        }
+        });
+
+        cleanupFns.push(() => {
+          envAware.stopUpdates();
+          envAware = null;
+        });
       }
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    import('./multi-modal-feedback.js').then(({ MultiModalFeedback }) => {
+      if (!mmFeedback && !prefersReducedMotion) {
+        mmFeedback = new MultiModalFeedback();
 
-    cleanupFns.push(() => {
-      observer.disconnect();
-      mmFeedback.destroy();
-      mmFeedback = null;
+        // 初始化时开启音频和震动反馈 (需用户交互后生效)
+        mmFeedback.setEnabled(['audio', 'haptic'], true);
+        document.addEventListener(
+          'click',
+          () => {
+            // Browsers require a gesture to start AudioContext
+            if (mmFeedback.audioContext && mmFeedback.audioContext.state === 'suspended') {
+              mmFeedback.audioContext.resume();
+            }
+          },
+          { once: true },
+        );
+
+        // 绑定所有的可交互元素，进行物理与声学映射
+        const targetSelector = 'a, button, .bento-card, .float-card, .testimonial-card, .platform-card, .toolbox-category, h1, h2, h3, .article-tag, .search-result-item';
+
+        const interactiveElements = document.querySelectorAll(targetSelector);
+        mmFeedback.addFeedbackToElements(Array.from(interactiveElements));
+
+        const observer = new MutationObserver((mutations) => {
+          for (const mutation of mutations) {
+            if (mutation.addedNodes.length) {
+              mutation.addedNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                  const elements = node.querySelectorAll(targetSelector);
+                  if (node.matches && node.matches(targetSelector)) mmFeedback.addFeedbackToElement(node);
+                  elements.forEach(el => mmFeedback.addFeedbackToElement(el));
+                }
+              });
+            }
+          }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        cleanupFns.push(() => {
+          observer.disconnect();
+          mmFeedback.destroy();
+          mmFeedback = null;
+        });
+      }
     });
   }
 }
+
+// 使用防抖处理页面加载事件
+const debouncedInit = debounce(initQiLab, 100);
 
 document.addEventListener('astro:page-load', () => {
   // 清理所有旧的事件监听器和资源
@@ -244,5 +281,10 @@ document.addEventListener('astro:page-load', () => {
   // 重置状态，重新初始化
   initialized = false;
   particles = null;
-  initQiLab();
+  envAware = null;
+  mmFeedback = null;
+  interactionEnhancements = null;
+  
+  // 执行初始化
+  debouncedInit();
 });
