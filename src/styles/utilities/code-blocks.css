@@ -16,7 +16,7 @@
 
 /* Code blocks */
 .prose :global(pre) {
-  background: var(--qi-surface-main);
+  background: #e7e5e4;
   color: var(--qi-text-primary);
   padding: var(--qi-space-xl);
   border-radius: var(--qi-radius-lg);
