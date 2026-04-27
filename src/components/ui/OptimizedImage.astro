@@ -49,7 +49,7 @@ const isPublicImage = src.startsWith('/') || src.includes('public/') || src.incl
     />
   ) : isPublicImage ? (
     <img
-      src={src.replace('public/', '/').replace('public\\', '/')}
+      src={src.replace('public/', '/').replace('public\\', '/').replace(/\\/g, '/')}
       alt={alt}
       width={width}
       height={height}

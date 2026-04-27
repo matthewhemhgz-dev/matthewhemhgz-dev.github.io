@@ -38,6 +38,7 @@
     "astro": "^6.1.6",
     "astro-pagefind": "^1.8.6",
     "pagefind": "^1.5.2",
+    "serialize-javascript": "^7.0.5",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
@@ -46,7 +47,7 @@
     "@eslint/js": "^9.0.0",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.2.2",
-    "@vite-pwa/astro": "^0.3.1",
+    "@vite-pwa/astro": "^1.2.0",
     "eslint": "^9.0.0",
     "eslint-plugin-astro": "^1.0.0",
     "happy-dom": "^20.9.0",
@@ -58,5 +59,10 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.0.0",
     "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "@rollup/plugin-terser": {
+      "serialize-javascript": "^7.0.5"
+    }
   }
 }
