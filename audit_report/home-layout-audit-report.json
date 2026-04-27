@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-04-26T16:47:07.217Z",
+  "viewports": [
+    {
+      "name": "Desktop (1920x1080)",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "Tablet (768x1024)",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "Mobile (375x667)",
+      "width": 375,
+      "height": 667
+    }
+  ],
+  "issues": [],
+  "summary": {
+    "totalIssues": 0,
+    "highSeverity": 0,
+    "mediumSeverity": 0,
+    "lowSeverity": 0
+  }
+}
