@@ -70,7 +70,7 @@ function initQiLab() {
       const screenWidth = window.innerWidth;
       const cs = getComputedStyle(document.documentElement);
       const particleCount = 
-        screenWidth < 1440 ? 60 : screenWidth < 2560 ? 80 : 100;
+        screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
       const particleOptions = {
         count: particleCount,
         colors: [
