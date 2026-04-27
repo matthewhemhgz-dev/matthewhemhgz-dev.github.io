@@ -210,10 +210,18 @@ const navItems = [
 
     // Scroll animation for navigation
     const navWrapper = document.querySelector('.nav-wrapper');
+    const navToggle = document.getElementById('nav-toggle');
     let lastScrollY = window.scrollY;
     let ticking = false;
 
     function updateNav() {
+      // 检查导航菜单是否打开，如果打开则不执行滚动动画
+      const isMenuOpen = navToggle?.checked || false;
+      if (isMenuOpen) {
+        ticking = false;
+        return;
+      }
+
       const scrollY = window.scrollY;
       
       if (scrollY > 100) {
