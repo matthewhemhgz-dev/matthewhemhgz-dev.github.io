@@ -5,7 +5,7 @@ pubDate: 2026-04-26
 category: 'Knowledge Management'
 image: /images/blog/knowledge-graph-visualization-en.svg
 tags: ['Knowledge Graph', 'Visualization', 'Knowledge Management']
-heroImage: '/images/blog/knowledge-graph-visualization.png'
+heroImage: '/images/blog/knowledge-graph-visualization.svg'
 author: '祈研所'
 draft: false
 lang: en

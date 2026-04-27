@@ -5,7 +5,7 @@ pubDate: 2026-04-25
 category: '知识管理'
 image: /images/blog/zettelkasten-practical-guide-zh.svg
 tags: ['卡片盒笔记法', '写作', '知识管理']
-heroImage: '/images/blog/zettelkasten-practical.png'
+heroImage: '/images/blog/zettelkasten-practical-guide.svg'
 author: '祈研所'
 draft: false
 lang: zh

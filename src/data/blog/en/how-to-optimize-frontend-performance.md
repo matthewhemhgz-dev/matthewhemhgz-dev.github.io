@@ -5,7 +5,7 @@ pubDate: 2026-04-29
 category: 'Technical Architecture'
 image: /images/blog/how-to-optimize-frontend-performance-en.svg
 tags: ['Performance Optimization', 'Frontend Development', 'Web Performance']
-heroImage: '/images/blog/frontend-performance-optimization.png'
+heroImage: '/images/blog/how-to-optimize-frontend-performance.svg'
 author: '祈研所'
 draft: false
 lang: en

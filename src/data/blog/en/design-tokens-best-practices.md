@@ -5,7 +5,7 @@ pubDate: 2026-05-01
 category: 'Design System'
 image: /images/blog/design-tokens-best-practices-en.svg
 tags: ['Design Tokens', 'Design System', 'Best Practices']
-heroImage: '/images/blog/design-tokens-best-practices.png'
+heroImage: '/images/blog/design-tokens-best-practices.svg'
 author: '祈研所'
 draft: false
 lang: en

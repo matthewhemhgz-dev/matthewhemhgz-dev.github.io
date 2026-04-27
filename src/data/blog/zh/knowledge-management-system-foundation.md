@@ -5,7 +5,7 @@ pubDate: 2026-05-01
 category: '知识管理'
 image: /images/blog/knowledge-management-system-foundation-zh.svg
 tags: ['知识管理', '个人系统', '第二大脑', '知识体系']
-heroImage: '/images/blog/knowledge-management-foundation.svg'
+heroImage: '/images/blog/knowledge-management-system-foundation.svg'
 author: '祈研所'
 draft: false
 lang: zh

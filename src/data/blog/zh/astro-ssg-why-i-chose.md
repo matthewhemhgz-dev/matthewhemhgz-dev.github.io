@@ -5,7 +5,7 @@ pubDate: 2025-05-15
 category: '技术洞察'
 image: /images/blog/astro-ssg-why-i-chose-zh.svg
 tags: ['Astro', '前端架构', 'SSG', '性能优化']
-heroImage: '/images/blog/astro-ssg-why-i-chose.png'
+heroImage: '/images/blog/astro-ssg-why-i-chose.svg'
 author: '祈研所'
 draft: false
 lang: zh

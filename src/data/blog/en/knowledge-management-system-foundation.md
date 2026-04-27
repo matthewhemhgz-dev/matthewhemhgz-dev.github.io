@@ -5,7 +5,7 @@ pubDate: 2026-05-01
 category: 'Knowledge Management'
 image: /images/blog/knowledge-management-system-foundation-en.svg
 tags: ['Knowledge Management', 'Personal System', 'Second Brain', 'Knowledge System']
-heroImage: '/images/blog/knowledge-management-foundation.svg'
+heroImage: '/images/blog/knowledge-management-system-foundation.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

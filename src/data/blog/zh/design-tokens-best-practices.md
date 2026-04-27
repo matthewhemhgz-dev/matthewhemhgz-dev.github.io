@@ -5,7 +5,7 @@ pubDate: 2026-05-01
 category: '设计系统'
 image: /images/blog/design-tokens-best-practices-zh.svg
 tags: ['设计令牌', '设计系统', '最佳实践']
-heroImage: '/images/blog/design-tokens-best-practices.png'
+heroImage: '/images/blog/design-tokens-best-practices.svg'
 author: '祈研所'
 draft: false
 lang: zh

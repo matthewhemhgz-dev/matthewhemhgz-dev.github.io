@@ -5,7 +5,7 @@ pubDate: 2026-04-25
 category: 'Knowledge Management'
 image: /images/blog/zettelkasten-practical-guide-en.svg
 tags: ['Zettelkasten', 'Writing', 'Knowledge Management']
-heroImage: '/images/blog/zettelkasten-practical.png'
+heroImage: '/images/blog/zettelkasten-practical-guide.svg'
 author: '祈研所'
 draft: false
 lang: en

@@ -5,7 +5,7 @@ pubDate: 2026-04-30
 category: '设计系统'
 image: /images/blog/design-system-from-scratch-zh.svg
 tags: ['设计系统', '设计令牌', '组件库']
-heroImage: '/images/blog/design-system-from-scratch.png'
+heroImage: '/images/blog/design-system-from-scratch.svg'
 author: '祈研所'
 draft: false
 lang: zh

@@ -5,7 +5,7 @@ pubDate: 2026-04-12
 category: 'Frontend Engineering'
 image: /images/blog/design-tokens-system-guide-en.svg
 tags: ['CSS', 'Design System', 'Design Tokens', 'Best Practices']
-heroImage: '/images/blog/design-tokens-system-guide.png'
+heroImage: '/images/blog/design-tokens-system-guide.svg'
 author: 'QiLab'
 draft: false
 lang: en

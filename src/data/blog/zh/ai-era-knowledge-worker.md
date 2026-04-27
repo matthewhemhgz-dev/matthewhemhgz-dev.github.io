@@ -6,7 +6,7 @@ updatedDate: 2026-04-18
 category: '深度研析'
 image: /images/blog/ai-era-knowledge-worker-zh.svg
 tags: ['AI', '知识管理', '效率工具', '长期主义']
-heroImage: '/images/blog/ai-era-knowledge-worker.png'
+heroImage: '/images/blog/ai-era-knowledge-worker.svg'
 author: '祈研所'
 draft: false
 lang: zh

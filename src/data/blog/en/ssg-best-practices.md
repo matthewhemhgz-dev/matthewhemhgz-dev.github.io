@@ -5,7 +5,7 @@ pubDate: 2026-04-28
 category: 'Technical Architecture'
 image: /images/blog/ssg-best-practices-en.svg
 tags: ['SSG', 'Static Sites', 'Performance Optimization']
-heroImage: '/images/blog/ssg-best-practices.png'
+heroImage: '/images/blog/ssg-best-practices.svg'
 author: '祈研所'
 draft: false
 lang: en

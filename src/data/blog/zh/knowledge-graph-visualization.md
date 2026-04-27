@@ -5,7 +5,7 @@ pubDate: 2026-04-26
 category: '知识管理'
 image: /images/blog/knowledge-graph-visualization-zh.svg
 tags: ['知识图谱', '可视化', '知识管理']
-heroImage: '/images/blog/knowledge-graph-visualization.png'
+heroImage: '/images/blog/knowledge-graph-visualization.svg'
 author: '祈研所'
 draft: false
 lang: zh

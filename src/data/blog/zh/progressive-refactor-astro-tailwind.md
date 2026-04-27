@@ -5,7 +5,7 @@ pubDate: 2026-04-19
 category: '重构实战'
 image: /images/blog/progressive-refactor-astro-tailwind-zh.svg
 tags: ['Refactoring', 'TailwindCSS', '工程实践']
-heroImage: '/images/blog/progressive-refactor-astro-tailwind.png'
+heroImage: '/images/blog/progressive-refactor-astro-tailwind.svg'
 author: '祈研所'
 draft: false
 lang: zh

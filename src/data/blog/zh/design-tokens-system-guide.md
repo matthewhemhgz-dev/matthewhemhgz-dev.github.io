@@ -5,7 +5,7 @@ pubDate: 2026-04-12
 category: '前端工程'
 image: /images/blog/design-tokens-system-guide-zh.svg
 tags: ['CSS', '设计系统', 'Design Tokens', '最佳实践']
-heroImage: '/images/blog/design-tokens-system-guide.png'
+heroImage: '/images/blog/design-tokens-system-guide.svg'
 author: '祈研所'
 draft: false
 lang: zh

@@ -5,7 +5,7 @@ pubDate: 2026-04-28
 category: '技术架构'
 image: /images/blog/ssg-best-practices-zh.svg
 tags: ['SSG', '静态站点', '性能优化']
-heroImage: '/images/blog/ssg-best-practices.png'
+heroImage: '/images/blog/ssg-best-practices.svg'
 author: '祈研所'
 draft: false
 lang: zh

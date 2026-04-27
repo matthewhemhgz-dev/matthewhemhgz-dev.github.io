@@ -5,7 +5,7 @@ pubDate: 2026-04-29
 category: '技术架构'
 image: /images/blog/how-to-optimize-frontend-performance-zh.svg
 tags: ['性能优化', '前端开发', 'Web性能']
-heroImage: '/images/blog/frontend-performance-optimization.png'
+heroImage: '/images/blog/how-to-optimize-frontend-performance.svg'
 author: '祈研所'
 draft: false
 lang: zh

@@ -5,7 +5,7 @@ pubDate: 2025-08-12
 category: '系统方案'
 image: /images/blog/notion-obsidian-dual-track-zh.svg
 tags: ['Notion', 'Obsidian', '知识管理', '双向链接']
-heroImage: '/images/blog/notion-obsidian-dual-track.png'
+heroImage: '/images/blog/notion-obsidian-dual-track.svg'
 author: '祈研所'
 draft: false
 lang: zh

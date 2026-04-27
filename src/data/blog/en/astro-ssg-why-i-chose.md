@@ -5,7 +5,7 @@ pubDate: 2025-05-15
 category: 'Technical Insights'
 image: /images/blog/astro-ssg-why-i-chose-en.svg
 tags: ['Astro', 'Frontend Architecture', 'SSG', 'Performance Optimization']
-heroImage: '/images/blog/astro-ssg-why-i-chose.png'
+heroImage: '/images/blog/astro-ssg-why-i-chose.svg'
 author: 'QiLab'
 draft: false
 lang: en

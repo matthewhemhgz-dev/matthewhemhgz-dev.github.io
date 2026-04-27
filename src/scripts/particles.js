@@ -42,6 +42,11 @@ export class MinimalParticles {
     }
 
     this.ctx = this.canvas.getContext('2d');
+    if (!this.ctx) {
+      console.warn(`Failed to get 2D context for canvas "${canvasId}"`);
+      return;
+    }
+
     this.particles = [];
     this.isRunning = false;
     this.animationId = null;

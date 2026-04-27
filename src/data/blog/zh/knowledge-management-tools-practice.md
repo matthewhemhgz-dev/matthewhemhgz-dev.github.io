@@ -5,7 +5,7 @@ pubDate: 2026-05-08
 category: '知识管理'
 image: /images/blog/knowledge-management-tools-practice-zh.svg
 tags: ['知识管理', '工具', '实践', '第二大脑']
-heroImage: '/images/blog/knowledge-management-tools-practice-zh.svg'
+heroImage: '/images/blog/knowledge-management-tools-practice.svg'
 author: '祈研所'
 draft: false
 lang: zh

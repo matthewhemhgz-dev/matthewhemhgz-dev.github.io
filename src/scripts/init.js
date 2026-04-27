@@ -52,21 +52,30 @@ function initQiLab() {
       };
 
       if (particles && particles.canvas) {
-        particles.rebuild(particleOptions);
-      } else {
-        particles = new MinimalParticles('particles-canvas', particleOptions);
-        // 注册粒子系统到动效管理器
-        effectsManager.registerEffect('particles', particles, {
-          group: 'background',
-          priority: 10,
-          active: true,
-        });
-        // 手动启动粒子系统
-        if (particles && typeof particles.resume === 'function') {
-          particles.resume();
+          particles.rebuild(particleOptions);
+        } else {
+          particles = new MinimalParticles('particles-canvas', particleOptions);
+          // 检查粒子系统是否成功创建
+          if (particles && particles.canvas && particles.ctx) {
+            // 注册粒子系统到动效管理器
+            effectsManager.registerEffect('particles', particles, {
+              group: 'background',
+              priority: 10,
+              active: true,
+            });
+            // 手动启动粒子系统
+            if (typeof particles.resume === 'function') {
+              particles.resume();
+            }
+          } else {
+            console.warn('Particles system failed to initialize');
+          }
         }
-      }
-      cleanupFns.push(() => particles.destroy());
+      cleanupFns.push(() => {
+        if (particles && typeof particles.destroy === 'function') {
+          particles.destroy();
+        }
+      });
     });
   }
 

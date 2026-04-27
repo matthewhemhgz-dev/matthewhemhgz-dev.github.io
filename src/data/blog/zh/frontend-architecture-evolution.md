@@ -5,7 +5,7 @@ pubDate: 2026-04-27
 category: '技术架构'
 image: /images/blog/frontend-architecture-evolution-zh.svg
 tags: ['前端架构', '技术演进', '前端开发']
-heroImage: '/images/blog/frontend-architecture-evolution.png'
+heroImage: '/images/blog/frontend-architecture-evolution.svg'
 author: '祈研所'
 draft: false
 lang: zh

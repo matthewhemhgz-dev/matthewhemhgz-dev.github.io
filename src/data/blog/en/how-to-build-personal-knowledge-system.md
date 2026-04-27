@@ -5,7 +5,7 @@ pubDate: 2026-04-24
 category: 'Knowledge Management'
 image: /images/blog/how-to-build-personal-knowledge-system-en.svg
 tags: ['Knowledge Management', 'Personal System', 'Second Brain']
-heroImage: '/images/blog/personal-knowledge-system.png'
+heroImage: '/images/blog/how-to-build-personal-knowledge-system.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

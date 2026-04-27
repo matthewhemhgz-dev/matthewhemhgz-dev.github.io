@@ -5,7 +5,7 @@ pubDate: 2026-04-30
 category: 'Design System'
 image: /images/blog/design-system-from-scratch-en.svg
 tags: ['Design System', 'Design Tokens', 'Component Library']
-heroImage: '/images/blog/design-system-from-scratch.png'
+heroImage: '/images/blog/design-system-from-scratch.svg'
 author: '祈研所'
 draft: false
 lang: en

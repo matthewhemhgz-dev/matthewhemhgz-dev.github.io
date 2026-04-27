@@ -5,7 +5,7 @@ pubDate: 2026-04-19
 category: 'Refactoring'
 image: /images/blog/progressive-refactor-astro-tailwind-en.svg
 tags: ['Refactoring', 'TailwindCSS', 'Engineering Practice']
-heroImage: '/images/blog/progressive-refactor-astro-tailwind.png'
+heroImage: '/images/blog/progressive-refactor-astro-tailwind.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

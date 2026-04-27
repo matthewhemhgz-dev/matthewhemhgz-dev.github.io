@@ -5,7 +5,7 @@ pubDate: 2025-08-12
 category: 'Systems'
 image: /images/blog/notion-obsidian-dual-track-en.svg
 tags: ['Notion', 'Obsidian', 'Knowledge Management', 'Bidirectional Links']
-heroImage: '/images/blog/notion-obsidian-dual-track.png'
+heroImage: '/images/blog/notion-obsidian-dual-track.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

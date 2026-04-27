@@ -5,7 +5,7 @@ pubDate: 2025-09-01
 category: 'Mental Models'
 image: /images/blog/personal-knowledge-graph-en.svg
 tags: ['Knowledge Graph', 'Mental Models', 'Learning']
-heroImage: '/images/blog/personal-knowledge-graph.png'
+heroImage: '/images/blog/personal-knowledge-graph.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

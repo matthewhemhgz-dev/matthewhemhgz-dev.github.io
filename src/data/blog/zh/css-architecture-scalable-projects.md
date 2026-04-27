@@ -5,7 +5,7 @@ pubDate: 2025-06-20
 category: '设计系统'
 image: /images/blog/css-architecture-scalable-projects-zh.svg
 tags: ['CSS', 'Design Tokens', 'UI-UX', '设计系统']
-heroImage: '/images/blog/css-architecture-scalable-projects.png'
+heroImage: '/images/blog/css-architecture-scalable-projects.svg'
 author: '祈研所'
 draft: false
 lang: zh

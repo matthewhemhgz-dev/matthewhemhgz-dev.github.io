@@ -5,7 +5,7 @@ pubDate: 2026-04-24
 category: '知识管理'
 image: /images/blog/how-to-build-personal-knowledge-system-zh.svg
 tags: ['知识管理', '个人系统', '第二大脑']
-heroImage: '/images/blog/personal-knowledge-system.png'
+heroImage: '/images/blog/how-to-build-personal-knowledge-system.svg'
 author: '祈研所'
 draft: false
 lang: zh

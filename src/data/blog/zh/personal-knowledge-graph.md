@@ -5,7 +5,7 @@ pubDate: 2025-09-01
 category: '思维模型'
 image: /images/blog/personal-knowledge-graph-zh.svg
 tags: ['知识图谱', '思维模型', '学习法']
-heroImage: '/images/blog/personal-knowledge-graph.png'
+heroImage: '/images/blog/personal-knowledge-graph.svg'
 author: '祈研所'
 draft: false
 lang: zh

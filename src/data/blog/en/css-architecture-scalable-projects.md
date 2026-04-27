@@ -5,7 +5,7 @@ pubDate: 2025-06-20
 category: 'Design System'
 image: /images/blog/css-architecture-scalable-projects-en.svg
 tags: ['CSS', 'Design Tokens', 'UI-UX', 'Design System']
-heroImage: '/images/blog/css-architecture-scalable-projects.png'
+heroImage: '/images/blog/css-architecture-scalable-projects.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en

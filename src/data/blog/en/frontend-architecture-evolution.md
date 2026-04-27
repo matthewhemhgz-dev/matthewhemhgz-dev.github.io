@@ -5,7 +5,7 @@ pubDate: 2026-04-27
 category: 'Technical Architecture'
 image: /images/blog/frontend-architecture-evolution-en.svg
 tags: ['Frontend Architecture', 'Technical Evolution', 'Frontend Development']
-heroImage: '/images/blog/frontend-architecture-evolution.png'
+heroImage: '/images/blog/frontend-architecture-evolution.svg'
 author: '祈研所'
 draft: false
 lang: en
