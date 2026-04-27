@@ -5,7 +5,7 @@ pubDate: 2026-05-08
 category: 'Knowledge Management'
 image: /images/blog/knowledge-management-tools-practice-en.svg
 tags: ['Knowledge Management', 'Tools', 'Practice', 'Second Brain']
-heroImage: '/images/blog/knowledge-management-tools.svg'
+heroImage: '/images/blog/knowledge-management-tools-practice-en.svg'
 author: 'Qi-Lab'
 draft: false
 lang: en
