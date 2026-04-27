@@ -13,17 +13,15 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: var(--qi-radius-full);
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
-  padding: var(--qi-space-md) var(--qi-space-xl);
-  border: 1px solid var(--qi-base-06);
-  box-shadow: 0 4px 24px var(--qi-base-06);
-  transition:
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: var(--qi-space-md) var(--qi-space-xl);
+  border: 1px solid var(--qi-base-06);
+  box-shadow: 0 4px 24px var(--qi-base-06);
   max-width: calc(100% - 32px);
 }
 
@@ -32,46 +30,29 @@
   box-shadow: var(--qi-shadow-sm);
 }
 
+/* 禁用 nav-collapsed 功能，避免布局混乱 */
 .nav-wrapper.nav-collapsed {
-  padding: 8px 18px;
-  box-shadow: 0 8px 32px var(--qi-base-10);
-  border-color: var(--qi-base-10);
+  padding: var(--qi-space-md) var(--qi-space-xl);
+  box-shadow: var(--qi-shadow-sm);
+  border-color: var(--qi-base-08);
 }
 
 .nav-wrapper.nav-collapsed .nav-links {
-  opacity: 0;
-  width: 0;
-  overflow: hidden;
+  opacity: 1;
+  width: auto;
+  overflow: visible;
   margin: 0;
   padding: 0;
-  transition:
-    opacity 0.3s ease,
-    width 0.3s ease;
 }
 
 .nav-wrapper.nav-collapsed:hover {
   padding: var(--qi-space-md) var(--qi-space-xl);
-  box-shadow: 0 4px 24px var(--qi-base-06);
+  box-shadow: var(--qi-shadow-sm);
 }
 
 .nav-wrapper.nav-collapsed:hover .nav-links {
   opacity: 1;
   width: auto;
-  margin: revert;
-  padding: revert;
-}
-
-/* 导航栏底部翡翠绿光晕线（滚动后显示） */
-.nav-wrapper.nav-collapsed::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--qi-brand-emerald-15), transparent);
-  box-shadow: 0 2px 20px -4px var(--qi-brand-emerald-10);
-  pointer-events: none;
 }
 
 .nav {

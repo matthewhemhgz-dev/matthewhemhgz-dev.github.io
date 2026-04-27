@@ -208,7 +208,7 @@ const navItems = [
       });
     }
 
-    // Scroll animation for navigation
+    // Scroll animation for navigation - 禁用nav-collapsed避免布局混乱
     const navWrapper = document.querySelector('.nav-wrapper');
     let ticking = false;
 
@@ -216,10 +216,8 @@ const navItems = [
       const scrollY = window.scrollY;
 
       if (scrollY > 100) {
-        navWrapper?.classList.add('nav-collapsed');
         navWrapper?.classList.add('scrolled');
       } else {
-        navWrapper?.classList.remove('nav-collapsed');
         navWrapper?.classList.remove('scrolled');
       }
 
