@@ -32,10 +32,33 @@ const {
  * 对于外部 URL，回退到原生 <img> 标签（添加 loading + decoding 优化）
  */
 const isExternalImage = src.startsWith('http') || src.startsWith('//');
+const isPublicImage = src.startsWith('/');
 ---
 
 {
-  !isExternalImage ? (
+  isExternalImage ? (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={className}
+      decoding="async"
+    />
+  ) : isPublicImage ? (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={className}
+      decoding="async"
+    />
+  ) : (
     <Image
       src={src}
       alt={alt}
@@ -46,17 +69,6 @@ const isExternalImage = src.startsWith('http') || src.startsWith('//');
       class={className}
       sizes={sizes}
       aspectRatio={aspectRatio}
-    />
-  ) : (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      fetchpriority={fetchpriority}
-      class={className}
-      decoding="async"
     />
   )
 }

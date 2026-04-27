@@ -83,11 +83,7 @@ const articleThemes = {
   'knowledge-management': 'knowledge'
 };
 
-// 生成随机颜色
-function getRandomColor(theme, type = 'accent') {
-  const scheme = colorSchemes[theme] || colorSchemes.design;
-  return scheme[type];
-}
+
 
 // 生成主题相关的装饰元素
 function generateDecorativeElements(width, height, theme) {
