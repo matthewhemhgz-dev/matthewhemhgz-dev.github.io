@@ -9,12 +9,46 @@
   border: 1px solid var(--qi-border-default);
   background: var(--qi-surface-main);
   box-shadow: var(--qi-shadow-lg);
-  transition: all var(--qi-transition-base);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.hero-float-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 153, 0.05), transparent);
+  transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
 }
 
 .hero-float-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--qi-shadow-xl);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 40px var(--qi-base-15);
+  border-color: var(--qi-brand-emerald);
+}
+
+.hero-float-card:hover::before {
+  left: 100%;
+}
+
+.hero-float-card:active {
+  animation: card-press 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes card-press {
+  0% {
+    transform: translateY(-4px) scale(1.02);
+  }
+  50% {
+    transform: translateY(0) scale(0.98);
+  }
+  100% {
+    transform: translateY(-4px) scale(1.02);
+  }
 }
 
 /* Insight card — Design Token stats */

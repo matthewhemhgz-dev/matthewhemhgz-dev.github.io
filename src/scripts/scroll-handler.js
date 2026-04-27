@@ -22,30 +22,47 @@ export function initScrollReveal() {
   // 优化 Intersection Observer 配置
   revealObserver = new IntersectionObserver(
     (entries) => {
-      // 批量处理 entries
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const parent = entry.target.parentElement;
-          const siblings = parent ? parent.querySelectorAll('[data-reveal]') : [];
-          const siblingIndex = Array.from(siblings).indexOf(entry.target);
-          const delay = siblingIndex * 60; // 减少延迟时间
-          entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
-          entry.target.classList.add('is-visible');
-          revealObserver?.unobserve(entry.target);
-        }
+      // 批量处理 entries，使用 requestAnimationFrame 优化性能
+      requestAnimationFrame(() => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const parent = entry.target.parentElement;
+            const siblings = parent ? parent.querySelectorAll('[data-reveal]') : [];
+            const siblingIndex = Array.from(siblings).indexOf(entry.target);
+            const delay = siblingIndex * 40; // 减少延迟时间，提高动画流畅度
+            entry.target.style.setProperty('--reveal-delay', `${delay}ms`);
+            entry.target.classList.add('is-visible');
+            revealObserver?.unobserve(entry.target);
+          }
+        });
       });
     },
     { 
-      threshold: 0.1, // 降低阈值，更早触发
-      rootMargin: '0px 0px -50px 0px' // 调整根边距
+      threshold: 0.05, // 降低阈值，更早触发
+      rootMargin: '0px 0px -30px 0px' // 调整根边距，增加触发区域
     },
   );
   
   // 只观察可见元素
   const revealElements = document.querySelectorAll('[data-reveal]');
   revealElements.forEach((el) => {
+    // 添加初始样式
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    el.style.transitionDelay = 'var(--reveal-delay, 0ms)';
     revealObserver.observe(el);
   });
+  
+  // 添加可见元素的样式
+  document.head.insertAdjacentHTML('beforeend', `
+    <style>
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  `);
 }
 
 // 存储事件处理函数引用，以便后续清理

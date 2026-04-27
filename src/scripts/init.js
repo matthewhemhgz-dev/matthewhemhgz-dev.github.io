@@ -39,6 +39,22 @@ function debounce(func, wait) {
   }
 }
 
+// 性能监测函数
+function monitorPerformance() {
+  if (performance && performance.measureUserAgentSpecificMemory) {
+    performance.measureUserAgentSpecificMemory()
+      .then(result => {
+        console.log('Memory usage:', result);
+      })
+      .catch(err => {
+        console.error('Memory measurement error:', err);
+      });
+  }
+}
+
+// 定期监测性能
+setInterval(monitorPerformance, 30000); // 每30秒监测一次
+
 function initQiLab() {
   if (initialized) return;
   initialized = true;

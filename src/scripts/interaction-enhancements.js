@@ -53,12 +53,16 @@ class InteractionEnhancements {
     ripple.style.width = ripple.style.height = `${size}px`;
     ripple.style.left = `${x}px`;
     ripple.style.top = `${y}px`;
+    ripple.style.background = `radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%)`;
+    ripple.style.transform = 'scale(0)';
+    ripple.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease';
 
     button.appendChild(ripple);
 
     // 使用 requestAnimationFrame 优化动画
     requestAnimationFrame(() => {
-      ripple.style.opacity = '1';
+      ripple.style.transform = 'scale(2)';
+      ripple.style.opacity = '0';
     });
 
     // 动画结束后移除涟漪

@@ -255,6 +255,14 @@
   box-shadow: var(--qi-shadow-hover-warm);
 }
 
+/* 按钮涟漪效果 */
+.button-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* 滚动动画 */
 .qi-anim-scroll-reveal {
   opacity: 0;

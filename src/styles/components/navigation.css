@@ -94,14 +94,17 @@
   text-decoration: none;
   border-radius: var(--qi-radius-md);
   transition:
-    color var(--qi-transition) var(--qi-spring-soft),
-    background-color var(--qi-transition) var(--qi-spring-soft),
-    transform var(--qi-transition) var(--qi-spring-soft);
+    color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
   overflow: hidden;
+  z-index: 1;
 }
 
+/* 导航链接的渐变背景效果 */
 .nav-link::before {
   content: '';
   position: absolute;
@@ -110,13 +113,56 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(74, 222, 153, 0.1), transparent);
-  transition: left var(--qi-transition-base) var(--qi-spring-soft);
+  transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+}
+
+/* 导航链接的激活状态指示 */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  background: var(--qi-brand-emerald-dark);
+  border-radius: var(--qi-radius-full);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+}
+
+.nav-link.active:hover::after {
+  width: 24px;
+}
+
+/* 导航链接的额外微交互效果 */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link:active {
+  animation: nav-link-press 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes nav-link-press {
+  0% {
+    transform: translateY(-2px) scale(1);
+  }
+  50% {
+    transform: translateY(0) scale(0.98);
+  }
+  100% {
+    transform: translateY(-2px) scale(1);
+  }
 }
 
 .nav-link:hover {
   color: var(--qi-text-primary);
   background-color: var(--qi-base-04);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--qi-base-08);
 }
 
 .nav-link:hover::before {
@@ -129,6 +175,7 @@
   outline: 2px solid var(--qi-brand-emerald);
   outline-offset: 2px;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--qi-brand-emerald-08);
 }
 
 .nav-link.active {
@@ -137,9 +184,11 @@
   font-weight: 600;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px var(--qi-brand-emerald-08);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.nav-link.active::after {
+/* 导航链接的激活状态指示 */
+.nav-link.active::before {
   content: '';
   position: absolute;
   bottom: 2px;
@@ -149,11 +198,33 @@
   height: 2px;
   background: var(--qi-brand-emerald-dark);
   border-radius: var(--qi-radius-full);
-  transition: width var(--qi-transition) var(--qi-spring-soft);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
 }
 
-.nav-link.active:hover::after {
+.nav-link.active:hover::before {
   width: 24px;
+}
+
+/* 导航链接的额外微交互效果 */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 0;
+  height: 0;
+  background: rgba(74, 222, 153, 0.1);
+  border-radius: 50%;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+}
+
+.nav-link:active::after {
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 /* Search button in nav */
@@ -171,28 +242,28 @@
   border-radius: var(--qi-radius-md);
   cursor: pointer;
   transition:
-    color var(--qi-transition) var(--qi-spring-soft),
-    background-color var(--qi-transition) var(--qi-spring-soft),
-    border-color var(--qi-transition) var(--qi-spring-soft),
-    transform var(--qi-transition) var(--qi-spring-soft),
-    box-shadow var(--qi-transition) var(--qi-spring-soft);
+    color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .nav-search-btn::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(74, 222, 153, 0.1);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width var(--qi-transition-base), height var(--qi-transition-base);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 153, 0.1), transparent);
+  transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
 }
 
 .nav-search-btn:hover {
@@ -203,9 +274,8 @@
   box-shadow: 0 4px 12px var(--qi-base-08);
 }
 
-.nav-search-btn:active::before {
-  width: 100px;
-  height: 100px;
+.nav-search-btn:hover::before {
+  left: 100%;
 }
 
 .nav-search-btn:focus-visible {
@@ -213,6 +283,10 @@
   outline-offset: 2px;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--qi-brand-emerald-08);
+}
+
+.nav-search-btn:active {
+  animation: nav-link-press 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-search-label {
