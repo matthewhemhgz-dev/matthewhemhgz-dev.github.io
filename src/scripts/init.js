@@ -36,10 +36,10 @@ function initQiLab() {
       const particleOptions = {
         count: particleCount,
         colors: [
-          cs.getPropertyValue('--qi-brand-emerald').trim(),
-          cs.getPropertyValue('--qi-brand-mint').trim(),
-          cs.getPropertyValue('--qi-brand-amber').trim(),
-          cs.getPropertyValue('--qi-bg-base').trim(),
+          cs.getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
+          cs.getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
+          cs.getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
+          cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
         ],
         maxSize: 4,
         speed: 0.4,
@@ -61,6 +61,10 @@ function initQiLab() {
           priority: 10,
           active: true,
         });
+        // 手动启动粒子系统
+        if (particles && typeof particles.resume === 'function') {
+          particles.resume();
+        }
       }
       cleanupFns.push(() => particles.destroy());
     });

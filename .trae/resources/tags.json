@@ -1,5 +1,8 @@
 {
   "frontend": [
-    "src/scripts/effects-manager.js"
+    "src/scripts/effects-manager.js",
+    "src/scripts/particles.js",
+    "src/scripts/cursor-glow.js",
+    "src/scripts/card-tilt.js"
   ]
 }

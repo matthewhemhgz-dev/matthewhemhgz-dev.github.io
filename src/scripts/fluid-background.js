@@ -197,15 +197,7 @@ export class FluidBackground {
   }
 }
 
-// 当 DOM 加载完成后初始化
-if (typeof window !== 'undefined') {
-  document.addEventListener('astro:page-load', () => {
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-      new FluidBackground(heroSection);
-    }
-  });
-}
+// 注意：此文件不再自动初始化，如需使用，请在 init.js 中显式调用
 
 // 导出模块
 export { FluidBackground };

@@ -213,7 +213,7 @@ export class EffectsManager {
       this.removeEffect(name);
     });
 
-    window.removeEventListener('resize', this._onResize.bind(this));
+    // 不要移除resize事件监听器，因为在重新初始化时会再次添加
     this.isInitialized = false;
     this.effectGroups = {};
     this.activeEffects.clear();

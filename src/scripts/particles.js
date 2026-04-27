@@ -36,7 +36,10 @@ function createGlowTexture(color, radius) {
 export class MinimalParticles {
   constructor(canvasId, options = {}) {
     this.canvas = document.getElementById(canvasId);
-    if (!this.canvas) return;
+    if (!this.canvas) {
+      console.warn(`Canvas element with id "${canvasId}" not found`);
+      return;
+    }
 
     this.ctx = this.canvas.getContext('2d');
     this.particles = [];
@@ -78,6 +81,8 @@ export class MinimalParticles {
     this.resize();
     this.init();
     this._bindEvents();
+    // 自动启动粒子系统
+    this.resume();
   }
 
   /**
