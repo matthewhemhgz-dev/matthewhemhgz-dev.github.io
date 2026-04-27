@@ -53,17 +53,6 @@ export function initScrollHandler(particles) {
       backToTopBtn.setAttribute('aria-hidden', String(!isVisible));
     }
 
-    // Collapse/expand pill navigation (desktop only)
-    if (window.innerWidth > 768) {
-      if (currentScrollY > 100 && scrollDelta > 0) {
-        // Scrolling down past 100px → collapse
-        nav.classList.add('nav-collapsed');
-      } else if (scrollDelta < -5 || currentScrollY <= 100) {
-        // Scrolling up or near top → expand
-        nav.classList.remove('nav-collapsed');
-      }
-    }
-
     lastScrollY = currentScrollY;
     scrollTicking = false;
   }

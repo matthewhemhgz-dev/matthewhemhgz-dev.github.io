@@ -30,31 +30,6 @@
   box-shadow: var(--qi-shadow-sm);
 }
 
-/* 禁用 nav-collapsed 功能，避免布局混乱 */
-.nav-wrapper.nav-collapsed {
-  padding: var(--qi-space-md) var(--qi-space-xl);
-  box-shadow: var(--qi-shadow-sm);
-  border-color: var(--qi-base-08);
-}
-
-.nav-wrapper.nav-collapsed .nav-links {
-  opacity: 1;
-  width: auto;
-  overflow: visible;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-wrapper.nav-collapsed:hover {
-  padding: var(--qi-space-md) var(--qi-space-xl);
-  box-shadow: var(--qi-shadow-sm);
-}
-
-.nav-wrapper.nav-collapsed:hover .nav-links {
-  opacity: 1;
-  width: auto;
-}
-
 .nav {
   display: flex;
   align-items: center;
@@ -243,18 +218,6 @@
     padding: 0 var(--qi-container-padding, 24px);
     border: none;
     border-bottom: 1px solid transparent;
-  }
-
-  .nav-wrapper.nav-collapsed {
-    padding: 0 var(--qi-container-padding, 24px);
-  }
-
-  /* .nav-wrapper.nav-collapsed handled by hamburger menu on mobile */
-
-  .nav-wrapper.nav-collapsed:hover .nav-links {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
   }
 
   .nav-toggle-label {
@@ -541,15 +504,6 @@
 :global(.dark) .nav-wrapper.scrolled {
   border-color: var(--qi-border-strong);
   box-shadow: var(--qi-shadow-sm);
-}
-
-:global(.dark) .nav-wrapper.nav-collapsed {
-  border-color: var(--qi-border-strong);
-  box-shadow: var(--qi-shadow-lg);
-}
-
-:global(.dark) .nav-wrapper.nav-collapsed:hover {
-  box-shadow: var(--qi-shadow-md);
 }
 
 :global(.dark) .nav-link {
