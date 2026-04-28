@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import AboutSection from '../components/sections/AboutSection.astro';
 import FeaturedSection from '../components/sections/FeaturedSection.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import ToolboxSection from '../components/sections/ToolboxSection.astro';
 import PlatformsSection from '../components/sections/PlatformsSection.astro';
 import ResearchSection from '../components/sections/ResearchSection.astro';
@@ -184,6 +185,15 @@ const platforms = [
       />
 
       <SectionDivider variant="diamond" />
+
+      <ProjectsSection
+        classList="qi-anim-scroll-reveal qi-anim-delay-400"
+        label="// PROJECTS"
+        title="项目展示"
+        showCategories={false}
+      />
+
+      <SectionDivider variant="dots" />
 
       <ResearchSection
         classList="qi-anim-scroll-reveal qi-anim-delay-500"

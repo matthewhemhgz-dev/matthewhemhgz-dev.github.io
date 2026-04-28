@@ -17,6 +17,7 @@ const isEnglish = currentPath.startsWith('/en') || Astro.url.pathname.startsWith
 const navItems = [
   { label: isEnglish ? 'Home' : '首页', href: isEnglish ? '/en' : '/' },
   { label: isEnglish ? 'About' : '关于', href: isEnglish ? '/en/about' : '/about' },
+  { label: isEnglish ? 'Projects' : '项目', href: '/projects' },
   { label: isEnglish ? 'Blog' : '博客', href: isEnglish ? '/en/blog' : '/blog' },
   { label: isEnglish ? 'Tags' : '标签', href: isEnglish ? '/en/tags' : '/tags' },
 ];

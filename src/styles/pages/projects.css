@@ -1,0 +1,9 @@
+/* Projects Page Styles */
+
+.projects-page {
+  min-height: 100vh;
+}
+
+.projects-page .projects-section {
+  padding-top: calc(var(--qi-nav-height) + var(--qi-space-3xl));
+}

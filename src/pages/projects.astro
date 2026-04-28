@@ -1,0 +1,29 @@
+---
+import '../styles/pages/projects.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: '项目展示 | 祈研所',
+  url: `${siteUrl}/projects`,
+  description: '探索祈研所的技术项目，包括企业级应用、AI工具和个人项目',
+  inLanguage: 'zh-CN',
+};
+---
+
+<BaseLayout
+  title="项目展示 | 祈研所"
+  description="探索祈研所的技术项目，包括企业级应用、AI工具和个人项目"
+  jsonLd={websiteJsonLd}
+>
+  <ProjectsSection
+    classList="qi-anim-scroll-reveal"
+    label="// PROJECTS"
+    title="项目展示"
+    showCategories={true}
+  />
+</BaseLayout>
