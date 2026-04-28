@@ -1,7 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
-import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
@@ -20,21 +19,13 @@ export async function GET(context: APIContext) {
     .filter((p) => p.data.tags.includes(tag))
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-  const items = await Promise.all(
-    posts.map(async (post) => {
-      const body = post.body || '';
-      const htmlContent = await marked(body);
-
-      return {
-        title: post.data.title,
-        pubDate: post.data.pubDate,
-        description: post.data.description,
-        link: `/blog/${post.id.replace('zh/', '')}/`,
-        categories: post.data.tags,
-        content: htmlContent,
-      };
-    }),
-  );
+  const items = posts.map((post) => ({
+    title: post.data.title,
+    pubDate: post.data.pubDate,
+    description: post.data.description,
+    link: `/blog/${post.id.replace('zh/', '')}/`,
+    categories: post.data.tags,
+  }));
 
   return rss({
     title: `#${tag} — 祈研所 Qi-Lab`,
@@ -44,7 +35,6 @@ export async function GET(context: APIContext) {
     customData: `<language>zh-CN</language><atom:link href="${context.site}tags/${tag}.rss.xml" rel="self" type="application/rss+xml"/>`,
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom',
-      content: 'http://purl.org/rss/1.0/modules/content/',
     },
   });
 }

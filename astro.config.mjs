@@ -19,7 +19,7 @@ export default defineConfig({
     assets: '_astro',
     cache: true,
     format: 'directory',
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'never',
     assetsPrefix: '/',
   },
   image: {
