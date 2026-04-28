@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 // i18n mapping for SearchModal (runtime locale detection)
 const i18n: Record<string, Record<string, string>> = {
