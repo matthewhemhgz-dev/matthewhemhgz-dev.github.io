@@ -1,3 +1,5 @@
+import { effectsManager } from './effects-manager.js';
+
 let revealObserver = null;
 
 // 节流函数
@@ -69,12 +71,17 @@ let _scrollHandler = null;
 let _backToTopHandler = null;
 let _scrollTimeout = null;
 
-export function initScrollHandler(particles) {
+export function initScrollHandler() {
   const nav = document.querySelector('.nav-wrapper');
   const backToTopBtn = document.getElementById('back-to-top');
   let lastScrollY = window.scrollY;
   let scrollTicking = false;
   let localScrollTimeout;
+
+  // 获取粒子系统（从 effectsManager 动态获取，支持异步初始化）
+  function getParticles() {
+    return effectsManager.getEffect('particles');
+  }
 
   function handleScroll() {
     if (!nav) return;
@@ -116,10 +123,12 @@ export function initScrollHandler(particles) {
       requestAnimationFrame(handleScroll);
       scrollTicking = true;
     }
+    // 动态获取粒子系统，支持异步初始化
+    const particles = getParticles();
     if (particles) {
       particles.pause();
       clearTimeout(localScrollTimeout);
-      _scrollTimeout = localScrollTimeout = setTimeout(() => particles.resume(), 200); // 增加延迟时间
+      _scrollTimeout = localScrollTimeout = setTimeout(() => particles.resume(), 200);
     }
   }, 16); // 约 60fps
   

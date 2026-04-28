@@ -14,6 +14,23 @@ let mmFeedback = null;
 let interactionEnhancements = null;
 const cleanupFns = [];
 
+// 工具函数：安全获取 CSS 变量值并提供默认值回退
+function getCSSVar(name, defaultValue) {
+  try {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return value || defaultValue;
+  } catch (error) {
+    console.warn(`Failed to get CSS variable ${name}:`, error);
+    return defaultValue;
+  }
+}
+
+// 工具函数：判断是否为首页（支持中英文路径）
+function isHomePage() {
+  const path = location.pathname;
+  return path === '/' || path === '' || path === '/en' || path === '/en/';
+}
+
 // 节流函数
 function throttle(func, limit) {
   let inThrottle;
@@ -57,7 +74,7 @@ function initQiLab() {
   if (initialized) return;
   initialized = true;
 
-  const isHomePage = location.pathname === '/' || location.pathname === '';
+  const homePage = isHomePage();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 768;
 
@@ -65,98 +82,123 @@ function initQiLab() {
   effectsManager.initialize();
 
   // 1. 粒子系统（仅首页启用，非移动设备）
-  if (isHomePage && !prefersReducedMotion && !isMobile) {
-    import('./particles.js').then(({ MinimalParticles }) => {
-      const screenWidth = window.innerWidth;
-      const cs = getComputedStyle(document.documentElement);
-      const particleCount = 
-        screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
-      const particleOptions = {
-        count: particleCount,
-        colors: [
-          cs.getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
-          cs.getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
-          cs.getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
-          cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
-        ],
-        maxSize: 4,
-        speed: 0.3,
-        linkDistance: 140,
-        linkOpacity: 0.1,
-        mouseRadius: 150,
-        mouseForce: 0.03,
-        glowSize: 10,
-        glowOpacity: 0.2,
-      };
+  if (homePage && !prefersReducedMotion && !isMobile) {
+    // 使用 requestIdleCallback 延迟加载粒子效果，不影响页面加载
+    const loadParticles = () => {
+      import('./particles.js').then(({ MinimalParticles }) => {
+        try {
+          const screenWidth = window.innerWidth;
+          const particleCount = screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
+          const particleOptions = {
+            count: particleCount,
+            colors: [
+              getCSSVar('--qi-brand-emerald', '#2E7D5C'),
+              getCSSVar('--qi-brand-mint', '#78B4A0'),
+              getCSSVar('--qi-brand-amber', '#E5A93C'),
+              getCSSVar('--qi-bg-base', '#F7F3EE'),
+            ],
+            maxSize: 4,
+            speed: 0.3,
+            linkDistance: 140,
+            linkOpacity: 0.1,
+            mouseRadius: 150,
+            mouseForce: 0.03,
+            glowSize: 10,
+            glowOpacity: 0.2,
+          };
 
-      if (particles && particles.canvas) {
-          particles.rebuild(particleOptions);
-        } else {
-          particles = new MinimalParticles('particles-canvas', particleOptions);
-          // 检查粒子系统是否成功创建
-          if (particles && particles.canvas && particles.ctx) {
-            // 注册粒子系统到动效管理器
-            effectsManager.registerEffect('particles', particles, {
-              group: 'background',
-              priority: 10,
-              active: true,
-            });
-            // 手动启动粒子系统
-            if (typeof particles.resume === 'function') {
-              particles.resume();
-            }
+          if (particles && particles.canvas) {
+            particles.rebuild(particleOptions);
           } else {
-            console.warn('Particles system failed to initialize');
+            particles = new MinimalParticles('particles-canvas', particleOptions);
+            // 检查粒子系统是否成功创建
+            if (particles && particles.canvas && particles.ctx) {
+              // 注册粒子系统到动效管理器
+              effectsManager.registerEffect('particles', particles, {
+                group: 'background',
+                priority: 10,
+                active: true,
+              });
+              // 手动启动粒子系统
+              if (typeof particles.resume === 'function') {
+                particles.resume();
+              }
+              console.log('Particle system initialized successfully');
+            } else {
+              console.warn('Particles system failed to initialize: canvas or context not available');
+            }
           }
+          cleanupFns.push(() => {
+            if (particles && typeof particles.destroy === 'function') {
+              particles.destroy();
+            }
+          });
+        } catch (error) {
+          console.error('Error initializing particle system:', error);
         }
-      cleanupFns.push(() => {
-        if (particles && typeof particles.destroy === 'function') {
-          particles.destroy();
-        }
+      }).catch(error => {
+        console.error('Failed to load particle module:', error);
       });
-    });
+    };
+
+    // 使用 requestIdleCallback 或 setTimeout 延迟加载
+    if (window.requestIdleCallback) {
+      requestIdleCallback(loadParticles, { timeout: 2000 });
+    } else {
+      setTimeout(loadParticles, 500);
+    }
   }
 
   // 2. 鼠标追踪光效（仅首页启用，非移动设备）
-  if (isHomePage && !prefersReducedMotion && !isMobile) {
+  if (homePage && !prefersReducedMotion && !isMobile) {
     import('./cursor-glow.js').then(({ CursorGlow }) => {
-      const cs = getComputedStyle(document.documentElement);
-      const cursorGlow = new CursorGlow({
-        size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 300,
-        speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.05,
-        blend: 'screen',
-      });
-      // 注册鼠标光效到动效管理器
-      effectsManager.registerEffect('cursor-glow', cursorGlow, {
-        group: 'cursor',
-        priority: 20,
-        active: true,
-      });
-      cleanupFns.push(() => cursorGlow.destroy());
+      try {
+        const cursorGlow = new CursorGlow({
+          size: parseInt(getCSSVar('--qi-glow-size', '300')) || 300,
+          speed: parseFloat(getCSSVar('--qi-glow-speed', '0.05')) || 0.05,
+          blend: 'screen',
+        });
+        // 注册鼠标光效到动效管理器
+        effectsManager.registerEffect('cursor-glow', cursorGlow, {
+          group: 'cursor',
+          priority: 20,
+          active: true,
+        });
+        cleanupFns.push(() => cursorGlow.destroy());
+      } catch (error) {
+        console.error('Error initializing cursor glow:', error);
+      }
+    }).catch(error => {
+      console.error('Failed to load cursor-glow module:', error);
     });
   }
 
   // 3. 背景艺术系统（非首页启用，非移动设备）
-  if (!isHomePage && !prefersReducedMotion && !isMobile) {
+  if (!homePage && !prefersReducedMotion && !isMobile) {
     import('./background-art.js').then(({ BackgroundArt }) => {
-      const cs = getComputedStyle(document.documentElement);
-      const screenWidth = window.innerWidth;
-      const artType = screenWidth < 1440 ? 'generative' : 'fluid';
+      try {
+        const screenWidth = window.innerWidth;
+        const artType = screenWidth < 1440 ? 'generative' : 'fluid';
 
-      const backgroundArt = new BackgroundArt('background-art-canvas', {
-        type: artType,
-        particleCount: screenWidth < 1440 ? 40 : 80,
-        speed: 0.2,
-        colors: {
-          emerald: cs.getPropertyValue('--qi-brand-emerald').trim(),
-          amber: cs.getPropertyValue('--qi-brand-amber').trim(),
-          mint: cs.getPropertyValue('--qi-brand-mint').trim(),
-        },
-      });
+        const backgroundArt = new BackgroundArt('background-art-canvas', {
+          type: artType,
+          particleCount: screenWidth < 1440 ? 40 : 80,
+          speed: 0.2,
+          colors: {
+            emerald: getCSSVar('--qi-brand-emerald', '#2E7D5C'),
+            amber: getCSSVar('--qi-brand-amber', '#E5A93C'),
+            mint: getCSSVar('--qi-brand-mint', '#78B4A0'),
+          },
+        });
 
-      backgroundArt.init();
-      // 背景艺术系统内部已经使用了动效管理器
-      cleanupFns.push(() => backgroundArt.destroy());
+        backgroundArt.init();
+        // 背景艺术系统内部已经使用了动效管理器
+        cleanupFns.push(() => backgroundArt.destroy());
+      } catch (error) {
+        console.error('Error initializing background art:', error);
+      }
+    }).catch(error => {
+      console.error('Failed to load background-art module:', error);
     });
   }
 
@@ -188,7 +230,7 @@ function initQiLab() {
   initScrollReveal();
 
   // 7. 滚动处理（导航、粒子暂停）
-  initScrollHandler(particles);
+  initScrollHandler();
   cleanupFns.push(cleanupScrollHandler);
 
   // 8. 回到顶部
