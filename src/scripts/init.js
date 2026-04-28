@@ -15,7 +15,7 @@ function initQiLab() {
   if (initialized) return;
   initialized = true;
 
-  const isHomePage = location.pathname === '/' || location.pathname === '';
+  const isHomePage = location.pathname === '/' || location.pathname === '' || location.pathname === '/en/';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // 1. 粒子系统（仅首页启用）
@@ -25,14 +25,16 @@ function initQiLab() {
       const cs = getComputedStyle(document.documentElement);
       const particleCount =
         screenWidth < 768 ? 40 : screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
+      
+      // 获取颜色，如果失败则使用默认值
+      const emerald = cs.getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C';
+      const mint = cs.getPropertyValue('--qi-brand-mint').trim() || '#78B4A0';
+      const amber = cs.getPropertyValue('--qi-brand-amber').trim() || '#E5A93C';
+      const bgBase = cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE';
+      
       const particleOptions = {
         count: particleCount,
-        colors: [
-          cs.getPropertyValue('--qi-brand-emerald').trim(),
-          cs.getPropertyValue('--qi-brand-mint').trim(),
-          cs.getPropertyValue('--qi-brand-amber').trim(),
-          cs.getPropertyValue('--qi-bg-base').trim(),
-        ],
+        colors: [emerald, mint, amber, bgBase],
         maxSize: 4,
         speed: 0.4,
         linkDistance: 160,
@@ -49,6 +51,8 @@ function initQiLab() {
         particles = new MinimalParticles('particles-canvas', particleOptions);
       }
       if (particles) cleanupFns.push(() => particles.destroy());
+    }).catch(err => {
+      console.error('[QiLab] Failed to initialize particles:', err);
     });
   }
 
