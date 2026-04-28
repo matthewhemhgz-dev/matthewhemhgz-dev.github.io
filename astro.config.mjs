@@ -4,6 +4,7 @@ import pagefind from 'astro-pagefind';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import astroPWA from '@vite-pwa/astro';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   content: {
@@ -44,6 +45,11 @@ export default defineConfig({
     locales: ['zh', 'en'],
     routing: {
       prefixDefaultLocale: false,
+    },
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   integrations: [
@@ -145,8 +151,22 @@ export default defineConfig({
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
         output: {
-          manualChunks: {
-            'vendor': ['astro:transitions/client'],
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('sharp')) return 'vendor-sharp';
+              if (id.includes('astro')) return 'vendor-astro';
+              return 'vendor';
+            }
+            if (id.includes('/src/scripts/')) {
+              if (id.includes('particles')) return 'chunk-particles';
+              if (id.includes('cursor-glow')) return 'chunk-cursor-glow';
+              if (id.includes('card-tilt')) return 'chunk-card-tilt';
+            }
+            if (id.includes('/src/components/global/')) {
+              if (id.includes('SearchModal')) return 'chunk-search-modal';
+              if (id.includes('ParticlesCanvas')) return 'chunk-particles-canvas';
+            }
+            return undefined;
           },
         },
       },
@@ -163,6 +183,7 @@ export default defineConfig({
       exclude: ['pagefind'],
       esbuildOptions: {
         target: 'es2020',
+        treeShaking: true,
       },
     },
     ssr: {

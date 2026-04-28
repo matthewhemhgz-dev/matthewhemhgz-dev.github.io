@@ -1,5 +1,6 @@
 ---
 import '../../styles/components/brand-logo.css';
+import OptimizedImage from '../ui/OptimizedImage.astro';
 
 /**
  * BrandLogo — 祈研所品牌 Logo 组件
@@ -34,14 +35,15 @@ const s = sizeMap[size];
   class={`brand-logo brand-logo--${variant} brand-logo--${size}`}
   aria-label={brandName}
 >
-  <img
+  <OptimizedImage
     class="brand-logo__image"
     src="/images/logo.png"
     alt={`${brandName} Logo`}
     width={s.icon}
     height={s.icon}
     loading="eager"
-    decoding="async"
+    fetchpriority="high"
+    sizes="(max-width: 768px) 32px, (max-width: 1200px) 48px, 84px"
   />
 
   {

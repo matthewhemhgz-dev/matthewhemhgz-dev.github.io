@@ -6,6 +6,7 @@ import OptimizedImage from '../../components/ui/OptimizedImage.astro';
 import MermaidInit from '../../components/global/MermaidInit.astro';
 import ArticleViewCount from '../../components/global/ArticleViewCount.astro';
 import Skeleton from '../../components/ui/Skeleton.astro';
+import RelatedArticles from '../../components/sections/RelatedArticles.astro';
 import '../../styles/sections/article.css';
 
 export async function getStaticPaths() {
@@ -24,31 +25,8 @@ const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await render(post);
 const readingTime = getReadingTime(post.body || '');
 
-// Get related posts
-const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh' && data.id !== post.id);
-
-// Calculate relatedness score
-const relatedPosts = allPosts.map(otherPost => {
-  let score = 0;
-  
-  // Score based on common tags
-  const commonTags = otherPost.data.tags?.filter(tag => post.data.tags?.includes(tag)) || [];
-  score += commonTags.length * 3;
-  
-  // Score based on same category
-  if (otherPost.data.category === post.data.category) {
-    score += 2;
-  }
-  
-  // Score based on publish date proximity
-  const dateDiff = Math.abs(otherPost.data.pubDate - post.data.pubDate);
-  const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
-  score += Math.max(0, 1 - daysDiff / 365);
-  
-  return { post: otherPost, score };
-})
-.sort((a, b) => b.score - a.score)
-.slice(0, 3);
+// Get all posts for related articles
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
@@ -87,9 +65,13 @@ const articleJsonLd = {
   title={`${post.data.title} — 祈研所 Qi-Lab`}
   description={post.data.description}
   ogImage={ogImage}
+  ogImageWidth={1200}
+  ogImageHeight={675}
   ogType="article"
   pubDate={post.data.pubDate.toISOString()}
   modDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
+  articleSection={post.data.category}
+  articleTags={post.data.tags}
   jsonLd={articleJsonLd}
 >
   <article class="article-container">
@@ -292,31 +274,7 @@ const articleJsonLd = {
         </div>
       </div>
       
-      <!-- Related Posts Section -->
-      {relatedPosts.length > 0 && (
-        <section class="article-related">
-          <div class="article-divider"></div>
-          <h3 class="article-related-title">相关文章</h3>
-          <div class="article-related-grid">
-            {relatedPosts.map(({ post }) => (
-              <a href={`/blog/${post.id.replace('zh/', '')}/`} class="article-related-card">
-                <h4 class="article-related-card-title">{post.data.title}</h4>
-                <p class="article-related-card-desc">{post.data.description}</p>
-                <div class="article-related-card-meta">
-                  <span class="article-related-card-category">{post.data.category}</span>
-                  <time class="article-related-card-date">
-                    {post.data.pubDate.toLocaleDateString('zh-CN', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+      <RelatedArticles currentPost={post} allPosts={allPosts} limit={3} lang="zh" />
       
       <nav class="article-nav">
         {

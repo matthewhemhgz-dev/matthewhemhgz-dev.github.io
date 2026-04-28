@@ -2,6 +2,7 @@
 import '../../styles/components/footer.css';
 import BrandLogo from './BrandLogo.astro';
 import Newsletter from './Newsletter.astro';
+import OptimizedImage from '../ui/OptimizedImage.astro';
 
 interface Props {
   tagline?: string;
@@ -173,12 +174,14 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
       <div class="footer-qr">
         <h3 class="footer-heading">{labels.qrTitle}</h3>
         <div class="qr-container">
-          <img
+          <OptimizedImage
             src={wechatQrCodeUrl}
             alt={labels.wechat}
             class="qr-code"
             loading="lazy"
-            decoding="async"
+            width={200}
+            height={200}
+            sizes="(max-width: 768px) 150px, 200px"
           />
           <p class="qr-text">{wechat}</p>
         </div>

@@ -5,6 +5,7 @@ import { getReadingTime } from '../../../utils/reading-time';
 import OptimizedImage from '../../../components/ui/OptimizedImage.astro';
 import MermaidInit from '../../../components/global/MermaidInit.astro';
 import Skeleton from '../../../components/ui/Skeleton.astro';
+import RelatedArticles from '../../../components/sections/RelatedArticles.astro';
 import '../../../styles/sections/article.css';
 
 export async function getStaticPaths() {
@@ -22,6 +23,9 @@ export async function getStaticPaths() {
 const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await render(post);
 const readingTime = getReadingTime(post.body || '');
+
+// Get all posts for related articles
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/en/blog/${post.id.replace('en/', '')}/`;
@@ -60,9 +64,13 @@ const articleJsonLd = {
   title={`${post.data.title} — Qi-Lab`}
   description={post.data.description}
   ogImage={ogImage}
+  ogImageWidth={1200}
+  ogImageHeight={675}
   ogType="article"
   pubDate={post.data.pubDate.toISOString()}
   modDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
+  articleSection={post.data.category}
+  articleTags={post.data.tags}
   jsonLd={articleJsonLd}
 >
   <article class="article-container">
@@ -245,6 +253,9 @@ const articleJsonLd = {
           </div>
         </div>
       </div>
+      
+      <RelatedArticles currentPost={post} allPosts={allPosts} limit={3} lang="en" />
+      
       <nav class="article-nav">
         {
           prevPost && (

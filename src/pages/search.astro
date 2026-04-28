@@ -1,0 +1,489 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const searchQuery = '';
+---
+
+<BaseLayout
+  title={`搜索: ${searchQuery} | 祈研所 QiLab`}
+  description={`搜索结果: ${searchQuery}`}
+>
+  <section class="search-page">
+    <div class="search-page-container">
+      <div class="search-page-header">
+        <h1 class="search-page-title">搜索结果</h1>
+        <p class="search-page-subtitle" data-i18n-key="search-results-for">搜索结果</p>
+      </div>
+      
+      <!-- 搜索框 -->
+      <div class="search-page-input-wrap">
+        <svg
+          class="search-page-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 18 18"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"></circle>
+          <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+        <input
+          id="search-page-input"
+          type="search"
+          class="search-page-input"
+          autocomplete="off"
+          placeholder="输入关键词搜索..."
+          value={searchQuery}
+        />
+        <button id="search-page-submit" class="search-page-submit" aria-label="搜索">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- 搜索结果 -->
+      <div id="search-page-results" class="search-page-results" aria-live="polite">
+        {searchQuery ? (
+          <div class="search-page-loading">
+            <div class="search-page-spinner"></div>
+            <p>正在搜索...</p>
+          </div>
+        ) : (
+          <div class="search-page-empty">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p>输入关键词开始搜索</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .search-page {
+    padding: var(--qi-space-3xl) 0;
+    min-height: calc(100vh - var(--qi-header-height));
+  }
+
+  .search-page-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 var(--qi-space-xl);
+  }
+
+  .search-page-header {
+    text-align: center;
+    margin-bottom: var(--qi-space-2xl);
+  }
+
+  .search-page-title {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-2xl);
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    margin-bottom: var(--qi-space-sm);
+  }
+
+  .search-page-subtitle {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-muted);
+  }
+
+  .search-page-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-md);
+    padding: var(--qi-space-sm) var(--qi-space-lg);
+    background: var(--qi-bg-card);
+    border: 1px solid var(--qi-border-subtle);
+    border-radius: var(--qi-radius-card);
+    margin-bottom: var(--qi-space-xl);
+    transition: all 0.2s ease;
+  }
+
+  .search-page-input-wrap:focus-within {
+    border-color: var(--qi-accent-primary);
+    box-shadow: 0 0 0 3px var(--qi-accent-primary-glow);
+  }
+
+  .search-page-icon {
+    flex-shrink: 0;
+    color: var(--qi-text-muted);
+  }
+
+  .search-page-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--qi-text-primary);
+    font-size: var(--qi-text-base);
+    font-family: var(--qi-font-sans);
+  }
+
+  .search-page-input::placeholder {
+    color: var(--qi-text-dimmed);
+  }
+
+  .search-page-submit {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--qi-text-muted);
+    cursor: pointer;
+    padding: var(--qi-space-xs);
+    border-radius: var(--qi-radius-sm);
+    transition: all 0.15s ease;
+  }
+
+  .search-page-submit:hover {
+    color: var(--qi-accent-primary);
+    background: var(--qi-bg-hover);
+  }
+
+  .search-page-results {
+    min-height: 300px;
+  }
+
+  .search-page-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--qi-space-3xl);
+  }
+
+  .search-page-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--qi-border-subtle);
+    border-top-color: var(--qi-accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--qi-space-lg);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .search-page-loading p {
+    color: var(--qi-text-muted);
+    font-size: var(--qi-text-sm);
+  }
+
+  .search-page-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--qi-space-3xl);
+    color: var(--qi-text-muted);
+  }
+
+  .search-page-empty svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--qi-space-lg);
+    opacity: 0.5;
+  }
+
+  .search-page-empty p {
+    font-size: var(--qi-text-base);
+  }
+
+  .search-page-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--qi-space-lg);
+    border-bottom: 1px solid var(--qi-border-subtle);
+    margin-bottom: var(--qi-space-lg);
+  }
+
+  .search-page-results-count {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-muted);
+    font-weight: 600;
+  }
+
+  .search-page-result-item {
+    display: block;
+    padding: var(--qi-space-lg);
+    background: var(--qi-bg-card);
+    border: 1px solid var(--qi-border-subtle);
+    border-radius: var(--qi-radius-card);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    margin-bottom: var(--qi-space-md);
+  }
+
+  .search-page-result-item:hover,
+  .search-page-result-item:focus-visible {
+    border-color: var(--qi-accent-primary);
+    box-shadow: 0 4px 20px var(--qi-accent-primary-glow);
+    transform: translateY(-2px);
+  }
+
+  .search-page-result-category {
+    font-size: 11px;
+    color: var(--qi-accent-primary);
+    font-family: var(--qi-font-mono);
+    margin-bottom: var(--qi-space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .search-page-result-title {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-lg);
+    font-weight: 600;
+    color: var(--qi-text-primary);
+    margin-bottom: var(--qi-space-xs);
+    line-height: 1.4;
+  }
+
+  .search-page-result-title mark {
+    background: rgba(229, 169, 60, 0.3);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 4px;
+  }
+
+  .search-page-result-excerpt {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-muted);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .search-page-result-excerpt mark {
+    background: rgba(229, 169, 60, 0.2);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+
+  .search-page-result-meta {
+    display: flex;
+    gap: var(--qi-space-lg);
+    margin-top: var(--qi-space-md);
+    font-size: 11px;
+    color: var(--qi-text-dimmed);
+    font-family: var(--qi-font-mono);
+  }
+
+  .search-page-no-results {
+    text-align: center;
+    padding: var(--qi-space-3xl);
+    color: var(--qi-text-muted);
+  }
+
+  .search-page-no-results svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--qi-space-lg);
+    opacity: 0.5;
+  }
+
+  .search-page-no-results p {
+    font-size: var(--qi-text-base);
+    margin-bottom: var(--qi-space-sm);
+  }
+
+  .search-page-no-results small {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-dimmed);
+  }
+
+  @media (max-width: 768px) {
+    .search-page {
+      padding: var(--qi-space-2xl) 0;
+    }
+
+    .search-page-container {
+      padding: 0 var(--qi-space-lg);
+    }
+
+    .search-page-title {
+      font-size: var(--qi-text-xl);
+    }
+  }
+</style>
+
+<script>
+  // 搜索结果高亮函数
+  function highlightKeyword(text, keyword) {
+    if (!keyword.trim() || !text) return text;
+    const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+  }
+
+  // i18n mapping
+  const i18n = {
+    zh: {
+      'search-results-for': '搜索结果',
+      placeholder: '输入关键词搜索...',
+      searching: '正在搜索...',
+      noResults: (q) => `未找到与 "${q}" 匹配的内容`,
+      tryAgain: '请尝试其他关键词',
+    },
+    en: {
+      'search-results-for': 'Search Results',
+      placeholder: 'Search articles...',
+      searching: 'Searching...',
+      noResults: (q) => `No results found for "${q}"`,
+      tryAgain: 'Please try another keyword',
+    },
+  };
+
+  function getLang() {
+    return document.documentElement.lang.startsWith('en') ? 'en' : 'zh';
+  }
+
+  function t(key) {
+    return (i18n[getLang()] || i18n.zh)[key] || key;
+  }
+
+  let pagefind = null;
+
+  async function initPagefind() {
+    if (pagefind) return pagefind;
+    try {
+      if (import.meta.env.DEV) {
+        return null;
+      }
+      const pagefindPath = '/pagefind/pagefind.js';
+      pagefind = await import(/* @vite-ignore */ pagefindPath);
+      await pagefind.init();
+      return pagefind;
+    } catch {
+      return null;
+    }
+  }
+
+  async function performSearch(query) {
+    const resultsEl = document.getElementById('search-page-results');
+    if (!resultsEl) return;
+
+    if (!query.trim()) {
+      resultsEl.innerHTML = `
+        <div class="search-page-empty">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <p>${t('placeholder')}</p>
+        </div>
+      `;
+      return;
+    }
+
+    resultsEl.innerHTML = `
+      <div class="search-page-loading">
+        <div class="search-page-spinner"></div>
+        <p>${t('searching')}</p>
+      </div>
+    `;
+
+    const pf = await initPagefind();
+    if (!pf) {
+      resultsEl.innerHTML = `<p class="search-page-no-results">搜索功能仅在生产环境可用</p>`;
+      return;
+    }
+
+    try {
+      const search = await pf.search(query);
+      const items = await Promise.all(
+        search.results.slice(0, 15).map((r) => r.data()),
+      );
+
+      if (items.length === 0) {
+        resultsEl.innerHTML = `
+          <div class="search-page-no-results">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p>${t('noResults')(query)}</p>
+            <small>${t('tryAgain')}</small>
+          </div>
+        `;
+        return;
+      }
+
+      resultsEl.innerHTML = `
+        <div class="search-page-results-header">
+          <span class="search-page-results-count">${items.length} 条结果</span>
+        </div>
+        ${items
+          .map((item) => {
+            const url = item.url.startsWith('/') ? item.url : `/${item.url}`;
+            const title = highlightKeyword(item.meta?.title || item.url, query);
+            const excerpt = item.excerpt ? highlightKeyword(item.excerpt, query) : '';
+            const category = item.meta?.category || '';
+            const pubDate = item.meta?.pubDate ? new Date(item.meta.pubDate).toLocaleDateString('zh-CN') : '';
+            return `
+              <a href="${url}" class="search-page-result-item">
+                ${category ? `<div class="search-page-result-category">${category}</div>` : ''}
+                <div class="search-page-result-title">${title}</div>
+                ${excerpt ? `<div class="search-page-result-excerpt">${excerpt}</div>` : ''}
+                ${pubDate ? `<div class="search-page-result-meta"><span>${pubDate}</span></div>` : ''}
+              </a>
+            `;
+          })
+          .join('')}
+      `;
+    } catch (error) {
+      resultsEl.innerHTML = `<p class="search-page-no-results">搜索出现错误，请重试</p>`;
+    }
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const input = document.getElementById('search-page-input');
+    const submit = document.getElementById('search-page-submit');
+
+    // 初始化搜索（如果 URL 中有查询参数）
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('q') || '${searchQuery}';
+    if (initialQuery && input) {
+      input.value = initialQuery;
+      performSearch(initialQuery);
+    }
+
+    // 搜索提交
+    submit?.addEventListener('click', () => {
+      if (input) {
+        performSearch(input.value);
+        // 更新 URL
+        if (input.value.trim()) {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('q', input.value);
+          window.history.pushState({}, '', newUrl);
+        }
+      }
+    });
+
+    // Enter 键提交
+    input?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        performSearch(input.value);
+        if (input.value.trim()) {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('q', input.value);
+          window.history.pushState({}, '', newUrl);
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  currentPost: CollectionEntry<'blog'>;
+  allPosts: CollectionEntry<'blog'>[];
+  limit?: number;
+  lang?: 'zh' | 'en';
+}
+
+const { currentPost, allPosts, limit = 3, lang = 'zh' } = Astro.props;
+
+function calculateSimilarity(current: CollectionEntry<'blog'>, other: CollectionEntry<'blog'>): number {
+  let score = 0;
+  const currentTags = current.data.tags || [];
+  const otherTags = other.data.tags || [];
+
+  // 基于共同标签计算相似度
+  if (currentTags.length > 0 && otherTags.length > 0) {
+    const commonTags = otherTags.filter(tag => currentTags.includes(tag));
+    const jaccardIndex = commonTags.length / (currentTags.length + otherTags.length - commonTags.length);
+    score += jaccardIndex * 10;
+  }
+
+  // 基于相同分类加分
+  if (current.data.category === other.data.category) {
+    score += 3;
+  }
+
+  // 基于发布日期相近度加分
+  if (current.data.pubDate && other.data.pubDate) {
+    const dateDiff = Math.abs(other.data.pubDate.getTime() - current.data.pubDate.getTime());
+    const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 2 - daysDiff / 180);
+  }
+
+  return score;
+}
+
+const relatedPosts = allPosts
+  .filter(post => post.id !== currentPost.id)
+  .map(post => ({
+    post,
+    score: calculateSimilarity(currentPost, post),
+  }))
+  .sort((a, b) => b.score - a.score)
+  .slice(0, limit);
+---
+
+{relatedPosts.length > 0 && (
+  <section class="article-related">
+    <div class="article-divider"></div>
+    <h3 class="article-related-title">
+      {lang === 'zh' ? '相关文章' : 'Related Articles'}
+    </h3>
+    <div class="article-related-grid">
+      {relatedPosts.map(({ post }) => (
+        <a
+          href={`/${lang}/blog/${post.id.replace(`${lang}/`, '')}/`}
+          class="article-related-card"
+          key={post.id}
+        >
+          <h4 class="article-related-card-title">{post.data.title}</h4>
+          <p class="article-related-card-desc">{post.data.description}</p>
+          <div class="article-related-card-meta">
+            <span class="article-related-card-category">{post.data.category}</span>
+            <time class="article-related-card-date">
+              {post.data.pubDate.toLocaleDateString(
+                lang === 'zh' ? 'zh-CN' : 'en-US',
+                {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                }
+              )}
+            </time>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

@@ -50,12 +50,27 @@ function getParticleOptions() {
   };
 }
 
+function isSlowConnection() {
+  if (!navigator.connection) return false;
+  const effectiveType = navigator.connection.effectiveType;
+  return effectiveType === 'slow-2g' || effectiveType === '2g';
+}
+
+function getLoadDelay() {
+  if (isSlowConnection()) {
+    return { priority1: 0, priority2: 500, priority3: 2000, priority4: 3000 };
+  }
+  return { priority1: 0, priority2: 100, priority3: 500, priority4: 800 };
+}
+
 function initQiLab() {
   if (initialized) return;
   initialized = true;
 
   const homePage = isHomePage();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth < 768;
+  const delays = getLoadDelay();
 
   const loadPriority1 = async () => {
     try {
@@ -87,7 +102,7 @@ function initQiLab() {
   };
 
   const loadPriority3 = async () => {
-    if (!homePage || prefersReducedMotion) return;
+    if (!homePage || prefersReducedMotion || isSlowConnection()) return;
     
     try {
       const { MinimalParticles } = await import('./particles.js');
@@ -104,7 +119,7 @@ function initQiLab() {
   };
 
   const loadPriority4 = async () => {
-    if (!homePage || prefersReducedMotion) return;
+    if (!homePage || prefersReducedMotion || isMobile || isSlowConnection()) return;
     
     try {
       const { CursorGlow } = await import('./cursor-glow.js');
@@ -122,11 +137,11 @@ function initQiLab() {
 
   loadPriority1();
   
-  setTimeout(loadPriority2, 100);
+  setTimeout(loadPriority2, delays.priority2);
   
-  setTimeout(loadPriority3, 500);
+  setTimeout(loadPriority3, delays.priority3);
   
-  setTimeout(loadPriority4, 800);
+  setTimeout(loadPriority4, delays.priority4);
 }
 
 function handleThemeChange() {

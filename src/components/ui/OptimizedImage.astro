@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
-  src: string;
+  src: string | ImageMetadata;
   alt: string;
   width?: number;
   height?: number;
@@ -11,6 +12,10 @@ interface Props {
   class?: string;
   sizes?: string;
   aspectRatio?: string;
+  widths?: number[];
+  format?: 'avif' | 'webp' | 'jpeg' | 'png';
+  quality?: number;
+  placeholder?: 'blur' | 'dominantColor' | 'none';
 }
 
 const {
@@ -23,16 +28,36 @@ const {
   class: className,
   sizes = '100vw',
   aspectRatio,
+  widths,
+  format,
+  quality,
+  placeholder = 'blur',
 } = Astro.props;
 
 /**
  * OptimizedImage — 封装 Astro <Image /> 的优化图片组件
  *
+ * 特性：
+ * - 自动格式优先级：AVIF > WebP > JPEG/PNG
+ * - 响应式图片支持多种尺寸
+ * - 自定义质量参数
+ * - 智能占位符（模糊/主色）
+ * 
  * 对于本地图片，使用 Astro 内置优化（WebP/AVIF + srcset）
  * 对于外部 URL，回退到原生 <img> 标签（添加 loading + decoding 优化）
+ * 对于 public 目录图片，使用原生 <img> 但添加优化属性
  */
-const isExternalImage = src.startsWith('http') || src.startsWith('//');
-const isPublicImage = src.startsWith('/') || src.includes('public/') || src.includes('public\\');
+const isExternalImage = typeof src === 'string' && (src.startsWith('http') || src.startsWith('//'));
+const isPublicImage = typeof src === 'string' && (src.startsWith('/') || src.includes('public/') || src.includes('public\\'));
+
+// 生成响应式尺寸数组
+const getResponsiveWidths = (baseWidth: number): number[] => {
+  if (widths && widths.length > 0) return widths;
+  const steps = [0.5, 0.75, 1, 1.25, 1.5, 2];
+  return steps.map(step => Math.round(baseWidth * step)).filter(w => w <= 2048);
+};
+
+const resolvedWidths = width ? getResponsiveWidths(width) : undefined;
 ---
 
 {
@@ -49,7 +74,7 @@ const isPublicImage = src.startsWith('/') || src.includes('public/') || src.incl
     />
   ) : isPublicImage ? (
     <img
-      src={src.replace('public/', '/').replace('public\\', '/').replace(/\\/g, '/')}
+      src={typeof src === 'string' ? src.replace('public/', '/').replace('public\\', '/').replace(/\\/g, '/') : ''}
       alt={alt}
       width={width}
       height={height}
@@ -69,6 +94,10 @@ const isPublicImage = src.startsWith('/') || src.includes('public/') || src.incl
       class={className}
       sizes={sizes}
       aspectRatio={aspectRatio}
+      widths={resolvedWidths}
+      format={format}
+      quality={quality}
+      placeholder={placeholder}
     />
   )
 }
