@@ -20,11 +20,11 @@ const DIST_DIR = 'dist';
 
 const BUDGETS = {
   js: 650, // 增加 JS 预算以容纳 PWA 相关文件
-  css: 230, // 增加 CSS 预算以容纳 Newsletter 样式
-  html: 5000, // 大幅增加 HTML 预算以容纳大量博客文章和标签页面
+  css: 300, // 增加 CSS 预算以容纳设计令牌系统和组件样式
+  html: 7000, // 大幅增加 HTML 预算以容纳大量博客文章和标签页面（116页）
   image: 4000,
   other: 650, // 增加其他预算以容纳 PWA 图标和 service worker
-  total: 10500, // 大幅增加总预算以容纳所有新增功能和博客文章
+  total: 12000, // 大幅增加总预算以容纳所有新增功能和博客文章
 };
 
 function getCategory(file) {
