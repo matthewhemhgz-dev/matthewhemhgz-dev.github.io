@@ -223,9 +223,13 @@ const navItems = [
       }
 
       const scrollY = window.scrollY;
+      const isMobile = window.innerWidth <= 768;
       
       if (scrollY > 100) {
-        navWrapper?.classList.add('nav-collapsed');
+        // 移动端不添加 nav-collapsed 类，保持导航按钮始终可用
+        if (!isMobile) {
+          navWrapper?.classList.add('nav-collapsed');
+        }
         navWrapper?.classList.add('scrolled');
       } else {
         navWrapper?.classList.remove('nav-collapsed');
@@ -243,5 +247,17 @@ const navItems = [
     }
 
     window.addEventListener('scroll', requestTick);
+
+    // 窗口 resize 时重新检查是否需要 nav-collapsed 类
+    window.addEventListener('resize', () => {
+      const scrollY = window.scrollY;
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        navWrapper?.classList.remove('nav-collapsed');
+      } else if (scrollY > 100) {
+        navWrapper?.classList.add('nav-collapsed');
+      }
+    });
   });
 </script>
