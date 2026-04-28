@@ -11,99 +11,152 @@ let cursorGlow = null;
 let particles = null;
 const cleanupFns = [];
 
+function isHomePage() {
+  const pathname = location.pathname;
+  return pathname === '/' || pathname === '' || pathname === '/en/' || pathname === '/en';
+}
+
+function getParticleCount() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 768) return 30;
+  if (screenWidth < 1440) return 50;
+  if (screenWidth < 2560) return 60;
+  return 80;
+}
+
+function getThemeColors() {
+  const cs = getComputedStyle(document.documentElement);
+  return {
+    emerald: cs.getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
+    mint: cs.getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
+    amber: cs.getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
+    bgBase: cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
+  };
+}
+
+function getParticleOptions() {
+  const colors = getThemeColors();
+  return {
+    count: getParticleCount(),
+    colors: [colors.emerald, colors.mint, colors.amber, colors.bgBase],
+    maxSize: 4,
+    speed: 0.3,
+    linkDistance: 120,
+    linkOpacity: 0.1,
+    mouseRadius: 150,
+    mouseForce: 0.03,
+    glowSize: 10,
+    glowOpacity: 0.2,
+  };
+}
+
 function initQiLab() {
   if (initialized) return;
   initialized = true;
 
-  const isHomePage = location.pathname === '/' || location.pathname === '' || location.pathname === '/en/';
+  const homePage = isHomePage();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 1. 粒子系统（仅首页启用）
-  if (isHomePage && !prefersReducedMotion) {
-    import('./particles.js').then(({ MinimalParticles }) => {
-      const screenWidth = window.innerWidth;
-      const cs = getComputedStyle(document.documentElement);
-      const particleCount =
-        screenWidth < 768 ? 40 : screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
-      
-      // 获取颜色，如果失败则使用默认值
-      const emerald = cs.getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C';
-      const mint = cs.getPropertyValue('--qi-brand-mint').trim() || '#78B4A0';
-      const amber = cs.getPropertyValue('--qi-brand-amber').trim() || '#E5A93C';
-      const bgBase = cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE';
-      
-      const particleOptions = {
-        count: particleCount,
-        colors: [emerald, mint, amber, bgBase],
-        maxSize: 4,
-        speed: 0.4,
-        linkDistance: 160,
-        linkOpacity: 0.12,
-        mouseRadius: 200,
-        mouseForce: 0.04,
-        glowSize: 12,
-        glowOpacity: 0.25,
-      };
+  const loadPriority1 = async () => {
+    try {
+      const { CardTilt } = await import('./card-tilt.js');
+      const cardTilt = new CardTilt(
+        '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
+      );
+      cleanupFns.push(() => cardTilt.destroy());
+    } catch (err) {
+      console.error('[QiLab] Failed to initialize card tilt:', err);
+    }
+  };
 
-      if (particles && particles.canvas) {
-        particles.rebuild(particleOptions);
-      } else {
-        particles = new MinimalParticles('particles-canvas', particleOptions);
+  const loadPriority2 = async () => {
+    if (!prefersReducedMotion) {
+      try {
+        const { initScrollParallax, cleanupScrollParallax } = await import('./scroll-parallax.js');
+        initScrollParallax();
+        cleanupFns.push(cleanupScrollParallax);
+      } catch (err) {
+        console.error('[QiLab] Failed to initialize scroll parallax:', err);
       }
-      if (particles) cleanupFns.push(() => particles.destroy());
-    }).catch(err => {
-      console.error('[QiLab] Failed to initialize particles:', err);
-    });
-  }
+    }
+    
+    initScrollReveal();
+    initScrollHandler(particles);
+    cleanupFns.push(cleanupScrollHandler);
+    initBackToTop();
+  };
 
-  // 2. 鼠标追踪光效（仅首页启用）
-  if (isHomePage && !prefersReducedMotion) {
-    import('./cursor-glow.js').then(({ CursorGlow }) => {
+  const loadPriority3 = async () => {
+    if (!homePage || prefersReducedMotion) return;
+    
+    try {
+      const { MinimalParticles } = await import('./particles.js');
+      const particleOptions = getParticleOptions();
+      const canvas = document.getElementById('particles-canvas');
+      
+      if (canvas) {
+        particles = new MinimalParticles('particles-canvas', particleOptions);
+        cleanupFns.push(() => particles.destroy());
+      }
+    } catch (err) {
+      console.error('[QiLab] Failed to initialize particles:', err);
+    }
+  };
+
+  const loadPriority4 = async () => {
+    if (!homePage || prefersReducedMotion) return;
+    
+    try {
+      const { CursorGlow } = await import('./cursor-glow.js');
       const cs = getComputedStyle(document.documentElement);
       cursorGlow = new CursorGlow({
-        size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 350,
-        speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.06,
+        size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 300,
+        speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.05,
         blend: 'screen',
       });
       cleanupFns.push(() => cursorGlow.destroy());
-    });
-  }
+    } catch (err) {
+      console.error('[QiLab] Failed to initialize cursor glow:', err);
+    }
+  };
 
-  // 2.5 卡片 3D 倾斜 + 光泽效果
-  import('./card-tilt.js').then(({ CardTilt }) => {
-    const cardTilt = new CardTilt(
-      '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
-    );
-    cleanupFns.push(() => cardTilt.destroy());
-  });
-
-  // 3. 滚动视差光影
-  if (!prefersReducedMotion) {
-    import('./scroll-parallax.js').then(({ initScrollParallax, cleanupScrollParallax }) => {
-      initScrollParallax();
-      cleanupFns.push(cleanupScrollParallax);
-    });
-  }
-
-  // 4. 滚动显示动画
-  initScrollReveal();
-
-  // 5. 滚动处理（导航、粒子暂停）
-  initScrollHandler(particles);
-  cleanupFns.push(cleanupScrollHandler);
-
-  // 6. 回到顶部
-  initBackToTop();
+  loadPriority1();
+  
+  setTimeout(loadPriority2, 100);
+  
+  setTimeout(loadPriority3, 500);
+  
+  setTimeout(loadPriority4, 800);
 }
 
+function handleThemeChange() {
+  if (!particles) return;
+  
+  const colors = getThemeColors();
+  particles.options.colors = [colors.emerald, colors.mint, colors.amber, colors.bgBase];
+  particles._parseColors();
+  particles._prerenderGlowTextures();
+  
+  const event = new Event('themechange');
+  document.dispatchEvent(event);
+}
+
+document.addEventListener('themechange', handleThemeChange);
+
 document.addEventListener('astro:page-load', () => {
-  // 清理所有旧的事件监听器和资源
   cleanupFns.forEach((fn) => fn());
   cleanupFns.length = 0;
 
-  // 重置状态，重新初始化
   initialized = false;
   cursorGlow = null;
-  // 注意：不将 particles 设为 null，复用已有实例调用 rebuild()
+  particles = null;
   initQiLab();
 });
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initQiLab);
+} else {
+  initQiLab();
+}
+
+export { particles, isHomePage };

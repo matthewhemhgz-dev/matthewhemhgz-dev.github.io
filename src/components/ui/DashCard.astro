@@ -34,6 +34,8 @@ const colors = colorMap[color] || colorMap.emerald;
 <div
   class="bg-bg-base border border-[var(--qi-base-06)] rounded-lg p-lg hover:shadow-md hover:-translate-y-0.5 transition-all duration-base tilt-card"
   data-color={color}
+  role="status"
+  aria-label={`${label}: ${value} (${clampedPercentage}%)`}
 >
   <div class="flex justify-between items-baseline mb-md">
     <span class="font-mono text-xs font-medium text-text-muted uppercase tracking-[0.08em]"

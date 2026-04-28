@@ -8,6 +8,7 @@ import FeaturedSection from '../../components/sections/FeaturedSection.astro';
 import ToolboxSection from '../../components/sections/ToolboxSection.astro';
 import PlatformsSection from '../../components/sections/PlatformsSection.astro';
 import ResearchSection from '../../components/sections/ResearchSection.astro';
+import ProjectsSection from '../../components/sections/ProjectsSection.astro';
 import CtaSection from '../../components/sections/CtaSection.astro';
 import SectionDivider from '../../components/decorations/SectionDivider.astro';
 import { getCollection } from 'astro:content';
@@ -201,6 +202,13 @@ const platforms = [
     classList="qi-anim-scroll-reveal qi-anim-delay-500"
     label="// METHODOLOGY" 
     title="Research Methodology" 
+  />
+
+  <SectionDivider variant="diamond" />
+
+  <ProjectsSection 
+    classList="qi-anim-scroll-reveal qi-anim-delay-500"
+    locale="en" 
   />
 
   <SectionDivider variant="arcs" />

@@ -24,7 +24,7 @@ const viewAllText = isEnglish ? 'View All Projects' : '查看全部项目';
 
     <div class="projects-grid">
       {featuredProjects.map((project) => (
-        <article key={project.id} class="project-card">
+        <article key={project.id} class="project-card" role="article" aria-labelledby={`project-${project.id}-title`}>
           <div class="project-image-wrapper">
             <OptimizedImage 
               src={project.image} 
@@ -57,7 +57,7 @@ const viewAllText = isEnglish ? 'View All Projects' : '查看全部项目';
               <span class="project-category-tag">{isEnglish ? project.categoryEn : project.category}</span>
             </div>
             
-            <h3 class="project-title">
+            <h3 id={`project-${project.id}-title`} class="project-title">
               <a href={project.url}>
                 {isEnglish ? project.titleEn : project.title}
               </a>

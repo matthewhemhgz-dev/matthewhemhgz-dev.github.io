@@ -2,54 +2,91 @@
 
 # 启用压缩
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml+rss
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml+rss application/font-woff2
     DeflateCompressionLevel 9
+</IfModule>
+
+# 启用 Brotli 压缩（如果可用）
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css application/javascript application/json application/xml+rss application/font-woff2
+    BrotliCompressionQuality 11
 </IfModule>
 
 # 浏览器缓存策略
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/html "access plus 1 hour"
-    ExpiresByType text/css "access plus 1 week"
-    ExpiresByType application/javascript "access plus 1 week"
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/webp "access plus 1 month"
-    ExpiresByType image/avif "access plus 1 month"
-    ExpiresByType image/svg+xml "access plus 1 month"
+    
+    # 文档类 - 短时间缓存，支持快速更新
+    ExpiresByType text/html "access plus 10 minutes"
+    
+    # CSS 和 JavaScript - 带哈希版本号，可长期缓存
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    
+    # 图片资源 - WebP/AVIF 优先，可长期缓存
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    
+    # 字体资源 - 通常不常变化
     ExpiresByType application/font-woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
     ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
     ExpiresByType application/x-font-ttf "access plus 1 year"
+    
+    # 其他资源
+    ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType application/rss+xml "access plus 1 hour"
+    ExpiresByType text/xml "access plus 1 hour"
 </IfModule>
 
 # 缓存控制
 <IfModule mod_headers.c>
-    # 静态资源缓存
-    <FilesMatch "\.(css|js|jpg|jpeg|png|webp|avif|svg|woff|woff2|ttf|eot)$">
+    # 静态资源缓存（带哈希的资源）- 永不过期
+    <FilesMatch "\.(css|js|webp|avif|svg|woff2)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
     
-    # HTML 页面缓存
-    <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    # 图片资源（不带哈希）- 长期缓存但可重新验证
+    <FilesMatch "\.(jpg|jpeg|png|gif)$">
+        Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
     </FilesMatch>
     
-    # 禁用 ETag 以减少 304 请求
+    # HTML 页面 - 短期缓存，需要重新验证
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=600, must-revalidate, stale-while-revalidate=300"
+    </FilesMatch>
+    
+    # 服务工作线程 - 立即重新验证
+    <FilesMatch "service-worker\.js|sw\.js">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+    
+    # 禁用 ETag 以减少 304 请求（使用时间戳代替）
     Header unset ETag
     FileETag None
     
     # 启用 CORS 支持
-    Header set Access-Control-Allow-Origin "*"
+    <FilesMatch "\.(css|js|webp|avif|svg|woff2|png|jpg|jpeg)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
     
     # 安全头部
     Header set X-Frame-Options "DENY"
     Header set X-Content-Type-Options "nosniff"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:;"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), autoplay=()"
+    
+    # 内容安全策略（放宽以支持 Google Analytics 和 Fonts）
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://api.qrserver.com; object-src 'none'; frame-src 'none'"
 </IfModule>
 
-# 重写规则
+# 图片格式优化 - 优先提供 WebP/AVIF
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
@@ -61,6 +98,22 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule ^(.*)$ $1.html [L]
+    
+    # 如果支持 WebP 且存在 WebP 版本，提供 WebP
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME}\.webp -f
+    RewriteRule ^(.*)\.(jpe?g|png)$ $1.webp [T=image/webp,E=accept:1]
+    
+    # 如果支持 AVIF 且存在 AVIF 版本，优先提供 AVIF
+    RewriteCond %{HTTP_ACCEPT} image/avif
+    RewriteCond %{REQUEST_FILENAME}\.avif -f
+    RewriteRule ^(.*)\.(jpe?g|png|webp)$ $1.avif [T=image/avif,E=accept:1]
+</IfModule>
+
+# WebP 和 AVIF MIME 类型
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/avif .avif
 </IfModule>
 
 # 目录索引
@@ -71,3 +124,8 @@ Options -Indexes
 
 # 错误页面
 ErrorDocument 404 /404.html
+
+# 优化字体加载
+<FilesMatch "\.(woff2)$">
+    Header set Link "</%{REQUEST_URI}>; rel=preload; as=font; type=font/woff2; crossorigin"
+</FilesMatch>

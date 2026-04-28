@@ -19,6 +19,7 @@ export default defineConfig({
     cache: true,
     format: 'directory',
     inlineStylesheets: 'auto',
+    assetsPrefix: '/',
   },
   image: {
     service: {
@@ -27,11 +28,16 @@ export default defineConfig({
     formats: ['avif', 'webp', 'jpeg'],
     quality: 80,
     placeholder: 'blur',
+    minWidth: 64,
+    maxWidth: 2048,
+    minHeight: 64,
+    maxHeight: 2048,
   },
   markdown: {
     syntaxHighlight: {
       excludeLangs: ['mermaid'],
     },
+    gfm: true,
   },
   i18n: {
     defaultLocale: 'zh',
@@ -67,7 +73,7 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: {
                 statuses: [0, 200]
@@ -81,7 +87,7 @@ export default defineConfig({
               cacheName: 'google-fonts-static-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: {
                 statuses: [0, 200]
@@ -95,7 +101,7 @@ export default defineConfig({
               cacheName: 'qr-code-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 7 // <== 7 days
+                maxAgeSeconds: 60 * 60 * 24 * 7,
               },
               cacheableResponse: {
                 statuses: [0, 200]
@@ -135,20 +141,29 @@ export default defineConfig({
   vite: {
     build: {
       cssMinify: true,
-      assetsInlineLimit: 0,
+      assetsInlineLimit: 4096,
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
+        output: {
+          manualChunks: {
+            'vendor': ['astro:transitions/client'],
+          },
+        },
       },
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 500,
       cssCodeSplit: true,
       dynamicImportVars: true,
       minify: 'esbuild',
-      target: 'es2015',
+      target: ['es2020', 'chrome90', 'firefox90', 'safari15', 'edge90'],
       sourcemap: false,
+      reportCompressedSize: true,
     },
     optimizeDeps: {
       include: [],
-      exclude: [],
+      exclude: ['pagefind'],
+      esbuildOptions: {
+        target: 'es2020',
+      },
     },
     ssr: {
       noExternal: [],
@@ -158,7 +173,10 @@ export default defineConfig({
         'X-Frame-Options': 'DENY',
         'X-Content-Type-Options': 'nosniff',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+        'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
       },
     },
+    plugins: [],
   },
 });

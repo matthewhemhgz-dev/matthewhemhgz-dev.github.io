@@ -25,13 +25,8 @@ const sortedTagsByAlphabet = Object.entries(tagCounts)
   .map(([tag, count]) => ({ tag, count }));
 
 const counts = sortedTagsByPopularity.map(item => item.count);
-const minCount = Math.min(...counts);
-const maxCount = Math.max(...counts);
-
-function getFontSize(count) {
-  if (maxCount === minCount) return 1;
-  return 0.7 + (count - minCount) / (maxCount - minCount) * 0.8;
-}
+const minCount = counts.length > 0 ? Math.min(...counts) : 1;
+const maxCount = counts.length > 0 ? Math.max(...counts) : 1;
 
 function getTagSizeClass(count) {
   const ratio = (count - minCount) / (maxCount - minCount);
@@ -48,6 +43,7 @@ function getHotTagClass(count, index) {
 
 const totalTags = sortedTagsByPopularity.length;
 const totalArticles = allPosts.length;
+const avgArticlesPerTag = totalTags > 0 ? Math.round(totalArticles / totalTags) : 0;
 ---
 
 <BaseLayout
@@ -57,87 +53,115 @@ const totalArticles = allPosts.length;
   <div class="container tags-page">
     <h1 class="sr-only">标签</h1>
     
-    <section class="tags-stats-section" data-reveal>
-      <div class="tags-stats-grid">
-        <div class="tags-stat-card">
-          <div class="tags-stat-number">{totalTags}</div>
-          <div class="tags-stat-label">标签总数</div>
+    {totalTags > 0 && (
+      <section class="tags-stats-section" data-reveal>
+        <div class="tags-stats-grid">
+          <div class="tags-stat-card">
+            <div class="tags-stat-icon">📚</div>
+            <div class="tags-stat-number">{totalTags}</div>
+            <div class="tags-stat-label">标签总数</div>
+          </div>
+          <div class="tags-stat-card">
+            <div class="tags-stat-icon">📝</div>
+            <div class="tags-stat-number">{totalArticles}</div>
+            <div class="tags-stat-label">文章总数</div>
+          </div>
+          <div class="tags-stat-card">
+            <div class="tags-stat-icon">📊</div>
+            <div class="tags-stat-number">{avgArticlesPerTag}</div>
+            <div class="tags-stat-label">平均每标签</div>
+          </div>
         </div>
-        <div class="tags-stat-card">
-          <div class="tags-stat-number">{totalArticles}</div>
-          <div class="tags-stat-label">文章总数</div>
-        </div>
-        <div class="tags-stat-card">
-          <div class="tags-stat-number">{sortedTagsByPopularity[0]?.count || 0}</div>
-          <div class="tags-stat-label">热门标签文章数</div>
-        </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     <section class="tags-cloud-section" data-reveal>
       <SectionHeader label="// TAGS" title="标签云" />
-      <div class="tags-cloud-controls">
-        <button class="tags-sort-btn active" data-sort="popularity">按热度</button>
-        <button class="tags-sort-btn" data-sort="alphabet">按字母</button>
-      </div>
-      
-      <div class="tags-cloud-wrapper">
-        <div class="tags-cloud tags-cloud-popularity">
-          {sortedTagsByPopularity.map(({ tag, count }, index) => (
-            <a 
-              href={`/tags/${tag}/`} 
-              class={`tag-link ${getTagSizeClass(count)} ${getHotTagClass(count, index)}`}
-              title={`${count} 篇文章`}
-            >
-              <span class="tag-text">#{tag}</span>
-              <span class="tag-count-badge">{count}</span>
-            </a>
-          ))}
+      {totalTags > 0 ? (
+        <>
+          <div class="tags-cloud-controls">
+            <button class="tags-sort-btn active" data-sort="popularity">
+              <span class="tags-sort-icon">🔥</span>
+              按热度
+            </button>
+            <button class="tags-sort-btn" data-sort="alphabet">
+              <span class="tags-sort-icon">📖</span>
+              按字母
+            </button>
+          </div>
+          
+          <div class="tags-cloud-wrapper">
+            <div class="tags-cloud tags-cloud-popularity">
+              {sortedTagsByPopularity.map(({ tag, count }, index) => (
+                <a 
+                  href={`/tags/${tag}/`} 
+                  class={`tag-link ${getTagSizeClass(count)} ${getHotTagClass(count, index)}`}
+                  title={`${count} 篇文章`}
+                  aria-label={`标签 ${tag}，共 ${count} 篇文章`}
+                >
+                  <span class="tag-text">#{tag}</span>
+                  <span class="tag-count-badge" aria-hidden="true">{count}</span>
+                </a>
+              ))}
+            </div>
+            
+            <div class="tags-cloud tags-cloud-alphabet hidden">
+              {sortedTagsByAlphabet.map(({ tag, count }) => (
+                <a 
+                  href={`/tags/${tag}/`} 
+                  class={`tag-link ${getTagSizeClass(count)}`}
+                  title={`${count} 篇文章`}
+                  aria-label={`标签 ${tag}，共 ${count} 篇文章`}
+                >
+                  <span class="tag-text">#{tag}</span>
+                  <span class="tag-count-badge" aria-hidden="true">{count}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div class="empty-state">
+          <div class="empty-icon">🏷️</div>
+          <p class="empty-text">暂无标签，即将上线...</p>
         </div>
-        
-        <div class="tags-cloud tags-cloud-alphabet hidden">
-          {sortedTagsByAlphabet.map(({ tag, count }) => (
-            <a 
-              href={`/tags/${tag}/`} 
-              class={`tag-link ${getTagSizeClass(count)}`}
-              title={`${count} 篇文章`}
-            >
-              <span class="tag-text">#{tag}</span>
-              <span class="tag-count-badge">{count}</span>
-            </a>
-          ))}
-        </div>
-      </div>
+      )}
     </section>
 
-    <section class="tags-posts-section" data-reveal>
-      <SectionHeader label="// RECENT" title="最新文章" />
-      <div class="tags-posts-grid">
-        {allPosts.map((post) => (
-          <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tags-post-card">
-            <div class="tags-post-meta">
-              <span class="tags-post-category">{post.data.category}</span>
-              <time class="tags-post-date">
-                {post.data.pubDate.toLocaleDateString('zh-CN', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </time>
-            </div>
-            <h3 class="tags-post-title">{post.data.title}</h3>
-            {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
-            {post.data.tags && post.data.tags.length > 0 && (
-              <div class="tags-post-tags">
-                {post.data.tags.slice(0, 3).map((tag) => (
-                  <span class="tags-post-tag">#{tag}</span>
-                ))}
+    {totalArticles > 0 && (
+      <section class="tags-posts-section" data-reveal>
+        <SectionHeader label="// RECENT" title="最新文章" />
+        <div class="tags-posts-grid">
+          {allPosts.slice(0, 6).map((post) => (
+            <a 
+              href={`/blog/${post.id.replace('zh/', '')}/`} 
+              class="tags-post-card"
+              aria-label={`阅读文章：${post.data.title}`}
+            >
+              <div class="tags-post-meta">
+                <span class="tags-post-category">{post.data.category}</span>
+                <time class="tags-post-date" datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('zh-CN', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
               </div>
-            )}
-          </a>
-        ))}
-      </div>
-    </section>
+              <h3 class="tags-post-title">{post.data.title}</h3>
+              {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="tags-post-tags">
+                  {post.data.tags.slice(0, 3).map((tag) => (
+                    <span class="tags-post-tag">#{tag}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
   </div>
 
   <script is:inline>
@@ -148,6 +172,8 @@ const totalArticles = allPosts.length;
         alphabet: document.querySelector('.tags-cloud-alphabet')
       };
 
+      if (!sortBtns.length || !clouds.popularity || !clouds.alphabet) return;
+
       sortBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           sortBtns.forEach(b => b.classList.remove('active'));
@@ -155,7 +181,10 @@ const totalArticles = allPosts.length;
 
           const sort = btn.dataset.sort;
           Object.values(clouds).forEach(cloud => cloud.classList.add('hidden'));
-          clouds[sort].classList.remove('hidden');
+          
+          setTimeout(() => {
+            clouds[sort].classList.remove('hidden');
+          }, 150);
         });
       });
     });

@@ -125,15 +125,16 @@ const trophyIcon =
           )
         }
       </div>
-      <div class="hero-stats hero-fade-in">
+      <div class="hero-stats hero-fade-in" role="status" aria-label={lang === 'zh' ? '网站统计数据' : 'Site statistics'}>
         {
           stats.map((stat, i) => (
             <>
-              {i > 0 && <div class="hero-stat-divider" />}
-              <div class="hero-stat">
+              {i > 0 && <div class="hero-stat-divider" aria-hidden="true" />}
+              <div class="hero-stat" role="group" aria-label={stat.label}>
                 <span
                   class:list={['hero-stat-value', stat.isText && 'hero-stat-text']}
                   data-count={stat.dataCount}
+                  aria-label={stat.isText ? stat.value : `${stat.value} ${stat.label}`}
                 >
                   {stat.isText ? stat.value : '0'}
                 </span>

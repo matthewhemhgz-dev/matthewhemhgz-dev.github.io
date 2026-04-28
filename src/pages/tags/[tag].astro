@@ -27,31 +27,56 @@ const tagCounts = allPosts.flatMap(post => post.data.tags).reduce((acc, t) => {
 }, {});
 
 const counts = Object.values(tagCounts);
-const minCount = Math.min(...counts);
-const maxCount = Math.max(...counts);
-const count = tagCounts[tag];
-const ratio = (count - minCount) / (maxCount - minCount);
+const minCount = counts.length > 0 ? Math.min(...counts) : 1;
+const maxCount = counts.length > 0 ? Math.max(...counts) : 1;
+const count = tagCounts[tag] || 0;
+const ratio = counts.length > 0 ? (count - minCount) / (maxCount - minCount) : 0;
 
 let sizeLabel = '冷门';
-if (ratio > 0.8) sizeLabel = '极热门';
-else if (ratio > 0.5) sizeLabel = '热门';
-else if (ratio > 0.2) sizeLabel = '普通';
+let sizeColor = 'var(--qi-slate-500)';
+if (ratio > 0.8) {
+  sizeLabel = '极热门';
+  sizeColor = 'var(--qi-red-500)';
+} else if (ratio > 0.5) {
+  sizeLabel = '热门';
+  sizeColor = 'var(--qi-orange-500)';
+} else if (ratio > 0.2) {
+  sizeLabel = '普通';
+  sizeColor = 'var(--qi-blue-500)';
+}
+
+const earliestYear = posts.length > 0 ? posts[posts.length - 1].data.pubDate.getFullYear() : new Date().getFullYear();
+const latestYear = posts.length > 0 ? posts[0].data.pubDate.getFullYear() : new Date().getFullYear();
+const yearRange = earliestYear === latestYear ? `${earliestYear}` : `${earliestYear} - ${latestYear}`;
 ---
 
 <BaseLayout
   title={`#${tag} — 祈研所 Qi-Lab`}
-  description={`${tag} 相关文章 — 祈研所的深度技术分享与思考`}
+  description={`${tag} 相关文章 — 祈研所的深度技术分享与思考，共 ${posts.length} 篇`}
 >
   <div class="tag-page container">
-    <a href="/tags" class="tag-back-link">← 返回标签列表</a>
+    <a href="/tags" class="tag-back-link" aria-label="返回标签列表">
+      返回标签列表
+    </a>
     
     <header class="tag-header">
       <div class="tag-info">
         <h1 class="tag-heading">#{tag}</h1>
         <div class="tag-meta">
-          <span class="tag-article-count">{posts.length} 篇文章</span>
-          <span class="tag-popularity-badge">{sizeLabel}</span>
+          <span class="tag-article-count" aria-label={`共 ${posts.length} 篇文章`}>
+            {posts.length} 篇文章
+          </span>
+          <span 
+            class="tag-popularity-badge" 
+            style={{ '--popularity-color': sizeColor }}
+            aria-label={`热度：${sizeLabel}`}
+          >
+            {sizeLabel}
+          </span>
         </div>
+        <p class="tag-description">
+          探索与 <strong>{tag}</strong> 相关的深度内容
+        </p>
       </div>
       
       <div class="tag-stats">
@@ -60,39 +85,58 @@ else if (ratio > 0.2) sizeLabel = '普通';
           <div class="tag-stat-label">文章数</div>
         </div>
         <div class="tag-stat-item">
-          <div class="tag-stat-value">{posts[0]?.data.pubDate.getFullYear() || new Date().getFullYear()}</div>
-          <div class="tag-stat-label">最早年份</div>
+          <div class="tag-stat-value">{yearRange}</div>
+          <div class="tag-stat-label">时间范围</div>
         </div>
       </div>
     </header>
 
-    <SectionHeader label="// ARTICLES" title="相关文章" />
-    <div class="tag-post-list">
-      {posts.map((post) => (
-        <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tag-post-card">
-          <div class="tag-post-main">
-            <h2 class="tag-post-title">{post.data.title}</h2>
-            {post.data.description && <p class="tag-post-desc">{post.data.description}</p>}
-          </div>
-          <div class="tag-post-footer">
-            <span class="tag-post-category">{post.data.category}</span>
-            <time class="tag-post-date">
-              {post.data.pubDate.toLocaleDateString('zh-CN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-          </div>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="tag-post-tags">
-              {post.data.tags.slice(0, 4).map((t) => (
-                <span class="tag-post-tag">#{t}</span>
-              ))}
-            </div>
-          )}
-        </a>
-      ))}
-    </div>
+    {posts.length > 0 ? (
+      <>
+        <SectionHeader label="// ARTICLES" title="相关文章" />
+        <div class="tag-post-list" role="list">
+          {posts.map((post, index) => (
+            <a 
+              href={`/blog/${post.id.replace('zh/', '')}/`} 
+              class="tag-post-card"
+              role="listitem"
+              aria-label={`阅读文章：${post.data.title}`}
+            >
+              <div class="tag-post-index">{String(index + 1).padStart(2, '0')}</div>
+              <div class="tag-post-main">
+                <h2 class="tag-post-title">{post.data.title}</h2>
+                {post.data.description && <p class="tag-post-desc">{post.data.description}</p>}
+              </div>
+              <div class="tag-post-footer">
+                <span class="tag-post-category">{post.data.category}</span>
+                <time 
+                  class="tag-post-date" 
+                  datetime={post.data.pubDate.toISOString()}
+                  aria-label={`发布于 ${post.data.pubDate.toLocaleDateString('zh-CN')}`}
+                >
+                  {post.data.pubDate.toLocaleDateString('zh-CN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </div>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="tag-post-tags">
+                  {post.data.tags.slice(0, 4).map((t) => (
+                    <span class="tag-post-tag">#{t}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </>
+    ) : (
+      <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <p class="empty-text">暂无相关文章，敬请期待...</p>
+      </div>
+    )}
   </div>
 </BaseLayout>

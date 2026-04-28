@@ -4,8 +4,12 @@
 
   /* Background & Surface */
   --qi-bg-base: #f7f3ee;
+  --qi-bg-canvas: #ffffff;
   --qi-surface-main: #2a2a2a;
   --qi-surface-sub: #e8e3dd;
+  --qi-surface-card: #ffffff;
+  --qi-surface-hover: #f0ebe5;
+  --qi-surface-active: #e8e3dd;
 
   /* Brand */
   --qi-brand-emerald: var(--qi-emerald-500);
@@ -18,11 +22,12 @@
   --qi-amber-dark: var(--qi-brand-amber-dark);
   --qi-emerald-dark: var(--qi-brand-emerald-dark);
 
-  /* Text */
+  /* Text - WCAG AA compliant contrast ratios */
   --qi-text-inverse: #f7f3ee;
   --qi-text-primary: #1e1b18;
-  --qi-text-secondary: #3d3832;
-  --qi-text-muted: #4a453f;
+  --qi-text-secondary: #35302b;
+  --qi-text-muted: #5c5650;
+  --qi-text-dim: #7a746e;
   --qi-on-surface: #e8e3dd;
   --qi-on-surface-secondary: #c8c3bd;
   --qi-on-surface-muted: #a8a29e;
@@ -35,10 +40,11 @@
   --qi-on-dark-dim: #a8a29e;
 
   /* Border */
-  --qi-border-default: rgba(42, 42, 42, 0.06);
+  --qi-border-default: rgba(42, 42, 42, 0.08);
   --qi-border-subtle: rgba(42, 42, 42, 0.04);
   --qi-border-strong: rgba(42, 42, 42, 0.12);
   --qi-border-inverse: rgba(247, 243, 238, 0.08);
+  --qi-border-focus: rgba(74, 222, 153, 0.4);
 
   /* Opacity */
   --qi-opacity-subtle: 0.06;
@@ -126,7 +132,6 @@
   /* Inverse alpha */
   --qi-inverse-88: rgba(247, 243, 238, 0.88);
   --qi-inverse-85: rgba(247, 243, 238, 0.85);
-  /* Missing token */
   --qi-inverse-70: rgba(247, 243, 238, 0.7);
   --qi-inverse-60: rgba(247, 243, 238, 0.6);
   --qi-inverse-55: rgba(247, 243, 238, 0.55);
@@ -137,43 +142,103 @@
   --qi-inverse-12: rgba(247, 243, 238, 0.12);
 }
 
-/* Color Scale */
+/* Color Scale - Emerald (主色) */
 :root {
-  /* Emerald */
-  --qi-emerald-50: #eefaf3;
-  --qi-emerald-100: #d0f0e0;
-  --qi-emerald-200: #a3e0c0;
-  --qi-emerald-300: #6bbf96;
-  --qi-emerald-400: #4da07a;
-  --qi-emerald-500: #2e7d5c;
-  --qi-emerald-600: #256a4d;
-  --qi-emerald-700: #1b5e40;
-  --qi-emerald-800: #134d33;
-  --qi-emerald-900: #0a3322;
+  --qi-emerald-50: #f0fdf4;
+  --qi-emerald-100: #dcfce7;
+  --qi-emerald-200: #bbf7d0;
+  --qi-emerald-300: #86efac;
+  --qi-emerald-400: #4ade80;
+  --qi-emerald-500: #22c55e;
+  --qi-emerald-600: #16a34a;
+  --qi-emerald-700: #15803d;
+  --qi-emerald-800: #166534;
+  --qi-emerald-900: #14532d;
+  --qi-emerald-950: #052e16;
+}
 
-  /* Amber */
-  --qi-amber-50: #fff8e8;
-  --qi-amber-100: #ffefc0;
-  --qi-amber-200: #ffe08a;
-  --qi-amber-300: #f0c85c;
-  --qi-amber-400: #e5a93c;
-  --qi-amber-500: #d49520;
-  --qi-amber-600: #c78a1e;
-  --qi-amber-700: #a06e15;
-  --qi-amber-800: #7a5410;
-  --qi-amber-900: #543a0a;
+/* Color Scale - Amber (辅色 - 强调) */
+:root {
+  --qi-amber-50: #fffbeb;
+  --qi-amber-100: #fef3c7;
+  --qi-amber-200: #fde68a;
+  --qi-amber-300: #fcd34d;
+  --qi-amber-400: #fbbf24;
+  --qi-amber-500: #f59e0b;
+  --qi-amber-600: #d97706;
+  --qi-amber-700: #b45309;
+  --qi-amber-800: #92400e;
+  --qi-amber-900: #78350f;
+  --qi-amber-950: #451a03;
+}
 
-  /* Mint */
-  --qi-mint-50: #f0f8f5;
-  --qi-mint-100: #d8ede5;
-  --qi-mint-200: #b8dad0;
-  --qi-mint-300: #98c8ba;
-  --qi-mint-400: #78b4a0;
-  --qi-mint-500: #5a9a82;
-  --qi-mint-600: #4a826c;
-  --qi-mint-700: #3a6a56;
-  --qi-mint-800: #2a5240;
-  --qi-mint-900: #1a3a2a;
+/* Color Scale - Mint (辅色 - 清新) */
+:root {
+  --qi-mint-50: #f0fdfa;
+  --qi-mint-100: #ccfbf1;
+  --qi-mint-200: #99f6e4;
+  --qi-mint-300: #5eead4;
+  --qi-mint-400: #2dd4bf;
+  --qi-mint-500: #14b8a6;
+  --qi-mint-600: #0d9488;
+  --qi-mint-700: #0f766e;
+  --qi-mint-800: #115e59;
+  --qi-mint-900: #134e4a;
+  --qi-mint-950: #042f2e;
+}
+
+/* Neutral Colors (中性色体系) */
+:root {
+  --qi-neutral-50: #fafaf9;
+  --qi-neutral-100: #f5f5f4;
+  --qi-neutral-200: #e7e5e4;
+  --qi-neutral-300: #d6d3d1;
+  --qi-neutral-400: #a8a29e;
+  --qi-neutral-500: #78716c;
+  --qi-neutral-600: #57534e;
+  --qi-neutral-700: #44403c;
+  --qi-neutral-800: #292524;
+  --qi-neutral-900: #1c1917;
+  --qi-neutral-950: #0c0a09;
+}
+
+/* Success/Warning/Error/Info Colors */
+:root {
+  --qi-success-50: #f0fdf4;
+  --qi-success-100: #dcfce7;
+  --qi-success-200: #bbf7d0;
+  --qi-success-300: #86efac;
+  --qi-success-400: #4ade80;
+  --qi-success-500: #22c55e;
+  --qi-success-600: #16a34a;
+  --qi-success-700: #15803d;
+
+  --qi-warning-50: #fffbeb;
+  --qi-warning-100: #fef3c7;
+  --qi-warning-200: #fde68a;
+  --qi-warning-300: #fcd34d;
+  --qi-warning-400: #fbbf24;
+  --qi-warning-500: #f59e0b;
+  --qi-warning-600: #d97706;
+  --qi-warning-700: #b45309;
+
+  --qi-error-50: #fef2f2;
+  --qi-error-100: #fee2e2;
+  --qi-error-200: #fecaca;
+  --qi-error-300: #fca5a5;
+  --qi-error-400: #f87171;
+  --qi-error-500: #ef4444;
+  --qi-error-600: #dc2626;
+  --qi-error-700: #b91c1c;
+
+  --qi-info-50: #eff6ff;
+  --qi-info-100: #dbeafe;
+  --qi-info-200: #bfdbfe;
+  --qi-info-300: #93c5fd;
+  --qi-info-400: #60a5fa;
+  --qi-info-500: #3b82f6;
+  --qi-info-600: #2563eb;
+  --qi-info-700: #1d4ed8;
 }
 
 /* Typography */
@@ -185,48 +250,118 @@
   --qi-font-mono: 'Fira Code', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
 }
 
-/* Font Size */
+/* Font Size Scale (字体层级规范) */
 :root {
+  /* 辅助文字 */
   --qi-text-xs: 0.75rem;
   --qi-text-sm: 0.875rem;
+  
+  /* 正文 */
   --qi-text-base: 1rem;
   --qi-text-lg: 1.125rem;
+  
+  /* H6 */
   --qi-text-xl: 1.25rem;
+  
+  /* H5 */
   --qi-text-2xl: 1.5rem;
+  
+  /* H4 */
   --qi-text-3xl: 1.875rem;
+  
+  /* H3 */
   --qi-text-4xl: 2.25rem;
+  
+  /* H2 */
   --qi-text-5xl: 3rem;
+  
+  /* H1 */
   --qi-text-6xl: 3.75rem;
+  
+  /* 特大标题 */
   --qi-text-7xl: 4.5rem;
+  --qi-text-8xl: 6rem;
 }
 
-/* Spacing */
+/* Heading Scale (H1-H6 规范) */
 :root {
-  --qi-space-xs: 0.25rem;
-  --qi-space-sm: 0.5rem;
-  --qi-space-md: 0.75rem;
-  --qi-space-lg: 1rem;
-  --qi-space-xl: 1.5rem;
-  --qi-space-2xl: 2rem;
-  --qi-space-3xl: 3rem;
-  --qi-space-4xl: 4rem;
-  --qi-space-5xl: 6rem;
-  --qi-space-6xl: 8rem;
-  --qi-space-7xl: 10rem;
-  --qi-space-8xl: 12rem;
-  --qi-space-9xl: 16rem;
+  --qi-heading-h1: var(--qi-text-6xl);
+  --qi-heading-h2: var(--qi-text-5xl);
+  --qi-heading-h3: var(--qi-text-4xl);
+  --qi-heading-h4: var(--qi-text-3xl);
+  --qi-heading-h5: var(--qi-text-2xl);
+  --qi-heading-h6: var(--qi-text-xl);
+}
+
+/* Spacing System (基于8px倍数) */
+:root {
+  /* 超小间距 */
+  --qi-space-0: 0;
+  --qi-space-1: 0.125rem;
+  --qi-space-2: 0.25rem;
+  --qi-space-3: 0.375rem;
+  
+  /* 基础间距 */
+  --qi-space-4: 0.5rem;
+  --qi-space-5: 0.625rem;
+  --qi-space-6: 0.75rem;
+  --qi-space-8: 1rem;
+  
+  /* 中等间距 */
+  --qi-space-10: 1.25rem;
+  --qi-space-12: 1.5rem;
+  --qi-space-14: 1.75rem;
+  --qi-space-16: 2rem;
+  
+  /* 大间距 */
+  --qi-space-20: 2.5rem;
+  --qi-space-24: 3rem;
+  --qi-space-28: 3.5rem;
+  --qi-space-32: 4rem;
+  
+  /* 超大间距 */
+  --qi-space-40: 5rem;
+  --qi-space-48: 6rem;
+  --qi-space-56: 7rem;
+  --qi-space-64: 8rem;
+  
+  /* 巨型间距 */
+  --qi-space-80: 10rem;
+  --qi-space-96: 12rem;
+  --qi-space-128: 16rem;
+}
+
+/* Legacy Spacing Aliases */
+:root {
+  --qi-space-xs: var(--qi-space-2);
+  --qi-space-sm: var(--qi-space-4);
+  --qi-space-md: var(--qi-space-6);
+  --qi-space-lg: var(--qi-space-8);
+  --qi-space-xl: var(--qi-space-12);
+  --qi-space-2xl: var(--qi-space-16);
+  --qi-space-3xl: var(--qi-space-24);
+  --qi-space-4xl: var(--qi-space-32);
+  --qi-space-5xl: var(--qi-space-48);
+  --qi-space-6xl: var(--qi-space-64);
+  --qi-space-7xl: var(--qi-space-80);
+  --qi-space-8xl: var(--qi-space-96);
+  --qi-space-9xl: var(--qi-space-128);
 }
 
 /* Radius */
 :root {
-  --qi-radius: 12px;
+  --qi-radius-none: 0;
+  --qi-radius-xs: 4px;
   --qi-radius-sm: 6px;
   --qi-radius-md: 8px;
   --qi-radius-lg: 12px;
   --qi-radius-xl: 16px;
-  --qi-radius-card: 16px;
-  --qi-radius-button: 8px;
+  --qi-radius-2xl: 20px;
+  --qi-radius-3xl: 24px;
   --qi-radius-full: 9999px;
+  
+  --qi-radius-card: var(--qi-radius-xl);
+  --qi-radius-button: var(--qi-radius-md);
 }
 
 /* Layout */
@@ -243,17 +378,46 @@
   );
 }
 
-/* Shadow */
+/* Shadow Hierarchy (5级阴影深度) */
 :root {
-  --qi-shadow-sm: 0 1px 3px rgba(42, 42, 42, 0.06), 0 1px 2px rgba(42, 42, 42, 0.04);
-  --qi-shadow: 0 4px 16px rgba(42, 42, 42, 0.1);
-  --qi-shadow-md: 0 4px 12px rgba(42, 42, 42, 0.08), 0 2px 4px rgba(42, 42, 42, 0.04);
-  --qi-shadow-lg: 0 10px 24px rgba(42, 42, 42, 0.12), 0 4px 8px rgba(42, 42, 42, 0.06);
-  --qi-shadow-xl: 0 20px 40px rgba(42, 42, 42, 0.15), 0 8px 16px rgba(42, 42, 42, 0.08);
-  --qi-shadow-hover: 0 8px 24px rgba(42, 42, 42, 0.15);
-  --qi-shadow-hover-warm: 0 16px 32px rgba(42, 42, 42, 0.15), 0 4px 8px rgba(229, 169, 60, 0.1);
+  /* Level 1: 微阴影 - 用于卡片悬浮、按钮悬停 */
+  --qi-shadow-1: 
+    0 1px 2px 0 rgba(42, 42, 42, 0.05),
+    0 1px 3px -1px rgba(42, 42, 42, 0.05);
+  
+  /* Level 2: 基础阴影 - 用于卡片、模态框 */
+  --qi-shadow-2: 
+    0 4px 6px -1px rgba(42, 42, 42, 0.08),
+    0 2px 4px -2px rgba(42, 42, 42, 0.05);
+  
+  /* Level 3: 中等阴影 - 用于下拉菜单、弹出层 */
+  --qi-shadow-3: 
+    0 10px 15px -3px rgba(42, 42, 42, 0.1),
+    0 4px 6px -4px rgba(42, 42, 42, 0.05);
+  
+  /* Level 4: 深度阴影 - 用于模态框、卡片悬浮效果 */
+  --qi-shadow-4: 
+    0 20px 25px -5px rgba(42, 42, 42, 0.1),
+    0 8px 10px -6px rgba(42, 42, 42, 0.05);
+  
+  /* Level 5: 强烈阴影 - 用于全屏模态框、重要弹窗 */
+  --qi-shadow-5: 
+    0 25px 50px -12px rgba(42, 42, 42, 0.15),
+    0 12px 16px -8px rgba(42, 42, 42, 0.08);
+  
+  /* Legacy Shadow Aliases */
+  --qi-shadow-sm: var(--qi-shadow-1);
+  --qi-shadow: var(--qi-shadow-2);
+  --qi-shadow-md: var(--qi-shadow-2);
+  --qi-shadow-lg: var(--qi-shadow-3);
+  --qi-shadow-xl: var(--qi-shadow-4);
+  --qi-shadow-hover: var(--qi-shadow-3);
+  --qi-shadow-hover-warm: 
+    0 16px 32px rgba(42, 42, 42, 0.15),
+    0 4px 8px rgba(229, 169, 60, 0.1);
   --qi-shadow-inset:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+    inset 2px 2px 5px rgba(0, 0, 0, 0.4),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.05);
 }
 
 /* Z-Index */

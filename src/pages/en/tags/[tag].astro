@@ -27,31 +27,56 @@ const tagCounts = allPosts.flatMap(post => post.data.tags).reduce((acc, t) => {
 }, {});
 
 const counts = Object.values(tagCounts);
-const minCount = Math.min(...counts);
-const maxCount = Math.max(...counts);
-const count = tagCounts[tag];
-const ratio = (count - minCount) / (maxCount - minCount);
+const minCount = counts.length > 0 ? Math.min(...counts) : 1;
+const maxCount = counts.length > 0 ? Math.max(...counts) : 1;
+const count = tagCounts[tag] || 0;
+const ratio = counts.length > 0 ? (count - minCount) / (maxCount - minCount) : 0;
 
 let sizeLabel = 'Rare';
-if (ratio > 0.8) sizeLabel = 'Very Hot';
-else if (ratio > 0.5) sizeLabel = 'Hot';
-else if (ratio > 0.2) sizeLabel = 'Regular';
+let sizeColor = 'var(--qi-slate-500)';
+if (ratio > 0.8) {
+  sizeLabel = 'Very Hot';
+  sizeColor = 'var(--qi-red-500)';
+} else if (ratio > 0.5) {
+  sizeLabel = 'Hot';
+  sizeColor = 'var(--qi-orange-500)';
+} else if (ratio > 0.2) {
+  sizeLabel = 'Regular';
+  sizeColor = 'var(--qi-blue-500)';
+}
+
+const earliestYear = posts.length > 0 ? posts[posts.length - 1].data.pubDate.getFullYear() : new Date().getFullYear();
+const latestYear = posts.length > 0 ? posts[0].data.pubDate.getFullYear() : new Date().getFullYear();
+const yearRange = earliestYear === latestYear ? `${earliestYear}` : `${earliestYear} - ${latestYear}`;
 ---
 
 <BaseLayout
   title={`#${tag} — Qi-Lab`}
-  description={`Articles related to ${tag} — Thoughtful technical sharing and insights from Qi-Lab.`}
+  description={`Articles related to ${tag} — Thoughtful technical sharing and insights from Qi-Lab. ${posts.length} articles in total.`}
 >
   <div class="tag-page container">
-    <a href="/en/tags" class="tag-back-link">← Back to Tags</a>
+    <a href="/en/tags" class="tag-back-link" aria-label="Back to tags list">
+      Back to Tags
+    </a>
     
     <header class="tag-header">
       <div class="tag-info">
         <h1 class="tag-heading">#{tag}</h1>
         <div class="tag-meta">
-          <span class="tag-article-count">{posts.length} articles</span>
-          <span class="tag-popularity-badge">{sizeLabel}</span>
+          <span class="tag-article-count" aria-label={`${posts.length} articles`}>
+            {posts.length} articles
+          </span>
+          <span 
+            class="tag-popularity-badge" 
+            style={{ '--popularity-color': sizeColor }}
+            aria-label={`Popularity: ${sizeLabel}`}
+          >
+            {sizeLabel}
+          </span>
         </div>
+        <p class="tag-description">
+          Explore deep content related to <strong>{tag}</strong>
+        </p>
       </div>
       
       <div class="tag-stats">
@@ -60,39 +85,58 @@ else if (ratio > 0.2) sizeLabel = 'Regular';
           <div class="tag-stat-label">Articles</div>
         </div>
         <div class="tag-stat-item">
-          <div class="tag-stat-value">{posts[0]?.data.pubDate.getFullYear() || new Date().getFullYear()}</div>
-          <div class="tag-stat-label">Since</div>
+          <div class="tag-stat-value">{yearRange}</div>
+          <div class="tag-stat-label">Date Range</div>
         </div>
       </div>
     </header>
 
-    <SectionHeader label="// ARTICLES" title="Related Articles" />
-    <div class="tag-post-list">
-      {posts.map((post) => (
-        <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="tag-post-card">
-          <div class="tag-post-main">
-            <h2 class="tag-post-title">{post.data.title}</h2>
-            {post.data.description && <p class="tag-post-desc">{post.data.description}</p>}
-          </div>
-          <div class="tag-post-footer">
-            <span class="tag-post-category">{post.data.category}</span>
-            <time class="tag-post-date">
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-          </div>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="tag-post-tags">
-              {post.data.tags.slice(0, 4).map((t) => (
-                <span class="tag-post-tag">#{t}</span>
-              ))}
-            </div>
-          )}
-        </a>
-      ))}
-    </div>
+    {posts.length > 0 ? (
+      <>
+        <SectionHeader label="// ARTICLES" title="Related Articles" />
+        <div class="tag-post-list" role="list">
+          {posts.map((post, index) => (
+            <a 
+              href={`/en/blog/${post.id.replace('en/', '')}/`} 
+              class="tag-post-card"
+              role="listitem"
+              aria-label={`Read article: ${post.data.title}`}
+            >
+              <div class="tag-post-index">{String(index + 1).padStart(2, '0')}</div>
+              <div class="tag-post-main">
+                <h2 class="tag-post-title">{post.data.title}</h2>
+                {post.data.description && <p class="tag-post-desc">{post.data.description}</p>}
+              </div>
+              <div class="tag-post-footer">
+                <span class="tag-post-category">{post.data.category}</span>
+                <time 
+                  class="tag-post-date" 
+                  datetime={post.data.pubDate.toISOString()}
+                  aria-label={`Published on ${post.data.pubDate.toLocaleDateString('en-US')}`}
+                >
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </div>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="tag-post-tags">
+                  {post.data.tags.slice(0, 4).map((t) => (
+                    <span class="tag-post-tag">#{t}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </>
+    ) : (
+      <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <p class="empty-text">No articles yet, coming soon...</p>
+      </div>
+    )}
   </div>
 </BaseLayout>

@@ -74,7 +74,7 @@ const timelineEvents = isEn
 <section class="section" data-reveal>
   <div class="container">
     <SectionHeader label={label} title={title} />
-    <div class="timeline">
+    <div class="timeline" role="list">
       {
         timelineEvents.map((event, index) => (
           <div
@@ -82,10 +82,12 @@ const timelineEvents = isEn
               'timeline-item',
               index % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right',
             ]}
+            role="listitem"
+            aria-label={`${event.year} - ${event.title}`}
           >
-            <div class="timeline-year">{event.year}</div>
+            <div class="timeline-year" role="heading" aria-level="4">{event.year}</div>
             <div class="timeline-content">
-              <div class="timeline-icon">{event.icon}</div>
+              <div class="timeline-icon" aria-hidden="true">{event.icon}</div>
               <h3 class="timeline-title">{event.title}</h3>
               <p class="timeline-description">{event.description}</p>
             </div>

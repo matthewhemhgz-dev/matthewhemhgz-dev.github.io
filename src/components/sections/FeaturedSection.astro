@@ -66,6 +66,7 @@ const replaceKey = isEn ? 'en/' : 'zh/';
                 'tilt-card',
                 i === 0 ? 'bento-card--large' : 'bento-card--small',
               ]}
+              aria-label={`${post.data.title}: ${post.data.description || ''}`}
             >
               {largeCardLayout && i === 0 && post.data.heroImage ? (
                 <div class="bento-card--large__bg">

@@ -4,8 +4,12 @@
 
   /* Background & Surface */
   --qi-bg-base: #121010;
+  --qi-bg-canvas: #1a1714;
   --qi-surface-main: #1e1b18;
   --qi-surface-sub: #2d2924;
+  --qi-surface-card: #1e1b18;
+  --qi-surface-hover: #2a2621;
+  --qi-surface-active: #35302b;
 
   /* Text - Slightly thinner weights in dark mode to prevent "glowing" blur */
   --qi-weight-normal: 350;
@@ -15,9 +19,9 @@
 
   --qi-text-inverse: #1e1b18;
   --qi-text-primary: #ffffff;
-  --qi-text-secondary: #d4cdc3;
-  /* Slightly more muted for secondary to increase hierarchy */
-  --qi-text-muted: #a39c94;
+  --qi-text-secondary: #ded8ce;
+  --qi-text-muted: #a8a29e;
+  --qi-text-dim: #8a847e;
   --qi-on-surface: #ffffff;
   --qi-on-surface-secondary: #d4cdc3;
   --qi-on-surface-muted: #a39c94;
@@ -34,6 +38,7 @@
   --qi-border-subtle: rgba(232, 227, 221, 0.08);
   --qi-border-strong: rgba(232, 227, 221, 0.2);
   --qi-border-inverse: rgba(30, 27, 24, 0.12);
+  --qi-border-focus: rgba(74, 222, 153, 0.5);
 
   /* Opacity */
   --qi-opacity-subtle: 0.08;
@@ -42,7 +47,6 @@
 
   /* Brand — Emerald */
   --qi-brand-emerald: #6ee7b7;
-  /* Brighter emerald for dark mode text contrast */
   --qi-brand-emerald-dark: #22c55e;
   --qi-brand-emerald-03: rgba(74, 222, 153, 0.05);
   --qi-brand-emerald-04: rgba(74, 222, 153, 0.07);
@@ -126,7 +130,6 @@
   /* Inverse alpha — Dark colors for use in dark mode or on light surfaces */
   --qi-inverse-88: rgba(30, 27, 24, 0.88);
   --qi-inverse-85: rgba(30, 27, 24, 0.85);
-  /* Missing token */
   --qi-inverse-70: rgba(30, 27, 24, 0.7);
   --qi-inverse-60: rgba(30, 27, 24, 0.6);
   --qi-inverse-55: rgba(30, 27, 24, 0.55);
@@ -137,16 +140,45 @@
   --qi-inverse-15: rgba(30, 27, 24, 0.15);
   --qi-inverse-12: rgba(30, 27, 24, 0.12);
 
-  /* Shadow */
-  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  --qi-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
-  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
-  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3);
-  --qi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(251, 191, 36, 0.15);
+  /* Shadow Hierarchy (5级阴影深度 - Dark Mode) */
+  /* Level 1: 微阴影 */
+  --qi-shadow-1: 
+    0 1px 2px 0 rgba(0, 0, 0, 0.3),
+    0 1px 3px -1px rgba(0, 0, 0, 0.2);
+  
+  /* Level 2: 基础阴影 */
+  --qi-shadow-2: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 2px 4px -2px rgba(0, 0, 0, 0.25);
+  
+  /* Level 3: 中等阴影 */
+  --qi-shadow-3: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.45),
+    0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  
+  /* Level 4: 深度阴影 */
+  --qi-shadow-4: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.5),
+    0 8px 10px -6px rgba(0, 0, 0, 0.35);
+  
+  /* Level 5: 强烈阴影 */
+  --qi-shadow-5: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 12px 16px -8px rgba(0, 0, 0, 0.4);
+
+  /* Legacy Shadow Aliases */
+  --qi-shadow-sm: var(--qi-shadow-1);
+  --qi-shadow: var(--qi-shadow-2);
+  --qi-shadow-md: var(--qi-shadow-2);
+  --qi-shadow-lg: var(--qi-shadow-3);
+  --qi-shadow-xl: var(--qi-shadow-4);
+  --qi-shadow-hover: var(--qi-shadow-3);
+  --qi-shadow-hover-warm: 
+    0 16px 32px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(251, 191, 36, 0.15);
   --qi-shadow-inset:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03);
+    inset 2px 2px 5px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.03);
 
   /* Glass Morphism */
   --qi-glass-bg: rgba(30, 27, 24, 0.7);
