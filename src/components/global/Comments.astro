@@ -1,0 +1,165 @@
+---
+/**
+ * Giscus Comments Component - 基于GitHub Discussions的评论系统
+ *
+ * 功能：
+ * - 支持深色/浅色主题自动切换
+ * - 支持中英文国际化
+ * - 响应式设计
+ */
+
+interface Props {
+  lang?: 'zh' | 'en';
+}
+
+const { lang = 'zh' } = Astro.props;
+
+const labels = {
+  zh: {
+    title: '评论',
+    description: '使用 GitHub 登录参与讨论',
+  },
+  en: {
+    title: 'Comments',
+    description: 'Sign in with GitHub to join the discussion',
+  },
+};
+
+const label = labels[lang];
+
+const GISCUS_CONFIG = {
+  repo: 'matthewhemhgz-dev/matthewhemhgz-dev.github.io',
+  repoId: 'R_kgDONj0A-A',
+  category: 'Announcements',
+  categoryId: 'DIC_kwDONj0A-M4CmZvA',
+  mapping: 'pathname',
+  strict: '0',
+  reactionsEnabled: '1',
+  emitMetadata: '0',
+  inputPosition: 'top',
+  theme: 'light',
+  lang: lang === 'zh' ? 'zh-CN' : 'en',
+  loading: 'lazy',
+};
+---
+
+<section class="giscus-comments" aria-label={label.title}>
+  <div class="giscus-header">
+    <h3 class="giscus-title">{label.title}</h3>
+    <p class="giscus-description">{label.description}</p>
+  </div>
+  <div class="giscus-wrapper">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo={GISCUS_CONFIG.repo}
+      data-repo-id={GISCUS_CONFIG.repoId}
+      data-category={GISCUS_CONFIG.category}
+      data-category-id={GISCUS_CONFIG.categoryId}
+      data-mapping={GISCUS_CONFIG.mapping}
+      data-strict={GISCUS_CONFIG.strict}
+      data-reactions-enabled={GISCUS_CONFIG.reactionsEnabled}
+      data-emit-metadata={GISCUS_CONFIG.emitMetadata}
+      data-input-position={GISCUS_CONFIG.inputPosition}
+      data-theme={GISCUS_CONFIG.theme}
+      data-lang={GISCUS_CONFIG.lang}
+      data-loading={GISCUS_CONFIG.loading}
+      crossorigin="anonymous"
+      async
+    ></script>
+  </div>
+</section>
+
+<style>
+  .giscus-comments {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--qi-border-subtle);
+  }
+
+  .giscus-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .giscus-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--qi-text-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .giscus-description {
+    font-size: 0.875rem;
+    color: var(--qi-text-secondary);
+    margin: 0;
+  }
+
+  .giscus-wrapper {
+    min-height: 200px;
+  }
+
+  :global(.giscus) {
+    max-width: 100%;
+  }
+
+  :global(.giscus-frame) {
+    width: 100%;
+    border: none;
+  }
+</style>
+
+<script>
+  const GISCUS_LIGHT_THEME = 'light';
+  const GISCUS_DARK_THEME = 'dark';
+
+  function getGiscusTheme(): string {
+    const isDark = document.documentElement.classList.contains('dark');
+    return isDark ? GISCUS_DARK_THEME : GISCUS_LIGHT_THEME;
+  }
+
+  function sendMessageToGiscus(message: object) {
+    const iframe = document.querySelector('iframe.giscus-frame') as HTMLIFrameElement;
+    if (!iframe) return;
+
+    iframe.contentWindow?.postMessage(
+      { giscus: message },
+      'https://giscus.app'
+    );
+  }
+
+  function updateGiscusTheme() {
+    const theme = getGiscusTheme();
+    sendMessageToGiscus({
+      setConfig: {
+        theme: theme,
+      },
+    });
+  }
+
+  function initGiscusThemeObserver() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          updateGiscusTheme();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    initGiscusThemeObserver();
+
+    window.addEventListener('message', (event) => {
+      if (event.origin !== 'https://giscus.app') return;
+
+      if (event.data && typeof event.data === 'object' && event.data.giscus) {
+        updateGiscusTheme();
+      }
+    });
+  });
+</script>

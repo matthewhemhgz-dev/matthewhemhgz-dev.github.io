@@ -1,0 +1,93 @@
+---
+import '../../styles/components/reading-progress.css';
+
+interface Props {
+  label?: string;
+}
+
+const { label = '阅读进度' } = Astro.props;
+---
+
+<div
+  class="reading-progress"
+  id="reading-progress"
+  role="progressbar"
+  aria-valuenow="0"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-label={label}
+>
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar"></div>
+  </div>
+  <span class="reading-progress-text">0%</span>
+</div>
+
+<script>
+  let scrollHandler: (() => void) | null = null;
+  let rafId: number | null = null;
+
+  function initReadingProgress() {
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler);
+    }
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+    }
+
+    const progressContainer = document.getElementById('reading-progress');
+    const progressBar = document.querySelector('.reading-progress-bar') as HTMLElement;
+    const progressText = document.querySelector('.reading-progress-text') as HTMLElement;
+
+    if (!progressBar || !progressText || !progressContainer) return;
+
+    const articleContainer = document.querySelector('.article-container') || document.body;
+
+    function updateProgress() {
+      const rect = articleContainer.getBoundingClientRect();
+      const articleTop = rect.top + window.scrollY;
+      const articleHeight = articleContainer.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollTop = window.scrollY;
+
+      const scrollStart = articleTop - viewportHeight * 0.5;
+      const scrollEnd = articleTop + articleHeight - viewportHeight * 0.5;
+      const scrollableDistance = scrollEnd - scrollStart;
+
+      let progress = 0;
+      if (scrollableDistance > 0) {
+        const scrolled = scrollTop - scrollStart;
+        progress = Math.max(0, Math.min(scrolled / scrollableDistance, 1));
+      }
+
+      const percentage = Math.round(progress * 100);
+
+      progressBar.style.transform = `scaleX(${progress})`;
+      progressText.textContent = `${percentage}%`;
+      progressContainer.setAttribute('aria-valuenow', percentage.toString());
+
+      if (scrollTop > 100 && progress > 0) {
+        progressContainer.classList.add('visible');
+      } else {
+        progressContainer.classList.remove('visible');
+      }
+    }
+
+    let ticking = false;
+    scrollHandler = () => {
+      if (!ticking) {
+        rafId = requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    updateProgress();
+  }
+
+  document.addEventListener('astro:page-load', initReadingProgress);
+  document.addEventListener('DOMContentLoaded', initReadingProgress);
+</script>

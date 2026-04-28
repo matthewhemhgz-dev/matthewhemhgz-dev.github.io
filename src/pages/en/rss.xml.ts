@@ -4,7 +4,7 @@ import type { APIContext } from 'astro';
 import { marked } from 'marked';
 
 export async function GET(context: APIContext) {
-  const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh')).sort(
+  const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
 
@@ -17,7 +17,7 @@ export async function GET(context: APIContext) {
         title: post.data.title,
         pubDate: post.data.pubDate,
         description: post.data.description,
-        link: `/blog/${post.id.replace('zh/', '')}/`,
+        link: `/en/blog/${post.id.replace('en/', '')}/`,
         categories: post.data.tags,
         content: htmlContent,
       };
@@ -25,11 +25,11 @@ export async function GET(context: APIContext) {
   );
 
   return rss({
-    title: '祈研所 Qi-Lab',
-    description: '知识管理 × 项目管理 × IT/AI 技巧 × 八卦前沿',
+    title: 'Qi-Lab',
+    description: 'Knowledge Management × Project Management × IT/AI Skills × Trends',
     site: context.site!,
     items,
-    customData: '<language>zh-CN</language><atom:link href="' + context.site + 'rss.xml" rel="self" type="application/rss+xml"/>',
+    customData: '<language>en-US</language><atom:link href="' + context.site + 'en/rss.xml" rel="self" type="application/rss+xml"/>',
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom',
       content: 'http://purl.org/rss/1.0/modules/content/',

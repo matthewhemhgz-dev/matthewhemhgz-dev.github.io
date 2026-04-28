@@ -1,0 +1,159 @@
+---
+import '../../styles/components/table-of-contents.css';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  label?: string;
+}
+
+const { headings, label = '目录' } = Astro.props;
+
+const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <aside class="toc-sidebar" aria-label={label}>
+    <nav class="toc-nav">
+      <div class="toc-header">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M4 2h8M4 8h8M4 14h5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+        <span class="toc-title">{label}</span>
+      </div>
+      <ul class="toc-list" role="list">
+        {filteredHeadings.map((heading) => (
+          <li
+            class:list={['toc-item', `toc-item--depth-${heading.depth}`]}
+            data-heading-slug={heading.slug}
+          >
+            <a href={`#${heading.slug}`} class="toc-link">
+              <span class="toc-indicator"></span>
+              <span class="toc-text">{heading.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </aside>
+)}
+
+<script>
+  function initTableOfContents() {
+    const tocItems = document.querySelectorAll('.toc-item');
+    const tocLinks = document.querySelectorAll('.toc-link');
+
+    if (tocItems.length === 0) return;
+
+    const headingElements = Array.from(tocItems)
+      .map((item) => {
+        const slug = item.getAttribute('data-heading-slug');
+        return slug ? document.getElementById(slug) : null;
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (headingElements.length === 0) return;
+
+    let activeItem: Element | null = null;
+
+    function updateActiveHeading() {
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const offset = viewportHeight * 0.3;
+
+      let currentHeading: HTMLElement | null = null;
+
+      for (let i = headingElements.length - 1; i >= 0; i--) {
+        const heading = headingElements[i];
+        if (heading) {
+          const rect = heading.getBoundingClientRect();
+          const absoluteTop = rect.top + scrollPosition;
+
+          if (scrollPosition >= absoluteTop - offset) {
+            currentHeading = heading;
+            break;
+          }
+        }
+      }
+
+      if (currentHeading) {
+        const slug = currentHeading.getAttribute('id');
+        const correspondingItem = document.querySelector(
+          `.toc-item[data-heading-slug="${slug}"]`
+        );
+
+        if (correspondingItem && correspondingItem !== activeItem) {
+          if (activeItem) {
+            activeItem.classList.remove('active');
+          }
+          correspondingItem.classList.add('active');
+          activeItem = correspondingItem;
+
+          const tocList = document.querySelector('.toc-list');
+          const activeLink = correspondingItem.querySelector('.toc-link');
+          if (tocList && activeLink) {
+            const listRect = tocList.getBoundingClientRect();
+            const linkRect = activeLink.getBoundingClientRect();
+
+            if (linkRect.top < listRect.top || linkRect.bottom > listRect.bottom) {
+              activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+          }
+        }
+      } else if (activeItem) {
+        activeItem.classList.remove('active');
+        activeItem = null;
+      }
+    }
+
+    let ticking = false;
+
+    const scrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveHeading();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    updateActiveHeading();
+
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (href) {
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            const navHeight = 80;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth',
+            });
+
+            history.pushState(null, '', href);
+          }
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initTableOfContents);
+  document.addEventListener('DOMContentLoaded', initTableOfContents);
+</script>

@@ -8,6 +8,7 @@ import NoiseOverlay from '../components/global/NoiseOverlay.astro';
 import Footer from '../components/global/Footer.astro';
 import { Astro } from 'astro';
 import '../styles/base/global.css';
+import '../styles/base/print.css';
 
 // 懒加载组件 - 使用 Astro 的动态导入支持
 const SearchModal = (await import('../components/global/SearchModal.astro')).default;
@@ -98,6 +99,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
       )
     }
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <!-- RSS Feeds -->
+    <link rel="alternate" type="application/rss+xml" title={isEnglish ? 'Qi-Lab RSS Feed' : '祈研所 RSS 订阅'} href={isEnglish ? '/en/rss.xml' : '/rss.xml'} />
 
     <!-- Favicon (VI Logo) -->
     <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />

@@ -255,6 +255,31 @@ a.contact-value:hover {
   color: var(--qi-on-dark-muted);
 }
 
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-md);
+}
+
+.footer-rss-link {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-xs);
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-on-dark-muted);
+  text-decoration: none;
+  transition: color var(--qi-transition-fast);
+}
+
+.footer-rss-link:hover {
+  color: var(--qi-brand-amber);
+}
+
+.footer-rss-link svg {
+  flex-shrink: 0;
+}
+
 .heart {
   display: inline-block;
   color: var(--qi-brand-amber);
@@ -314,6 +339,10 @@ a.contact-value:hover {
     flex-direction: column;
     gap: var(--qi-space-sm);
     text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
   }
 
   .qr-container {
