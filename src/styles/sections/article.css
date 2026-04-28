@@ -499,7 +499,7 @@
   border: 1px solid var(--qi-border-default);
   display: block;
   overflow-x: auto;
-  background: var(--qi-surface-main);
+  background: var(--qi-bg-surface);
 }
 
 .article-container th,
@@ -1052,8 +1052,8 @@
 
 .article-related-card {
   display: block;
-  background: var(--qi-surface-main);
-  border: 1px solid var(--qi-border-subtle);
+  background: var(--qi-bg-surface);
+  border: 1px solid var(--qi-border-default);
   border-radius: var(--qi-radius-lg);
   padding: var(--qi-space-xl);
   transition: all var(--qi-transition);
