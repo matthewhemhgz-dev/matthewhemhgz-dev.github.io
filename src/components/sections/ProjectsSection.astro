@@ -16,7 +16,13 @@ let activeCategory = 'all';
 const filteredProjects = projects.filter(p => activeCategory === 'all' || p.category === activeCategory);
 ---
 
-<section class={`projects-section ${classList}`}>
+<section class={`projects-section ${classList}`} data-reveal>
+  <div class="projects-corner-deco" aria-hidden="true">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+      <path d="M0 0 L30 0 L30 2 L2 2 L2 30 L0 30 Z" fill="currentColor" opacity="0.15"></path>
+    </svg>
+  </div>
+
   <div class="container">
     <SectionHeader label={label} title={title} />
 
@@ -39,7 +45,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
       {filteredProjects.map((project) => (
         <article
           key={project.id}
-          class="project-card"
+          class="project-card tilt-card"
           tabindex="0"
           role="article"
           aria-labelledby={`project-${project.id}-title`}
@@ -54,44 +60,14 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
                 loading="lazy"
                 class="project-card-image"
               />
-              <div class="project-card-overlay">
-                <div class="project-card-actions">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      class="project-action-btn project-action-btn--live"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View live demo of ${project.title}`}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                      </svg>
-                    </a>
-                  )}
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      class="project-action-btn project-action-btn--repo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View repository of ${project.title}`}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-1 1.02-1.28 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                        <path d="M9 18c-2 0-3.5-1.5-3.5-3.5S7 11 9 11s3.5 1.5 3.5 3.5S11 18 9 18"/>
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              </div>
+              <div class="project-card-cover-overlay" />
               <div class="project-card-year">{project.year}</div>
             </div>
 
             <div class="project-card-content">
-              <div class="project-card-category">{project.category}</div>
+              <div class="project-card-meta">
+                <span class="project-card-category">{project.category}</span>
+              </div>
               <h3 id={`project-${project.id}-title`} class="project-card-title">
                 {project.title}
               </h3>
@@ -108,6 +84,40 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
                   <span key={tech} class="project-tech-tag">{tech}</span>
                 ))}
               </div>
+
+              <div class="project-card-actions">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    class="project-action-btn project-action-btn--live"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View live demo of ${project.title}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                      <polyline points="15 3 21 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    <span>Live</span>
+                  </a>
+                )}
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    class="project-action-btn project-action-btn--repo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View repository of ${project.title}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-1 1.02-1.28 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                      <path d="M9 18c-2 0-3.5-1.5-3.5-3.5S7 11 9 11s3.5 1.5 3.5 3.5S11 18 9 18"/>
+                    </svg>
+                    <span>Repo</span>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </article>
@@ -119,6 +129,17 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
 <style>
   .projects-section {
     padding: var(--qi-space-5xl) 0;
+    position: relative;
+  }
+
+  .projects-corner-deco {
+    position: absolute;
+    top: var(--qi-space-3xl);
+    right: var(--qi-container-padding, 24px);
+    color: var(--qi-brand-emerald);
+    pointer-events: none;
+    opacity: var(--qi-deco-visible);
+    transition: opacity var(--qi-transition);
   }
 
   .projects-categories {
@@ -139,6 +160,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     font-weight: 500;
     cursor: pointer;
     transition: all var(--qi-transition);
+    font-family: var(--qi-font-mono);
   }
 
   .project-category-btn:hover {
@@ -155,36 +177,76 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: var(--qi-space-xl);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--qi-gap-bento);
   }
 
   .project-card {
-    background: var(--qi-surface-sub);
-    border-radius: var(--qi-radius-lg);
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    display: flex;
+    flex-direction: column;
+    background: var(--qi-bg-base);
+    border: 1px solid var(--qi-base-06);
+    border-radius: var(--qi-radius-card);
     overflow: hidden;
-    border: 1px solid var(--qi-border-subtle);
-    transition: all var(--qi-transition);
-    cursor: pointer;
+    transition:
+      transform var(--qi-transition),
+      box-shadow var(--qi-transition),
+      border-color var(--qi-transition);
+    position: relative;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-amber));
+    transition: width 0.4s ease;
+    z-index: 2;
   }
 
   .project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--qi-shadow-lg);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+      0 20px 40px -12px var(--qi-base-08),
+      0 8px 16px -8px var(--qi-base-06),
+      0 0 40px -8px var(--qi-brand-emerald-08);
     border-color: var(--qi-brand-emerald-20);
+  }
+
+  .project-card:hover::after {
+    width: 100%;
   }
 
   .project-card-inner {
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    z-index: 2;
   }
 
   .project-card-cover {
     position: relative;
-    aspect-ratio: 3/2;
+    aspect-ratio: 16/10;
     overflow: hidden;
-    background: var(--qi-surface-main);
+    flex-shrink: 0;
   }
 
   .project-card-image {
@@ -198,49 +260,11 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     transform: scale(1.05);
   }
 
-  .project-card-overlay {
+  .project-card-cover-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.6));
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: var(--qi-space-lg);
-    opacity: 0;
-    transition: opacity var(--qi-transition);
-  }
-
-  .project-card:hover .project-card-overlay {
-    opacity: 1;
-  }
-
-  .project-card-actions {
-    display: flex;
-    gap: var(--qi-space-sm);
-    transform: translateY(20px);
-    transition: transform var(--qi-transition);
-  }
-
-  .project-card:hover .project-card-actions {
-    transform: translateY(0);
-  }
-
-  .project-action-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: var(--qi-radius-button);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    color: var(--qi-text-inverse);
-    transition: all var(--qi-transition);
-  }
-
-  .project-action-btn:hover {
-    background: var(--qi-brand-emerald);
-    transform: translateY(-2px);
+    background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
   }
 
   .project-card-year {
@@ -254,6 +278,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     font-size: var(--qi-text-xs);
     font-weight: 600;
     border-radius: var(--qi-radius-sm);
+    font-family: var(--qi-font-mono);
   }
 
   .project-card-content {
@@ -261,44 +286,57 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: var(--qi-space-sm);
+  }
+
+  .project-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    flex-shrink: 0;
   }
 
   .project-card-category {
     font-family: var(--qi-font-mono);
     font-size: var(--qi-text-xs);
     font-weight: 600;
-    color: var(--qi-brand-emerald);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: var(--qi-space-sm);
+    color: var(--qi-brand-emerald-dark);
+    background: var(--qi-brand-emerald-12);
+    padding: 2px 8px;
+    border-radius: var(--qi-radius-full);
   }
 
   .project-card-title {
     font-family: var(--qi-font-serif);
-    font-size: var(--qi-text-lg);
-    font-weight: 600;
+    font-size: var(--qi-text-xl);
+    font-weight: 700;
     color: var(--qi-text-primary);
-    margin-bottom: var(--qi-space-sm);
+    margin: 0;
     line-height: 1.4;
+    transition: color var(--qi-transition);
+  }
+
+  .project-card:hover .project-card-title {
+    color: var(--qi-brand-emerald);
   }
 
   .project-card-description {
     font-size: var(--qi-text-sm);
-    color: var(--qi-text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--qi-space-md);
+    color: var(--qi-text-muted);
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    flex: 1;
   }
 
   .project-card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: var(--qi-space-md);
+    flex-shrink: 0;
   }
 
   .project-tag {
@@ -316,6 +354,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     gap: 6px;
     padding-top: var(--qi-space-md);
     border-top: 1px solid var(--qi-border-subtle);
+    flex-shrink: 0;
   }
 
   .project-tech-tag {
@@ -327,13 +366,44 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     border-radius: var(--qi-radius-sm);
   }
 
+  .project-card-actions {
+    display: flex;
+    gap: var(--qi-space-sm);
+    margin-top: var(--qi-space-sm);
+    flex-shrink: 0;
+  }
+
+  .project-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--qi-border-default);
+    border-radius: var(--qi-radius-button);
+    background: transparent;
+    color: var(--qi-text-secondary);
+    font-size: var(--qi-text-xs);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--qi-transition);
+    font-family: var(--qi-font-mono);
+  }
+
+  .project-action-btn:hover {
+    background: var(--qi-brand-emerald);
+    border-color: var(--qi-brand-emerald);
+    color: var(--qi-bg-base);
+    transform: translateY(-2px);
+  }
+
   :global(.dark) .project-card {
     background: var(--qi-surface-main);
     border-color: var(--qi-border-inverse);
   }
 
-  :global(.dark) .project-card-cover {
-    background: var(--qi-bg-base);
+  :global(.dark) .project-card-category {
+    color: var(--qi-brand-emerald);
+    background: var(--qi-brand-emerald-12);
   }
 
   :global(.dark) .project-tag {
@@ -344,5 +414,32 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
   :global(.dark) .project-tech-tag {
     background: var(--qi-inverse-12);
     color: var(--qi-on-surface-secondary);
+  }
+
+  :global(.dark) .project-action-btn {
+    border-color: var(--qi-border-inverse);
+    color: var(--qi-on-surface-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .projects-corner-deco {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: var(--qi-space-xl);
+    }
+
+    .project-card-title {
+      font-size: var(--qi-text-lg);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .projects-grid {
+      gap: 28px;
+    }
   }
 </style>
