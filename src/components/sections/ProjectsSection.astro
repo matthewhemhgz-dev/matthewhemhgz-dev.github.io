@@ -186,8 +186,8 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     --mouse-y: 50%;
     display: flex;
     flex-direction: column;
-    background: var(--qi-bg-base);
-    border: 1px solid var(--qi-base-06);
+    background: var(--qi-bg-surface);
+    border: 1px solid var(--qi-border-default);
     border-radius: var(--qi-radius-card);
     overflow: hidden;
     transition:
@@ -204,7 +204,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -224,8 +224,8 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
   .project-card:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow:
-      0 20px 40px -12px var(--qi-base-08),
-      0 8px 16px -8px var(--qi-base-06),
+      0 20px 40px -12px rgba(0, 0, 0, 0.12),
+      0 8px 16px -8px rgba(0, 0, 0, 0.08),
       0 0 40px -8px var(--qi-brand-emerald-08);
     border-color: var(--qi-brand-emerald-20);
   }
@@ -272,9 +272,9 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     top: var(--qi-space-sm);
     right: var(--qi-space-sm);
     padding: 4px 10px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
-    color: var(--qi-text-inverse);
+    color: #ffffff;
     font-size: var(--qi-text-xs);
     font-weight: 600;
     border-radius: var(--qi-radius-sm);
@@ -301,7 +301,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     font-size: var(--qi-text-xs);
     font-weight: 600;
     color: var(--qi-brand-emerald-dark);
-    background: var(--qi-brand-emerald-12);
+    background: var(--qi-brand-emerald-08);
     padding: 2px 8px;
     border-radius: var(--qi-radius-full);
   }
@@ -322,7 +322,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
 
   .project-card-description {
     font-size: var(--qi-text-sm);
-    color: var(--qi-text-muted);
+    color: var(--qi-text-secondary);
     line-height: 1.7;
     margin: 0;
     flex: 1;
@@ -341,10 +341,10 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
 
   .project-tag {
     padding: 3px 8px;
-    background: var(--qi-brand-emerald-04);
-    color: var(--qi-brand-emerald);
+    background: var(--qi-brand-emerald-08);
+    color: var(--qi-brand-emerald-dark);
     font-size: var(--qi-text-xs);
-    font-weight: 500;
+    font-weight: 600;
     border-radius: var(--qi-radius-sm);
   }
 
@@ -353,14 +353,14 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     flex-wrap: wrap;
     gap: 6px;
     padding-top: var(--qi-space-md);
-    border-top: 1px solid var(--qi-border-subtle);
+    border-top: 1px solid var(--qi-border-default);
     flex-shrink: 0;
   }
 
   .project-tech-tag {
     padding: 3px 8px;
-    background: var(--qi-base-06);
-    color: var(--qi-text-muted);
+    background: var(--qi-surface-sub);
+    color: var(--qi-text-secondary);
     font-size: var(--qi-text-xs);
     font-family: var(--qi-font-mono);
     border-radius: var(--qi-radius-sm);
@@ -381,9 +381,9 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     border: 1px solid var(--qi-border-default);
     border-radius: var(--qi-radius-button);
     background: transparent;
-    color: var(--qi-text-secondary);
+    color: var(--qi-text-primary);
     font-size: var(--qi-text-xs);
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--qi-transition);
     font-family: var(--qi-font-mono);
@@ -392,13 +392,17 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
   .project-action-btn:hover {
     background: var(--qi-brand-emerald);
     border-color: var(--qi-brand-emerald);
-    color: var(--qi-bg-base);
+    color: #ffffff;
     transform: translateY(-2px);
   }
 
   :global(.dark) .project-card {
     background: var(--qi-surface-main);
     border-color: var(--qi-border-inverse);
+  }
+
+  :global(.dark) .project-card::before {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
   }
 
   :global(.dark) .project-card-category {
