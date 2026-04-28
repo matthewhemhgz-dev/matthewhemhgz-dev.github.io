@@ -1,0 +1,428 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  fallbackImage?: string;
+  alt?: string;
+  muted?: boolean;
+  loop?: boolean;
+  showControls?: boolean;
+  preserveProgress?: boolean;
+  threshold?: number;
+  rootMargin?: string;
+  width?: number;
+  height?: number;
+  class?: string;
+}
+
+const {
+  src,
+  poster,
+  fallbackImage,
+  alt = '',
+  muted = true,
+  loop = true,
+  showControls = false,
+  preserveProgress = false,
+  threshold = 0.5,
+  rootMargin = '0px',
+  width = 1200,
+  height = 675,
+  class: className = '',
+} = Astro.props;
+---
+
+<div
+  class:list={['scroll-video', className]}
+  data-muted={muted}
+  data-loop={loop}
+  data-show-controls={showControls}
+  data-preserve-progress={preserveProgress}
+  data-threshold={threshold}
+  data-root-margin={rootMargin}
+>
+  <div class="scroll-video__placeholder" aria-hidden="true">
+    {poster && (
+      <img
+        src={poster}
+        alt=""
+        class="scroll-video__poster"
+        loading="lazy"
+        decoding="async"
+        width={width}
+        height={height}
+      />
+    )}
+    {!poster && fallbackImage && (
+      <img
+        src={fallbackImage}
+        alt=""
+        class="scroll-video__poster"
+        loading="lazy"
+        decoding="async"
+        width={width}
+        height={height}
+      />
+    )}
+  </div>
+
+  <video
+    class="scroll-video__video"
+    preload="metadata"
+    poster={poster || fallbackImage}
+    width={width}
+    height={height}
+    aria-label={alt}
+    playsinline
+  >
+    <source src={src} type="video/mp4" />
+    {alt && <track kind="captions" />}
+  </video>
+
+  {showControls && (
+    <button class="scroll-video__play-btn" type="button" aria-label="播放/暂停视频">
+      <svg class="scroll-video__play-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="2" fill="rgba(0,0,0,0.5)" />
+        <path d="M19 14L34 24L19 34V14Z" fill="currentColor" />
+      </svg>
+      <svg class="scroll-video__pause-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="2" fill="rgba(0,0,0,0.5)" />
+        <rect x="16" y="14" width="5" height="20" fill="currentColor" />
+        <rect x="27" y="14" width="5" height="20" fill="currentColor" />
+      </svg>
+    </button>
+  )}
+
+  <div class="scroll-video__loading" aria-hidden="true">
+    <div class="scroll-video__spinner"></div>
+  </div>
+
+  <div class="scroll-video__status" aria-live="polite" aria-atomic="true">
+    <span class="scroll-video__status-text">滚动播放</span>
+  </div>
+</div>
+
+<style>
+  .scroll-video {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg, 12px);
+    background: var(--color-surface, #1a1a1a);
+    aspect-ratio: 16 / 9;
+  }
+
+  .scroll-video__placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: opacity 0.4s ease-out;
+  }
+
+  .scroll-video--loaded .scroll-video__placeholder {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .scroll-video__poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .scroll-video__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    background: transparent;
+  }
+
+  .scroll-video--loaded .scroll-video__video {
+    opacity: 1;
+  }
+
+  .scroll-video__play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+  }
+
+  .scroll-video:hover .scroll-video__play-btn,
+  .scroll-video:focus-within .scroll-video__play-btn {
+    opacity: 1;
+  }
+
+  .scroll-video__play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .scroll-video__play-btn:focus {
+    outline: 2px solid var(--color-primary, #3b82f6);
+    outline-offset: 4px;
+    border-radius: 50%;
+  }
+
+  .scroll-video--playing .scroll-video__play-icon {
+    display: none;
+  }
+
+  .scroll-video__pause-icon {
+    display: none;
+  }
+
+  .scroll-video--playing .scroll-video__pause-icon {
+    display: block;
+  }
+
+  .scroll-video__loading {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .scroll-video--loading .scroll-video__loading {
+    opacity: 1;
+  }
+
+  .scroll-video__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .scroll-video__status {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    z-index: 10;
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: var(--radius-sm, 4px);
+    font-size: 12px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .scroll-video--in-viewport .scroll-video__status {
+    opacity: 1;
+  }
+
+  .scroll-video--playing .scroll-video__status {
+    opacity: 0;
+  }
+
+  .scroll-video__status-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .scroll-video__status-text::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-video__video {
+      display: none;
+    }
+
+    .scroll-video__placeholder {
+      opacity: 1 !important;
+    }
+
+    .scroll-video__play-btn {
+      display: none;
+    }
+
+    .scroll-video__status {
+      display: none;
+    }
+
+    .scroll-video--loaded .scroll-video__placeholder {
+      opacity: 1 !important;
+    }
+  }
+</style>
+
+<script>
+  function initScrollVideos() {
+    const scrollVideos = document.querySelectorAll('.scroll-video');
+
+    scrollVideos.forEach((container) => {
+      if (container.hasAttribute('data-initialized')) return;
+      container.setAttribute('data-initialized', 'true');
+
+      const video = container.querySelector('.scroll-video__video') as HTMLVideoElement;
+      const playBtn = container.querySelector('.scroll-video__play-btn') as HTMLButtonElement;
+      const statusText = container.querySelector('.scroll-video__status-text') as HTMLElement;
+
+      if (!video) return;
+
+      const muted = container.getAttribute('data-muted') === 'true';
+      const loop = container.getAttribute('data-loop') === 'true';
+      const showControls = container.getAttribute('data-show-controls') === 'true';
+      const preserveProgress = container.getAttribute('data-preserve-progress') === 'true';
+      const threshold = parseFloat(container.getAttribute('data-threshold') || '0.5');
+      const rootMargin = container.getAttribute('data-root-margin') || '0px';
+
+      video.muted = muted;
+      video.loop = loop;
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        container.classList.add('scroll-video--loaded');
+        return;
+      }
+
+      let savedProgress = 0;
+
+      const handleCanPlay = () => {
+        container.classList.remove('scroll-video--loading');
+        container.classList.add('scroll-video--loaded');
+      };
+
+      if (video.readyState >= 3) {
+        handleCanPlay();
+      } else {
+        video.addEventListener('canplay', handleCanPlay, { once: true });
+        video.addEventListener('canplaythrough', handleCanPlay, { once: true });
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              container.classList.add('scroll-video--in-viewport');
+              if (statusText) {
+                statusText.textContent = '滚动播放';
+              }
+
+              if (preserveProgress && savedProgress > 0) {
+                video.currentTime = savedProgress;
+              }
+
+              container.classList.add('scroll-video--loading');
+              video.play().then(() => {
+                container.classList.remove('scroll-video--loading');
+                container.classList.add('scroll-video--playing');
+              }).catch(() => {
+                container.classList.remove('scroll-video--loading');
+              });
+            } else {
+              container.classList.remove('scroll-video--in-viewport');
+
+              if (preserveProgress && !video.paused) {
+                savedProgress = video.currentTime;
+              }
+
+              video.pause();
+              container.classList.remove('scroll-video--playing');
+            }
+          });
+        },
+        {
+          threshold,
+          rootMargin,
+        }
+      );
+
+      observer.observe(container);
+
+      if (showControls && playBtn) {
+        playBtn.addEventListener('click', () => {
+          if (video.paused) {
+            container.classList.add('scroll-video--loading');
+            video.play().then(() => {
+              container.classList.remove('scroll-video--loading');
+              container.classList.add('scroll-video--playing');
+            }).catch(() => {
+              container.classList.remove('scroll-video--loading');
+            });
+          } else {
+            video.pause();
+            container.classList.remove('scroll-video--playing');
+          }
+        });
+
+        video.addEventListener('play', () => {
+          container.classList.add('scroll-video--playing');
+        });
+
+        video.addEventListener('pause', () => {
+          container.classList.remove('scroll-video--playing');
+        });
+      }
+
+      video.addEventListener('waiting', () => {
+        container.classList.add('scroll-video--loading');
+      });
+
+      video.addEventListener('playing', () => {
+        container.classList.remove('scroll-video--loading');
+      });
+
+      video.addEventListener('ended', () => {
+        container.classList.remove('scroll-video--playing');
+        if (statusText) {
+          statusText.textContent = '播放完成';
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initScrollVideos);
+
+  if (document.readyState === 'complete') {
+    initScrollVideos();
+  }
+
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+    if (e.matches) {
+      const videos = document.querySelectorAll('.scroll-video__video') as NodeListOf<HTMLVideoElement>;
+      videos.forEach((video) => {
+        video.pause();
+      });
+    }
+  });
+</script>

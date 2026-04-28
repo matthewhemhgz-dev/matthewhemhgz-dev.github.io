@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects, projectCategoriesEn } from '../../data/projects';
-import OptimizedImage from '../../components/ui/OptimizedImage.astro';
+import ProjectCard from '../../components/ui/ProjectCard.astro';
 import SectionHeader from '../../components/ui/SectionHeader.astro';
 
 const allTags = [...new Set(projects.flatMap(p => p.tags))];
@@ -58,79 +58,7 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
 
       <div class="projects-grid">
         {projects.map((project) => (
-          <article 
-            key={project.id} 
-            class="project-card" 
-            data-category={project.categoryEn}
-            data-tags={project.tags.join(',')}
-            data-project-id={project.id}
-          >
-            <div class="project-image-wrapper">
-              <OptimizedImage 
-                src={project.image} 
-                alt={project.titleEn}
-                width={400}
-                height={250}
-                loading="lazy"
-                class="project-image"
-              />
-              <div class="project-overlay">
-                <button class="overlay-link detail-btn" data-project-id={project.id}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7Z" />
-                  </svg>
-                </button>
-                {project.url && (
-                  <a href={project.url} class="overlay-link" target="_blank" rel="noopener noreferrer">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                )}
-                {project.github && (
-                  <a href={project.github} class="overlay-link" target="_blank" rel="noopener noreferrer">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M15 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                      <path d="M21 21v-2a4 4 0 0 0-3-3.87" />
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </a>
-                )}
-              </div>
-            </div>
-
-            <div class="project-content">
-              <div class="project-category">
-                <span class="project-category-tag">{project.categoryEn}</span>
-              </div>
-              
-              <h3 class="project-title">
-                {project.url ? (
-                  <a href={project.url} target="_blank" rel="noopener noreferrer">
-                    {project.titleEn}
-                  </a>
-                ) : (
-                  <span>{project.titleEn}</span>
-                )}
-              </h3>
-              
-              <p class="project-description">
-                {project.descriptionEn}
-              </p>
-
-              <div class="project-tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} class="project-tag">{tag}</span>
-                ))}
-              </div>
-
-              <div class="project-meta">
-                <span class="project-year">{project.year}</span>
-              </div>
-            </div>
-          </article>
+          <ProjectCard project={project} lang="en" />
         ))}
       </div>
 
@@ -244,145 +172,6 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--qi-space-xl);
-}
-
-.project-card {
-  background: var(--qi-bg-surface);
-  border-radius: var(--qi-radius-card);
-  overflow: hidden;
-  box-shadow: var(--qi-shadow-md);
-  transition: all var(--qi-transition);
-  border: 1px solid var(--qi-border-default);
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--qi-shadow-hover-warm);
-  border-color: var(--qi-brand-emerald);
-}
-
-.project-image-wrapper {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--qi-transition-slow);
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.05);
-}
-
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--qi-space-lg);
-  opacity: 0;
-  transition: opacity var(--qi-transition);
-}
-
-.project-card:hover .project-overlay {
-  opacity: 1;
-}
-
-.overlay-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: var(--qi-bg-surface);
-  border-radius: 50%;
-  color: var(--qi-text-primary);
-  cursor: pointer;
-  transition: all var(--qi-transition);
-  text-decoration: none;
-}
-
-.overlay-link:hover {
-  background: var(--qi-brand-emerald);
-  color: var(--qi-text-inverse);
-  transform: scale(1.1);
-}
-
-.project-content {
-  padding: var(--qi-space-xl);
-}
-
-.project-category {
-  margin-bottom: var(--qi-space-sm);
-}
-
-.project-category-tag {
-  display: inline-block;
-  padding: 2px 10px;
-  background: var(--qi-brand-emerald-04);
-  color: var(--qi-brand-emerald);
-  border-radius: var(--qi-radius-sm);
-  font-family: var(--qi-font-mono);
-  font-size: var(--qi-text-xs);
-  font-weight: 600;
-}
-
-.project-title {
-  margin: 0 0 var(--qi-space-sm);
-  font-family: var(--qi-font-serif);
-  font-size: var(--qi-text-lg);
-  font-weight: var(--qi-weight-semibold);
-}
-
-.project-title a {
-  color: var(--qi-text-primary);
-  text-decoration: none;
-  transition: color var(--qi-transition);
-}
-
-.project-title a:hover {
-  color: var(--qi-brand-emerald);
-}
-
-.project-description {
-  margin: 0 0 var(--qi-space-md);
-  font-size: var(--qi-text-sm);
-  color: var(--qi-text-secondary);
-  line-height: 1.6;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--qi-space-xs);
-  margin-bottom: var(--qi-space-md);
-}
-
-.project-tag {
-  padding: 2px 8px;
-  background: var(--qi-surface-sub);
-  border-radius: var(--qi-radius-sm);
-  font-size: var(--qi-text-xs);
-  color: var(--qi-text-muted);
-  font-family: var(--qi-font-mono);
-}
-
-.project-meta {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.project-year {
-  font-family: var(--qi-font-mono);
-  font-size: var(--qi-text-xs);
-  color: var(--qi-text-muted);
 }
 
 .empty-state {
@@ -637,14 +426,6 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--qi-space-2xl);
-  }
-
-  .project-content {
-    padding: var(--qi-space-2xl);
-  }
-
-  .project-title {
-    font-size: var(--qi-text-xl);
   }
 }
 </style>

@@ -6,6 +6,7 @@ import BackToTop from '../components/global/BackToTop.astro';
 import ParticlesCanvas from '../components/global/ParticlesCanvas.astro';
 import NoiseOverlay from '../components/global/NoiseOverlay.astro';
 import Footer from '../components/global/Footer.astro';
+import LoadingAnimation from '../components/global/LoadingAnimation.astro';
 import { Astro } from 'astro';
 import '../styles/base/global.css';
 import '../styles/base/print.css';
@@ -259,6 +260,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
     <a href="#main-content" class="skip-link"
       >{isEnglish ? 'Skip to main content' : '跳至主要内容'}</a
     >
+    <LoadingAnimation />
     <ClientRouter />
     <script is:inline>
       // Theme sync during transitions

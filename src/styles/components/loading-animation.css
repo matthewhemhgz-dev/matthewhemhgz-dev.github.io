@@ -1,0 +1,141 @@
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--qi-z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--qi-bg-base);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s var(--qi-spring-soft),
+    visibility 0.4s;
+  pointer-events: none;
+}
+
+.loading-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.loading-overlay.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--qi-space-8);
+}
+
+.loading-logo {
+  animation: logoFloat 2s ease-in-out infinite;
+}
+
+.loading-logo :global(.brand-logo__image) {
+  animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+.loading-progress {
+  width: 120px;
+  height: 3px;
+  background: var(--qi-border-default);
+  border-radius: var(--qi-radius-full);
+  overflow: hidden;
+}
+
+.loading-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    var(--qi-brand-emerald),
+    var(--qi-brand-mint)
+  );
+  border-radius: var(--qi-radius-full);
+  transition: width 0.1s ease-out;
+}
+
+.loading-dots {
+  display: flex;
+  gap: var(--qi-space-2);
+}
+
+.loading-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--qi-brand-emerald);
+  border-radius: 50%;
+  animation: dotBounce 1.4s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+:global(.dark) .loading-overlay {
+  background: var(--qi-bg-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-overlay {
+    transition: none;
+  }
+
+  .loading-logo,
+  .loading-logo :global(.brand-logo__image) {
+    animation: none;
+  }
+
+  .loading-dot {
+    animation: none;
+    opacity: 0.7;
+  }
+
+  .loading-progress-bar {
+    transition: none;
+  }
+}

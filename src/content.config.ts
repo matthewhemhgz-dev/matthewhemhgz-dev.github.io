@@ -22,6 +22,15 @@ const blog = defineCollection({
     author: z.string().default('Qi-Lab'),
     ogImage: z.string().optional(),
     heroImage: z.string().optional(),
+    heroVideo: z
+      .object({
+        src: z.string(),
+        poster: z.string().optional(),
+        autoplay: z.boolean().default(true),
+        muted: z.boolean().default(true),
+        loop: z.boolean().default(true),
+      })
+      .optional(),
   }),
 });
 

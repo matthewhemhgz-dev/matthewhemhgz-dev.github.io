@@ -8,6 +8,8 @@ export interface Project {
   categoryEn: string;
   tags: string[];
   image: string;
+  previewImage?: string;
+  previewType?: 'gif' | 'video';
   url: string;
   github?: string;
   year: number;
@@ -24,6 +26,8 @@ export const projects: Project[] = [
     categoryEn: 'Personal Projects',
     tags: ['Astro', 'TypeScript', 'CSS', 'PWA'],
     image: '/images/projects/qi-lab.png',
+    previewImage: '/images/projects/qi-lab-preview.gif',
+    previewType: 'gif',
     url: '/',
     github: 'https://github.com/matthewhemhgz-dev/matthewhemhgz-dev.github.io',
     year: 2024

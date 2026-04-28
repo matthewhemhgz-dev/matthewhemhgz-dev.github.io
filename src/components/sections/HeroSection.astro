@@ -1,5 +1,6 @@
 ---
 import HeroFloatCard from '../ui/HeroFloatCard.astro';
+import VideoBackground from '../ui/VideoBackground.astro';
 
 interface Props {
   titleLines: string[];
@@ -16,6 +17,12 @@ interface Props {
   primaryBtn?: { text: string; href: string };
   secondaryBtn?: { text: string; href: string };
   lang?: string;
+  videoBackground?: {
+    videoSrc: string;
+    posterSrc?: string;
+    fallbackImageSrc?: string;
+    overlayOpacity?: number;
+  };
 }
 
 const {
@@ -28,6 +35,7 @@ const {
   primaryBtn,
   secondaryBtn,
   lang = 'zh',
+  videoBackground,
 } = Astro.props;
 
 const trophyIcon =
@@ -35,6 +43,14 @@ const trophyIcon =
 ---
 
 <section class="hero-section" data-reveal>
+  {videoBackground && (
+    <VideoBackground
+      videoSrc={videoBackground.videoSrc}
+      posterSrc={videoBackground.posterSrc}
+      fallbackImageSrc={videoBackground.fallbackImageSrc}
+      overlayOpacity={videoBackground.overlayOpacity ?? 0.4}
+    />
+  )}
   <div class="hero-bg-decoration" aria-hidden="true">
     <div class="hero-gradient-orb hero-gradient-orb--1"></div>
     <div class="hero-gradient-orb hero-gradient-orb--2"></div>
