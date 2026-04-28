@@ -1,49 +1,150 @@
-/* Dark Mode */
+/* ==========================================================================
+   DARK MODE DESIGN TOKENS
+   祈研所（Qi-Lab）暗色主题令牌规范
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   DARK MODE COLOR SYSTEM
+   -------------------------------------------------------------------------- */
 .dark {
   color-scheme: dark;
 
-  /* Background & Surface */
+  /* ------------------------------
+     Background & Surface Colors
+     ------------------------------ */
   --qi-bg-base: #121010;
+  --qi-bg-surface: #1a1714;
+  --qi-bg-overlay: rgba(0, 0, 0, 0.7);
+  --qi-bg-elevated: #1e1b18;
+  --qi-bg-subtle: rgba(232, 227, 221, 0.03);
+  --qi-bg-muted: rgba(232, 227, 221, 0.05);
+  
   --qi-surface-main: #1e1b18;
   --qi-surface-sub: #2d2924;
+  --qi-surface-hover: rgba(232, 227, 221, 0.04);
+  --qi-surface-active: rgba(232, 227, 221, 0.08);
 
-  /* Text - Slightly thinner weights in dark mode to prevent "glowing" blur */
-  --qi-weight-normal: 350;
-  --qi-weight-medium: 450;
-  --qi-weight-semibold: 550;
-  --qi-weight-bold: 650;
+  /* ------------------------------
+     Brand Colors (Primary)
+     ------------------------------ */
+  --qi-brand-emerald: #4ade80;
+  --qi-brand-emerald-light: #6ee7b7;
+  --qi-brand-emerald-dark: #22c55e;
+  --qi-brand-mint: #34d399;
+  --qi-brand-mint-light: #5eead4;
+  --qi-brand-mint-dark: #059669;
+  --qi-brand-amber: #fbbf24;
+  --qi-brand-amber-light: #fcd34d;
+  --qi-brand-amber-dark: #d97706;
 
-  --qi-text-inverse: #1e1b18;
+  /* ------------------------------
+     Semantic Colors (Functional)
+     ------------------------------ */
+  --qi-color-primary: var(--qi-brand-emerald);
+  --qi-color-primary-hover: var(--qi-brand-emerald-dark);
+  --qi-color-primary-active: #16a34a;
+  --qi-color-secondary: var(--qi-brand-amber);
+  --qi-color-secondary-hover: var(--qi-brand-amber-dark);
+  --qi-color-accent: var(--qi-brand-mint);
+  --qi-color-accent-hover: var(--qi-brand-mint-dark);
+
+  /* ------------------------------
+     Status Colors
+     ------------------------------ */
+  --qi-color-success: #22c55e;
+  --qi-color-success-light: rgba(34, 197, 94, 0.15);
+  --qi-color-success-muted: rgba(34, 197, 94, 0.08);
+  --qi-color-warning: #d97706;
+  --qi-color-warning-light: rgba(217, 119, 6, 0.15);
+  --qi-color-warning-muted: rgba(217, 119, 6, 0.08);
+  --qi-color-error: #f87171;
+  --qi-color-error-light: rgba(248, 113, 113, 0.15);
+  --qi-color-error-muted: rgba(248, 113, 113, 0.08);
+  --qi-color-info: #60a5fa;
+  --qi-color-info-light: rgba(96, 165, 250, 0.15);
+  --qi-color-info-muted: rgba(96, 165, 250, 0.08);
+
+  /* ------------------------------
+     Text Colors
+     ------------------------------ */
   --qi-text-primary: #ffffff;
   --qi-text-secondary: #d4cdc3;
-  /* Slightly more muted for secondary to increase hierarchy */
-  --qi-text-muted: #a39c94;
+  --qi-text-tertiary: #a39c94;
+  --qi-text-muted: #827c75;
+  --qi-text-dim: #6b655f;
+  --qi-text-inverse: #121010;
+  --qi-text-on-primary: #0f172a;
+  --qi-text-on-secondary: #1e1b18;
+  
   --qi-on-surface: #ffffff;
   --qi-on-surface-secondary: #d4cdc3;
   --qi-on-surface-muted: #a39c94;
   --qi-on-surface-dim: #827c75;
 
-  /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
+  /* ------------------------------
+     On-Dark Colors (for dark backgrounds)
+     ------------------------------ */
   --qi-on-dark-primary: #f7f3ee;
   --qi-on-dark-secondary: #e8e3dd;
   --qi-on-dark-muted: #c8c3bd;
   --qi-on-dark-dim: #a8a29e;
 
-  /* Border */
-  --qi-border-default: rgba(232, 227, 221, 0.12);
-  --qi-border-subtle: rgba(232, 227, 221, 0.08);
-  --qi-border-strong: rgba(232, 227, 221, 0.2);
-  --qi-border-inverse: rgba(30, 27, 24, 0.12);
+  /* ------------------------------
+     Neutral Colors Scale
+     ------------------------------ */
+  --qi-neutral-50: #fafaf9;
+  --qi-neutral-100: #f5f5f4;
+  --qi-neutral-200: #e7e5e4;
+  --qi-neutral-300: #d6d3d1;
+  --qi-neutral-400: #a8a29e;
+  --qi-neutral-500: #78716c;
+  --qi-neutral-600: #57534e;
+  --qi-neutral-700: #44403c;
+  --qi-neutral-800: #292524;
+  --qi-neutral-900: #1c1917;
 
-  /* Opacity */
+  /* ------------------------------
+     Border Colors
+     ------------------------------ */
+  --qi-border-default: rgba(232, 227, 221, 0.1);
+  --qi-border-subtle: rgba(232, 227, 221, 0.06);
+  --qi-border-strong: rgba(232, 227, 221, 0.18);
+  --qi-border-inverse: rgba(18, 16, 16, 0.12);
+  --qi-border-light: rgba(232, 227, 221, 0.1);
+  --qi-border-medium: rgba(232, 227, 221, 0.15);
+  --qi-border-dark: rgba(232, 227, 221, 0.2);
+  --qi-border-focus: var(--qi-brand-emerald);
+
+  /* ------------------------------
+     Opacity Tokens
+     ------------------------------ */
   --qi-opacity-subtle: 0.08;
   --qi-opacity-medium: 0.15;
   --qi-opacity-strong: 0.25;
+  --qi-opacity-high: 0.45;
 
-  /* Brand — Emerald */
-  --qi-brand-emerald: #4ade80;
-  /* Brighter emerald for dark mode text contrast */
-  --qi-brand-emerald-dark: #22c55e;
+  /* ------------------------------
+     Font Weights (Slightly thinner for dark mode)
+     ------------------------------ */
+  --qi-font-extralight: 200;
+  --qi-font-light: 280;
+  --qi-font-normal: 350;
+  --qi-font-medium: 450;
+  --qi-font-semibold: 550;
+  --qi-font-bold: 650;
+  --qi-font-extrabold: 750;
+
+  --qi-weight-normal: var(--qi-font-normal);
+  --qi-weight-medium: var(--qi-font-medium);
+  --qi-weight-semibold: var(--qi-font-semibold);
+  --qi-weight-bold: var(--qi-font-bold);
+}
+
+/* ------------------------------
+   Brand Opacity Variants (Dark Mode)
+   ------------------------------ */
+.dark {
+  /* Emerald Opacity */
   --qi-brand-emerald-03: rgba(74, 222, 153, 0.05);
   --qi-brand-emerald-04: rgba(74, 222, 153, 0.07);
   --qi-brand-emerald-05: rgba(74, 222, 153, 0.08);
@@ -60,9 +161,7 @@
   --qi-brand-emerald-50: rgba(74, 222, 153, 0.65);
   --qi-brand-emerald-60: rgba(74, 222, 153, 0.75);
 
-  /* Brand — Amber */
-  --qi-brand-amber: #fbbf24;
-  --qi-brand-amber-dark: #d97706;
+  /* Amber Opacity */
   --qi-brand-amber-04: rgba(251, 191, 36, 0.08);
   --qi-brand-amber-08: rgba(251, 191, 36, 0.15);
   --qi-brand-amber-10: rgba(251, 191, 36, 0.18);
@@ -76,9 +175,7 @@
   --qi-brand-amber-50: rgba(251, 191, 36, 0.75);
   --qi-brand-amber-60: rgba(251, 191, 36, 0.85);
 
-  /* Brand — Mint */
-  --qi-brand-mint: #34d399;
-  --qi-brand-mint-dark: #059669;
+  /* Mint Opacity */
   --qi-brand-mint-03: rgba(52, 211, 153, 0.05);
   --qi-brand-mint-04: rgba(52, 211, 153, 0.08);
   --qi-brand-mint-06: rgba(52, 211, 153, 0.12);
@@ -94,26 +191,19 @@
   --qi-brand-mint-50: rgba(52, 211, 153, 0.85);
   --qi-brand-mint-60: rgba(52, 211, 153, 0.95);
 
-  /* Ink */
+  /* Ink Colors */
   --qi-ink: #0d0b0a;
   --qi-ink-light: #1a1714;
   --qi-ink-muted: #2d2924;
 
-  /* Decoration */
+  /* Decoration Opacity */
   --qi-deco-subtle: 0.1;
   --qi-deco-visible: 0.18;
   --qi-deco-medium: 0.28;
   --qi-deco-strong: 0.35;
   --qi-deco-ghost: 0.04;
 
-  /* Glow */
-  --qi-glow-primary: rgba(74, 222, 153, 0.25);
-  --qi-glow-secondary: rgba(153, 246, 228, 0.2);
-  --qi-glow-accent: rgba(251, 191, 36, 0.2);
-  --qi-glow-highlight: rgba(255, 255, 255, 0.05);
-  --qi-card-glow-intensity: 0.15;
-
-  /* Base alpha */
+  /* Base Alpha */
   --qi-base-02: rgba(232, 227, 221, 0.04);
   --qi-base-03: rgba(232, 227, 221, 0.06);
   --qi-base-04: rgba(232, 227, 221, 0.08);
@@ -123,38 +213,79 @@
   --qi-base-10: rgba(232, 227, 221, 0.18);
   --qi-base-15: rgba(232, 227, 221, 0.25);
 
-  /* Inverse alpha — Dark colors for use in dark mode or on light surfaces */
-  --qi-inverse-88: rgba(30, 27, 24, 0.88);
-  --qi-inverse-85: rgba(30, 27, 24, 0.85);
-  /* Missing token */
-  --qi-inverse-70: rgba(30, 27, 24, 0.7);
-  --qi-inverse-60: rgba(30, 27, 24, 0.6);
-  --qi-inverse-55: rgba(30, 27, 24, 0.55);
-  --qi-inverse-50: rgba(30, 27, 24, 0.5);
-  --qi-inverse-40: rgba(30, 27, 24, 0.4);
-  --qi-inverse-25: rgba(30, 27, 24, 0.25);
-  --qi-inverse-20: rgba(30, 27, 24, 0.2);
-  --qi-inverse-15: rgba(30, 27, 24, 0.15);
-  --qi-inverse-12: rgba(30, 27, 24, 0.12);
+  /* Inverse Alpha — Dark colors for use in dark mode or on light surfaces */
+  --qi-inverse-95: rgba(18, 16, 16, 0.95);
+  --qi-inverse-88: rgba(18, 16, 16, 0.88);
+  --qi-inverse-85: rgba(18, 16, 16, 0.85);
+  --qi-inverse-70: rgba(18, 16, 16, 0.7);
+  --qi-inverse-60: rgba(18, 16, 16, 0.6);
+  --qi-inverse-55: rgba(18, 16, 16, 0.55);
+  --qi-inverse-50: rgba(18, 16, 16, 0.5);
+  --qi-inverse-40: rgba(18, 16, 16, 0.4);
+  --qi-inverse-25: rgba(18, 16, 16, 0.25);
+  --qi-inverse-20: rgba(18, 16, 16, 0.2);
+  --qi-inverse-15: rgba(18, 16, 16, 0.15);
+  --qi-inverse-12: rgba(18, 16, 16, 0.12);
+}
 
-  /* Shadow */
-  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  --qi-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
-  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
-  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3);
+/* ------------------------------
+   Shadow System (Dark Mode)
+   ------------------------------ */
+.dark {
+  --qi-shadow-none: none;
+  --qi-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.35);
+  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4);
+  --qi-shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(0, 0, 0, 0.45);
+  --qi-shadow-3xl: 0 35px 60px rgba(0, 0, 0, 0.65), 0 15px 30px rgba(0, 0, 0, 0.5);
+
   --qi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(251, 191, 36, 0.15);
-  --qi-shadow-inset:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03);
+  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(251, 191, 36, 0.15);
+  --qi-shadow-inset: inset 2px 2px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03);
 
-  /* Glass Morphism */
+  --qi-glow-primary: rgba(74, 222, 153, 0.25);
+  --qi-glow-secondary: rgba(52, 211, 153, 0.2);
+  --qi-glow-accent: rgba(251, 191, 36, 0.2);
+  --qi-glow-highlight: rgba(255, 255, 255, 0.05);
+  --qi-card-glow-intensity: 0.15;
+}
+
+/* ------------------------------
+   Glass Morphism (Dark Mode)
+   ------------------------------ */
+.dark {
   --qi-glass-bg: rgba(30, 27, 24, 0.7);
-  --qi-glass-bg-dark: rgba(18, 16, 16, 0.7);
-  --qi-glass-border: rgba(255, 255, 255, 0.1);
-  --qi-glass-border-dark: rgba(255, 255, 255, 0.05);
+  --qi-glass-bg-dark: rgba(18, 16, 16, 0.85);
+  --qi-glass-border: rgba(255, 255, 255, 0.08);
+  --qi-glass-border-dark: rgba(255, 255, 255, 0.04);
   --qi-glass-backdrop: blur(10px);
   --qi-glass-backdrop-heavy: blur(20px);
-  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------
+   Component Tokens (Dark Mode)
+   ------------------------------ */
+.dark {
+  /* Card Tokens */
+  --qi-card-bg: var(--qi-bg-surface);
+  --qi-card-border: rgba(232, 227, 221, 0.1);
+  --qi-card-shadow: var(--qi-shadow-md);
+
+  /* Button Tokens */
+  --qi-btn-secondary-bg: var(--qi-bg-surface);
+  --qi-btn-secondary-border: rgba(232, 227, 221, 0.15);
+  --qi-btn-secondary-hover: rgba(232, 227, 221, 0.08);
+  --qi-btn-outline-hover: var(--qi-brand-emerald-05);
+
+  /* Input Tokens */
+  --qi-input-bg: var(--qi-bg-surface);
+  --qi-input-border: rgba(232, 227, 221, 0.15);
+
+  /* Navigation Tokens */
+  --qi-nav-bg: rgba(18, 16, 16, 0.85);
+  --qi-nav-shadow: var(--qi-shadow-md);
 }

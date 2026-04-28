@@ -1,96 +1,244 @@
-/* Colors */
+/* ==========================================================================
+   DESIGN TOKENS SYSTEM
+   祈研所（Qi-Lab）设计令牌规范
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   COLOR SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
   color-scheme: light;
 
-  /* Background & Surface */
+  /* ------------------------------
+     Background & Surface Colors
+     ------------------------------ */
   --qi-bg-base: #f7f3ee;
   --qi-bg-surface: #ffffff;
   --qi-bg-overlay: rgba(0, 0, 0, 0.5);
+  --qi-bg-elevated: #ffffff;
+  --qi-bg-subtle: rgba(42, 42, 42, 0.03);
+  --qi-bg-muted: rgba(42, 42, 42, 0.05);
+  
   --qi-surface-main: #2a2a2a;
   --qi-surface-sub: #e8e3dd;
+  --qi-surface-hover: rgba(42, 42, 42, 0.04);
+  --qi-surface-active: rgba(42, 42, 42, 0.08);
 
-  /* Brand */
-  --qi-brand-emerald: var(--qi-emerald-500);
+  /* ------------------------------
+     Brand Colors (Primary)
+     ------------------------------ */
+  --qi-brand-emerald: var(--qi-emerald-600);
   --qi-brand-emerald-light: var(--qi-emerald-400);
   --qi-brand-emerald-dark: var(--qi-emerald-700);
-  --qi-brand-mint: var(--qi-mint-400);
+  --qi-brand-mint: var(--qi-mint-500);
   --qi-brand-mint-light: var(--qi-mint-300);
-  --qi-brand-mint-dark: var(--qi-mint-500);
-  --qi-brand-amber: var(--qi-amber-400);
+  --qi-brand-mint-dark: var(--qi-mint-600);
+  --qi-brand-amber: var(--qi-amber-500);
   --qi-brand-amber-light: var(--qi-amber-300);
   --qi-brand-amber-dark: var(--qi-amber-600);
-  --qi-amber: var(--qi-brand-amber);
-  --qi-amber-dark: var(--qi-brand-amber-dark);
-  --qi-emerald-dark: var(--qi-brand-emerald-dark);
 
-  /* 功能颜色 */
+  /* ------------------------------
+     Semantic Colors (Functional)
+     ------------------------------ */
   --qi-color-primary: var(--qi-brand-emerald);
+  --qi-color-primary-hover: var(--qi-brand-emerald-dark);
+  --qi-color-primary-active: var(--qi-emerald-800);
   --qi-color-secondary: var(--qi-brand-amber);
+  --qi-color-secondary-hover: var(--qi-brand-amber-dark);
   --qi-color-accent: var(--qi-brand-mint);
-  --qi-color-success: var(--qi-brand-emerald-dark);
-  --qi-color-warning: var(--qi-brand-amber-dark);
-  --qi-color-error: #ef4444;
-  --qi-color-info: #3b82f6;
-  /* Text */
-  --qi-text-inverse: #f7f3ee;
+  --qi-color-accent-hover: var(--qi-brand-mint-dark);
+
+  /* ------------------------------
+     Status Colors
+     ------------------------------ */
+  --qi-color-success: var(--qi-emerald-600);
+  --qi-color-success-light: var(--qi-emerald-100);
+  --qi-color-success-muted: var(--qi-emerald-50);
+  --qi-color-warning: var(--qi-amber-600);
+  --qi-color-warning-light: var(--qi-amber-100);
+  --qi-color-warning-muted: var(--qi-amber-50);
+  --qi-color-error: #dc2626;
+  --qi-color-error-light: #fee2e2;
+  --qi-color-error-muted: #fef2f2;
+  --qi-color-info: #2563eb;
+  --qi-color-info-light: #dbeafe;
+  --qi-color-info-muted: #eff6ff;
+
+  /* ------------------------------
+     Text Colors
+     ------------------------------ */
   --qi-text-primary: #1e1b18;
   --qi-text-secondary: #3d3832;
   --qi-text-tertiary: #4a453f;
-  --qi-text-muted: #4a453f;
+  --qi-text-muted: #6b655f;
+  --qi-text-dim: #9a9590;
+  --qi-text-inverse: #f7f3ee;
+  --qi-text-on-primary: #ffffff;
+  --qi-text-on-secondary: #1e1b18;
+  
   --qi-on-surface: #e8e3dd;
   --qi-on-surface-secondary: #c8c3bd;
   --qi-on-surface-muted: #a8a29e;
   --qi-on-surface-dim: #9a9590;
 
-  /* 中性颜色 */
-  --qi-neutral-50: #f8fafc;
-  --qi-neutral-100: #f1f5f9;
-  --qi-neutral-200: #e2e8f0;
-  --qi-neutral-300: #cbd5e1;
-  --qi-neutral-400: #94a3b8;
-  --qi-neutral-500: #64748b;
-  --qi-neutral-600: #475569;
-  --qi-neutral-700: #334155;
-  --qi-neutral-800: #1e293b;
-  --qi-neutral-900: #0f172a;
-  /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
+  /* ------------------------------
+     On-Dark Colors (for dark backgrounds)
+     ------------------------------ */
   --qi-on-dark-primary: #f7f3ee;
   --qi-on-dark-secondary: #e8e3dd;
   --qi-on-dark-muted: #c8c3bd;
   --qi-on-dark-dim: #a8a29e;
 
-  /* Border */
-  --qi-border-default: rgba(42, 42, 42, 0.06);
+  /* ------------------------------
+     Neutral Colors Scale
+     ------------------------------ */
+  --qi-neutral-50: #fafaf9;
+  --qi-neutral-100: #f5f5f4;
+  --qi-neutral-200: #e7e5e4;
+  --qi-neutral-300: #d6d3d1;
+  --qi-neutral-400: #a8a29e;
+  --qi-neutral-500: #78716c;
+  --qi-neutral-600: #57534e;
+  --qi-neutral-700: #44403c;
+  --qi-neutral-800: #292524;
+  --qi-neutral-900: #1c1917;
+
+  /* ------------------------------
+     Border Colors
+     ------------------------------ */
+  --qi-border-default: rgba(42, 42, 42, 0.08);
   --qi-border-subtle: rgba(42, 42, 42, 0.04);
   --qi-border-strong: rgba(42, 42, 42, 0.12);
   --qi-border-inverse: rgba(247, 243, 238, 0.08);
   --qi-border-light: var(--qi-neutral-200);
   --qi-border-medium: var(--qi-neutral-300);
   --qi-border-dark: var(--qi-neutral-400);
+  --qi-border-focus: var(--qi-brand-emerald);
 
-  /* Opacity */
+  /* ------------------------------
+     Opacity Tokens
+     ------------------------------ */
   --qi-opacity-subtle: 0.06;
   --qi-opacity-medium: 0.12;
   --qi-opacity-strong: 0.2;
+  --qi-opacity-high: 0.4;
+}
 
-  /* Brand — Emerald (light: bright base for visibility on light bg) */
-  --qi-brand-emerald-03: rgba(74, 222, 153, 0.06);
-  --qi-brand-emerald-04: rgba(74, 222, 153, 0.08);
-  --qi-brand-emerald-05: rgba(74, 222, 153, 0.1);
-  --qi-brand-emerald-06: rgba(74, 222, 153, 0.12);
-  --qi-brand-emerald-08: rgba(74, 222, 153, 0.15);
-  --qi-brand-emerald-10: rgba(74, 222, 153, 0.18);
-  --qi-brand-emerald-12: rgba(74, 222, 153, 0.22);
-  --qi-brand-emerald-15: rgba(74, 222, 153, 0.28);
-  --qi-brand-emerald-18: rgba(74, 222, 153, 0.33);
-  --qi-brand-emerald-20: rgba(74, 222, 153, 0.36);
-  --qi-brand-emerald-25: rgba(74, 222, 153, 0.42);
-  --qi-brand-emerald-30: rgba(74, 222, 153, 0.48);
-  --qi-brand-emerald-40: rgba(74, 222, 153, 0.58);
-  --qi-brand-emerald-50: rgba(74, 222, 153, 0.68);
-  --qi-brand-emerald-60: rgba(74, 222, 153, 0.78);
+/* ------------------------------
+   Color Scales (Full Palettes)
+   ------------------------------ */
+:root {
+  /* Emerald (Brand Primary) */
+  --qi-emerald-50: #ecfdf5;
+  --qi-emerald-100: #d1fae5;
+  --qi-emerald-200: #a7f3d0;
+  --qi-emerald-300: #6ee7b7;
+  --qi-emerald-400: #34d399;
+  --qi-emerald-500: #10b981;
+  --qi-emerald-600: #059669;
+  --qi-emerald-700: #047857;
+  --qi-emerald-800: #065f46;
+  --qi-emerald-900: #064e3b;
+  --qi-emerald-950: #022c22;
 
-  /* Brand — Amber (light: bright base for visibility on light bg) */
+  /* Amber (Brand Secondary) */
+  --qi-amber-50: #fffbeb;
+  --qi-amber-100: #fef3c7;
+  --qi-amber-200: #fde68a;
+  --qi-amber-300: #fcd34d;
+  --qi-amber-400: #fbbf24;
+  --qi-amber-500: #f59e0b;
+  --qi-amber-600: #d97706;
+  --qi-amber-700: #b45309;
+  --qi-amber-800: #92400e;
+  --qi-amber-900: #78350f;
+  --qi-amber-950: #451a03;
+
+  /* Mint (Brand Accent) */
+  --qi-mint-50: #f0fdfa;
+  --qi-mint-100: #ccfbf1;
+  --qi-mint-200: #99f6e4;
+  --qi-mint-300: #5eead4;
+  --qi-mint-400: #2dd4bf;
+  --qi-mint-500: #14b8a6;
+  --qi-mint-600: #0d9488;
+  --qi-mint-700: #0f766e;
+  --qi-mint-800: #115e59;
+  --qi-mint-900: #134e4a;
+  --qi-mint-950: #042f2e;
+
+  /* Extended Color Palette */
+  --qi-slate-50: #f8fafc;
+  --qi-slate-100: #f1f5f9;
+  --qi-slate-200: #e2e8f0;
+  --qi-slate-300: #cbd5e1;
+  --qi-slate-400: #94a3b8;
+  --qi-slate-500: #64748b;
+  --qi-slate-600: #475569;
+  --qi-slate-700: #334155;
+  --qi-slate-800: #1e293b;
+  --qi-slate-900: #0f172a;
+  --qi-slate-950: #020617;
+
+  --qi-rose-50: #fff1f2;
+  --qi-rose-100: #ffe4e6;
+  --qi-rose-200: #fecdd3;
+  --qi-rose-300: #fda4af;
+  --qi-rose-400: #fb7185;
+  --qi-rose-500: #f43f5e;
+  --qi-rose-600: #e11d48;
+  --qi-rose-700: #be123c;
+  --qi-rose-800: #9f1239;
+  --qi-rose-900: #881337;
+  --qi-rose-950: #4c0519;
+
+  --qi-blue-50: #eff6ff;
+  --qi-blue-100: #dbeafe;
+  --qi-blue-200: #bfdbfe;
+  --qi-blue-300: #93c5fd;
+  --qi-blue-400: #60a5fa;
+  --qi-blue-500: #3b82f6;
+  --qi-blue-600: #2563eb;
+  --qi-blue-700: #1d4ed8;
+  --qi-blue-800: #1e40af;
+  --qi-blue-900: #1e3a8a;
+  --qi-blue-950: #172554;
+
+  --qi-violet-50: #f5f3ff;
+  --qi-violet-100: #ede9fe;
+  --qi-violet-200: #ddd6fe;
+  --qi-violet-300: #c4b5fd;
+  --qi-violet-400: #a78bfa;
+  --qi-violet-500: #8b5cf6;
+  --qi-violet-600: #7c3aed;
+  --qi-violet-700: #6d28d9;
+  --qi-violet-800: #5b21b6;
+  --qi-violet-900: #4c1d95;
+  --qi-violet-950: #2e1065;
+}
+
+/* ------------------------------
+   Brand Opacity Variants
+   ------------------------------ */
+:root {
+  /* Emerald Opacity */
+  --qi-brand-emerald-03: rgba(6, 182, 212, 0.03);
+  --qi-brand-emerald-04: rgba(6, 182, 212, 0.04);
+  --qi-brand-emerald-05: rgba(6, 182, 212, 0.05);
+  --qi-brand-emerald-06: rgba(6, 182, 212, 0.06);
+  --qi-brand-emerald-08: rgba(6, 182, 212, 0.08);
+  --qi-brand-emerald-10: rgba(6, 182, 212, 0.1);
+  --qi-brand-emerald-12: rgba(6, 182, 212, 0.12);
+  --qi-brand-emerald-15: rgba(6, 182, 212, 0.15);
+  --qi-brand-emerald-18: rgba(6, 182, 212, 0.18);
+  --qi-brand-emerald-20: rgba(6, 182, 212, 0.2);
+  --qi-brand-emerald-25: rgba(6, 182, 212, 0.25);
+  --qi-brand-emerald-30: rgba(6, 182, 212, 0.3);
+  --qi-brand-emerald-40: rgba(6, 182, 212, 0.4);
+  --qi-brand-emerald-50: rgba(6, 182, 212, 0.5);
+  --qi-brand-emerald-60: rgba(6, 182, 212, 0.6);
+
+  /* Amber Opacity */
   --qi-brand-amber-04: rgba(251, 191, 36, 0.08);
   --qi-brand-amber-08: rgba(251, 191, 36, 0.15);
   --qi-brand-amber-10: rgba(251, 191, 36, 0.18);
@@ -104,7 +252,7 @@
   --qi-brand-amber-50: rgba(251, 191, 36, 0.68);
   --qi-brand-amber-60: rgba(251, 191, 36, 0.78);
 
-  /* Brand — Mint (light: bright base for visibility on light bg) */
+  /* Mint Opacity */
   --qi-brand-mint-03: rgba(153, 246, 228, 0.06);
   --qi-brand-mint-04: rgba(153, 246, 228, 0.08);
   --qi-brand-mint-06: rgba(153, 246, 228, 0.12);
@@ -120,28 +268,19 @@
   --qi-brand-mint-50: rgba(153, 246, 228, 0.68);
   --qi-brand-mint-60: rgba(153, 246, 228, 0.78);
 
-  /* Ink */
+  /* Ink Colors */
   --qi-ink: #1e1b18;
   --qi-ink-light: #2d2924;
   --qi-ink-muted: #3d3832;
 
-  /* Decoration */
+  /* Decoration Opacity */
   --qi-deco-subtle: 0.15;
   --qi-deco-visible: 0.25;
   --qi-deco-medium: 0.35;
   --qi-deco-strong: 0.4;
   --qi-deco-ghost: 0.05;
 
-  /* Glow */
-  --qi-glow-size: 350px;
-  --qi-glow-speed: 0.06;
-  --qi-glow-primary: rgba(74, 222, 153, 0.35);
-  --qi-glow-secondary: rgba(153, 246, 228, 0.3);
-  --qi-glow-accent: rgba(251, 191, 36, 0.3);
-  --qi-glow-highlight: rgba(255, 255, 255, 0.15);
-  --qi-card-glow-intensity: 0.15;
-
-  /* Base alpha */
+  /* Base Alpha */
   --qi-base-02: rgba(42, 42, 42, 0.02);
   --qi-base-03: rgba(42, 42, 42, 0.03);
   --qi-base-04: rgba(42, 42, 42, 0.04);
@@ -151,167 +290,259 @@
   --qi-base-10: rgba(42, 42, 42, 0.1);
   --qi-base-15: rgba(42, 42, 42, 0.15);
 
-  /* Inverse alpha */
+  /* Inverse Alpha */
+  --qi-inverse-95: rgba(247, 243, 238, 0.95);
   --qi-inverse-88: rgba(247, 243, 238, 0.88);
   --qi-inverse-85: rgba(247, 243, 238, 0.85);
-  /* Missing token */
   --qi-inverse-70: rgba(247, 243, 238, 0.7);
   --qi-inverse-60: rgba(247, 243, 238, 0.6);
   --qi-inverse-55: rgba(247, 243, 238, 0.55);
   --qi-inverse-50: rgba(247, 243, 238, 0.5);
   --qi-inverse-40: rgba(247, 243, 238, 0.4);
+  --qi-inverse-25: rgba(247, 243, 238, 0.25);
   --qi-inverse-20: rgba(247, 243, 238, 0.2);
   --qi-inverse-15: rgba(247, 243, 238, 0.15);
   --qi-inverse-12: rgba(247, 243, 238, 0.12);
 }
 
-/* Color Scale */
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
-  /* Emerald */
-  --qi-emerald-50: #eefaf3;
-  --qi-emerald-100: #d0f0e0;
-  --qi-emerald-200: #a3e0c0;
-  --qi-emerald-300: #6bbf96;
-  --qi-emerald-400: #4da07a;
-  --qi-emerald-500: #2e7d5c;
-  --qi-emerald-600: #256a4d;
-  --qi-emerald-700: #1b5e40;
-  --qi-emerald-800: #134d33;
-  --qi-emerald-900: #0a3322;
-
-  /* Amber */
-  --qi-amber-50: #fff8e8;
-  --qi-amber-100: #ffefc0;
-  --qi-amber-200: #ffe08a;
-  --qi-amber-300: #f0c85c;
-  --qi-amber-400: #e5a93c;
-  --qi-amber-500: #d49520;
-  --qi-amber-600: #c78a1e;
-  --qi-amber-700: #a06e15;
-  --qi-amber-800: #7a5410;
-  --qi-amber-900: #543a0a;
-
-  /* Mint */
-  --qi-mint-50: #f0f8f5;
-  --qi-mint-100: #d8ede5;
-  --qi-mint-200: #b8dad0;
-  --qi-mint-300: #98c8ba;
-  --qi-mint-400: #78b4a0;
-  --qi-mint-500: #5a9a82;
-  --qi-mint-600: #4a826c;
-  --qi-mint-700: #3a6a56;
-  --qi-mint-800: #2a5240;
-  --qi-mint-900: #1a3a2a;
-}
-
-/* Typography */
-:root {
-  --qi-font-serif:
-    'Noto Serif SC', 'Noto Serif', 'Songti SC', STSong, 'Georgia', 'Times New Roman', serif;
-  --qi-font-sans:
-    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  /* ------------------------------
+     Font Families
+     ------------------------------ */
+  --qi-font-serif: 'Noto Serif SC', 'Noto Serif', 'Songti SC', STSong, 'Georgia', 'Times New Roman', serif;
+  --qi-font-sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
   --qi-font-mono: 'Fira Code', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+
+  /* ------------------------------
+     Font Weights
+     ------------------------------ */
+  --qi-font-extralight: 200;
+  --qi-font-light: 300;
+  --qi-font-normal: 400;
+  --qi-font-medium: 500;
+  --qi-font-semibold: 600;
+  --qi-font-bold: 700;
+  --qi-font-extrabold: 800;
+
+  --qi-weight-normal: var(--qi-font-normal);
+  --qi-weight-medium: var(--qi-font-medium);
+  --qi-weight-semibold: var(--qi-font-semibold);
+  --qi-weight-bold: var(--qi-font-bold);
+
+  /* ------------------------------
+     Font Sizes (Scale: Major Third 1.25)
+     ------------------------------ */
+  --qi-text-2xs: 0.625rem;    /* 10px */
+  --qi-text-xs: 0.75rem;      /* 12px */
+  --qi-text-sm: 0.875rem;     /* 14px */
+  --qi-text-base: 1rem;       /* 16px */
+  --qi-text-lg: 1.125rem;     /* 18px */
+  --qi-text-xl: 1.25rem;      /* 20px */
+  --qi-text-2xl: 1.5rem;      /* 24px */
+  --qi-text-3xl: 1.875rem;    /* 30px */
+  --qi-text-4xl: 2.25rem;     /* 36px */
+  --qi-text-5xl: 3rem;        /* 48px */
+  --qi-text-6xl: 3.75rem;     /* 60px */
+  --qi-text-7xl: 4.5rem;      /* 72px */
+  --qi-text-8xl: 5.5rem;      /* 88px */
+  --qi-text-9xl: 6.5rem;      /* 104px */
+
+  /* ------------------------------
+     Line Height (Leading)
+     ------------------------------ */
+  --qi-leading-tight: 1.1;
+  --qi-leading-snug: 1.25;
+  --qi-leading-normal: 1.5;
+  --qi-leading-relaxed: 1.625;
+  --qi-leading-loose: 2;
+
+  /* ------------------------------
+     Letter Spacing (Tracking)
+     ------------------------------ */
+  --qi-tracking-tightest: -0.05em;
+  --qi-tracking-tight: -0.03em;
+  --qi-tracking-normal: 0;
+  --qi-tracking-wide: 0.02em;
+  --qi-tracking-wider: 0.04em;
+  --qi-tracking-widest: 0.1em;
+
+  /* ------------------------------
+     Typography Scale (Opinionated)
+     ------------------------------ */
+  --qi-type-display: var(--qi-text-5xl);
+  --qi-type-display-mobile: var(--qi-text-4xl);
+  --qi-type-heading-1: var(--qi-text-4xl);
+  --qi-type-heading-2: var(--qi-text-3xl);
+  --qi-type-heading-3: var(--qi-text-2xl);
+  --qi-type-heading-4: var(--qi-text-xl);
+  --qi-type-heading-5: var(--qi-text-lg);
+  --qi-type-heading-6: var(--qi-text-base);
+  --qi-type-body-large: var(--qi-text-lg);
+  --qi-type-body-base: var(--qi-text-base);
+  --qi-type-body-small: var(--qi-text-sm);
+  --qi-type-caption: var(--qi-text-xs);
+  --qi-type-overline: var(--qi-text-2xs);
 }
 
-/* Font Size */
+/* --------------------------------------------------------------------------
+   SPACING SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
-  --qi-text-xs: 0.75rem;
-  --qi-text-sm: 0.875rem;
-  --qi-text-base: 1rem;
-  --qi-text-lg: 1.125rem;
-  --qi-text-xl: 1.25rem;
-  --qi-text-2xl: 1.5rem;
-  --qi-text-3xl: 1.875rem;
-  --qi-text-4xl: 2.25rem;
-  --qi-text-5xl: 3rem;
-  --qi-text-6xl: 3.75rem;
-  --qi-text-7xl: 4.5rem;
+  /* ------------------------------
+     Spacing Scale (8px Base)
+     ------------------------------ */
+  --qi-space-0: 0;
+  --qi-space-1: 0.25rem;      /* 4px */
+  --qi-space-2: 0.5rem;       /* 8px */
+  --qi-space-3: 0.75rem;      /* 12px */
+  --qi-space-4: 1rem;         /* 16px */
+  --qi-space-5: 1.25rem;      /* 20px */
+  --qi-space-6: 1.5rem;       /* 24px */
+  --qi-space-7: 1.75rem;      /* 28px */
+  --qi-space-8: 2rem;         /* 32px */
+  --qi-space-10: 2.5rem;      /* 40px */
+  --qi-space-12: 3rem;        /* 48px */
+  --qi-space-14: 3.5rem;      /* 56px */
+  --qi-space-16: 4rem;        /* 64px */
+  --qi-space-20: 5rem;        /* 80px */
+  --qi-space-24: 6rem;        /* 96px */
+  --qi-space-28: 7rem;        /* 112px */
+  --qi-space-32: 8rem;        /* 128px */
+  --qi-space-36: 9rem;        /* 144px */
+  --qi-space-40: 10rem;       /* 160px */
+  --qi-space-48: 12rem;       /* 192px */
+  --qi-space-56: 14rem;       /* 224px */
+  --qi-space-64: 16rem;       /* 256px */
+
+  /* ------------------------------
+     Spacing Aliases
+     ------------------------------ */
+  --qi-space-xs: var(--qi-space-1);
+  --qi-space-sm: var(--qi-space-2);
+  --qi-space-md: var(--qi-space-4);
+  --qi-space-lg: var(--qi-space-6);
+  --qi-space-xl: var(--qi-space-8);
+  --qi-space-2xl: var(--qi-space-12);
+  --qi-space-3xl: var(--qi-space-16);
+  --qi-space-4xl: var(--qi-space-24);
+  --qi-space-5xl: var(--qi-space-32);
+  --qi-space-6xl: var(--qi-space-40);
+  --qi-space-7xl: var(--qi-space-48);
+  --qi-space-8xl: var(--qi-space-64);
 }
 
-/* Spacing */
+/* --------------------------------------------------------------------------
+   RADIUS SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
-  --qi-space-xs: 0.25rem;
-  --qi-space-sm: 0.5rem;
-  --qi-space-md: 0.75rem;
-  --qi-space-lg: 1rem;
-  --qi-space-xl: 1.5rem;
-  --qi-space-2xl: 2rem;
-  --qi-space-3xl: 3rem;
-  --qi-space-4xl: 4rem;
-  --qi-space-5xl: 6rem;
-  --qi-space-6xl: 8rem;
-  --qi-space-7xl: 10rem;
-  --qi-space-8xl: 12rem;
-  --qi-space-9xl: 16rem;
-  --qi-space-1: 0.25rem;
-  --qi-space-2: 0.5rem;
-  --qi-space-3: 0.75rem;
-  --qi-space-4: 1rem;
-  --qi-space-5: 1.25rem;
-  --qi-space-6: 1.5rem;
-  --qi-space-8: 2rem;
-  --qi-space-10: 2.5rem;
-  --qi-space-12: 3rem;
-  --qi-space-16: 4rem;
-  --qi-space-20: 5rem;
-  --qi-space-24: 6rem;
-  --qi-space-32: 8rem;
-}
-
-/* Radius */
-:root {
-  --qi-radius: 12px;
-  --qi-radius-sm: 6px;
-  --qi-radius-md: 8px;
-  --qi-radius-lg: 12px;
-  --qi-radius-xl: 16px;
-  --qi-radius-card: 16px;
-  --qi-radius-button: 8px;
+  --qi-radius-none: 0;
+  --qi-radius-sm: 0.375rem;   /* 6px */
+  --qi-radius-md: 0.5rem;     /* 8px */
+  --qi-radius-lg: 0.75rem;    /* 12px */
+  --qi-radius-xl: 1rem;       /* 16px */
+  --qi-radius-2xl: 1.5rem;    /* 24px */
+  --qi-radius-3xl: 2rem;      /* 32px */
   --qi-radius-full: 9999px;
-  --qi-radius-2xl: 1rem;
-  --qi-radius-3xl: 1.5rem;
+
+  /* Component-specific radii */
+  --qi-radius-button: var(--qi-radius-lg);
+  --qi-radius-card: var(--qi-radius-xl);
+  --qi-radius-modal: var(--qi-radius-2xl);
+  --qi-radius-avatar: var(--qi-radius-full);
 }
 
-/* Layout */
+/* --------------------------------------------------------------------------
+   LAYOUT SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
-  --qi-gap: 16px;
-  --qi-gap-sm: 10px;
-  --qi-gap-bento: 24px;
-  --qi-container-padding: 24px;
+  /* ------------------------------
+     Container & Grid
+     ------------------------------ */
+  --qi-container-max-width: 1200px;
+  --qi-container-max-width-lg: 1400px;
+  --qi-container-max-width-xl: 1600px;
+  --qi-container-padding: var(--qi-space-4);
+  --qi-container-padding-lg: var(--qi-space-6);
+
+  --qi-content-max-width: 720px;
   --qi-prose-width: 680px;
-  --qi-container-max: 1200px;
+
+  /* ------------------------------
+     Gaps
+     ------------------------------ */
+  --qi-gap-xs: 0.5rem;        /* 8px */
+  --qi-gap-sm: 1rem;          /* 16px */
+  --qi-gap-md: 1.5rem;        /* 24px */
+  --qi-gap-lg: 2rem;          /* 32px */
+  --qi-gap-xl: 3rem;          /* 48px */
+  --qi-gap-bento: var(--qi-gap-lg);
+
+  /* ------------------------------
+     Navigation
+     ------------------------------ */
   --qi-nav-height: 64px;
-  --qi-nav-total-height: calc(
-    12px + var(--qi-space-md) + var(--qi-nav-height) + var(--qi-space-md) + 1px
-  );
+  --qi-nav-padding-x: var(--qi-space-6);
+  --qi-nav-total-height: calc(var(--qi-space-md) + var(--qi-nav-height) + var(--qi-space-md));
 }
 
-/* Shadow */
+/* --------------------------------------------------------------------------
+   SHADOW SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
+  /* ------------------------------
+     Box Shadows
+     ------------------------------ */
+  --qi-shadow-none: none;
+  --qi-shadow-xs: 0 1px 2px rgba(42, 42, 42, 0.04);
   --qi-shadow-sm: 0 1px 3px rgba(42, 42, 42, 0.06), 0 1px 2px rgba(42, 42, 42, 0.04);
-  --qi-shadow: 0 4px 16px rgba(42, 42, 42, 0.1);
   --qi-shadow-md: 0 4px 12px rgba(42, 42, 42, 0.08), 0 2px 4px rgba(42, 42, 42, 0.04);
-  --qi-shadow-lg: 0 10px 24px rgba(42, 42, 42, 0.12), 0 4px 8px rgba(42, 42, 42, 0.06);
-  --qi-shadow-xl: 0 20px 40px rgba(42, 42, 42, 0.15), 0 8px 16px rgba(42, 42, 42, 0.08);
-  --qi-shadow-hover: 0 8px 24px rgba(42, 42, 42, 0.15);
+  --qi-shadow-lg: 0 10px 24px rgba(42, 42, 42, 0.1), 0 4px 8px rgba(42, 42, 42, 0.06);
+  --qi-shadow-xl: 0 20px 40px rgba(42, 42, 42, 0.12), 0 8px 16px rgba(42, 42, 42, 0.08);
+  --qi-shadow-2xl: 0 25px 50px rgba(42, 42, 42, 0.15), 0 10px 20px rgba(42, 42, 42, 0.1);
+  --qi-shadow-3xl: 0 35px 60px rgba(42, 42, 42, 0.18), 0 15px 30px rgba(42, 42, 42, 0.12);
+
+  /* ------------------------------
+     Interactive Shadows
+     ------------------------------ */
+  --qi-shadow-hover: 0 8px 24px rgba(42, 42, 42, 0.12);
   --qi-shadow-hover-warm: 0 16px 32px rgba(42, 42, 42, 0.15), 0 4px 8px rgba(229, 169, 60, 0.1);
-  --qi-shadow-inset:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+  --qi-shadow-inset: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+
+  /* ------------------------------
+     Glow Effects
+     ------------------------------ */
+  --qi-glow-primary: rgba(74, 222, 153, 0.35);
+  --qi-glow-secondary: rgba(153, 246, 228, 0.3);
+  --qi-glow-accent: rgba(251, 191, 36, 0.3);
+  --qi-glow-highlight: rgba(255, 255, 255, 0.15);
+  --qi-card-glow-intensity: 0.15;
+
+  --qi-glow-size: 350px;
+  --qi-glow-speed: 0.06;
 }
 
-/* Z-Index */
+/* --------------------------------------------------------------------------
+   Z-INDEX SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
   --qi-z-base: 1;
   --qi-z-content: 2;
-  --qi-z-nav: 1000;
-  --qi-z-overlay: 9998;
-  --qi-z-noise: 9995;
-  --qi-z-back-top: 9999;
-  --qi-z-skip-link: 10000;
-  --qi-z-progress: 10001;
+  --qi-z-overlay: 100;
+  --qi-z-modal: 200;
+  --qi-z-nav: 300;
+  --qi-z-toast: 400;
+  --qi-z-back-top: 500;
+  --qi-z-skip-link: 600;
+  --qi-z-progress: 700;
+  --qi-z-noise: 1000;
 }
 
-/* Glass Morphism */
+/* --------------------------------------------------------------------------
+   GLASS MORPHISM
+   -------------------------------------------------------------------------- */
 :root {
   --qi-glass-bg: rgba(255, 255, 255, 0.7);
   --qi-glass-bg-dark: rgba(30, 27, 24, 0.7);
@@ -323,87 +554,127 @@
   --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* Dual-Logic Typography (Weights adjust per theme) */
+/* --------------------------------------------------------------------------
+   ANIMATION SYSTEM
+   -------------------------------------------------------------------------- */
 :root {
-  --qi-weight-normal: 400;
-  --qi-weight-medium: 500;
-  --qi-weight-semibold: 600;
-  --qi-weight-bold: 700;
-  --qi-font-light: 300;
-  --qi-font-normal: 400;
-  --qi-font-medium: 500;
-  --qi-font-semibold: 600;
-  --qi-font-bold: 700;
-}
+  /* ------------------------------
+     Transition Durations
+     ------------------------------ */
+  --qi-transition-fast: 0.15s;
+  --qi-transition-normal: 0.25s;
+  --qi-transition-slow: 0.35s;
+  --qi-transition-base: 0.3s;
 
-/* Rhythm */
-:root {
-  --qi-leading-tight: 1.1;
-  --qi-leading-snug: 1.3;
-  --qi-leading-normal: 1.7;
-  --qi-leading-relaxed: 1.9;
-  --qi-leading-loose: 2.1;
-  --qi-tracking-tight: -0.03em;
-  --qi-tracking-normal: 0.02em;
-  --qi-tracking-wide: 0.06em;
-  --qi-tracking-wider: 0.08em;
-  --qi-tracking-widest: 0.12em;
-}
+  /* ------------------------------
+     Transition Easings
+     ------------------------------ */
+  --qi-ease-linear: linear;
+  --qi-ease-ease: ease;
+  --qi-ease-ease-in: ease-in;
+  --qi-ease-ease-out: ease-out;
+  --qi-ease-ease-in-out: ease-in-out;
+  --qi-ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --qi-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --qi-ease-spring-soft: cubic-bezier(0.22, 1.2, 0.36, 1);
+  --qi-ease-spring-snappy: cubic-bezier(0.5, 1.8, 0.5, 0.8);
+  --qi-ease-physical: cubic-bezier(0.25, 0.46, 0.18, 1.25);
+  --qi-ease-physical-soft: cubic-bezier(0.25, 0.46, 0.2, 1.1);
+  --qi-ease-physical-heavy: cubic-bezier(0.25, 0.46, 0.15, 1.4);
 
-/* Animation */
-:root {
-  --qi-transition: 0.25s ease;
-  --qi-transition-base: 0.3s ease;
-  --qi-transition-fast: 0.15s ease;
-  --qi-transition-normal: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
-  --qi-transition-slow: 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
-  /* 基础弹簧动画 */
-  --qi-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --qi-spring-soft: cubic-bezier(0.22, 1.2, 0.36, 1);
-  --qi-spring-snappy: cubic-bezier(0.5, 1.8, 0.5, 0.8);
-  /* 物理弹簧动画 - 带阻尼和重力效果 */
-  --qi-spring-physical: cubic-bezier(0.25, 0.46, 0.18, 1.25);
-  --qi-spring-physical-soft: cubic-bezier(0.25, 0.46, 0.2, 1.1);
-  --qi-spring-physical-heavy: cubic-bezier(0.25, 0.46, 0.15, 1.4);
+  /* ------------------------------
+     Combined Transitions
+     ------------------------------ */
+  --qi-transition: var(--qi-transition-normal) var(--qi-ease-ease);
+  --qi-transition-base: var(--qi-transition-base) var(--qi-ease-ease);
+  --qi-transition-normal: var(--qi-transition-normal) var(--qi-ease-standard);
+  --qi-transition-slow: var(--qi-transition-slow) var(--qi-ease-standard);
+
+  /* ------------------------------
+     Animation Variables
+     ------------------------------ */
   --qi-anim-duration: 0.6s;
   --qi-anim-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --qi-anim-stagger: 0.1s;
   --qi-anim-offset: 24px;
+
+  /* ------------------------------
+     Scale Variables
+     ------------------------------ */
   --qi-font-scale: 1;
   --qi-spacing-scale: 1;
-  --qi-font-scaled-xs: calc(var(--qi-text-xs) * var(--qi-font-scale, 1));
-  --qi-font-scaled-sm: calc(var(--qi-text-sm) * var(--qi-font-scale, 1));
-  --qi-font-scaled-base: calc(var(--qi-text-base) * var(--qi-font-scale, 1));
-  --qi-font-scaled-lg: calc(var(--qi-text-lg) * var(--qi-font-scale, 1));
-  --qi-font-scaled-xl: calc(var(--qi-text-xl) * var(--qi-font-scale, 1));
-  --qi-font-scaled-2xl: calc(var(--qi-text-2xl) * var(--qi-font-scale, 1));
-  --qi-font-scaled-3xl: calc(var(--qi-text-3xl) * var(--qi-font-scale, 1));
-  --qi-font-scaled-4xl: calc(var(--qi-text-4xl) * var(--qi-font-scale, 1));
+}
+
+/* --------------------------------------------------------------------------
+   COMPONENT TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* ------------------------------
+     Card Tokens
+     ------------------------------ */
+  --qi-card-bg: var(--qi-bg-surface);
+  --qi-card-border: var(--qi-border-light);
+  --qi-card-shadow: var(--qi-shadow-md);
+  --qi-card-radius: var(--qi-radius-xl);
+  --qi-card-padding: var(--qi-space-6);
+
+  /* ------------------------------
+     Button Tokens
+     ------------------------------ */
+  --qi-btn-primary-bg: var(--qi-color-primary);
+  --qi-btn-primary-text: var(--qi-text-on-primary);
+  --qi-btn-primary-hover: var(--qi-color-primary-hover);
+  --qi-btn-primary-active: var(--qi-color-primary-active);
   
-  /* 断点 */
-  --qi-breakpoint-sm: 640px;
-  --qi-breakpoint-md: 768px;
-  --qi-breakpoint-lg: 1024px;
-  --qi-breakpoint-xl: 1280px;
-  --qi-breakpoint-2xl: 1536px;
+  --qi-btn-secondary-bg: var(--qi-bg-surface);
+  --qi-btn-secondary-text: var(--qi-text-primary);
+  --qi-btn-secondary-border: var(--qi-border-medium);
+  --qi-btn-secondary-hover: var(--qi-neutral-100);
   
-  /* 容器 */
-  --qi-container-max-width: 1200px;
-  --qi-container-padding: var(--qi-space-4);
+  --qi-btn-outline-bg: transparent;
+  --qi-btn-outline-text: var(--qi-color-primary);
+  --qi-btn-outline-border: var(--qi-color-primary);
+  --qi-btn-outline-hover: var(--qi-brand-emerald-05);
   
-  /* 动效 */
-  --qi-effect-glow-size: 200px;
-  --qi-effect-glow-opacity: 0.6;
-  --qi-effect-glow-blur: 20px;
-  --qi-effect-glow-color: var(--qi-brand-emerald);
-  
-  /* 鼠标跟随 */
+  --qi-btn-radius: var(--qi-radius-lg);
+  --qi-btn-padding-sm: var(--qi-space-2) var(--qi-space-4);
+  --qi-btn-padding-md: var(--qi-space-3) var(--qi-space-6);
+  --qi-btn-padding-lg: var(--qi-space-4) var(--qi-space-8);
+  --qi-btn-font-weight: var(--qi-font-medium);
+
+  /* ------------------------------
+     Input Tokens
+     ------------------------------ */
+  --qi-input-bg: var(--qi-bg-surface);
+  --qi-input-border: var(--qi-border-medium);
+  --qi-input-border-focus: var(--qi-border-focus);
+  --qi-input-text: var(--qi-text-primary);
+  --qi-input-placeholder: var(--qi-text-dim);
+  --qi-input-radius: var(--qi-radius-md);
+  --qi-input-padding: var(--qi-space-3) var(--qi-space-4);
+
+  /* ------------------------------
+     Navigation Tokens
+     ------------------------------ */
+  --qi-nav-bg: var(--qi-bg-surface);
+  --qi-nav-shadow: var(--qi-shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   EFFECTS SYSTEM
+   -------------------------------------------------------------------------- */
+:root {
+  /* ------------------------------
+     Cursor Glow
+     ------------------------------ */
   --qi-cursor-glow-size: 200px;
   --qi-cursor-glow-color: rgba(255, 255, 255, 0.8);
   --qi-cursor-glow-blur: 20px;
   --qi-cursor-glow-speed: 0.06;
-  
-  /* 粒子系统 */
+
+  /* ------------------------------
+     Particle System
+     ------------------------------ */
   --qi-particle-count: 300;
   --qi-particle-size: 2px;
   --qi-particle-speed: 1.5;
@@ -412,58 +683,49 @@
   --qi-particle-link-opacity: 0.12;
   --qi-particle-mouse-radius: 200;
   --qi-particle-mouse-force: 0.04;
-  
-  /* 流体系统 */
+
+  /* ------------------------------
+     Fluid System
+     ------------------------------ */
   --qi-fluid-count: 500;
   --qi-fluid-speed: 1;
   --qi-fluid-trail: 0.05;
-  
-  /* 生成系统 */
+
+  /* ------------------------------
+     Generative System
+     ------------------------------ */
   --qi-generative-shapes: 50;
   --qi-generative-size: 50px;
   --qi-generative-speed: 0.3;
-  
-  /* 卡片 */
-  --qi-card-bg: var(--qi-bg-surface);
-  --qi-card-border: var(--qi-border-light);
-  --qi-card-shadow: var(--qi-shadow-md);
-  --qi-card-radius: var(--qi-radius-xl);
-  --qi-card-padding: var(--qi-space-6);
-  
-  /* 按钮 */
-  --qi-btn-primary-bg: var(--qi-color-primary);
-  --qi-btn-primary-text: var(--qi-text-inverse);
-  --qi-btn-primary-hover: var(--qi-brand-emerald-dark);
-  --qi-btn-secondary-bg: var(--qi-bg-surface);
-  --qi-btn-secondary-text: var(--qi-text-primary);
-  --qi-btn-secondary-border: var(--qi-border-medium);
-  --qi-btn-secondary-hover: var(--qi-neutral-100);
-  --qi-btn-radius: var(--qi-radius-lg);
-  --qi-btn-padding: var(--qi-space-4) var(--qi-space-6);
-  --qi-btn-font-weight: var(--qi-font-medium);
-  
-  /* 导航 */
-  --qi-nav-bg: var(--qi-bg-surface);
-  --qi-nav-height: 64px;
-  --qi-nav-padding: 0 var(--qi-space-4);
-  --qi-nav-shadow: var(--qi-shadow-sm);
-  
-  /* 响应式调整 */
-  --qi-mobile-menu-width: 80%;
-  --qi-mobile-menu-bg: var(--qi-bg-surface);
-  --qi-mobile-menu-shadow: var(--qi-shadow-2xl);
 }
 
-/* Responsive */
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+:root {
+  --qi-breakpoint-xs: 360px;
+  --qi-breakpoint-sm: 640px;
+  --qi-breakpoint-md: 768px;
+  --qi-breakpoint-lg: 1024px;
+  --qi-breakpoint-xl: 1280px;
+  --qi-breakpoint-2xl: 1536px;
+  --qi-breakpoint-3xl: 1920px;
+  --qi-breakpoint-4xl: 2560px;
+  --qi-breakpoint-5xl: 3440px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE SCALE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
 @media (min-width: 1440px) {
   :root {
-    --qi-container-max: 1320px;
+    --qi-container-max-width: 1320px;
   }
 }
 
 @media (min-width: 1920px) {
   :root {
-    --qi-container-max: 1400px;
+    --qi-container-max-width: 1400px;
     --qi-font-scale: 1.05;
     --qi-spacing-scale: 1.1;
   }
@@ -471,7 +733,7 @@
 
 @media (min-width: 2560px) {
   :root {
-    --qi-container-max: 1600px;
+    --qi-container-max-width: 1600px;
     --qi-font-scale: 1.15;
     --qi-spacing-scale: 1.25;
     --qi-prose-width: 850px;
@@ -483,7 +745,7 @@
 
 @media (min-width: 3440px) {
   :root {
-    --qi-container-max: 1920px;
+    --qi-container-max-width: 1920px;
     --qi-font-scale: 1.3;
     --qi-spacing-scale: 1.4;
     --qi-prose-width: 1020px;

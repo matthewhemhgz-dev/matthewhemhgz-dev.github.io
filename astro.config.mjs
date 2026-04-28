@@ -19,13 +19,15 @@ export default defineConfig({
     cache: true,
     format: 'directory',
     inlineStylesheets: 'auto',
+    // 优化：减少未使用的 CSS
+    extendDefaultPlugins: true,
   },
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
     },
     formats: ['avif', 'webp', 'jpeg'],
-    quality: 80,
+    quality: 75,
     placeholder: 'blur',
   },
   markdown: {
@@ -67,7 +69,7 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: {
                 statuses: [0, 200],
@@ -81,7 +83,7 @@ export default defineConfig({
               cacheName: 'google-fonts-static-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: {
                 statuses: [0, 200],
@@ -95,7 +97,7 @@ export default defineConfig({
               cacheName: 'qr-code-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // <== 7 days
+                maxAgeSeconds: 60 * 60 * 24 * 7,
               },
               cacheableResponse: {
                 statuses: [0, 200],
@@ -140,16 +142,20 @@ export default defineConfig({
   ],
   vite: {
     build: {
-      cssMinify: true,
+      cssMinify: 'esbuild',
       assetsInlineLimit: 4096,
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
+        output: {
+          // 优化：使用 ES 模块格式
+          format: 'es',
+        },
       },
       chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
       dynamicImportVars: true,
       minify: 'esbuild',
-      target: 'es2015',
+      target: 'es2020',
       sourcemap: false,
     },
     optimizeDeps: {
