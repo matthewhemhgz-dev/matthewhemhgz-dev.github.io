@@ -1,5 +1,5 @@
 ---
-import { projects, projectCategories } from '../../data/projects';
+import { projects } from '../../data/projects';
 import OptimizedImage from '../ui/OptimizedImage.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
 
@@ -8,34 +8,27 @@ interface Props {
 }
 
 const { locale = 'zh' } = Astro.props;
+const isEnglish = locale === 'en';
+// 只显示前 3 个精选项目
+const featuredProjects = projects.slice(0, 3);
+const projectsUrl = isEnglish ? '/en/projects' : '/projects';
+const viewAllText = isEnglish ? 'View All Projects' : '查看全部项目';
 ---
 
 <section id="projects" class="projects-section">
   <div class="container">
     <SectionHeader 
-      title={locale === 'zh' ? '项目展示' : 'Projects'} 
-      subtitle={locale === 'zh' ? '探索我的技术实践与创意作品' : 'Explore my technical practices and creative works'} 
+      title={isEnglish ? 'Projects' : '项目展示'} 
+      subtitle={isEnglish ? 'Explore my technical practices and creative works' : '探索我的技术实践与创意作品'} 
     />
 
-    <div class="projects-filter">
-      {projectCategories.map((category) => (
-        <button
-          key={category}
-          class="filter-btn"
-          data-category={category}
-        >
-          {category}
-        </button>
-      ))}
-    </div>
-
     <div class="projects-grid">
-      {projects.map((project) => (
+      {featuredProjects.map((project) => (
         <article key={project.id} class="project-card">
           <div class="project-image-wrapper">
             <OptimizedImage 
               src={project.image} 
-              alt={project.title}
+              alt={isEnglish ? project.titleEn : project.title}
               width={400}
               height={250}
               loading="lazy"
@@ -61,17 +54,17 @@ const { locale = 'zh' } = Astro.props;
 
           <div class="project-content">
             <div class="project-category">
-              <span class="project-category-tag">{project.category}</span>
+              <span class="project-category-tag">{isEnglish ? project.categoryEn : project.category}</span>
             </div>
             
             <h3 class="project-title">
               <a href={project.url}>
-                {locale === 'zh' ? project.title : project.titleEn}
+                {isEnglish ? project.titleEn : project.title}
               </a>
             </h3>
             
             <p class="project-description">
-              {locale === 'zh' ? project.description : project.descriptionEn}
+              {isEnglish ? project.descriptionEn : project.description}
             </p>
 
             <div class="project-tags">
@@ -86,6 +79,16 @@ const { locale = 'zh' } = Astro.props;
           </div>
         </article>
       ))}
+    </div>
+
+    <div class="view-all-container">
+      <a href={projectsUrl} class="view-all-btn">
+        {viewAllText}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14" />
+          <path d="M12 5l7 7-7 7" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -102,41 +105,11 @@ const { locale = 'zh' } = Astro.props;
   padding: 0 var(--qi-container-padding);
 }
 
-.projects-filter {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--qi-space-sm);
-  margin-bottom: var(--qi-space-3xl);
-}
-
-.filter-btn {
-  padding: var(--qi-space-sm) var(--qi-space-lg);
-  background: transparent;
-  border: 1px solid var(--qi-border-default);
-  border-radius: var(--qi-radius-full);
-  font-size: var(--qi-text-sm);
-  color: var(--qi-text-secondary);
-  cursor: pointer;
-  transition: all var(--qi-transition);
-}
-
-.filter-btn:hover {
-  background: var(--qi-brand-emerald-04);
-  border-color: var(--qi-brand-emerald);
-  color: var(--qi-brand-emerald);
-}
-
-.filter-btn.active {
-  background: var(--qi-brand-emerald);
-  border-color: var(--qi-brand-emerald);
-  color: var(--qi-text-inverse);
-}
-
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--qi-space-xl);
+  margin-bottom: var(--qi-space-3xl);
 }
 
 .project-card {
@@ -275,6 +248,42 @@ const { locale = 'zh' } = Astro.props;
   color: var(--qi-text-muted);
 }
 
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--qi-space-xl);
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  padding: var(--qi-space-md) var(--qi-space-xl);
+  background: transparent;
+  border: 2px solid var(--qi-brand-emerald);
+  border-radius: var(--qi-radius-full);
+  font-size: var(--qi-text-base);
+  font-weight: var(--qi-weight-semibold);
+  color: var(--qi-brand-emerald);
+  text-decoration: none;
+  transition: all var(--qi-transition);
+}
+
+.view-all-btn:hover {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: var(--qi-shadow-md);
+}
+
+.view-all-btn svg {
+  transition: transform var(--qi-transition);
+}
+
+.view-all-btn:hover svg {
+  transform: translateX(4px);
+}
+
 @media (max-width: 768px) {
   .projects-section {
     padding: var(--qi-space-3xl) 0;
@@ -283,11 +292,6 @@ const { locale = 'zh' } = Astro.props;
   .projects-grid {
     grid-template-columns: 1fr;
     gap: var(--qi-space-lg);
-  }
-
-  .filter-btn {
-    padding: var(--qi-space-xs) var(--qi-space-md);
-    font-size: var(--qi-text-xs);
   }
 }
 

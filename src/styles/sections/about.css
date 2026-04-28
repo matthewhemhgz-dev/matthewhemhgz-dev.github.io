@@ -56,6 +56,147 @@
   line-height: 1.9;
 }
 
+/* --- History & Vision --- */
+.history-vision {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--qi-space-xl);
+}
+
+.history-card,
+.vision-card {
+  padding: var(--qi-space-2xl);
+  background: var(--qi-base-02);
+  border: 1px solid var(--qi-base-06);
+  border-radius: var(--qi-radius-lg);
+}
+
+.history-title,
+.vision-title {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-xl);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin-bottom: var(--qi-space-lg);
+}
+
+/* --- Timeline --- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-lg);
+}
+
+.timeline-item {
+  padding-left: var(--qi-space-xl);
+  position: relative;
+  border-left: 2px solid var(--qi-brand-emerald);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--qi-brand-emerald);
+}
+
+.timeline-year {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-brand-amber);
+  font-weight: 600;
+}
+
+.timeline-event {
+  font-size: var(--qi-text-base);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin: var(--qi-space-xs) 0;
+}
+
+.timeline-desc {
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-muted);
+  line-height: 1.6;
+}
+
+/* --- Vision Content --- */
+.vision-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qi-space-lg);
+}
+
+.vision-item {
+  padding: var(--qi-space-md);
+  background: var(--qi-base-03);
+  border-radius: var(--qi-radius-md);
+}
+
+.vision-item-title {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-brand-emerald);
+  font-weight: 600;
+  margin-bottom: var(--qi-space-xs);
+}
+
+.vision-item-desc {
+  font-size: var(--qi-text-base);
+  color: var(--qi-text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Values Grid --- */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--qi-space-xl);
+}
+
+.value-card {
+  padding: var(--qi-space-xl);
+  background: var(--qi-base-02);
+  border: 1px solid var(--qi-base-06);
+  border-radius: var(--qi-radius-lg);
+  text-align: center;
+  transition:
+    opacity var(--qi-transition-base),
+    transform var(--qi-transition-base),
+    border-color var(--qi-transition-base),
+    box-shadow var(--qi-transition-base);
+}
+
+.value-card:hover {
+  background: var(--qi-base-03);
+  box-shadow: var(--qi-shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--qi-brand-emerald);
+}
+
+.value-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--qi-space-md);
+}
+
+.value-title {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-lg);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin-bottom: var(--qi-space-sm);
+}
+
+.value-desc {
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-muted);
+  line-height: 1.6;
+}
+
 /* --- Philosophy --- */
 .philosophy-grid {
   display: grid;
@@ -102,6 +243,56 @@
   font-size: var(--qi-text-sm);
   color: var(--qi-text-muted);
   line-height: 1.8;
+}
+
+/* --- Tech Stack --- */
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--qi-space-xl);
+}
+
+.tech-category {
+  padding: var(--qi-space-xl);
+  background: var(--qi-base-02);
+  border: 1px solid var(--qi-base-06);
+  border-radius: var(--qi-radius-lg);
+}
+
+.tech-category-title {
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-lg);
+  font-weight: 600;
+  color: var(--qi-text-primary);
+  margin-bottom: var(--qi-space-md);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qi-space-sm);
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: var(--qi-space-xs) var(--qi-space-md);
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-brand-emerald);
+  background: var(--qi-base-03);
+  border: 1px solid var(--qi-base-06);
+  border-radius: var(--qi-radius-sm);
+  transition:
+    background var(--qi-transition-base),
+    border-color var(--qi-transition-base),
+    transform var(--qi-transition-base);
+}
+
+.tech-tag:hover {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-bg-base);
+  border-color: var(--qi-brand-emerald);
+  transform: translateY(-2px);
 }
 
 /* --- Contact CTA --- */
@@ -181,7 +372,10 @@ a.cta-link:hover .cta-value {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .philosophy-grid {
+  .philosophy-grid,
+  .values-grid,
+  .tech-stack,
+  .history-vision {
     grid-template-columns: 1fr;
   }
 

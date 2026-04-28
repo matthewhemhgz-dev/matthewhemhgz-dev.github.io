@@ -1,0 +1,354 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, projectCategoriesEn, categoryMapping } from '../../data/projects';
+import OptimizedImage from '../../components/ui/OptimizedImage.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+
+// 创建英文分类到中文分类的反向映射
+const categoryMappingReverse: Record<string, string> = {};
+for (const [zh, en] of Object.entries(categoryMapping)) {
+  categoryMappingReverse[en] = zh;
+}
+---
+
+<BaseLayout title="Projects | Qi-Lab" description="Explore my technical practices and creative works">
+  <div class="projects-page">
+    <div class="container">
+      <SectionHeader 
+        title="Projects" 
+        subtitle="Explore my technical practices and creative works" 
+      />
+
+      <div class="projects-filter">
+        {projectCategoriesEn.map((category) => (
+          <button
+            key={category}
+            class="filter-btn"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <article key={project.id} class="project-card" data-category={project.categoryEn}>
+            <div class="project-image-wrapper">
+              <OptimizedImage 
+                src={project.image} 
+                alt={project.titleEn}
+                width={400}
+                height={250}
+                loading="lazy"
+              />
+              <div class="project-overlay">
+                <a href={`/en${project.url}`} class="overlay-link">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+                {project.github && (
+                  <a href={project.github} class="overlay-link" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M15 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                      <path d="M21 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-category">
+                <span class="project-category-tag">{project.categoryEn}</span>
+              </div>
+              
+              <h3 class="project-title">
+                <a href={`/en${project.url}`}>
+                  {project.titleEn}
+                </a>
+              </h3>
+              
+              <p class="project-description">
+                {project.descriptionEn}
+              </p>
+
+              <div class="project-tags">
+                {project.tags.map((tag) => (
+                  <span key={tag} class="project-tag">{tag}</span>
+                ))}
+              </div>
+
+              <div class="project-meta">
+                <span class="project-year">{project.year}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+.projects-page {
+  padding: var(--qi-space-5xl) 0 var(--qi-space-4xl);
+  min-height: 60vh;
+  background: linear-gradient(180deg, var(--qi-bg-base) 0%, var(--qi-bg-surface) 100%);
+}
+
+.container {
+  max-width: var(--qi-container-max);
+  margin: 0 auto;
+  padding: 0 var(--qi-container-padding);
+}
+
+.projects-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--qi-space-sm);
+  margin-bottom: var(--qi-space-3xl);
+}
+
+.filter-btn {
+  padding: var(--qi-space-sm) var(--qi-space-lg);
+  background: transparent;
+  border: 1px solid var(--qi-border-default);
+  border-radius: var(--qi-radius-full);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-secondary);
+  cursor: pointer;
+  transition: all var(--qi-transition);
+}
+
+.filter-btn:hover {
+  background: var(--qi-brand-emerald-04);
+  border-color: var(--qi-brand-emerald);
+  color: var(--qi-brand-emerald);
+}
+
+.filter-btn.active {
+  background: var(--qi-brand-emerald);
+  border-color: var(--qi-brand-emerald);
+  color: var(--qi-text-inverse);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--qi-space-xl);
+}
+
+.project-card {
+  background: var(--qi-bg-surface);
+  border-radius: var(--qi-radius-card);
+  overflow: hidden;
+  box-shadow: var(--qi-shadow-md);
+  transition: all var(--qi-transition);
+  border: 1px solid var(--qi-border-default);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--qi-shadow-hover-warm);
+  border-color: var(--qi-brand-emerald);
+}
+
+.project-image-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.project-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--qi-transition-slow);
+}
+
+.project-card:hover .project-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--qi-space-lg);
+  opacity: 0;
+  transition: opacity var(--qi-transition);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.overlay-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--qi-bg-surface);
+  border-radius: 50%;
+  color: var(--qi-text-primary);
+  transition: all var(--qi-transition);
+}
+
+.overlay-link:hover {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-text-inverse);
+  transform: scale(1.1);
+}
+
+.project-content {
+  padding: var(--qi-space-xl);
+}
+
+.project-category {
+  margin-bottom: var(--qi-space-sm);
+}
+
+.project-category-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: var(--qi-brand-emerald-04);
+  color: var(--qi-brand-emerald);
+  border-radius: var(--qi-radius-sm);
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  font-weight: 600;
+}
+
+.project-title {
+  margin: 0 0 var(--qi-space-sm);
+  font-family: var(--qi-font-serif);
+  font-size: var(--qi-text-lg);
+  font-weight: var(--qi-weight-semibold);
+}
+
+.project-title a {
+  color: var(--qi-text-primary);
+  text-decoration: none;
+  transition: color var(--qi-transition);
+}
+
+.project-title a:hover {
+  color: var(--qi-brand-emerald);
+}
+
+.project-description {
+  margin: 0 0 var(--qi-space-md);
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-secondary);
+  line-height: 1.6;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qi-space-xs);
+  margin-bottom: var(--qi-space-md);
+}
+
+.project-tag {
+  padding: 2px 8px;
+  background: var(--qi-surface-sub);
+  border-radius: var(--qi-radius-sm);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+  font-family: var(--qi-font-mono);
+}
+
+.project-meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.project-year {
+  font-family: var(--qi-font-mono);
+  font-size: var(--qi-text-xs);
+  color: var(--qi-text-muted);
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: var(--qi-space-3xl) 0 var(--qi-space-2xl);
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--qi-space-lg);
+  }
+
+  .filter-btn {
+    padding: var(--qi-space-xs) var(--qi-space-md);
+    font-size: var(--qi-text-xs);
+  }
+}
+
+@media (min-width: 1440px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--qi-space-2xl);
+  }
+
+  .project-content {
+    padding: var(--qi-space-2xl);
+  }
+
+  .project-title {
+    font-size: var(--qi-text-xl);
+  }
+}
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    // 默认选中「All」
+    const allBtn = Array.from(filterBtns).find(btn => btn.dataset.category === 'All');
+    if (allBtn) {
+      allBtn.classList.add('active');
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // 移除所有 active 类
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        // 给当前按钮添加 active 类
+        btn.classList.add('active');
+
+        const category = btn.dataset.category;
+
+        projectCards.forEach((card) => {
+          const cardCategory = card.dataset.category;
+          if (category === 'All' || cardCategory === category) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  });
+</script>
+

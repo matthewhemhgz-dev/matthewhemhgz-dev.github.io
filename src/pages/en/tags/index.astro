@@ -8,30 +8,46 @@ const allPosts = (
   await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en')
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Calculate tag counts
 const tagCounts = allPosts.flatMap(post => post.data.tags).reduce((acc, tag) => {
   acc[tag] = (acc[tag] || 0) + 1;
   return acc;
 }, {});
 
-// Sort tags by count (descending) and then alphabetically
-const sortedTags = Object.entries(tagCounts)
+const sortedTagsByPopularity = Object.entries(tagCounts)
   .sort(([tagA, countA], [tagB, countB]) => {
     if (countB !== countA) return countB - countA;
     return tagA.localeCompare(tagB);
   })
   .map(([tag, count]) => ({ tag, count }));
 
-// Calculate min/max counts for size scaling
-const counts = sortedTags.map(item => item.count);
+const sortedTagsByAlphabet = Object.entries(tagCounts)
+  .sort(([tagA], [tagB]) => tagA.localeCompare(tagB))
+  .map(([tag, count]) => ({ tag, count }));
+
+const counts = sortedTagsByPopularity.map(item => item.count);
 const minCount = Math.min(...counts);
 const maxCount = Math.max(...counts);
 
-// Function to calculate font size based on count
 function getFontSize(count) {
   if (maxCount === minCount) return 1;
-  return 0.8 + (count - minCount) / (maxCount - minCount) * 0.6; // Range from 0.8 to 1.4
+  return 0.7 + (count - minCount) / (maxCount - minCount) * 0.8;
 }
+
+function getTagSizeClass(count) {
+  const ratio = (count - minCount) / (maxCount - minCount);
+  if (ratio > 0.8) return 'tag-size-xl';
+  if (ratio > 0.5) return 'tag-size-lg';
+  if (ratio > 0.2) return 'tag-size-md';
+  return 'tag-size-sm';
+}
+
+function getHotTagClass(count, index) {
+  if (count >= maxCount * 0.7 && index < 5) return 'tag-hot';
+  return '';
+}
+
+const totalTags = sortedTagsByPopularity.length;
+const totalArticles = allPosts.length;
 ---
 
 <BaseLayout
@@ -40,54 +56,113 @@ function getFontSize(count) {
 >
   <div class="container tags-page">
     <h1 class="sr-only">Tags</h1>
-    <!-- Tag Cloud Section -->
-    <section class="tags-cloud-section" data-reveal>
-      <SectionHeader label="// TAGS" title="Tags" />
-      {
-        sortedTags.length > 0 ? (
-          <div class="tags-cloud">
-            {sortedTags.map(({ tag, count }) => (
-              <a 
-                href={`/en/tags/${tag}/`} 
-                class="tag-link"
-                style={`font-size: ${getFontSize(count)}em;`}
-                title={`${count} articles`}
-              >
-                #{tag} <span class="tag-count">({count})</span>
-              </a>
-            ))}
+    
+    {totalTags > 0 && (
+      <section class="tags-stats-section" data-reveal>
+        <div class="tags-stats-grid">
+          <div class="tags-stat-card">
+            <div class="tags-stat-number">{totalTags}</div>
+            <div class="tags-stat-label">Total Tags</div>
           </div>
-        ) : (
-          <p class="empty-text">No tags yet, coming soon...</p>
-        )
-      }
+          <div class="tags-stat-card">
+            <div class="tags-stat-number">{totalArticles}</div>
+            <div class="tags-stat-label">Total Articles</div>
+          </div>
+          <div class="tags-stat-card">
+            <div class="tags-stat-number">{sortedTagsByPopularity[0]?.count || 0}</div>
+            <div class="tags-stat-label">Top Tag Count</div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="tags-cloud-section" data-reveal>
+      <SectionHeader label="// TAGS" title="Tag Cloud" />
+      {totalTags > 0 ? (
+        <>
+          <div class="tags-cloud-controls">
+            <button class="tags-sort-btn active" data-sort="popularity">Popularity</button>
+            <button class="tags-sort-btn" data-sort="alphabet">Alphabetical</button>
+          </div>
+          
+          <div class="tags-cloud-wrapper">
+            <div class="tags-cloud tags-cloud-popularity">
+              {sortedTagsByPopularity.map(({ tag, count }, index) => (
+                <a 
+                  href={`/en/tags/${tag}/`} 
+                  class={`tag-link ${getTagSizeClass(count)} ${getHotTagClass(count, index)}`}
+                  title={`${count} articles`}
+                >
+                  <span class="tag-text">#{tag}</span>
+                  <span class="tag-count-badge">{count}</span>
+                </a>
+              ))}
+            </div>
+            
+            <div class="tags-cloud tags-cloud-alphabet hidden">
+              {sortedTagsByAlphabet.map(({ tag, count }) => (
+                <a 
+                  href={`/en/tags/${tag}/`} 
+                  class={`tag-link ${getTagSizeClass(count)}`}
+                  title={`${count} articles`}
+                >
+                  <span class="tag-text">#{tag}</span>
+                  <span class="tag-count-badge">{count}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <p class="empty-text">No tags yet, coming soon...</p>
+      )}
     </section>
 
-    <!-- Recent Posts Section -->
-    {
-      allPosts.length > 0 && (
-        <section class="tags-posts-section" data-reveal>
-          <SectionHeader label="// RECENT" title="Recent Articles" />
-          <div class="tags-posts-grid">
-            {allPosts.map((post) => (
-              <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="tags-post-card">
-                <div class="tags-post-meta">
-                  <span class="tags-post-category">{post.data.category}</span>
-                  <time class="tags-post-date">
-                    {post.data.pubDate.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </div>
-                <h3 class="tags-post-title">{post.data.title}</h3>
-                {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
-              </a>
-            ))}
-          </div>
-        </section>
-      )
-    }
+    {totalArticles > 0 && (
+      <section class="tags-posts-section" data-reveal>
+        <SectionHeader label="// RECENT" title="Recent Articles" />
+        <div class="tags-posts-grid">
+          {allPosts.map((post) => (
+            <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="tags-post-card">
+              <div class="tags-post-meta">
+                <span class="tags-post-category">{post.data.category}</span>
+                <time class="tags-post-date">
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
+              </div>
+              <h3 class="tags-post-title">{post.data.title}</h3>
+              {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
   </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sortBtns = document.querySelectorAll('.tags-sort-btn');
+      const clouds = {
+        popularity: document.querySelector('.tags-cloud-popularity'),
+        alphabet: document.querySelector('.tags-cloud-alphabet')
+      };
+
+      if (!sortBtns.length || !clouds.popularity || !clouds.alphabet) return;
+
+      sortBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sortBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const sort = btn.dataset.sort;
+          Object.values(clouds).forEach(cloud => cloud.classList.add('hidden'));
+          clouds[sort].classList.remove('hidden');
+        });
+      });
+    });
+  </script>
 </BaseLayout>

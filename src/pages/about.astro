@@ -25,10 +25,9 @@ import Divider from '../components/global/Divider.astro';
             祈研所（QiLab）是我的数字档案室。名字中的「祈」代表对系统化整理的执着追求，「研」代表对技术深度的严谨探索。在信息过载的时代，我相信结构化的知识才是真正的力量。这里不卖焦虑、不割韭菜，只记录真实踩过的坑和验证过的经验。
           </p>
           <p>
-            我专注于知识管理、项目管理、IT/AI 技巧和八卦前沿四个交汇领域。在日常实践中，我使用
+            我专注于知识管理、项目管理、IT/AI 技巧和前沿探索四个交汇领域。在日常实践中，我使用
             Obsidian 构建基于 Bloom 六层认知模型的知识图谱，用 Markdown + Git
-            维护单点真理的文档体系，用 AI Agent（Superpowers +
-            OpenClaw）驱动开发与内容生产流水线。每一个分享都经过实际使用验证。
+            维护单点真理的文档体系，用 AI Agent 驱动开发与内容生产流水线。每一个分享都经过实际使用验证。
           </p>
           <p>
             作为一名高级信息系统项目管理师，持有 PMP、ITIL、CCNP 等 7
@@ -41,13 +40,103 @@ import Divider from '../components/global/Divider.astro';
 
       <Divider />
 
+      <!-- History & Vision -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// JOURNEY" title="品牌历程与愿景" />
+        <div class="history-vision">
+          <div class="history-card">
+            <h3 class="history-title">📅 品牌历程</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-year">2024</span>
+                <h4 class="timeline-event">祈研所诞生</h4>
+                <p class="timeline-desc">从一个个人知识管理的想法开始，逐步构建起完整的网站和内容体系</p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2024</span>
+                <h4 class="timeline-event">设计系统成型</h4>
+                <p class="timeline-desc">从零构建 Qi-Lab 视觉设计系统，确立燕麦灰、祖母绿、琥珀金的品牌色调</p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2025</span>
+                <h4 class="timeline-event">AI 工作流整合</h4>
+                <p class="timeline-desc">深度整合 AI 技术到内容生产和开发流程中，提升效率和质量</p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">未来</span>
+                <h4 class="timeline-event">持续进化</h4>
+                <p class="timeline-desc">保持对前沿技术的关注，持续完善知识体系，赋能更多创造者</p>
+              </div>
+            </div>
+          </div>
+          <div class="vision-card">
+            <h3 class="vision-title">🚀 愿景使命</h3>
+            <div class="vision-content">
+              <div class="vision-item">
+                <h4 class="vision-item-title">使命</h4>
+                <p class="vision-item-desc">让知识更有力量，让创造更有方向</p>
+              </div>
+              <div class="vision-item">
+                <h4 class="vision-item-title">愿景</h4>
+                <p class="vision-item-desc">成为技术与创意交汇的枢纽，帮助人们构建系统化的知识体系</p>
+              </div>
+              <div class="vision-item">
+                <h4 class="vision-item-title">承诺</h4>
+                <p class="vision-item-desc">只分享真实验证的经验，不制造焦虑，不追求流量捷径</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- Core Values -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// VALUES" title="核心价值观" />
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🧠</div>
+            <h3 class="value-title">系统化思维</h3>
+            <p class="value-desc">拒绝头痛医头的补丁思维，追求从根因出发的系统性解决方案</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">📝</div>
+            <h3 class="value-title">真实验证</h3>
+            <p class="value-desc">每一个工具推荐都经过实际使用，每一个技术观点都来自真实项目</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌱</div>
+            <h3 class="value-title">长期主义</h3>
+            <p class="value-desc">慢即是快，在知识积累和能力提升的道路上保持耐心和坚持</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🎨</div>
+            <h3 class="value-title">工程美学</h3>
+            <p class="value-desc">代码和设计不仅要能用，更要优雅、可维护、充满美感</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🤖</div>
+            <h3 class="value-title">人机协作</h3>
+            <p class="value-desc">拥抱 AI 技术，但坚持人类本体价值，发挥创造力和判断力</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3 class="value-title">开放分享</h3>
+            <p class="value-desc">知识需要流动，经验值得分享，一起在成长的道路上同行</p>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
       <!-- Philosophy -->
       <section class="about-section" data-reveal>
         <SectionHeader label="// PHILOSOPHY" title="设计理念" />
         <div class="philosophy-grid">
           <div class="philosophy-card">
             <span class="philosophy-number">01</span>
-            <h3 class="philosophy-title">Qi-Lab 祈研所</h3>
+            <h3 class="philosophy-title">Qi-Lab 视觉哲学</h3>
             <p class="philosophy-desc">
               为深夜书桌前的工作者设计的视觉哲学。燕麦灰底色如同温暖的纸张，祖母绿光标闪烁着理性的光芒，琥珀金台灯投下温暖的陪伴。核心隐喻：一间深夜亮着台灯的书房。追求清透、舒适、有呼吸感的视觉环境，用低认知负载的设计冲销高密度信息的脑力消耗。
             </p>
@@ -76,6 +165,59 @@ import Divider from '../components/global/Divider.astro';
 
       <Divider />
 
+      <!-- Tech Stack -->
+      <section class="about-section" data-reveal>
+        <SectionHeader label="// TECH" title="技术栈" />
+        <div class="tech-stack">
+          <div class="tech-category">
+            <h3 class="tech-category-title">前端开发</h3>
+            <div class="tech-tags">
+              <span class="tech-tag">Astro</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">CSS Custom Properties</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">PWA</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="tech-category-title">知识管理</h3>
+            <div class="tech-tags">
+              <span class="tech-tag">Obsidian</span>
+              <span class="tech-tag">Notion</span>
+              <span class="tech-tag">Markdown</span>
+              <span class="tech-tag">Git</span>
+              <span class="tech-tag">Neo4j</span>
+              <span class="tech-tag">D3.js</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="tech-category-title">AI 与自动化</h3>
+            <div class="tech-tags">
+              <span class="tech-tag">Claude API</span>
+              <span class="tech-tag">AI Agents</span>
+              <span class="tech-tag">Superpowers</span>
+              <span class="tech-tag">OpenClaw</span>
+              <span class="tech-tag">RAG</span>
+              <span class="tech-tag">Prompt Engineering</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="tech-category-title">项目管理</h3>
+            <div class="tech-tags">
+              <span class="tech-tag">PMP</span>
+              <span class="tech-tag">ITIL</span>
+              <span class="tech-tag">SystemPM</span>
+              <span class="tech-tag">敏捷开发</span>
+              <span class="tech-tag">DevOps</span>
+              <span class="tech-tag">数据驱动</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
       <!-- Contact CTA -->
       <section class="about-section" data-reveal>
         <SectionHeader label="// CONTACT" title="取得联系" />
@@ -89,6 +231,10 @@ import Divider from '../components/global/Divider.astro';
             <div class="cta-link">
               <span class="cta-label">WeChat</span>
               <span class="cta-value">祈研所或 QiLab</span>
+            </div>
+            <div class="cta-link">
+              <span class="cta-label">GitHub</span>
+              <span class="cta-value">matthewhemhgz-dev</span>
             </div>
           </div>
           <a href="/#contact" class="cta-btn">查看完整联系方式</a>
