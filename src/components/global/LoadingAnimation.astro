@@ -3,7 +3,7 @@ import BrandLogo from './BrandLogo.astro';
 import '../../styles/components/loading-animation.css';
 ---
 
-<div class="loading-overlay is-visible" id="loading-overlay" aria-hidden="false" role="status" aria-label="加载中">
+<div class="loading-overlay" id="loading-overlay" aria-hidden="true" role="status" aria-label="Loading">
   <div class="loading-content">
     <div class="loading-logo">
       <BrandLogo variant="icon" size="lg" />
@@ -27,6 +27,12 @@ import '../../styles/components/loading-animation.css';
   
   let progress = 0;
   let progressInterval: ReturnType<typeof setInterval> | null = null;
+  let isLoading = false;
+  let safetyTimeout: ReturnType<typeof setTimeout> | null = null;
+  
+  const MAX_LOADING_TIME = 5000;
+  const MIN_LOADING_TIME = 300;
+  let loadingStartTime = 0;
   
   function startProgress() {
     if (progressInterval) return;
@@ -40,28 +46,56 @@ import '../../styles/components/loading-animation.css';
     }, 100);
   }
   
+  function stopProgress() {
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      progressInterval = null;
+    }
+  }
+  
+  function clearSafetyTimeout() {
+    if (safetyTimeout) {
+      clearTimeout(safetyTimeout);
+      safetyTimeout = null;
+    }
+  }
+  
+  function setSafetyTimeout() {
+    clearSafetyTimeout();
+    safetyTimeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('[LoadingAnimation] Safety timeout reached, forcing hide');
+        hideLoading();
+      }
+    }, MAX_LOADING_TIME);
+  }
+  
   function showLoading() {
-    if (!overlay) return;
-    overlay.classList.add('is-visible');
-    overlay.classList.remove('is-hidden');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    if (!overlay || isLoading) return;
     
+    isLoading = true;
+    loadingStartTime = Date.now();
     progress = 0;
+    
+    overlay.classList.add('is-visible');
+    overlay.setAttribute('aria-hidden', 'false');
+    
     if (progressBar) {
       progressBar.style.width = '0%';
     }
     
     startProgress();
+    setSafetyTimeout();
   }
   
   function hideLoading() {
     if (!overlay) return;
     
-    if (progressInterval) {
-      clearInterval(progressInterval);
-      progressInterval = null;
-    }
+    const elapsed = Date.now() - loadingStartTime;
+    const remainingTime = Math.max(0, MIN_LOADING_TIME - elapsed);
+    
+    clearSafetyTimeout();
+    stopProgress();
     
     if (progressBar) {
       progressBar.style.width = '100%';
@@ -69,17 +103,11 @@ import '../../styles/components/loading-animation.css';
     
     setTimeout(() => {
       overlay.classList.remove('is-visible');
-      overlay.classList.add('is-hidden');
       overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      
-      setTimeout(() => {
-        overlay.classList.remove('is-hidden');
-      }, 500);
-    }, 200);
+      isLoading = false;
+      progress = 0;
+    }, Math.max(200, remainingTime));
   }
-  
-  startProgress();
   
   document.addEventListener('astro:page-load', () => {
     hideLoading();
@@ -89,15 +117,19 @@ import '../../styles/components/loading-animation.css';
     showLoading();
   });
   
+  document.addEventListener('astro:before-swap', () => {
+    hideLoading();
+  });
+  
   if (document.readyState === 'complete') {
     setTimeout(() => {
       hideLoading();
-    }, 300);
+    }, 100);
   } else {
     window.addEventListener('load', () => {
       setTimeout(() => {
         hideLoading();
-      }, 300);
+      }, 100);
     });
   }
 </script>

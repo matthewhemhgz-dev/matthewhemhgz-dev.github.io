@@ -18,10 +18,10 @@ function isHomePage() {
 
 function getParticleCount() {
   const screenWidth = window.innerWidth;
-  if (screenWidth < 768) return 30;
-  if (screenWidth < 1440) return 50;
-  if (screenWidth < 2560) return 60;
-  return 80;
+  if (screenWidth < 768) return 25;
+  if (screenWidth < 1440) return 40;
+  if (screenWidth < 2560) return 50;
+  return 60;
 }
 
 function getThemeColors() {
@@ -39,14 +39,14 @@ function getParticleOptions() {
   return {
     count: getParticleCount(),
     colors: [colors.emerald, colors.mint, colors.amber, colors.bgBase],
-    maxSize: 4,
-    speed: 0.3,
-    linkDistance: 120,
-    linkOpacity: 0.1,
-    mouseRadius: 150,
-    mouseForce: 0.03,
-    glowSize: 10,
-    glowOpacity: 0.2,
+    maxSize: 3,
+    speed: 0.2,
+    linkDistance: 100,
+    linkOpacity: 0.08,
+    mouseRadius: 120,
+    mouseForce: 0.02,
+    glowSize: 8,
+    glowOpacity: 0.15,
   };
 }
 
@@ -60,7 +60,38 @@ function getLoadDelay() {
   if (isSlowConnection()) {
     return { priority1: 0, priority2: 500, priority3: 2000, priority4: 3000 };
   }
-  return { priority1: 0, priority2: 100, priority3: 500, priority4: 800 };
+  return { priority1: 0, priority2: 150, priority3: 600, priority4: 1000 };
+}
+
+function cleanup() {
+  cleanupFns.forEach((fn) => {
+    try {
+      fn();
+    } catch (err) {
+      console.warn('[QiLab] Cleanup error:', err);
+    }
+  });
+  cleanupFns.length = 0;
+
+  if (cursorGlow) {
+    try {
+      cursorGlow.destroy();
+    } catch (err) {
+      console.warn('[QiLab] CursorGlow cleanup error:', err);
+    }
+    cursorGlow = null;
+  }
+
+  if (particles) {
+    try {
+      particles.destroy();
+    } catch (err) {
+      console.warn('[QiLab] Particles cleanup error:', err);
+    }
+    particles = null;
+  }
+
+  initialized = false;
 }
 
 function initQiLab() {
@@ -111,7 +142,12 @@ function initQiLab() {
       
       if (canvas) {
         particles = new MinimalParticles('particles-canvas', particleOptions);
-        cleanupFns.push(() => particles.destroy());
+        cleanupFns.push(() => {
+          if (particles) {
+            particles.destroy();
+            particles = null;
+          }
+        });
       }
     } catch (err) {
       console.error('[QiLab] Failed to initialize particles:', err);
@@ -129,7 +165,12 @@ function initQiLab() {
         speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.05,
         blend: 'screen',
       });
-      cleanupFns.push(() => cursorGlow.destroy());
+      cleanupFns.push(() => {
+        if (cursorGlow) {
+          cursorGlow.destroy();
+          cursorGlow = null;
+        }
+      });
     } catch (err) {
       console.error('[QiLab] Failed to initialize cursor glow:', err);
     }
@@ -147,10 +188,14 @@ function initQiLab() {
 function handleThemeChange() {
   if (!particles) return;
   
-  const colors = getThemeColors();
-  particles.options.colors = [colors.emerald, colors.mint, colors.amber, colors.bgBase];
-  particles._parseColors();
-  particles._prerenderGlowTextures();
+  try {
+    const colors = getThemeColors();
+    particles.options.colors = [colors.emerald, colors.mint, colors.amber, colors.bgBase];
+    particles._parseColors();
+    particles._prerenderGlowTextures();
+  } catch (err) {
+    console.warn('[QiLab] Theme change error:', err);
+  }
   
   const event = new Event('themechange');
   document.dispatchEvent(event);
@@ -159,13 +204,12 @@ function handleThemeChange() {
 document.addEventListener('themechange', handleThemeChange);
 
 document.addEventListener('astro:page-load', () => {
-  cleanupFns.forEach((fn) => fn());
-  cleanupFns.length = 0;
-
-  initialized = false;
-  cursorGlow = null;
-  particles = null;
+  cleanup();
   initQiLab();
+});
+
+document.addEventListener('astro:before-preparation', () => {
+  cleanup();
 });
 
 if (document.readyState === 'loading') {
