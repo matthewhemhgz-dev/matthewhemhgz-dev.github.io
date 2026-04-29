@@ -1,0 +1,164 @@
+---
+interface Props {
+  videoSrc: string;
+  poster?: string;
+  scrollStart?: number;
+  scrollEnd?: number;
+  classList?: string;
+  height?: string;
+}
+
+const {
+  videoSrc,
+  poster,
+  scrollStart = 0,
+  scrollEnd = 100,
+  classList = '',
+  height = '100vh',
+} = Astro.props;
+
+const videoId = `scroll-video-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class:list={['scroll-video-container', classList]}
+  data-video-id={videoId}
+  data-scroll-start={scrollStart}
+  data-scroll-end={scrollEnd}
+  style={`--scroll-video-height: ${height}`}
+>
+  <div class="scroll-video-sticky">
+    <video
+      id={videoId}
+      class="scroll-video-element"
+      muted
+      playsinline
+      preload="auto"
+      poster={poster}
+    >
+      <source src={videoSrc} type="video/webm" />
+      <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+    </video>
+    
+    <div class="scroll-video-progress">
+      <div class="scroll-video-progress-bar"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .scroll-video-container {
+    position: relative;
+    height: var(--scroll-video-height, 100vh);
+    overflow: hidden;
+  }
+
+  .scroll-video-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--qi-bg-base);
+  }
+
+  .scroll-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .scroll-video-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .scroll-video-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-amber));
+    transition: width 0.1s ease-out;
+  }
+
+  :global(.dark) .scroll-video-progress {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-video-container {
+      height: auto;
+    }
+
+    .scroll-video-sticky {
+      position: relative;
+      height: auto;
+    }
+
+    .scroll-video-progress {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-video-container {
+      height: calc(var(--scroll-video-height, 100vh) * 0.8);
+    }
+  }
+</style>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReducedMotion) {
+    document.addEventListener('astro:page-load', () => {
+      const containers = document.querySelectorAll<HTMLDivElement>('.scroll-video-container');
+      
+      containers.forEach((container) => {
+        const videoId = container.dataset.videoId;
+        const video = document.getElementById(videoId) as HTMLVideoElement;
+        const progressBar = container.querySelector<HTMLDivElement>('.scroll-video-progress-bar');
+        const scrollStart = parseFloat(container.dataset.scrollStart || '0');
+        const scrollEnd = parseFloat(container.dataset.scrollEnd || '100');
+        
+        if (!video) return;
+        
+        let videoLoaded = false;
+        
+        video.addEventListener('loadedmetadata', () => {
+          videoLoaded = true;
+        });
+        
+        const updateVideo = () => {
+          if (!videoLoaded) return;
+          
+          const rect = container.getBoundingClientRect();
+          const containerHeight = container.offsetHeight;
+          const viewportHeight = window.innerHeight;
+          
+          const scrollProgress = Math.max(0, Math.min(1, 
+            (viewportHeight - rect.top) / (containerHeight + viewportHeight)
+          ));
+          
+          const normalizedProgress = scrollStart + (scrollEnd - scrollStart) * scrollProgress;
+          
+          if (video.duration) {
+            video.currentTime = video.duration * (normalizedProgress / 100);
+          }
+          
+          if (progressBar) {
+            progressBar.style.width = `${normalizedProgress}%`;
+          }
+        };
+        
+        window.addEventListener('scroll', updateVideo, { passive: true });
+        updateVideo();
+      });
+    });
+  }
+</script>

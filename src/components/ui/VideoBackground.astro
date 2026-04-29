@@ -1,0 +1,126 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  opacity?: number;
+  blendMode?: 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten';
+  loop?: boolean;
+  muted?: boolean;
+  lazy?: boolean;
+  classList?: string;
+  overlay?: boolean;
+  overlayOpacity?: number;
+}
+
+const {
+  src,
+  poster,
+  opacity = 0.3,
+  blendMode = 'screen',
+  loop = true,
+  muted = true,
+  lazy = true,
+  classList = '',
+  overlay = true,
+  overlayOpacity = 0.4,
+} = Astro.props;
+
+const videoId = `video-bg-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class:list={['video-background', classList]} data-video-id={videoId} style={`--video-opacity: ${opacity}; --video-blend: ${blendMode};`}>
+  <video
+    id={videoId}
+    class="video-bg-element"
+    autoplay
+    muted={muted}
+    loop={loop}
+    playsinline
+    disablePictureInPicture
+    controls={false}
+    data-lazy={lazy}
+    poster={poster}
+  >
+    <source src={src} type="video/webm" />
+    <source src={src.replace('.webm', '.mp4')} type="video/mp4" />
+  </video>
+  
+  {overlay && <div class="video-overlay" style={`--overlay-opacity: ${overlayOpacity}`}></div>}
+  
+  <slot />
+</div>
+
+<style>
+  .video-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .video-bg-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: var(--video-opacity, 0.3);
+    mix-blend-mode: var(--video-blend, screen);
+    pointer-events: none;
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, calc(var(--overlay-opacity) * 0.3)) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(0, 0, 0, calc(var(--overlay-opacity) * 0.5)) 100%
+    );
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-bg-element {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .video-bg-element {
+      opacity: calc(var(--video-opacity, 0.3) * 0.5);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const videos = document.querySelectorAll<HTMLVideoElement>('.video-bg-element[data-lazy="true"]');
+    
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target as HTMLVideoElement;
+            if (entry.isIntersecting) {
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      videos.forEach((video) => observer.observe(video));
+    } else {
+      videos.forEach((video) => video.play().catch(() => {}));
+    }
+  });
+</script>
