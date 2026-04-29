@@ -3,8 +3,9 @@ title: 'Building a Design Token System from Scratch'
 description: 'Design tokens are the atomic units of a design system. From concept to practice, this guide teaches you to build a scalable design token system.'
 pubDate: 2026-04-12
 category: 'Frontend Engineering'
+image: /images/blog/design-tokens-system-guide-en.svg
 tags: ['CSS', 'Design System', 'Design Tokens', 'Best Practices']
-heroImage: 'public\blog\design-tokens-system-guide.png'
+heroImage: '/images/blog/design-tokens-system-guide.svg'
 author: 'QiLab'
 draft: false
 lang: en
@@ -391,13 +392,13 @@ Using [Style Dictionary](https://amzn.github.io/style-dictionary/), you can conv
 
 ## Toolchain Recommendations
 
-| Tool                   | Purpose            | Reason for Recommendation          |
-| ---------------------- | ------------------ | ---------------------------------- |
-| **Style Dictionary**   | Token conversion   | Amazon open source, multi-platform output |
-| **Figma Tokens Studio**| Design-side token management | Figma plugin, JSON import/export support |
-| **Token Transformer**  | Token format conversion | Convert between different token formats |
-| **Diez**              | Cross-platform token distribution | Supports iOS/Android/Web unified distribution |
-| **Twingate**          | Tailwind integration | Auto-sync tokens to Tailwind config |
+| Tool                    | Purpose                           | Reason for Recommendation                     |
+| ----------------------- | --------------------------------- | --------------------------------------------- |
+| **Style Dictionary**    | Token conversion                  | Amazon open source, multi-platform output     |
+| **Figma Tokens Studio** | Design-side token management      | Figma plugin, JSON import/export support      |
+| **Token Transformer**   | Token format conversion           | Convert between different token formats       |
+| **Diez**                | Cross-platform token distribution | Supports iOS/Android/Web unified distribution |
+| **Twingate**            | Tailwind integration              | Auto-sync tokens to Tailwind config           |
 
 ## Best Practice Summary
 

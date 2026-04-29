@@ -1,0 +1,468 @@
+---
+import OptimizedImage from './OptimizedImage.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  coverImage: string;
+  gifPreview?: string;
+  videoPreview?: string;
+  tags: string[];
+  technologies: string[];
+  year: number;
+  liveUrl?: string;
+  repoUrl?: string;
+}
+
+const {
+  id,
+  title,
+  description,
+  category,
+  coverImage,
+  gifPreview,
+  videoPreview,
+  tags,
+  technologies,
+  year,
+  liveUrl,
+  repoUrl,
+} = Astro.props;
+
+const cardId = `project-card-${id}`;
+---
+
+<article
+  id={cardId}
+  class="enhanced-project-card"
+  tabindex="0"
+  role="article"
+  aria-labelledby={`${cardId}-title`}
+>
+  <div class="project-card-inner">
+    <div class="project-card-cover">
+      <OptimizedImage
+        src={coverImage}
+        alt={title}
+        width={600}
+        height={400}
+        loading="lazy"
+        class="project-card-image project-card-static"
+      />
+      
+      {gifPreview && (
+        <video
+          class="project-card-video"
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster={coverImage}
+        >
+          <source src={videoPreview || gifPreview} type="video/webm" />
+          <source src={videoPreview?.replace('.webm', '.mp4') || gifPreview} type="video/mp4" />
+        </video>
+      )}
+      
+      <div class="project-card-cover-overlay" />
+      <div class="project-card-year">{year}</div>
+      
+      {gifPreview && (
+        <div class="project-card-play-indicator">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      )}
+    </div>
+
+    <div class="project-card-content">
+      <div class="project-card-meta">
+        <span class="project-card-category">{category}</span>
+      </div>
+      <h3 id={`${cardId}-title`} class="project-card-title">
+        {title}
+      </h3>
+      <p class="project-card-description">{description}</p>
+
+      <div class="project-card-tags">
+        {tags.map((tag) => (
+          <span class="project-tag">{tag}</span>
+        ))}
+      </div>
+
+      <div class="project-card-tech">
+        {technologies.slice(0, 4).map((tech) => (
+          <span class="project-tech-tag">{tech}</span>
+        ))}
+      </div>
+
+      <div class="project-card-actions">
+        {liveUrl && (
+          <a
+            href={liveUrl}
+            class="project-action-btn project-action-btn--live"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`查看 ${title} 在线演示`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            <span>Live</span>
+          </a>
+        )}
+        {repoUrl && (
+          <a
+            href={repoUrl}
+            class="project-action-btn project-action-btn--repo"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`查看 ${title} 代码仓库`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-1 1.02-1.28 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+              <path d="M9 18c-2 0-3.5-1.5-3.5-3.5S7 11 9 11s3.5 1.5 3.5 3.5S11 18 9 18"/>
+            </svg>
+            <span>Repo</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .enhanced-project-card {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    display: flex;
+    flex-direction: column;
+    background: var(--qi-bg-surface);
+    border: 1px solid var(--qi-border-default);
+    border-radius: var(--qi-radius-card);
+    overflow: hidden;
+    transition:
+      transform var(--qi-transition),
+      box-shadow var(--qi-transition),
+      border-color var(--qi-transition);
+    position: relative;
+  }
+
+  .enhanced-project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .enhanced-project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--qi-brand-emerald), var(--qi-brand-amber));
+    transition: width 0.4s ease;
+    z-index: 2;
+  }
+
+  .enhanced-project-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+      0 20px 40px -12px rgba(0, 0, 0, 0.12),
+      0 8px 16px -8px rgba(0, 0, 0, 0.08),
+      0 0 40px -8px var(--qi-brand-emerald-08);
+    border-color: var(--qi-brand-emerald-20);
+  }
+
+  .enhanced-project-card:hover::after {
+    width: 100%;
+  }
+
+  .project-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .project-card-cover {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .project-card-image,
+  .project-card-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--qi-transition-base), opacity 0.3s ease;
+  }
+
+  .project-card-video {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .enhanced-project-card:hover .project-card-video {
+    opacity: 1;
+  }
+
+  .enhanced-project-card:hover .project-card-static {
+    opacity: 0;
+  }
+
+  .project-card-cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .project-card-year {
+    position: absolute;
+    top: var(--qi-space-sm);
+    right: var(--qi-space-sm);
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    border-radius: var(--qi-radius-sm);
+    font-family: var(--qi-font-mono);
+    z-index: 3;
+  }
+
+  .project-card-play-indicator {
+    position: absolute;
+    bottom: var(--qi-space-sm);
+    right: var(--qi-space-sm);
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all var(--qi-transition);
+    z-index: 3;
+  }
+
+  .enhanced-project-card:hover .project-card-play-indicator {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .project-card-content {
+    padding: var(--qi-space-xl);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-sm);
+  }
+
+  .project-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-sm);
+    flex-shrink: 0;
+  }
+
+  .project-card-category {
+    font-family: var(--qi-font-mono);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    color: var(--qi-brand-emerald-dark);
+    background: var(--qi-brand-emerald-08);
+    padding: 2px 8px;
+    border-radius: var(--qi-radius-full);
+  }
+
+  .project-card-title {
+    font-family: var(--qi-font-serif);
+    font-size: var(--qi-text-xl);
+    font-weight: 700;
+    color: var(--qi-text-primary);
+    margin: 0;
+    line-height: 1.4;
+    transition: color var(--qi-transition);
+  }
+
+  .enhanced-project-card:hover .project-card-title {
+    color: var(--qi-brand-emerald);
+  }
+
+  .project-card-description {
+    font-size: var(--qi-text-sm);
+    color: var(--qi-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .project-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .project-tag {
+    padding: 3px 8px;
+    background: var(--qi-brand-emerald-08);
+    color: var(--qi-brand-emerald-dark);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    border-radius: var(--qi-radius-sm);
+  }
+
+  .project-card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: var(--qi-space-md);
+    border-top: 1px solid var(--qi-border-default);
+    flex-shrink: 0;
+  }
+
+  .project-tech-tag {
+    padding: 3px 8px;
+    background: var(--qi-surface-sub);
+    color: var(--qi-text-secondary);
+    font-size: var(--qi-text-xs);
+    font-family: var(--qi-font-mono);
+    border-radius: var(--qi-radius-sm);
+  }
+
+  .project-card-actions {
+    display: flex;
+    gap: var(--qi-space-sm);
+    margin-top: var(--qi-space-sm);
+    flex-shrink: 0;
+  }
+
+  .project-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--qi-border-default);
+    border-radius: var(--qi-radius-button);
+    background: transparent;
+    color: var(--qi-text-primary);
+    font-size: var(--qi-text-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--qi-transition);
+    font-family: var(--qi-font-mono);
+    text-decoration: none;
+  }
+
+  .project-action-btn:hover {
+    background: var(--qi-brand-emerald);
+    border-color: var(--qi-brand-emerald);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  :global(.dark) .enhanced-project-card {
+    background: var(--qi-surface-main);
+    border-color: var(--qi-border-inverse);
+  }
+
+  :global(.dark) .enhanced-project-card::before {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  :global(.dark) .project-card-category {
+    color: var(--qi-brand-emerald);
+    background: var(--qi-brand-emerald-12);
+  }
+
+  :global(.dark) .project-tag {
+    background: var(--qi-brand-emerald-08);
+    color: var(--qi-brand-emerald);
+  }
+
+  :global(.dark) .project-tech-tag {
+    background: var(--qi-inverse-12);
+    color: var(--qi-on-surface-secondary);
+  }
+
+  :global(.dark) .project-action-btn {
+    border-color: var(--qi-border-inverse);
+    color: var(--qi-on-surface-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card-video {
+      display: none;
+    }
+    
+    .enhanced-project-card:hover .project-card-static {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .project-card-title {
+      font-size: var(--qi-text-lg);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const cards = document.querySelectorAll<HTMLVideoElement>('.enhanced-project-card');
+    
+    cards.forEach((card) => {
+      const video = card.querySelector<HTMLVideoElement>('.project-card-video');
+      
+      if (!video) return;
+      
+      card.addEventListener('mouseenter', () => {
+        video.play().catch(() => {});
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+      
+      card.addEventListener('focusin', () => {
+        video.play().catch(() => {});
+      });
+      
+      card.addEventListener('focusout', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  });
+</script>

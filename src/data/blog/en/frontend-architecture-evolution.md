@@ -3,8 +3,9 @@ title: 'Frontend Architecture Evolution: From Static Pages to Modern Frontend Fr
 description: 'Frontend architecture evolution review: from static pages to modern frameworks, understanding development logic and future trends.'
 pubDate: 2026-04-27
 category: 'Technical Architecture'
+image: /images/blog/frontend-architecture-evolution-en.svg
 tags: ['Frontend Architecture', 'Technical Evolution', 'Frontend Development']
-heroImage: 'public\blog\frontend-architecture-evolution.png'
+heroImage: '/images/blog/frontend-architecture-evolution.svg'
 author: '祈研所'
 draft: false
 lang: en

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1b18;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2823;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bgGrad)" />
+  
+  <g transform="translate(200, 150)">
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.1">
+      <animate attributeName="r" values="80;90;80" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.1;0.2;0.1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.2">
+      <animate attributeName="r" values="60;70;60" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.3;0.2" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.3">
+      <animate attributeName="r" values="40;50;40" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.4;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <rect x="-15" y="-15" width="30" height="30" fill="#4ade80" filter="url(#glow)">
+      <animate attributeName="rotate" values="0;90;180;270;0" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    
+    <circle cx="40" cy="0" r="6" fill="#fbbf24" opacity="0.8">
+      <animate attributeName="cy" values="0;10;0;-10;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="-40" cy="0" r="6" fill="#4ade80" opacity="0.8">
+      <animate attributeName="cy" values="0;-10;0;10;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="40" r="6" fill="#a7f3d0" opacity="0.8">
+      <animate attributeName="cx" values="0;10;0;-10;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="-40" r="6" fill="#fbbf24" opacity="0.8">
+      <animate attributeName="cx" values="0;-10;0;10;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <text x="200" y="250" text-anchor="middle" fill="#f7f3ee" font-size="16" font-weight="600">SystemPM</text>
+  <text x="200" y="270" text-anchor="middle" fill="#a8a29e" font-size="12">企业级项目管理系统</text>
+</svg>
