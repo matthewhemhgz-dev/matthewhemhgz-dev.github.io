@@ -3,15 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import { getReadingTime } from '../../utils/reading-time';
 import OptimizedImage from '../../components/ui/OptimizedImage.astro';
-import VideoCover from '../../components/ui/VideoCover.astro';
 import MermaidInit from '../../components/global/MermaidInit.astro';
 import ArticleViewCount from '../../components/global/ArticleViewCount.astro';
 import Skeleton from '../../components/ui/Skeleton.astro';
-import RelatedArticles from '../../components/sections/RelatedArticles.astro';
-import ReadingProgress from '../../components/global/ReadingProgress.astro';
-import TableOfContents from '../../components/global/TableOfContents.astro';
-import Comments from '../../components/global/Comments.astro';
-import ShareButtons from '../../components/global/ShareButtons.astro';
+import GenerativeArt from '../../components/ui/GenerativeArt.astro';
 import '../../styles/sections/article.css';
 
 export async function getStaticPaths() {
@@ -30,8 +25,35 @@ const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await render(post);
 const readingTime = getReadingTime(post.body || '');
 
-// Get all posts for related articles
-const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
+// Get related posts
+const allPosts = await getCollection(
+  'blog',
+  ({ data }) => !data.draft && data.lang === 'zh' && data.id !== post.id,
+);
+
+// Calculate relatedness score
+const relatedPosts = allPosts
+  .map((otherPost) => {
+    let score = 0;
+
+    // Score based on common tags
+    const commonTags = otherPost.data.tags?.filter((tag) => post.data.tags?.includes(tag)) || [];
+    score += commonTags.length * 3;
+
+    // Score based on same category
+    if (otherPost.data.category === post.data.category) {
+      score += 2;
+    }
+
+    // Score based on publish date proximity
+    const dateDiff = Math.abs(otherPost.data.pubDate - post.data.pubDate);
+    const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
+    score += Math.max(0, 1 - daysDiff / 365);
+
+    return { post: otherPost, score };
+  })
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3);
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhemhgz-dev.github.io';
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
@@ -70,17 +92,11 @@ const articleJsonLd = {
   title={`${post.data.title} — 祈研所 Qi-Lab`}
   description={post.data.description}
   ogImage={ogImage}
-  ogImageWidth={1200}
-  ogImageHeight={675}
   ogType="article"
   pubDate={post.data.pubDate.toISOString()}
   modDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
-  articleSection={post.data.category}
-  articleTags={post.data.tags}
   jsonLd={articleJsonLd}
 >
-  <ReadingProgress label="阅读进度" />
-  <TableOfContents headings={headings} label="目录" />
   <article class="article-container">
     <a href="/blog" class="article-back">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -96,22 +112,7 @@ const articleJsonLd = {
 
     <header class="article-header">
       {
-        post.data.heroVideo ? (
-          <div class="article-hero-image">
-            <VideoCover
-              src={post.data.heroVideo.src}
-              poster={post.data.heroVideo.poster || post.data.heroImage}
-              fallbackImage={post.data.heroImage}
-              alt={post.data.title}
-              autoplay={post.data.heroVideo.autoplay ?? true}
-              muted={post.data.heroVideo.muted ?? true}
-              loop={post.data.heroVideo.loop ?? true}
-              showControls={!(post.data.heroVideo.autoplay ?? true)}
-              width={1200}
-              height={675}
-            />
-          </div>
-        ) : post.data.heroImage ? (
+        post.data.heroImage && (
           <div class="article-hero-image">
             <OptimizedImage
               src={post.data.heroImage}
@@ -122,7 +123,7 @@ const articleJsonLd = {
               sizes="(max-width: 1200px) 100vw, 1200px"
             />
           </div>
-        ) : null
+        )
       }
       <div class="article-meta-top">
         <span class="article-category">{post.data.category}</span>
@@ -160,6 +161,9 @@ const articleJsonLd = {
       }
       <div class="article-divider"></div>
     </header>
+
+    <!-- 生成式艺术组件 -->
+    <GenerativeArt />
 
     {
       headings.length > 0 && (
@@ -205,13 +209,125 @@ const articleJsonLd = {
       <div class="article-footer-content">
         <span class="article-footer-label">— 祈研所 Qi-Lab —</span>
         <p class="article-footer-hint">如果这篇文章对你有帮助，欢迎分享给更多人。</p>
-        <ShareButtons url={articleUrl} title={post.data.title} description={post.data.description} image={ogImage} lang="zh" />
+        <div class="article-share">
+          <span class="article-share-label">分享到：</span>
+          <div class="article-share-buttons">
+            <a
+              href={`https://x.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(post.data.title)}&via=qilab_dev`}
+              class="article-share-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="分享到 X"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>X</span>
+            </a>
+            <a
+              href={`https://service.weibo.com/share/share.php?url=${encodeURIComponent(articleUrl)}&title=${encodeURIComponent(post.data.title)}&pic=${encodeURIComponent(ogImage || '')}`}
+              class="article-share-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="分享到微博"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>微博</span>
+            </a>
+            <button class="article-share-btn article-share-wechat" aria-label="分享到微信">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M15 11.5a3.5 3.5 0 1 1-7 0"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>微信</span>
+              <div class="article-share-wechat-qr">
+                <div class="article-share-wechat-qr-code">
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(articleUrl)}`}
+                    alt="微信分享二维码"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span>扫码分享</span>
+              </div>
+            </button>
+            <button class="article-share-btn article-share-copy" aria-label="复制链接">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect
+                  x="9"
+                  y="9"
+                  width="13"
+                  height="13"
+                  rx="2"
+                  ry="2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></rect>
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>复制链接</span>
+            </button>
+          </div>
+        </div>
       </div>
-      
-      <RelatedArticles currentPost={post} allPosts={allPosts} limit={3} lang="zh" />
-      
-      <Comments lang="zh" />
-      
+
+      <!-- Related Posts Section -->
+      {
+        relatedPosts.length > 0 && (
+          <section class="article-related">
+            <div class="article-divider" />
+            <h3 class="article-related-title">相关文章</h3>
+            <div class="article-related-grid">
+              {relatedPosts.map(({ post }) => (
+                <a href={`/blog/${post.id.replace('zh/', '')}/`} class="article-related-card">
+                  <h4 class="article-related-card-title">{post.data.title}</h4>
+                  <p class="article-related-card-desc">{post.data.description}</p>
+                  <div class="article-related-card-meta">
+                    <span class="article-related-card-category">{post.data.category}</span>
+                    <time class="article-related-card-date">
+                      {post.data.pubDate.toLocaleDateString('zh-CN', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
       <nav class="article-nav">
         {
           prevPost && (
@@ -240,20 +356,137 @@ const articleJsonLd = {
   </article>
   <MermaidInit />
   <script>
+    // 动态导入复制代码功能
     import('../../scripts/copy-code.ts');
 
+    // 骨架屏逻辑
     document.addEventListener('DOMContentLoaded', () => {
       const content = document.getElementById('article-content');
       const skeleton = document.getElementById('article-skeleton');
 
       if (content && skeleton) {
+        // 初始显示骨架屏
         content.classList.add('hidden');
         skeleton.classList.remove('hidden');
 
+        // 模拟内容加载完成
         setTimeout(() => {
           skeleton.classList.add('hidden');
           content.classList.remove('hidden');
         }, 500);
+      }
+    });
+
+    // 目录导航功能
+    document.addEventListener('astro:page-load', () => {
+      const toc = document.querySelector('.toc');
+      const tocLinks = document.querySelectorAll('.toc-item a');
+      const headings = document.querySelectorAll('h2, h3');
+
+      if (toc && tocLinks.length > 0) {
+        // 滚动时高亮当前章节
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                tocLinks.forEach((link) => {
+                  link.classList.remove('active');
+                  if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                  }
+                });
+              }
+            });
+          },
+          {
+            rootMargin: '-100px 0px -70% 0px',
+            threshold: 0.1
+          }
+        );
+
+        headings.forEach((heading) => {
+          observer.observe(heading);
+        });
+
+        // 平滑滚动到锚点
+        tocLinks.forEach((link) => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href')?.substring(1);
+            if (targetId) {
+              const target = document.getElementById(targetId);
+              if (target) {
+                window.scrollTo({
+                  top: target.offsetTop - 100,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          });
+        });
+      }
+
+      // 分享功能脚本
+      // 微信分享二维码显示/隐藏
+      const wechatBtn = document.querySelector('.article-share-wechat');
+      if (wechatBtn) {
+        // 鼠标悬停事件（桌面端）
+        wechatBtn.addEventListener('mouseenter', () => {
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          if (qrCode) {
+            qrCode.style.display = 'block';
+          }
+        });
+        wechatBtn.addEventListener('mouseleave', () => {
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          if (qrCode) {
+            qrCode.style.display = 'none';
+          }
+        });
+
+        // 触摸事件（移动端）
+        let touchTimer;
+        wechatBtn.addEventListener('touchstart', () => {
+          const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+          if (qrCode) {
+            qrCode.style.display = 'block';
+            // 清除之前的定时器
+            if (touchTimer) clearTimeout(touchTimer);
+            // 5秒后自动隐藏
+            touchTimer = setTimeout(() => {
+              qrCode.style.display = 'none';
+            }, 5000);
+          }
+        });
+
+        // 点击页面其他地方隐藏二维码
+        document.addEventListener('click', (e) => {
+          if (!wechatBtn.contains(e.target)) {
+            const qrCode = wechatBtn.querySelector('.article-share-wechat-qr');
+            if (qrCode) {
+              qrCode.style.display = 'none';
+            }
+          }
+        });
+      }
+
+      // 复制链接功能
+      const copyBtn = document.querySelector('.article-share-copy');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            const articleUrl = window.location.href;
+            await navigator.clipboard.writeText(articleUrl);
+            const originalText = copyBtn.querySelector('span').textContent;
+            copyBtn.querySelector('span').textContent = '已复制';
+            setTimeout(() => {
+              copyBtn.querySelector('span').textContent = originalText;
+            }, 2000);
+          } catch (err) {
+            console.error('复制失败:', err);
+          }
+        });
       }
     });
   </script>

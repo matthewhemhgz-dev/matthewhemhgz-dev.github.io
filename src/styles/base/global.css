@@ -27,12 +27,22 @@ body {
 }
 
 a {
-  color: var(--qi-brand-emerald);
+  color: var(--qi-link-default);
   transition: color var(--qi-transition-fast);
 }
 
 a:hover {
-  color: var(--qi-brand-amber);
+  color: var(--qi-link-hover);
+}
+
+a:visited {
+  color: var(--qi-link-visited);
+}
+
+a:focus-visible {
+  color: var(--qi-link-focus);
+  outline: 2px solid var(--qi-link-focus);
+  outline-offset: 2px;
 }
 
 main {

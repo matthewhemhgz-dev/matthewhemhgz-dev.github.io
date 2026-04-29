@@ -6,7 +6,7 @@ test.describe('首页', () => {
     await expect(page).toHaveTitle(/祈研所/);
 
     // Hero 区域
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('.hero-title')).toBeVisible();
 
     // 核心区块标题
     await expect(page.locator('h2').first()).toBeVisible();

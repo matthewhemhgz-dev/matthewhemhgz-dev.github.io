@@ -5,10 +5,12 @@
 ### 1.1 当前分支情况
 
 **本地分支**：
+
 - `main`：主分支
 - `trae/solo-agent-lHU20D`：当前工作分支
 
 **远程分支**：
+
 - `origin/HEAD -> origin/main`：远程主分支
 - `origin/main`：远程主分支
 
@@ -20,14 +22,14 @@
 
 ### 2.1 分支命名规范
 
-| 分支类型 | 命名格式 | 示例 | 用途 |
-|---------|---------|------|------|
-| 主分支 | `main` | `main` | 稳定的生产代码 |
-| 开发分支 | `develop` | `develop` | 集成开发代码 |
-| 特性分支 | `feature/[feature-name]` | `feature/search-improvement` | 开发新特性 |
-| 修复分支 | `fix/[issue-name]` | `fix/navigation-bug` | 修复bug |
-| 发布分支 | `release/[version]` | `release/v1.0.0` | 准备发布版本 |
-| 热修复分支 | `hotfix/[issue-name]` | `hotfix/security-patch` | 紧急修复生产问题 |
+| 分支类型   | 命名格式                 | 示例                         | 用途             |
+| ---------- | ------------------------ | ---------------------------- | ---------------- |
+| 主分支     | `main`                   | `main`                       | 稳定的生产代码   |
+| 开发分支   | `develop`                | `develop`                    | 集成开发代码     |
+| 特性分支   | `feature/[feature-name]` | `feature/search-improvement` | 开发新特性       |
+| 修复分支   | `fix/[issue-name]`       | `fix/navigation-bug`         | 修复bug          |
+| 发布分支   | `release/[version]`      | `release/v1.0.0`             | 准备发布版本     |
+| 热修复分支 | `hotfix/[issue-name]`    | `hotfix/security-patch`      | 紧急修复生产问题 |
 
 ### 2.2 分支生命周期管理
 
@@ -68,21 +70,25 @@
 ### 3.2 清理步骤
 
 1. **查看已合并分支**：
+
    ```bash
    git branch --merged
    ```
 
 2. **删除本地已合并分支**：
+
    ```bash
    git branch -d [branch-name]
    ```
 
 3. **查看远程已合并分支**：
+
    ```bash
    git branch -r --merged
    ```
 
 4. **删除远程已合并分支**：
+
    ```bash
    git push origin --delete [branch-name]
    ```
@@ -193,6 +199,7 @@
 通过实施本计划，可以有效避免仓库分支过多的问题，提高代码管理的效率和质量。分支管理是一个持续的过程，需要团队成员的共同参与和遵守。
 
 **关键成功因素**：
+
 - 建立清晰的分支命名和管理规范
 - 定期进行分支清理和维护
 - 团队成员的理解和遵守

@@ -12,25 +12,14 @@ const blog = defineCollection({
     lang: z.enum(['zh', 'en']).default('zh'),
     category: z.string().default('随思随想'),
     tags: z.array(z.string()).default([]),
-    image: z
-      .object({
-        src: z.string(),
-        alt: z.string(),
-      })
-      .optional(),
+    image: z.union([
+      z.string(),
+      z.object({ src: z.string(), alt: z.string() })
+    ]).optional(),
     readingTime: z.string().optional(),
     author: z.string().default('Qi-Lab'),
     ogImage: z.string().optional(),
     heroImage: z.string().optional(),
-    heroVideo: z
-      .object({
-        src: z.string(),
-        poster: z.string().optional(),
-        autoplay: z.boolean().default(true),
-        muted: z.boolean().default(true),
-        loop: z.boolean().default(true),
-      })
-      .optional(),
   }),
 });
 

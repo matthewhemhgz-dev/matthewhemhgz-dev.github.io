@@ -1,73 +1,53 @@
 ---
 interface Props {
-  videoSrc: string;
-  posterSrc?: string;
-  fallbackImageSrc?: string;
+  src: string;
+  poster?: string;
+  opacity?: number;
+  blendMode?: 'normal' | 'multiply' | 'screen' | 'overlay' | 'darken' | 'lighten';
+  loop?: boolean;
+  muted?: boolean;
+  lazy?: boolean;
+  classList?: string;
+  overlay?: boolean;
   overlayOpacity?: number;
-  mobileBreakpoint?: number;
-  class?: string;
 }
 
 const {
-  videoSrc,
-  posterSrc,
-  fallbackImageSrc,
+  src,
+  poster,
+  opacity = 0.3,
+  blendMode = 'screen',
+  loop = true,
+  muted = true,
+  lazy = true,
+  classList = '',
+  overlay = true,
   overlayOpacity = 0.4,
-  mobileBreakpoint = 768,
-  class: className = '',
 } = Astro.props;
 
-const overlayStyle = `--video-overlay-opacity: ${overlayOpacity}`;
+const videoId = `video-bg-${Math.random().toString(36).slice(2, 9)}`;
 ---
 
-<div class:list={['video-background', className]} style={overlayStyle} data-mobile-breakpoint={mobileBreakpoint}>
-  <div class="video-background__placeholder" aria-hidden="true">
-    {posterSrc && (
-      <img
-        src={posterSrc}
-        alt=""
-        class="video-background__poster video-background__poster--blur"
-        loading="eager"
-        decoding="async"
-      />
-    )}
-  </div>
-
-  <div class="video-background__fallback" aria-hidden="true">
-    {fallbackImageSrc && (
-      <img
-        src={fallbackImageSrc}
-        alt=""
-        class="video-background__fallback-image"
-        loading="eager"
-        decoding="async"
-      />
-    )}
-    {!fallbackImageSrc && posterSrc && (
-      <img
-        src={posterSrc}
-        alt=""
-        class="video-background__fallback-image"
-        loading="eager"
-        decoding="async"
-      />
-    )}
-  </div>
-
+<div class:list={['video-background', classList]} data-video-id={videoId} style={`--video-opacity: ${opacity}; --video-blend: ${blendMode};`}>
   <video
-    class="video-background__video"
+    id={videoId}
+    class="video-bg-element"
     autoplay
-    muted
-    loop
+    muted={muted}
+    loop={loop}
     playsinline
-    preload="metadata"
-    poster={posterSrc}
-    aria-hidden="true"
+    disablePictureInPicture
+    controls={false}
+    data-lazy={lazy}
+    poster={poster}
   >
-    <source src={videoSrc} type="video/mp4" />
+    <source src={src} type="video/webm" />
+    <source src={src.replace('.webm', '.mp4')} type="video/mp4" />
   </video>
-
-  <div class="video-background__overlay" aria-hidden="true"></div>
+  
+  {overlay && <div class="video-overlay" style={`--overlay-opacity: ${overlayOpacity}`}></div>}
+  
+  <slot />
 </div>
 
 <style>
@@ -78,150 +58,69 @@ const overlayStyle = `--video-overlay-opacity: ${overlayOpacity}`;
     z-index: 0;
   }
 
-  .video-background__placeholder {
+  .video-bg-element {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-    transition: opacity 0.5s ease-out;
-  }
-
-  .video-background--loaded .video-background__placeholder {
-    opacity: 0;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: var(--video-opacity, 0.3);
+    mix-blend-mode: var(--video-blend, screen);
     pointer-events: none;
   }
 
-  .video-background__poster,
-  .video-background__fallback-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .video-background__poster--blur {
-    filter: blur(20px);
-    transform: scale(1.1);
-  }
-
-  .video-background__fallback {
+  .video-overlay {
     position: absolute;
     inset: 0;
-    z-index: 2;
-    display: none;
-  }
-
-  .video-background__video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: 3;
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-  }
-
-  .video-background--loaded .video-background__video {
-    opacity: 1;
-  }
-
-  .video-background__overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 4;
     background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, calc(var(--video-overlay-opacity) * 0.3)) 0%,
-      rgba(0, 0, 0, calc(var(--video-overlay-opacity) * 0.5)) 50%,
-      rgba(0, 0, 0, calc(var(--video-overlay-opacity) * 0.7)) 100%
+      180deg,
+      rgba(0, 0, 0, calc(var(--overlay-opacity) * 0.3)) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(0, 0, 0, calc(var(--overlay-opacity) * 0.5)) 100%
     );
     pointer-events: none;
   }
 
-  @media (max-width: 768px) {
-    .video-background__video {
+  @media (prefers-reduced-motion: reduce) {
+    .video-bg-element {
       display: none;
-    }
-
-    .video-background__placeholder {
-      display: none;
-    }
-
-    .video-background__fallback {
-      display: block;
-    }
-
-    .video-background--loaded .video-background__placeholder {
-      opacity: 0;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .video-background__video {
-      display: none;
-    }
-
-    .video-background__placeholder {
-      display: none;
-    }
-
-    .video-background__fallback {
-      display: block;
+  @media (max-width: 768px) {
+    .video-bg-element {
+      opacity: calc(var(--video-opacity, 0.3) * 0.5);
     }
   }
 </style>
 
 <script>
-  function initVideoBackground() {
-    const videoBackgrounds = document.querySelectorAll('.video-background');
+  document.addEventListener('astro:page-load', () => {
+    const videos = document.querySelectorAll<HTMLVideoElement>('.video-bg-element[data-lazy="true"]');
+    
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target as HTMLVideoElement;
+            if (entry.isIntersecting) {
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-    videoBackgrounds.forEach((container) => {
-      const video = container.querySelector('.video-background__video') as HTMLVideoElement;
-
-      if (!video) return;
-
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const mobileBreakpoint = parseInt(container.getAttribute('data-mobile-breakpoint') || '768', 10);
-      const isMobile = window.innerWidth <= mobileBreakpoint;
-
-      if (prefersReducedMotion || isMobile) {
-        container.classList.add('video-background--loaded');
-        return;
-      }
-
-      if (video.readyState >= 3) {
-        container.classList.add('video-background--loaded');
-        return;
-      }
-
-      const handleCanPlay = () => {
-        container.classList.add('video-background--loaded');
-        video.removeEventListener('canplay', handleCanPlay);
-        video.removeEventListener('canplaythrough', handleCanPlay);
-      };
-
-      video.addEventListener('canplay', handleCanPlay);
-      video.addEventListener('canplaythrough', handleCanPlay);
-
-      video.play().catch(() => {
-        container.classList.add('video-background--loaded');
-      });
-    });
-  }
-
-  document.addEventListener('astro:page-load', initVideoBackground);
-
-  if (document.readyState === 'complete') {
-    initVideoBackground();
-  }
-
-  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-    if (e.matches) {
-      const videos = document.querySelectorAll('.video-background__video') as NodeListOf<HTMLVideoElement>;
-      videos.forEach((video) => {
-        video.pause();
-      });
+      videos.forEach((video) => observer.observe(video));
+    } else {
+      videos.forEach((video) => video.play().catch(() => {}));
     }
   });
 </script>

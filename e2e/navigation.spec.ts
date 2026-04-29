@@ -5,28 +5,28 @@ test.describe('导航', () => {
     await page.goto('/');
     await page.locator('nav a', { hasText: '关于' }).click();
     await expect(page).toHaveTitle(/关于/);
-    await expect(page.locator('h1')).toContainText('关于祈研所');
+    await expect(page.locator('.page-title')).toContainText('关于祈研所');
   });
 
   test('从首页导航到博客列表', async ({ page }) => {
     await page.goto('/');
     await page.locator('nav a', { hasText: '博客' }).click();
     await expect(page).toHaveTitle(/博客/);
-    await expect(page.locator('h1')).toContainText('博客');
+    await expect(page.locator('.page-title')).toContainText('博客');
   });
 
   test('从首页导航到标签页', async ({ page }) => {
     await page.goto('/');
     await page.locator('nav a', { hasText: '标签' }).click();
     await expect(page).toHaveTitle(/标签/);
-    await expect(page.locator('h1')).toContainText('标签');
+    await expect(page.locator('.page-title')).toContainText('标签');
   });
 
   test('从博客列表导航到文章详情', async ({ page }) => {
     await page.goto('/blog/');
-    await page.locator('a', { hasText: 'AI 时代知识工作者的生存指南' }).click();
+    await page.locator('a', { hasText: 'AI 时代知识工作者的生存指南：从知识储备到系统连接' }).click();
     await expect(page).toHaveTitle(/AI 时代知识工作者/);
-    await expect(page.locator('h1')).toContainText('AI 时代知识工作者的生存指南');
+    await expect(page.locator('.article-title')).toContainText('AI 时代知识工作者的生存指南：从知识储备到系统连接');
   });
 
   test('从文章详情返回列表', async ({ page }) => {
@@ -47,7 +47,7 @@ test.describe('导航', () => {
   test('404 页面正确渲染', async ({ page }) => {
     await page.goto('/nonexistent-page-404');
     await expect(page).toHaveTitle(/404/);
-    await expect(page.locator('h1')).toContainText('页面未找到');
+    await expect(page.locator('.error-title')).toContainText('页面未找到');
     await expect(page.locator('a', { hasText: '返回首页' })).toBeVisible();
   });
 

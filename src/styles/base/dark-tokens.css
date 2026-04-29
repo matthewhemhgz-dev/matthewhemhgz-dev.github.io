@@ -4,99 +4,107 @@
 
   /* Background & Surface */
   --qi-bg-base: #121010;
-  --qi-bg-canvas: #1a1714;
   --qi-surface-main: #1e1b18;
   --qi-surface-sub: #2d2924;
-  --qi-surface-card: #1e1b18;
-  --qi-surface-hover: #2a2621;
-  --qi-surface-active: #35302b;
 
-  /* Text - WCAG AAA compliant weights and colors for dark mode */
-  --qi-weight-normal: 400;
-  --qi-weight-medium: 500;
-  --qi-weight-semibold: 600;
-  --qi-weight-bold: 700;
+  /* Text - Slightly thinner weights in dark mode to prevent "glowing" blur */
+  --qi-weight-normal: 350;
+  --qi-weight-medium: 450;
+  --qi-weight-semibold: 550;
+  --qi-weight-bold: 650;
 
-  --qi-text-inverse: #0a0908;
+  /* Text - WCAG AAA Optimized for Dark Mode (higher contrast) */
+  --qi-text-inverse: #1e1b18;
   --qi-text-primary: #ffffff;
-  --qi-text-secondary: #f0ebe5;
-  --qi-text-muted: #e8e3dd;
-  --qi-text-dim: #d4cdc3;
+  --qi-text-secondary: #e8e3dd;
+  --qi-text-tertiary: #c8c3bd;
+  --qi-text-muted: #a8a29e;
   --qi-on-surface: #ffffff;
-  --qi-on-surface-secondary: #f0ebe5;
-  --qi-on-surface-muted: #e8e3dd;
-  --qi-on-surface-dim: #d4cdc3;
+  --qi-on-surface-secondary: #e8e3dd;
+  --qi-on-surface-muted: #c8c3bd;
+  --qi-on-surface-dim: #a8a29e;
+
+  /* Link Colors - WCAG AAA Compliant for Dark Mode */
+  --qi-link-default: #6ee7b7;
+  --qi-link-hover: #fcd34d;
+  --qi-link-visited: #4ade80;
+  --qi-link-focus: #22c55e;
+
+  /* Brand Text Colors - Safe for text on dark backgrounds */
+  --qi-brand-emerald-text: #6ee7b7;
+  --qi-brand-amber-text: #fcd34d;
+  --qi-brand-mint-text: #4ade80;
 
   /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
-  --qi-on-dark-primary: #ffffff;
-  --qi-on-dark-secondary: #f0ebe5;
-  --qi-on-dark-muted: #e8e3dd;
-  --qi-on-dark-dim: #d4cdc3;
+  --qi-on-dark-primary: #f7f3ee;
+  --qi-on-dark-secondary: #e8e3dd;
+  --qi-on-dark-muted: #c8c3bd;
+  --qi-on-dark-dim: #a8a29e;
 
   /* Border */
-  --qi-border-default: rgba(232, 227, 221, 0.12);
-  --qi-border-subtle: rgba(232, 227, 221, 0.08);
-  --qi-border-strong: rgba(232, 227, 221, 0.2);
+  --qi-border-default: rgba(232, 227, 221, 0.15);
+  --qi-border-subtle: rgba(232, 227, 221, 0.1);
+  --qi-border-strong: rgba(232, 227, 221, 0.25);
   --qi-border-inverse: rgba(30, 27, 24, 0.12);
-  --qi-border-focus: rgba(74, 222, 153, 0.5);
 
   /* Opacity */
-  --qi-opacity-subtle: 0.08;
-  --qi-opacity-medium: 0.15;
-  --qi-opacity-strong: 0.25;
+  --qi-opacity-subtle: 0.1;
+  --qi-opacity-medium: 0.18;
+  --qi-opacity-strong: 0.28;
 
-  /* Brand — Emerald (WCAG AAA compliant on dark background) */
-  --qi-brand-emerald: #9ef7cc;
-  --qi-brand-emerald-dark: #34d399;
-  --qi-brand-emerald-03: rgba(158, 247, 204, 0.05);
-  --qi-brand-emerald-04: rgba(158, 247, 204, 0.07);
-  --qi-brand-emerald-05: rgba(158, 247, 204, 0.08);
-  --qi-brand-emerald-06: rgba(158, 247, 204, 0.1);
-  --qi-brand-emerald-08: rgba(158, 247, 204, 0.13);
-  --qi-brand-emerald-10: rgba(158, 247, 204, 0.16);
-  --qi-brand-emerald-12: rgba(158, 247, 204, 0.19);
-  --qi-brand-emerald-15: rgba(158, 247, 204, 0.23);
-  --qi-brand-emerald-18: rgba(158, 247, 204, 0.27);
-  --qi-brand-emerald-20: rgba(158, 247, 204, 0.3);
-  --qi-brand-emerald-25: rgba(158, 247, 204, 0.37);
-  --qi-brand-emerald-30: rgba(158, 247, 204, 0.43);
-  --qi-brand-emerald-40: rgba(158, 247, 204, 0.55);
-  --qi-brand-emerald-50: rgba(158, 247, 204, 0.65);
-  --qi-brand-emerald-60: rgba(158, 247, 204, 0.75);
+  /* Brand — Emerald */
+  --qi-brand-emerald: #4ade80;
+  /* Brighter emerald for dark mode text contrast */
+  --qi-brand-emerald-dark: #22c55e;
+  --qi-brand-emerald-03: rgba(74, 222, 153, 0.05);
+  --qi-brand-emerald-04: rgba(74, 222, 153, 0.07);
+  --qi-brand-emerald-05: rgba(74, 222, 153, 0.08);
+  --qi-brand-emerald-06: rgba(74, 222, 153, 0.1);
+  --qi-brand-emerald-08: rgba(74, 222, 153, 0.13);
+  --qi-brand-emerald-10: rgba(74, 222, 153, 0.16);
+  --qi-brand-emerald-12: rgba(74, 222, 153, 0.19);
+  --qi-brand-emerald-15: rgba(74, 222, 153, 0.23);
+  --qi-brand-emerald-18: rgba(74, 222, 153, 0.27);
+  --qi-brand-emerald-20: rgba(74, 222, 153, 0.3);
+  --qi-brand-emerald-25: rgba(74, 222, 153, 0.37);
+  --qi-brand-emerald-30: rgba(74, 222, 153, 0.43);
+  --qi-brand-emerald-40: rgba(74, 222, 153, 0.55);
+  --qi-brand-emerald-50: rgba(74, 222, 153, 0.65);
+  --qi-brand-emerald-60: rgba(74, 222, 153, 0.75);
 
-  /* Brand — Amber (WCAG AAA compliant on dark background) */
-  --qi-brand-amber: #fde68a;
-  --qi-brand-amber-dark: #fbbf24;
-  --qi-brand-amber-04: rgba(253, 230, 138, 0.08);
-  --qi-brand-amber-08: rgba(253, 230, 138, 0.15);
-  --qi-brand-amber-10: rgba(253, 230, 138, 0.18);
-  --qi-brand-amber-12: rgba(253, 230, 138, 0.22);
-  --qi-brand-amber-15: rgba(253, 230, 138, 0.28);
-  --qi-brand-amber-18: rgba(253, 230, 138, 0.33);
-  --qi-brand-amber-20: rgba(253, 230, 138, 0.38);
-  --qi-brand-amber-25: rgba(253, 230, 138, 0.45);
-  --qi-brand-amber-30: rgba(253, 230, 138, 0.52);
-  --qi-brand-amber-40: rgba(253, 230, 138, 0.65);
-  --qi-brand-amber-50: rgba(253, 230, 138, 0.75);
-  --qi-brand-amber-60: rgba(253, 230, 138, 0.85);
+  /* Brand — Amber */
+  --qi-brand-amber: #fbbf24;
+  --qi-brand-amber-dark: #d97706;
+  --qi-brand-amber-04: rgba(251, 191, 36, 0.08);
+  --qi-brand-amber-08: rgba(251, 191, 36, 0.15);
+  --qi-brand-amber-10: rgba(251, 191, 36, 0.18);
+  --qi-brand-amber-12: rgba(251, 191, 36, 0.22);
+  --qi-brand-amber-15: rgba(251, 191, 36, 0.28);
+  --qi-brand-amber-18: rgba(251, 191, 36, 0.33);
+  --qi-brand-amber-20: rgba(251, 191, 36, 0.38);
+  --qi-brand-amber-25: rgba(251, 191, 36, 0.45);
+  --qi-brand-amber-30: rgba(251, 191, 36, 0.52);
+  --qi-brand-amber-40: rgba(251, 191, 36, 0.65);
+  --qi-brand-amber-50: rgba(251, 191, 36, 0.75);
+  --qi-brand-amber-60: rgba(251, 191, 36, 0.85);
 
-  /* Brand — Mint (WCAG AAA compliant on dark background) */
-  --qi-brand-mint: #99f6e4;
-  --qi-brand-mint-dark: #2dd4bf;
-  --qi-brand-mint-03: rgba(153, 246, 228, 0.05);
-  --qi-brand-mint-04: rgba(153, 246, 228, 0.08);
-  --qi-brand-mint-06: rgba(153, 246, 228, 0.12);
-  --qi-brand-mint-08: rgba(153, 246, 228, 0.16);
-  --qi-brand-mint-10: rgba(153, 246, 228, 0.2);
-  --qi-brand-mint-12: rgba(153, 246, 228, 0.24);
-  --qi-brand-mint-15: rgba(153, 246, 228, 0.3);
-  --qi-brand-mint-18: rgba(153, 246, 228, 0.36);
-  --qi-brand-mint-20: rgba(153, 246, 228, 0.42);
-  --qi-brand-mint-25: rgba(153, 246, 228, 0.5);
-  --qi-brand-mint-30: rgba(153, 246, 228, 0.6);
-  --qi-brand-mint-40: rgba(153, 246, 228, 0.75);
-  --qi-brand-mint-50: rgba(153, 246, 228, 0.85);
-  --qi-brand-mint-60: rgba(153, 246, 228, 0.95);
+  /* Brand — Mint */
+  --qi-brand-mint: #34d399;
+  --qi-brand-mint-dark: #059669;
+  --qi-brand-mint-03: rgba(52, 211, 153, 0.05);
+  --qi-brand-mint-04: rgba(52, 211, 153, 0.08);
+  --qi-brand-mint-06: rgba(52, 211, 153, 0.12);
+  --qi-brand-mint-08: rgba(52, 211, 153, 0.16);
+  --qi-brand-mint-10: rgba(52, 211, 153, 0.2);
+  --qi-brand-mint-12: rgba(52, 211, 153, 0.24);
+  --qi-brand-mint-15: rgba(52, 211, 153, 0.3);
+  --qi-brand-mint-18: rgba(52, 211, 153, 0.36);
+  --qi-brand-mint-20: rgba(52, 211, 153, 0.42);
+  --qi-brand-mint-25: rgba(52, 211, 153, 0.5);
+  --qi-brand-mint-30: rgba(52, 211, 153, 0.6);
+  --qi-brand-mint-40: rgba(52, 211, 153, 0.75);
+  --qi-brand-mint-50: rgba(52, 211, 153, 0.85);
+  --qi-brand-mint-60: rgba(52, 211, 153, 0.95);
 
   /* Ink */
   --qi-ink: #0d0b0a;
@@ -104,18 +112,18 @@
   --qi-ink-muted: #2d2924;
 
   /* Decoration */
-  --qi-deco-subtle: 0.1;
-  --qi-deco-visible: 0.18;
-  --qi-deco-medium: 0.28;
-  --qi-deco-strong: 0.35;
-  --qi-deco-ghost: 0.04;
+  --qi-deco-subtle: 0.08;
+  --qi-deco-visible: 0.15;
+  --qi-deco-medium: 0.25;
+  --qi-deco-strong: 0.32;
+  --qi-deco-ghost: 0.03;
 
   /* Glow */
-  --qi-glow-primary: rgba(74, 222, 153, 0.25);
-  --qi-glow-secondary: rgba(153, 246, 228, 0.2);
-  --qi-glow-accent: rgba(251, 191, 36, 0.2);
-  --qi-glow-highlight: rgba(255, 255, 255, 0.05);
-  --qi-card-glow-intensity: 0.15;
+  --qi-glow-primary: rgba(74, 222, 153, 0.3);
+  --qi-glow-secondary: rgba(153, 246, 228, 0.25);
+  --qi-glow-accent: rgba(251, 191, 36, 0.25);
+  --qi-glow-highlight: rgba(255, 255, 255, 0.06);
+  --qi-card-glow-intensity: 0.18;
 
   /* Base alpha */
   --qi-base-02: rgba(232, 227, 221, 0.04);
@@ -130,6 +138,7 @@
   /* Inverse alpha — Dark colors for use in dark mode or on light surfaces */
   --qi-inverse-88: rgba(30, 27, 24, 0.88);
   --qi-inverse-85: rgba(30, 27, 24, 0.85);
+  /* Missing token */
   --qi-inverse-70: rgba(30, 27, 24, 0.7);
   --qi-inverse-60: rgba(30, 27, 24, 0.6);
   --qi-inverse-55: rgba(30, 27, 24, 0.55);
@@ -140,53 +149,24 @@
   --qi-inverse-15: rgba(30, 27, 24, 0.15);
   --qi-inverse-12: rgba(30, 27, 24, 0.12);
 
-  /* Shadow Hierarchy (5级阴影深度 - Dark Mode) */
-  /* Level 1: 微阴影 */
-  --qi-shadow-1: 
-    0 1px 2px 0 rgba(0, 0, 0, 0.3),
-    0 1px 3px -1px rgba(0, 0, 0, 0.2);
-  
-  /* Level 2: 基础阴影 */
-  --qi-shadow-2: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.4),
-    0 2px 4px -2px rgba(0, 0, 0, 0.25);
-  
-  /* Level 3: 中等阴影 */
-  --qi-shadow-3: 
-    0 10px 15px -3px rgba(0, 0, 0, 0.45),
-    0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  
-  /* Level 4: 深度阴影 */
-  --qi-shadow-4: 
-    0 20px 25px -5px rgba(0, 0, 0, 0.5),
-    0 8px 10px -6px rgba(0, 0, 0, 0.35);
-  
-  /* Level 5: 强烈阴影 */
-  --qi-shadow-5: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.6),
-    0 12px 16px -8px rgba(0, 0, 0, 0.4);
-
-  /* Legacy Shadow Aliases */
-  --qi-shadow-sm: var(--qi-shadow-1);
-  --qi-shadow: var(--qi-shadow-2);
-  --qi-shadow-md: var(--qi-shadow-2);
-  --qi-shadow-lg: var(--qi-shadow-3);
-  --qi-shadow-xl: var(--qi-shadow-4);
-  --qi-shadow-hover: var(--qi-shadow-3);
-  --qi-shadow-hover-warm: 
-    0 16px 32px rgba(0, 0, 0, 0.5),
-    0 4px 8px rgba(251, 191, 36, 0.15);
+  /* Shadow */
+  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --qi-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.28);
+  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
+  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.55), 0 8px 16px rgba(0, 0, 0, 0.35);
+  --qi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(251, 191, 36, 0.18);
   --qi-shadow-inset:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.6),
-    inset -1px -1px 2px rgba(255, 255, 255, 0.03);
+    inset 2px 2px 5px rgba(0, 0, 0, 0.65), inset -1px -1px 2px rgba(255, 255, 255, 0.04);
 
   /* Glass Morphism */
-  --qi-glass-bg: rgba(30, 27, 24, 0.7);
-  --qi-glass-bg-dark: rgba(18, 16, 16, 0.7);
-  --qi-glass-border: rgba(255, 255, 255, 0.1);
-  --qi-glass-border-dark: rgba(255, 255, 255, 0.05);
+  --qi-glass-bg: rgba(30, 27, 24, 0.75);
+  --qi-glass-bg-dark: rgba(18, 16, 16, 0.75);
+  --qi-glass-border: rgba(255, 255, 255, 0.12);
+  --qi-glass-border-dark: rgba(255, 255, 255, 0.06);
   --qi-glass-backdrop: blur(10px);
   --qi-glass-backdrop-heavy: blur(20px);
-  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.55);
 }
