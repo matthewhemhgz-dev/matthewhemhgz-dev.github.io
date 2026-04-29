@@ -18,9 +18,18 @@ export class CardTilt {
 
   _bind() {
     this.elements.forEach((el) => {
-      const moveHandler = (e) => this._onMove(e, el);
+      let ticking = false;
+      const moveHandler = (e) => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            this._onMove(e, el);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
       const leaveHandler = (e) => this._onLeave(e, el);
-      el.addEventListener('mousemove', moveHandler);
+      el.addEventListener('mousemove', moveHandler, { passive: true });
       el.addEventListener('mouseleave', leaveHandler);
       this._handlers.set(el, { moveHandler, leaveHandler });
     });

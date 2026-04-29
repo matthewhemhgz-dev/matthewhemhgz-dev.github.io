@@ -6,33 +6,20 @@ import BackToTop from '../components/global/BackToTop.astro';
 import ParticlesCanvas from '../components/global/ParticlesCanvas.astro';
 import NoiseOverlay from '../components/global/NoiseOverlay.astro';
 import Footer from '../components/global/Footer.astro';
-import LoadingAnimation from '../components/global/LoadingAnimation.astro';
-import { Astro } from 'astro';
+import SearchModal from '../components/global/SearchModal.astro';
+import SocialQRModal from '../components/ui/SocialQRModal.astro';
 import '../styles/base/global.css';
-import '../styles/base/print.css';
-
-// 懒加载组件 - 使用 Astro 的动态导入支持
-const SearchModal = (await import('../components/global/SearchModal.astro')).default;
-const SocialQRModal = (await import('../components/ui/SocialQRModal.astro')).default;
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
-  ogImageWidth?: number;
-  ogImageHeight?: number;
   tagline?: string;
   ogType?: string;
-  twitterSite?: string;
-  twitterCreator?: string;
   /** 文章发布日期（用于JSON-LD） */
   pubDate?: string;
   /** 文章修改日期（用于JSON-LD） */
   modDate?: string;
-  /** 文章分类（用于Schema Article） */
-  articleSection?: string;
-  /** 文章标签（用于Schema Article） */
-  articleTags?: string[];
   /** JSON-LD 结构化数据（自动注入 <script type="application/ld+json">） */
   jsonLd?: Record<string, unknown>;
 }
@@ -46,20 +33,17 @@ const {
     ? 'Qi-Lab — Exploring the intersection of technology, design, and creativity.'
     : '祈研所（Qi-Lab）— 探索技术、设计与创意的交汇之处。个人品牌网站，分享关于开发、思考与创造的一切。',
   ogImage = '/og-default.png',
-  ogImageWidth = 1200,
-  ogImageHeight = 630,
   tagline = isEnglish
     ? 'Exploring the intersection of technology, design, and creativity'
     : '探索技术、设计与创意的交汇之处',
   ogType = 'website',
-  twitterSite = isEnglish ? '@qilab_dev' : '@祈研所',
-  twitterCreator = isEnglish ? '@qilab_dev' : '@祈研所',
-  articleSection,
-  articleTags,
   jsonLd,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewhemhgz-dev.github.io');
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site ?? 'https://matthewhemhgz-dev.github.io',
+);
 ---
 
 <!doctype html>
@@ -74,12 +58,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta
-      name="keywords"
-      content={isEnglish
-        ? 'Qi-Lab, technology, design, creativity, development, knowledge management, AI, Astro'
-        : '祈研所, 技术, 设计, 创意, 开发, 知识管理, AI, Astro'}
-    />
     <meta name="author" content={isEnglish ? 'Qi-Lab' : '祈研所'} />
     <meta name="robots" content="index, follow" />
     <meta
@@ -87,6 +65,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
       content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     />
     <meta name="bingbot" content="index, follow" />
+    <meta name="google-site-verification" content="YOUR_GOOGLE_SITE_VERIFICATION_CODE" />
+    <meta name="msvalidate.01" content="YOUR_BING_SITE_VERIFICATION_CODE" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={isEnglish ? 'en-US' : 'zh-CN'} href={canonicalURL.href} />
     {
@@ -100,9 +80,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
       )
     }
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
-
-    <!-- RSS Feeds -->
-    <link rel="alternate" type="application/rss+xml" title={isEnglish ? 'Qi-Lab RSS Feed' : '祈研所 RSS 订阅'} href={isEnglish ? '/en/rss.xml' : '/rss.xml'} />
+    <link rel="rss" type="application/rss+xml" href="/rss.xml" title={title} />
 
     <!-- Favicon (VI Logo) -->
     <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
@@ -114,33 +92,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
-    <meta property="og:image:width" content={ogImageWidth} />
-    <meta property="og:image:height" content={ogImageHeight} />
-    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={isEnglish ? 'en_US' : 'zh_CN'} />
-    <meta property="og:site_name" content={isEnglish ? 'Qi-Lab' : '祈研所'} />
     {
       ogType === 'article' && (
-        <>
-          <meta property="article:author" content={isEnglish ? 'Qi-Lab' : '祈研所'} />
-          <meta property="article:published_time" content={Astro.props.pubDate} />
-          <meta property="article:modified_time" content={Astro.props.modDate} />
-          {articleSection && <meta property="article:section" content={articleSection} />}
-          {articleTags?.map(tag => (
-            <meta property="article:tag" content={tag} key={tag} />
-          ))}
-        </>
+        <meta property="article:author" content={isEnglish ? 'Qi-Lab' : '祈研所'} />
       )
     }
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content={twitterSite} />
-    <meta name="twitter:creator" content={twitterCreator} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
-    <meta name="twitter:image:alt" content={title} />
 
     <!-- Google Fonts (async load) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -221,10 +184,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
             datePublished: Astro.props.pubDate || new Date().toISOString(),
             dateModified: Astro.props.modDate || new Date().toISOString(),
             inLanguage: isEnglish ? 'en-US' : 'zh-CN',
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': canonicalURL.href,
+            },
           })}
         />
       )
     }
+
+    <!-- Breadcrumb List structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: isEnglish ? 'Home' : '首页',
+            item: Astro.site?.toString() || 'https://matthewhemhgz-dev.github.io',
+          },
+          ...(Astro.url.pathname !== '/' && Astro.url.pathname !== '/en' ? [
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: isEnglish ? 'Blog' : '博客',
+              item: new URL(isEnglish ? '/en/blog' : '/blog', Astro.site).toString(),
+            },
+          ] : []),
+        ],
+      })}
+    />
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNGRXTNXF5"></script>
@@ -260,7 +252,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
     <a href="#main-content" class="skip-link"
       >{isEnglish ? 'Skip to main content' : '跳至主要内容'}</a
     >
-    <LoadingAnimation />
     <ClientRouter />
     <script is:inline>
       // Theme sync during transitions
@@ -277,6 +268,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
         const newMeta = e.newDocument.querySelector('meta[name="theme-color"]');
         if (currentMeta && newMeta) {
           newMeta.setAttribute('content', currentMeta.getAttribute('content'));
+        }
+
+        // Add exit animation to current content
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+          mainContent.style.opacity = '1';
+          mainContent.style.transform = 'translateY(0)';
+          mainContent.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          mainContent.style.opacity = '0';
+          mainContent.style.transform = 'translateY(-10px)';
         }
       });
 
@@ -296,6 +297,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
             mainContent.style.opacity = '1';
             mainContent.style.transform = 'translateY(0)';
           }, 50);
+        }
+
+        // Reinitialize scroll reveal animations
+        if (window.scrollReveal) {
+          window.scrollReveal.reveal();
         }
       });
     </script>
@@ -318,6 +324,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
       transition:name="site-footer"
     />
     <ParticlesCanvas />
+    <canvas id="background-art-canvas" aria-hidden="true"></canvas>
     <SearchModal />
     <SocialQRModal />
 

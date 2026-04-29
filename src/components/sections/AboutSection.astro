@@ -12,16 +12,23 @@ interface Props {
     label: string;
     value: string;
     percentage: number;
-    color: string;
+    color: 'emerald' | 'amber' | 'gray';
   }>;
   classList?: string;
 }
 
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-const { label, title, text, decoNumber = '01', decoSlogan, dashItems, classList = '' } = Astro.props;
+const {
+  label,
+  title,
+  text,
+  decoNumber = '01',
+  decoSlogan,
+  dashItems,
+  classList = '',
+} = Astro.props;
 ---
 
-<section class="section about-section ${classList}" data-reveal>
+<section class:list={['section', 'about-section', classList]} data-reveal>
   <div class="container">
     <div class="about-layout">
       <div class="about-deco" aria-hidden="true">

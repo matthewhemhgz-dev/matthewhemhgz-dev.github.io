@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-04-25T06:05:11.750Z",
+  "tests": {
+    "resourceScanner": "通过",
+    "resourceManager": "通过",
+    "resourceStatus": "通过"
+  },
+  "summary": "资源管理系统集成测试完成，所有功能正常运行"
+}

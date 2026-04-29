@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="blogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7f3ee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8e3dd;stop-opacity:1" />
+    </linearGradient>
+    <filter id="blogGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#blogBg)" />
+  
+  <g transform="translate(200, 150)">
+    <rect x="-160" y="-100" width="320" height="200" fill="#ffffff" stroke="#e8e3dd" stroke-width="1" rx="8"/>
+    
+    <rect x="-140" y="-80" width="280" height="6" fill="#1e1b18" opacity="0.8">
+      <animate attributeName="width" values="280;200;280" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <rect x="-140" y="-60" width="200" height="4" fill="#1e1b18" opacity="0.5">
+      <animate attributeName="width" values="200;150;200" dur="1.5s" repeatCount="indefinite"/>
+    </rect>
+    
+    <rect x="-140" y="-45" width="240" height="4" fill="#1e1b18" opacity="0.4">
+      <animate attributeName="width" values="240;180;240" dur="1.8s" repeatCount="indefinite"/>
+    </rect>
+    
+    <rect x="-140" y="-25" width="160" height="4" fill="#1e1b18" opacity="0.3">
+      <animate attributeName="width" values="160;120;160" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <rect x="-140" y="-10" width="220" height="4" fill="#1e1b18" opacity="0.35">
+      <animate attributeName="width" values="220;170;220" dur="1.6s" repeatCount="indefinite"/>
+    </rect>
+    
+    <rect x="-140" y="10" width="180" height="4" fill="#1e1b18" opacity="0.3">
+      <animate attributeName="width" values="180;140;180" dur="1.4s" repeatCount="indefinite"/>
+    </rect>
+    
+    <circle cx="-130" cy="-70" r="6" fill="#4ade80" filter="url(#blogGlow)">
+      <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="-110" cy="-50" r="4" fill="#fbbf24">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <text x="200" y="270" text-anchor="middle" fill="#1e1b18" font-size="16" font-weight="600">祈研所官网</text>
+  <text x="200" y="288" text-anchor="middle" fill="#6b665f" font-size="12">Personal Knowledge Platform</text>
+</svg>

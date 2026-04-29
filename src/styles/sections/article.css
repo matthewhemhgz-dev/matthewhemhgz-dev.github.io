@@ -7,14 +7,12 @@
 .article-container {
   max-width: 740px;
   margin: 0 auto;
-  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding)
-    var(--qi-space-5xl);
+  padding: calc(var(--qi-nav-height) + var(--qi-space-4xl)) var(--qi-container-padding) var(--qi-space-5xl);
   scroll-margin-top: var(--qi-nav-total-height);
   font-size: var(--qi-text-lg);
-  line-height: 1.75;
+  line-height: 1.85;
   color: var(--qi-text-primary);
-  letter-spacing: 0.02em;
-  font-family: var(--qi-font-sans);
+  letter-spacing: 0.01em;
 }
 
 .hidden {
@@ -146,7 +144,7 @@
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
   font-weight: 600;
-  color: var(--qi-text-secondary);
+  color: var(--qi-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--qi-space-md);
@@ -182,6 +180,14 @@
   background: var(--qi-brand-emerald-04);
 }
 
+.toc-item a.active {
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-06);
+  font-weight: 600;
+  padding-left: var(--qi-space-sm);
+  border-left: 3px solid var(--qi-brand-emerald);
+}
+
 .toc-item--depth-2 a {
   padding-left: 0;
 }
@@ -192,20 +198,28 @@
   color: var(--qi-text-muted);
 }
 
+.toc-item--depth-3 a.active {
+  padding-left: calc(16px + var(--qi-space-sm));
+  color: var(--qi-brand-emerald);
+  background: var(--qi-brand-emerald-06);
+  font-weight: 600;
+  border-left: 3px solid var(--qi-brand-emerald);
+}
+
 /* === Article Content Styles — Magazine Grade Reading Experience ===
 
 /* = Headings = */
 .article-container h2 {
   font-family: var(--qi-font-serif);
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 700;
   color: var(--qi-text-primary);
-  margin: 2.75rem 0 1.25rem;
+  margin: 3.5rem 0 1.5rem;
   padding-bottom: var(--qi-space-md);
   position: relative;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   scroll-margin-top: 100px;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .article-container h2::after {
@@ -221,15 +235,15 @@
 
 .article-container h3 {
   font-family: var(--qi-font-serif);
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 700;
   color: var(--qi-text-primary);
-  margin: 2.25rem 0 1rem;
+  margin: 2.75rem 0 1.1rem;
   padding-left: 1.25rem;
   position: relative;
   scroll-margin-top: 100px;
-  line-height: 1.35;
-  letter-spacing: -0.005em;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .article-container h3::before {
@@ -246,38 +260,19 @@
 
 .article-container h4 {
   font-family: var(--qi-font-serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--qi-text-primary);
-  margin: 1.8rem 0 0.8rem;
+  margin: 2.25rem 0 0.9rem;
   scroll-margin-top: 100px;
-  line-height: 1.4;
-}
-
-.article-container h5 {
-  font-family: var(--qi-font-serif);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--qi-text-primary);
-  margin: 1.5rem 0 0.7rem;
-  line-height: 1.4;
-}
-
-.article-container h6 {
-  font-family: var(--qi-font-serif);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--qi-text-secondary);
-  margin: 1.25rem 0 0.6rem;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 /* = Paragraphs & Text = */
 .article-container p {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.6rem;
   text-align: left;
   text-wrap: pretty;
-  text-indent: 0;
 }
 
 .article-container strong {
@@ -291,7 +286,7 @@
 
 /* = Links = */
 .article-container a {
-  color: var(--qi-brand-emerald);
+  color: var(--qi-link-default);
   text-decoration: none;
   position: relative;
   transition: color var(--qi-transition);
@@ -304,12 +299,10 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-emerald-40),
-    var(--qi-brand-emerald-10),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-emerald-40),
+      var(--qi-brand-emerald-10),
+      transparent);
   transition:
     height var(--qi-transition-fast),
     bottom var(--qi-transition-fast),
@@ -317,18 +310,20 @@
 }
 
 .article-container a:hover {
-  color: var(--qi-brand-amber);
+  color: var(--qi-link-hover);
 }
 
 .article-container a:hover::after {
   height: 2px;
   bottom: -2px;
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-amber-50),
-    var(--qi-brand-amber-15),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-amber-50),
+      var(--qi-brand-amber-15),
+      transparent);
+}
+
+.article-container a:visited {
+  color: var(--qi-link-visited);
 }
 
 /* = Lists = */
@@ -343,12 +338,12 @@
   position: relative;
 }
 
-.article-container ul > li {
+.article-container ul>li {
   position: relative;
   padding-left: 0.5rem;
 }
 
-.article-container ul > li::before {
+.article-container ul>li::before {
   content: '';
   position: absolute;
   left: -1.25rem;
@@ -365,13 +360,13 @@
   counter-reset: list-counter;
 }
 
-.article-container ol > li {
+.article-container ol>li {
   counter-increment: list-counter;
   position: relative;
   padding-left: 0.5rem;
 }
 
-.article-container ol > li::before {
+.article-container ol>li::before {
   content: counter(list-counter);
   position: absolute;
   left: -1.75rem;
@@ -391,13 +386,13 @@
 
 .article-container li {
   margin-bottom: 0.75rem;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 /* = Blockquote = */
 .article-container blockquote {
-  border-left: 6px solid var(--qi-brand-emerald);
-  padding: 2rem 2rem 2rem 2.5rem;
+  border-left: 4px solid var(--qi-brand-emerald);
+  padding: 1.75rem 1.75rem 1.75rem 2rem;
   margin: 2.5rem 0;
   background: var(--qi-brand-emerald-05);
   border-radius: 0 var(--qi-radius-lg) var(--qi-radius-lg) 0;
@@ -407,7 +402,6 @@
   transition:
     transform var(--qi-transition-fast),
     background var(--qi-transition-fast);
-  box-shadow: var(--qi-shadow-sm);
 }
 
 .article-container blockquote:hover {
@@ -479,13 +473,11 @@
 .article-container hr {
   border: none;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--qi-base-12),
-    var(--qi-base-12),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      var(--qi-base-12),
+      var(--qi-base-12),
+      transparent);
   margin: 3rem 0;
   position: relative;
 }
@@ -510,16 +502,23 @@
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.95em;
-  margin: 2rem 0;
-  border-radius: var(--qi-radius-lg);
+  margin: 2.5rem 0;
+  border-radius: var(--qi-radius-card);
   overflow: hidden;
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.06),
-    0 1px 3px rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--qi-border-default);
+    0 8px 32px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(74, 222, 128, 0.15);
   display: block;
   overflow-x: auto;
-  background: var(--qi-bg-surface);
+  background: var(--qi-surface-main);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-container table:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(74, 222, 128, 0.08);
 }
 
 .article-container th,
@@ -533,14 +532,14 @@
 
 .article-container th {
   font-family: var(--qi-font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--qi-text-primary);
-  background: var(--qi-surface-sub);
+  background: var(--qi-brand-emerald-05);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   white-space: nowrap;
-  border-bottom: 2px solid var(--qi-brand-emerald-20);
+  border-bottom: 2px solid var(--qi-brand-emerald-30);
 }
 
 .article-container tr:last-child td {
@@ -561,14 +560,38 @@
 
 /* = Mermaid diagrams = */
 .article-container .mermaid-container {
-  background: var(--qi-surface-main);
-  border-radius: var(--qi-radius-lg);
-  padding: var(--qi-space-xl);
-  margin: 2rem 0;
+  background: var(--qi-surface-sub);
+  border-radius: var(--qi-radius-card);
+  padding: var(--qi-space-3xl) var(--qi-space-xl);
+  margin: 3rem 0;
   text-align: center;
   overflow-x: auto;
-  border: 1px solid var(--qi-border-default);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(74, 222, 128, 0.1);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.03),
+    inset 0 2px 20px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(8px);
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-container .mermaid-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.article-container .mermaid-container::before {
+  content: 'DIAGRAM (MERMAID)';
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  font-family: var(--qi-font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--qi-text-muted);
+  opacity: 0.7;
 }
 
 .article-container .mermaid-container svg {
@@ -600,37 +623,37 @@
 }
 
 :global(.dark) .article-container a {
-  color: var(--qi-brand-emerald);
+  color: var(--qi-link-default);
 }
 
 :global(.dark) .article-container a::after {
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-emerald-40),
-    var(--qi-brand-emerald-10),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-emerald-40),
+      var(--qi-brand-emerald-10),
+      transparent);
 }
 
 :global(.dark) .article-container a:hover {
-  color: var(--qi-brand-amber);
+  color: var(--qi-link-hover);
 }
 
 :global(.dark) .article-container a:hover::after {
-  background: linear-gradient(
-    90deg,
-    var(--qi-brand-amber-50),
-    var(--qi-brand-amber-15),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      var(--qi-brand-amber-50),
+      var(--qi-brand-amber-15),
+      transparent);
 }
 
-:global(.dark) .article-container ul > li::before {
+:global(.dark) .article-container a:visited {
+  color: var(--qi-link-visited);
+}
+
+:global(.dark) .article-container ul>li::before {
   background: var(--qi-brand-emerald);
   box-shadow: 0 0 0 3px var(--qi-brand-emerald-08);
 }
 
-:global(.dark) .article-container ol > li::before {
+:global(.dark) .article-container ol>li::before {
   color: var(--qi-brand-emerald);
   background: var(--qi-brand-emerald-08);
 }
@@ -668,21 +691,24 @@
 }
 
 :global(.dark) .article-container hr {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--qi-base-16),
-    var(--qi-base-16),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      var(--qi-base-16),
+      var(--qi-base-16),
+      transparent);
 }
 
 :global(.dark) .article-container table {
-  border-color: var(--qi-border-default);
+  border-color: rgba(74, 222, 128, 0.2);
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    0 1px 3px rgba(0, 0, 0, 0.15);
-  background: var(--qi-surface-main);
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(20, 22, 20, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+:global(.dark) .article-container table:hover {
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.15);
 }
 
 :global(.dark) .article-container th {
@@ -697,7 +723,7 @@
 }
 
 :global(.dark) .article-container tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--qi-brand-emerald-05);
 }
 
 :global(.dark) .article-container tr:hover td {
@@ -709,37 +735,22 @@
 }
 
 :global(.dark) .article-container .mermaid-container {
-  background: var(--qi-surface-main);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  background: rgba(15, 17, 16, 0.6);
+  backdrop-filter: blur(12px);
+  border-color: rgba(74, 222, 128, 0.15);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    inset 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* === Dark mode related posts === */
+:global(.dark) .article-container .mermaid-container:hover {
+  border-color: rgba(74, 222, 128, 0.3);
+  box-shadow: 0 16px 48px rgba(74, 222, 128, 0.2);
+}
+
 :global(.dark) .article-related-card {
   background: var(--qi-surface-main);
   border-color: var(--qi-border-inverse);
-}
-
-:global(.dark) .article-related-card:hover {
-  background: var(--qi-brand-emerald-10);
-  border-color: var(--qi-brand-emerald);
-}
-
-:global(.dark) .article-related-card-title {
-  color: var(--qi-text-primary);
-}
-
-:global(.dark) .article-related-card-desc {
-  color: var(--qi-text-secondary);
-  opacity: 1;
-}
-
-:global(.dark) .article-related-card-meta {
-  color: var(--qi-text-muted);
-}
-
-:global(.dark) .article-related-card-category {
-  background: var(--qi-brand-emerald-15);
-  color: var(--qi-brand-mint);
 }
 
 /* Article footer */
@@ -784,9 +795,9 @@
   }
 
   .article-container {
-      font-size: var(--qi-text-base);
-      line-height: 1.7;
-    }
+    font-size: var(--qi-text-base);
+    line-height: 1.8;
+  }
 
   .article-container h2 {
     font-size: 1.6rem;
@@ -1101,8 +1112,8 @@
 
 .article-related-card {
   display: block;
-  background: var(--qi-bg-base);
-  border: 1px solid var(--qi-border-strong);
+  background: var(--qi-surface-sub);
+  border: 1px solid var(--qi-border-subtle);
   border-radius: var(--qi-radius-lg);
   padding: var(--qi-space-xl);
   transition: all var(--qi-transition);
@@ -1113,13 +1124,12 @@
   transform: translateY(-4px);
   box-shadow: var(--qi-shadow-hover-warm);
   border-color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-03);
 }
 
 .article-related-card-title {
   font-family: var(--qi-font-serif);
   font-size: var(--qi-text-base);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--qi-text-primary);
   margin-bottom: var(--qi-space-sm);
   line-height: 1.4;
@@ -1131,8 +1141,7 @@
 
 .article-related-card-desc {
   font-size: var(--qi-text-sm);
-  color: var(--qi-text-primary);
-  opacity: 0.85;
+  color: var(--qi-text-secondary);
   margin-bottom: var(--qi-space-md);
   line-height: 1.6;
   display: -webkit-box;
@@ -1146,16 +1155,16 @@
   justify-content: space-between;
   align-items: center;
   font-size: var(--qi-text-xs);
-  color: var(--qi-text-secondary);
+  color: var(--qi-text-muted);
 }
 
 .article-related-card-category {
-  background: var(--qi-brand-emerald-12);
-  color: var(--qi-emerald-700);
-  padding: 3px 10px;
+  background: var(--qi-brand-emerald-06);
+  color: var(--qi-brand-emerald);
+  padding: 2px 8px;
   border-radius: var(--qi-radius-sm);
   font-family: var(--qi-font-mono);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -1168,9 +1177,11 @@
   .article-related-grid {
     gap: var(--qi-space-xl);
   }
+
   .article-related-card {
     padding: var(--qi-space-2xl);
   }
+
   .article-related-card-title {
     font-size: var(--qi-text-lg);
   }

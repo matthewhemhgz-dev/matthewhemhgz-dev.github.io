@@ -3,8 +3,9 @@ title: '如何优化前端性能：从理论到实践的完整指南'
 description: '深入探讨前端性能优化的核心原理和实践方法，帮助你构建快速、流畅的现代Web应用。'
 pubDate: 2026-04-29
 category: '技术架构'
+image: /images/blog/how-to-optimize-frontend-performance-zh.svg
 tags: ['性能优化', '前端开发', 'Web性能']
-heroImage: 'public\blog\how-to-optimize-frontend-performance.png'
+heroImage: '/images/blog/how-to-optimize-frontend-performance.svg'
 author: '祈研所'
 draft: false
 lang: zh
@@ -344,6 +345,7 @@ Core Web Vitals 是 Google 推出的一组用户体验指标，包括：
 **问题**：花费大量时间优化影响不大的部分
 
 **解决方案**：
+
 - 基于数据进行优化
 - 关注影响最大的因素
 - 设置合理的性能目标
@@ -353,6 +355,7 @@ Core Web Vitals 是 Google 推出的一组用户体验指标，包括：
 **问题**：只关注实验室数据，忽视真实用户体验
 
 **解决方案**：
+
 - 结合 RUM 和合成数据
 - 考虑不同网络环境
 - 考虑不同设备性能
@@ -362,6 +365,7 @@ Core Web Vitals 是 Google 推出的一组用户体验指标，包括：
 **问题**：为了性能牺牲功能或用户体验
 
 **解决方案**：
+
 - 找到平衡点
 - 渐进式优化
 - A/B 测试
@@ -371,6 +375,7 @@ Core Web Vitals 是 Google 推出的一组用户体验指标，包括：
 **问题**：优化后不再关注性能
 
 **解决方案**：
+
 - 建立性能监控体系
 - 定期性能审计
 - 自动化告警

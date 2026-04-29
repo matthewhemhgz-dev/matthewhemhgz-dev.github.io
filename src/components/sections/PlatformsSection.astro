@@ -18,11 +18,10 @@ interface Props {
   classList?: string;
 }
 
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const { label, title, platforms, classList = '' } = Astro.props;
 ---
 
-<section class="section ${classList}" data-reveal>
+<section class:list={['section', classList]} data-reveal>
   <div class="platforms-node-deco" aria-hidden="true">
     <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
       <circle cx="40" cy="100" r="4" fill="currentColor" opacity="0.12"></circle>

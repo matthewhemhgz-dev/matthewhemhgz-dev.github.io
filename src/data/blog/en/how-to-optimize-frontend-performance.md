@@ -3,8 +3,9 @@ title: 'How to Optimize Frontend Performance: A Complete Guide from Theory to Pr
 description: 'A deep dive into the core principles and practical methods of frontend performance optimization, helping you build fast, smooth modern web applications.'
 pubDate: 2026-04-29
 category: 'Technical Architecture'
+image: /images/blog/how-to-optimize-frontend-performance-en.svg
 tags: ['Performance Optimization', 'Frontend Development', 'Web Performance']
-heroImage: 'public\blog\how-to-optimize-frontend-performance.png'
+heroImage: '/images/blog/how-to-optimize-frontend-performance.svg'
 author: '祈研所'
 draft: false
 lang: en
@@ -344,6 +345,7 @@ Core Web Vitals is a set of user experience metrics introduced by Google, includ
 **Problem**: Spending too much time optimizing parts with little impact
 
 **Solutions**:
+
 - Optimize based on data
 - Focus on the most impactful factors
 - Set reasonable performance goals
@@ -353,6 +355,7 @@ Core Web Vitals is a set of user experience metrics introduced by Google, includ
 **Problem**: Only focusing on lab data, ignoring real user experience
 
 **Solutions**:
+
 - Combine RUM and synthetic data
 - Consider different network environments
 - Consider different device performances
@@ -362,6 +365,7 @@ Core Web Vitals is a set of user experience metrics introduced by Google, includ
 **Problem**: Sacrificing functionality or user experience for performance
 
 **Solutions**:
+
 - Find a balance
 - Progressive optimization
 - A/B testing
@@ -371,6 +375,7 @@ Core Web Vitals is a set of user experience metrics introduced by Google, includ
 **Problem**: No longer focusing on performance after optimization
 
 **Solutions**:
+
 - Establish a performance monitoring system
 - Regular performance audits
 - Automated alerts
