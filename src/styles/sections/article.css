@@ -286,7 +286,7 @@
 
 /* = Links = */
 .article-container a {
-  color: var(--qi-brand-emerald);
+  color: var(--qi-link-default);
   text-decoration: none;
   position: relative;
   transition: color var(--qi-transition);
@@ -310,7 +310,7 @@
 }
 
 .article-container a:hover {
-  color: var(--qi-brand-amber);
+  color: var(--qi-link-hover);
 }
 
 .article-container a:hover::after {
@@ -320,6 +320,10 @@
       var(--qi-brand-amber-50),
       var(--qi-brand-amber-15),
       transparent);
+}
+
+.article-container a:visited {
+  color: var(--qi-link-visited);
 }
 
 /* = Lists = */
@@ -619,7 +623,7 @@
 }
 
 :global(.dark) .article-container a {
-  color: var(--qi-brand-emerald);
+  color: var(--qi-link-default);
 }
 
 :global(.dark) .article-container a::after {
@@ -630,7 +634,7 @@
 }
 
 :global(.dark) .article-container a:hover {
-  color: var(--qi-brand-amber);
+  color: var(--qi-link-hover);
 }
 
 :global(.dark) .article-container a:hover::after {
@@ -638,6 +642,10 @@
       var(--qi-brand-amber-50),
       var(--qi-brand-amber-15),
       transparent);
+}
+
+:global(.dark) .article-container a:visited {
+  color: var(--qi-link-visited);
 }
 
 :global(.dark) .article-container ul>li::before {

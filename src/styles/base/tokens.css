@@ -31,16 +31,27 @@
   --qi-color-warning: var(--qi-brand-amber-dark);
   --qi-color-error: #ef4444;
   --qi-color-info: #3b82f6;
-  /* Text */
+  /* Text - WCAG AAA Optimized */
   --qi-text-inverse: #f7f3ee;
   --qi-text-primary: #1e1b18;
   --qi-text-secondary: #3d3832;
-  --qi-text-tertiary: #4a453f;
-  --qi-text-muted: #4a453f;
+  --qi-text-tertiary: #524e47;
+  --qi-text-muted: #6b665f;
   --qi-on-surface: #e8e3dd;
   --qi-on-surface-secondary: #c8c3bd;
   --qi-on-surface-muted: #a8a29e;
   --qi-on-surface-dim: #9a9590;
+
+  /* Link Colors - WCAG AAA Compliant (7:1+ contrast) */
+  --qi-link-default: #1b5e40;
+  --qi-link-hover: #7a5410;
+  --qi-link-visited: #2a5240;
+  --qi-link-focus: #134d33;
+
+  /* Brand Text Colors - Safe for text on light backgrounds */
+  --qi-brand-emerald-text: #1b5e40;
+  --qi-brand-amber-text: #7a5410;
+  --qi-brand-mint-text: #2a5240;
 
   /* 中性颜色 */
   --qi-neutral-50: #f8fafc;

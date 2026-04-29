@@ -16,12 +16,23 @@
   --qi-text-inverse: #1e1b18;
   --qi-text-primary: #ffffff;
   --qi-text-secondary: #d4cdc3;
-  /* Slightly more muted for secondary to increase hierarchy */
-  --qi-text-muted: #a39c94;
+  --qi-text-tertiary: #b8b0a6;
+  --qi-text-muted: #9a9590;
   --qi-on-surface: #ffffff;
   --qi-on-surface-secondary: #d4cdc3;
   --qi-on-surface-muted: #a39c94;
   --qi-on-surface-dim: #827c75;
+
+  /* Link Colors - WCAG AAA Compliant for Dark Mode */
+  --qi-link-default: #4ade80;
+  --qi-link-hover: #fbbf24;
+  --qi-link-visited: #34d399;
+  --qi-link-focus: #22c55e;
+
+  /* Brand Text Colors - Safe for text on dark backgrounds */
+  --qi-brand-emerald-text: #4ade80;
+  --qi-brand-amber-text: #fbbf24;
+  --qi-brand-mint-text: #34d399;
 
   /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
   --qi-on-dark-primary: #f7f3ee;

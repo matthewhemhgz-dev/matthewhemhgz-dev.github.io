@@ -143,7 +143,7 @@ function initQiLab() {
 
     // 使用 requestIdleCallback 或 setTimeout 延迟加载
     if (window.requestIdleCallback) {
-      requestIdleCallback(loadParticles, { timeout: 2000 });
+      window.requestIdleCallback(loadParticles, { timeout: 2000 });
     } else {
       setTimeout(loadParticles, 500);
     }
