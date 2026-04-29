@@ -58,10 +58,28 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
                 width={600}
                 height={400}
                 loading="lazy"
-                class="project-card-image"
+                class="project-card-image project-card-static"
               />
+              
+              {project.animatedImage && (
+                <img
+                  class="project-card-image project-card-animated"
+                  src={project.animatedImage}
+                  alt={`${project.title} animation`}
+                  loading="lazy"
+                />
+              )}
+              
               <div class="project-card-cover-overlay" />
               <div class="project-card-year">{project.year}</div>
+              
+              {project.animatedImage && (
+                <div class="project-card-play-indicator">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              )}
             </div>
 
             <div class="project-card-content">
@@ -250,14 +268,24 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
   }
 
   .project-card-image {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--qi-transition-base);
+    transition: opacity var(--qi-transition-base);
   }
 
-  .project-card:hover .project-card-image {
-    transform: scale(1.05);
+  .project-card-animated {
+    opacity: 0;
+  }
+
+  .project-card:hover .project-card-static {
+    opacity: 0;
+  }
+
+  .project-card:hover .project-card-animated {
+    opacity: 1;
   }
 
   .project-card-cover-overlay {
@@ -265,6 +293,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     inset: 0;
     background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
     pointer-events: none;
+    z-index: 2;
   }
 
   .project-card-year {
@@ -279,6 +308,31 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     font-weight: 600;
     border-radius: var(--qi-radius-sm);
     font-family: var(--qi-font-mono);
+    z-index: 3;
+  }
+
+  .project-card-play-indicator {
+    position: absolute;
+    bottom: var(--qi-space-sm);
+    right: var(--qi-space-sm);
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all var(--qi-transition);
+    z-index: 3;
+  }
+
+  .project-card:hover .project-card-play-indicator {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .project-card-content {
@@ -387,6 +441,7 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
     cursor: pointer;
     transition: all var(--qi-transition);
     font-family: var(--qi-font-mono);
+    text-decoration: none;
   }
 
   .project-action-btn:hover {
@@ -423,6 +478,20 @@ const filteredProjects = projects.filter(p => activeCategory === 'all' || p.cate
   :global(.dark) .project-action-btn {
     border-color: var(--qi-border-inverse);
     color: var(--qi-on-surface-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card-animated {
+      display: none;
+    }
+    
+    .project-card:hover .project-card-static {
+      opacity: 1;
+    }
+
+    .project-card-play-indicator {
+      display: none;
+    }
   }
 
   @media (max-width: 768px) {

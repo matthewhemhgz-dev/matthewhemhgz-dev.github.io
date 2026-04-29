@@ -7,6 +7,7 @@ export interface Project {
   category: string;
   tags: string[];
   coverImage: string;
+  animatedImage?: string;
   liveUrl?: string;
   repoUrl?: string;
   featured?: boolean;
@@ -24,6 +25,7 @@ export const projects: Project[] = [
     category: '企业应用',
     tags: ['项目管理', '微服务', '多租户'],
     coverImage: '/images/projects/systempm.png',
+    animatedImage: '/images/projects/systempm-animated.svg',
     liveUrl: '#',
     repoUrl: 'https://github.com/matthewhemhgz-dev/systempm',
     featured: true,
@@ -39,6 +41,7 @@ export const projects: Project[] = [
     category: 'AI应用',
     tags: ['AI', '量化分析', '金融'],
     coverImage: '/images/projects/stockaassist.png',
+    animatedImage: '/images/projects/stockaassist-animated.svg',
     liveUrl: '#',
     repoUrl: 'https://github.com/matthewhemhgz-dev/stockaassist',
     featured: true,
@@ -54,6 +57,7 @@ export const projects: Project[] = [
     category: '个人项目',
     tags: ['博客', 'SSG', 'PWA'],
     coverImage: '/images/projects/qilab.png',
+    animatedImage: '/images/projects/qilab-animated.svg',
     liveUrl: 'https://matthewhemhgz-dev.github.io',
     repoUrl: 'https://github.com/matthewhemhgz-dev/matthewhemhgz-dev.github.io',
     featured: true,
@@ -69,6 +73,7 @@ export const projects: Project[] = [
     category: 'AI应用',
     tags: ['AI', '知识图谱', '语义搜索'],
     coverImage: '/images/projects/graphify.png',
+    animatedImage: '/images/projects/graphify-animated.svg',
     liveUrl: '#',
     repoUrl: 'https://github.com/matthewhemhgz-dev/graphify',
     year: '2024',
@@ -83,6 +88,7 @@ export const projects: Project[] = [
     category: '企业应用',
     tags: ['低代码', '工作流', '自动化'],
     coverImage: '/images/projects/flowy.png',
+    animatedImage: '/images/projects/flowy-animated.svg',
     liveUrl: '#',
     repoUrl: 'https://github.com/matthewhemhgz-dev/flowy',
     year: '2023',
@@ -97,6 +103,7 @@ export const projects: Project[] = [
     category: '工具',
     tags: ['数据同步', 'Notion', '知识管理'],
     coverImage: '/images/projects/notion-sync.png',
+    animatedImage: '/images/projects/notion-sync-animated.svg',
     liveUrl: '#',
     repoUrl: 'https://github.com/matthewhemhgz-dev/notion-sync',
     year: '2023',
