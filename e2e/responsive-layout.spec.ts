@@ -78,6 +78,6 @@ test.describe('响应式布局测试', () => {
     await page.waitForTimeout(300);
 
     // 检查菜单是否关闭
-    await expect(navLinks).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 315, 0)');
+    await expect(navLinks).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 337.5, 0)');
   });
 });

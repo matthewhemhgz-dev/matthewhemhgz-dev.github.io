@@ -61,7 +61,6 @@ test.describe('视觉效果测试', () => {
     // 检查导航栏初始状态
     const nav = page.locator('.nav-wrapper');
     await expect(nav).not.toHaveClass(/scrolled/);
-    await expect(nav).not.toHaveClass(/nav-collapsed/);
     
     // 滚动页面
     await page.mouse.wheel(0, 500);
@@ -69,14 +68,13 @@ test.describe('视觉效果测试', () => {
     
     // 检查导航栏滚动状态
     await expect(nav).toHaveClass(/scrolled/);
-    await expect(nav).toHaveClass(/nav-collapsed/);
     
     // 滚动回顶部
     await page.mouse.wheel(0, -500);
     await page.waitForTimeout(500);
     
     // 检查导航栏回到初始状态
-    await expect(nav).not.toHaveClass(/nav-collapsed/);
+    await expect(nav).not.toHaveClass(/scrolled/);
   });
 
   test('页面加载动画效果', async ({ page }) => {

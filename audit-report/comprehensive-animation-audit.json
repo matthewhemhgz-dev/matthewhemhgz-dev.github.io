@@ -1,0 +1,4133 @@
+{
+  "timestamp": "2026-04-29T09:14:40.860Z",
+  "pages": {
+    "首页 (Home)": {
+      "url": "http://localhost:4321/",
+      "name": "首页 (Home)",
+      "effects": {
+        "particles": {
+          "particlesCanvas": true,
+          "backgroundArtCanvas": true
+        },
+        "cards": {
+          "bentoCards": 4,
+          "platformCards": 6,
+          "testimonialCards": 0,
+          "toolCategories": 4
+        },
+        "navigation": {
+          "navVisible": true,
+          "scrolled": false,
+          "scrolledAfterScroll": true
+        },
+        "interactions": {
+          "buttonCount": 30,
+          "linkCount": 15
+        }
+      },
+      "consoleErrors": [
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/systempm.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/systempm.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/stockaassist.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/stockaassist.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/qilab.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/qilab.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/qilab.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/graphify.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/graphify.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/graphify.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/flowy.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/flowy.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/flowy.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/flowy.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/flowy.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/notion-sync.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/notion-sync.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/notion-sync.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/notion-sync.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/projects/notion-sync.png",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        }
+      ],
+      "screenshots": [
+        "audit-report/首页-(Home)-initial.png",
+        "audit-report/首页-(Home)-cursor-glow.png",
+        "audit-report/首页-(Home)-scrolled.png"
+      ]
+    },
+    "关于页 (About)": {
+      "url": "http://localhost:4321/about",
+      "name": "关于页 (About)",
+      "effects": {
+        "particles": {
+          "particlesCanvas": true,
+          "backgroundArtCanvas": true
+        },
+        "cards": {
+          "bentoCards": 0,
+          "platformCards": 0,
+          "testimonialCards": 0,
+          "toolCategories": 0
+        },
+        "navigation": {
+          "navVisible": true,
+          "scrolled": false,
+          "scrolledAfterScroll": true
+        },
+        "interactions": {
+          "buttonCount": 23,
+          "linkCount": 10
+        }
+      },
+      "consoleErrors": [
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-tools-practice.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/frontend-architecture-evolution.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-graph-visualization.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/knowledge-management-system-foundation.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-system-from-scratch.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-optimize-frontend-performance.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ssg-best-practices.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/zettelkasten-practical-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/how-to-build-personal-knowledge-system.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/notion-obsidian-dual-track.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/personal-knowledge-graph.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/design-tokens-system-guide.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/progressive-refactor-astro-tailwind.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/css-architecture-scalable-projects.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/astro-ssg-why-i-chose.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "location": {
+            "url": "http://localhost:4321/images/blog/ai-era-knowledge-worker.svg",
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        },
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        }
+      ],
+      "screenshots": [
+        "audit-report/关于页-(About)-initial.png",
+        "audit-report/关于页-(About)-cursor-glow.png",
+        "audit-report/关于页-(About)-scrolled.png"
+      ]
+    },
+    "博客列表 (Blog)": {
+      "url": "http://localhost:4321/blog",
+      "name": "博客列表 (Blog)",
+      "effects": {
+        "particles": {
+          "particlesCanvas": true,
+          "backgroundArtCanvas": true
+        },
+        "cards": {
+          "bentoCards": 0,
+          "platformCards": 0,
+          "testimonialCards": 0,
+          "toolCategories": 0
+        },
+        "navigation": {
+          "navVisible": true,
+          "scrolled": false,
+          "scrolledAfterScroll": true
+        },
+        "interactions": {
+          "buttonCount": 23,
+          "linkCount": 73
+        }
+      },
+      "consoleErrors": [
+        {
+          "context": "初始加载",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "光标光效测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 1",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 2",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 3",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 4",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "滚动 5",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "卡片悬停测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "导航测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        },
+        {
+          "context": "交互测试",
+          "type": "error",
+          "message": "%cAstro background: linear-gradient(66.77deg, #D83333 0%, #F041FF 100%); color: white; padding-inline: 4px; border-radius: 2px; font-family: monospace; Error while running audit's match function: TypeError: Failed to fetch",
+          "location": {
+            "url": "http://localhost:4321/node_modules/.vite/deps/chunk-LEX3GG7N.js?v=5a464cdd",
+            "lineNumber": 22,
+            "columnNumber": 18
+          }
+        }
+      ],
+      "screenshots": [
+        "audit-report/博客列表-(Blog)-initial.png",
+        "audit-report/博客列表-(Blog)-cursor-glow.png",
+        "audit-report/博客列表-(Blog)-scrolled.png"
+      ]
+    },
+    "标签页 (Tags)": {
+      "url": "http://localhost:4321/tags",
+      "name": "标签页 (Tags)",
+      "effects": {
+        "particles": {
+          "particlesCanvas": true,
+          "backgroundArtCanvas": true
+        },
+        "cards": {
+          "bentoCards": 0,
+          "platformCards": 0,
+          "testimonialCards": 0,
+          "toolCategories": 0
+        },
+        "navigation": {
+          "navVisible": true,
+          "scrolled": false,
+          "scrolledAfterScroll": true
+        },
+        "interactions": {
+          "buttonCount": 23,
+          "linkCount": 68
+        }
+      },
+      "consoleErrors": [],
+      "screenshots": [
+        "audit-report/标签页-(Tags)-initial.png",
+        "audit-report/标签页-(Tags)-cursor-glow.png",
+        "audit-report/标签页-(Tags)-scrolled.png"
+      ]
+    }
+  },
+  "issues": []
+}

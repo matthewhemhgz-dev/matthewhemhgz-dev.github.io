@@ -37,7 +37,7 @@ test.describe('首页布局全面检查', () => {
     test.describe(`视口: ${viewport.name}`, () => {
       test('导航栏布局检查', async ({ page }) => {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('http://localhost:4323/');
+        await page.goto('http://localhost:4321/');
         await page.waitForLoadState('networkidle');
 
         // 导航栏截图
@@ -79,7 +79,7 @@ test.describe('首页布局全面检查', () => {
 
       test('英雄区域布局检查', async ({ page }) => {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('http://localhost:4323/');
+        await page.goto('http://localhost:4321/');
         await page.waitForLoadState('networkidle');
 
         // 英雄区域截图
@@ -126,7 +126,7 @@ test.describe('首页布局全面检查', () => {
 
       test('功能介绍区域布局检查', async ({ page }) => {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('http://localhost:4323/');
+        await page.goto('http://localhost:4321/');
         await page.waitForLoadState('networkidle');
 
         // 滚动到 About 区域
@@ -147,7 +147,7 @@ test.describe('首页布局全面检查', () => {
 
       test('博客预览区域布局检查', async ({ page }) => {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('http://localhost:4323/');
+        await page.goto('http://localhost:4321/');
         await page.waitForLoadState('networkidle');
 
         // 滚动到 Featured 区域
@@ -179,7 +179,7 @@ test.describe('首页布局全面检查', () => {
 
       test('完整页面截图', async ({ page }) => {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('http://localhost:4323/');
+        await page.goto('http://localhost:4321/');
         await page.waitForLoadState('networkidle');
 
         const fullPageScreenshotPath = path.join(

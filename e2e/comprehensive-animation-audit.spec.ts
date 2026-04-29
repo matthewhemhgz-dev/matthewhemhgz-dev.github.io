@@ -11,10 +11,10 @@ test.describe('全面动效和光效检查', () => {
   };
 
   const pagesToTest = [
-    { url: 'http://localhost:4325/', name: '首页 (Home)' },
-    { url: 'http://localhost:4325/about', name: '关于页 (About)' },
-    { url: 'http://localhost:4325/blog', name: '博客列表 (Blog)' },
-    { url: 'http://localhost:4325/tags', name: '标签页 (Tags)' }
+    { url: 'http://localhost:4321/', name: '首页 (Home)' },
+    { url: 'http://localhost:4321/about', name: '关于页 (About)' },
+    { url: 'http://localhost:4321/blog', name: '博客列表 (Blog)' },
+    { url: 'http://localhost:4321/tags', name: '标签页 (Tags)' }
   ];
 
   test('所有页面动效和光效检查', async ({ page, browserName }) => {
@@ -219,8 +219,8 @@ test.describe('全面动效和光效检查', () => {
 test('页面切换和过渡动画检查', async ({ page }) => {
   console.log('\n🔄 检查页面切换和过渡动画...');
   
-  const pages = ['http://localhost:4325/', 'http://localhost:4325/about', 
-                'http://localhost:4325/blog', 'http://localhost:4325/tags'];
+  const pages = ['http://localhost:4321/', 'http://localhost:4321/about', 
+                'http://localhost:4321/blog', 'http://localhost:4321/tags'];
   
   for (let i = 0; i < pages.length; i++) {
     for (let j = 0; j < pages.length; j++) {
@@ -249,7 +249,7 @@ test('响应式视图动效检查', async ({ page }) => {
   
   for (const viewport of viewports) {
     await page.setViewportSize(viewport);
-    await page.goto('http://localhost:4325/', { waitUntil: 'networkidle' });
+    await page.goto('http://localhost:4321/', { waitUntil: 'networkidle' });
     await page.waitForTimeout(1000);
     
     // 测试滚动和交互
