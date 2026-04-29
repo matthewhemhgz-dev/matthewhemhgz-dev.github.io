@@ -352,37 +352,7 @@
   }
 }
 
-/* 3440px - 4K/UWQHD */
-@media (min-width: 3440px) {
-  .hero-title {
-    font-size: clamp(5rem, 4vw, 9rem);
-  }
-
-  .bento-grid {
-    gap: 56px;
-    max-width: var(--qi-container-max);
-  }
-
-  .toolbox-grid {
-    gap: 44px;
-    max-width: var(--qi-container-max);
-  }
-
-  .platform-grid {
-    gap: 40px;
-    max-width: var(--qi-container-max);
-  }
-
-  .testimonial-grid {
-    max-width: var(--qi-container-max);
-  }
-
-  .section {
-    padding: 10rem 0;
-  }
-}
-
-/* === Hero 4K 断点 (从 home-hero.css 迁移) === */
+/* === 4K/UWQHD 断点 (3440px+) === */
 @media (min-width: 3440px) {
   .hero-container {
     max-width: min(1600px, 45%);
@@ -408,6 +378,29 @@
 
   .hero-stat-value {
     font-size: var(--qi-font-scaled-4xl);
+  }
+
+  .bento-grid {
+    gap: 56px;
+    max-width: var(--qi-container-max);
+  }
+
+  .toolbox-grid {
+    gap: 44px;
+    max-width: var(--qi-container-max);
+  }
+
+  .platform-grid {
+    gap: 40px;
+    max-width: var(--qi-container-max);
+  }
+
+  .testimonial-grid {
+    max-width: var(--qi-container-max);
+  }
+
+  .section {
+    padding: 10rem 0;
   }
 }
 

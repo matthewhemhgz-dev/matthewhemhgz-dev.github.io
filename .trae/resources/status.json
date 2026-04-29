@@ -1,0 +1,22 @@
+{
+  "src/scripts/effects-manager.js": {
+    "status": "completed",
+    "description": "动效管理器已完成优化",
+    "updatedAt": "2026-04-25T05:41:53.697Z"
+  },
+  "src/scripts/resource-scanner.js": {
+    "status": "completed",
+    "description": "资源扫描工具已完成",
+    "updatedAt": "2026-04-25T06:05:10.565Z"
+  },
+  "src/scripts/resource-manager.js": {
+    "status": "completed",
+    "description": "资源管理工具已完成",
+    "updatedAt": "2026-04-25T06:05:10.803Z"
+  },
+  "src/scripts/resource-status.js": {
+    "status": "completed",
+    "description": "资源状态管理工具已完成",
+    "updatedAt": "2026-04-25T06:05:11.039Z"
+  }
+}

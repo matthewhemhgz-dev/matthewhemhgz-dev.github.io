@@ -2,7 +2,6 @@
 import '../../styles/components/footer.css';
 import BrandLogo from './BrandLogo.astro';
 import Newsletter from './Newsletter.astro';
-import OptimizedImage from '../ui/OptimizedImage.astro';
 
 interface Props {
   tagline?: string;
@@ -37,7 +36,6 @@ const labels =
         easterEgg: 'Thanks for scrolling all the way down ✨',
         qrAria: ' (Click to view QR code)',
         externalAria: ' (Opens in new window)',
-        rss: 'RSS Feed',
       }
     : {
         contact: '联系方式',
@@ -52,7 +50,6 @@ const labels =
         easterEgg: '感谢你滚动到这里 ✨',
         qrAria: ' (点击查看二维码)',
         externalAria: ' (在新窗口打开)',
-        rss: 'RSS 订阅',
       };
 
 // 社交媒体链接 - 根据语言选择
@@ -105,10 +102,11 @@ const socialLinks =
 const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
 ---
 
-<footer id="contact" class="footer">
+<footer id="contact" class="footer" aria-labelledby="footer-heading">
   <div class="footer-inner container">
     <!-- Brand -->
     <div class="footer-brand">
+      <h2 id="footer-heading" class="sr-only">{labels.title}</h2>
       <BrandLogo variant="icon" size="md" />
       <p class="footer-tagline">{tagline}</p>
     </div>
@@ -122,12 +120,12 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
     <div class="footer-links">
       <div class="footer-contact">
         <h3 class="footer-heading">{labels.contact}</h3>
-        <ul class="contact-list">
-          <li class="contact-item">
+        <ul class="contact-list" role="list">
+          <li class="contact-item" role="listitem">
             <span class="contact-label">{labels.email}</span>
             <a href={`mailto:${email}`} class="contact-value">{email}</a>
           </li>
-          <li class="contact-item">
+          <li class="contact-item" role="listitem">
             <span class="contact-label">{labels.wechat}</span>
             <span class="contact-value">{wechat}</span>
           </li>
@@ -151,7 +149,7 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
                     title={s.name}
                     aria-label={`${s.name}${labels.qrAria}`}
                   >
-                    <span class="social-icon" set:html={s.icon} />
+                    <span class="social-icon" set:html={s.icon} aria-hidden="true" />
                     <span class="social-name">{s.name}</span>
                   </button>
                 ) : (
@@ -163,7 +161,7 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
                     title={s.name}
                     aria-label={`${s.name}${labels.externalAria}`}
                   >
-                    <span class="social-icon" set:html={s.icon} />
+                    <span class="social-icon" set:html={s.icon} aria-hidden="true" />
                     <span class="social-name">{s.name}</span>
                   </a>
                 )}
@@ -176,14 +174,12 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
       <div class="footer-qr">
         <h3 class="footer-heading">{labels.qrTitle}</h3>
         <div class="qr-container">
-          <OptimizedImage
+          <img
             src={wechatQrCodeUrl}
             alt={labels.wechat}
             class="qr-code"
             loading="lazy"
-            width={200}
-            height={200}
-            sizes="(max-width: 768px) 150px, 200px"
+            decoding="async"
           />
           <p class="qr-text">{wechat}</p>
         </div>
@@ -199,22 +195,6 @@ const wechatQrCodeUrl = '/images/social/wechat-oa-qr.jpg';
         &copy; {copyrightYear}
         {labels.copyright}
       </p>
-      <div class="footer-bottom-links">
-        <a
-          href={lang === 'en' ? '/en/rss.xml' : '/rss.xml'}
-          class="footer-rss-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={labels.rss}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 11a9 9 0 0 1 9 9"/>
-            <path d="M4 4a16 16 0 0 1 16 16"/>
-            <circle cx="5" cy="19" r="1"/>
-          </svg>
-          <span>{labels.rss}</span>
-        </a>
-      </div>
       <p class="built-with">
         {labels.builtWith}
         <span class="heart" aria-label="love">♥</span>

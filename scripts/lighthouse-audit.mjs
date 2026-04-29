@@ -22,12 +22,12 @@ async function runLighthouseAudit() {
   console.log('Starting local preview server...');
   const previewProcess = spawn('npm', ['run', 'preview', '--', '--port', '3000'], {
     detached: true,
-    stdio: 'ignore'
+    stdio: 'ignore',
   });
 
   // 等待服务器启动
   console.log('Waiting for server to start...');
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   // 运行 Lighthouse 审计
   console.log('Running Lighthouse audit...');
@@ -37,7 +37,11 @@ async function runLighthouseAudit() {
     if (!env.CHROME_PATH) {
       // 尝试找到 Chrome 或 Chromium
       try {
-        const chromePath = execSync('which google-chrome || which chromium || which chrome', { stdio: 'pipe' }).toString().trim();
+        const chromePath = execSync('which google-chrome || which chromium || which chrome', {
+          stdio: 'pipe',
+        })
+          .toString()
+          .trim();
         if (chromePath) {
           env.CHROME_PATH = chromePath;
           console.log(`Using Chrome at: ${chromePath}`);
@@ -49,7 +53,8 @@ async function runLighthouseAudit() {
 
     // 运行 Lighthouse 审计，添加更多选项
     const lighthouseCommand = [
-      'npx', 'lighthouse',
+      'npx',
+      'lighthouse',
       'http://localhost:3000',
       '--output=html',
       '--output=json',
@@ -57,14 +62,14 @@ async function runLighthouseAudit() {
       '--quiet',
       '--chrome-flags=--headless --disable-gpu --no-sandbox',
       '--emulated-form-factor=mobile',
-      '--throttling-method=devtools'
+      '--throttling-method=devtools',
     ];
 
     execSync(lighthouseCommand.join(' '), {
       stdio: 'inherit',
-      env
+      env,
     });
-    
+
     console.log('Lighthouse audit completed successfully!');
     console.log('HTML Report generated at: ./reports/lighthouse-report.html');
     console.log('JSON Report generated at: ./reports/lighthouse-report.json');

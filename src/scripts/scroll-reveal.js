@@ -16,7 +16,7 @@ class ScrollReveal {
   observeElements() {
     // 选择所有带有 qi-anim-scroll-reveal 类的元素
     const elements = document.querySelectorAll('.qi-anim-scroll-reveal');
-    
+
     if (!elements.length) return;
 
     // 创建 Intersection Observer
@@ -35,8 +35,8 @@ class ScrollReveal {
         // 当元素的 10% 进入视口时触发
         threshold: 0.1,
         // 添加一些根边距，使元素在进入视口前就开始动画
-        rootMargin: '0px 0px -50px 0px'
-      }
+        rootMargin: '0px 0px -50px 0px',
+      },
     );
 
     // 观察所有元素

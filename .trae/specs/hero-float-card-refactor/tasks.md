@@ -1,6 +1,7 @@
 # Hero Float Card 重构与博客封面图关联部署 - 实现计划
 
 ## [ ] Task 1: 重构 HeroSection 组件，只保留一个 hero-float-card--insight 卡片
+
 - **Priority**: P0
 - **Depends On**: None
 - **Description**:
@@ -13,6 +14,7 @@
 - **Notes**: 保留的卡片应该显示网站的核心标语，确保与网站主题一致
 
 ## [ ] Task 2: 为 HeroSection 组件添加语言支持
+
 - **Priority**: P0
 - **Depends On**: Task 1
 - **Description**:
@@ -26,6 +28,7 @@
 - **Notes**: 确保标语的翻译准确，符合网站的整体风格
 
 ## [ ] Task 3: 修复博客封面图的关联问题
+
 - **Priority**: P1
 - **Depends On**: None
 - **Description**:
@@ -40,6 +43,7 @@
 - **Notes**: 对于缺失的图片，需要生成新的封面图，确保与文章主题匹配
 
 ## [ ] Task 4: 确保博客封面图在部署时能正确加载
+
 - **Priority**: P1
 - **Depends On**: Task 3
 - **Description**:
@@ -54,6 +58,7 @@
 - **Notes**: 确保图片路径使用相对路径，避免硬编码的绝对路径
 
 ## [ ] Task 5: 验证卡片在白天和黑夜模式下的显示效果
+
 - **Priority**: P2
 - **Depends On**: Task 1, Task 2
 - **Description**:
@@ -68,6 +73,7 @@
 - **Notes**: 使用设计令牌系统，确保卡片的样式与主题模式保持一致
 
 ## [ ] Task 6: 运行构建和测试，确保所有功能正常
+
 - **Priority**: P0
 - **Depends On**: Task 1, Task 2, Task 3, Task 4, Task 5
 - **Description**:

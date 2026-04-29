@@ -45,6 +45,7 @@
 
       for (const block of mermaidBlocks) {
         const parent = block.parentElement;
+        if (!parent) continue;
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
         try {
           const { svg } = await mermaid.default.render(id, block.textContent);

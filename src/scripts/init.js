@@ -5,94 +5,70 @@ import {
   initBackToTop,
   cleanupScrollHandler,
 } from './scroll-handler.js';
+import { effectsManager } from './effects-manager.js';
 
 let initialized = false;
-let cursorGlow = null;
 let particles = null;
+let envAware = null;
+let mmFeedback = null;
+let interactionEnhancements = null;
 const cleanupFns = [];
 
+// 工具函数：安全获取 CSS 变量值并提供默认值回退
+function getCSSVar(name, defaultValue) {
+  try {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return value || defaultValue;
+  } catch (error) {
+    console.warn(`Failed to get CSS variable ${name}:`, error);
+    return defaultValue;
+  }
+}
+
+// 工具函数：判断是否为首页（支持中英文路径）
 function isHomePage() {
-  const pathname = location.pathname;
-  return pathname === '/' || pathname === '' || pathname === '/en/' || pathname === '/en';
+  const path = location.pathname;
+  return path === '/' || path === '' || path === '/en' || path === '/en/';
 }
 
-function getParticleCount() {
-  const screenWidth = window.innerWidth;
-  if (screenWidth < 768) return 25;
-  if (screenWidth < 1440) return 40;
-  if (screenWidth < 2560) return 50;
-  return 60;
-}
-
-function getThemeColors() {
-  const cs = getComputedStyle(document.documentElement);
-  return {
-    emerald: cs.getPropertyValue('--qi-brand-emerald').trim() || '#2E7D5C',
-    mint: cs.getPropertyValue('--qi-brand-mint').trim() || '#78B4A0',
-    amber: cs.getPropertyValue('--qi-brand-amber').trim() || '#E5A93C',
-    bgBase: cs.getPropertyValue('--qi-bg-base').trim() || '#F7F3EE',
-  };
-}
-
-function getParticleOptions() {
-  const colors = getThemeColors();
-  return {
-    count: getParticleCount(),
-    colors: [colors.emerald, colors.mint, colors.amber, colors.bgBase],
-    maxSize: 3,
-    speed: 0.2,
-    linkDistance: 100,
-    linkOpacity: 0.08,
-    mouseRadius: 120,
-    mouseForce: 0.02,
-    glowSize: 8,
-    glowOpacity: 0.15,
-  };
-}
-
-function isSlowConnection() {
-  if (!navigator.connection) return false;
-  const effectiveType = navigator.connection.effectiveType;
-  return effectiveType === 'slow-2g' || effectiveType === '2g';
-}
-
-function getLoadDelay() {
-  if (isSlowConnection()) {
-    return { priority1: 0, priority2: 500, priority3: 2000, priority4: 3000 };
-  }
-  return { priority1: 0, priority2: 150, priority3: 600, priority4: 1000 };
-}
-
-function cleanup() {
-  cleanupFns.forEach((fn) => {
-    try {
-      fn();
-    } catch (err) {
-      console.warn('[QiLab] Cleanup error:', err);
+// 节流函数
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
     }
-  });
-  cleanupFns.length = 0;
-
-  if (cursorGlow) {
-    try {
-      cursorGlow.destroy();
-    } catch (err) {
-      console.warn('[QiLab] CursorGlow cleanup error:', err);
-    }
-    cursorGlow = null;
   }
-
-  if (particles) {
-    try {
-      particles.destroy();
-    } catch (err) {
-      console.warn('[QiLab] Particles cleanup error:', err);
-    }
-    particles = null;
-  }
-
-  initialized = false;
 }
+
+// 防抖函数
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  }
+}
+
+// 性能监测函数
+function monitorPerformance() {
+  if (performance && performance.measureUserAgentSpecificMemory) {
+    performance.measureUserAgentSpecificMemory()
+      .then(result => {
+        console.log('Memory usage:', result);
+      })
+      .catch(err => {
+        console.error('Memory measurement error:', err);
+      });
+  }
+}
+
+// 定期监测性能
+setInterval(monitorPerformance, 30000); // 每30秒监测一次
 
 function initQiLab() {
   if (initialized) return;
@@ -101,121 +77,270 @@ function initQiLab() {
   const homePage = isHomePage();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 768;
-  const delays = getLoadDelay();
 
-  const loadPriority1 = async () => {
-    try {
-      const { CardTilt } = await import('./card-tilt.js');
+  // 初始化动效管理器
+  effectsManager.initialize();
+
+  // 1. 粒子系统（仅首页启用，非移动设备）
+  if (homePage && !prefersReducedMotion && !isMobile) {
+    // 使用 requestIdleCallback 延迟加载粒子效果，不影响页面加载
+    const loadParticles = () => {
+      import('./particles.js').then(({ MinimalParticles }) => {
+        try {
+          const screenWidth = window.innerWidth;
+          const particleCount = screenWidth < 1440 ? 80 : screenWidth < 2560 ? 100 : 120;
+          const particleOptions = {
+            count: particleCount,
+            colors: [
+              getCSSVar('--qi-brand-emerald', '#2E7D5C'),
+              getCSSVar('--qi-brand-mint', '#78B4A0'),
+              getCSSVar('--qi-brand-amber', '#E5A93C'),
+              getCSSVar('--qi-bg-base', '#F7F3EE'),
+            ],
+            maxSize: 4,
+            speed: 0.3,
+            linkDistance: 140,
+            linkOpacity: 0.1,
+            mouseRadius: 150,
+            mouseForce: 0.03,
+            glowSize: 10,
+            glowOpacity: 0.2,
+          };
+
+          if (particles && particles.canvas) {
+            particles.rebuild(particleOptions);
+          } else {
+            particles = new MinimalParticles('particles-canvas', particleOptions);
+            // 检查粒子系统是否成功创建
+            if (particles && particles.canvas && particles.ctx) {
+              // 注册粒子系统到动效管理器
+              effectsManager.registerEffect('particles', particles, {
+                group: 'background',
+                priority: 10,
+                active: true,
+              });
+              // 手动启动粒子系统
+              if (typeof particles.resume === 'function') {
+                particles.resume();
+              }
+              console.log('Particle system initialized successfully');
+            } else {
+              console.warn('Particles system failed to initialize: canvas or context not available');
+            }
+          }
+          cleanupFns.push(() => {
+            if (particles && typeof particles.destroy === 'function') {
+              particles.destroy();
+            }
+          });
+        } catch (error) {
+          console.error('Error initializing particle system:', error);
+        }
+      }).catch(error => {
+        console.error('Failed to load particle module:', error);
+      });
+    };
+
+    // 使用 requestIdleCallback 或 setTimeout 延迟加载
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(loadParticles, { timeout: 2000 });
+    } else {
+      setTimeout(loadParticles, 500);
+    }
+  }
+
+  // 2. 鼠标追踪光效（仅首页启用，非移动设备）
+  if (homePage && !prefersReducedMotion && !isMobile) {
+    import('./cursor-glow.js').then(({ CursorGlow }) => {
+      try {
+        const cursorGlow = new CursorGlow({
+          size: parseInt(getCSSVar('--qi-glow-size', '300')) || 300,
+          speed: parseFloat(getCSSVar('--qi-glow-speed', '0.05')) || 0.05,
+          blend: 'screen',
+        });
+        // 注册鼠标光效到动效管理器
+        effectsManager.registerEffect('cursor-glow', cursorGlow, {
+          group: 'cursor',
+          priority: 20,
+          active: true,
+        });
+        cleanupFns.push(() => cursorGlow.destroy());
+      } catch (error) {
+        console.error('Error initializing cursor glow:', error);
+      }
+    }).catch(error => {
+      console.error('Failed to load cursor-glow module:', error);
+    });
+  }
+
+  // 3. 背景艺术系统（非首页启用，非移动设备）
+  if (!homePage && !prefersReducedMotion && !isMobile) {
+    import('./background-art.js').then(({ BackgroundArt }) => {
+      try {
+        const screenWidth = window.innerWidth;
+        const artType = screenWidth < 1440 ? 'generative' : 'fluid';
+
+        const backgroundArt = new BackgroundArt('background-art-canvas', {
+          type: artType,
+          particleCount: screenWidth < 1440 ? 40 : 80,
+          speed: 0.2,
+          colors: {
+            emerald: getCSSVar('--qi-brand-emerald', '#2E7D5C'),
+            amber: getCSSVar('--qi-brand-amber', '#E5A93C'),
+            mint: getCSSVar('--qi-brand-mint', '#78B4A0'),
+          },
+        });
+
+        backgroundArt.init();
+        // 背景艺术系统内部已经使用了动效管理器
+        cleanupFns.push(() => backgroundArt.destroy());
+      } catch (error) {
+        console.error('Error initializing background art:', error);
+      }
+    }).catch(error => {
+      console.error('Failed to load background-art module:', error);
+    });
+  }
+
+  // 4. 卡片 3D 倾斜 + 光泽效果（非移动设备）
+  if (!isMobile) {
+    import('./card-tilt.js').then(({ CardTilt }) => {
       const cardTilt = new CardTilt(
         '.bento-card, .testimonial-card, .platform-card, .dash-card, .toolbox-category',
       );
+      // 注册卡片倾斜效果到动效管理器
+      effectsManager.registerEffect('card-tilt', cardTilt, {
+        group: 'interaction',
+        priority: 15,
+        active: true,
+      });
       cleanupFns.push(() => cardTilt.destroy());
-    } catch (err) {
-      console.error('[QiLab] Failed to initialize card tilt:', err);
-    }
-  };
+    });
+  }
 
-  const loadPriority2 = async () => {
-    if (!prefersReducedMotion) {
-      try {
-        const { initScrollParallax, cleanupScrollParallax } = await import('./scroll-parallax.js');
-        initScrollParallax();
-        cleanupFns.push(cleanupScrollParallax);
-      } catch (err) {
-        console.error('[QiLab] Failed to initialize scroll parallax:', err);
-      }
-    }
-    
-    initScrollReveal();
-    initScrollHandler(particles);
-    cleanupFns.push(cleanupScrollHandler);
-    initBackToTop();
-  };
+  // 5. 滚动视差光影（非移动设备）
+  if (!prefersReducedMotion && !isMobile) {
+    import('./scroll-parallax.js').then(({ initScrollParallax, cleanupScrollParallax }) => {
+      initScrollParallax();
+      cleanupFns.push(cleanupScrollParallax);
+    });
+  }
 
-  const loadPriority3 = async () => {
-    if (!homePage || prefersReducedMotion || isSlowConnection()) return;
-    
-    try {
-      const { MinimalParticles } = await import('./particles.js');
-      const particleOptions = getParticleOptions();
-      const canvas = document.getElementById('particles-canvas');
-      
-      if (canvas) {
-        particles = new MinimalParticles('particles-canvas', particleOptions);
-        cleanupFns.push(() => {
-          if (particles) {
-            particles.destroy();
-            particles = null;
-          }
-        });
-      }
-    } catch (err) {
-      console.error('[QiLab] Failed to initialize particles:', err);
-    }
-  };
+  // 6. 滚动显示动画
+  initScrollReveal();
 
-  const loadPriority4 = async () => {
-    if (!homePage || prefersReducedMotion || isMobile || isSlowConnection()) return;
-    
-    try {
-      const { CursorGlow } = await import('./cursor-glow.js');
-      const cs = getComputedStyle(document.documentElement);
-      cursorGlow = new CursorGlow({
-        size: parseInt(cs.getPropertyValue('--qi-glow-size').trim()) || 300,
-        speed: parseFloat(cs.getPropertyValue('--qi-glow-speed').trim()) || 0.05,
-        blend: 'screen',
+  // 7. 滚动处理（导航、粒子暂停）
+  initScrollHandler();
+  cleanupFns.push(cleanupScrollHandler);
+
+  // 8. 回到顶部
+  initBackToTop();
+
+  // 9. 交互增强效果（非移动设备）
+  if (!prefersReducedMotion && !isMobile) {
+    import('./interaction-enhancements.js').then(({ InteractionEnhancements }) => {
+      interactionEnhancements = new InteractionEnhancements();
+      // 注册交互增强效果到动效管理器
+      effectsManager.registerEffect('interaction-enhancements', interactionEnhancements, {
+        group: 'interaction',
+        priority: 5,
+        active: true,
       });
       cleanupFns.push(() => {
-        if (cursorGlow) {
-          cursorGlow.destroy();
-          cursorGlow = null;
-        }
+        // 清理交互增强效果的相关资源
       });
-    } catch (err) {
-      console.error('[QiLab] Failed to initialize cursor glow:', err);
-    }
-  };
-
-  loadPriority1();
-  
-  setTimeout(loadPriority2, delays.priority2);
-  
-  setTimeout(loadPriority3, delays.priority3);
-  
-  setTimeout(loadPriority4, delays.priority4);
-}
-
-function handleThemeChange() {
-  if (!particles) return;
-  
-  try {
-    const colors = getThemeColors();
-    particles.options.colors = [colors.emerald, colors.mint, colors.amber, colors.bgBase];
-    particles._parseColors();
-    particles._prerenderGlowTextures();
-  } catch (err) {
-    console.warn('[QiLab] Theme change error:', err);
+    });
   }
-  
-  const event = new Event('themechange');
-  document.dispatchEvent(event);
+
+  // 10. 物理环境与多模态感知系统 (仅非移动设备)
+  if (!isMobile) {
+    import('./environment-aware.js').then(({ EnvironmentAware }) => {
+      if (!envAware) {
+        envAware = new EnvironmentAware();
+        envAware.startUpdates();
+
+        // 热力学闭环: 将能量场持续注入运动学引擎
+        import('./kinematics-engine.js').then(({ kinematics }) => {
+          kinematics.setGlobalEnergy(envAware.globalEnergy);
+          envAware.onUpdate(() => {
+            kinematics.setGlobalEnergy(envAware.globalEnergy);
+          });
+        });
+
+        cleanupFns.push(() => {
+          envAware.stopUpdates();
+          envAware = null;
+        });
+      }
+    });
+
+    import('./multi-modal-feedback.js').then(({ MultiModalFeedback }) => {
+      if (!mmFeedback && !prefersReducedMotion) {
+        mmFeedback = new MultiModalFeedback();
+
+        // 初始化时开启音频和震动反馈 (需用户交互后生效)
+        mmFeedback.setEnabled(['audio', 'haptic'], true);
+        document.addEventListener(
+          'click',
+          () => {
+            // Browsers require a gesture to start AudioContext
+            if (mmFeedback.audioContext && mmFeedback.audioContext.state === 'suspended') {
+              mmFeedback.audioContext.resume();
+            }
+          },
+          { once: true },
+        );
+
+        // 绑定所有的可交互元素，进行物理与声学映射
+        const targetSelector = 'a, button, .bento-card, .float-card, .testimonial-card, .platform-card, .toolbox-category, h1, h2, h3, .article-tag, .search-result-item';
+
+        const interactiveElements = document.querySelectorAll(targetSelector);
+        mmFeedback.addFeedbackToElements(Array.from(interactiveElements));
+
+        const observer = new MutationObserver((mutations) => {
+          for (const mutation of mutations) {
+            if (mutation.addedNodes.length) {
+              mutation.addedNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                  const elements = node.querySelectorAll(targetSelector);
+                  if (node.matches && node.matches(targetSelector)) mmFeedback.addFeedbackToElement(node);
+                  elements.forEach(el => mmFeedback.addFeedbackToElement(el));
+                }
+              });
+            }
+          }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        cleanupFns.push(() => {
+          observer.disconnect();
+          mmFeedback.destroy();
+          mmFeedback = null;
+        });
+      }
+    });
+  }
 }
 
-document.addEventListener('themechange', handleThemeChange);
+// 使用防抖处理页面加载事件
+const debouncedInit = debounce(initQiLab, 100);
 
 document.addEventListener('astro:page-load', () => {
-  cleanup();
-  initQiLab();
+  // 清理所有旧的事件监听器和资源
+  cleanupFns.forEach((fn) => fn());
+  cleanupFns.length = 0;
+
+  // 销毁所有动效
+  effectsManager.destroy();
+
+  // 重置状态，重新初始化
+  initialized = false;
+  particles = null;
+  envAware = null;
+  mmFeedback = null;
+  interactionEnhancements = null;
+  
+  // 执行初始化
+  debouncedInit();
 });
-
-document.addEventListener('astro:before-preparation', () => {
-  cleanup();
-});
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initQiLab);
-} else {
-  initQiLab();
-}
-
-export { particles, isHomePage };
