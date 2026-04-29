@@ -13,26 +13,27 @@
   --qi-weight-semibold: 550;
   --qi-weight-bold: 650;
 
+  /* Text - WCAG AAA Optimized for Dark Mode (higher contrast) */
   --qi-text-inverse: #1e1b18;
   --qi-text-primary: #ffffff;
-  --qi-text-secondary: #d4cdc3;
-  --qi-text-tertiary: #b8b0a6;
-  --qi-text-muted: #9a9590;
+  --qi-text-secondary: #e8e3dd;
+  --qi-text-tertiary: #c8c3bd;
+  --qi-text-muted: #a8a29e;
   --qi-on-surface: #ffffff;
-  --qi-on-surface-secondary: #d4cdc3;
-  --qi-on-surface-muted: #a39c94;
-  --qi-on-surface-dim: #827c75;
+  --qi-on-surface-secondary: #e8e3dd;
+  --qi-on-surface-muted: #c8c3bd;
+  --qi-on-surface-dim: #a8a29e;
 
   /* Link Colors - WCAG AAA Compliant for Dark Mode */
-  --qi-link-default: #4ade80;
-  --qi-link-hover: #fbbf24;
-  --qi-link-visited: #34d399;
+  --qi-link-default: #6ee7b7;
+  --qi-link-hover: #fcd34d;
+  --qi-link-visited: #4ade80;
   --qi-link-focus: #22c55e;
 
   /* Brand Text Colors - Safe for text on dark backgrounds */
-  --qi-brand-emerald-text: #4ade80;
-  --qi-brand-amber-text: #fbbf24;
-  --qi-brand-mint-text: #34d399;
+  --qi-brand-emerald-text: #6ee7b7;
+  --qi-brand-amber-text: #fcd34d;
+  --qi-brand-mint-text: #4ade80;
 
   /* Always-Light tokens for use on dark backgrounds (Footer, Hero Cards, etc.) */
   --qi-on-dark-primary: #f7f3ee;
@@ -41,15 +42,15 @@
   --qi-on-dark-dim: #a8a29e;
 
   /* Border */
-  --qi-border-default: rgba(232, 227, 221, 0.12);
-  --qi-border-subtle: rgba(232, 227, 221, 0.08);
-  --qi-border-strong: rgba(232, 227, 221, 0.2);
+  --qi-border-default: rgba(232, 227, 221, 0.15);
+  --qi-border-subtle: rgba(232, 227, 221, 0.1);
+  --qi-border-strong: rgba(232, 227, 221, 0.25);
   --qi-border-inverse: rgba(30, 27, 24, 0.12);
 
   /* Opacity */
-  --qi-opacity-subtle: 0.08;
-  --qi-opacity-medium: 0.15;
-  --qi-opacity-strong: 0.25;
+  --qi-opacity-subtle: 0.1;
+  --qi-opacity-medium: 0.18;
+  --qi-opacity-strong: 0.28;
 
   /* Brand — Emerald */
   --qi-brand-emerald: #4ade80;
@@ -111,18 +112,18 @@
   --qi-ink-muted: #2d2924;
 
   /* Decoration */
-  --qi-deco-subtle: 0.1;
-  --qi-deco-visible: 0.18;
-  --qi-deco-medium: 0.28;
-  --qi-deco-strong: 0.35;
-  --qi-deco-ghost: 0.04;
+  --qi-deco-subtle: 0.08;
+  --qi-deco-visible: 0.15;
+  --qi-deco-medium: 0.25;
+  --qi-deco-strong: 0.32;
+  --qi-deco-ghost: 0.03;
 
   /* Glow */
-  --qi-glow-primary: rgba(74, 222, 153, 0.25);
-  --qi-glow-secondary: rgba(153, 246, 228, 0.2);
-  --qi-glow-accent: rgba(251, 191, 36, 0.2);
-  --qi-glow-highlight: rgba(255, 255, 255, 0.05);
-  --qi-card-glow-intensity: 0.15;
+  --qi-glow-primary: rgba(74, 222, 153, 0.3);
+  --qi-glow-secondary: rgba(153, 246, 228, 0.25);
+  --qi-glow-accent: rgba(251, 191, 36, 0.25);
+  --qi-glow-highlight: rgba(255, 255, 255, 0.06);
+  --qi-card-glow-intensity: 0.18;
 
   /* Base alpha */
   --qi-base-02: rgba(232, 227, 221, 0.04);
@@ -149,23 +150,23 @@
   --qi-inverse-12: rgba(30, 27, 24, 0.12);
 
   /* Shadow */
-  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-  --qi-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
-  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
-  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3);
-  --qi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(251, 191, 36, 0.15);
+  --qi-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --qi-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --qi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.28);
+  --qi-shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
+  --qi-shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.55), 0 8px 16px rgba(0, 0, 0, 0.35);
+  --qi-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --qi-shadow-hover-warm: 0 16px 32px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(251, 191, 36, 0.18);
   --qi-shadow-inset:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03);
+    inset 2px 2px 5px rgba(0, 0, 0, 0.65), inset -1px -1px 2px rgba(255, 255, 255, 0.04);
 
   /* Glass Morphism */
-  --qi-glass-bg: rgba(30, 27, 24, 0.7);
-  --qi-glass-bg-dark: rgba(18, 16, 16, 0.7);
-  --qi-glass-border: rgba(255, 255, 255, 0.1);
-  --qi-glass-border-dark: rgba(255, 255, 255, 0.05);
+  --qi-glass-bg: rgba(30, 27, 24, 0.75);
+  --qi-glass-bg-dark: rgba(18, 16, 16, 0.75);
+  --qi-glass-border: rgba(255, 255, 255, 0.12);
+  --qi-glass-border-dark: rgba(255, 255, 255, 0.06);
   --qi-glass-backdrop: blur(10px);
   --qi-glass-backdrop-heavy: blur(20px);
-  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --qi-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --qi-glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.55);
 }
