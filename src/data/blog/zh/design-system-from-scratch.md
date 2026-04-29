@@ -3,8 +3,9 @@ title: '从 0 到 1 构建设计系统：打造一致、可扩展的产品界面
 description: '详细介绍设计系统的构建过程，从设计令牌到组件库，帮助你建立一套完整、可维护的设计系统。'
 pubDate: 2026-04-30
 category: '设计系统'
+image: /images/blog/design-system-from-scratch-zh.svg
 tags: ['设计系统', '设计令牌', '组件库']
-heroImage: 'public\blog\design-system-from-scratch.png'
+heroImage: '/images/blog/design-system-from-scratch.svg'
 author: '祈研所'
 draft: false
 lang: zh
@@ -217,6 +218,7 @@ lang: zh
 ### 挑战 1：缺乏管理层支持
 
 **解决方案**：
+
 - 展示设计系统的业务价值
 - 从小规模试点开始，证明价值
 - 量化设计系统的ROI
@@ -224,6 +226,7 @@ lang: zh
 ### 挑战 2：团队采用率低
 
 **解决方案**：
+
 - 提供详细的文档和培训
 - 建立支持渠道
 - 激励团队使用设计系统
@@ -232,6 +235,7 @@ lang: zh
 ### 挑战 3：维护困难
 
 **解决方案**：
+
 - 建立清晰的更新流程
 - 自动化测试和构建
 - 定期审核和更新
@@ -240,6 +244,7 @@ lang: zh
 ### 挑战 4：设计与开发不一致
 
 **解决方案**：
+
 - 建立共享的设计令牌
 - 使用设计-开发协作工具
 - 定期同步会议

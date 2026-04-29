@@ -41,11 +41,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -122,11 +118,7 @@
 .bento-card--large__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
   z-index: 1;
 }
 
@@ -428,7 +420,15 @@
   animation: bentoCardFadeIn 0.6s ease forwards;
 }
 
-.bento-card:nth-child(1) { animation-delay: 0.1s; }
-.bento-card:nth-child(2) { animation-delay: 0.2s; }
-.bento-card:nth-child(3) { animation-delay: 0.3s; }
-.bento-card:nth-child(4) { animation-delay: 0.4s; }
+.bento-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.bento-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bento-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.bento-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
