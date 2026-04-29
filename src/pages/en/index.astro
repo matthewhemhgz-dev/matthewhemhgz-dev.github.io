@@ -8,7 +8,6 @@ import FeaturedSection from '../../components/sections/FeaturedSection.astro';
 import ToolboxSection from '../../components/sections/ToolboxSection.astro';
 import PlatformsSection from '../../components/sections/PlatformsSection.astro';
 import ResearchSection from '../../components/sections/ResearchSection.astro';
-import ProjectsSection from '../../components/sections/ProjectsSection.astro';
 import CtaSection from '../../components/sections/CtaSection.astro';
 import SectionDivider from '../../components/decorations/SectionDivider.astro';
 import { getCollection } from 'astro:content';
@@ -148,12 +147,6 @@ const platforms = [
     primaryBtn={{ text: 'Learn More', href: '/en/about' }}
     secondaryBtn={{ text: 'Browse Blog', href: '/en/blog' }}
     lang="en"
-    videoBackground={{
-      videoSrc: '/videos/hero-background.mp4',
-      posterSrc: '/images/hero-poster.jpg',
-      fallbackImageSrc: '/images/hero-fallback.jpg',
-      overlayOpacity: 0.5,
-    }}
   />
 
   <SectionDivider variant="dots" />
@@ -190,37 +183,30 @@ const platforms = [
 
   <SectionDivider variant="diamond" />
 
-  <ToolboxSection 
+  <ToolboxSection
     classList="qi-anim-scroll-reveal qi-anim-delay-300"
-    label="// TOOLBOX" 
-    title="Toolbox" 
-    categories={toolboxCategories} 
+    label="// TOOLBOX"
+    title="Toolbox"
+    categories={toolboxCategories}
   />
 
-  <PlatformsSection 
+  <PlatformsSection
     classList="qi-anim-scroll-reveal qi-anim-delay-400"
-    label="// PLATFORMS" 
-    title="Platform Matrix" 
-    platforms={platforms} 
+    label="// PLATFORMS"
+    title="Platform Matrix"
+    platforms={platforms}
   />
 
-  <ResearchSection 
+  <ResearchSection
     classList="qi-anim-scroll-reveal qi-anim-delay-500"
-    label="// METHODOLOGY" 
-    title="Research Methodology" 
-  />
-
-  <SectionDivider variant="diamond" />
-
-  <ProjectsSection 
-    classList="qi-anim-scroll-reveal qi-anim-delay-500"
-    locale="en" 
+    label="// METHODOLOGY"
+    title="Research Methodology"
   />
 
   <SectionDivider variant="arcs" />
 
   <CtaSection
-    classList="qi-anim-scroll-reveal qi-anim-delay-600"
+    class="qi-anim-scroll-reveal qi-anim-delay-600"
     label="// LET'S CONNECT"
     title="Let's Make Knowledge Truly Useful"
     description="Whether it's knowledge management exchange, AI workflows or project cooperation, feel free to contact us."

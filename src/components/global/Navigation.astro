@@ -17,14 +17,14 @@ const isEnglish = currentPath.startsWith('/en') || Astro.url.pathname.startsWith
 const navItems = [
   { label: isEnglish ? 'Home' : '首页', href: isEnglish ? '/en' : '/' },
   { label: isEnglish ? 'About' : '关于', href: isEnglish ? '/en/about' : '/about' },
+  { label: isEnglish ? 'Projects' : '项目', href: '/projects' },
   { label: isEnglish ? 'Blog' : '博客', href: isEnglish ? '/en/blog' : '/blog' },
-  { label: isEnglish ? 'Projects' : '项目', href: isEnglish ? '/en/projects' : '/projects' },
   { label: isEnglish ? 'Tags' : '标签', href: isEnglish ? '/en/tags' : '/tags' },
 ];
 ---
 
-<header class="nav-wrapper" transition:name="main-nav">
-  <nav class="nav qi-glass-nav" aria-label={isEnglish ? 'Main Navigation' : '主导航'}>
+<header class="nav-wrapper" transition:name="main-nav" style="z-index: var(--qi-z-nav);">
+  <nav class="nav qi-glass-nav" aria-label={isEnglish ? 'Main Navigation' : '主导航'} style="transition: all 0.3s ease;">
     <div class="nav-left">
       <BrandLogo variant="icon" size="sm" />
     </div>
@@ -52,7 +52,7 @@ const navItems = [
     </label>
     <div id="nav-status" class="sr-only" aria-live="polite"></div>
 
-    <ul id="nav-links" class="nav-links" role="menubar">
+    <ul id="nav-links" class="nav-links" role="menubar" aria-labelledby="nav-toggle" aria-hidden="true">
       {
         navItems.map((item) => (
           <li role="none">
@@ -118,22 +118,6 @@ const navItems = [
     </ul>
 
     <div class="nav-right">
-      <!-- RSS Feed -->
-      <a
-        href={isEnglish ? '/en/rss.xml' : '/rss.xml'}
-        class="nav-icon-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={isEnglish ? 'RSS Feed' : 'RSS 订阅'}
-        title={isEnglish ? 'RSS Feed' : 'RSS 订阅'}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 11a9 9 0 0 1 9 9"/>
-          <path d="M4 4a16 16 0 0 1 16 16"/>
-          <circle cx="5" cy="19" r="1"/>
-        </svg>
-      </a>
-
       <!-- Theme toggle -->
       <ThemeToggle />
 
@@ -159,11 +143,15 @@ const navItems = [
 
   const navToggle = document.getElementById('nav-toggle');
   const navStatus = document.getElementById('nav-status');
+  const navLinks = document.getElementById('nav-links');
   if (navToggle) {
     navToggle.addEventListener('change', () => {
       const isOpen = navToggle.checked;
       const isEn = document.documentElement.lang.startsWith('en');
       navToggle.setAttribute('aria-expanded', String(isOpen));
+      if (navLinks) {
+        navLinks.setAttribute('aria-hidden', String(!isOpen));
+      }
       if (navStatus) {
         navStatus.textContent = isOpen
           ? isEn
@@ -188,9 +176,13 @@ const navItems = [
     const closeBtn = document.querySelector('.nav-close-btn');
     closeBtn?.addEventListener('click', () => {
       const navToggle = document.getElementById('nav-toggle');
+      const navLinks = document.getElementById('nav-links');
       if (navToggle) {
         navToggle.checked = false;
         navToggle.setAttribute('aria-expanded', 'false');
+        if (navLinks) {
+          navLinks.setAttribute('aria-hidden', 'true');
+        }
         if (navStatus) {
           navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
         }
@@ -217,6 +209,7 @@ const navItems = [
           if (navToggle) {
             navToggle.checked = false;
             navToggle.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
             if (navStatus) {
               navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
             }
@@ -225,33 +218,19 @@ const navItems = [
       });
     }
 
-    // Scroll animation for navigation
+    // Scroll animation for navigation - 禁用nav-collapsed避免布局混乱
     const navWrapper = document.querySelector('.nav-wrapper');
-    const navToggle = document.getElementById('nav-toggle');
     let ticking = false;
 
     function updateNav() {
-      // 检查导航菜单是否打开，如果打开则不执行滚动动画
-      const isMenuOpen = navToggle?.checked || false;
-      if (isMenuOpen) {
-        ticking = false;
-        return;
-      }
-
       const scrollY = window.scrollY;
-      const isMobile = window.innerWidth <= 768;
-      
+
       if (scrollY > 100) {
-        // 移动端不添加 nav-collapsed 类，保持导航按钮始终可用
-        if (!isMobile) {
-          navWrapper?.classList.add('nav-collapsed');
-        }
         navWrapper?.classList.add('scrolled');
       } else {
-        navWrapper?.classList.remove('nav-collapsed');
         navWrapper?.classList.remove('scrolled');
       }
-      
+
       ticking = false;
     }
 
@@ -263,17 +242,5 @@ const navItems = [
     }
 
     window.addEventListener('scroll', requestTick);
-
-    // 窗口 resize 时重新检查是否需要 nav-collapsed 类
-    window.addEventListener('resize', () => {
-      const scrollY = window.scrollY;
-      const isMobile = window.innerWidth <= 768;
-      
-      if (isMobile) {
-        navWrapper?.classList.remove('nav-collapsed');
-      } else if (scrollY > 100) {
-        navWrapper?.classList.add('nav-collapsed');
-      }
-    });
   });
 </script>

@@ -9,23 +9,23 @@ const isEnglish = currentLocale === 'en';
 const labels = isEnglish
   ? {
       title: '404 - Page Not Found',
-      description: 'The page you are looking for does not exist.',
+      description: 'The page you are looking for does not exist or has been moved.',
       code: '404',
       heading: 'Page Not Found',
       message:
-        'Sorry, the page you are looking for does not exist or has been moved. Please check the URL or return to the home page.',
+        'Sorry, the page you are looking for does not exist or has been moved. Please check the URL for accuracy or return to the home page to explore more content.',
       backHome: 'Back to Home',
-      browseBlog: 'Browse Blog',
+      browseBlog: 'Explore Blog',
       hint: 'Tip: Try selecting a page from the navigation bar',
     }
   : {
       title: '404 - 页面未找到',
-      description: '您访问的页面不存在。',
+      description: '您访问的页面不存在或已被移动。',
       code: '404',
       heading: '页面未找到',
-      message: '抱歉，您访问的页面不存在或已被移除。请检查 URL 是否正确，或返回首页探索更多内容。',
+      message: '抱歉，您访问的页面不存在或已被移动。请检查 URL 是否正确，或返回首页探索更多内容。',
       backHome: '返回首页',
-      browseBlog: '浏览博客',
+      browseBlog: '探索博客',
       hint: '提示：试试从导航栏选择一个页面',
     };
 

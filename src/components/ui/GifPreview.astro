@@ -1,0 +1,226 @@
+---
+interface Props {
+  staticSrc: string;
+  gifSrc: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  trigger?: 'hover' | 'click' | 'visible';
+  classList?: string;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  staticSrc,
+  gifSrc,
+  alt,
+  width = 600,
+  height = 400,
+  trigger = 'hover',
+  classList = '',
+  loading = 'lazy',
+} = Astro.props;
+
+const gifId = `gif-preview-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class:list={['gif-preview', `gif-preview--${trigger}`, classList]}
+  data-gif-id={gifId}
+  data-trigger={trigger}
+>
+  <picture class="gif-preview-picture">
+    <source srcset={gifSrc} type="image/webp" />
+    <img
+      id={gifId}
+      class="gif-preview-image gif-preview-static"
+      src={staticSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding="async"
+    />
+  </picture>
+  
+  {trigger === 'click' && (
+    <button class="gif-play-button" aria-label="播放动画">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  )}
+  
+  <noscript>
+    <img
+      class="gif-preview-noscript"
+      src={gifSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      loading="lazy"
+    />
+  </noscript>
+</div>
+
+<style>
+  .gif-preview {
+    position: relative;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--qi-surface-sub);
+  }
+
+  .gif-preview-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gif-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--qi-transition-fast);
+  }
+
+  .gif-preview--hover:hover .gif-preview-static {
+    opacity: 0;
+  }
+
+  .gif-preview--hover:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--gif-src);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .gif-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all var(--qi-transition);
+  }
+
+  .gif-preview--click:hover .gif-play-button {
+    opacity: 1;
+  }
+
+  .gif-play-button:hover {
+    background: var(--qi-brand-emerald);
+    border-color: var(--qi-brand-emerald);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .gif-preview.playing .gif-play-button {
+    display: none;
+  }
+
+  .gif-preview-noscript {
+    display: none;
+  }
+
+  noscript .gif-preview-noscript {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gif-preview--hover:hover .gif-preview-static {
+      opacity: 1;
+    }
+    
+    .gif-preview--hover:hover::after {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReducedMotion) {
+    document.addEventListener('astro:page-load', () => {
+      const gifPreviews = document.querySelectorAll<HTMLDivElement>('.gif-preview');
+      
+      gifPreviews.forEach((container) => {
+        const trigger = container.dataset.trigger;
+        const img = container.querySelector<HTMLImageElement>('.gif-preview-static');
+        const gifSrc = container.querySelector<HTMLSourceElement>()?.srcset || '';
+        
+        if (!img || !gifSrc) return;
+        
+        if (trigger === 'hover') {
+          let loaded = false;
+          
+          container.addEventListener('mouseenter', () => {
+            if (!loaded) {
+              img.src = gifSrc;
+              loaded = true;
+            }
+          });
+          
+          container.addEventListener('mouseleave', () => {
+            img.src = img.dataset.static || img.src.replace(gifSrc, '');
+          });
+        }
+        
+        if (trigger === 'click') {
+          const button = container.querySelector<HTMLButtonElement>('.gif-play-button');
+          let playing = false;
+          
+          const togglePlay = () => {
+            if (playing) {
+              img.src = img.dataset.static || '';
+              container.classList.remove('playing');
+            } else {
+              img.src = gifSrc;
+              container.classList.add('playing');
+            }
+            playing = !playing;
+          };
+          
+          button?.addEventListener('click', togglePlay);
+          container.addEventListener('click', (e) => {
+            if (e.target === img) togglePlay();
+          });
+        }
+        
+        if (trigger === 'visible') {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  img.src = gifSrc;
+                } else {
+                  img.src = img.dataset.static || '';
+                }
+              });
+            },
+            { threshold: 0.5 }
+          );
+          
+          observer.observe(container);
+        }
+      });
+    });
+  }
+</script>

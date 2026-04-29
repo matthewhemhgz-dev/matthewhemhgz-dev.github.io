@@ -3,8 +3,9 @@ title: 'Building a Design System from Scratch: Creating Consistent, Scalable Pro
 description: 'A detailed guide to building a design system from design tokens to component libraries, helping you establish a complete, maintainable design system.'
 pubDate: 2026-04-30
 category: 'Design System'
+image: /images/blog/design-system-from-scratch-en.svg
 tags: ['Design System', 'Design Tokens', 'Component Library']
-heroImage: 'public\blog\design-system-from-scratch.png'
+heroImage: '/images/blog/design-system-from-scratch.svg'
 author: '祈研所'
 draft: false
 lang: en
@@ -217,6 +218,7 @@ A design system is a comprehensive system that includes design principles, compo
 ### Challenge 1: Lack of Management Support
 
 **Solutions**:
+
 - Demonstrate the business value of design systems
 - Start with small-scale pilots to prove value
 - Quantify the ROI of design systems
@@ -224,6 +226,7 @@ A design system is a comprehensive system that includes design principles, compo
 ### Challenge 2: Low Team Adoption
 
 **Solutions**:
+
 - Provide detailed documentation and training
 - Establish support channels
 - Incentivize teams to use the design system
@@ -232,6 +235,7 @@ A design system is a comprehensive system that includes design principles, compo
 ### Challenge 3: Maintenance Difficulties
 
 **Solutions**:
+
 - Establish clear update processes
 - Automate testing and building
 - Regularly review and update
@@ -240,6 +244,7 @@ A design system is a comprehensive system that includes design principles, compo
 ### Challenge 4: Design-Development Inconsistency
 
 **Solutions**:
+
 - Establish shared design tokens
 - Use design-development collaboration tools
 - Regular synchronization meetings

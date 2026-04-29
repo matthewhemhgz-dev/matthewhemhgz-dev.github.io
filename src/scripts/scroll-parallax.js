@@ -22,6 +22,36 @@ export function initScrollParallax() {
   const orbs = document.querySelectorAll('.hero-gradient-orb');
 
   let ticking = false;
+  const visibleCards = new Set();
+  const visibleOrbs = new Set();
+
+  // 使用 Intersection Observer 检测可见元素
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('hero-gradient-orb')) {
+            visibleOrbs.add(entry.target);
+          } else {
+            visibleCards.add(entry.target);
+          }
+        } else {
+          if (entry.target.classList.contains('hero-gradient-orb')) {
+            visibleOrbs.delete(entry.target);
+          } else {
+            visibleCards.delete(entry.target);
+          }
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '50px' },
+  );
+
+  // 存储 observer 到 window 对象，以便后续清理
+  window.scrollParallaxObserver = observer;
+
+  // 观察所有卡片和装饰元素
+  [...cards, ...orbs].forEach((el) => observer.observe(el));
 
   _onScroll = () => {
     if (!ticking) {
@@ -29,8 +59,8 @@ export function initScrollParallax() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
 
-        // 卡片光影效果：根据滚动位置计算光照角度
-        cards.forEach((card) => {
+        // 只对可见卡片应用光影效果
+        visibleCards.forEach((card) => {
           const rect = card.getBoundingClientRect();
           const centerY = rect.top + rect.height / 2;
           const viewCenter = windowHeight / 2;
@@ -46,8 +76,8 @@ export function initScrollParallax() {
           card.style.setProperty('--light-intensity', `${intensity}`);
         });
 
-        // 装饰元素视差
-        orbs.forEach((orb, i) => {
+        // 只对可见装饰元素应用视差
+        visibleOrbs.forEach((orb, i) => {
           const speed = 0.03 + i * 0.02;
           const y = scrollY * speed;
           orb.style.transform = `translateY(${y}px)`;
@@ -117,4 +147,10 @@ export function cleanupScrollParallax() {
     card.removeEventListener('touchend', onTouchEnd);
   }
   _cardTouchHandlers = [];
+
+  // 清理 Intersection Observer
+  if (window.scrollParallaxObserver) {
+    window.scrollParallaxObserver.disconnect();
+    window.scrollParallaxObserver = null;
+  }
 }

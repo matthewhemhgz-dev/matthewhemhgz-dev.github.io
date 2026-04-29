@@ -1,11 +1,13 @@
 # 祈研所项目优化 - 验证清单
 
 ## Task 1: 运行 Prettier 格式化
+
 - [x] 运行 `npm run format` 命令
 - [x] 运行 `npm run format:check` 无错误
 - [x] 所有代码文件格式统一
 
 ## Task 2: 修复 ESLint 未使用变量警告
+
 - [x] 修复 e2e/senior-audit-round3.spec.ts 中的未使用变量
 - [x] 运行 `npm run lint` 无警告
 - [x] 确认只修改了未使用变量，未修改其他代码

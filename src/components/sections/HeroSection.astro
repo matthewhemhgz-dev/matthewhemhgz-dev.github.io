@@ -1,6 +1,5 @@
 ---
 import HeroFloatCard from '../ui/HeroFloatCard.astro';
-import VideoBackground from '../ui/VideoBackground.astro';
 
 interface Props {
   titleLines: string[];
@@ -17,12 +16,6 @@ interface Props {
   primaryBtn?: { text: string; href: string };
   secondaryBtn?: { text: string; href: string };
   lang?: string;
-  videoBackground?: {
-    videoSrc: string;
-    posterSrc?: string;
-    fallbackImageSrc?: string;
-    overlayOpacity?: number;
-  };
 }
 
 const {
@@ -35,31 +28,16 @@ const {
   primaryBtn,
   secondaryBtn,
   lang = 'zh',
-  videoBackground,
 } = Astro.props;
 
 const trophyIcon =
   '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.09 7.26L18 7.64L13.55 11.42L14.82 17.18L10 14.27L5.18 17.18L6.45 11.42L2 7.64L7.91 7.26L10 2Z" fill="currentColor"/></svg>';
 ---
 
-<section class="hero-section" data-reveal>
-  {videoBackground && (
-    <VideoBackground
-      videoSrc={videoBackground.videoSrc}
-      posterSrc={videoBackground.posterSrc}
-      fallbackImageSrc={videoBackground.fallbackImageSrc}
-      overlayOpacity={videoBackground.overlayOpacity ?? 0.4}
-    />
-  )}
+<section class="hero-section" data-reveal aria-labelledby="hero-title-main">
   <div class="hero-bg-decoration" aria-hidden="true">
     <div class="hero-gradient-orb hero-gradient-orb--1"></div>
     <div class="hero-gradient-orb hero-gradient-orb--2"></div>
-    <div class="hero-ambient-glow"></div>
-    <div class="hero-rays"></div>
-    <div class="hero-beam hero-beam--amber"></div>
-    <div class="hero-beam hero-beam--mint"></div>
-    <div class="hero-grid-pattern"></div>
-    <div class="hero-dot-pattern"></div>
     <div class="hero-watermark" aria-hidden="true">{watermark}</div>
     <div class="hero-vignette"></div>
     <svg
@@ -95,11 +73,11 @@ const trophyIcon =
   </div>
   <div class="container hero-container">
     <div class="hero-content">
-      <div class="hero-badge hero-stagger hero-stagger--1">
-        <span class="badge-dot"></span>
+      <div class="hero-badge hero-stagger hero-stagger--1" role="status" aria-label={lang === 'zh' ? '网站状态' : 'Site status'}>
+        <span class="badge-dot" aria-hidden="true"></span>
         <span class="badge-text">{badgeText}</span>
       </div>
-      <h1 class="hero-title">
+      <h1 id="hero-title-main" class="hero-title">
         {
           titleLines.map((line, i) => (
             <span
@@ -115,13 +93,13 @@ const trophyIcon =
           ))
         }
       </h1>
-      <p class="hero-subtitle hero-fade-in">{subtitle}</p>
-      <div class="hero-actions hero-fade-in">
+      <p class="hero-subtitle hero-fade-in" aria-describedby="hero-subtitle-desc">{subtitle}</p>
+      <div class="hero-actions hero-fade-in" role="group" aria-label={lang === 'zh' ? '主要操作' : 'Primary actions'}>
         {
           primaryBtn && (
-            <a href={primaryBtn.href} class="btn btn-primary">
+            <a href={primaryBtn.href} class="btn btn-primary" aria-describedby="primary-btn-desc">
               <span>{primaryBtn.text}</span>
-              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
                   d="M3 8h10m0 0L9 4m4 4L9 12"
                   stroke="currentColor"
@@ -141,16 +119,16 @@ const trophyIcon =
           )
         }
       </div>
-      <div class="hero-stats hero-fade-in" role="status" aria-label={lang === 'zh' ? '网站统计数据' : 'Site statistics'}>
+      <div class="hero-stats hero-fade-in" role="region" aria-label={lang === 'zh' ? '网站统计' : 'Site statistics'}>
         {
           stats.map((stat, i) => (
             <>
               {i > 0 && <div class="hero-stat-divider" aria-hidden="true" />}
-              <div class="hero-stat" role="group" aria-label={stat.label}>
+              <div class="hero-stat" aria-label={stat.label}>
                 <span
                   class:list={['hero-stat-value', stat.isText && 'hero-stat-text']}
                   data-count={stat.dataCount}
-                  aria-label={stat.isText ? stat.value : `${stat.value} ${stat.label}`}
+                  aria-label={stat.value}
                 >
                   {stat.isText ? stat.value : '0'}
                 </span>
@@ -167,8 +145,10 @@ const trophyIcon =
         <HeroFloatCard
           type="insight"
           icon={trophyIcon}
-          label={lang === 'zh' ? '祈研所' : 'QiLab'}
-          value={lang === 'zh' ? '知识管理与技术实践' : 'Knowledge Management & Tech Practice'}
+          label={lang === 'zh' ? '最新洞察' : 'Latest Insight'}
+          value={lang === 'zh'
+            ? '在 AI 可以生成一切的时代，人类的判断力反而更加珍贵'
+            : 'When AI can generate anything, human judgment becomes the most precious asset'}
           color="emerald"
           ariaHidden={true}
         />

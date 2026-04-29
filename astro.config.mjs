@@ -4,7 +4,6 @@ import pagefind from 'astro-pagefind';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import astroPWA from '@vite-pwa/astro';
-import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   content: {
@@ -19,8 +18,7 @@ export default defineConfig({
     assets: '_astro',
     cache: true,
     format: 'directory',
-    inlineStylesheets: 'never',
-    assetsPrefix: '/',
+    inlineStylesheets: 'auto',
   },
   image: {
     service: {
@@ -29,27 +27,17 @@ export default defineConfig({
     formats: ['avif', 'webp', 'jpeg'],
     quality: 80,
     placeholder: 'blur',
-    minWidth: 64,
-    maxWidth: 2048,
-    minHeight: 64,
-    maxHeight: 2048,
   },
   markdown: {
     syntaxHighlight: {
       excludeLangs: ['mermaid'],
     },
-    gfm: true,
   },
   i18n: {
     defaultLocale: 'zh',
     locales: ['zh', 'en'],
     routing: {
       prefixDefaultLocale: false,
-    },
-  },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   integrations: [
@@ -79,12 +67,12 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\//i,
@@ -93,12 +81,12 @@ export default defineConfig({
               cacheName: 'google-fonts-static-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/api\.qrserver\.com\//i,
@@ -107,19 +95,25 @@ export default defineConfig({
               cacheName: 'qr-code-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // <== 7 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          }
+                statuses: [0, 200],
+              },
+            },
+          },
         ],
         cleanupOutdatedCaches: true,
         skipWaiting: true,
-        clientsClaim: true
+        clientsClaim: true,
       },
-      includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.svg', 'images/logo.png', 'images/logo.svg'],
+      includeAssets: [
+        'favicon.ico',
+        'robots.txt',
+        'icons/*.svg',
+        'images/logo.png',
+        'images/logo.svg',
+      ],
       manifest: {
         name: '祈研所 (Qi-Lab)',
         short_name: 'Qi-Lab',
@@ -132,16 +126,16 @@ export default defineConfig({
             src: 'icons/pwa-192x192.svg',
             sizes: '192x192',
             type: 'image/svg+xml',
-            purpose: 'any maskable'
+            purpose: 'any maskable',
           },
           {
             src: 'icons/pwa-512x512.svg',
             sizes: '512x512',
             type: 'image/svg+xml',
-            purpose: 'any maskable'
-          }
-        ]
-      }
+            purpose: 'any maskable',
+          },
+        ],
+      },
     }),
   ],
   vite: {
@@ -150,41 +144,17 @@ export default defineConfig({
       assetsInlineLimit: 4096,
       rollupOptions: {
         external: ['/pagefind/pagefind.js'],
-        output: {
-          manualChunks: (id) => {
-            if (id.includes('node_modules')) {
-              if (id.includes('sharp')) return 'vendor-sharp';
-              if (id.includes('astro')) return 'vendor-astro';
-              return 'vendor';
-            }
-            if (id.includes('/src/scripts/')) {
-              if (id.includes('particles')) return 'chunk-particles';
-              if (id.includes('cursor-glow')) return 'chunk-cursor-glow';
-              if (id.includes('card-tilt')) return 'chunk-card-tilt';
-            }
-            if (id.includes('/src/components/global/')) {
-              if (id.includes('SearchModal')) return 'chunk-search-modal';
-              if (id.includes('ParticlesCanvas')) return 'chunk-particles-canvas';
-            }
-            return undefined;
-          },
-        },
       },
-      chunkSizeWarningLimit: 500,
+      chunkSizeWarningLimit: 1000,
       cssCodeSplit: true,
       dynamicImportVars: true,
       minify: 'esbuild',
-      target: ['es2020', 'chrome90', 'firefox90', 'safari15', 'edge90'],
+      target: 'es2015',
       sourcemap: false,
-      reportCompressedSize: true,
     },
     optimizeDeps: {
       include: [],
-      exclude: ['pagefind'],
-      esbuildOptions: {
-        target: 'es2020',
-        treeShaking: true,
-      },
+      exclude: [],
     },
     ssr: {
       noExternal: [],
@@ -194,10 +164,7 @@ export default defineConfig({
         'X-Frame-Options': 'DENY',
         'X-Content-Type-Options': 'nosniff',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
-        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-        'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
       },
     },
-    plugins: [],
   },
 });

@@ -5,126 +5,46 @@ import SectionHeader from '../components/ui/SectionHeader.astro';
 import Divider from '../components/global/Divider.astro';
 ---
 
-<BaseLayout title="关于 | 祈研所" description="了解祈研所的品牌故事、理念与联系方式。">
+<BaseLayout title="关于 | 祈研所" description="了解祈研所的品牌故事、核心理念与联系方式。">
   <div class="about-page">
     <div class="container">
       <!-- Page Hero -->
       <section class="page-hero" data-reveal>
-        <span class="page-label">// ABOUT</span>
+        <span class="page-label">ABOUT</span>
         <h1 class="page-title">关于祈研所</h1>
-        <p class="page-subtitle">一个关于技术、设计与创造力的个人品牌</p>
+        <p class="page-subtitle">连接理论与实践的知识工程实验室</p>
       </section>
 
       <Divider />
 
       <!-- Brand Story -->
       <section class="about-section" data-reveal>
-        <SectionHeader label="// STORY" title="品牌故事" />
+        <SectionHeader label="STORY" title="品牌故事" />
         <div class="about-prose">
           <p>
-            祈研所（QiLab）是我的数字档案室。名字中的「祈」代表对系统化整理的执着追求，「研」代表对技术深度的严谨探索。在信息过载的时代，我相信结构化的知识才是真正的力量。这里不卖焦虑、不割韭菜，只记录真实踩过的坑和验证过的经验。
+            祈研所（QiLab）是一个专注于知识工程的研究与实践平台。名字中的「祈」象征对系统化知识整理的执着追求，「研」代表对技术深度的严谨探索。在信息过载的时代，我们坚信系统化的知识管理是应对复杂挑战的核心能力。这里不贩卖焦虑、不追逐流量，只分享真实验证过的经验与洞见。
           </p>
           <p>
-            我专注于知识管理、项目管理、IT/AI 技巧和前沿探索四个交汇领域。在日常实践中，我使用
-            Obsidian 构建基于 Bloom 六层认知模型的知识图谱，用 Markdown + Git
-            维护单点真理的文档体系，用 AI Agent 驱动开发与内容生产流水线。每一个分享都经过实际使用验证。
+            我们专注于知识管理、项目管理、IT/AI 技术与前沿趋势四个核心领域。在日常实践中，我们使用
+            Obsidian 构建基于 Bloom 六层认知模型的知识图谱，通过 Markdown + Git
+            维护单点真理的文档体系，借助 AI Agent（Superpowers +
+            OpenClaw）驱动开发与内容生产的智能流水线。每一篇内容、每一个工具推荐，都经过严格的实际使用验证。
           </p>
           <p>
-            作为一名高级信息系统项目管理师，持有 PMP、ITIL、CCNP 等 7
-            张硬核认证，我深知「囤积不是管理，选择慢下来本身就是一种抵抗」。从 SystemPM
-            的零新功能重构，到 StockAAssist
-            的数据管道重建，到祈研所知识库的从零搭建——每一次都是对「系统化根治而非打补丁」这一工程哲学的实践。
+            作为拥有 PMP、ITIL、CCNP 等 7
+            项专业认证的高级信息系统项目管理师，我们深刻理解「囤积不是管理，选择慢下来本身就是一种抵抗」。从
+            SystemPM 的零新功能重构，到 StockAAssist
+            的数据管道重建，再到祈研所知识库的从零搭建——每一次实践都是对「系统化根治而非打补丁」这一工程哲学的践行。
           </p>
-        </div>
-      </section>
-
-      <Divider />
-
-      <!-- History & Vision -->
-      <section class="about-section" data-reveal>
-        <SectionHeader label="// JOURNEY" title="品牌历程与愿景" />
-        <div class="history-vision">
-          <div class="history-card">
-            <h3 class="history-title">📅 品牌历程</h3>
-            <div class="timeline">
-              <div class="timeline-item">
-                <span class="timeline-year">2024</span>
-                <h4 class="timeline-event">祈研所诞生</h4>
-                <p class="timeline-desc">从一个个人知识管理的想法开始，逐步构建起完整的网站和内容体系</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-year">2024</span>
-                <h4 class="timeline-event">设计系统成型</h4>
-                <p class="timeline-desc">从零构建 Qi-Lab 视觉设计系统，确立燕麦灰、祖母绿、琥珀金的品牌色调</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-year">2025</span>
-                <h4 class="timeline-event">AI 工作流整合</h4>
-                <p class="timeline-desc">深度整合 AI 技术到内容生产和开发流程中，提升效率和质量</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-year">未来</span>
-                <h4 class="timeline-event">持续进化</h4>
-                <p class="timeline-desc">保持对前沿技术的关注，持续完善知识体系，赋能更多创造者</p>
-              </div>
-            </div>
-          </div>
-          <div class="vision-card">
-            <h3 class="vision-title">🚀 愿景使命</h3>
-            <div class="vision-content">
-              <div class="vision-item">
-                <h4 class="vision-item-title">使命</h4>
-                <p class="vision-item-desc">让知识更有力量，让创造更有方向</p>
-              </div>
-              <div class="vision-item">
-                <h4 class="vision-item-title">愿景</h4>
-                <p class="vision-item-desc">成为技术与创意交汇的枢纽，帮助人们构建系统化的知识体系</p>
-              </div>
-              <div class="vision-item">
-                <h4 class="vision-item-title">承诺</h4>
-                <p class="vision-item-desc">只分享真实验证的经验，不制造焦虑，不追求流量捷径</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      <!-- Core Values -->
-      <section class="about-section" data-reveal>
-        <SectionHeader label="// VALUES" title="核心价值观" />
-        <div class="values-grid">
-          <div class="value-card">
-            <div class="value-icon">🧠</div>
-            <h3 class="value-title">系统化思维</h3>
-            <p class="value-desc">拒绝头痛医头的补丁思维，追求从根因出发的系统性解决方案</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">📝</div>
-            <h3 class="value-title">真实验证</h3>
-            <p class="value-desc">每一个工具推荐都经过实际使用，每一个技术观点都来自真实项目</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🌱</div>
-            <h3 class="value-title">长期主义</h3>
-            <p class="value-desc">慢即是快，在知识积累和能力提升的道路上保持耐心和坚持</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🎨</div>
-            <h3 class="value-title">工程美学</h3>
-            <p class="value-desc">代码和设计不仅要能用，更要优雅、可维护、充满美感</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">🤖</div>
-            <h3 class="value-title">人机协作</h3>
-            <p class="value-desc">拥抱 AI 技术，但坚持人类本体价值，发挥创造力和判断力</p>
-          </div>
-          <div class="value-card">
-            <div class="value-icon">💡</div>
-            <h3 class="value-title">开放分享</h3>
-            <p class="value-desc">知识需要流动，经验值得分享，一起在成长的道路上同行</p>
-          </div>
+          <p>
+            <strong>发展历程：</strong>
+          </p>
+          <ul>
+            <li><strong>2023年</strong>：祈研所成立，开始系统化研究知识管理体系</li>
+            <li><strong>2024年</strong>：建立基于 Obsidian 的知识图谱系统，发布系列研究文章</li>
+            <li><strong>2025年</strong>：引入 AI Agent 技术，构建智能知识管理工作流</li>
+            <li><strong>2026年</strong>：扩展内容分发平台，建立完整的知识生态系统</li>
+          </ul>
         </div>
       </section>
 
@@ -132,86 +52,51 @@ import Divider from '../components/global/Divider.astro';
 
       <!-- Philosophy -->
       <section class="about-section" data-reveal>
-        <SectionHeader label="// PHILOSOPHY" title="设计理念" />
+        <SectionHeader label="PHILOSOPHY" title="核心理念" />
         <div class="philosophy-grid">
           <div class="philosophy-card">
             <span class="philosophy-number">01</span>
-            <h3 class="philosophy-title">Qi-Lab 视觉哲学</h3>
+            <h3 class="philosophy-title">知识工程实验室</h3>
             <p class="philosophy-desc">
-              为深夜书桌前的工作者设计的视觉哲学。燕麦灰底色如同温暖的纸张，祖母绿光标闪烁着理性的光芒，琥珀金台灯投下温暖的陪伴。核心隐喻：一间深夜亮着台灯的书房。追求清透、舒适、有呼吸感的视觉环境，用低认知负载的设计冲销高密度信息的脑力消耗。
+              为深度思考者设计的知识空间。我们以「深夜书房」为核心隐喻，燕麦灰底色如同温暖的纸张，祖母绿光标闪烁着理性的光芒，琥珀金元素传递着专业与温度。我们追求清透、舒适、有呼吸感的视觉环境，通过低认知负载的设计减轻高密度信息带来的脑力消耗。
+            </p>
+            <p class="philosophy-desc">
+              我们相信，良好的知识环境是深度思考的前提。通过精心设计的视觉系统和交互体验，我们创造一个能够让思想自由流动的空间，让每一位访问者都能沉浸在知识的海洋中。
             </p>
           </div>
           <div class="philosophy-card">
             <span class="philosophy-number">02</span>
-            <h3 class="philosophy-title">工程美学与功能隔离</h3>
+            <h3 class="philosophy-title">工程美学与系统化表达</h3>
             <p class="philosophy-desc">
-              代码不仅仅是功能的实现，更是一种系统化的表达。CSS 设计令牌构建完整的 Qi-Lab
-              视觉体系，字体严格三分（宋体标题→书卷气、无衬线正文→清晰度、等宽代码→极客感），Bento
+              我们相信代码不仅是功能的实现，更是一种系统化的表达。通过 CSS
+              设计令牌构建完整的视觉体系，字体严格遵循三分原则（宋体标题体现书卷气、无衬线正文确保清晰度、等宽代码展现极客感），Bento
               Grid 24px 间距保证空间秩序。可读性、可维护性与美学，三者缺一不可。
+            </p>
+            <p class="philosophy-desc">
+              我们追求技术与艺术的完美结合，通过系统化的设计方法，创造出既美观又实用的产品。每一行代码、每一个设计元素都经过精心考量，确保整体的一致性和专业性。
             </p>
           </div>
           <div class="philosophy-card">
             <span class="philosophy-number">03</span>
             <h3 class="philosophy-title">长期主义与真实验证</h3>
             <p class="philosophy-desc">
-              宁可走 0-100
-              粉的死亡谷，也不售卖焦虑。每一个工具推荐都经过实际使用验证，每一个技术观点都来自真实项目踩坑。坚持人类本体价值——在
+              我们坚持长期主义，宁可深耕细作也不追逐短期流量。每一个工具推荐都经过实际使用验证，每一个技术观点都来自真实项目经验。在
               AI
-              可以生成一切的时代，人类的思考、判断和创造力反而更加珍贵。每一次分享，都是对真实存在的证明。
+              可以生成一切的时代，我们更加强调人类的思考、判断和创造力的价值。每一次分享，都是对真实知识价值的证明。
+            </p>
+            <p class="philosophy-desc">
+              我们相信，真正有价值的知识来自于长期的积累和实践。在信息爆炸的时代，我们致力于筛选和验证有价值的信息，为用户提供经过深思熟虑的知识和见解。
             </p>
           </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      <!-- Tech Stack -->
-      <section class="about-section" data-reveal>
-        <SectionHeader label="// TECH" title="技术栈" />
-        <div class="tech-stack">
-          <div class="tech-category">
-            <h3 class="tech-category-title">前端开发</h3>
-            <div class="tech-tags">
-              <span class="tech-tag">Astro</span>
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">CSS Custom Properties</span>
-              <span class="tech-tag">Tailwind CSS</span>
-              <span class="tech-tag">PWA</span>
-            </div>
-          </div>
-          <div class="tech-category">
-            <h3 class="tech-category-title">知识管理</h3>
-            <div class="tech-tags">
-              <span class="tech-tag">Obsidian</span>
-              <span class="tech-tag">Notion</span>
-              <span class="tech-tag">Markdown</span>
-              <span class="tech-tag">Git</span>
-              <span class="tech-tag">Neo4j</span>
-              <span class="tech-tag">D3.js</span>
-            </div>
-          </div>
-          <div class="tech-category">
-            <h3 class="tech-category-title">AI 与自动化</h3>
-            <div class="tech-tags">
-              <span class="tech-tag">Claude API</span>
-              <span class="tech-tag">AI Agents</span>
-              <span class="tech-tag">Superpowers</span>
-              <span class="tech-tag">OpenClaw</span>
-              <span class="tech-tag">RAG</span>
-              <span class="tech-tag">Prompt Engineering</span>
-            </div>
-          </div>
-          <div class="tech-category">
-            <h3 class="tech-category-title">项目管理</h3>
-            <div class="tech-tags">
-              <span class="tech-tag">PMP</span>
-              <span class="tech-tag">ITIL</span>
-              <span class="tech-tag">SystemPM</span>
-              <span class="tech-tag">敏捷开发</span>
-              <span class="tech-tag">DevOps</span>
-              <span class="tech-tag">数据驱动</span>
-            </div>
+          <div class="philosophy-card">
+            <span class="philosophy-number">04</span>
+            <h3 class="philosophy-title">开放合作与知识共享</h3>
+            <p class="philosophy-desc">
+              我们相信知识的价值在于分享和传播。通过开放的态度和合作精神，我们与社区共同成长，推动知识管理领域的发展。我们欢迎不同背景的专业人士加入我们的讨论，共同探索知识管理的前沿。
+            </p>
+            <p class="philosophy-desc">
+              我们致力于构建一个开放、包容的知识生态系统，通过开源项目、技术分享和社区合作，让更多人受益于系统化的知识管理方法。
+            </p>
           </div>
         </div>
       </section>
@@ -220,9 +105,12 @@ import Divider from '../components/global/Divider.astro';
 
       <!-- Contact CTA -->
       <section class="about-section" data-reveal>
-        <SectionHeader label="// CONTACT" title="取得联系" />
+        <SectionHeader label="CONTACT" title="联系我们" />
         <div class="contact-cta">
-          <p class="cta-text">无论是知识管理交流、AI 工作流探讨还是项目合作，欢迎随时联系。</p>
+          <p class="cta-text">
+            无论您是寻求知识管理解决方案、AI
+            工作流优化建议，还是希望开展项目合作，我们都期待与您深入交流。
+          </p>
           <div class="cta-links">
             <a href="mailto:matthewhemhgz@gmail.com" class="cta-link">
               <span class="cta-label">Email</span>
@@ -232,11 +120,19 @@ import Divider from '../components/global/Divider.astro';
               <span class="cta-label">WeChat</span>
               <span class="cta-value">祈研所或 QiLab</span>
             </div>
-            <a href="https://github.com/matthewhemhgz-dev" target="_blank" rel="noopener noreferrer" class="cta-link">
+            <a href="https://github.com/matthewhemhgz-dev" class="cta-link" target="_blank" rel="noopener noreferrer">
               <span class="cta-label">GitHub</span>
-              <span class="cta-value">matthewhemhgz-dev</span>
+              <span class="cta-value">@matthewhemhgz-dev</span>
             </a>
           </div>
+          <h3 class="cta-subtitle">合作方式</h3>
+          <ul class="cta-cooperation">
+            <li><strong>知识管理咨询</strong>：为企业和个人提供知识管理体系建设方案</li>
+            <li><strong>AI 工作流优化</strong>：帮助组织构建智能知识管理工作流</li>
+            <li><strong>技术培训</strong>：提供 Obsidian、Markdown、Git 等工具的培训</li>
+            <li><strong>项目合作</strong>：与企业和开发者合作开发知识管理相关项目</li>
+            <li><strong>内容创作</strong>：为企业和媒体提供专业的知识管理内容</li>
+          </ul>
           <a href="/#contact" class="cta-btn">查看完整联系方式</a>
         </div>
       </section>

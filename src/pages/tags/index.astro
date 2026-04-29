@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Divider from '../../components/global/Divider.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/pages/tags.css';
 
@@ -8,42 +9,65 @@ const allPosts = (
   await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh')
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const tagCounts = allPosts.flatMap(post => post.data.tags).reduce((acc, tag) => {
-  acc[tag] = (acc[tag] || 0) + 1;
+// Calculate tag counts
+const tagCounts: Record<string, number> = allPosts
+  .flatMap((post) => post.data.tags)
+  .reduce(
+    (acc: Record<string, number>, tag) => {
+      acc[tag] = (acc[tag] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
+
+// Tag categories
+const tagCategories = {
+  '知识管理': ['知识管理', 'PKM', 'Obsidian', 'Zettelkasten', '笔记方法', '知识图谱', '信息管理'],
+  'AI 技术': ['AI', '大模型', 'LLM', 'Agent', '人工智能', '机器学习', '深度学习'],
+  '前端开发': ['前端', 'JavaScript', 'CSS', 'Astro', 'React', 'TypeScript', 'Web开发'],
+  '项目管理': ['项目管理', 'PMP', '敏捷', 'Scrum', '看板', '时间管理', '团队协作'],
+  '工具推荐': ['工具', '效率工具', '生产力', '软件推荐', '工作流', '自动化'],
+  '其他': []
+};
+
+// Organize tags into categories
+const organizedTags = Object.entries(tagCategories).reduce((acc, [category, categoryTags]) => {
+  const tags = Object.entries(tagCounts)
+    .filter(([tag]) => categoryTags.includes(tag))
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+  
+  if (tags.length > 0) {
+    acc[category] = tags;
+  }
   return acc;
-}, {});
+}, {} as Record<string, Array<{ tag: string; count: number }>>);
 
-const sortedTagsByPopularity = Object.entries(tagCounts)
-  .sort(([tagA, countA], [tagB, countB]) => {
-    if (countB !== countA) return countB - countA;
-    return tagA.localeCompare(tagB, 'zh');
-  })
-  .map(([tag, count]) => ({ tag, count }));
+// Add remaining tags to '其他' category
+const categorizedTags = new Set(Object.values(tagCategories).flat());
+const remainingTags = Object.entries(tagCounts)
+  .filter(([tag]) => !categorizedTags.has(tag))
+  .map(([tag, count]) => ({ tag, count }))
+  .sort((a, b) => b.count - a.count);
 
-const sortedTagsByAlphabet = Object.entries(tagCounts)
-  .sort(([tagA], [tagB]) => tagA.localeCompare(tagB, 'zh'))
-  .map(([tag, count]) => ({ tag, count }));
-
-const counts = sortedTagsByPopularity.map(item => item.count);
-const minCount = counts.length > 0 ? Math.min(...counts) : 1;
-const maxCount = counts.length > 0 ? Math.max(...counts) : 1;
-
-function getTagSizeClass(count) {
-  const ratio = (count - minCount) / (maxCount - minCount);
-  if (ratio > 0.8) return 'tag-size-xl';
-  if (ratio > 0.5) return 'tag-size-lg';
-  if (ratio > 0.2) return 'tag-size-md';
-  return 'tag-size-sm';
+if (remainingTags.length > 0) {
+  organizedTags['其他'] = remainingTags;
 }
 
-function getHotTagClass(count, index) {
-  if (count >= maxCount * 0.7 && index < 5) return 'tag-hot';
-  return '';
+// Calculate min/max counts for size scaling
+const allCounts = Object.values(organizedTags).flat().map(item => item.count);
+const minCount = Math.min(...allCounts);
+const maxCount = Math.max(...allCounts);
+
+// Function to calculate font size based on count
+function getFontSize(count: number) {
+  if (maxCount === minCount) return 1;
+  return 0.8 + ((count - minCount) / (maxCount - minCount)) * 0.6; // Range from 0.8 to 1.4
 }
 
-const totalTags = sortedTagsByPopularity.length;
-const totalArticles = allPosts.length;
-const avgArticlesPerTag = totalTags > 0 ? Math.round(totalArticles / totalTags) : 0;
+// Get current filter from URL
+const url = new URL(Astro.request.url);
+const selectedCategory = url.searchParams.get('category') || '';
 ---
 
 <BaseLayout
@@ -51,96 +75,74 @@ const avgArticlesPerTag = totalTags > 0 ? Math.round(totalArticles / totalTags) 
   description="祈研所所有内容标签 — 探索 AI、知识管理、前端开发等主题的深度文章"
 >
   <div class="container tags-page">
-    <h1 class="sr-only">标签</h1>
-    
-    {totalTags > 0 && (
-      <section class="tags-stats-section" data-reveal>
-        <div class="tags-stats-grid">
-          <div class="tags-stat-card">
-            <div class="tags-stat-icon">📚</div>
-            <div class="tags-stat-number">{totalTags}</div>
-            <div class="tags-stat-label">标签总数</div>
-          </div>
-          <div class="tags-stat-card">
-            <div class="tags-stat-icon">📝</div>
-            <div class="tags-stat-number">{totalArticles}</div>
-            <div class="tags-stat-label">文章总数</div>
-          </div>
-          <div class="tags-stat-card">
-            <div class="tags-stat-icon">📊</div>
-            <div class="tags-stat-number">{avgArticlesPerTag}</div>
-            <div class="tags-stat-label">平均每标签</div>
-          </div>
-        </div>
-      </section>
-    )}
-
-    <section class="tags-cloud-section" data-reveal>
-      <SectionHeader label="// TAGS" title="标签云" />
-      {totalTags > 0 ? (
-        <>
-          <div class="tags-cloud-controls">
-            <button class="tags-sort-btn active" data-sort="popularity">
-              <span class="tags-sort-icon">🔥</span>
-              按热度
-            </button>
-            <button class="tags-sort-btn" data-sort="alphabet">
-              <span class="tags-sort-icon">📖</span>
-              按字母
-            </button>
-          </div>
-          
-          <div class="tags-cloud-wrapper">
-            <div class="tags-cloud tags-cloud-popularity">
-              {sortedTagsByPopularity.map(({ tag, count }, index) => (
-                <a 
-                  href={`/tags/${tag}/`} 
-                  class={`tag-link ${getTagSizeClass(count)} ${getHotTagClass(count, index)}`}
-                  title={`${count} 篇文章`}
-                  aria-label={`标签 ${tag}，共 ${count} 篇文章`}
-                >
-                  <span class="tag-text">#{tag}</span>
-                  <span class="tag-count-badge" aria-hidden="true">{count}</span>
-                </a>
-              ))}
-            </div>
-            
-            <div class="tags-cloud tags-cloud-alphabet hidden">
-              {sortedTagsByAlphabet.map(({ tag, count }) => (
-                <a 
-                  href={`/tags/${tag}/`} 
-                  class={`tag-link ${getTagSizeClass(count)}`}
-                  title={`${count} 篇文章`}
-                  aria-label={`标签 ${tag}，共 ${count} 篇文章`}
-                >
-                  <span class="tag-text">#{tag}</span>
-                  <span class="tag-count-badge" aria-hidden="true">{count}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </>
-      ) : (
-        <div class="empty-state">
-          <div class="empty-icon">🏷️</div>
-          <p class="empty-text">暂无标签，即将上线...</p>
-        </div>
-      )}
+    <!-- Page Hero -->
+    <section class="page-hero" data-reveal>
+      <span class="page-label">TAGS</span>
+      <h1 class="page-title">标签</h1>
+      <p class="page-subtitle">探索 AI、知识管理、前端开发等主题的深度文章</p>
     </section>
 
-    {totalArticles > 0 && (
-      <section class="tags-posts-section" data-reveal>
-        <SectionHeader label="// RECENT" title="最新文章" />
-        <div class="tags-posts-grid">
-          {allPosts.slice(0, 6).map((post) => (
+    <Divider />
+
+    <!-- Category Filter -->
+    <section class="filter-section" data-reveal>
+      <div class="filter-container">
+        <h3 class="filter-title">标签分类</h3>
+        <div class="filter-buttons">
+          <a href="/tags/" class={`filter-btn ${!selectedCategory ? 'active' : ''}`}>全部</a>
+          {Object.keys(organizedTags).map(category => (
             <a 
-              href={`/blog/${post.id.replace('zh/', '')}/`} 
-              class="tags-post-card"
-              aria-label={`阅读文章：${post.data.title}`}
+              key={category} 
+              href={`/tags/?category=${encodeURIComponent(category)}`} 
+              class={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
             >
+              {category}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tag Cloud Section -->
+    <section class="about-section" data-reveal>
+      <SectionHeader label="TAG CLOUD" title={selectedCategory ? `${selectedCategory}标签` : "标签云"} />
+      {Object.entries(organizedTags).map(([category, tags]) => {
+        if (selectedCategory && selectedCategory !== category) return null;
+        return (
+          <div key={category} class="tag-category">
+            <h3 class="tag-category-title">{category}</h3>
+            <div class="tags-cloud">
+              {
+                tags.map(({ tag, count }) => (
+                  <a
+                    key={tag}
+                    href={`/tags/${tag}/`}
+                    class="tag-link"
+                    style={`font-size: ${getFontSize(count)}em;`}
+                    title={`${count} 篇文章`}
+                  >
+                    #{tag} <span class="tag-count">({count})</span>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        );
+      })}
+    </section>
+
+    <Divider />
+
+    <!-- Recent Posts Section -->
+    <section class="about-section" data-reveal>
+      <SectionHeader label="RECENT" title="最新文章" />
+      <div class="tags-posts-grid">
+        {
+          allPosts.map((post) => (
+            <a href={`/blog/${post.id.replace('zh/', '')}/`} class="tags-post-card">
               <div class="tags-post-meta">
                 <span class="tags-post-category">{post.data.category}</span>
-                <time class="tags-post-date" datetime={post.data.pubDate.toISOString()}>
+                <time class="tags-post-date">
                   {post.data.pubDate.toLocaleDateString('zh-CN', {
                     year: 'numeric',
                     month: 'short',
@@ -158,35 +160,9 @@ const avgArticlesPerTag = totalTags > 0 ? Math.round(totalArticles / totalTags) 
                 </div>
               )}
             </a>
-          ))}
-        </div>
-      </section>
-    )}
+          ))
+        }
+      </div>
+    </section>
   </div>
-
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-      const sortBtns = document.querySelectorAll('.tags-sort-btn');
-      const clouds = {
-        popularity: document.querySelector('.tags-cloud-popularity'),
-        alphabet: document.querySelector('.tags-cloud-alphabet')
-      };
-
-      if (!sortBtns.length || !clouds.popularity || !clouds.alphabet) return;
-
-      sortBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          sortBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          const sort = btn.dataset.sort;
-          Object.values(clouds).forEach(cloud => cloud.classList.add('hidden'));
-          
-          setTimeout(() => {
-            clouds[sort].classList.remove('hidden');
-          }, 150);
-        });
-      });
-    });
-  </script>
 </BaseLayout>
