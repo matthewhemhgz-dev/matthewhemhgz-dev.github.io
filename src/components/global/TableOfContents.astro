@@ -52,7 +52,17 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
   let scrollHandler: (() => void) | null = null;
   let ticking = false;
 
+  function cleanupTableOfContents() {
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler);
+      scrollHandler = null;
+    }
+    ticking = false;
+  }
+
   function initTableOfContents() {
+    cleanupTableOfContents();
+
     const tocItems = document.querySelectorAll('.toc-item');
     const tocLinks = document.querySelectorAll('.toc-link');
 
@@ -155,26 +165,10 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
     });
   }
 
-  // 清理函数
-  function cleanupTableOfContents() {
-    if (scrollHandler) {
-      window.removeEventListener('scroll', scrollHandler);
-      scrollHandler = null;
-    }
-    ticking = false;
-  }
-
-  // 先清理，再初始化
   document.addEventListener('astro:page-load', () => {
     cleanupTableOfContents();
     setTimeout(initTableOfContents, 50);
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    cleanupTableOfContents();
-    setTimeout(initTableOfContents, 50);
-  });
-
-  // 页面离开时清理
   document.addEventListener('astro:before-swap', cleanupTableOfContents);
 </script>

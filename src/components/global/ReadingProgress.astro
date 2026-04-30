@@ -28,7 +28,7 @@ const { label = '阅读进度' } = Astro.props;
   let rafId: number | null = null;
   let ticking = false;
 
-  function initReadingProgress() {
+  function cleanupReadingProgress() {
     if (scrollHandler) {
       window.removeEventListener('scroll', scrollHandler);
       scrollHandler = null;
@@ -38,6 +38,10 @@ const { label = '阅读进度' } = Astro.props;
       rafId = null;
     }
     ticking = false;
+  }
+
+  function initReadingProgress() {
+    cleanupReadingProgress();
 
     const progressContainer = document.getElementById('reading-progress');
     const progressBar = document.querySelector('.reading-progress-bar') as HTMLElement;
@@ -91,30 +95,10 @@ const { label = '阅读进度' } = Astro.props;
     updateProgress();
   }
 
-  // 清理函数
-  function cleanupReadingProgress() {
-    if (scrollHandler) {
-      window.removeEventListener('scroll', scrollHandler);
-      scrollHandler = null;
-    }
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
-    ticking = false;
-  }
-
-  // 先清理，再初始化
   document.addEventListener('astro:page-load', () => {
     cleanupReadingProgress();
     setTimeout(initReadingProgress, 50);
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    cleanupReadingProgress();
-    setTimeout(initReadingProgress, 50);
-  });
-
-  // 页面离开时清理
   document.addEventListener('astro:before-swap', cleanupReadingProgress);
 </script>

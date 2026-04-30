@@ -16,12 +16,12 @@ const { items } = Astro.props;
     </svg>
     <span class="onpage-nav-title">目录</span>
   </div>
-  
+
   <ul class="onpage-nav-list">
     {items.map((item) => (
       <li key={item.id} class="onpage-nav-item">
-        <a 
-          href={`#${item.id}`} 
+        <a
+          href={`#${item.id}`}
           class="onpage-nav-link"
           data-section={item.id}
           aria-label={`跳转到 ${item.label}`}
@@ -32,18 +32,22 @@ const { items } = Astro.props;
       </li>
     ))}
   </ul>
-  
+
   <div class="onpage-nav-progress"></div>
 </nav>
 
 <script>
 let scrollHandler: (() => void) | null = null;
 
-function initOnPageNav() {
+function cleanupOnPageNav() {
   if (scrollHandler) {
     window.removeEventListener('scroll', scrollHandler);
     scrollHandler = null;
   }
+}
+
+function initOnPageNav() {
+  cleanupOnPageNav();
 
   const navLinks = document.querySelectorAll('.onpage-nav-link');
   const progressBar = document.querySelector('.onpage-nav-progress');
@@ -68,7 +72,6 @@ function initOnPageNav() {
       link.classList.toggle('active', link.dataset.section === currentSection);
     });
 
-    // 更新进度条
     if (progressBar && sections.length > 0) {
       const lastSection = sections[sections.length - 1];
       const totalHeight = lastSection.offsetTop + lastSection.offsetHeight - window.innerHeight;
@@ -77,9 +80,10 @@ function initOnPageNav() {
     }
   };
 
-  const smoothScroll = (e) => {
+  const smoothScroll = (e: Event) => {
     e.preventDefault();
-    const targetId = e.currentTarget.getAttribute('href');
+    const target = e.currentTarget as HTMLAnchorElement;
+    const targetId = target.getAttribute('href');
     const targetElement = document.querySelector(targetId);
 
     if (targetElement) {
@@ -100,26 +104,11 @@ function initOnPageNav() {
   updateActiveNav();
 }
 
-// 清理函数
-function cleanupOnPageNav() {
-  if (scrollHandler) {
-    window.removeEventListener('scroll', scrollHandler);
-    scrollHandler = null;
-  }
-}
-
-// 先清理，再初始化
 document.addEventListener('astro:page-load', () => {
   cleanupOnPageNav();
   setTimeout(initOnPageNav, 50);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  cleanupOnPageNav();
-  setTimeout(initOnPageNav, 50);
-});
-
-// 页面离开时清理
 document.addEventListener('astro:before-swap', cleanupOnPageNav);
 </script>
 
