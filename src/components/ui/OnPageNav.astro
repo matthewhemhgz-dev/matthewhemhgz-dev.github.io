@@ -37,28 +37,37 @@ const { items } = Astro.props;
 </nav>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+let scrollHandler: (() => void) | null = null;
+
+function initOnPageNav() {
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler);
+    scrollHandler = null;
+  }
+
   const navLinks = document.querySelectorAll('.onpage-nav-link');
   const progressBar = document.querySelector('.onpage-nav-progress');
   const sections = document.querySelectorAll('.about-section');
-  
+
+  if (navLinks.length === 0) return;
+
   const updateActiveNav = () => {
     let currentSection = '';
-    
+
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const scrollPosition = window.scrollY + 100;
-      
+
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         currentSection = section.id;
       }
     });
-    
+
     navLinks.forEach((link) => {
       link.classList.toggle('active', link.dataset.section === currentSection);
     });
-    
+
     // 更新进度条
     if (progressBar && sections.length > 0) {
       const lastSection = sections[sections.length - 1];
@@ -67,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
       progressBar.style.height = `${progress}%`;
     }
   };
-  
+
   const smoothScroll = (e) => {
     e.preventDefault();
     const targetId = e.currentTarget.getAttribute('href');
     const targetElement = document.querySelector(targetId);
-    
+
     if (targetElement) {
       const offsetTop = targetElement.offsetTop - 80;
       window.scrollTo({
@@ -81,14 +90,37 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   };
-  
+
   navLinks.forEach((link) => {
     link.addEventListener('click', smoothScroll);
   });
-  
-  window.addEventListener('scroll', updateActiveNav);
+
+  scrollHandler = updateActiveNav;
+  window.addEventListener('scroll', scrollHandler, { passive: true });
   updateActiveNav();
+}
+
+// 清理函数
+function cleanupOnPageNav() {
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler);
+    scrollHandler = null;
+  }
+}
+
+// 先清理，再初始化
+document.addEventListener('astro:page-load', () => {
+  cleanupOnPageNav();
+  setTimeout(initOnPageNav, 50);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  cleanupOnPageNav();
+  setTimeout(initOnPageNav, 50);
+});
+
+// 页面离开时清理
+document.addEventListener('astro:before-swap', cleanupOnPageNav);
 </script>
 
 <style>
