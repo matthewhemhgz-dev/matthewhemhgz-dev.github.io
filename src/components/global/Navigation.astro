@@ -145,25 +145,77 @@ const navItems = [
 </header>
 
 <script>
-  // Sync aria-expanded on page load
+  function getFocusableMenuItems(): HTMLElement[] {
+    const navLinks = document.getElementById('nav-links');
+    if (!navLinks) return [];
+    const focusableElements = navLinks.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    return Array.from(focusableElements).filter(
+      (el) => el.offsetParent !== null && !el.hasAttribute('aria-hidden')
+    );
+  }
+
+  function focusFirstMenuItem() {
+    const focusableItems = getFocusableMenuItems();
+    if (focusableItems.length > 0) {
+      setTimeout(() => focusableItems[0].focus(), 50);
+    }
+  }
+
+  function closeMenuAndReturnFocus() {
+    const navToggle = document.getElementById('nav-toggle') as HTMLInputElement | null;
+    const navStatus = document.getElementById('nav-status');
+    const isEn = document.documentElement.lang.startsWith('en');
+    if (navToggle) {
+      navToggle.checked = false;
+      navToggle.setAttribute('aria-expanded', 'false');
+      if (navStatus) {
+        navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
+      }
+      navToggle.focus();
+    }
+  }
+
+  function handleFocusTrap(e: KeyboardEvent) {
+    if (e.key !== 'Tab') return;
+
+    const focusableItems = getFocusableMenuItems();
+    if (focusableItems.length === 0) return;
+
+    const firstElement = focusableItems[0];
+    const lastElement = focusableItems[focusableItems.length - 1];
+    const activeElement = document.activeElement as HTMLElement;
+
+    if (e.shiftKey) {
+      if (activeElement === firstElement || !focusableItems.includes(activeElement)) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (activeElement === lastElement || !focusableItems.includes(activeElement)) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+
   const navToggleInit = document.getElementById('nav-toggle');
   if (navToggleInit) {
     navToggleInit.setAttribute('aria-expanded', String(navToggleInit.checked));
   }
 
-  // Add index to nav items for animation delay
   const navItems = document.querySelectorAll('#nav-links li');
   navItems.forEach((item, index) => {
     item.style.setProperty('--nav-item-index', index);
   });
 
-  const navToggle = document.getElementById('nav-toggle');
   const navStatus = document.getElementById('nav-status');
-  if (navToggle) {
-    navToggle.addEventListener('change', () => {
-      const isOpen = navToggle.checked;
+  if (navToggleInit) {
+    navToggleInit.addEventListener('change', () => {
+      const isOpen = navToggleInit.checked;
       const isEn = document.documentElement.lang.startsWith('en');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggleInit.setAttribute('aria-expanded', String(isOpen));
       if (navStatus) {
         navStatus.textContent = isOpen
           ? isEn
@@ -173,31 +225,23 @@ const navItems = [
             ? 'Navigation menu closed'
             : '导航菜单已关闭';
       }
+      if (isOpen) {
+        focusFirstMenuItem();
+      }
     });
   }
 
-  // Close button functionality
   document.addEventListener('astro:page-load', () => {
-    // Add index to nav items for animation delay
     const navItems = document.querySelectorAll('#nav-links li');
     navItems.forEach((item, index) => {
       item.style.setProperty('--nav-item-index', index);
     });
 
-    const isEn = document.documentElement.lang.startsWith('en');
     const closeBtn = document.querySelector('.nav-close-btn');
     closeBtn?.addEventListener('click', () => {
-      const navToggle = document.getElementById('nav-toggle');
-      if (navToggle) {
-        navToggle.checked = false;
-        navToggle.setAttribute('aria-expanded', 'false');
-        if (navStatus) {
-          navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
-        }
-      }
+      closeMenuAndReturnFocus();
     });
 
-    // Search button opens search modal
     const searchBtn = document.getElementById('nav-search-btn');
     const searchModal = document.getElementById('search-modal');
     searchBtn?.addEventListener('click', () => {
@@ -208,30 +252,23 @@ const navItems = [
       }, 100);
     });
 
-    // Keyboard navigation for mobile menu
     const navLinks = document.getElementById('nav-links');
     if (navLinks) {
-      navLinks.addEventListener('keydown', (e) => {
+      navLinks.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          const navToggle = document.getElementById('nav-toggle');
-          if (navToggle) {
-            navToggle.checked = false;
-            navToggle.setAttribute('aria-expanded', 'false');
-            if (navStatus) {
-              navStatus.textContent = isEn ? 'Navigation menu closed' : '导航菜单已关闭';
-            }
-          }
+          e.preventDefault();
+          closeMenuAndReturnFocus();
+        } else {
+          handleFocusTrap(e);
         }
       });
     }
 
-    // Scroll animation for navigation
     const navWrapper = document.querySelector('.nav-wrapper');
-    const navToggle = document.getElementById('nav-toggle');
+    const navToggle = document.getElementById('nav-toggle') as HTMLInputElement | null;
     let ticking = false;
 
     function updateNav() {
-      // 检查导航菜单是否打开，如果打开则不执行滚动动画
       const isMenuOpen = navToggle?.checked || false;
       if (isMenuOpen) {
         ticking = false;
@@ -242,7 +279,6 @@ const navItems = [
       const isMobile = window.innerWidth <= 768;
       
       if (scrollY > 100) {
-        // 移动端不添加 nav-collapsed 类，保持导航按钮始终可用
         if (!isMobile) {
           navWrapper?.classList.add('nav-collapsed');
         }
@@ -264,7 +300,6 @@ const navItems = [
 
     window.addEventListener('scroll', requestTick);
 
-    // 窗口 resize 时重新检查是否需要 nav-collapsed 类
     window.addEventListener('resize', () => {
       const scrollY = window.scrollY;
       const isMobile = window.innerWidth <= 768;

@@ -5,7 +5,7 @@ pubDate: 2025-04-10
 updatedDate: 2026-04-18
 category: 'Deep Analysis'
 tags: ['AI', 'Knowledge Management', 'Productivity Tools', 'Long-termism']
-heroImage: 'public\blog\ai-era-knowledge-worker.png'
+heroImage: '/blog/ai-era-knowledge-worker.png'
 author: 'Qi-Lab'
 draft: false
 lang: en

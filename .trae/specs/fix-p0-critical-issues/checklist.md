@@ -1,0 +1,18 @@
+- [x] Checkpoint 1: 所有博客文章 heroImage 路径格式正确（`/blog/xxx.png` 格式）
+- [x] Checkpoint 2: OG 图片在社交媒体分享时正常显示
+- [x] Checkpoint 3: 移动端菜单打开时焦点移动到第一个菜单项
+- [x] Checkpoint 4: 移动端菜单焦点陷阱功能正常（Tab 键循环）
+- [x] Checkpoint 5: ESC 键关闭移动端菜单并返回焦点到触发按钮
+- [x] Checkpoint 6: 相关文章链接格式正确（无双斜杠）
+- [x] Checkpoint 7: 中文博客相关文章链接为 `/zh/blog/post-slug/` 格式
+- [x] Checkpoint 8: 英文博客相关文章链接为 `/en/blog/post-slug/` 格式
+- [x] Checkpoint 9: 搜索模态框焦点陷阱功能正常
+- [x] Checkpoint 10: 搜索模态框 ESC 键关闭功能正常
+- [x] Checkpoint 11: 搜索模态框焦点返回功能正常
+- [x] Checkpoint 12: `npm run lint` 通过无错误
+- [x] Checkpoint 13: `npm run test` 通过无失败
+- [x] Checkpoint 14: `npm run build` 成功完成
+- [x] Checkpoint 15: 本地预览验证所有修改正常工作
+- [x] Checkpoint 16: 关键用户流程测试通过
+- [x] Checkpoint 17: Issue 追踪文档已更新
+- [x] Checkpoint 18: 无新引入的问题或回归

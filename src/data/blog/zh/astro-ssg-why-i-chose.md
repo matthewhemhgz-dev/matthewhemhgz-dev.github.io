@@ -4,7 +4,7 @@ description: '拒绝过度工程，拥抱内容优先。深入分析 Astro 如�
 pubDate: 2025-05-15
 category: '技术洞察'
 tags: ['Astro', '前端架构', 'SSG', '性能优化']
-heroImage: 'public\blog\astro-ssg-why-i-chose.png'
+heroImage: '/blog/astro-ssg-why-i-chose.png'
 author: '祈研所'
 draft: false
 lang: zh

@@ -342,6 +342,8 @@
       suggestions.innerHTML = '';
     }
     document.body.style.overflow = '';
+    const searchBtn = document.getElementById('nav-search-btn');
+    searchBtn?.focus();
   }
 
   async function performSearch(query: string) {
