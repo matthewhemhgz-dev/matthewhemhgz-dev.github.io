@@ -2,7 +2,7 @@
 
 **基准版本**: `d1bd71e` (v1.0.0-base)  
 **创建日期**: 2026-04-29  
-**最后更新**: 2026-04-29
+**最后更新**: 2026-04-30
 
 ---
 
@@ -38,20 +38,29 @@
 **根因分析**: 使用 Windows 路径格式 `public\blog\xxx.png`，应使用 `/blog/xxx.png`
 
 **问题详情**:
-- 所有中文博客文章 (17篇) 和部分英文文章使用错误路径格式
+- ✅ **已确认**: 所有中文博客文章 (17篇) 和所有英文博客文章 (17篇) 都存在此问题
 - 导致 OG 分享图片失效
 - 影响社交媒体分享展示
+- 具体问题：
+  - `heroImage: 'public\blog\knowledge-management-system-foundation.png'` (错误)
+  - 应改为 `heroImage: '/blog/knowledge-management-system-foundation.png'` (正确)
 
 **修复方案**:
 1. 批量修正所有博客文章 frontmatter
 2. 将 `public\blog\` 替换为 `/blog/`
 3. 使用正斜杠 `/` 而非反斜杠 `\`
 
-**受影响文件列表**:
-- `src/data/blog/zh/knowledge-management-system-foundation.md`
-- `src/data/blog/zh/personal-knowledge-graph.md`
-- `src/data/blog/zh/knowledge-graph-visualization.md`
-- ... (共34篇文章)
+**受影响文件列表 (完整)**:
+- 中文博客 (17篇):
+  - `src/data/blog/zh/knowledge-management-system-foundation.md`
+  - `src/data/blog/zh/how-to-build-personal-knowledge-system.md`
+  - `src/data/blog/zh/design-system-from-scratch.md`
+  - `src/data/blog/zh/frontend-architecture-evolution.md`
+  - ... (其他13篇中文博客)
+- 英文博客 (17篇):
+  - `src/data/blog/en/knowledge-management-system-foundation.md`
+  - `src/data/blog/en/how-to-build-personal-knowledge-system.md`
+  - ... (其他15篇英文博客)
 
 **工作量评估**: 1小时
 
@@ -115,33 +124,37 @@
 
 ---
 
-### ISSUE-P0-004: 移动端菜单键盘导航问题
+### ISSUE-P0-004: 移动端菜单可访问性完善度评估
 
 **优先级**: P0 🔴  
 **类别**: 可访问性问题  
 **影响范围**: 移动端用户  
-**文件位置**: `src/components/layout/Navigation.astro`
+**文件位置**: `src/components/global/Navigation.astro` (注意：实际路径是 global 而非 layout)
 
 **问题详情**:
-- 移动端菜单打开后，键盘用户无法有效导航
-- 菜单展开时未正确管理焦点
-- 缺少焦点陷阱 (focus trap) 实现
-- ESC 键不能关闭菜单
-- 违反 WCAG 2.1 可访问性标准
+- ✅ **已实现的可访问性功能** (基于实际代码审查):
+  - ✅ `aria-expanded` 已添加，并在菜单切换时更新
+  - ✅ `aria-controls` 已添加 (`nav-links`)
+  - ✅ `aria-label` 已添加
+  - ✅ ESC 键关闭菜单功能已实现
+  - ✅ `sr-only` 状态提示已添加 (`nav-status`)
+  - ✅ `role="menubar"` 和 `role="menuitem"` 已添加
+
+- ⚠️ **可能需要改进的地方**:
+  - 需要验证菜单打开时聚焦第一个菜单项
+  - 需要实现焦点陷阱 (focus trap) 确保键盘用户不会跳出菜单
+  - 需要确认关闭菜单时焦点返回触发按钮
 
 **根因分析**:
-1. 菜单打开时未将焦点移至第一个菜单项
-2. 没有实现 Tab 键循环导航
-3. 缺少 ESC 键处理
-4. 关闭菜单时未将焦点返回触发按钮
+实际代码已实现部分可访问性功能，但需要验证焦点管理是否完整
 
 **修复方案**:
-1. 菜单打开时聚焦第一个菜单项
-2. 实现 Tab 键循环导航 (focus trap)
-3. ESC 键关闭菜单并返回触发按钮
-4. 添加 `aria-expanded` 和 `aria-controls` 属性
+1. 添加菜单打开时聚焦第一个菜单项
+2. 实现焦点陷阱 (focus trap) 确保键盘用户体验
+3. 验证关闭菜单时焦点返回触发按钮
+4. 进行完整的可访问性测试
 
-**工作量评估**: 2小时
+**工作量评估**: 1.5小时
 
 ---
 
@@ -153,29 +166,26 @@
 **文件位置**: `src/components/sections/RelatedArticles.astro`
 
 **问题详情**:
-- 中文博客详情页的相关文章链接生成双斜杠
-- 实际 URL: `//blog/post-slug/` (错误)
-- 应为: `/blog/post-slug/` (正确)
-- 影响内部链接 SEO
+- ✅ **已确认**: 查看实际代码，链接生成逻辑为 `href={`/${lang}/blog/${post.id.replace(`${lang}/`, '')}/`}`
+- 对于中文博客：`lang='zh'`，`post.id` 格式为 `zh/post-slug`，替换后生成 `/zh/blog/post-slug/`，格式正确
+- 对于英文博客：`lang='en'`，`post.id` 格式为 `en/post-slug`，替换后生成 `/en/blog/post-slug/`，格式正确
+- ❓ **需要进一步确认**: 实际是否存在双斜杠问题？可能需要在实际运行中验证
 
 **根因分析**:
 ```astro
 <a href={`/${lang}/blog/${post.id.replace(`${lang}/`, '')}/`}>
-<!-- 当 lang='zh' 时，post.id 也以 'zh/' 开头，导致双斜杠 -->
+<!-- 实际代码逻辑 -->
 ```
 
 **修复方案**:
-```astro
-href={lang === 'zh' 
-  ? `/blog/${post.id.replace('zh/', '')}/` 
-  : `/en/blog/${post.id.replace('en/', '')}/`}
-```
+- 建议：先在开发环境验证链接生成是否正确
+- 如果确认存在问题，再进行修复
 
 **工作量评估**: 0.5小时
 
 ---
 
-### ISSUE-P0-006: 搜索模态框可访问性不足
+### ISSUE-P0-006: 搜索模态框可访问性完善度评估
 
 **优先级**: P0 🔴  
 **类别**: 可访问性问题  
@@ -183,26 +193,27 @@ href={lang === 'zh'
 **文件位置**: `src/components/ui/SearchModal.astro`
 
 **问题详情**:
-- 搜索模态框缺少焦点管理和键盘导航支持
-- 原生 `<dialog>` 元素支持有限
-- 自定义模态框实现不完整
-- 违反 WCAG 2.1 标准
+- ✅ **已实现的可访问性功能** (基于实际代码审查):
+  - ✅ `aria-modal="true"` 已添加
+  - ✅ `role="dialog"` 已添加
+  - ✅ `aria-labelledby` 已添加
+  - ✅ ESC 键关闭功能已实现
+  - ✅ 焦点陷阱 (focus trap) 已实现 (Tab 键循环导航)
+  - ✅ 打开时聚焦搜索输入框功能已实现
+
+- ⚠️ **可能需要改进的地方**:
+  - 需要验证焦点返回触发按钮的机制是否完整
+  - 需要确认在所有场景下的可访问性表现
 
 **根因分析**:
-1. 缺少 `aria-modal="true"` 属性
-2. 没有实现焦点陷阱
-3. ESC 键不能关闭模态框
-4. 打开时未聚焦搜索输入框
-5. 没有焦点返回机制
+实际代码已实现大部分可访问性功能，但需要进行完整测试验证
 
 **修复方案**:
-1. 添加 `aria-modal="true"`
-2. 实现焦点陷阱 (focus trap)
-3. ESC 键关闭模态框
-4. 打开时聚焦搜索输入框
-5. 关闭时返回触发按钮焦点
+1. 进行完整的可访问性测试，验证现有功能
+2. 根据测试结果进行必要的微调
+3. 确保焦点返回机制在所有场景下正常工作
 
-**工作量评估**: 2小时
+**工作量评估**: 1小时 (主要是测试和微调)
 
 ---
 
@@ -1127,4 +1138,4 @@ sitemap({
 
 ---
 
-*本文档最后更新: 2026-04-29*
+*本文档最后更新: 2026-04-30 - 基于深入代码审查进行更新*
