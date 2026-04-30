@@ -453,9 +453,10 @@
 
 ---
 
-### ISSUE-P1-010: sitemap 缺少 lastmod 时间戳
+### ISSUE-P1-010: sitemap 缺少 lastmod 时间戳 ✅ 已修复
 
 **优先级**: P1 🟡  
+**状态**: ✅ Fixed (2026-04-30)  
 **类别**: SEO & 内容问题  
 **影响范围**: SEO  
 **文件位置**: `astro.config.mjs`
@@ -478,13 +479,19 @@ sitemap({
 })
 ```
 
+**修复后**:
+- ✅ 添加了 `changefreq: 'weekly'`
+- ✅ 添加了 `priority: 0.7`
+- ✅ 添加了 `lastmod: new Date()`
+
 **工作量评估**: 0.5小时
 
 ---
 
-### ISSUE-P1-011: RSS Feed 缺少完整内容
+### ISSUE-P1-011: RSS Feed 缺少完整内容 ✅ 已修复
 
 **优先级**: P1 🟡  
+**状态**: ✅ Fixed (2026-04-30)  
 **类别**: SEO & 内容问题  
 **影响范围**: RSS 订阅  
 **文件位置**: `src/pages/rss.xml.ts`
@@ -499,6 +506,11 @@ sitemap({
 1. 添加完整内容输出
 2. 添加作者邮箱信息
 3. 考虑添加阅读时间
+
+**修复后**:
+- ✅ 添加了 `content:encoded` 字段（包含描述和阅读全文链接）
+- ✅ 添加了作者信息（`author`, `managingEditor`, `webMaster`）
+- ✅ 添加了 `content` namespace 支持
 
 **工作量评估**: 1小时
 
@@ -800,12 +812,13 @@ sitemap({
 
 ---
 
-### ISSUE-P2-010: 缺少错误边界
+### ISSUE-P2-010: 缺少错误边界 ✅ 已修复
 
 **优先级**: P2 🟢  
+**状态**: ✅ Fixed (2026-04-30)  
 **类别**: 代码质量问题  
 **影响范围**: 全站  
-**文件位置**: 需要新建
+**文件位置**: `src/components/ui/ErrorBoundary.astro`
 
 **问题详情**:
 - 没有错误边界组件
@@ -816,6 +829,13 @@ sitemap({
 1. 创建错误边界组件
 2. 在关键位置使用
 3. 提供友好的错误提示
+
+**修复后**:
+- ✅ 创建了 `ErrorBoundary.astro` 组件
+- ✅ 包含友好的错误提示
+- ✅ 提供刷新重试按钮
+- ✅ 支持自定义错误消息
+- ✅ 符合可访问性标准（`role="alert"`, `aria-live="polite"`）
 
 **工作量评估**: 2小时
 

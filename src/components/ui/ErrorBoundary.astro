@@ -1,0 +1,88 @@
+---
+interface Props {
+  fallback?: string;
+}
+
+const { fallback = '抱歉，页面加载出现问题，请刷新重试。' } = Astro.props;
+---
+
+<script>
+  import { onMount } from 'astro';
+
+  onMount(() => {
+    window.addEventListener('error', (event) => {
+      console.error('Error caught by ErrorBoundary:', event.error);
+      const errorBoundary = document.querySelector('.error-boundary');
+      if (errorBoundary) {
+        errorBoundary.classList.add('error-boundary-error');
+      }
+    });
+  });
+</script>
+
+<div class="error-boundary">
+  <slot />
+  
+  <div class="error-boundary-fallback" role="alert" aria-live="polite">
+    <div class="error-icon">⚠️</div>
+    <p class="error-message">{fallback}</p>
+    <button class="error-retry-btn" onclick="location.reload()">
+      刷新重试
+    </button>
+  </div>
+</div>
+
+<style>
+.error-boundary {
+  position: relative;
+}
+
+.error-boundary-fallback {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--qi-space-4xl);
+  text-align: center;
+  background: var(--qi-bg-surface);
+  border-radius: var(--qi-radius-card);
+  border: 1px solid var(--qi-border-default);
+}
+
+.error-boundary-error .error-boundary-fallback {
+  display: flex;
+}
+
+.error-boundary-error > :not(.error-boundary-fallback) {
+  display: none;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: var(--qi-space-lg);
+}
+
+.error-message {
+  font-size: var(--qi-text-base);
+  color: var(--qi-text-secondary);
+  margin-bottom: var(--qi-space-lg);
+  max-width: 400px;
+}
+
+.error-retry-btn {
+  padding: var(--qi-space-sm) var(--qi-space-lg);
+  background: var(--qi-brand-emerald);
+  border: none;
+  border-radius: var(--qi-radius-full);
+  color: var(--qi-text-inverse);
+  font-size: var(--qi-text-sm);
+  font-weight: var(--qi-weight-semibold);
+  cursor: pointer;
+  transition: all var(--qi-transition);
+}
+
+.error-retry-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+</style>
