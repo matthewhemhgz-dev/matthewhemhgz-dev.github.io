@@ -453,3 +453,28 @@ a.cta-link:hover .cta-value {
     font-size: var(--qi-text-lg);
   }
 }
+
+/* --- Sidebar Layout --- */
+@media (min-width: 1025px) {
+  .container.with-sidebar {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--qi-space-3xl);
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: calc(var(--qi-nav-height) + var(--qi-space-xl));
+    height: fit-content;
+    padding-top: var(--qi-space-3xl);
+  }
+
+  .main-content {
+    min-width: 0;
+  }
+
+  .main-content .page-hero {
+    padding-top: var(--qi-space-3xl);
+  }
+}

@@ -10,6 +10,7 @@ let initialized = false;
 let cursorGlow = null;
 let particles = null;
 const cleanupFns = [];
+let particlesCanvas = null;
 
 function isHomePage() {
   const pathname = location.pathname;
@@ -91,6 +92,10 @@ function cleanup() {
     particles = null;
   }
 
+  if (particlesCanvas) {
+    particlesCanvas = null;
+  }
+
   initialized = false;
 }
 
@@ -138,16 +143,38 @@ function initQiLab() {
     try {
       const { MinimalParticles } = await import('./particles.js');
       const particleOptions = getParticleOptions();
-      const canvas = document.getElementById('particles-canvas');
+      particlesCanvas = document.getElementById('particles-canvas');
       
-      if (canvas) {
+      if (particlesCanvas) {
         particles = new MinimalParticles('particles-canvas', particleOptions);
-        cleanupFns.push(() => {
+        
+        const cleanupParticles = () => {
           if (particles) {
-            particles.destroy();
+            try {
+              particles.destroy();
+            } catch (err) {
+              console.warn('[QiLab] Particles destroy error during cleanup:', err);
+            }
             particles = null;
           }
-        });
+          particlesCanvas = null;
+        };
+        
+        cleanupFns.push(cleanupParticles);
+        
+        const visibilityObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (particles && typeof particles.setPaused === 'function') {
+                particles.setPaused(!entry.isIntersecting);
+              }
+            });
+          },
+          { rootMargin: '100px' }
+        );
+        
+        visibilityObserver.observe(particlesCanvas);
+        cleanupFns.push(() => visibilityObserver.disconnect());
       }
     } catch (err) {
       console.error('[QiLab] Failed to initialize particles:', err);

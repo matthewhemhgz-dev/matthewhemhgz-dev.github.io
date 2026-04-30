@@ -1,0 +1,190 @@
+---
+interface Props {
+  items: Array<{
+    id: string;
+    label: string;
+  }>;
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="onpage-nav" role="navigation" aria-label="页内导航">
+  <div class="onpage-nav-header">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 2h8M4 8h8M4 14h5" />
+    </svg>
+    <span class="onpage-nav-title">目录</span>
+  </div>
+  
+  <ul class="onpage-nav-list">
+    {items.map((item) => (
+      <li key={item.id} class="onpage-nav-item">
+        <a 
+          href={`#${item.id}`} 
+          class="onpage-nav-link"
+          data-section={item.id}
+          aria-label={`跳转到 ${item.label}`}
+        >
+          <span class="onpage-nav-dot"></span>
+          <span class="onpage-nav-text">{item.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  
+  <div class="onpage-nav-progress"></div>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('.onpage-nav-link');
+  const progressBar = document.querySelector('.onpage-nav-progress');
+  const sections = document.querySelectorAll('.about-section');
+  
+  const updateActiveNav = () => {
+    let currentSection = '';
+    
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const scrollPosition = window.scrollY + 100;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSection = section.id;
+      }
+    });
+    
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.dataset.section === currentSection);
+    });
+    
+    // 更新进度条
+    if (progressBar && sections.length > 0) {
+      const lastSection = sections[sections.length - 1];
+      const totalHeight = lastSection.offsetTop + lastSection.offsetHeight - window.innerHeight;
+      const progress = Math.min((window.scrollY / totalHeight) * 100, 100);
+      progressBar.style.height = `${progress}%`;
+    }
+  };
+  
+  const smoothScroll = (e) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop - 80;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+  
+  navLinks.forEach((link) => {
+    link.addEventListener('click', smoothScroll);
+  });
+  
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+});
+</script>
+
+<style>
+.onpage-nav {
+  position: sticky;
+  top: var(--qi-space-xl);
+  padding: var(--qi-space-lg);
+  background: var(--qi-bg-surface);
+  border-radius: var(--qi-radius-card);
+  border: 1px solid var(--qi-border-default);
+  max-height: fit-content;
+}
+
+.onpage-nav-header {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  margin-bottom: var(--qi-space-md);
+  padding-bottom: var(--qi-space-md);
+  border-bottom: 1px solid var(--qi-border-default);
+}
+
+.onpage-nav-title {
+  font-size: var(--qi-text-sm);
+  font-weight: var(--qi-weight-semibold);
+  color: var(--qi-text-primary);
+}
+
+.onpage-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.onpage-nav-item {
+  margin-bottom: var(--qi-space-sm);
+}
+
+.onpage-nav-item:last-child {
+  margin-bottom: 0;
+}
+
+.onpage-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-sm);
+  padding: var(--qi-space-xs) var(--qi-space-sm);
+  border-radius: var(--qi-radius-sm);
+  text-decoration: none;
+  color: var(--qi-text-secondary);
+  font-size: var(--qi-text-sm);
+  transition: all var(--qi-transition);
+}
+
+.onpage-nav-link:hover {
+  background: var(--qi-bg-hover);
+  color: var(--qi-text-primary);
+}
+
+.onpage-nav-link.active {
+  background: var(--qi-brand-emerald);
+  color: var(--qi-text-inverse);
+}
+
+.onpage-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--qi-text-muted);
+  transition: all var(--qi-transition);
+  flex-shrink: 0;
+}
+
+.onpage-nav-link:hover .onpage-nav-dot,
+.onpage-nav-link.active .onpage-nav-dot {
+  background: var(--qi-text-primary);
+}
+
+.onpage-nav-link.active .onpage-nav-dot {
+  background: var(--qi-text-inverse);
+}
+
+.onpage-nav-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 0;
+  background: var(--qi-brand-emerald);
+  border-radius: 0 2px 2px 0;
+  transition: height var(--qi-transition);
+}
+
+@media (max-width: 1024px) {
+  .onpage-nav {
+    display: none;
+  }
+}
+</style>

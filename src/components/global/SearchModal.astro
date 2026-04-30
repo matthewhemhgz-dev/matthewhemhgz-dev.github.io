@@ -298,12 +298,25 @@
   let searchTimeout: ReturnType<typeof setTimeout> | null = null;
   let currentFilter = 'all';
   let currentSort = 'relevance';
+  let lastFocusedElement: HTMLElement | null = null;
 
   const modal = document.getElementById('search-modal');
   const input = document.getElementById('search-input') as HTMLInputElement;
   const results = document.getElementById('search-results');
   const backdrop = document.getElementById('search-backdrop');
   const suggestions = document.getElementById('search-suggestions');
+
+  function getFocusableElements(): HTMLElement[] {
+    if (!modal) return [];
+    const focusableSelectors = 'input, button, a[href], [tabindex]:not([tabindex="-1"])';
+    const focusableElements = modal.querySelectorAll<HTMLElement>(focusableSelectors);
+    return Array.from(focusableElements).filter(el => {
+      const isHidden = el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
+      const isDisabled = el.hasAttribute('disabled');
+      const isHiddenByStyle = el.offsetParent === null;
+      return !isHidden && !isDisabled && !isHiddenByStyle;
+    });
+  }
 
   async function initPagefind() {
     if (pagefind) return pagefind;
@@ -325,10 +338,16 @@
 
   function openSearch() {
     if (!modal) return;
-    applyI18n(); // refresh labels on open in case locale changed
+    lastFocusedElement = document.activeElement as HTMLElement;
+    applyI18n();
     modal.setAttribute('aria-hidden', 'false');
-    input?.focus();
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
+    
+    setTimeout(() => {
+      input?.focus({ preventScroll: true });
+    }, 50);
+    
     renderSearchHistory();
   }
 
@@ -336,14 +355,27 @@
     if (!modal) return;
     modal.setAttribute('aria-hidden', 'true');
     input!.value = '';
-    if (results) results.innerHTML = `<p class="search-hint">${t('hint')}</p>`;
+    
+    if (results) {
+      results.innerHTML = `<p class="search-hint">${t('hint')}</p>`;
+    }
     if (suggestions) {
       suggestions.setAttribute('aria-hidden', 'true');
       suggestions.innerHTML = '';
     }
+    
     document.body.style.overflow = '';
-    const searchBtn = document.getElementById('nav-search-btn');
-    searchBtn?.focus();
+    document.body.style.paddingRight = '';
+    
+    setTimeout(() => {
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+        lastFocusedElement = null;
+      } else {
+        const searchBtn = document.getElementById('nav-search-btn');
+        searchBtn?.focus();
+      }
+    }, 50);
   }
 
   async function performSearch(query: string) {
@@ -474,21 +506,22 @@
     if (modal) {
       modal.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
-          const focusableElements = modal.querySelectorAll('input, button, a');
+          const focusableElements = getFocusableElements();
+          if (focusableElements.length === 0) return;
+          
           const firstElement = focusableElements[0];
           const lastElement = focusableElements[focusableElements.length - 1];
+          const activeElement = document.activeElement as HTMLElement;
 
           if (e.shiftKey) {
-            // Shift + Tab
-            if (document.activeElement === firstElement) {
+            if (activeElement === firstElement || !focusableElements.includes(activeElement)) {
               e.preventDefault();
-              lastElement?.focus();
+              lastElement.focus();
             }
           } else {
-            // Tab
-            if (document.activeElement === lastElement) {
+            if (activeElement === lastElement || !focusableElements.includes(activeElement)) {
               e.preventDefault();
-              firstElement?.focus();
+              firstElement.focus();
             }
           }
         }

@@ -3,11 +3,25 @@ import '../styles/sections/about.css';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import Divider from '../components/global/Divider.astro';
+import OnPageNav from '../components/ui/OnPageNav.astro';
 ---
 
 <BaseLayout title="关于 | 祈研所" description="了解祈研所的品牌故事、理念与联系方式。">
   <div class="about-page">
-    <div class="container">
+    <div class="container with-sidebar">
+      <aside class="sidebar">
+        <OnPageNav 
+          items={[
+            { id: 'story', label: '品牌故事' },
+            { id: 'journey', label: '品牌历程与愿景' },
+            { id: 'values', label: '核心价值观' },
+            { id: 'philosophy', label: '设计理念' },
+            { id: 'tech', label: '技术栈' },
+            { id: 'contact', label: '取得联系' },
+          ]} 
+        />
+      </aside>
+      <main class="main-content">
       <!-- Page Hero -->
       <section class="page-hero" data-reveal>
         <span class="page-label">// ABOUT</span>
@@ -18,7 +32,7 @@ import Divider from '../components/global/Divider.astro';
       <Divider />
 
       <!-- Brand Story -->
-      <section class="about-section" data-reveal>
+      <section id="story" class="about-section" data-reveal>
         <SectionHeader label="// STORY" title="品牌故事" />
         <div class="about-prose">
           <p>
@@ -41,7 +55,7 @@ import Divider from '../components/global/Divider.astro';
       <Divider />
 
       <!-- History & Vision -->
-      <section class="about-section" data-reveal>
+      <section id="journey" class="about-section" data-reveal>
         <SectionHeader label="// JOURNEY" title="品牌历程与愿景" />
         <div class="history-vision">
           <div class="history-card">
@@ -92,7 +106,7 @@ import Divider from '../components/global/Divider.astro';
       <Divider />
 
       <!-- Core Values -->
-      <section class="about-section" data-reveal>
+      <section id="values" class="about-section" data-reveal>
         <SectionHeader label="// VALUES" title="核心价值观" />
         <div class="values-grid">
           <div class="value-card">
@@ -131,7 +145,7 @@ import Divider from '../components/global/Divider.astro';
       <Divider />
 
       <!-- Philosophy -->
-      <section class="about-section" data-reveal>
+      <section id="philosophy" class="about-section" data-reveal>
         <SectionHeader label="// PHILOSOPHY" title="设计理念" />
         <div class="philosophy-grid">
           <div class="philosophy-card">
@@ -166,7 +180,7 @@ import Divider from '../components/global/Divider.astro';
       <Divider />
 
       <!-- Tech Stack -->
-      <section class="about-section" data-reveal>
+      <section id="tech" class="about-section" data-reveal>
         <SectionHeader label="// TECH" title="技术栈" />
         <div class="tech-stack">
           <div class="tech-category">
@@ -219,7 +233,7 @@ import Divider from '../components/global/Divider.astro';
       <Divider />
 
       <!-- Contact CTA -->
-      <section class="about-section" data-reveal>
+      <section id="contact" class="about-section" data-reveal>
         <SectionHeader label="// CONTACT" title="取得联系" />
         <div class="contact-cta">
           <p class="cta-text">无论是知识管理交流、AI 工作流探讨还是项目合作，欢迎随时联系。</p>
@@ -240,6 +254,7 @@ import Divider from '../components/global/Divider.astro';
           <a href="/#contact" class="cta-btn">查看完整联系方式</a>
         </div>
       </section>
+      </main>
     </div>
   </div>
 </BaseLayout>

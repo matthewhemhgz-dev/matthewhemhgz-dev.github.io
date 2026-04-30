@@ -38,7 +38,7 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhem
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
 const ogImage = post.data.heroImage ? `${siteUrl}${post.data.heroImage}` : '/og-default.png';
 
-const articleBody = post.body?.replace(/[#*`>\-\[\]()]/g, '').trim() || '';
+const articleBody = post.body?.replace(/[#*`>\-[\]()]/g, '').trim() || '';
 const wordCount = articleBody.length;
 
 const articleJsonLd = {

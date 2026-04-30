@@ -9,7 +9,6 @@ const { title, url, description } = Astro.props;
 
 const fullUrl = `${Astro.site}${url}`;
 const encodedUrl = encodeURIComponent(fullUrl);
-const encodedTitle = encodeURIComponent(title);
 const encodedText = encodeURIComponent(description || title);
 ---
 
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shareButtons = document.querySelectorAll('.share-btn');
   
   shareButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       const shareType = btn.dataset.shareType;
       
       if (shareType === 'external') {

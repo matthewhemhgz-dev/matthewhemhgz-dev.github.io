@@ -11,8 +11,7 @@ interface Props {
 
 const { currentPath } = Astro.props;
 
-// 更稳健的 Language 判定逻辑：优先检查路径前缀
-const isEnglish = currentPath.startsWith('/en') || Astro.url.pathname.startsWith('/en');
+const isEnglish = currentPath.startsWith('/en');
 
 const navItems = [
   { label: isEnglish ? 'Home' : '首页', href: isEnglish ? '/en' : '/' },
