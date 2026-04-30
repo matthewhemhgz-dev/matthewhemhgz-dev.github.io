@@ -106,3 +106,18 @@ document.addEventListener('astro:before-swap', cleanup);
 2. 在新初始化前清理旧的事件监听器
 3. 使用 `setTimeout` 延迟初始化以确保 DOM 完全就绪
 4. 在 `astro:before-swap` 时清理资源
+
+## Implementation Status
+
+✅ **已完成** - 所有组件已按照规格修复
+
+修改的文件：
+- `src/components/global/TableOfContents.astro` - ✅
+- `src/components/global/ReadingProgress.astro` - ✅
+- `src/components/ui/OnPageNav.astro` - ✅
+- `src/pages/index.astro` - ✅ (解决合并冲突)
+- `src/pages/en/index.astro` - ✅ (解决合并冲突)
+
+推送的提交：
+- commit: 3af97b5
+- message: "fix: resolve navigation components initialization + merge conflicts"
