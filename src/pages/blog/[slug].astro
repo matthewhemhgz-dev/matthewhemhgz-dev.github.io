@@ -11,7 +11,8 @@ import RelatedArticles from '../../components/sections/RelatedArticles.astro';
 import ReadingProgress from '../../components/global/ReadingProgress.astro';
 import TableOfContents from '../../components/global/TableOfContents.astro';
 import Comments from '../../components/global/Comments.astro';
-import ShareButtons from '../../components/global/ShareButtons.astro';
+import ShareButtons from '../../components/ui/ShareButtons.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import '../../styles/sections/article.css';
 
 export async function getStaticPaths() {
@@ -97,6 +98,14 @@ const articleJsonLd = {
   <ReadingProgress label="阅读进度" />
   <TableOfContents headings={headings} label="目录" />
   <article class="article-container">
+    <Breadcrumb 
+      items={[
+        { label: '首页', url: '/' },
+        { label: '博客', url: '/blog' },
+        { label: post.data.title, url: `/blog/${post.id.replace('zh/', '')}/`, isCurrent: true }
+      ]} 
+    />
+    
     <a href="/blog" class="article-back">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
         ><path
@@ -220,7 +229,7 @@ const articleJsonLd = {
       <div class="article-footer-content">
         <span class="article-footer-label">— 祈研所 Qi-Lab —</span>
         <p class="article-footer-hint">如果这篇文章对你有帮助，欢迎分享给更多人。</p>
-        <ShareButtons url={articleUrl} title={post.data.title} description={post.data.description} image={ogImage} lang="zh" />
+        <ShareButtons title={post.data.title} url={`/blog/${post.id.replace('zh/', '')}/`} description={post.data.description} />
       </div>
       
       <RelatedArticles currentPost={post} allPosts={allPosts} limit={3} lang="zh" />

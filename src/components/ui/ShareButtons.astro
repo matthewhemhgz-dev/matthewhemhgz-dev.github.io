@@ -1,0 +1,170 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  description?: string;
+}
+
+const { title, url, description } = Astro.props;
+
+const fullUrl = `${Astro.site}${url}`;
+const encodedUrl = encodeURIComponent(fullUrl);
+const encodedTitle = encodeURIComponent(title);
+const encodedText = encodeURIComponent(description || title);
+---
+
+<div class="share-buttons" role="group" aria-label="分享链接">
+  <button 
+    class="share-btn share-btn-wechat" 
+    title="分享到微信"
+    aria-label="分享到微信"
+    data-share-type="wechat"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c4.801 0 8.692-3.287 8.692-7.342 0-4.054-3.89-7.339-8.692-7.339z"/>
+      <path d="M17.502 16.81c-.372 0-.674.303-.674.676 0 .373.302.675.674.675.372 0 .674-.302.674-.675 0-.373-.302-.676-.674-.676zm-7.38 0c-.372 0-.674.303-.674.676 0 .373.302.675.674.675.372 0 .674-.302.674-.675 0-.373-.302-.676-.674-.676zm3.69-3.27c-.373 0-.675.302-.675.674 0 .372.302.674.675.674.372 0 .674-.302.674-.674 0-.372-.302-.674-.674-.674zm-3.69 0c-.373 0-.675.302-.675.674 0 .372.302.674.675.674.372 0 .674-.302.674-.674 0-.372-.302-.674-.674-.674z"/>
+    </svg>
+  </button>
+  
+  <button 
+    class="share-btn share-btn-weibo" 
+    title="分享到微博"
+    aria-label="分享到微博"
+    data-share-url={`https://service.weibo.com/share/share.php?url=${encodedUrl}&title=${encodedText}`}
+    data-share-type="external"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.739 5.443z"/>
+      <path d="M9.05 15.678c-.642 0-1.162-.527-1.162-1.177 0-.65.52-1.176 1.162-1.176.642 0 1.162.526 1.162 1.176 0 .65-.52 1.177-1.162 1.177zm5.387 0c-.642 0-1.162-.527-1.162-1.177 0-.65.52-1.176 1.162-1.176.641 0 1.162.526 1.162 1.176 0 .65-.521 1.177-1.162 1.177zm-3.14-2.51c-.68 0-1.23-.557-1.23-1.243 0-.686.55-1.24 1.23-1.24.68 0 1.23.554 1.23 1.24 0 .686-.55 1.243-1.23 1.243z"/>
+    </svg>
+  </button>
+  
+  <button 
+    class="share-btn share-btn-twitter" 
+    title="分享到 Twitter"
+    aria-label="分享到 Twitter"
+    data-share-url={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}`}
+    data-share-type="external"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+    </svg>
+  </button>
+  
+  <button 
+    class="share-btn share-btn-copy" 
+    title="复制链接"
+    aria-label="复制链接"
+    data-share-type="copy"
+    data-copy-text={fullUrl}
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    </svg>
+  </button>
+  
+  <span class="share-tooltip" role="tooltip" aria-hidden="true">链接已复制!</span>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const shareButtons = document.querySelectorAll('.share-btn');
+  
+  shareButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const shareType = btn.dataset.shareType;
+      
+      if (shareType === 'external') {
+        const shareUrl = btn.dataset.shareUrl;
+        if (shareUrl) {
+          window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+      } else if (shareType === 'copy') {
+        const textToCopy = btn.dataset.copyText;
+        if (textToCopy) {
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            const tooltip = btn.parentElement.querySelector('.share-tooltip');
+            if (tooltip) {
+              tooltip.classList.add('share-tooltip-visible');
+              setTimeout(() => {
+                tooltip.classList.remove('share-tooltip-visible');
+              }, 2000);
+            }
+          });
+        }
+      }
+    });
+  });
+});
+</script>
+
+<style>
+.share-buttons {
+  display: flex;
+  gap: var(--qi-space-sm);
+  align-items: center;
+}
+
+.share-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--qi-bg-surface);
+  border: 1px solid var(--qi-border-default);
+  border-radius: var(--qi-radius-full);
+  color: var(--qi-text-secondary);
+  cursor: pointer;
+  transition: all var(--qi-transition);
+}
+
+.share-btn:hover {
+  background: var(--qi-brand-emerald);
+  border-color: var(--qi-brand-emerald);
+  color: var(--qi-text-inverse);
+  transform: translateY(-2px);
+}
+
+.share-btn:active {
+  transform: translateY(0);
+}
+
+.share-btn-copy svg {
+  stroke-width: 1.5;
+}
+
+.share-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding: var(--qi-space-xs) var(--qi-space-sm);
+  background: var(--qi-text-primary);
+  color: var(--qi-text-inverse);
+  font-size: var(--qi-text-xs);
+  border-radius: var(--qi-radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--qi-transition);
+  white-space: nowrap;
+}
+
+.share-tooltip-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .share-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .share-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>

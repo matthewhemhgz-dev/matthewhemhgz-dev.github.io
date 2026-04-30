@@ -261,12 +261,13 @@
 
 ---
 
-### ISSUE-P1-002: 缺少 BreadcrumbList schema
+### ISSUE-P1-002: 缺少 BreadcrumbList schema ✅ 已修复
 
 **优先级**: P1 🟡  
+**状态**: ✅ Fixed (2026-04-30)  
 **类别**: SEO & 内容问题  
 **影响范围**: 全站  
-**文件位置**: 所有页面
+**文件位置**: `src/components/ui/Breadcrumb.astro`
 
 **问题详情**:
 - 没有实现面包屑导航的结构化数据
@@ -277,6 +278,13 @@
 1. 创建面包屑导航组件
 2. 添加 BreadcrumbList schema
 3. 按页面类型生成面包屑路径
+
+**修复后**:
+- ✅ 创建了 `Breadcrumb.astro` 组件
+- ✅ 添加了 BreadcrumbList schema 结构化数据
+- ✅ 支持自定义面包屑项
+- ✅ 在博客详情页集成使用
+- ✅ 符合 Schema.org 标准
 
 **工作量评估**: 2小时
 
@@ -580,12 +588,13 @@ sitemap({
 
 ---
 
-### ISSUE-P1-015: 博客详情页缺少分享功能
+### ISSUE-P1-015: 博客详情页缺少分享功能 ✅ 已修复
 
 **优先级**: P1 🟡  
+**状态**: ✅ Fixed (2026-04-30)  
 **类别**: UX/UI设计问题  
 **影响范围**: 博客详情页  
-**文件位置**: `src/pages/blog/[slug].astro`
+**文件位置**: `src/pages/blog/[slug].astro`, `src/components/ui/ShareButtons.astro`
 
 **问题详情**:
 - 博客详情页没有社交媒体分享按钮
@@ -596,6 +605,14 @@ sitemap({
 1. 添加社交媒体分享按钮
 2. 支持复制链接功能
 3. 添加分享统计（可选）
+
+**修复后**:
+- ✅ 创建了 `ShareButtons.astro` 组件
+- ✅ 支持微信、微博、Twitter 分享
+- ✅ 支持复制链接功能
+- ✅ 复制成功提示
+- ✅ 在博客详情页集成使用
+- ✅ 响应式设计适配移动端
 
 **工作量评估**: 1小时
 

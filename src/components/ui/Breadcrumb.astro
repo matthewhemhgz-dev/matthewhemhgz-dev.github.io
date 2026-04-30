@@ -1,0 +1,97 @@
+---
+interface Props {
+  items: Array<{
+    label: string;
+    url: string;
+    isCurrent?: boolean;
+  }>;
+}
+
+const { items } = Astro.props;
+
+const breadcrumbList = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    item: item.isCurrent ? undefined : `${Astro.site}${item.url}`,
+  })),
+};
+---
+
+<nav class="breadcrumb" aria-label="面包屑导航">
+  <div class="breadcrumb-list">
+    {items.map((item, index) => (
+      <span key={index} class="breadcrumb-item">
+        {!item.isCurrent ? (
+          <a href={item.url} class="breadcrumb-link">
+            {item.label}
+          </a>
+        ) : (
+          <span class="breadcrumb-current" aria-current="page">
+            {item.label}
+          </span>
+        )}
+        {index < items.length - 1 && (
+          <span class="breadcrumb-separator" aria-hidden="true">/</span>
+        )}
+      </span>
+    ))}
+  </div>
+  
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbList)} />
+</nav>
+
+<style>
+.breadcrumb {
+  padding: var(--qi-space-lg) 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--qi-space-xs);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--qi-space-xs);
+}
+
+.breadcrumb-link {
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-secondary);
+  text-decoration: none;
+  transition: color var(--qi-transition);
+}
+
+.breadcrumb-link:hover {
+  color: var(--qi-brand-emerald);
+  text-decoration: underline;
+}
+
+.breadcrumb-current {
+  font-size: var(--qi-text-sm);
+  color: var(--qi-text-primary);
+  font-weight: var(--qi-weight-semibold);
+}
+
+.breadcrumb-separator {
+  color: var(--qi-text-muted);
+  font-size: var(--qi-text-sm);
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    padding: var(--qi-space-md) 0;
+  }
+  
+  .breadcrumb-list {
+    font-size: var(--qi-text-xs);
+  }
+}
+</style>
