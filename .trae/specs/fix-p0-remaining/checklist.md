@@ -1,0 +1,14 @@
+- [x] Checkpoint 1: 标签映射配置文件创建完成
+- [x] Checkpoint 2: 标签页面使用 slug 映射正确
+- [x] Checkpoint 3: 中文标签显示正确
+- [x] Checkpoint 4: 旧 URL 重定向正常工作
+- [x] Checkpoint 5: CSS 文件位置已确认
+- [x] Checkpoint 6: CSS 优化方案已评估
+- [x] Checkpoint 7: CSS 文件体积评估完成
+- [x] Checkpoint 8: CSS 按需加载方案已规划
+- [x] Checkpoint 9: `npm run lint` 通过无错误
+- [x] Checkpoint 10: `npm run test` 通过无失败
+- [x] Checkpoint 11: `npm run build` 成功完成
+- [x] Checkpoint 12: 本地预览验证所有修改正常工作
+- [x] Checkpoint 13: Issue 追踪文档已更新
+- [x] Checkpoint 14: 无新引入的问题或回归

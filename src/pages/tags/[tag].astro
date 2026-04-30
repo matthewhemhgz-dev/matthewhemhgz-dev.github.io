@@ -2,23 +2,31 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/ui/SectionHeader.astro';
 import { getCollection } from 'astro:content';
+import { tagMappings, getTagBySlug, getSlugByZhTag } from '../../data/tags';
 import '../../styles/pages/tag.css';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
-  const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
-  return allTags.map((tag) => ({
-    params: { tag },
-    props: {
-      tag,
-      posts: allPosts
-        .filter((p) => p.data.tags.includes(tag))
-        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
-    },
-  }));
+  const allZhTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
+  
+  return allZhTags.map((zhTag) => {
+    const slug = getSlugByZhTag(zhTag) || encodeURIComponent(zhTag);
+    const posts = allPosts
+      .filter((p) => p.data.tags.includes(zhTag))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    
+    return {
+      params: { tag: slug },
+      props: {
+        tag: zhTag,
+        slug,
+        posts,
+      },
+    };
+  });
 }
 
-const { tag, posts } = Astro.props;
+const { tag, slug, posts } = Astro.props;
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
 const tagCounts = allPosts.flatMap(post => post.data.tags).reduce((acc, t) => {
@@ -123,9 +131,18 @@ const yearRange = earliestYear === latestYear ? `${earliestYear}` : `${earliestY
               </div>
               {post.data.tags && post.data.tags.length > 0 && (
                 <div class="tag-post-tags">
-                  {post.data.tags.slice(0, 4).map((t) => (
-                    <span class="tag-post-tag">#{t}</span>
-                  ))}
+                  {post.data.tags.slice(0, 4).map((t) => {
+                    const tagSlug = getSlugByZhTag(t) || encodeURIComponent(t);
+                    return (
+                      <a 
+                        href={`/tags/${tagSlug}/`} 
+                        class="tag-post-tag"
+                        aria-label={`查看 ${t} 标签`}
+                      >
+                        #{t}
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </a>

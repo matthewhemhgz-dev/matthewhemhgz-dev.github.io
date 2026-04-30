@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/ui/SectionHeader.astro';
 import { getCollection } from 'astro:content';
+import { getSlugByZhTag } from '../../data/tags';
 import '../../styles/pages/tags.css';
 
 const allPosts = (
@@ -92,31 +93,37 @@ const avgArticlesPerTag = totalTags > 0 ? Math.round(totalArticles / totalTags) 
           
           <div class="tags-cloud-wrapper">
             <div class="tags-cloud tags-cloud-popularity">
-              {sortedTagsByPopularity.map(({ tag, count }, index) => (
-                <a 
-                  href={`/tags/${tag}/`} 
-                  class={`tag-link ${getTagSizeClass(count)} ${getHotTagClass(count, index)}`}
-                  title={`${count} 篇文章`}
-                  aria-label={`标签 ${tag}，共 ${count} 篇文章`}
-                >
-                  <span class="tag-text">#{tag}</span>
-                  <span class="tag-count-badge" aria-hidden="true">{count}</span>
-                </a>
-              ))}
+              {sortedTagsByPopularity.map(({ tag, count }, index) => {
+                const slug = getSlugByZhTag(tag) || encodeURIComponent(tag);
+                return (
+                  <a 
+                    href={`/tags/${slug}/`} 
+                    class={`tag-link ${getTagSizeClass(count)} ${getHotTagClass(count, index)}`}
+                    title={`${count} 篇文章`}
+                    aria-label={`标签 ${tag}，共 ${count} 篇文章`}
+                  >
+                    <span class="tag-text">#{tag}</span>
+                    <span class="tag-count-badge" aria-hidden="true">{count}</span>
+                  </a>
+                );
+              })}
             </div>
             
             <div class="tags-cloud tags-cloud-alphabet hidden">
-              {sortedTagsByAlphabet.map(({ tag, count }) => (
-                <a 
-                  href={`/tags/${tag}/`} 
-                  class={`tag-link ${getTagSizeClass(count)}`}
-                  title={`${count} 篇文章`}
-                  aria-label={`标签 ${tag}，共 ${count} 篇文章`}
-                >
-                  <span class="tag-text">#{tag}</span>
-                  <span class="tag-count-badge" aria-hidden="true">{count}</span>
-                </a>
-              ))}
+              {sortedTagsByAlphabet.map(({ tag, count }) => {
+                const slug = getSlugByZhTag(tag) || encodeURIComponent(tag);
+                return (
+                  <a 
+                    href={`/tags/${slug}/`} 
+                    class={`tag-link ${getTagSizeClass(count)}`}
+                    title={`${count} 篇文章`}
+                    aria-label={`标签 ${tag}，共 ${count} 篇文章`}
+                  >
+                    <span class="tag-text">#{tag}</span>
+                    <span class="tag-count-badge" aria-hidden="true">{count}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </>
@@ -152,9 +159,18 @@ const avgArticlesPerTag = totalTags > 0 ? Math.round(totalArticles / totalTags) 
               {post.data.description && <p class="tags-post-desc">{post.data.description}</p>}
               {post.data.tags && post.data.tags.length > 0 && (
                 <div class="tags-post-tags">
-                  {post.data.tags.slice(0, 3).map((tag) => (
-                    <span class="tags-post-tag">#{tag}</span>
-                  ))}
+                  {post.data.tags.slice(0, 3).map((tag) => {
+                    const slug = getSlugByZhTag(tag) || encodeURIComponent(tag);
+                    return (
+                      <a 
+                        href={`/tags/${slug}/`} 
+                        class="tags-post-tag"
+                        aria-label={`查看 ${tag} 标签`}
+                      >
+                        #{tag}
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </a>
