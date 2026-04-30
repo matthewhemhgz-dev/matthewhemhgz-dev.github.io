@@ -37,14 +37,27 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://matthewhem
 const articleUrl = `${siteUrl}/blog/${post.id.replace('zh/', '')}/`;
 const ogImage = post.data.heroImage ? `${siteUrl}${post.data.heroImage}` : '/og-default.png';
 
+const articleBody = post.body?.replace(/[#*`>\-\[\]()]/g, '').trim() || '';
+const wordCount = articleBody.length;
+
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: post.data.title,
   description: post.data.description,
   url: articleUrl,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl,
+  },
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
+  wordCount: wordCount,
+  articleBody: articleBody.substring(0, 5000),
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    xpath: ['//h1', '//h2'],
+  },
   author: {
     '@type': 'Person',
     name: post.data.author || 'Qi-Lab',
@@ -57,6 +70,8 @@ const articleJsonLd = {
     logo: {
       '@type': 'ImageObject',
       url: `${siteUrl}/images/logo.svg`,
+      width: 120,
+      height: 120,
     },
   },
   inLanguage: 'zh-CN',

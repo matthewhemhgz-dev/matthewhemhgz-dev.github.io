@@ -1,0 +1,13 @@
+- [ ] Checkpoint 1: x-default hreflang 标签已添加
+- [ ] Checkpoint 2: hreflang 配置在多语言页面验证通过
+- [ ] Checkpoint 3: Article schema 字段完整 (mainEntityOfPage, wordCount, articleBody, speakable)
+- [ ] Checkpoint 4: Schema 验证工具检查通过
+- [ ] Checkpoint 5: Logo 图片已优化 (SVG/WebP 格式)
+- [ ] Checkpoint 6: 响应式 Logo 版本已添加
+- [ ] Checkpoint 7: 筛选按钮 aria-pressed 状态已添加
+- [ ] Checkpoint 8: 状态切换逻辑正常工作
+- [ ] Checkpoint 9: `npm run lint` 通过无错误
+- [ ] Checkpoint 10: `npm run test` 通过无失败
+- [ ] Checkpoint 11: `npm run build` 成功完成
+- [ ] Checkpoint 12: Issue 追踪文档已更新
+- [ ] Checkpoint 13: 无新引入的问题或回归

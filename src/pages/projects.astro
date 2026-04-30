@@ -25,6 +25,8 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
                 class="filter-btn"
                 data-filter-type="category"
                 data-filter-value={category}
+                aria-pressed={category === '全部'}
+                role="button"
               >
                 {category}
               </button>
@@ -39,6 +41,8 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
               class="filter-btn tag-btn active"
               data-filter-type="tag"
               data-filter-value="all"
+              aria-pressed="true"
+              role="button"
             >
               全部
             </button>
@@ -48,6 +52,8 @@ const allTags = [...new Set(projects.flatMap(p => p.tags))];
                 class="filter-btn tag-btn"
                 data-filter-type="tag"
                 data-filter-value={tag}
+                aria-pressed="false"
+                role="button"
               >
                 {tag}
               </button>
@@ -481,10 +487,12 @@ document.addEventListener('DOMContentLoaded', function() {
       filterBtns.forEach((b) => {
         if (b.dataset.filterType === filterType) {
           b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
         }
       });
       
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       
       if (filterType === 'category') {
         currentCategory = filterValue;
@@ -500,9 +508,18 @@ document.addEventListener('DOMContentLoaded', function() {
     currentCategory = '全部';
     currentTag = 'all';
     
-    filterBtns.forEach((btn) => btn.classList.remove('active'));
-    if (categoryAllBtn) categoryAllBtn.classList.add('active');
-    if (tagAllBtn) tagAllBtn.classList.add('active');
+    filterBtns.forEach((btn) => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    if (categoryAllBtn) {
+      categoryAllBtn.classList.add('active');
+      categoryAllBtn.setAttribute('aria-pressed', 'true');
+    }
+    if (tagAllBtn) {
+      tagAllBtn.classList.add('active');
+      tagAllBtn.setAttribute('aria-pressed', 'true');
+    }
     
     filterProjects();
   });
