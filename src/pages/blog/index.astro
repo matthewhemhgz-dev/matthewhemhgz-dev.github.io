@@ -16,7 +16,8 @@ const allPosts = (
     <section class="blog-grid" aria-labelledby="blog-title">
       {
         allPosts.map((post) => (
-          <a href={`/blog/${post.id.replace('zh/', '')}/`} class="blog-card" data-reveal>
+          <article class="blog-card" data-reveal>
+            <a href={`/blog/${post.id.replace('zh/', '')}/`}>
             {post.data.heroImage && (
               <div class="blog-card-image">
                 <OptimizedImage
@@ -44,7 +45,8 @@ const allPosts = (
                 <span class="blog-card-reading-time">{getReadingTime(post.body || '')}</span>
               </div>
             </div>
-          </a>
+            </a>
+          </article>
         ))
       }
     </section>

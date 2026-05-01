@@ -343,6 +343,7 @@
   color: var(--qi-text-primary);
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  min-width: 3ch;
 }
 
 .hero-stat-text {
