@@ -290,16 +290,14 @@ const navItems = [
       ticking = false;
     }
 
-    function requestTick() {
+    const scrollHandler = () => {
       if (!ticking) {
         requestAnimationFrame(updateNav);
         ticking = true;
       }
-    }
+    };
 
-    window.addEventListener('scroll', requestTick);
-
-    window.addEventListener('resize', () => {
+    const resizeHandler = () => {
       const scrollY = window.scrollY;
       const isMobile = window.innerWidth <= 768;
       
@@ -308,6 +306,21 @@ const navItems = [
       } else if (scrollY > 100) {
         navWrapper?.classList.add('nav-collapsed');
       }
-    });
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('resize', resizeHandler);
+
+    (window as any).__navCleanup = () => {
+      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('resize', resizeHandler);
+    };
+  });
+
+  document.addEventListener('astro:before-swap', () => {
+    if ((window as any).__navCleanup) {
+      (window as any).__navCleanup();
+      delete (window as any).__navCleanup;
+    }
   });
 </script>
