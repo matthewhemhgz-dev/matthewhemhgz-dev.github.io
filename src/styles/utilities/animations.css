@@ -8,47 +8,55 @@
 .qi-anim-fade-in {
   animation: fadeIn var(--qi-anim-duration) var(--qi-anim-ease) forwards;
   opacity: 0;
+  will-change: opacity;
 }
 
 .qi-anim-slide-up {
   animation: slideUp var(--qi-anim-duration) var(--qi-spring) forwards;
   opacity: 0;
   transform: translateY(var(--qi-anim-offset));
+  will-change: opacity, transform;
 }
 
 .qi-anim-slide-down {
   animation: slideDown var(--qi-anim-duration) var(--qi-spring) forwards;
   opacity: 0;
   transform: translateY(calc(-1 * var(--qi-anim-offset)));
+  will-change: opacity, transform;
 }
 
 .qi-anim-slide-left {
   animation: slideLeft var(--qi-anim-duration) var(--qi-spring) forwards;
   opacity: 0;
   transform: translateX(var(--qi-anim-offset));
+  will-change: opacity, transform;
 }
 
 .qi-anim-slide-right {
   animation: slideRight var(--qi-anim-duration) var(--qi-spring) forwards;
   opacity: 0;
   transform: translateX(calc(-1 * var(--qi-anim-offset)));
+  will-change: opacity, transform;
 }
 
 .qi-anim-scale-in {
   animation: scaleIn var(--qi-anim-duration) var(--qi-spring) forwards;
   opacity: 0;
   transform: scale(0.95);
+  will-change: opacity, transform;
 }
 
 .qi-anim-bounce-in {
   animation: bounceIn var(--qi-anim-duration) var(--qi-spring-snappy) forwards;
   opacity: 0;
   transform: scale(0.8);
+  will-change: opacity, transform;
 }
 
 /* 悬停动画类 */
 .qi-anim-hover-scale {
   transition: transform var(--qi-transition) var(--qi-spring-soft);
+  will-change: transform;
 }
 
 .qi-anim-hover-scale:hover {
@@ -58,6 +66,7 @@
 .qi-anim-hover-lift {
   transition: transform var(--qi-transition) var(--qi-spring-soft),
               box-shadow var(--qi-transition) var(--qi-spring-soft);
+  will-change: transform, box-shadow;
 }
 
 .qi-anim-hover-lift:hover {
@@ -67,6 +76,7 @@
 
 .qi-anim-hover-glow {
   transition: box-shadow var(--qi-transition) var(--qi-spring-soft);
+  will-change: box-shadow;
 }
 
 .qi-anim-hover-glow:hover {
