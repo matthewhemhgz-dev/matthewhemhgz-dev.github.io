@@ -25,9 +25,7 @@ export const projects: Project[] = [
     category: '个人项目',
     categoryEn: 'Personal Projects',
     tags: ['Astro', 'TypeScript', 'CSS', 'PWA'],
-    image: '/images/projects/qi-lab.png',
-    previewImage: '/images/projects/qi-lab-preview.gif',
-    previewType: 'gif',
+    image: '/blog/astro-ssg-why-i-chose.png',
     url: '/',
     github: 'https://github.com/matthewhemhgz-dev/matthewhemhgz-dev.github.io',
     year: 2024
@@ -41,7 +39,7 @@ export const projects: Project[] = [
     category: '数据可视化',
     categoryEn: 'Data Visualization',
     tags: ['Neo4j', 'D3.js', 'GraphQL'],
-    image: '/images/projects/knowledge-graph.png',
+    image: '/blog/knowledge-graph-visualization.png',
     url: '/blog/knowledge-graph-visualization',
     year: 2024
   },
@@ -54,7 +52,7 @@ export const projects: Project[] = [
     category: '设计系统',
     categoryEn: 'Design System',
     tags: ['Design Tokens', 'CSS', 'Component Library'],
-    image: '/images/projects/design-system.png',
+    image: '/blog/design-system-from-scratch.png',
     url: '/blog/design-system-from-scratch',
     year: 2024
   },
@@ -67,7 +65,7 @@ export const projects: Project[] = [
     category: 'AI 应用',
     categoryEn: 'AI Applications',
     tags: ['AI', 'Claude', 'API', 'RAG'],
-    image: '/images/projects/ai-assistant.png',
+    image: '/blog/ai-era-knowledge-worker.png',
     url: '/blog/ai-era-knowledge-worker',
     year: 2025
   },
@@ -80,7 +78,7 @@ export const projects: Project[] = [
     category: '知识管理',
     categoryEn: 'Knowledge Management',
     tags: ['Obsidian', 'Notion', 'Second Brain'],
-    image: '/images/projects/zettelkasten.png',
+    image: '/blog/zettelkasten-practical-guide.png',
     url: '/blog/zettelkasten-practical-guide',
     year: 2024
   },
@@ -93,7 +91,7 @@ export const projects: Project[] = [
     category: '性能工程',
     categoryEn: 'Performance Engineering',
     tags: ['Performance', 'Optimization', 'Lighthouse'],
-    image: '/images/projects/performance.png',
+    image: '/blog/how-to-optimize-frontend-performance.png',
     url: '/blog/how-to-optimize-frontend-performance',
     year: 2024
   }

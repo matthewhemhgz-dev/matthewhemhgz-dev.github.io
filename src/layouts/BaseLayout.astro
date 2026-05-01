@@ -196,36 +196,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
       )
     }
 
-    <!-- Article structured data for blog posts -->
-    {
-      ogType === 'article' && (
-        <script
-          type="application/ld+json"
-          set:html={JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: title,
-            description: description,
-            image: new URL(ogImage, Astro.site).toString(),
-            author: {
-              '@type': 'Person',
-              name: isEnglish ? 'Qi-Lab' : '祈研所',
-            },
-            publisher: {
-              '@type': 'Organization',
-              name: isEnglish ? 'Qi-Lab' : '祈研所',
-              logo: {
-                '@type': 'ImageObject',
-                url: new URL('/favicon.png', Astro.site).toString(),
-              },
-            },
-            datePublished: Astro.props.pubDate || new Date().toISOString(),
-            dateModified: Astro.props.modDate || new Date().toISOString(),
-            inLanguage: isEnglish ? 'en-US' : 'zh-CN',
-          })}
-        />
-      )
-    }
+
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNGRXTNXF5"></script>

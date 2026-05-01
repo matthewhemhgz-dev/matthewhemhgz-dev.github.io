@@ -37,29 +37,42 @@ const { items } = Astro.props;
 </nav>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+let scrollHandler = null;
+let clickHandlers = [];
+
+function initOnPageNav() {
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler);
+  }
+  clickHandlers.forEach((handler) => {
+    const link = handler.element;
+    if (link) {
+      link.removeEventListener('click', handler.fn);
+    }
+  });
+  clickHandlers = [];
+
   const navLinks = document.querySelectorAll('.onpage-nav-link');
   const progressBar = document.querySelector('.onpage-nav-progress');
   const sections = document.querySelectorAll('.about-section');
-  
+
   const updateActiveNav = () => {
     let currentSection = '';
-    
+
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const scrollPosition = window.scrollY + 100;
-      
+
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         currentSection = section.id;
       }
     });
-    
+
     navLinks.forEach((link) => {
       link.classList.toggle('active', link.dataset.section === currentSection);
     });
-    
-    // 更新进度条
+
     if (progressBar && sections.length > 0) {
       const lastSection = sections[sections.length - 1];
       const totalHeight = lastSection.offsetTop + lastSection.offsetHeight - window.innerHeight;
@@ -67,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
       progressBar.style.height = `${progress}%`;
     }
   };
-  
+
   const smoothScroll = (e) => {
     e.preventDefault();
     const targetId = e.currentTarget.getAttribute('href');
     const targetElement = document.querySelector(targetId);
-    
+
     if (targetElement) {
       const offsetTop = targetElement.offsetTop - 80;
       window.scrollTo({
@@ -81,13 +94,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   };
-  
+
   navLinks.forEach((link) => {
     link.addEventListener('click', smoothScroll);
+    clickHandlers.push({ element: link, fn: smoothScroll });
   });
-  
-  window.addEventListener('scroll', updateActiveNav);
+
+  scrollHandler = updateActiveNav;
+  window.addEventListener('scroll', scrollHandler, { passive: true });
   updateActiveNav();
+}
+
+document.addEventListener('astro:page-load', initOnPageNav);
+
+document.addEventListener('astro:before-swap', () => {
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler);
+    scrollHandler = null;
+  }
+  clickHandlers.forEach((handler) => {
+    if (handler.element) {
+      handler.element.removeEventListener('click', handler.fn);
+    }
+  });
+  clickHandlers = [];
 });
 </script>
 

@@ -33,6 +33,7 @@ const { label = '阅读进度' } = Astro.props;
     }
     if (rafId) {
       cancelAnimationFrame(rafId);
+      rafId = null;
     }
 
     const progressContainer = document.getElementById('reading-progress');
@@ -88,6 +89,17 @@ const { label = '阅读进度' } = Astro.props;
     updateProgress();
   }
 
+  function cleanupReadingProgress() {
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler);
+      scrollHandler = null;
+    }
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
   document.addEventListener('astro:page-load', initReadingProgress);
-  document.addEventListener('DOMContentLoaded', initReadingProgress);
+  document.addEventListener('astro:before-swap', cleanupReadingProgress);
 </script>

@@ -49,7 +49,18 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 )}
 
 <script>
+  let tocScrollHandler: (() => void) | null = null;
+  const tocClickHandlers: Map<Element, (_e: Event) => void> = new Map();
+
   function initTableOfContents() {
+    if (tocScrollHandler) {
+      window.removeEventListener('scroll', tocScrollHandler);
+    }
+    tocClickHandlers.forEach((handler, link) => {
+      link.removeEventListener('click', handler);
+    });
+    tocClickHandlers.clear();
+
     const tocItems = document.querySelectorAll('.toc-item');
     const tocLinks = document.querySelectorAll('.toc-link');
 
@@ -118,7 +129,7 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
 
     let ticking = false;
 
-    const scrollHandler = () => {
+    tocScrollHandler = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           updateActiveHeading();
@@ -128,11 +139,11 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
       }
     };
 
-    window.addEventListener('scroll', scrollHandler, { passive: true });
+    window.addEventListener('scroll', tocScrollHandler, { passive: true });
     updateActiveHeading();
 
     tocLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
+      const clickHandler = (e: Event) => {
         e.preventDefault();
         const href = link.getAttribute('href');
         if (href) {
@@ -150,10 +161,23 @@ const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
             history.pushState(null, '', href);
           }
         }
-      });
+      };
+      link.addEventListener('click', clickHandler);
+      tocClickHandlers.set(link, clickHandler);
     });
   }
 
+  function cleanupTableOfContents() {
+    if (tocScrollHandler) {
+      window.removeEventListener('scroll', tocScrollHandler);
+      tocScrollHandler = null;
+    }
+    tocClickHandlers.forEach((handler, link) => {
+      link.removeEventListener('click', handler);
+    });
+    tocClickHandlers.clear();
+  }
+
   document.addEventListener('astro:page-load', initTableOfContents);
-  document.addEventListener('DOMContentLoaded', initTableOfContents);
+  document.addEventListener('astro:before-swap', cleanupTableOfContents);
 </script>

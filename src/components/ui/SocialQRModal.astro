@@ -55,6 +55,19 @@
 </style>
 
 <script>
+  let lastFocusedElement: HTMLElement | null = null;
+
+  function getFocusableElements(modal: HTMLElement): HTMLElement[] {
+    const focusableSelectors = 'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusableElements = modal.querySelectorAll<HTMLElement>(focusableSelectors);
+    return Array.from(focusableElements).filter(el => {
+      const isHidden = el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
+      const isDisabled = el.hasAttribute('disabled');
+      const isHiddenByStyle = el.offsetParent === null;
+      return !isHidden && !isDisabled && !isHiddenByStyle;
+    });
+  }
+
   function initSocialModal() {
     const modal = document.getElementById('social-qr-modal');
     const backdrop = document.getElementById('social-qr-backdrop');
@@ -65,14 +78,17 @@
 
     if (!modal || !qrImg || !platformEl || !accountEl) return;
 
-    function openModal(data: { platform: string; qrImage: string; account: string }) {
+    function openModal(data: { platform: string; qrImage: string; account: string }, triggerElement?: HTMLElement | null) {
       const isEn = document.documentElement.lang.startsWith('en');
+
+      if (triggerElement) {
+        lastFocusedElement = triggerElement;
+      }
 
       qrImg.src = data.qrImage;
       platformEl!.textContent = data.platform;
       accountEl!.textContent = data.account;
 
-      // Update persistent labels based on current page language
       const titleEl = document.getElementById('qr-modal-title');
       const hintEl = document.getElementById('social-qr-hint');
       if (titleEl) titleEl.textContent = isEn ? 'Scan to Follow' : '扫码关注';
@@ -81,12 +97,23 @@
 
       modal!.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        closeBtn?.focus({ preventScroll: true });
+      }, 50);
     }
 
     function closeModal() {
       modal!.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      // 清空图片以防下次闪烁上一张图
+
+      setTimeout(() => {
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+          lastFocusedElement = null;
+        }
+      }, 50);
+
       setTimeout(() => {
         if (modal!.getAttribute('aria-hidden') === 'true') {
           qrImg.src = '';
@@ -94,7 +121,6 @@
       }, 300);
     }
 
-    // 监听全局点击事件（委托）
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       const trigger = target.closest('[data-qr-trigger]');
@@ -108,29 +134,49 @@
           platform: platform || '',
           qrImage: qrImage || '',
           account: account || '',
-        });
+        }, trigger as HTMLElement);
       }
     });
 
-    // 监听显式调用的自定义事件
     window.addEventListener('open-social-qr', ((e: CustomEvent) => {
       if (e.detail) {
+        lastFocusedElement = document.activeElement as HTMLElement;
         openModal(e.detail);
       }
     }) as EventListener);
 
-    // 关闭事件
     backdrop?.addEventListener('click', closeModal);
     closeBtn?.addEventListener('click', closeModal);
 
-    // Esc 键关闭
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      if (e.key === 'Escape' && modal!.getAttribute('aria-hidden') === 'false') {
         closeModal();
+      }
+    });
+
+    modal!.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusableElements = getFocusableElements(modal!);
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        const activeElement = document.activeElement as HTMLElement;
+
+        if (e.shiftKey) {
+          if (activeElement === firstElement || !focusableElements.includes(activeElement)) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (activeElement === lastElement || !focusableElements.includes(activeElement)) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     });
   }
 
-  // View Transitions 兼容
   document.addEventListener('astro:page-load', initSocialModal);
 </script>

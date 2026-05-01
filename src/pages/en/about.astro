@@ -3,6 +3,7 @@ import '../../styles/sections/about.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeader from '../../components/ui/SectionHeader.astro';
 import Divider from '../../components/global/Divider.astro';
+import OnPageNav from '../../components/ui/OnPageNav.astro';
 ---
 
 <BaseLayout
@@ -10,7 +11,20 @@ import Divider from '../../components/global/Divider.astro';
   description="Learn about Qi-Lab's brand story, philosophy, and contact information."
 >
   <div class="about-page">
-    <div class="container">
+    <div class="container with-sidebar">
+      <aside class="sidebar">
+        <OnPageNav 
+          items={[
+            { id: 'story', label: 'Brand Story' },
+            { id: 'journey', label: 'Brand Journey & Vision' },
+            { id: 'values', label: 'Core Values' },
+            { id: 'philosophy', label: 'Design Philosophy' },
+            { id: 'tech', label: 'Tech Stack' },
+            { id: 'contact', label: 'Get in Touch' },
+          ]} 
+        />
+      </aside>
+      <main class="main-content">
       <!-- Page Hero -->
       <section class="page-hero" data-reveal>
         <span class="page-label">// ABOUT</span>
@@ -21,7 +35,7 @@ import Divider from '../../components/global/Divider.astro';
       <Divider />
 
       <!-- Brand Story -->
-      <section class="about-section" data-reveal>
+      <section id="story" class="about-section" data-reveal>
         <SectionHeader label="// STORY" title="Brand Story" />
         <div class="about-prose">
           <p>
@@ -54,7 +68,7 @@ import Divider from '../../components/global/Divider.astro';
       <Divider />
 
       <!-- History & Vision -->
-      <section class="about-section" data-reveal>
+      <section id="journey" class="about-section" data-reveal>
         <SectionHeader label="// JOURNEY" title="Brand Journey & Vision" />
         <div class="history-vision">
           <div class="history-card">
@@ -105,7 +119,7 @@ import Divider from '../../components/global/Divider.astro';
       <Divider />
 
       <!-- Core Values -->
-      <section class="about-section" data-reveal>
+      <section id="values" class="about-section" data-reveal>
         <SectionHeader label="// VALUES" title="Core Values" />
         <div class="values-grid">
           <div class="value-card">
@@ -144,7 +158,7 @@ import Divider from '../../components/global/Divider.astro';
       <Divider />
 
       <!-- Philosophy -->
-      <section class="about-section" data-reveal>
+      <section id="philosophy" class="about-section" data-reveal>
         <SectionHeader label="// PHILOSOPHY" title="Design Philosophy" />
         <div class="philosophy-grid">
           <div class="philosophy-card">
@@ -187,7 +201,7 @@ import Divider from '../../components/global/Divider.astro';
       <Divider />
 
       <!-- Tech Stack -->
-      <section class="about-section" data-reveal>
+      <section id="tech" class="about-section" data-reveal>
         <SectionHeader label="// TECH" title="Tech Stack" />
         <div class="tech-stack">
           <div class="tech-category">
@@ -240,7 +254,7 @@ import Divider from '../../components/global/Divider.astro';
       <Divider />
 
       <!-- Contact CTA -->
-      <section class="about-section" data-reveal>
+      <section id="contact" class="about-section" data-reveal>
         <SectionHeader label="// CONTACT" title="Get in Touch" />
         <div class="contact-cta">
           <p class="cta-text">
@@ -264,6 +278,7 @@ import Divider from '../../components/global/Divider.astro';
           <a href="/en#contact" class="cta-btn">View Full Contact Information</a>
         </div>
       </section>
+      </main>
     </div>
   </div>
 </BaseLayout>
