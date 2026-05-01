@@ -293,8 +293,9 @@
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let pagefind: any = null;
+  import type { Pagefind, PagefindResult } from '../../types/pagefind';
+  
+  let pagefind: Pagefind | null = null;
   let searchTimeout: ReturnType<typeof setTimeout> | null = null;
   let currentFilter = 'all';
   let currentSort = 'relevance';
@@ -405,9 +406,8 @@
 
     try {
       const search = await pf.search(query);
-      const items = await Promise.all(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        search.results.slice(0, 10).map((r: any) => r.data()),
+      const items: PagefindResult[] = await Promise.all(
+        search.results.slice(0, 10).map((r) => r.data()),
       );
 
       if (items.length === 0) {
@@ -448,8 +448,7 @@
           <span class="search-results-count">${filteredItems.length} ${t('filter-articles')}</span>
         </div>
         ${filteredItems
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .map((item: any) => {
+          .map((item: PagefindResult) => {
             const url = item.url.startsWith('/') ? item.url : `/${item.url}`;
             const title = highlightKeyword(item.meta?.title || item.url, query);
             const excerpt = item.excerpt ? highlightKeyword(item.excerpt, query) : '';

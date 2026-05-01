@@ -15,8 +15,22 @@ body {
   color: var(--qi-text-primary);
   overflow-x: hidden;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Theme transition overlay - prevents flash during switch */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    fill 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Dark mode body background adjustment */
@@ -28,7 +42,9 @@ body {
 
 a {
   color: var(--qi-brand-emerald);
-  transition: color var(--qi-transition-fast);
+  transition:
+    color var(--qi-transition-fast),
+    opacity var(--qi-transition-fast);
 }
 
 a:hover {
@@ -39,4 +55,5 @@ main {
   position: relative;
   z-index: var(--qi-z-content);
   min-height: 100vh;
+  transition: opacity 0.3s ease;
 }

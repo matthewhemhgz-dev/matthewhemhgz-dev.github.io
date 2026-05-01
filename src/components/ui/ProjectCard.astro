@@ -96,12 +96,14 @@ const hasPreview = project.previewImage && project.previewType;
     </div>
     
     <h3 class="project-title">
-      {project.url ? (
-        <a href={project.url} target="_blank" rel="noopener noreferrer">
+      {lang === 'en' ? (
+        <a href={`/en/projects/${project.slug}/`}>
           {title}
         </a>
       ) : (
-        <span>{title}</span>
+        <a href={`/projects/${project.slug}/`}>
+          {title}
+        </a>
       )}
     </h3>
     

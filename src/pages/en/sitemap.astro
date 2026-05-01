@@ -1,0 +1,398 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import { getCollection } from 'astro:content';
+
+const enPosts = (
+  await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en')
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const tagCounts = enPosts.flatMap(post => post.data.tags).reduce((acc, tag) => {
+  acc[tag] = (acc[tag] || 0) + 1;
+  return acc;
+}, {});
+
+const postsByYear = enPosts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {});
+
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout
+  title="Sitemap | Qi-Lab"
+  description="Complete sitemap of Qi-Lab - Browse all pages and content quickly"
+>
+  <div class="container sitemap-page">
+    <header class="sitemap-header" data-reveal>
+      <h1 class="sitemap-title">Sitemap</h1>
+      <p class="sitemap-subtitle">Browse all content and navigate quickly</p>
+    </header>
+
+    <div class="sitemap-grid">
+      <section class="sitemap-section" data-reveal>
+        <SectionHeader label="// NAVIGATION" title="Navigation" />
+        <nav class="sitemap-nav" aria-label="Main navigation">
+          <ul class="sitemap-nav-list">
+            <li>
+              <a href="/en/" class="sitemap-link sitemap-link--primary">
+                <span class="sitemap-link-icon">🏠</span>
+                <span class="sitemap-link-text">
+                  <span class="sitemap-link-title">Home</span>
+                  <span class="sitemap-link-desc">Explore core values and content overview</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/en/blog" class="sitemap-link sitemap-link--primary">
+                <span class="sitemap-link-icon">📝</span>
+                <span class="sitemap-link-text">
+                  <span class="sitemap-link-title">Blog</span>
+                  <span class="sitemap-link-desc">In-depth articles on KM, PM, IT/AI tips</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/en/projects" class="sitemap-link sitemap-link--primary">
+                <span class="sitemap-link-icon">🚀</span>
+                <span class="sitemap-link-text">
+                  <span class="sitemap-link-title">Projects</span>
+                  <span class="sitemap-link-desc">Practical tools and systems built from scratch</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/en/about" class="sitemap-link sitemap-link--primary">
+                <span class="sitemap-link-icon">👤</span>
+                <span class="sitemap-link-text">
+                  <span class="sitemap-link-title">About</span>
+                  <span class="sitemap-link-desc">Brand story, philosophy, and contact info</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/en/tags" class="sitemap-link sitemap-link--primary">
+                <span class="sitemap-link-icon">🏷️</span>
+                <span class="sitemap-link-text">
+                  <span class="sitemap-link-title">Tag Cloud</span>
+                  <span class="sitemap-link-desc">Tags aggregated by topic</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/en/search" class="sitemap-link sitemap-link--primary">
+                <span class="sitemap-link-icon">🔍</span>
+                <span class="sitemap-link-text">
+                  <span class="sitemap-link-title">Search</span>
+                  <span class="sitemap-link-desc">Find content quickly</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+
+      <section class="sitemap-section" data-reveal>
+        <SectionHeader label="// BLOG POSTS" title="Blog Posts" />
+        {years.length > 0 ? (
+          <div class="sitemap-year-groups">
+            {years.map(year => (
+              <div class="sitemap-year-group">
+                <h3 class="sitemap-year">{year}</h3>
+                <ul class="sitemap-post-list">
+                  {postsByYear[year].map(post => (
+                    <li>
+                      <a href={`/en/blog/${post.id.replace('en/', '')}/`} class="sitemap-post-link">
+                        <span class="sitemap-post-category">{post.data.category}</span>
+                        <span class="sitemap-post-title">{post.data.title}</span>
+                        <time class="sitemap-post-date">
+                          {post.data.pubDate.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </time>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="sitemap-empty">No articles published yet. Stay tuned!</p>
+        )}
+      </section>
+
+      <section class="sitemap-section" data-reveal>
+        <SectionHeader label="// TAG CLOUD" title="Tag Cloud" />
+        {Object.keys(tagCounts).length > 0 ? (
+          <div class="sitemap-tags">
+            {Object.entries(tagCounts)
+              .sort(([, countA], [, countB]) => countB - countA)
+              .map(([tag, count]) => (
+                <a
+                  href={`/en/tags/${encodeURIComponent(tag)}/`}
+                  class="sitemap-tag"
+                  title={`${count} articles`}
+                  aria-label={`Tag ${tag}, ${count} articles`}
+                >
+                  #{tag}
+                </a>
+              ))}
+          </div>
+        ) : (
+          <p class="sitemap-empty">No tags available yet.</p>
+        )}
+      </section>
+
+      <section class="sitemap-section" data-reveal>
+        <SectionHeader label="// QUICK LINKS" title="Quick Links" />
+        <nav class="sitemap-links-grid" aria-label="Quick links">
+          <a href="/en/rss.xml" class="sitemap-quick-link">
+            <span class="sitemap-quick-icon">📡</span>
+            <span class="sitemap-quick-title">RSS Feed</span>
+          </a>
+          <a href="https://github.com/matthewhemhgz-dev" target="_blank" rel="noopener noreferrer" class="sitemap-quick-link">
+            <span class="sitemap-quick-icon">💻</span>
+            <span class="sitemap-quick-title">GitHub</span>
+          </a>
+          <a href="/" class="sitemap-quick-link">
+            <span class="sitemap-quick-icon">🇨🇳</span>
+            <span class="sitemap-quick-title">中文版</span>
+          </a>
+        </nav>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .sitemap-page {
+    padding: var(--qi-space-2xl, 48px) 0;
+  }
+
+  .sitemap-header {
+    text-align: center;
+    margin-bottom: var(--qi-space-2xl, 48px);
+  }
+
+  .sitemap-title {
+    font-size: var(--qi-text-4xl, 2.5rem);
+    font-weight: 700;
+    color: var(--qi-text-primary, #1a1a1a);
+    margin-bottom: var(--qi-space-sm, 8px);
+  }
+
+  .sitemap-subtitle {
+    font-size: var(--qi-text-lg, 1.125rem);
+    color: var(--qi-text-secondary, #666);
+  }
+
+  .sitemap-grid {
+    display: grid;
+    gap: var(--qi-space-2xl, 48px);
+  }
+
+  .sitemap-section {
+    background: var(--qi-surface-elevated, #fff);
+    border: 1px solid var(--qi-border-subtle, #e5e5e5);
+    border-radius: var(--qi-radius-lg, 12px);
+    padding: var(--qi-space-xl, 24px);
+  }
+
+  .sitemap-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-sm, 8px);
+  }
+
+  .sitemap-link {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--qi-space-md, 12px);
+    padding: var(--qi-space-md, 12px);
+    border-radius: var(--qi-radius-md, 8px);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .sitemap-link:hover {
+    background: var(--qi-surface-hover, #f5f5f5);
+  }
+
+  .sitemap-link-icon {
+    font-size: var(--qi-text-xl, 1.25rem);
+    flex-shrink: 0;
+  }
+
+  .sitemap-link-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sitemap-link-title {
+    font-weight: 600;
+    color: var(--qi-text-primary, #1a1a1a);
+    font-size: var(--qi-text-base, 1rem);
+  }
+
+  .sitemap-link-desc {
+    font-size: var(--qi-text-sm, 0.875rem);
+    color: var(--qi-text-secondary, #666);
+  }
+
+  .sitemap-year-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--qi-space-xl, 24px);
+  }
+
+  .sitemap-year {
+    font-size: var(--qi-text-xl, 1.25rem);
+    font-weight: 700;
+    color: var(--qi-brand-emerald, #2d5a47);
+    margin-bottom: var(--qi-space-sm, 8px);
+    padding-bottom: var(--qi-space-xs, 4px);
+    border-bottom: 2px solid var(--qi-brand-emerald, #2d5a47);
+  }
+
+  .sitemap-post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sitemap-post-link {
+    display: flex;
+    align-items: center;
+    gap: var(--qi-space-md, 12px);
+    padding: var(--qi-space-sm, 8px);
+    border-radius: var(--qi-radius-sm, 4px);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .sitemap-post-link:hover {
+    background: var(--qi-surface-hover, #f5f5f5);
+  }
+
+  .sitemap-post-category {
+    font-size: var(--qi-text-xs, 0.75rem);
+    color: var(--qi-brand-amber, #b8860b);
+    background: rgba(184, 134, 11, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--qi-radius-sm, 4px);
+    white-space: nowrap;
+  }
+
+  .sitemap-post-title {
+    flex: 1;
+    font-size: var(--qi-text-sm, 0.875rem);
+    color: var(--qi-text-primary, #1a1a1a);
+  }
+
+  .sitemap-post-date {
+    font-size: var(--qi-text-xs, 0.75rem);
+    color: var(--qi-text-tertiary, #999);
+    white-space: nowrap;
+  }
+
+  .sitemap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--qi-space-sm, 8px);
+  }
+
+  .sitemap-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--qi-space-xs, 4px) var(--qi-space-sm, 8px);
+    background: var(--qi-surface-secondary, #f8f8f8);
+    border: 1px solid var(--qi-border-subtle, #e5e5e5);
+    border-radius: var(--qi-radius-full, 9999px);
+    font-size: var(--qi-text-sm, 0.875rem);
+    color: var(--qi-text-primary, #1a1a1a);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .sitemap-tag:hover {
+    background: var(--qi-brand-emerald, #2d5a47);
+    color: white;
+    border-color: var(--qi-brand-emerald, #2d5a47);
+  }
+
+  .sitemap-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--qi-space-md, 12px);
+  }
+
+  .sitemap-quick-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--qi-space-sm, 8px);
+    padding: var(--qi-space-lg, 16px);
+    background: var(--qi-surface-secondary, #f8f8f8);
+    border: 1px solid var(--qi-border-subtle, #e5e5e5);
+    border-radius: var(--qi-radius-md, 8px);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .sitemap-quick-link:hover {
+    background: var(--qi-brand-emerald, #2d5a47);
+    color: white;
+    border-color: var(--qi-brand-emerald, #2d5a47);
+  }
+
+  .sitemap-quick-icon {
+    font-size: var(--qi-text-2xl, 1.5rem);
+  }
+
+  .sitemap-quick-title {
+    font-size: var(--qi-text-sm, 0.875rem);
+    font-weight: 500;
+    color: inherit;
+  }
+
+  .sitemap-empty {
+    color: var(--qi-text-secondary, #666);
+    font-style: italic;
+    text-align: center;
+    padding: var(--qi-space-xl, 24px);
+  }
+
+  @media (max-width: 768px) {
+    .sitemap-title {
+      font-size: var(--qi-text-3xl, 2rem);
+    }
+
+    .sitemap-section {
+      padding: var(--qi-space-lg, 16px);
+    }
+
+    .sitemap-post-link {
+      flex-wrap: wrap;
+    }
+
+    .sitemap-post-title {
+      width: 100%;
+      order: 3;
+      margin-top: 4px;
+    }
+  }
+</style>

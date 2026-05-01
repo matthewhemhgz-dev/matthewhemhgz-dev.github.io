@@ -8,6 +8,7 @@
  * - 尊重 prefers-color-scheme 系统偏好
  * - View Transitions 兼容
  * - 多语言支持
+ * - 平滑过渡动画
  */
 
 import { Astro } from 'astro';
@@ -30,38 +31,42 @@ const getThemeToggleText = (isDark) => {
   title={getThemeToggleText(false)}
   aria-pressed="false"
 >
-  <!-- Sun icon (shown in dark mode) -->
-  <svg
-    class="theme-icon-sun"
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    aria-hidden="true"
-  >
-    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"></circle>
-    <path
-      d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41"
-      stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"></path>
-  </svg>
-  <!-- Moon icon (shown in light mode) -->
-  <svg
-    class="theme-icon-moon"
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    aria-hidden="true"
-  >
-    <path
-      d="M14 8.5A6.5 6.5 0 017.5 2 6.5 6.5 0 1014 8.5z"
-      stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"></path>
-  </svg>
+  <span class="theme-toggle-track">
+    <span class="theme-toggle-thumb">
+      <!-- Sun icon -->
+      <svg
+        class="theme-icon-sun"
+        width="14"
+        height="14"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"></circle>
+        <path
+          d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"></path>
+      </svg>
+      <!-- Moon icon -->
+      <svg
+        class="theme-icon-moon"
+        width="14"
+        height="14"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M14 8.5A6.5 6.5 0 017.5 2 6.5 6.5 0 1014 8.5z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </span>
 </button>
 
 <style>
@@ -69,23 +74,24 @@ const getThemeToggleText = (isDark) => {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
+    width: auto;
+    min-width: 36px;
     height: 36px;
     padding: 0;
-    background: var(--qi-base-04);
-    border: 1px solid var(--qi-base-06);
-    border-radius: var(--qi-radius-md);
+    background: transparent;
+    border: none;
+    border-radius: var(--qi-radius-full);
     cursor: pointer;
-    color: var(--qi-text-secondary);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    flex-shrink: 0;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .theme-toggle-btn:hover {
-    color: var(--qi-text-primary);
-    background: var(--qi-base-06);
-    border-color: var(--qi-base-08);
+    transform: scale(1.1);
+  }
+
+  .theme-toggle-btn:active {
+    transform: scale(0.95);
   }
 
   .theme-toggle-btn:focus-visible {
@@ -93,36 +99,160 @@ const getThemeToggleText = (isDark) => {
     outline-offset: 2px;
   }
 
+  .theme-toggle-track {
+    position: relative;
+    width: 64px;
+    height: 32px;
+    background: var(--qi-base-04);
+    border: 1px solid var(--qi-base-06);
+    border-radius: var(--qi-radius-full);
+    transition:
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: var(--qi-bg-base);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      0 1px 2px rgba(0, 0, 0, 0.06);
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 0.3s ease;
+  }
+
   .theme-icon-sun,
   .theme-icon-moon {
     position: absolute;
     transition:
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.3s ease;
+      opacity 0.3s ease,
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--qi-text-secondary);
   }
 
-  /* Logic handled by script classes, but we can set defaults */
+  /* Light mode state */
   :global(.light) .theme-icon-sun {
     opacity: 0;
-    transform: rotate(90deg) scale(0.5);
+    transform: rotate(-90deg) scale(0.5);
   }
+
   :global(.light) .theme-icon-moon {
     opacity: 1;
     transform: rotate(0) scale(1);
   }
 
+  /* Dark mode state */
   :global(.dark) .theme-icon-sun {
     opacity: 1;
     transform: rotate(0) scale(1);
   }
+
   :global(.dark) .theme-icon-moon {
     opacity: 0;
-    transform: rotate(-90deg) scale(0.5);
+    transform: rotate(90deg) scale(0.5);
   }
 
-  :global(.dark) .theme-toggle-btn {
+  :global(.dark) .theme-toggle-track {
     background: var(--qi-surface-sub);
     border-color: var(--qi-border-strong);
+  }
+
+  :global(.dark) .theme-toggle-thumb {
+    transform: translateX(32px);
+  }
+
+  /* Toggle animation on click */
+  .theme-toggle-btn.toggling .theme-toggle-thumb {
+    animation: toggle-bounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .theme-toggle-btn.toggling .theme-icon-sun,
+  .theme-toggle-btn.toggling .theme-icon-moon {
+    animation: icon-spin 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes toggle-bounce {
+    0% {
+      transform: translateX(0) scale(1);
+    }
+    50% {
+      transform: translateX(16px) scale(1.1);
+    }
+    100% {
+      transform: translateX(32px) scale(1);
+    }
+  }
+
+  @keyframes icon-spin {
+    0% {
+      transform: rotate(0) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(0.8);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  /* Mobile touch optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .theme-toggle-btn {
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .theme-toggle-track {
+      width: 56px;
+      height: 28px;
+    }
+
+    .theme-toggle-thumb {
+      width: 20px;
+      height: 20px;
+    }
+
+    :global(.dark) .theme-toggle-thumb {
+      transform: translateX(28px);
+    }
+
+    @keyframes toggle-bounce {
+      0% {
+        transform: translateX(0) scale(1);
+      }
+      50% {
+        transform: translateX(14px) scale(1.1);
+      }
+      100% {
+        transform: translateX(28px) scale(1);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle-btn,
+    .theme-toggle-track,
+    .theme-toggle-thumb,
+    .theme-icon-sun,
+    .theme-icon-moon {
+      transition: none;
+      animation: none;
+    }
+
+    .theme-toggle-btn.toggling .theme-toggle-thumb {
+      animation: none;
+    }
   }
 </style>
 
@@ -131,6 +261,7 @@ const getThemeToggleText = (isDark) => {
   let htmlElement: HTMLElement;
   let themeToggleBtn: HTMLElement | null;
   let themeMeta: HTMLMetaElement | null;
+  let isTransitioning = false;
 
   function getCurrentLocale() {
     return window.location.pathname.startsWith('/en') ? 'en' : 'zh';
@@ -152,32 +283,47 @@ const getThemeToggleText = (isDark) => {
     try {
       return localStorage.getItem(STORAGE_KEY) as 'dark' | 'light' | null;
     } catch {
-      // localStorage access might be blocked
       return null;
     }
   }
 
-  function applyTheme(theme: 'dark' | 'light') {
-    // Cache DOM elements for better performance
+  function applyTheme(theme: 'dark' | 'light', withTransition = false) {
     if (!htmlElement) htmlElement = document.documentElement;
     if (!themeMeta) themeMeta = document.querySelector('meta[name="theme-color"]');
     if (!themeToggleBtn) themeToggleBtn = document.getElementById('theme-toggle');
 
-    // Apply theme class
-    if (theme === 'dark') {
-      htmlElement.classList.add('dark');
-      htmlElement.classList.remove('light');
+    if (withTransition && !isTransitioning) {
+      isTransitioning = true;
+      htmlElement.classList.add('theme-transitioning');
+
+      requestAnimationFrame(() => {
+        if (theme === 'dark') {
+          htmlElement.classList.add('dark');
+          htmlElement.classList.remove('light');
+        } else {
+          htmlElement.classList.remove('dark');
+          htmlElement.classList.add('light');
+        }
+
+        setTimeout(() => {
+          htmlElement.classList.remove('theme-transitioning');
+          isTransitioning = false;
+        }, 400);
+      });
     } else {
-      htmlElement.classList.remove('dark');
-      htmlElement.classList.add('light');
+      if (theme === 'dark') {
+        htmlElement.classList.add('dark');
+        htmlElement.classList.remove('light');
+      } else {
+        htmlElement.classList.remove('dark');
+        htmlElement.classList.add('light');
+      }
     }
 
-    // Update meta theme-color
     if (themeMeta) {
       themeMeta.setAttribute('content', theme === 'dark' ? '#121010' : '#F7F3EE');
     }
 
-    // Update aria attributes
     if (themeToggleBtn) {
       themeToggleBtn.setAttribute('aria-pressed', String(theme === 'dark'));
       themeToggleBtn.setAttribute('aria-label', getThemeToggleText(theme === 'dark'));
@@ -186,11 +332,20 @@ const getThemeToggleText = (isDark) => {
   }
 
   function toggleTheme() {
+    if (isTransitioning) return;
+
     const isDark = document.documentElement.classList.contains('dark');
     const newTheme = isDark ? 'light' : 'dark';
-    applyTheme(newTheme);
 
-    // Optimize localStorage write
+    if (themeToggleBtn) {
+      themeToggleBtn.classList.add('toggling');
+      setTimeout(() => {
+        themeToggleBtn?.classList.remove('toggling');
+      }, 400);
+    }
+
+    applyTheme(newTheme, true);
+
     try {
       localStorage.setItem(STORAGE_KEY, newTheme);
     } catch {
@@ -198,7 +353,6 @@ const getThemeToggleText = (isDark) => {
     }
   }
 
-  // Initialize theme before paint (prevent flash)
   (function initTheme() {
     const stored = getStoredTheme();
     const theme = stored || getSystemPreference();
@@ -207,20 +361,17 @@ const getThemeToggleText = (isDark) => {
     applyTheme(theme);
   })();
 
-  // Bind toggle button after DOM ready
   document.addEventListener('astro:page-load', () => {
     const btn = document.getElementById('theme-toggle');
     if (btn) {
       themeToggleBtn = btn;
-      // Use passive event listener for better performance
       btn.addEventListener('click', toggleTheme, { passive: true });
     }
 
-    // Listen for system preference changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', (event) => {
       if (!getStoredTheme()) {
-        applyTheme(event.matches ? 'dark' : 'light');
+        applyTheme(event.matches ? 'dark' : 'light', true);
       }
     });
   });

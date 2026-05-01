@@ -218,6 +218,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://matthewh
     <!-- Theme init (prevent FOUC) -->
     <script is:inline>
       (function () {
+        // Enable smooth theme transitions
+        document.documentElement.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        
         const t =
           localStorage.getItem('qi-theme') ||
           (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');

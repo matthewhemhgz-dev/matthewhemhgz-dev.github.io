@@ -18,13 +18,15 @@ function initCopyButtons() {
     pre.parentNode?.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
 
-    addLineNumbers(wrapper, pre);
-    addCopyButton(wrapper, pre);
+    if (pre instanceof HTMLElement) {
+      addLineNumbers(wrapper, pre);
+      addCopyButton(wrapper, pre);
+    }
   });
 }
 
 function addLineNumbers(wrapper: HTMLElement, pre: HTMLElement) {
-  const code = pre.querySelector('code');
+  const code = pre.querySelector('code') as HTMLElement | null;
   if (!code) return;
 
   const text = code.textContent || '';

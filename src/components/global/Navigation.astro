@@ -311,16 +311,17 @@ const navItems = [
     window.addEventListener('scroll', scrollHandler);
     window.addEventListener('resize', resizeHandler);
 
-    (window as any).__navCleanup = () => {
+    (window as Window & { __navCleanup?: () => void }).__navCleanup = () => {
       window.removeEventListener('scroll', scrollHandler);
       window.removeEventListener('resize', resizeHandler);
     };
   });
 
   document.addEventListener('astro:before-swap', () => {
-    if ((window as any).__navCleanup) {
-      (window as any).__navCleanup();
-      delete (window as any).__navCleanup;
+    const cleanup = (window as Window & { __navCleanup?: () => void }).__navCleanup;
+    if (cleanup) {
+      cleanup();
+      delete (window as Window & { __navCleanup?: () => void }).__navCleanup;
     }
   });
 </script>
