@@ -1,4 +1,5 @@
 /* Home page shared styles — split into section files */
+@import './utilities/cards.css';
 @import './sections/home-hero.css';
 @import './sections/home-hero-decorations.css';
 @import './sections/home-about.css';

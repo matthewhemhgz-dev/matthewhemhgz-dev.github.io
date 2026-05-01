@@ -32,7 +32,7 @@ const colors = colorMap[color] || colorMap.emerald;
 ---
 
 <div
-  class="bg-bg-base border border-[var(--qi-base-06)] rounded-lg p-lg hover:shadow-md hover:-translate-y-0.5 transition-all duration-base tilt-card"
+  class="dash-card"
   data-color={color}
   role="status"
   aria-label={`${label}: ${value} (${clampedPercentage}%)`}
@@ -55,3 +55,18 @@ const colors = colorMap[color] || colorMap.emerald;
     </div>
   </div>
 </div>
+
+<style>
+.dash-card {
+  background: var(--qi-bg-base);
+  border: var(--qi-card-border-subtle);
+  border-radius: var(--qi-card-radius-lg);
+  padding: var(--qi-card-padding-normal);
+  transition: var(--qi-card-transition);
+}
+
+.dash-card:hover {
+  box-shadow: var(--qi-card-shadow-hover);
+  transform: var(--qi-card-hover-lift);
+}
+</style>

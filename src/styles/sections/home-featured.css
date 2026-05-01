@@ -19,18 +19,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--qi-space-sm);
-  padding: var(--qi-space-xl);
+  padding: var(--qi-card-padding-normal);
   background: var(--qi-bg-base);
-  border: 1px solid var(--qi-base-06);
-  border-radius: var(--qi-radius-card);
-  transition:
-    transform var(--qi-transition),
-    box-shadow var(--qi-transition),
-    border-color var(--qi-transition);
+  border: var(--qi-card-border-subtle);
+  border-radius: var(--qi-card-border-radius);
+  transition: var(--qi-card-transition);
   text-decoration: none;
   color: inherit;
   overflow: hidden;
   position: relative;
+  box-shadow: var(--qi-card-shadow-base);
 }
 
 /* Glass morphism effect */
@@ -65,11 +63,8 @@
 
 /* Hover effects */
 .bento-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow:
-    0 20px 40px -12px var(--qi-base-08),
-    0 8px 16px -8px var(--qi-base-06),
-    0 0 40px -8px var(--qi-brand-emerald-08);
+  transform: var(--qi-card-hover-lift-lg) var(--qi-card-hover-scale);
+  box-shadow: var(--qi-card-shadow-hover);
   border-color: var(--qi-brand-emerald-20);
 }
 
@@ -115,7 +110,7 @@
   position: relative;
   flex: 1;
   min-height: 300px;
-  border-radius: var(--qi-radius);
+  border-radius: var(--qi-card-border-radius);
   overflow: hidden;
 }
 
@@ -154,7 +149,7 @@
   color: var(--qi-brand-emerald-dark);
   background: var(--qi-brand-emerald-12);
   padding: 2px 8px;
-  border-radius: var(--qi-radius-full);
+  border-radius: var(--qi-card-radius-full);
   font-weight: 600;
 }
 
@@ -204,7 +199,7 @@
 .bento-image-wrap {
   width: 100%;
   height: 180px;
-  border-radius: var(--qi-radius);
+  border-radius: var(--qi-card-border-radius);
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -253,9 +248,9 @@
   flex-direction: column;
   align-items: center;
   gap: var(--qi-space-lg);
-  padding: var(--qi-space-4xl) var(--qi-space-xl);
+  padding: var(--qi-space-4xl) var(--qi-card-padding-normal);
   border: 1px dashed var(--qi-opacity-medium);
-  border-radius: var(--qi-radius-lg);
+  border-radius: var(--qi-card-radius-lg);
   grid-column: 1 / -1;
 }
 
@@ -361,7 +356,7 @@
 
 @media (min-width: 2560px) {
   .bento-card {
-    padding: var(--qi-space-2xl);
+    padding: var(--qi-card-padding-spacious);
   }
 
   .bento-title {

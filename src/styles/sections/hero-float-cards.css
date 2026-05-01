@@ -2,19 +2,19 @@
 
 .hero-float-card {
   position: relative;
-  border-radius: var(--qi-radius-lg);
+  border-radius: var(--qi-card-radius-lg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   animation: float-gentle 6s ease-in-out infinite;
-  border: 1px solid var(--qi-border-default);
+  border: var(--qi-card-border);
   background: var(--qi-surface-main);
-  box-shadow: var(--qi-shadow-lg);
-  transition: all var(--qi-transition-base);
+  box-shadow: var(--qi-card-shadow-lg);
+  transition: var(--qi-card-transition);
 }
 
 .hero-float-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--qi-shadow-xl);
+  box-shadow: var(--qi-card-shadow-xl);
 }
 
 /* Insight card — Design Token stats */
@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--qi-radius-md);
+  border-radius: var(--qi-card-radius-md);
   background: var(--qi-brand-emerald-10);
   color: var(--qi-brand-emerald);
   box-shadow: 0 4px 12px var(--qi-brand-emerald-20);
@@ -75,14 +75,14 @@
 .float-insight-bar {
   height: 3px;
   background: var(--qi-base-08);
-  border-radius: var(--qi-radius-full);
+  border-radius: var(--qi-card-radius-full);
   overflow: hidden;
 }
 
 .float-insight-fill {
   height: 100%;
   width: 85%;
-  border-radius: var(--qi-radius-full);
+  border-radius: var(--qi-card-radius-full);
   transition: width 1.5s var(--qi-spring);
   animation: fill-progress 1.5s var(--qi-spring) forwards;
 }
@@ -112,7 +112,6 @@
   font-family: var(--qi-font-mono);
   font-size: var(--qi-text-xs);
   color: var(--qi-on-dark-muted);
-  /* Increased from muted */
   text-transform: uppercase;
   letter-spacing: var(--qi-tracking-wider);
 }
@@ -124,7 +123,7 @@
   color: var(--qi-brand-emerald);
   background: var(--qi-brand-emerald-10);
   padding: 2px 8px;
-  border-radius: var(--qi-radius-full);
+  border-radius: var(--qi-card-radius-full);
   box-shadow: 0 2px 8px var(--qi-brand-emerald-20);
 }
 
@@ -157,7 +156,6 @@
   font-family: var(--qi-font-mono);
   font-size: 10px;
   color: var(--qi-on-dark-muted);
-  /* Increased from muted */
   text-transform: uppercase;
   letter-spacing: var(--qi-tracking-wider);
   margin-top: 2px;

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Code Blocks — 代码块样式 + 复制按钮
+   Code Blocks — 代码块样式 + 复制按钮 + 行号
    ========================================================================== */
 
 /* Inline code */
@@ -17,7 +17,7 @@
 /* Code blocks */
 .prose :global(pre) {
   background: #fafaf9;
-  color: #44403c;
+  color: #374151;
   padding: 1.5rem;
   border-radius: var(--qi-radius-lg);
   overflow-x: auto;
@@ -25,8 +25,10 @@
   border: 1px solid var(--qi-border-default);
   position: relative;
   font-size: 0.9rem;
-  line-height: 1.65;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  line-height: 1.7;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* Code block wrapper for copy button */
@@ -39,6 +41,35 @@
   margin-bottom: 0;
 }
 
+/* Line numbers */
+.code-block-wrapper.has-line-numbers :global(pre) {
+  padding-left: 3.5rem;
+}
+
+.code-line-numbers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1.5rem 0;
+  width: 2.75rem;
+  text-align: center;
+  font-family: var(--qi-font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #9ca3af;
+  user-select: none;
+  pointer-events: none;
+  border-right: 1px solid var(--qi-border-subtle);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: var(--qi-radius-lg) 0 0 var(--qi-radius-lg);
+}
+
+.code-line-number {
+  display: block;
+  padding-right: 0.5rem;
+}
+
+/* Copy button */
 .copy-btn {
   position: absolute;
   top: 10px;
@@ -46,21 +77,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   padding: 0;
-  background: var(--qi-surface-sub);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--qi-border-subtle);
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  color: var(--qi-text-muted);
+  color: #6b7280;
   transition:
-    color var(--qi-transition-fast),
-    background-color var(--qi-transition-fast),
-    border-color var(--qi-transition-fast),
-    transform var(--qi-transition-fast);
+    all 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.15s ease;
   opacity: 0;
   z-index: 10;
+  backdrop-filter: blur(4px);
 }
 
 .code-block-wrapper:hover .copy-btn {
@@ -69,15 +99,21 @@
 
 .copy-btn:hover {
   color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-06);
-  border-color: var(--qi-brand-emerald-20);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--qi-brand-emerald-30);
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
 }
 
 .copy-btn.copied {
-  color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-08);
-  border-color: var(--qi-brand-emerald-30);
+  color: white;
+  background: var(--qi-brand-emerald);
+  border-color: var(--qi-brand-emerald);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
 .copy-btn:focus-visible {
@@ -86,12 +122,33 @@
   outline-offset: 2px;
 }
 
+/* Code block content reset */
 .prose :global(pre code) {
   background: none;
   color: inherit;
   padding: 0;
   border: none;
   font-size: inherit;
+  line-height: inherit;
+}
+
+/* Shiki syntax highlighting — Light mode */
+.prose :global(pre .shiki) {
+  background: transparent !important;
+}
+
+/* Basic syntax colors - light mode */
+.prose :global(pre .line) {
+  display: block;
+  min-height: 1.7em;
+}
+
+/* Highlighted line */
+.prose :global(pre .line.highlight) {
+  background: rgba(16, 185, 129, 0.08);
+  margin: 0 -1.5rem;
+  padding: 0 1.5rem;
+  border-left: 2px solid var(--qi-brand-emerald);
 }
 
 /* Dark mode code blocks */
@@ -102,28 +159,76 @@
 }
 
 :global(.dark) .prose :global(pre) {
-  background: #1c1917;
-  border-color: var(--qi-border-default);
-  color: #e7e5e4;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-width: 1px;
-  border-style: solid;
+  background: #0d1117;
+  border-color: #30363d;
+  color: #c9d1d9;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
+:global(.dark) .code-line-numbers {
+  color: #484f58;
+  border-right-color: #30363d;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+:global(.dark) .code-block-wrapper.has-line-numbers :global(pre) {
+  padding-left: 3.5rem;
+}
+
+/* Dark mode copy button */
 :global(.dark) .copy-btn {
-  background: var(--qi-surface-sub);
-  border-color: var(--qi-border-subtle);
-  color: var(--qi-text-muted);
+  background: rgba(22, 27, 34, 0.9);
+  border-color: #30363d;
+  color: #8b949e;
+  backdrop-filter: blur(8px);
 }
 
 :global(.dark) .copy-btn:hover {
   color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-08);
-  border-color: var(--qi-brand-emerald-25);
+  background: rgba(22, 27, 34, 0.95);
+  border-color: var(--qi-brand-emerald-40);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
 }
 
 :global(.dark) .copy-btn.copied {
-  color: var(--qi-brand-emerald);
-  background: var(--qi-brand-emerald-10);
-  border-color: var(--qi-brand-emerald-35);
+  color: white;
+  background: var(--qi-brand-emerald);
+  border-color: var(--qi-brand-emerald);
+  box-shadow: 0 2px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Dark mode highlighted line */
+:global(.dark) .prose :global(pre .line.highlight) {
+  background: rgba(16, 185, 129, 0.12);
+  border-left-color: var(--qi-brand-emerald);
+}
+
+/* Scrollbar styling */
+.prose :global(pre::-webkit-scrollbar) {
+  height: 8px;
+  width: 8px;
+}
+
+.prose :global(pre::-webkit-scrollbar-track) {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.prose :global(pre::-webkit-scrollbar-thumb) {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.prose :global(pre::-webkit-scrollbar-thumb:hover) {
+  background: #9ca3af;
+}
+
+:global(.dark) .prose :global(pre::-webkit-scrollbar-thumb) {
+  background: #30363d;
+}
+
+:global(.dark) .prose :global(pre::-webkit-scrollbar-thumb:hover) {
+  background: #484f58;
 }

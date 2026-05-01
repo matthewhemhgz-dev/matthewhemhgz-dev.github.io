@@ -14,11 +14,15 @@ interface Props {
     percentage: number;
     color: string;
   }>;
+  moreLink?: {
+    text: string;
+    href: string;
+  };
   classList?: string;
 }
 
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-const { label, title, text, decoNumber = '01', decoSlogan, dashItems, classList = '' } = Astro.props;
+const { label, title, text, decoNumber = '01', decoSlogan, dashItems, moreLink, classList = '' } = Astro.props;
 ---
 
 <section class="section about-section ${classList}" data-reveal>
@@ -121,6 +125,11 @@ const { label, title, text, decoNumber = '01', decoSlogan, dashItems, classList 
             ))
           }
         </div>
+        {moreLink && (
+          <a href={moreLink.href} class="about-more-link">
+            {moreLink.text}
+          </a>
+        )}
       </div>
     </div>
   </div>

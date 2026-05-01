@@ -348,6 +348,65 @@
   --qi-space-9xl: var(--qi-space-128);
 }
 
+/* Card Design Tokens - Centralized System */
+:root {
+  /* Card Base Styles */
+  --qi-card-border-radius: var(--qi-radius-card);
+  --qi-card-border-width: 1px;
+  --qi-card-padding: var(--qi-space-xl);
+  
+  /* Card Borders */
+  --qi-card-border: 1px solid var(--qi-border-default);
+  --qi-card-border-subtle: 1px solid var(--qi-border-subtle);
+  --qi-card-border-strong: 1px solid var(--qi-border-strong);
+  
+  /* Card Shadows - Elevation Levels */
+  --qi-card-shadow-flat: none;
+  --qi-card-shadow-sm: var(--qi-shadow-1);
+  --qi-card-shadow-base: var(--qi-shadow-2);
+  --qi-card-shadow-md: var(--qi-shadow-2);
+  --qi-card-shadow-lg: var(--qi-shadow-3);
+  --qi-card-shadow-xl: var(--qi-shadow-4);
+  
+  /* Card Hover Shadow - Warm accent for better visual feedback */
+  --qi-card-shadow-hover: var(--qi-shadow-hover-warm);
+  
+  /* Card Border Radius Variants */
+  --qi-card-radius-sm: var(--qi-radius-sm);
+  --qi-card-radius-md: var(--qi-radius-md);
+  --qi-card-radius-lg: var(--qi-radius-lg);
+  --qi-card-radius-xl: var(--qi-radius-card);
+  --qi-card-radius-full: var(--qi-radius-full);
+  
+  /* Card Sizes */
+  --qi-card-padding-compact: var(--qi-space-lg);
+  --qi-card-padding-normal: var(--qi-space-xl);
+  --qi-card-padding-spacious: var(--qi-space-2xl);
+  
+  /* Card Transitions */
+  --qi-card-transition: all var(--qi-transition);
+  --qi-card-transition-transform: transform var(--qi-transition);
+  --qi-card-transition-shadow: box-shadow var(--qi-transition);
+  --qi-card-transition-border: border-color var(--qi-transition);
+}
+
+/* Card Elevation Classes */
+:root {
+  --qi-card-elevation-0: var(--qi-card-shadow-flat);
+  --qi-card-elevation-1: var(--qi-card-shadow-sm);
+  --qi-card-elevation-2: var(--qi-card-shadow-base);
+  --qi-card-elevation-3: var(--qi-card-shadow-md);
+  --qi-card-elevation-4: var(--qi-card-shadow-lg);
+  --qi-card-elevation-5: var(--qi-card-shadow-xl);
+}
+
+/* Card Hover Presets */
+:root {
+  --qi-card-hover-lift: translateY(-4px);
+  --qi-card-hover-lift-lg: translateY(-6px);
+  --qi-card-hover-scale: scale(1.02);
+}
+
 /* Radius */
 :root {
   --qi-radius-none: 0;

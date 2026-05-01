@@ -7,8 +7,6 @@ import AboutSection from '../../components/sections/AboutSection.astro';
 import FeaturedSection from '../../components/sections/FeaturedSection.astro';
 import ToolboxSection from '../../components/sections/ToolboxSection.astro';
 import PlatformsSection from '../../components/sections/PlatformsSection.astro';
-import ResearchSection from '../../components/sections/ResearchSection.astro';
-import ProjectsSection from '../../components/sections/ProjectsSection.astro';
 import CtaSection from '../../components/sections/CtaSection.astro';
 import SectionDivider from '../../components/decorations/SectionDivider.astro';
 import { getCollection } from 'astro:content';
@@ -45,37 +43,24 @@ const toolboxCategories = [
     label: 'Knowledge Management',
     icon: 'book',
     tools: [
-      { name: 'Obsidian', desc: 'Local-first knowledge graph with bidirectional links' },
-      { name: 'Graphify', desc: 'LLM-driven knowledge base auto-builder' },
-      { name: 'Markdown', desc: 'Single source of truth document format standard' },
+      { name: 'Obsidian', desc: 'Local-first knowledge graph' },
+      { name: 'Graphify', desc: 'LLM knowledge base builder' },
     ],
   },
   {
     label: 'Development Tools',
     icon: 'cog',
     tools: [
-      { name: 'Trae', desc: 'AI-enhanced code editor' },
-      { name: 'Git + GitHub', desc: 'Version control & open source collaboration' },
-      { name: 'Docker', desc: 'Containerized deployment & orchestration' },
-      { name: 'Astro', desc: 'Zero JS static site generation' },
+      { name: 'Trae', desc: 'AI-enhanced editor' },
+      { name: 'Git + Docker', desc: 'Version control & containers' },
     ],
   },
   {
     label: 'AI Tools',
     icon: 'robot',
     tools: [
-      { name: 'OpenClaw', desc: 'Exclusive digital twin outer brain (model routing)' },
-      { name: 'Trae SOLO', desc: 'AI programming agent & Subagent orchestration' },
-      { name: 'Superpowers', desc: 'TDD + systematic debugging AI workflow' },
-    ],
-  },
-  {
-    label: 'Data & DevOps',
-    icon: 'database',
-    tools: [
-      { name: 'n8n', desc: 'Automated workflow engine' },
-      { name: 'Metabase', desc: 'Operational data visualization dashboard' },
-      { name: 'PostgreSQL', desc: 'Structured data persistence storage' },
+      { name: 'OpenClaw', desc: 'Digital twin outer brain' },
+      { name: 'Trae SOLO', desc: 'AI programming agent' },
     ],
   },
 ];
@@ -95,29 +80,6 @@ const platforms = [
     icon: 'smartphone',
     desc: 'In-depth articles & sharing',
     qrImage: '/images/social/wechat-oa-qr.jpg',
-  },
-  {
-    name: 'GitHub Pages',
-    handle: 'QiLab',
-    url: 'https://matthewhemhgz-dev.github.io',
-    icon: 'globe',
-    desc: 'Blog & project showcase',
-  },
-  {
-    name: 'Xiaohongshu',
-    handle: 'Qi_Lab',
-    url: '#',
-    icon: 'book',
-    desc: 'Lifestyle & inspiration sharing',
-    qrImage: '/images/social/xhs-qr.jpg',
-  },
-  {
-    name: 'Douyin',
-    handle: 'QiLab',
-    url: '#',
-    icon: 'video',
-    desc: 'Short video content creation',
-    qrImage: '/images/social/douyin-qr.jpg',
   },
 ];
 ---
@@ -151,11 +113,11 @@ const platforms = [
     text="QiLab is my digital archive — a systematic place for organizing knowledge management, project management, IT/AI skills, and cutting-edge trends. Through personal experience, practical thinking, and systematic notes, I explore how to make technology truly serve human needs. Adhering to human ontological value, long-termism."
     decoNumber="01"
     decoSlogan="Organize · Verify · Share"
+    moreLink={{ text: 'Learn more methodology →', href: '/en/about' }}
     dashItems={[
-      { label: 'Knowledge Management', value: '75+ Items', percentage: 92, color: 'emerald' },
-      { label: 'Project Management', value: '7 Certs', percentage: 88, color: 'amber' },
-      { label: 'IT/AI Skills', value: '5+ Tools', percentage: 85, color: 'emerald' },
-      { label: 'Trends', value: '10+ Years', percentage: 70, color: 'gray' },
+      { label: 'Knowledge Management', value: '75+', percentage: 92, color: 'emerald' },
+      { label: 'Project Management', value: '7 certs', percentage: 88, color: 'amber' },
+      { label: 'IT/AI Skills', value: '5+', percentage: 85, color: 'emerald' },
     ]}
   />
 
@@ -190,23 +152,10 @@ const platforms = [
     platforms={platforms} 
   />
 
-  <ResearchSection 
-    classList="qi-anim-scroll-reveal qi-anim-delay-500"
-    label="// METHODOLOGY" 
-    title="Research Methodology" 
-  />
-
-  <SectionDivider variant="diamond" />
-
-  <ProjectsSection 
-    classList="qi-anim-scroll-reveal qi-anim-delay-500"
-    locale="en" 
-  />
-
   <SectionDivider variant="arcs" />
 
   <CtaSection
-    classList="qi-anim-scroll-reveal qi-anim-delay-600"
+    classList="qi-anim-scroll-reveal qi-anim-delay-500"
     label="// LET'S CONNECT"
     title="Let's Make Knowledge Truly Useful"
     description="Whether it's knowledge management exchange, AI workflows or project cooperation, feel free to contact us."

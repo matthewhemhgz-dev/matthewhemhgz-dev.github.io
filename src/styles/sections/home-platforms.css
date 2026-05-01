@@ -24,25 +24,23 @@
   display: flex;
   align-items: center;
   gap: var(--qi-space-md);
-  padding: var(--qi-space-lg);
+  padding: var(--qi-card-padding-normal);
   background: var(--qi-bg-base);
-  border: 1px solid var(--qi-base-06);
-  border-radius: var(--qi-radius-card);
-  transition:
-    transform var(--qi-transition),
-    box-shadow var(--qi-transition),
-    border-color var(--qi-transition);
+  border: var(--qi-card-border-subtle);
+  border-radius: var(--qi-card-border-radius);
+  transition: var(--qi-card-transition);
   text-decoration: none;
   color: inherit;
   min-height: 80px;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--qi-card-shadow-base);
 }
 
 .platform-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--qi-shadow-hover-warm);
-  border-color: var(--qi-base-10);
+  transform: var(--qi-card-hover-lift);
+  box-shadow: var(--qi-card-shadow-hover);
+  border-color: var(--qi-border-strong);
 }
 
 /* Platform hover - icon scales, arrow translates with amber color */
@@ -99,9 +97,7 @@
   font-size: var(--qi-text-lg);
   color: var(--qi-text-muted);
   flex-shrink: 0;
-  transition:
-    transform var(--qi-transition),
-    color var(--qi-transition);
+  transition: var(--qi-card-transition);
 }
 
 .platform-card--soon {
@@ -142,7 +138,7 @@
 
 @media (min-width: 2560px) {
   .platform-card {
-    padding: var(--qi-space-xl);
+    padding: var(--qi-card-padding-spacious);
     gap: var(--qi-space-lg);
   }
 
@@ -200,8 +196,7 @@
 }
 
 @keyframes node-float {
-  0%,
-  100% {
+  0%, 100% {
     transform: translate(0, 0);
   }
   33% {

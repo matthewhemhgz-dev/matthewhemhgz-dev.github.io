@@ -204,3 +204,20 @@
   color: var(--qi-brand-emerald);
   margin-top: var(--qi-space-sm);
 }
+
+/* "了解更多" 链接 */
+.about-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qi-space-xs);
+  color: var(--qi-brand-emerald);
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.2s ease, opacity 0.2s ease;
+  opacity: 0.85;
+}
+
+.about-more-link:hover {
+  opacity: 1;
+  gap: var(--qi-space-sm);
+}
