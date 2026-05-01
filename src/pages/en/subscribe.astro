@@ -1,0 +1,321 @@
+---
+import '../../styles/components/newsletter.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Divider from '../../components/global/Divider.astro';
+import Newsletter from '../../components/global/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+// 获取所有标签用于展示 RSS 分类
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en');
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title="Subscribe | Qi-Lab" description="Subscribe to Qi-Lab via email or RSS to get the latest articles and updates.">
+  <div class="subscribe-page">
+    <div class="container">
+      <!-- Page Hero -->
+      <section class="page-hero" data-reveal>
+        <span class="page-label">// SUBSCRIBE</span>
+        <h1 class="page-title">Subscribe to Qi-Lab</h1>
+        <p class="page-subtitle">Get the latest articles and updates delivered straight to your inbox or RSS reader</p>
+      </section>
+
+      <Divider />
+
+      <!-- Email Subscription Section -->
+      <section class="subscribe-section" data-reveal>
+        <SectionHeader label="// EMAIL" title="Email Subscription" />
+        <div class="subscribe-intro">
+          <p>Get the latest articles and updates directly in your inbox, ready to read whenever you want. We respect your privacy and will never share your email address.</p>
+        </div>
+        <div class="newsletter-wrapper">
+          <Newsletter lang="en" />
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- RSS Subscription Section -->
+      <section class="subscribe-section" data-reveal>
+        <SectionHeader label="// RSS" title="RSS Subscription" />
+        <div class="subscribe-intro">
+          <p>Subscribe using your favorite RSS reader and never miss an update.</p>
+        </div>
+        
+        <div class="rss-feeds">
+          <div class="rss-feed-item">
+            <div class="rss-feed-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 11a9 9 0 0 1 9 9" />
+                <path d="M4 4a16 16 0 0 1 16 16" />
+                <circle cx="5" cy="19" r="1" />
+              </svg>
+            </div>
+            <div class="rss-feed-content">
+              <h3 class="rss-feed-title">Full Site RSS</h3>
+              <p class="rss-feed-desc">Subscribe to all articles, don't miss anything</p>
+            </div>
+            <a href="/en/rss.xml" class="rss-feed-link" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7" />
+                <path d="M7 7h10v10" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <h3 class="rss-tags-title">Subscribe by Tag</h3>
+        <div class="rss-tags-grid">
+          {allTags.map((tag) => (
+            <a href={`/en/tags/${tag}.rss.xml`} class="rss-tag-item" target="_blank" rel="noopener noreferrer">
+              <div class="rss-tag-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 11a9 9 0 0 1 9 9" />
+                  <path d="M4 4a16 16 0 0 1 16 16" />
+                  <circle cx="5" cy="19" r="1" />
+                </svg>
+              </div>
+              <span class="rss-tag-text">#{tag}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <Divider />
+
+      <!-- Tips Section -->
+      <section class="subscribe-section" data-reveal>
+        <SectionHeader label="// TIPS" title="RSS Reader Recommendations" />
+        <div class="rss-readers-grid">
+          <div class="rss-reader-card">
+            <div class="rss-reader-icon">📱</div>
+            <h4 class="rss-reader-name">Feedly</h4>
+            <p class="rss-reader-desc">Powerful cross-platform RSS reader with beautiful interface</p>
+          </div>
+          <div class="rss-reader-card">
+            <div class="rss-reader-icon">🌐</div>
+            <h4 class="rss-reader-name">Inoreader</h4>
+            <p class="rss-reader-desc">Online reader with rule filtering and team collaboration</p>
+          </div>
+          <div class="rss-reader-card">
+            <div class="rss-reader-icon">💻</div>
+            <h4 class="rss-reader-name">NetNewsWire</h4>
+            <p class="rss-reader-desc">Native reader for macOS/iOS, simple and efficient</p>
+          </div>
+          <div class="rss-reader-card">
+            <div class="rss-reader-icon">🔗</div>
+            <h4 class="rss-reader-name">Miniflux</h4>
+            <p class="rss-reader-desc">Self-hosted open-source RSS reader with privacy focus</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .subscribe-page {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .page-hero {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .page-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .subscribe-section {
+    margin-bottom: 60px;
+  }
+
+  .subscribe-intro {
+    margin-bottom: 32px;
+  }
+
+  .subscribe-intro p {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .newsletter-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .rss-feeds {
+    margin-bottom: 40px;
+  }
+
+  .rss-feed-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: var(--color-background-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+  }
+
+  .rss-feed-item:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .rss-feed-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    border-radius: 12px;
+    color: var(--color-background);
+  }
+
+  .rss-feed-content {
+    flex: 1;
+  }
+
+  .rss-feed-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--color-text-primary);
+  }
+
+  .rss-feed-desc {
+    color: var(--color-text-secondary);
+  }
+
+  .rss-feed-link {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    border-radius: 8px;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .rss-feed-link:hover {
+    background: var(--color-accent);
+    color: var(--color-background);
+  }
+
+  .rss-tags-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--color-text-primary);
+  }
+
+  .rss-tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .rss-tag-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--color-background-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .rss-tag-item:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .rss-tag-icon {
+    flex-shrink: 0;
+    color: var(--color-accent);
+  }
+
+  .rss-tag-text {
+    font-weight: 500;
+  }
+
+  .rss-readers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .rss-reader-card {
+    padding: 24px;
+    background: var(--color-background-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+  }
+
+  .rss-reader-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+
+  .rss-reader-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+  }
+
+  .rss-reader-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .rss-feed-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .rss-feed-content {
+      text-align: center;
+    }
+  }
+</style>

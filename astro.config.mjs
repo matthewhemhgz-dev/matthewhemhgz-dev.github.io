@@ -5,6 +5,7 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import astroPWA from '@vite-pwa/astro';
 import { fileURLToPath, URL } from 'node:url';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   content: {
@@ -201,6 +202,13 @@ export default defineConfig({
         'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
       },
     },
-    plugins: [],
+    plugins: process.env.ANALYZE ? [
+      visualizer({
+        filename: 'reports/bundle-visualizer.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }),
+    ] : [],
   },
 });

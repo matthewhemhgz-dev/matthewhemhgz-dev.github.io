@@ -13,7 +13,9 @@ import TableOfContents from '../../components/global/TableOfContents.astro';
 import Comments from '../../components/global/Comments.astro';
 import ShareButtons from '../../components/ui/ShareButtons.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import Newsletter from '../../components/global/Newsletter.astro';
 import '../../styles/sections/article.css';
+import '../../styles/components/newsletter.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'zh');
@@ -260,6 +262,10 @@ const breadcrumbJsonLd = {
       
       <RelatedArticles currentPost={post} allPosts={allPosts} limit={3} lang="zh" />
       
+      <div class="article-newsletter">
+        <Newsletter lang="zh" />
+      </div>
+      
       <Comments lang="zh" />
       
       <nav class="article-nav">
@@ -307,4 +313,13 @@ const breadcrumbJsonLd = {
       }
     });
   </script>
+  <style>
+    .article-newsletter {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+  </style>
 </BaseLayout>
