@@ -85,24 +85,14 @@ function getPublicSrc(path: string): string {
 }
 
 function getWebPSrc(src: string): string {
+  // Only use explicitly provided webpSrc, do not auto-generate
   if (webpSrc) return webpSrc;
-  if (src.startsWith('/images/')) {
-    return src.replace(/(\/images\/)(.+)\.(\w+)$/, '$1$2.webp');
-  }
-  if (src.startsWith('/blog/')) {
-    return src.replace(/(\/blog\/)(.+)\.(\w+)$/, '$1$2.webp');
-  }
   return '';
 }
 
 function getAvifSrc(src: string): string {
+  // Only use explicitly provided avifSrc, do not auto-generate
   if (avifSrc) return avifSrc;
-  if (src.startsWith('/images/')) {
-    return src.replace(/(\/images\/)(.+)\.(\w+)$/, '$1$2.avif');
-  }
-  if (src.startsWith('/blog/')) {
-    return src.replace(/(\/blog\/)(.+)\.(\w+)$/, '$1$2.avif');
-  }
   return '';
 }
 ---
@@ -136,17 +126,7 @@ function getAvifSrc(src: string): string {
 )}
 
 {usePictureTag && isPublicImage && (
-  <picture class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
-    <source
-      type="image/webp"
-      srcset={getWebPSrc(typeof src === 'string' ? src : '')}
-      sizes={sizes}
-    />
-    <source
-      type="image/avif"
-      srcset={getAvifSrc(typeof src === 'string' ? src : '')}
-      sizes={sizes}
-    />
+  <div class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
     <img
       src={fallbackSrc || getPublicSrc(typeof src === 'string' ? src : '')}
       alt={alt}
@@ -157,7 +137,7 @@ function getAvifSrc(src: string): string {
       class={`${className || ''} optimized-image`.trim()}
       decoding="async"
     />
-  </picture>
+  </div>
 )}
 
 {!usePictureTag && isExternalImage && (
@@ -177,28 +157,16 @@ function getAvifSrc(src: string): string {
 
 {!usePictureTag && isPublicImage && (
   <div class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
-    <picture>
-      <source
-        type="image/webp"
-        srcset={getWebPSrc(typeof src === 'string' ? src : '')}
-        sizes={sizes}
-      />
-      <source
-        type="image/avif"
-        srcset={getAvifSrc(typeof src === 'string' ? src : '')}
-        sizes={sizes}
-      />
-      <img
-        src={fallbackSrc || getPublicSrc(typeof src === 'string' ? src : '')}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={loading}
-        fetchpriority={fetchpriority}
-        class={`${className || ''} optimized-image`.trim()}
-        decoding="async"
-      />
-    </picture>
+    <img
+      src={fallbackSrc || getPublicSrc(typeof src === 'string' ? src : '')}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={`${className || ''} optimized-image`.trim()}
+      decoding="async"
+    />
   </div>
 )}
 
