@@ -1,12 +1,6 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-
-interface SourceSet {
-  webp?: string;
-  avif?: string;
-  original?: string;
-}
 
 interface Props {
   src: string | ImageMetadata;
@@ -22,11 +16,6 @@ interface Props {
   format?: 'avif' | 'webp' | 'jpeg' | 'png';
   quality?: number;
   placeholder?: 'blur' | 'dominantColor' | 'none';
-  enableLQIP?: boolean;
-  webpSrc?: string;
-  avifSrc?: string;
-  fallbackSrc?: string;
-  usePictureTag?: boolean;
 }
 
 const {
@@ -43,16 +32,25 @@ const {
   format,
   quality,
   placeholder = 'blur',
-  enableLQIP = true,
-  webpSrc,
-  avifSrc,
-  fallbackSrc,
-  usePictureTag = false,
 } = Astro.props;
 
+/**
+ * OptimizedImage — 封装 Astro <Image /> 的优化图片组件
+ *
+ * 特性：
+ * - 自动格式优先级：AVIF > WebP > JPEG/PNG
+ * - 响应式图片支持多种尺寸
+ * - 自定义质量参数
+ * - 智能占位符（模糊/主色）
+ * 
+ * 对于本地图片，使用 Astro 内置优化（WebP/AVIF + srcset）
+ * 对于外部 URL，回退到原生 <img> 标签（添加 loading + decoding 优化）
+ * 对于 public 目录图片，使用原生 <img> 但添加优化属性
+ */
 const isExternalImage = typeof src === 'string' && (src.startsWith('http') || src.startsWith('//'));
 const isPublicImage = typeof src === 'string' && (src.startsWith('/') || src.includes('public/') || src.includes('public\\'));
 
+// 生成响应式尺寸数组
 const getResponsiveWidths = (baseWidth: number): number[] => {
   if (widths && widths.length > 0) return widths;
   const steps = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -60,54 +58,32 @@ const getResponsiveWidths = (baseWidth: number): number[] => {
 };
 
 const resolvedWidths = width ? getResponsiveWidths(width) : undefined;
-
-let blurPlaceholder = '';
-let optimizedSrcSet: SourceSet = {};
-
-if (!isExternalImage && !isPublicImage && enableLQIP) {
-  try {
-    const lqipImage = await getImage({
-      src: src as ImageMetadata,
-      width: 20,
-      quality: 20,
-      format: 'webp',
-    });
-    blurPlaceholder = lqipImage.src;
-  } catch {
-    console.warn('LQIP generation failed, continuing without placeholder');
-  }
-}
-
-const hasRequiredDimensions = width && height;
-
-function getPublicSrc(path: string): string {
-  return path.replace('public/', '/').replace('public\\', '/').replace(/\\/g, '/');
-}
-
-function getWebPSrc(src: string): string {
-  // Only use explicitly provided webpSrc, do not auto-generate
-  if (webpSrc) return webpSrc;
-  return '';
-}
-
-function getAvifSrc(src: string): string {
-  // Only use explicitly provided avifSrc, do not auto-generate
-  if (avifSrc) return avifSrc;
-  return '';
-}
 ---
 
-{usePictureTag && !isExternalImage && !isPublicImage && (
-  <picture class="optimized-image-wrapper">
-    {blurPlaceholder && (
-      <img
-        src={blurPlaceholder}
-        alt=""
-        aria-hidden="true"
-        class="optimized-image-placeholder"
-        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1);"
-      />
-    )}
+{
+  isExternalImage ? (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={className}
+      decoding="async"
+    />
+  ) : isPublicImage ? (
+    <img
+      src={typeof src === 'string' ? src.replace('public/', '/').replace('public\\', '/').replace(/\\/g, '/') : ''}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class={className}
+      decoding="async"
+    />
+  ) : (
     <Image
       src={src}
       alt={alt}
@@ -115,145 +91,13 @@ function getAvifSrc(src: string): string {
       height={height}
       loading={loading}
       fetchpriority={fetchpriority}
-      class={`${className || ''} optimized-image main-image`.trim()}
-      sizes={sizes}
-      widths={resolvedWidths}
-      format="avif"
-      quality={quality}
-      style={blurPlaceholder ? 'opacity: 0; transition: opacity 0.4s ease-in-out;' : ''}
-    />
-  </picture>
-)}
-
-{usePictureTag && isPublicImage && (
-  <div class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
-    <img
-      src={fallbackSrc || getPublicSrc(typeof src === 'string' ? src : '')}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      fetchpriority={fetchpriority}
-      class={`${className || ''} optimized-image`.trim()}
-      decoding="async"
-    />
-  </div>
-)}
-
-{!usePictureTag && isExternalImage && (
-  <div class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      fetchpriority={fetchpriority}
-      class={`${className || ''} optimized-image`.trim()}
-      decoding="async"
-    />
-  </div>
-)}
-
-{!usePictureTag && isPublicImage && (
-  <div class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
-    <img
-      src={fallbackSrc || getPublicSrc(typeof src === 'string' ? src : '')}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      fetchpriority={fetchpriority}
-      class={`${className || ''} optimized-image`.trim()}
-      decoding="async"
-    />
-  </div>
-)}
-
-{!usePictureTag && !isExternalImage && !isPublicImage && (
-  <div class="optimized-image-wrapper" style={hasRequiredDimensions ? `aspect-ratio: ${width}/${height};` : ''}>
-    {blurPlaceholder && (
-      <img
-        src={blurPlaceholder}
-        alt=""
-        aria-hidden="true"
-        class="optimized-image-placeholder"
-        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(20px); transform: scale(1.1);"
-      />
-    )}
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading={loading}
-      fetchpriority={fetchpriority}
-      class={`${className || ''} optimized-image main-image`.trim()}
+      class={className}
       sizes={sizes}
       aspectRatio={aspectRatio}
       widths={resolvedWidths}
       format={format}
       quality={quality}
       placeholder={placeholder}
-      style={blurPlaceholder ? 'opacity: 0; transition: opacity 0.4s ease-in-out;' : ''}
     />
-  </div>
-)}
-
-<style>
-.optimized-image-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
+  )
 }
-
-.optimized-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.optimized-image.main-image.loaded {
-  opacity: 1 !important;
-}
-
-.optimized-image-placeholder {
-  z-index: 1;
-}
-
-.main-image {
-  position: relative;
-  z-index: 2;
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const mainImages = document.querySelectorAll('.optimized-image.main-image');
-  
-  mainImages.forEach((img) => {
-    if (img instanceof HTMLImageElement) {
-      if (img.complete) {
-        img.classList.add('loaded');
-      } else {
-        img.addEventListener('load', () => {
-          img.classList.add('loaded');
-        });
-      }
-    }
-  });
-});
-
-if (typeof window !== 'undefined') {
-  window.addEventListener('load', function() {
-    const mainImages = document.querySelectorAll('.optimized-image.main-image:not(.loaded)');
-    mainImages.forEach((img) => {
-      if (img instanceof HTMLImageElement && img.complete) {
-        img.classList.add('loaded');
-      }
-    });
-  });
-}
-</script>
