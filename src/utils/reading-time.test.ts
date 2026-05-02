@@ -16,7 +16,7 @@ title: Test Article
 date: 2024-01-01
 ---
 
-这是一篇测试文章。`;
+这是一篇测试文章。这是一篇测试文章。这是一篇测试文章。这是一篇测试文章。这是一篇测试文章。`.repeat(10);
     expect(getReadingTime(content)).not.toBe('不足 1 分钟');
   });
 
